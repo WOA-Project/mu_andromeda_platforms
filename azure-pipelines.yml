@@ -1,4 +1,4 @@
-# Lumia950XLPkg CI build on VSTS
+# SurfaceDuoPkg CI build on VSTS
 
 trigger:
   branches:
@@ -12,9 +12,6 @@ trigger:
 pool:
   vmImage: 'Ubuntu-latest'
   
-variables:
-  - group: GIT_PAT  
-
 steps:
 - script: sudo apt update 
   displayName: 'Update APT sources'
