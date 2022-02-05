@@ -1,0 +1,22 @@
+# Dynamic Generated
+# Platforms/SurfaceDuoPkg/Driver/SmBiosTableDxe/ReleaseInfo.h
+# Platforms/SurfaceDuoPkg/Application/BdsMenuApp/ReleaseInfo.h
+# Platforms/SurfaceDuoPkg/Include/Resources/ReleaseInfo.h
+
+# Local
+.DS_Store
+.vs
+.vscode
+
+/Build/
+.DS_Store
+*_extdep/
+*.pyc
+__pycache__/
+tags/
+.vscode/
+*.bak
+BuildConfig.conf
+
+/Conf/
+/SurfaceDuo/
