@@ -17,7 +17,7 @@
 [submodule "Silicon/ARM/TIANO"]
 	path = Silicon/ARM/TIANO
 	url = https://github.com/microsoft/mu_silicon_arm_tiano.git
-	branch = release/202108
+	branch = release/202111
 [submodule "Platforms/SurfaceDuoPkg/FirmwareBinaries"]
 	path = Platforms/SurfaceDuoPkg/FirmwareBinaries
 	url = https://github.com/WOA-Project/SurfaceDuoBinaries.git
