@@ -35,14 +35,6 @@ steps:
 # - script: cd acpica-tools && make clean && make && sudo make install && cd ..
 #   displayName: 'Build and install ACPICA tools'
 
-- script: |
-          git config --file .gitmodules --get-regexp url | while read url; do
-          git config --file=.gitmodules $(echo "$url" | sed -E "s/git@github.com:|https:\/\/github.com\//https:\/\/$(CI_PAT):$(CI_PAT)@github.com\//")
-          done
-          git submodule sync
-          git submodule update --init --recursive
-  displayName: Checkout submodules
-
 - script: chmod +x ./setup_env.sh && sudo ./setup_env.sh
   displayName: 'Prepare pre-build environment, phase 0'
 
