@@ -55,5 +55,10 @@ Sm8150PlatformInitialize(
       gCpu, 0x9c000000, 0x2400000, EFI_MEMORY_WC | EFI_MEMORY_XP);
   ASSERT_EFI_ERROR(Status);
 
+  // Set SMEM region attributes to match WP counterparts (i.e. clear execution protection)
+  Status = gCpu->SetMemoryAttributes(
+      gCpu, 0x86000000, 0x00200000, EFI_MEMORY_WC | EFI_MEMORY_UC);
+  ASSERT_EFI_ERROR(Status);
+
   return Status;
 }
