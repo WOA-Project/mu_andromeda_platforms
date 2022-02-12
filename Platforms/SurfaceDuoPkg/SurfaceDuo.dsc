@@ -47,4 +47,4 @@
   gSurfaceDuoPkgTokenSpaceGuid.PcdSmbiosSystemRetailModel|"1930"
   
 !include SurfaceDuoPkg/Shared.dsc.inc
-# !include FrontpageDsc.inc
+!include FrontpageDsc.inc

@@ -198,7 +198,7 @@ SMBIOS_TABLE_TYPE2 mBoardInfoType2 = {
     {0}                       // ContainedObjectHandles[1];
 };
 CHAR8 *mBoardInfoType2Strings[] = {
-    "Microsoft", "Surface Duo", "1930", "Unknown", "", "", NULL};
+    "Microsoft", "Surface Duo", "1930", "Unknown", "Unknown", "Unknown", NULL};
 
 /***********************************************************************
         SMBIOS data definition  TYPE3  Enclosure Information
@@ -221,7 +221,7 @@ SMBIOS_TABLE_TYPE3 mEnclosureInfoType3 = {
     0,                         // ContainedElementRecordLength;
     {{0}},                     // ContainedElements[1];
 };
-CHAR8 *mEnclosureInfoType3Strings[] = {"Surface Duo", "1", "Unknown", "",
+CHAR8 *mEnclosureInfoType3Strings[] = {"Surface Duo", "1", "Unknown", "Unknown",
                                        NULL};
 
 /***********************************************************************
@@ -407,10 +407,10 @@ SMBIOS_TABLE_TYPE16 mPhyMemArrayInfoType16 = {
     MemoryErrorCorrectionUnknown,   // MemoryErrorCorrection;          ///< The
                                     // enumeration value from
                                     // MEMORY_ERROR_CORRECTION.
-    0xC0000000,                     // MaximumCapacity;
+    0xFFFFFFFF,                     // MaximumCapacity;
     0xFFFE,                         // MemoryErrorInformationHandle;
     1,                              // NumberOfMemoryDevices;
-    0xC0000000ULL,                  // ExtendedMaximumCapacity;
+    0x180000000ULL,                 // ExtendedMaximumCapacity;
 };
 CHAR8 *mPhyMemArrayInfoType16Strings[] = {NULL};
 
