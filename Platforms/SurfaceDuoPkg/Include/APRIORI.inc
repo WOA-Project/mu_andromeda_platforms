@@ -100,7 +100,7 @@ APRIORI DXE {
             SECTION UI = "ScmDxe"
     }
 
-    FILE DRIVER = 7942a7eb-b7d5-4e2e-b908-831e4de55b58  {
+    FILE DRIVER = 7942a7eb-b7d5-4e2e-b908-831e4de55b58 {
             SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0.1-00243-SC8180XWZB-2/volume-0/file-2/section0/section1/volume-0/file-7942a7eb-b7d5-4e2e-b908-831e4de55b58/section0.dxe.depex
             SECTION PE32 = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0.1-00243-SC8180XWZB-2/volume-0/file-2/section0/section1/volume-0/file-7942a7eb-b7d5-4e2e-b908-831e4de55b58/section1.pe
             SECTION UI = "GlinkDxe"
@@ -186,7 +186,7 @@ APRIORI DXE {
             SECTION UI = "PILDxe"
     }
 
-    FILE DRIVER = 1b52138d-3fa3-4e50-b958-20887353f809  {
+    FILE DRIVER = 1b52138d-3fa3-4e50-b958-20887353f809 {
             SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0.1-00243-SC8180XWZB-2/volume-0/file-2/section0/section1/volume-0/file-1b52138d-3fa3-4e50-b958-20887353f809/section0.dxe.depex
             SECTION PE32 = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0.1-00243-SC8180XWZB-2/volume-0/file-2/section0/section1/volume-0/file-1b52138d-3fa3-4e50-b958-20887353f809/section1.pe
             SECTION UI = "CPRDxe"
@@ -249,7 +249,7 @@ APRIORI DXE {
             SECTION UI = "AdcDxe"
     }
 
-    FILE DRIVER = 6d4a9cf7-cc0c-42b0-aa89-f6a6a8d99273  {
+    FILE DRIVER = 6d4a9cf7-cc0c-42b0-aa89-f6a6a8d99273 {
             SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0.1-00243-SC8180XWZB-2/volume-0/file-2/section0/section1/volume-0/file-6d4a9cf7-cc0c-42b0-aa89-f6a6a8d99273/section0.dxe.depex
             SECTION PE32 = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0.1-00243-SC8180XWZB-2/volume-0/file-2/section0/section1/volume-0/file-6d4a9cf7-cc0c-42b0-aa89-f6a6a8d99273/section1.pe
             SECTION UI = "PmicGlinkDxe"
@@ -381,7 +381,7 @@ APRIORI DXE {
             SECTION UI = "ManufacturingModeDxe"
     }
 
-    FILE DRIVER = ce044919-3000-4998-82af-ddb4e17c6b66  {
+    FILE DRIVER = ce044919-3000-4998-82af-ddb4e17c6b66 {
             SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0.1-00243-SC8180XWZB-2/volume-0/file-2/section0/section1/volume-0/file-ce044919-3000-4998-82af-ddb4e17c6b66/section0.dxe.depex
             SECTION PE32 = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0.1-00243-SC8180XWZB-2/volume-0/file-2/section0/section1/volume-0/file-ce044919-3000-4998-82af-ddb4e17c6b66/section1.pe
             SECTION UI = "AdapterInformationDxe"
@@ -412,4 +412,4 @@ APRIORI DXE {
 # END CHANGE
 
     INF MdeModulePkg/Universal/CapsuleRuntimeDxe/CapsuleRuntimeDxe.inf
-}
+    }
