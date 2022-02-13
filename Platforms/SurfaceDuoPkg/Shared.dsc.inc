@@ -109,8 +109,6 @@
   gEfiMdePkgTokenSpaceGuid.PcdDefaultTerminalType|4 
 
   # Boot Manager
-  # gEfiMdeModulePkgTokenSpaceGuid.PcdBootManagerMenuFile|{ 0x21, 0xaa, 0x2c, 0x46, 0x14, 0x76, 0x03, 0x45, 0x83, 0x6e, 0x8a, 0xb6, 0xf4, 0x66, 0x23, 0x31 }
-  # gSurfaceDuoPkgTokenSpaceGuid.PcdBootSplashAppFile|{ 0x59, 0x67, 0xbe, 0x93, 0x1a, 0x7d, 0x69, 0x4d, 0x6d, 0x98, 0x30, 0xf9, 0xc9, 0x54, 0x8e, 0xd7 }
   gEfiMdePkgTokenSpaceGuid.PcdPlatformBootTimeOut|2
 
   # Enable Debug
@@ -253,14 +251,9 @@
   
   MemoryInitPeiLib|SurfaceDuoPkg/Library/MemoryInitPeiLib/PeiMemoryAllocationLib.inf
   PlatformPeiLib|SurfaceDuoPkg/Library/PlatformPeiLib/PlatformPeiLib.inf
-  # PlatformBootManagerLib|SurfaceDuoPkg/Library/PlatformBootManagerLib/PlatformBootManagerLib.inf
 
   # System Reset
   HwResetSystemLib|ArmPkg/Library/ArmSmcPsciResetSystemLib/ArmSmcPsciResetSystemLib.inf
-
-  # UI Llbrary and apps
-  LittleVglLib|SurfaceDuoPkg/Library/LittleVglLib/LittleVglLib.inf
-  LodePngLib|SurfaceDuoPkg/Library/LodePngLib/LodePngLib.inf
 
   BaseBinSecurityLib|MdePkg/Library/BaseBinSecurityLibNull/BaseBinSecurityLibNull.inf
   MemoryProtectionHobLib|MdeModulePkg/Library/MemoryProtectionHobLibNull/MemoryProtectionHobLibNull.inf
@@ -272,7 +265,6 @@
   MemoryTypeInfoSecVarCheckLib|MdeModulePkg/Library/MemoryTypeInfoSecVarCheckLib/MemoryTypeInfoSecVarCheckLib.inf
   FltUsedLib|MdePkg/Library/FltUsedLib/FltUsedLib.inf
   MemoryTypeInformationChangeLib|MdeModulePkg/Library/MemoryTypeInformationChangeLibNull/MemoryTypeInformationChangeLibNull.inf
-  MallocLib|SurfaceDuoPkg/Library/MallocLib/MallocLib.inf
   DtPlatformDtbLoaderLib|EmbeddedPkg/Library/DxeDtPlatformDtbLoaderLibDefault/DxeDtPlatformDtbLoaderLibDefault.inf
 
   BaseCryptLib|CryptoPkg/Library/BaseCryptLib/BaseCryptLib.inf
