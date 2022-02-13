@@ -615,9 +615,6 @@ VOID BIOSInfoUpdateSmbiosType0(VOID)
 
 VOID SysInfoUpdateSmbiosType1(VOID)
 {
-  char     serialNo[13];
-  uint32_t serial;
-
   // Update string table before proceeds
   mSysInfoType1Strings[1] = (CHAR8 *)FixedPcdGetPtr(PcdSmbiosSystemModel);
   mSysInfoType1Strings[2] = (CHAR8 *)FixedPcdGetPtr(PcdSmbiosSystemRetailModel);
@@ -632,8 +629,6 @@ VOID SysInfoUpdateSmbiosType1(VOID)
 ************************************************************************/
 VOID BoardInfoUpdateSmbiosType2(VOID)
 {
-  char serialNo[13];
-
   // Update string table before proceeds
   mBoardInfoType2Strings[1] = (CHAR8 *)FixedPcdGetPtr(PcdSmbiosSystemModel);
   mBoardInfoType2Strings[2] =
@@ -649,8 +644,6 @@ VOID BoardInfoUpdateSmbiosType2(VOID)
 ************************************************************************/
 VOID EnclosureInfoUpdateSmbiosType3(VOID)
 {
-  char serialNo[13];
-
   LogSmbiosData(
       (EFI_SMBIOS_TABLE_HEADER *)&mEnclosureInfoType3,
       mEnclosureInfoType3Strings, NULL);
@@ -752,8 +745,6 @@ EFIAPI
 SmBiosTableDxeInitialize(
     IN EFI_HANDLE ImageHandle, IN EFI_SYSTEM_TABLE *SystemTable)
 {
-  EFI_STATUS Status;
-
   BIOSInfoUpdateSmbiosType0();
   SysInfoUpdateSmbiosType1();
   BoardInfoUpdateSmbiosType2();
