@@ -244,7 +244,11 @@
 !if $(USE_SCREEN_FOR_SERIAL_OUTPUT) == 1
   SerialPortLib|SurfaceDuoPkg/Library/FrameBufferSerialPortLib/FrameBufferSerialPortLib.inf
 !else
+!if $(USE_MEMORY_FOR_SERIAL_OUTPUT) == 1
+  SerialPortLib|SurfaceDuoPkg/Library/InMemorySerialPortLib/InMemorySerialPortLib.inf
+!else
   SerialPortLib|MdePkg/Library/BaseSerialPortLibNull/BaseSerialPortLibNull.inf
+!endif
 !endif
   
   MemoryInitPeiLib|SurfaceDuoPkg/Library/MemoryInitPeiLib/PeiMemoryAllocationLib.inf
