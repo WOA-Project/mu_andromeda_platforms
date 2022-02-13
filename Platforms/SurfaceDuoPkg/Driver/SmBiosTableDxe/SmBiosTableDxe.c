@@ -57,7 +57,7 @@ be found at http://opensource.org/licenses/bsd-license.php
 #include <Library/UefiLib.h>
 
 /* Used to read chip serial number */
-#include <Library/EFIChipInfo.h>
+#include <Protocol/EFIChipInfo.h>
 
 /* Build-time generated ReleaseInfo.h will override the default one */
 #include <Resources/ReleaseStampStub.h>
