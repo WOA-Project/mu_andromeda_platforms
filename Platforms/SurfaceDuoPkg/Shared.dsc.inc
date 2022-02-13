@@ -256,8 +256,7 @@
   # PlatformBootManagerLib|SurfaceDuoPkg/Library/PlatformBootManagerLib/PlatformBootManagerLib.inf
 
   # System Reset
-  ArmHvcLib|ArmPkg/Library/ArmHvcLib/ArmHvcLib.inf
-  HwResetSystemLib|MdeModulePkg/Library/BaseResetSystemLibNull/BaseResetSystemLibNull.inf
+  HwResetSystemLib|ArmPkg/Library/ArmSmcPsciResetSystemLib/ArmSmcPsciResetSystemLib.inf
 
   # UI Llbrary and apps
   LittleVglLib|SurfaceDuoPkg/Library/LittleVglLib/LittleVglLib.inf
@@ -374,8 +373,7 @@
   ExtractGuidedSectionLib|MdePkg/Library/DxeExtractGuidedSectionLib/DxeExtractGuidedSectionLib.inf
 
   # System Reset
-  ArmHvcLib|ArmPkg/Library/ArmHvcLib/ArmHvcLib.inf
-  HwResetSystemLib|MdeModulePkg/Library/BaseResetSystemLibNull/BaseResetSystemLibNull.inf
+  HwResetSystemLib|ArmPkg/Library/ArmSmcPsciResetSystemLib/ArmSmcPsciResetSystemLib.inf
 
   VariablePolicyLib|MdeModulePkg/Library/VariablePolicyLib/VariablePolicyLibRuntimeDxe.inf
 
