@@ -100,6 +100,12 @@ APRIORI DXE {
             SECTION UI = "ScmDxe"
     }
 
+    FILE DRIVER = 7942a7eb-b7d5-4e2e-b908-831e4de55b58  {
+            SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0.1-00243-SC8180XWZB-2/volume-0/file-2/section0/section1/volume-0/file-7942a7eb-b7d5-4e2e-b908-831e4de55b58/section0.dxe.depex
+            SECTION PE32 = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0.1-00243-SC8180XWZB-2/volume-0/file-2/section0/section1/volume-0/file-7942a7eb-b7d5-4e2e-b908-831e4de55b58/section1.pe
+            SECTION UI = "GlinkDxe"
+    }
+
     FILE DRIVER = 6b38f7b4-ad98-40e9-9093-aca2b5a253c4 {
             SECTION PE32 = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-6b38f7b4-ad98-40e9-9093-aca2b5a253c4/section0.pe
             SECTION UI = "DiskIoDxe"
@@ -180,6 +186,12 @@ APRIORI DXE {
             SECTION UI = "PILDxe"
     }
 
+    FILE DRIVER = 1b52138d-3fa3-4e50-b958-20887353f809  {
+            SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0.1-00243-SC8180XWZB-2/volume-0/file-2/section0/section1/volume-0/file-1b52138d-3fa3-4e50-b958-20887353f809/section0.dxe.depex
+            SECTION PE32 = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0.1-00243-SC8180XWZB-2/volume-0/file-2/section0/section1/volume-0/file-1b52138d-3fa3-4e50-b958-20887353f809/section1.pe
+            SECTION UI = "CPRDxe"
+    }
+
     INF MdeModulePkg/Universal/WatchdogTimerDxe/WatchdogTimer.inf
 
     FILE DRIVER = 5550445c-7b09-4d69-8198-7060f9c1c732 {
@@ -200,26 +212,13 @@ APRIORI DXE {
     }
 
     INF EmbeddedPkg/RealTimeClockRuntimeDxe/RealTimeClockRuntimeDxe.inf
-
     INF MdeModulePkg/Universal/PrintDxe/PrintDxe.inf
     INF MdeModulePkg/Universal/DevicePathDxe/DevicePathDxe.inf
-
-    FILE DRIVER = 7a32bd23-f735-4f57-aa1a-447d2fe3be0d {
-            SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-7a32bd23-f735-4f57-aa1a-447d2fe3be0d/section0.dxe.depex
-            SECTION PE32 = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-7a32bd23-f735-4f57-aa1a-447d2fe3be0d/section1.pe
-            SECTION UI = "SPI"
-    }
 
     FILE DRIVER = 1bfbafda-52eb-4550-b952-d663e0aa97a2 {
             SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-1bfbafda-52eb-4550-b952-d663e0aa97a2/section0.dxe.depex
             SECTION PE32 = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-1bfbafda-52eb-4550-b952-d663e0aa97a2/section1.pe
             SECTION UI = "TouchControllerInitDxe"
-    }
-
-    FILE DRIVER = a8761375-2f17-4662-ac31-1952b84b0ce9 {
-            SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-a8761375-2f17-4662-ac31-1952b84b0ce9/section0.dxe.depex
-            SECTION PE32 = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-a8761375-2f17-4662-ac31-1952b84b0ce9/section1.pe
-            SECTION UI = "SurfaceTouchHidDxe"
     }
 
     INF MdeModulePkg/Universal/HiiDatabaseDxe/HiiDatabaseDxe.inf
@@ -229,6 +228,8 @@ APRIORI DXE {
             SECTION PE32 = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-ed15ffd5-bc96-4107-9118-95366600188e/section1.pe
             SECTION UI = "FontDxe"
     }
+
+    INF MdeModulePkg/Universal/BdsDxe/BdsDxe.inf
 
     FILE DRIVER = 04de8591-d2b3-4077-bbbe-b12070094eb6 {
             SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-04de8591-d2b3-4077-bbbe-b12070094eb6/section0.dxe.depex
@@ -246,6 +247,12 @@ APRIORI DXE {
             SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-5a5cb8ca-9382-4e0c-b383-77fb517cd9eb/section0.dxe.depex
             SECTION PE32 = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-5a5cb8ca-9382-4e0c-b383-77fb517cd9eb/section1.pe
             SECTION UI = "AdcDxe"
+    }
+
+    FILE DRIVER = 6d4a9cf7-cc0c-42b0-aa89-f6a6a8d99273  {
+            SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0.1-00243-SC8180XWZB-2/volume-0/file-2/section0/section1/volume-0/file-6d4a9cf7-cc0c-42b0-aa89-f6a6a8d99273/section0.dxe.depex
+            SECTION PE32 = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0.1-00243-SC8180XWZB-2/volume-0/file-2/section0/section1/volume-0/file-6d4a9cf7-cc0c-42b0-aa89-f6a6a8d99273/section1.pe
+            SECTION UI = "PmicGlinkDxe"
     }
 
     FILE DRIVER = 11faed4c-b21f-4d88-8e48-c4c28a1e50df {
@@ -293,23 +300,9 @@ APRIORI DXE {
             SECTION UI = "UsbKbDxe"
     }
 
-    INF MdeModulePkg/Bus/Usb/UsbMouseAbsolutePointerDxe/UsbMouseAbsolutePointerDxe.inf
-
     FILE DRIVER = 9FB4B4A7-42C0-4BCD-8540-9BCC6711F83E {
             SECTION PE32 = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0.1-00243-SC8180XWZB-2/volume-0/file-2/section0/section1/volume-0/file-9fb4b4a7-42c0-4bcd-8540-9bcc6711f83e/section0.pe
             SECTION UI = "UsbMassStorageDxe"
-    }
-
-    FILE DRIVER = 5af77f10-90df-4e7e-8325-a17ec09d5443 {
-            SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-5af77f10-90df-4e7e-8325-a17ec09d5443/section0.dxe.depex
-            SECTION PE32 = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-5af77f10-90df-4e7e-8325-a17ec09d5443/section1.pe
-            SECTION UI = "UsbMsdDxe"
-    }
-
-    FILE DRIVER = 3299a266-15f0-4346-8318-716336736d3e {
-            SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-3299a266-15f0-4346-8318-716336736d3e/section0.dxe.depex
-            SECTION PE32 = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-3299a266-15f0-4346-8318-716336736d3e/section1.pe
-            SECTION UI = "UsbDeviceDxe"
     }
 
     FILE DRIVER = cd823a4d-7dec-4531-ae5d-4134fa4127b8 {
@@ -388,64 +381,8 @@ APRIORI DXE {
             SECTION UI = "AdapterInformationDxe"
     }
 
-    FILE DRIVER = 1b52138d-3fa3-4e50-b958-20887353f809  {
-            SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0.1-00243-SC8180XWZB-2/volume-0/file-2/section0/section1/volume-0/file-1b52138d-3fa3-4e50-b958-20887353f809/section0.dxe.depex
-            SECTION PE32 = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0.1-00243-SC8180XWZB-2/volume-0/file-2/section0/section1/volume-0/file-1b52138d-3fa3-4e50-b958-20887353f809/section1.pe
-            SECTION UI = "CPRDxe"
-    }
-
-    FILE DRIVER = 5246dcd6-1968-4bc6-b50e-620a0b629dc3  {
-            SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0.1-00243-SC8180XWZB-2/volume-0/file-2/section0/section1/volume-0/file-5246dcd6-1968-4bc6-b50e-620a0b629dc3/section0.dxe.depex
-            SECTION PE32 = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0.1-00243-SC8180XWZB-2/volume-0/file-2/section0/section1/volume-0/file-5246dcd6-1968-4bc6-b50e-620a0b629dc3/section1.pe
-            SECTION UI = "OSConfigDxe"
-    }
-
-    FILE DRIVER = 7942a7eb-b7d5-4e2e-b908-831e4de55b58  {
-            SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0.1-00243-SC8180XWZB-2/volume-0/file-2/section0/section1/volume-0/file-7942a7eb-b7d5-4e2e-b908-831e4de55b58/section0.dxe.depex
-            SECTION PE32 = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0.1-00243-SC8180XWZB-2/volume-0/file-2/section0/section1/volume-0/file-7942a7eb-b7d5-4e2e-b908-831e4de55b58/section1.pe
-            SECTION UI = "GlinkDxe"
-    }
-
-    FILE DRIVER = 6d4a9cf7-cc0c-42b0-aa89-f6a6a8d99273  {
-            SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0.1-00243-SC8180XWZB-2/volume-0/file-2/section0/section1/volume-0/file-6d4a9cf7-cc0c-42b0-aa89-f6a6a8d99273/section0.dxe.depex
-            SECTION PE32 = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0.1-00243-SC8180XWZB-2/volume-0/file-2/section0/section1/volume-0/file-6d4a9cf7-cc0c-42b0-aa89-f6a6a8d99273/section1.pe
-            SECTION UI = "PmicGlinkDxe"
-    }
-
     INF EmbeddedPkg/SimpleTextInOutSerial/SimpleTextInOutSerial.inf
 
-    INF MdeModulePkg/Universal/CapsuleRuntimeDxe/CapsuleRuntimeDxe.inf
-    INF MdeModulePkg/Universal/SecurityStubDxe/SecurityStubDxe.inf
-    INF MdeModulePkg/Universal/Acpi/BootGraphicsResourceTableDxe/BootGraphicsResourceTableDxe.inf
-
-    FILE DRIVER = 53d39438-814a-4d9c-87c1-07e8c713f4c4 {
-            SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-53d39438-814a-4d9c-87c1-07e8c713f4c4/section0.dxe.depex
-            SECTION PE32 = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-53d39438-814a-4d9c-87c1-07e8c713f4c4/section1.pe
-            SECTION UI = "QcomMpmTimerDxe"
-    }
-
-    FILE DRIVER = fea01457-e381-4135-9475-c6afd0076c61 {
-            SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-fea01457-e381-4135-9475-c6afd0076c61/section0.dxe.depex
-            SECTION PE32 = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-fea01457-e381-4135-9475-c6afd0076c61/section1.pe
-            SECTION UI = "SharedCryptoDxe"
-    }
-
-
-    FILE DRIVER = 3977d4c4-b0eb-4548-96b9-671fa2e36820  {
-            SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-3977d4c4-b0eb-4548-96b9-671fa2e36820/section0.dxe.depex
-            SECTION PE32 = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-3977d4c4-b0eb-4548-96b9-671fa2e36820/section1.pe
-            SECTION UI = "MsEarlyGraphicsDxe"
-    }
-
-    INF SurfaceDuoPkg/Driver/ColorbarsDxe/ColorbarsDxe.inf
-
-    INF DfciPkg/AuthManagerNull/AuthManagerNull.inf
-    INF DfciPkg/SettingsManager/SettingsManagerDxe.inf
-    INF MsGraphicsPkg/MsUiTheme/Dxe/MsUiThemeProtocol.inf
-    INF MsGraphicsPkg/SimpleWindowManagerDxe/SimpleWindowManagerDxe.inf
-    INF MsGraphicsPkg/RenderingEngineDxe/RenderingEngineDxe.inf
-    INF MsGraphicsPkg/OnScreenKeyboardDxe/OnScreenKeyboardDxe.inf
-    INF MsGraphicsPkg/DisplayEngineDxe/DisplayEngineDxe.inf
     INF MdeModulePkg/Universal/Console/ConPlatformDxe/ConPlatformDxe.inf
     INF MdeModulePkg/Universal/Console/ConSplitterDxe/ConSplitterDxe.inf
 
@@ -454,13 +391,5 @@ APRIORI DXE {
             SECTION UI = "GraphicsConsoleDxe"
     }
 
-    INF MsGraphicsPkg/GopOverrideDxe/GopOverrideDxe.inf
-
-    FILE DRIVER = 0fcf3c47-4a1f-434c-a0bc-2d964c0fc1fd {
-            SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-0fcf3c47-4a1f-434c-a0bc-2d964c0fc1fd/section0.dxe.depex
-            SECTION PE32 = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-0fcf3c47-4a1f-434c-a0bc-2d964c0fc1fd/section1.pe
-            SECTION UI = "GpioButtons"
-    }
-
-    INF MdeModulePkg/Universal/BdsDxe/BdsDxe.inf
+    INF MdeModulePkg/Universal/CapsuleRuntimeDxe/CapsuleRuntimeDxe.inf
 }
