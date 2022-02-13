@@ -229,8 +229,6 @@ APRIORI DXE {
             SECTION UI = "FontDxe"
     }
 
-    INF MdeModulePkg/Universal/BdsDxe/BdsDxe.inf
-
     FILE DRIVER = 04de8591-d2b3-4077-bbbe-b12070094eb6 {
             SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-04de8591-d2b3-4077-bbbe-b12070094eb6/section0.dxe.depex
             SECTION PE32 = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-04de8591-d2b3-4077-bbbe-b12070094eb6/section1.pe
@@ -418,4 +416,8 @@ APRIORI DXE {
 # END CHANGE
 
     INF MdeModulePkg/Universal/CapsuleRuntimeDxe/CapsuleRuntimeDxe.inf
+
+# CHANGE
+    INF MdeModulePkg/Universal/BdsDxe/BdsDxe.inf
+# END CHANGE
 }
