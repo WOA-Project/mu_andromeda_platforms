@@ -158,7 +158,7 @@ READ_LOCK_STATUS   = TRUE
   }
 
   FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdLogoFile) {
-    SECTION RAW = OemPkg/FrontPage/Resources/BootLogo.bmp
+    SECTION RAW = SurfaceDuoPkg/Include/Resources/BootLogo.bmp
     SECTION UI = "Logo"
   }
 
