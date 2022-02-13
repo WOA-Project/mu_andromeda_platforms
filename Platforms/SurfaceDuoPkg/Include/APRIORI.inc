@@ -4,8 +4,8 @@ APRIORI DXE {
     INF MdeModulePkg/Core/Dxe/DxeMain.inf
     INF MdeModulePkg/Universal/PCD/Dxe/Pcd.inf
 
-    INF MdeModulePkg/Universal/ReportStatusCodeRouter/RuntimeDxe/ReportStatusCodeRouterRuntimeDxe.inf
-    INF MdeModulePkg/Universal/StatusCodeHandler/RuntimeDxe/StatusCodeHandlerRuntimeDxe.inf
+    # INF MdeModulePkg/Universal/ReportStatusCodeRouter/RuntimeDxe/ReportStatusCodeRouterRuntimeDxe.inf
+    # INF MdeModulePkg/Universal/StatusCodeHandler/RuntimeDxe/StatusCodeHandlerRuntimeDxe.inf
     INF MdeModulePkg/Core/RuntimeDxe/RuntimeDxe.inf
 
     # Next, install cpu protocol and enable the interrupt controller
@@ -15,7 +15,6 @@ APRIORI DXE {
     # Core Drivers
     INF EmbeddedPkg/MetronomeDxe/MetronomeDxe.inf
     INF ArmPkg/Drivers/TimerDxe/TimerDxe.inf
-    INF MdeModulePkg/Universal/SecurityStubDxe/SecurityStubDxe.inf
 
     FILE DRIVER = f541d663-4a48-40aa-aabf-ff158ccae34c {
             SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-2/section0/section1/volume-0/file-f541d663-4a48-40aa-aabf-ff158ccae34c/section0.dxe.depex
