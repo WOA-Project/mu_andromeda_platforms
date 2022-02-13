@@ -55,9 +55,6 @@ be found at http://opensource.org/licenses/bsd-license.php
 #include <Library/UefiDriverEntryPoint.h>
 #include <Library/UefiLib.h>
 
-/* Used to read chip serial number */
-#include <Library/LKEnvLib.h>
-
 /* Build-time generated ReleaseInfo.h will override the default one */
 #include <Resources/ReleaseStampStub.h>
 // Must come in order
