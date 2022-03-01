@@ -46,6 +46,16 @@ VOID InitMmu(IN ARM_MEMORY_REGION_DESCRIPTOR *MemoryTable)
 
   if (EFI_ERROR(Status)) {
     DEBUG((EFI_D_ERROR, "Error: Failed to enable MMU: %r\n", Status));
+    return;
+  }
+
+  // SMEM Region is protected with XN by the original firmware
+  // Unprotect it.
+  Status = ArmClearMemoryRegionNoExec(
+      SMEM_ADDR_BASE, SMEM_ADDR_SIZE);
+
+  if (EFI_ERROR(Status)) {
+    DEBUG((EFI_D_ERROR, "Error: Failed to unprotect SMEM region: %r\n", Status));
   }
 }
 
