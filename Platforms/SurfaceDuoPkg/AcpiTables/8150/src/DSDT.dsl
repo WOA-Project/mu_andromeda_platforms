@@ -19922,7 +19922,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "FSTATE", 
                                 One, 
-                                Package (0x0A)
+                                Package (0x0E)
                                 {
                                     "ENTER", 
                                     Package (0x02)
@@ -20017,10 +20017,72 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             Zero, 
                                             Zero
                                         }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "PMICVREGVOTE", 
+                                        Package (0x08)
+                                        {
+                                            "PPP_RESOURCE_ID_LDO5_A", 
+                                            One, 
+                                            Zero, 
+                                            Zero, 
+                                            Zero, 
+                                            Zero, 
+                                            "HLOS_DRV", 
+                                            "REQUIRED"
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "PMICVREGVOTE", 
+                                        Package (0x08)
+                                        {
+                                            "PPP_RESOURCE_ID_LDO3_C", 
+                                            One, 
+                                            Zero, 
+                                            Zero, 
+                                            Zero, 
+                                            Zero, 
+                                            "HLOS_DRV", 
+                                            "REQUIRED"
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "PMICVREGVOTE", 
+                                        Package (0x08)
+                                        {
+                                            "PPP_RESOURCE_ID_LDO1_C", 
+                                            One, 
+                                            Zero, 
+                                            Zero, 
+                                            Zero, 
+                                            Zero, 
+                                            "HLOS_DRV", 
+                                            "REQUIRED"
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "TLMMGPIO", 
+                                        Package (0x06)
+                                        {
+                                            0x09, 
+                                            One, 
+                                            Zero, 
+                                            Zero, 
+                                            One, 
+                                            Zero
+                                        }
                                     }
                                 }, 
 
-                                Package (0x08)
+                                Package (0x0C)
                                 {
                                     "EXIT", 
                                     Package (0x02)
@@ -20094,6 +20156,68 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                         {
                                             0x03, 
                                             One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "PMICVREGVOTE", 
+                                        Package (0x08)
+                                        {
+                                            "PPP_RESOURCE_ID_LDO5_A", 
+                                            One, 
+                                            0x000D6D80, 
+                                            One, 
+                                            0x07, 
+                                            Zero, 
+                                            "HLOS_DRV", 
+                                            "REQUIRED"
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "PMICVREGVOTE", 
+                                        Package (0x08)
+                                        {
+                                            "PPP_RESOURCE_ID_LDO3_C", 
+                                            One, 
+                                            0x00124F80, 
+                                            One, 
+                                            0x07, 
+                                            Zero, 
+                                            "HLOS_DRV", 
+                                            "REQUIRED"
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "PMICVREGVOTE", 
+                                        Package (0x08)
+                                        {
+                                            "PPP_RESOURCE_ID_LDO1_C", 
+                                            One, 
+                                            0x001B7740, 
+                                            One, 
+                                            0x07, 
+                                            Zero, 
+                                            "HLOS_DRV", 
+                                            "REQUIRED"
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "TLMMGPIO", 
+                                        Package (0x06)
+                                        {
+                                            0x09, 
+                                            One, 
+                                            One, 
+                                            Zero, 
+                                            Zero, 
+                                            Zero
                                         }
                                     }
                                 }
@@ -71533,6 +71657,18 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     {
                         0x000000CF,
                     }
+                    GpioIo (Exclusive, PullUp, 0x0000, 0x0000, IoRestrictionNone,
+                        "\\_SB.GIO0", 0x00, ResourceConsumer, ,
+                        )
+                        {   // Pin list
+                            0x0005
+                        }
+                    GpioIo (Exclusive, PullUp, 0x0000, 0x0000, IoRestrictionNone,
+                        "\\_SB.GIO0", 0x00, ResourceConsumer, ,
+                        )
+                        {   // Pin list
+                            0x0006
+                        }
                 })
                 Name (BBUF, ResourceTemplate ()
                 {
@@ -71588,6 +71724,18 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     {
                         0x000000CF,
                     }
+                    GpioIo (Exclusive, PullUp, 0x0000, 0x0000, IoRestrictionNone,
+                        "\\_SB.GIO0", 0x00, ResourceConsumer, ,
+                        )
+                        {   // Pin list
+                            0x0005
+                        }
+                    GpioIo (Exclusive, PullUp, 0x0000, 0x0000, IoRestrictionNone,
+                        "\\_SB.GIO0", 0x00, ResourceConsumer, ,
+                        )
+                        {   // Pin list
+                            0x0006
+                        }
                 })
                 If ((\_SB.SIDV < 0x00020000))
                 {
@@ -71601,7 +71749,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
             Method (RESI, 0, NotSerialized)
             {
-                Name (AINF, Package (0x0F)
+                Name (AINF, Package (0x11)
                 {
                     0x03, 
                     Zero, 
@@ -71694,9 +71842,23 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         "RESOURCE", 
                         "VIDC_WD_INTERRUPT", 
                         "VIDEO"
+                    }, 
+
+                    Package (0x03)
+                    {
+                        "RESOURCE", 
+                        "DSI_PANEL_RESET", 
+                        "DISPLAY"
+                    }, 
+
+                    Package (0x03)
+                    {
+                        "RESOURCE", 
+                        "DSI_PANEL_RESET", 
+                        "DISPLAY"
                     }
                 })
-                Name (BINF, Package (0x0F)
+                Name (BINF, Package (0x11)
                 {
                     0x03, 
                     Zero, 
@@ -71789,6 +71951,20 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         "RESOURCE", 
                         "VIDC_WD_INTERRUPT", 
                         "VIDEO"
+                    }, 
+
+                    Package (0x03)
+                    {
+                        "RESOURCE", 
+                        "DSI_PANEL_RESET", 
+                        "DISPLAY"
+                    }, 
+
+                    Package (0x03)
+                    {
+                        "RESOURCE", 
+                        "DSI_PANEL_RESET", 
+                        "DISPLAY"
                     }
                 })
                 If ((\_SB.SIDV < 0x00020000))
@@ -72143,7 +72319,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         }
                     }, 
 
-                    Package (0x0D)
+                    Package (0x0E)
                     {
                         "DISPLAYS", 
                         "MDP5.x", 
@@ -72474,200 +72650,133 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             }
                         }, 
 
-                        Package (0x22)
+                        Package (0x0C)
                         {
                             "PRIMARY_SOURCE_MODES", 
-                            0x20, 
+                            0x0A, 
                             Package (0x02)
                             {
-                                0x0280, 
-                                0x01E0
+                                0x01E0, 
+                                0x0280
                             }, 
 
                             Package (0x02)
                             {
-                                0x0280, 
-                                0x0168
+                                0x0234, 
+                                0x02F0
                             }, 
 
                             Package (0x02)
                             {
-                                0x0320, 
-                                0x0258
+                                0x0288, 
+                                0x0360
                             }, 
 
                             Package (0x02)
                             {
-                                0x03C0, 
-                                0x021C
+                                0x02DC, 
+                                0x03D0
                             }, 
 
                             Package (0x02)
                             {
-                                0x0500, 
-                                0x02D0
+                                0x0393, 
+                                0x04C4
                             }, 
 
                             Package (0x02)
                             {
-                                0x0500, 
-                                0x0438
+                                0x03BD, 
+                                0x04FC
                             }, 
 
                             Package (0x02)
                             {
-                                0x0400, 
-                                0x0300
+                                0x0411, 
+                                0x056C
                             }, 
 
                             Package (0x02)
                             {
-                                0x0480, 
-                                0x0300
+                                0x0465, 
+                                0x05DC
                             }, 
 
                             Package (0x02)
                             {
-                                0x0500, 
-                                0x0300
+                                0x04B9, 
+                                0x064C
                             }, 
 
                             Package (0x02)
                             {
-                                0x0550, 
-                                0x0300
-                            }, 
-
-                            Package (0x02)
-                            {
-                                0x0556, 
-                                0x0300
-                            }, 
-
-                            Package (0x02)
-                            {
-                                0x0640, 
-                                0x0384
-                            }, 
-
-                            Package (0x02)
-                            {
-                                0x0500, 
-                                0x0400
-                            }, 
-
-                            Package (0x02)
-                            {
-                                0x0780, 
-                                0x0438
-                            }, 
-
-                            Package (0x02)
-                            {
-                                0x0780, 
-                                0x04B0
-                            }, 
-
-                            Package (0x02)
-                            {
-                                0x0780, 
-                                0x0500
-                            }, 
-
-                            Package (0x02)
-                            {
-                                0x0800, 
-                                0x0438
-                            }, 
-
-                            Package (0x02)
-                            {
-                                0x0800, 
-                                0x0480
-                            }, 
-
-                            Package (0x02)
-                            {
-                                0x0800, 
-                                0x0600
-                            }, 
-
-                            Package (0x02)
-                            {
-                                0x0A00, 
-                                0x0438
-                            }, 
-
-                            Package (0x02)
-                            {
-                                0x0A00, 
-                                0x0640
-                            }, 
-
-                            Package (0x02)
-                            {
-                                0x0A00, 
-                                0x05A0
-                            }, 
-
-                            Package (0x02)
-                            {
-                                0x0A00, 
-                                0x0800
-                            }, 
-
-                            Package (0x02)
-                            {
-                                0x0C80, 
+                                0x0546, 
                                 0x0708
+                            }
+                        }, 
+
+                        Package (0x0C)
+                        {
+                            "SECONDARY_SOURCE_MODES", 
+                            0x0A, 
+                            Package (0x02)
+                            {
+                                0x01E0, 
+                                0x0280
                             }, 
 
                             Package (0x02)
                             {
-                                0x0C80, 
-                                0x0960
+                                0x0234, 
+                                0x02F0
                             }, 
 
                             Package (0x02)
                             {
-                                0x0C80, 
-                                0x0800
+                                0x0288, 
+                                0x0360
                             }, 
 
                             Package (0x02)
                             {
-                                0x0D70, 
-                                0x05A0
+                                0x02DC, 
+                                0x03D0
                             }, 
 
                             Package (0x02)
                             {
-                                0x0F00, 
-                                0x0438
+                                0x0393, 
+                                0x04C4
                             }, 
 
                             Package (0x02)
                             {
-                                0x0F00, 
-                                0x0640
+                                0x03BD, 
+                                0x04FC
                             }, 
 
                             Package (0x02)
                             {
-                                0x0F00, 
-                                0x0960
+                                0x0411, 
+                                0x056C
                             }, 
 
                             Package (0x02)
                             {
-                                0x0F00, 
-                                0x0870
+                                0x0465, 
+                                0x05DC
                             }, 
 
                             Package (0x02)
                             {
-                                0x1000, 
-                                0x0870
+                                0x04B9, 
+                                0x064C
+                            }, 
+
+                            Package (0x02)
+                            {
+                                0x0546, 
+                                0x0708
                             }
                         }
                     }, 
