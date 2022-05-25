@@ -72717,7 +72717,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
                         Package (0x0C)
                         {
-                            "SECONDARY_SOURCE_MODES", 
+                            "HDMI_SOURCE_MODES", 
                             0x0A, 
                             Package (0x02)
                             {
