@@ -70704,7 +70704,73 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             {
                 Name (_ADR, Zero)  // _ADR: Address
                 Name (_CCA, Zero)  // _CCA: Cache Coherency Attribute
-                Alias (\_SB.PSUB, _SUB)
+                Method (_SUB, 0, NotSerialized)  // _SUB: Subsystem ID
+                {
+                    While (One)
+                    {
+                        Name (_T_0, 0x00)  // _T_x: Emitted by ASL Compiler, x=0-9, A-Z
+                        _T_0 = ToInteger (BDID)
+                        If ((_T_0 == 0x06))
+                        {
+                            Return ("MSDA8150")
+                        }
+                        ElseIf ((_T_0 == 0x09))
+                        {
+                            Return ("MSDA8150")
+                        }
+                        ElseIf ((_T_0 == 0x0B))
+                        {
+                            Return ("MSDA8150")
+                        }
+                        ElseIf ((_T_0 == 0x0D))
+                        {
+                            Return ("MSDA8150")
+                        }
+                        ElseIf ((_T_0 == 0x10))
+                        {
+                            Return ("MSDA8150")
+                        }
+                        ElseIf ((_T_0 == 0x07))
+                        {
+                            Return ("MSDB8150")
+                        }
+                        ElseIf ((_T_0 == 0x0A))
+                        {
+                            Return ("MSDB8150")
+                        }
+                        ElseIf ((_T_0 == 0x0C))
+                        {
+                            Return ("MSDB8150")
+                        }
+                        ElseIf ((_T_0 == 0x0E))
+                        {
+                            Return ("MSDB8150")
+                        }
+                        ElseIf ((_T_0 == 0x11))
+                        {
+                            Return ("MSDB8150")
+                        }
+                        ElseIf ((_T_0 == 0x08))
+                        {
+                            Return ("MSDC8150")
+                        }
+                        ElseIf ((_T_0 == 0x0F))
+                        {
+                            Return ("MSDC8150")
+                        }
+                        ElseIf ((_T_0 == 0x12))
+                        {
+                            Return ("MSDC8150")
+                        }
+                        Else
+                        {
+                            Return (\_SB.PSUB)
+                        }
+
+                        Break
+                    }
+                }
+
                 Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
                 {
                     Name (RBUF, ResourceTemplate ()
@@ -93683,6 +93749,16 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     Return (RBUF) /* \_SB_.IC20.PA01._CRS.RBUF */
                 }
 
+                Method (_STA, 0, NotSerialized)  // _STA: Status
+                {
+                    If ((BDID >= 0x0D))
+                    {
+                        Return (Zero)
+                    }
+
+                    Return (0x0F)
+                }
+
                 Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
                 {
                     If ((Arg0 == ToUUID ("4993a436-e1ac-4dc7-b4f8-46a5008fb9e7") /* Unknown UUID */))
@@ -93855,6 +93931,16 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     Return (RBUF) /* \_SB_.IC20.PA05._CRS.RBUF */
                 }
 
+                Method (_STA, 0, NotSerialized)  // _STA: Status
+                {
+                    If ((BDID >= 0x0D))
+                    {
+                        Return (Zero)
+                    }
+
+                    Return (0x0F)
+                }
+
                 Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
                 {
                     If ((Arg0 == ToUUID ("4993a436-e1ac-4dc7-b4f8-46a5008fb9e7") /* Unknown UUID */))
@@ -94025,6 +94111,16 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             )
                     })
                     Return (RBUF) /* \_SB_.IC20.PA07._CRS.RBUF */
+                }
+
+                Method (_STA, 0, NotSerialized)  // _STA: Status
+                {
+                    If ((BDID >= 0x0D))
+                    {
+                        Return (Zero)
+                    }
+
+                    Return (0x0F)
                 }
 
                 Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
@@ -94200,6 +94296,16 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             )
                     })
                     Return (RBUF) /* \_SB_.I2C2.PA06._CRS.RBUF */
+                }
+
+                Method (_STA, 0, NotSerialized)  // _STA: Status
+                {
+                    If ((BDID >= 0x0D))
+                    {
+                        Return (Zero)
+                    }
+
+                    Return (0x0F)
                 }
 
                 Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
@@ -97184,6 +97290,19 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                 })
             }
         }
+    }
+
+    OperationRegion (XBLH, SystemMemory, 0x146BFA94, 0x64)
+    Field (XBLH, AnyAcc, NoLock, Preserve)
+    {
+        BDID,   8, 
+        BTPS,   8, 
+        HWIR,   8, 
+        ISCM,   8, 
+        ISAM,   8, 
+        PMRR,   8, 
+        TFWV,   128, 
+        OCEL,   16
     }
 }
 
