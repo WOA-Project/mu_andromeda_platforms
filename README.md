@@ -8,13 +8,18 @@ Quick notes for building:
 - Generate ACPI tables with IASL
 - Follow this quick draft
 
+NOTE: The build scripts were designed to run in a CI, take inspiration from them, but the behavior on installs with compilers already installed/env vars set is undefined.
+
 ```
 # Setup environment
-./setup_env.sh
+sudo ./setup_env.sh
 
 # Activate Workspace
 python3 -m venv SurfaceDuo
 source SurfaceDuo/bin/activate
+
+# Stamp
+./build_releaseinfo.ps1
 
 # Build UEFI
 pip install --upgrade -r pip-requirements.txt
