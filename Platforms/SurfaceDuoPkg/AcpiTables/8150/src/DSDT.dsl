@@ -420,6 +420,16 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                 })
                 Return (RBUF) /* \_SB_.BAT1._CRS.RBUF */
             }
+
+            Name (_PLD, Package (One)  // _PLD: Physical Location of Device
+            {
+                Buffer (0x14)
+                {
+                    /* 0000 */  0x02, 0x00, 0x00, 0x00, 0x46, 0x05, 0x08, 0x07,  // ....F...
+                    /* 0008 */  0x21, 0x0C, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00,  // !.......
+                    /* 0010 */  0xBE, 0x00, 0x0A, 0x00                           // ....
+                }
+            })
         }
 
         Device (BAT2)
@@ -441,6 +451,16 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                 })
                 Return (RBUF) /* \_SB_.BAT2._CRS.RBUF */
             }
+
+            Name (_PLD, Package (One)  // _PLD: Physical Location of Device
+            {
+                Buffer (0x14)
+                {
+                    /* 0000 */  0x02, 0x00, 0x00, 0x00, 0x46, 0x05, 0x08, 0x07,  // ....F...
+                    /* 0008 */  0x21, 0x0C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,  // !.......
+                    /* 0010 */  0xBE, 0x00, 0x1E, 0x00                           // ....
+                }
+            })
         }
 
         Device (SCHG)
