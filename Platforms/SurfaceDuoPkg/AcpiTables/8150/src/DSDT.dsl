@@ -466,9 +466,11 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
         Device (SCHG)
         {
             Name (_HID, "SMB1380")  // _HID: Hardware ID
-            Name (_DEP, Package (One)  // _DEP: Dependencies
+            Name (_DEP, Package (0x03)  // _DEP: Dependencies
             {
-                \_SB.I2C2
+                \_SB.I2C2, 
+                \_SB.BAT1, 
+                \_SB.BAT2
             })
             Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
             {
@@ -59361,7 +59363,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                 {
                     "DEVICE", 
                     "\\_SB.CAMS", 
-                    Package (0x0E)
+                    Package (0x10)
                     {
                         "DSTATE", 
                         Zero, 
@@ -59442,6 +59444,20 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
                         Package (0x02)
                         {
+                            "TLMMGPIO", 
+                            Package (0x06)
+                            {
+                                0x0B, 
+                                Zero, 
+                                Zero, 
+                                One, 
+                                One, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
                             "PMICVREGVOTE", 
                             Package (0x06)
                             {
@@ -59485,6 +59501,20 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             "TLMMGPIO", 
                             Package (0x06)
                             {
+                                0x0B, 
+                                One, 
+                                Zero, 
+                                One, 
+                                0x03, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "TLMMGPIO", 
+                            Package (0x06)
+                            {
                                 0x1E, 
                                 One, 
                                 Zero, 
@@ -59504,10 +59534,24 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         }
                     }, 
 
-                    Package (0x0D)
+                    Package (0x0E)
                     {
                         "DSTATE", 
                         0x03, 
+                        Package (0x02)
+                        {
+                            "TLMMGPIO", 
+                            Package (0x06)
+                            {
+                                0x0B, 
+                                Zero, 
+                                Zero, 
+                                One, 
+                                One, 
+                                Zero
+                            }
+                        }, 
+
                         Package (0x02)
                         {
                             "TLMMGPIO", 
@@ -59638,7 +59682,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                 {
                     "DEVICE", 
                     "\\_SB.CAMF", 
-                    Package (0x0E)
+                    Package (0x10)
                     {
                         "DSTATE", 
                         Zero, 
@@ -59719,6 +59763,20 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
                         Package (0x02)
                         {
+                            "TLMMGPIO", 
+                            Package (0x06)
+                            {
+                                0x0B, 
+                                Zero, 
+                                Zero, 
+                                One, 
+                                One, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
                             "PMICVREGVOTE", 
                             Package (0x06)
                             {
@@ -59762,6 +59820,20 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             "TLMMGPIO", 
                             Package (0x06)
                             {
+                                0x0B, 
+                                One, 
+                                Zero, 
+                                One, 
+                                0x03, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "TLMMGPIO", 
+                            Package (0x06)
+                            {
                                 0x1E, 
                                 One, 
                                 Zero, 
@@ -59781,10 +59853,24 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         }
                     }, 
 
-                    Package (0x0D)
+                    Package (0x0E)
                     {
                         "DSTATE", 
                         0x03, 
+                        Package (0x02)
+                        {
+                            "TLMMGPIO", 
+                            Package (0x06)
+                            {
+                                0x0B, 
+                                Zero, 
+                                Zero, 
+                                One, 
+                                One, 
+                                Zero
+                            }
+                        }, 
+
                         Package (0x02)
                         {
                             "TLMMGPIO", 
@@ -91560,7 +91646,309 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
                 Method (PHYC, 0, NotSerialized)
                 {
-                    Name (CFG0, Package (0x00){})
+                    Name (CFG0, Package (0x2B)
+                    {
+                        Package (0x03)
+                        {
+                            Zero, 
+                            0x088E9024, 
+                            0xFF
+                        }, 
+
+                        Package (0x03)
+                        {
+                            Zero, 
+                            0x088E9028, 
+                            0x0E
+                        }, 
+
+                        Package (0x03)
+                        {
+                            Zero, 
+                            0x088E9030, 
+                            0xFF
+                        }, 
+
+                        Package (0x03)
+                        {
+                            Zero, 
+                            0x088E9034, 
+                            0x0E
+                        }, 
+
+                        Package (0x03)
+                        {
+                            Zero, 
+                            0x088E9078, 
+                            0x02
+                        }, 
+
+                        Package (0x03)
+                        {
+                            Zero, 
+                            0x088E90BC, 
+                            0x04
+                        }, 
+
+                        Package (0x03)
+                        {
+                            Zero, 
+                            0x088E90C4, 
+                            0x04
+                        }, 
+
+                        Package (0x03)
+                        {
+                            Zero, 
+                            0x088E90CC, 
+                            0x55
+                        }, 
+
+                        Package (0x03)
+                        {
+                            Zero, 
+                            0x088E90D0, 
+                            0xD5
+                        }, 
+
+                        Package (0x03)
+                        {
+                            Zero, 
+                            0x088E90D4, 
+                            0x05
+                        }, 
+
+                        Package (0x03)
+                        {
+                            Zero, 
+                            0x088E90D8, 
+                            0x55
+                        }, 
+
+                        Package (0x03)
+                        {
+                            Zero, 
+                            0x088E90DC, 
+                            0xD5
+                        }, 
+
+                        Package (0x03)
+                        {
+                            Zero, 
+                            0x088E90E0, 
+                            0x05
+                        }, 
+
+                        Package (0x03)
+                        {
+                            Zero, 
+                            0x088E9414, 
+                            0x04
+                        }, 
+
+                        Package (0x03)
+                        {
+                            Zero, 
+                            0x088E944C, 
+                            0x08
+                        }, 
+
+                        Package (0x03)
+                        {
+                            Zero, 
+                            0x088E9454, 
+                            Zero
+                        }, 
+
+                        Package (0x03)
+                        {
+                            Zero, 
+                            0x088E9458, 
+                            0x04
+                        }, 
+
+                        Package (0x03)
+                        {
+                            Zero, 
+                            0x088E9460, 
+                            0x80
+                        }, 
+
+                        Package (0x03)
+                        {
+                            Zero, 
+                            0x088E94D8, 
+                            0x05
+                        }, 
+
+                        Package (0x03)
+                        {
+                            Zero, 
+                            0x088E9570, 
+                            0xFF
+                        }, 
+
+                        Package (0x03)
+                        {
+                            Zero, 
+                            0x088E9574, 
+                            0xFF
+                        }, 
+
+                        Package (0x03)
+                        {
+                            Zero, 
+                            0x088E9580, 
+                            0x96
+                        }, 
+
+                        Package (0x03)
+                        {
+                            Zero, 
+                            0x088E9594, 
+                            0xBA
+                        }, 
+
+                        Package (0x03)
+                        {
+                            Zero, 
+                            0x088E9704, 
+                            0x20
+                        }, 
+
+                        Package (0x03)
+                        {
+                            Zero, 
+                            0x088E9814, 
+                            0x04
+                        }, 
+
+                        Package (0x03)
+                        {
+                            Zero, 
+                            0x088E984C, 
+                            0x08
+                        }, 
+
+                        Package (0x03)
+                        {
+                            Zero, 
+                            0x088E9854, 
+                            Zero
+                        }, 
+
+                        Package (0x03)
+                        {
+                            Zero, 
+                            0x088E9858, 
+                            0x04
+                        }, 
+
+                        Package (0x03)
+                        {
+                            Zero, 
+                            0x088E9860, 
+                            0x80
+                        }, 
+
+                        Package (0x03)
+                        {
+                            Zero, 
+                            0x088E98D8, 
+                            0x06
+                        }, 
+
+                        Package (0x03)
+                        {
+                            Zero, 
+                            0x088E9970, 
+                            0xFF
+                        }, 
+
+                        Package (0x03)
+                        {
+                            Zero, 
+                            0x088E9974, 
+                            0xFF
+                        }, 
+
+                        Package (0x03)
+                        {
+                            Zero, 
+                            0x088E9980, 
+                            0x97
+                        }, 
+
+                        Package (0x03)
+                        {
+                            Zero, 
+                            0x088E9994, 
+                            0xBA
+                        }, 
+
+                        Package (0x03)
+                        {
+                            Zero, 
+                            0x088E917C, 
+                            0x04
+                        }, 
+
+                        Package (0x03)
+                        {
+                            Zero, 
+                            0x088E90C0, 
+                            One
+                        }, 
+
+                        Package (0x03)
+                        {
+                            Zero, 
+                            0x088E90C8, 
+                            One
+                        }, 
+
+                        Package (0x03)
+                        {
+                            Zero, 
+                            0x088E9288, 
+                            Zero
+                        }, 
+
+                        Package (0x03)
+                        {
+                            Zero, 
+                            0x088E9688, 
+                            Zero
+                        }, 
+
+                        Package (0x03)
+                        {
+                            Zero, 
+                            0x088E9408, 
+                            0x09
+                        }, 
+
+                        Package (0x03)
+                        {
+                            Zero, 
+                            0x088E9808, 
+                            0x09
+                        }, 
+
+                        Package (0x03)
+                        {
+                            Zero, 
+                            0x088E9464, 
+                            0x50
+                        }, 
+
+                        Package (0x03)
+                        {
+                            Zero, 
+                            0x088E9864, 
+                            0x50
+                        }
+                    })
                     Return (CFG0) /* \_SB_.URS0.UFN0.PHYC.CFG0 */
                 }
             }
