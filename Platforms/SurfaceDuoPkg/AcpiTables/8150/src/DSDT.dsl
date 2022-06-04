@@ -67768,6 +67768,138 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             })
         }
 
+        Scope (\_SB.PEP0)
+        {
+            Method (FPMX, 0, NotSerialized)
+            {
+                Return (FPXX) /* \_SB_.PEP0.FPXX */
+            }
+
+            Name (FPXX, Package (0x01)
+            {
+                Package (0x07)
+                {
+                    "DEVICE", 
+                    "\\_SB.FPC1", 
+                    Package (0x03)
+                    {
+                        "COMPONENT", 
+                        Zero, 
+                        Package (0x02)
+                        {
+                            "FSTATE", 
+                            Zero
+                        }
+                    }, 
+
+                    Package (0x08)
+                    {
+                        "DSTATE", 
+                        Zero, 
+                        Package (0x02)
+                        {
+                            "TLMMGPIO", 
+                            Package (0x06)
+                            {
+                                0x5F, 
+                                One, 
+                                Zero, 
+                                One, 
+                                0x03, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "DELAY", 
+                            Package (0x01)
+                            {
+                                One
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "TLMMGPIO", 
+                            Package (0x06)
+                            {
+                                0x5F, 
+                                Zero, 
+                                Zero, 
+                                One, 
+                                One, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "DELAY", 
+                            Package (0x01)
+                            {
+                                0x05
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "TLMMGPIO", 
+                            Package (0x06)
+                            {
+                                0x5F, 
+                                One, 
+                                Zero, 
+                                One, 
+                                0x03, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "DELAY", 
+                            Package (0x01)
+                            {
+                                0x05
+                            }
+                        }
+                    }, 
+
+                    Package (0x02)
+                    {
+                        "DSTATE", 
+                        One
+                    }, 
+
+                    Package (0x02)
+                    {
+                        "DSTATE", 
+                        0x02
+                    }, 
+
+                    Package (0x03)
+                    {
+                        "DSTATE", 
+                        0x03, 
+                        Package (0x02)
+                        {
+                            "TLMMGPIO", 
+                            Package (0x06)
+                            {
+                                0x5F, 
+                                Zero, 
+                                Zero, 
+                                One, 
+                                One, 
+                                Zero
+                            }
+                        }
+                    }
+                }
+            })
+        }
+
         Device (BAM1)
         {
             Name (_HID, "QCOM040A")  // _HID: Hardware ID
@@ -97638,6 +97770,149 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     One, 
                     0x05
                 })
+            }
+        }
+
+        Device (QBT1)
+        {
+            Name (_HID, "QBT1000")  // _HID: Hardware ID
+            Name (_DEP, Package (0x02)  // _DEP: Dependencies
+            {
+                \_SB.TREE, 
+                \_SB.SCM0
+            })
+            Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
+            {
+                Name (RBUF, ResourceTemplate ()
+                {
+                    GpioInt (Edge, ActiveHigh, SharedAndWake, PullDown, 0x0000,
+                        "\\_SB.GIO0", 0x00, ResourceConsumer, ,
+                        )
+                        {   // Pin list
+                            0x0076
+                        }
+                    GpioInt (Edge, ActiveBoth, Exclusive, PullUp, 0x0000,
+                        "\\_SB.PM01", 0x00, ResourceConsumer, ,
+                        )
+                        {   // Pin list
+                            0x0080
+                        }
+                })
+                Return (RBUF) /* \_SB_.QBT1._CRS.RBUF */
+            }
+        }
+
+        Device (FPC1)
+        {
+            Name (_HID, "FPC1020")  // _HID: Hardware ID
+            Name (_DEP, Package (0x02)  // _DEP: Dependencies
+            {
+                \_SB.TREE, 
+                \_SB.SCM0
+            })
+            Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
+            {
+                Name (RBUF, ResourceTemplate ()
+                {
+                    GpioInt (Edge, ActiveHigh, SharedAndWake, PullDown, 0x0000,
+                        "\\_SB.GIO0", 0x00, ResourceConsumer, ,
+                        )
+                        {   // Pin list
+                            0x0076
+                        }
+                    GpioIo (Exclusive, PullDown, 0x0000, 0x0000, IoRestrictionNone,
+                        "\\_SB.GIO0", 0x00, ResourceConsumer, ,
+                        )
+                        {   // Pin list
+                            0x005F
+                        }
+                })
+                Return (RBUF) /* \_SB_.FPC1._CRS.RBUF */
+            }
+
+            Name (PGID, Buffer (0x0A)
+            {
+                "\\_SB.FPC1"
+            })
+            Name (FLAG, 0x03)
+            Name (DBUF, Buffer (DBFL){})
+            CreateByteField (DBUF, Zero, STAT)
+            CreateByteField (DBUF, 0x02, DVAL)
+            CreateField (DBUF, 0x18, 0xA0, DEID)
+            Method (_S1D, 0, NotSerialized)  // _S1D: S1 Device State
+            {
+                Return (0x03)
+            }
+
+            Method (_S2D, 0, NotSerialized)  // _S2D: S2 Device State
+            {
+                Return (0x03)
+            }
+
+            Method (_S3D, 0, NotSerialized)  // _S3D: S3 Device State
+            {
+                Return (0x03)
+            }
+
+            Method (_PS0, 0, NotSerialized)  // _PS0: Power State 0
+            {
+                If ((FLAG == 0x03))
+                {
+                    Sleep (0x012C)
+                    OperationRegion (GI95, SystemMemory, 0x0395F000, 0x20)
+                    Field (GI95, DWordAcc, NoLock, Preserve)
+                    {
+                        DWD1,   32, 
+                        DWD2,   32
+                    }
+
+                    DWD2 = 0x02
+                    Sleep (0x05)
+                }
+
+                DEID = Buffer (ESNL){}
+                DVAL = Zero
+                DEID = PGID /* \_SB_.FPC1.PGID */
+                If (\_SB.ABD.AVBL)
+                {
+                    \_SB.PEP0.FLD0 = DBUF /* \_SB_.FPC1.DBUF */
+                }
+
+                FLAG = Zero
+            }
+
+            Method (_PS2, 0, NotSerialized)  // _PS2: Power State 2
+            {
+            }
+
+            Method (_PS3, 0, NotSerialized)  // _PS3: Power State 3
+            {
+                DEID = Buffer (ESNL){}
+                DVAL = 0x03
+                DEID = PGID /* \_SB_.FPC1.PGID */
+                If (\_SB.ABD.AVBL)
+                {
+                    \_SB.PEP0.FLD0 = DBUF /* \_SB_.FPC1.DBUF */
+                }
+
+                FLAG = 0x03
+            }
+
+            Method (_RST, 0, NotSerialized)  // _RST: Device Reset
+            {
+                OperationRegion (GI95, SystemMemory, 0x0395F000, 0x20)
+                Field (GI95, DWordAcc, NoLock, Preserve)
+                {
+                    DWD1,   32, 
+                    DWD2,   32
+                }
+
+                DWD2 = 0x02
+                Sleep (One)
+                DWD2 = Zero
+                Sleep (0x05)
+                DWD2 = 0x02
+                Sleep (0x05)
             }
         }
     }
