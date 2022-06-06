@@ -92142,6 +92142,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
         {
              0x02                                             // .
         })
+        Name (CCS2, 0x02)
         Name (HSFL, Buffer (One)
         {
              0x00                                             // .
@@ -92391,6 +92392,8 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             {
                 \_SB.CCST = Arg0
                 \_SB.HSFL = Arg1
+                \_SB.CCS2 = Arg0
+                Notify (\_SB.USBA, \_SB.CCS2)
             }
 
             Method (CCVL, 0, NotSerialized)
@@ -92438,7 +92441,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         Device (USBA)
         {
-            Name (_HID, "QCOM0490")  // _HID: Hardware ID
+            Name (_HID, "FSA4480")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
             {
@@ -92448,6 +92451,15 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         AddressingMode7Bit, "\\_SB.I2C5",
                         0x00, ResourceConsumer, , Exclusive,
                         )
+                    GpioIo (Shared, PullNone, 0x0000, 0x0000, IoRestrictionNone,
+                        "\\_SB.GIO0", 0x00, ResourceConsumer, ,
+                        RawDataBuffer (0x01)  // Vendor Data
+                        {
+                            0x01
+                        })
+                        {   // Pin list
+                            0x0026
+                        }
                     GpioIo (Exclusive, PullUp, 0x0000, 0x0000, IoRestrictionNone,
                         "\\_SB.GIO0", 0x00, ResourceConsumer, ,
                         )
