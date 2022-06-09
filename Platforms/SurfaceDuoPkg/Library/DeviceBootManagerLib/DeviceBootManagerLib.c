@@ -911,6 +911,7 @@ DeviceBootManagerPriorityBoot (
   )
 {
   BOOLEAN     FrontPageBoot;
+  BOOLEAN     UFPBoot;
   BOOLEAN     AltDeviceBoot;
   EFI_STATUS  Status;
 
