@@ -27,4 +27,4 @@ SdBootOptionsLibGetUFPMenu (
   IN     CHAR8                         *Parameter
   );
 
-#endif // _MS_BOOT_OPTIONS_LIB_H_
+#endif // _SD_BOOT_OPTIONS_LIB_H_

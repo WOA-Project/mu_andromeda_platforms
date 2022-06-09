@@ -159,7 +159,7 @@ MsBootOptionsLibGetBootManagerMenu (
 **/
 EFI_STATUS
 EFIAPI
-MsBootOptionsLibGetUFPMenu (
+SdBootOptionsLibGetUFPMenu (
   IN OUT EFI_BOOT_MANAGER_LOAD_OPTION  *BootOption,
   IN     CHAR8                         *Parameter
   )
