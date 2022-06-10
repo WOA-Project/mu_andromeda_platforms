@@ -58,7 +58,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
         Name (SFES, "899800000000000")
         Name (SIDM, 0x0000000FFFFF00FF)
         Name (SUFS, 0xFFFFFFFF)
-        Name (PUS3, 0xFFFFFFFF)
+        Name (PUS3, 0x00000001)
         Name (SUS3, 0xFFFFFFFF)
         Name (SIDT, 0x00000001)
         Name (SOSN, 0x00000407D4506A22)
@@ -3835,7 +3835,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE_SET", 
                                 0x02, 
-                                Package (0x12)
+                                Package (0x14)
                                 {
                                     "PSTATE", 
                                     Zero, 
@@ -3930,7 +3930,27 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                         "CLOCK", 
                                         Package (0x02)
                                         {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x02)
+                                        {
                                             "disp_cc_mdss_pclk0_clk", 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x02)
+                                        {
+                                            "disp_cc_mdss_rot_clk", 
                                             One
                                         }
                                     }, 
@@ -4006,7 +4026,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x12)
+                                Package (0x14)
                                 {
                                     "PSTATE", 
                                     One, 
@@ -4101,6 +4121,26 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                         "CLOCK", 
                                         Package (0x02)
                                         {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x02)
+                                        {
+                                            "disp_cc_mdss_rot_clk", 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x02)
+                                        {
                                             "disp_cc_mdss_pclk0_clk", 
                                             One
                                         }
@@ -4177,7 +4217,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x12)
+                                Package (0x14)
                                 {
                                     "PSTATE", 
                                     0x02, 
@@ -4272,6 +4312,26 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                         "CLOCK", 
                                         Package (0x02)
                                         {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x02)
+                                        {
+                                            "disp_cc_mdss_rot_clk", 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x02)
+                                        {
                                             "disp_cc_mdss_pclk0_clk", 
                                             One
                                         }
@@ -4348,7 +4408,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x12)
+                                Package (0x14)
                                 {
                                     "PSTATE", 
                                     0x03, 
@@ -4443,6 +4503,26 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                         "CLOCK", 
                                         Package (0x02)
                                         {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x02)
+                                        {
+                                            "disp_cc_mdss_rot_clk", 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x02)
+                                        {
                                             "disp_cc_mdss_pclk0_clk", 
                                             0x02
                                         }
@@ -4519,10 +4599,30 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x12)
+                                Package (0x14)
                                 {
                                     "PSTATE", 
                                     0x04, 
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x02)
+                                        {
+                                            "disp_cc_mdss_rot_clk", 
+                                            0x02
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x02)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x02
+                                        }
+                                    }, 
+
                                     Package (0x02)
                                     {
                                         "CLOCK", 
@@ -4719,10 +4819,22 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE_SET", 
                                 0x03, 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     Zero, 
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x1B6B0B00, 
+                                            One
+                                        }
+                                    }, 
+
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -4737,12 +4849,24 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     One, 
                                     Package (0x02)
                                     {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x14904840, 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
                                         "BUSARB", 
                                         Package (0x05)
                                         {
@@ -4755,12 +4879,24 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     0x02, 
                                     Package (0x02)
                                     {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x11E1A300, 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
                                         "BUSARB", 
                                         Package (0x05)
                                         {
@@ -4773,12 +4909,24 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     0x03, 
                                     Package (0x02)
                                     {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x0BEBC200, 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
                                         "BUSARB", 
                                         Package (0x05)
                                         {
@@ -4791,12 +4939,24 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     0x04, 
                                     Package (0x02)
                                     {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x0A37CADB, 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
                                         "BUSARB", 
                                         Package (0x05)
                                         {
@@ -4809,12 +4969,24 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     0x05, 
                                     Package (0x02)
                                     {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x08F0D180, 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
                                         "BUSARB", 
                                         Package (0x05)
                                         {
@@ -4827,12 +4999,24 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     0x06, 
                                     Package (0x02)
                                     {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x05F5E100, 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
                                         "BUSARB", 
                                         Package (0x05)
                                         {
@@ -4845,28 +5029,22 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     0x07, 
                                     Package (0x02)
                                     {
-                                        "BUSARB", 
-                                        Package (0x05)
+                                        "CLOCK", 
+                                        Package (0x04)
                                         {
+                                            "disp_cc_mdss_mdp_clk", 
                                             0x03, 
-                                            "ICBID_MASTER_APPSS_PROC", 
-                                            "ICBID_SLAVE_DISPLAY_CFG", 
-                                            0x0124F800, 
-                                            Zero
+                                            0x051BD4B0, 
+                                            One
                                         }
-                                    }
-                                }, 
+                                    }, 
 
-                                Package (0x03)
-                                {
-                                    "PSTATE", 
-                                    0x08, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -4881,10 +5059,52 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
+                                {
+                                    "PSTATE", 
+                                    0x08, 
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x0124F800, 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "BUSARB", 
+                                        Package (0x05)
+                                        {
+                                            0x03, 
+                                            "ICBID_MASTER_APPSS_PROC", 
+                                            "ICBID_SLAVE_DISPLAY_CFG", 
+                                            0x0124F800, 
+                                            Zero
+                                        }
+                                    }
+                                }, 
+
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     0x09, 
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            Zero, 
+                                            One
+                                        }
+                                    }, 
+
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -6904,7 +7124,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "FSTATE", 
                                 One, 
-                                Package (0x07)
+                                Package (0x08)
                                 {
                                     "ENTER", 
                                     Package (0x02)
@@ -6933,6 +7153,16 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                         Package (0x02)
                                         {
                                             "disp_cc_mdss_vsync_clk", 
+                                            0x02
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x02)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
                                             0x02
                                         }
                                     }, 
@@ -6971,7 +7201,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x07)
+                                Package (0x08)
                                 {
                                     "EXIT", 
                                     Package (0x02)
@@ -7012,6 +7242,16 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                         "CLOCK", 
                                         Package (0x02)
                                         {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x02)
+                                        {
                                             "disp_cc_mdss_vsync_clk", 
                                             One
                                         }
@@ -7043,7 +7283,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "FSTATE", 
                                 0x02, 
-                                Package (0x0F)
+                                Package (0x10)
                                 {
                                     "ENTER", 
                                     Package (0x02)
@@ -7082,6 +7322,16 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                         Package (0x02)
                                         {
                                             "disp_cc_mdss_vsync_clk", 
+                                            0x02
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x02)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
                                             0x02
                                         }
                                     }, 
@@ -7194,7 +7444,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x0C)
+                                Package (0x0D)
                                 {
                                     "EXIT", 
                                     Package (0x02)
@@ -7280,6 +7530,16 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                         Package (0x02)
                                         {
                                             "disp_cc_mdss_ahb_clk", 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x02)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
                                             One
                                         }
                                     }, 
@@ -7408,10 +7668,22 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE_SET", 
                                 0x02, 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     Zero, 
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x1B6B0B00, 
+                                            One
+                                        }
+                                    }, 
+
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -7426,12 +7698,24 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     One, 
                                     Package (0x02)
                                     {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x14904840, 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
                                         "BUSARB", 
                                         Package (0x05)
                                         {
@@ -7444,12 +7728,24 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     0x02, 
                                     Package (0x02)
                                     {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x11E1A300, 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
                                         "BUSARB", 
                                         Package (0x05)
                                         {
@@ -7462,12 +7758,24 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     0x03, 
                                     Package (0x02)
                                     {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x0BEBC200, 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
                                         "BUSARB", 
                                         Package (0x05)
                                         {
@@ -7480,12 +7788,24 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     0x04, 
                                     Package (0x02)
                                     {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x0A37CADB, 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
                                         "BUSARB", 
                                         Package (0x05)
                                         {
@@ -7498,12 +7818,24 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     0x05, 
                                     Package (0x02)
                                     {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x08F0D180, 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
                                         "BUSARB", 
                                         Package (0x05)
                                         {
@@ -7516,12 +7848,24 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     0x06, 
                                     Package (0x02)
                                     {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x05F5E100, 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
                                         "BUSARB", 
                                         Package (0x05)
                                         {
@@ -7534,28 +7878,22 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     0x07, 
                                     Package (0x02)
                                     {
-                                        "BUSARB", 
-                                        Package (0x05)
+                                        "CLOCK", 
+                                        Package (0x04)
                                         {
+                                            "disp_cc_mdss_mdp_clk", 
                                             0x03, 
-                                            "ICBID_MASTER_APPSS_PROC", 
-                                            "ICBID_SLAVE_DISPLAY_CFG", 
-                                            0x0124F800, 
-                                            Zero
+                                            0x051BD4B0, 
+                                            One
                                         }
-                                    }
-                                }, 
+                                    }, 
 
-                                Package (0x03)
-                                {
-                                    "PSTATE", 
-                                    0x08, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -7570,10 +7908,52 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
+                                {
+                                    "PSTATE", 
+                                    0x08, 
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x0124F800, 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "BUSARB", 
+                                        Package (0x05)
+                                        {
+                                            0x03, 
+                                            "ICBID_MASTER_APPSS_PROC", 
+                                            "ICBID_SLAVE_DISPLAY_CFG", 
+                                            0x0124F800, 
+                                            Zero
+                                        }
+                                    }
+                                }, 
+
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     0x09, 
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            Zero, 
+                                            One
+                                        }
+                                    }, 
+
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -8647,7 +9027,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "FSTATE", 
                                 One, 
-                                Package (0x09)
+                                Package (0x0B)
                                 {
                                     "ENTER", 
                                     Package (0x02)
@@ -8705,6 +9085,26 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                         "CLOCK", 
                                         Package (0x02)
                                         {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x02
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x02)
+                                        {
+                                            "disp_cc_mdss_rot_clk", 
+                                            0x02
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x02)
+                                        {
                                             "disp_cc_mdss_ahb_clk", 
                                             0x02
                                         }
@@ -8737,7 +9137,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x08)
+                                Package (0x0A)
                                 {
                                     "EXIT", 
                                     Package (0x02)
@@ -8772,6 +9172,26 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                         Package (0x02)
                                         {
                                             "disp_cc_mdss_ahb_clk", 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x02)
+                                        {
+                                            "disp_cc_mdss_rot_clk", 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x02)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
                                             One
                                         }
                                     }, 
@@ -8822,7 +9242,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "FSTATE", 
                                 0x02, 
-                                Package (0x10)
+                                Package (0x12)
                                 {
                                     "ENTER", 
                                     Package (0x02)
@@ -8881,6 +9301,26 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                         Package (0x02)
                                         {
                                             "disp_cc_mdss_vsync_clk", 
+                                            0x02
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x02)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x02
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x02)
+                                        {
+                                            "disp_cc_mdss_rot_clk", 
                                             0x02
                                         }
                                     }, 
@@ -8986,7 +9426,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x0F)
+                                Package (0x11)
                                 {
                                     "EXIT", 
                                     Package (0x02)
@@ -9095,6 +9535,26 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                         Package (0x02)
                                         {
                                             "disp_cc_mdss_ahb_clk", 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x02)
+                                        {
+                                            "disp_cc_mdss_rot_clk", 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x02)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
                                             One
                                         }
                                     }, 
@@ -9273,10 +9733,22 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE_SET", 
                                 0x02, 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     Zero, 
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_rot_clk", 
+                                            0x03, 
+                                            0x1B6B0B00, 
+                                            One
+                                        }
+                                    }, 
+
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -9291,12 +9763,24 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     One, 
                                     Package (0x02)
                                     {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_rot_clk", 
+                                            0x03, 
+                                            0x14904840, 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
                                         "BUSARB", 
                                         Package (0x05)
                                         {
@@ -9309,12 +9793,24 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     0x02, 
                                     Package (0x02)
                                     {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_rot_clk", 
+                                            0x03, 
+                                            0x11E1A300, 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
                                         "BUSARB", 
                                         Package (0x05)
                                         {
@@ -9327,28 +9823,22 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     0x03, 
                                     Package (0x02)
                                     {
-                                        "BUSARB", 
-                                        Package (0x05)
+                                        "CLOCK", 
+                                        Package (0x04)
                                         {
+                                            "disp_cc_mdss_rot_clk", 
                                             0x03, 
-                                            "ICBID_MASTER_APPSS_PROC", 
-                                            "ICBID_SLAVE_DISPLAY_CFG", 
-                                            0x0124F800, 
-                                            Zero
+                                            0x0A37CADB, 
+                                            One
                                         }
-                                    }
-                                }, 
+                                    }, 
 
-                                Package (0x03)
-                                {
-                                    "PSTATE", 
-                                    0x04, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -9363,10 +9853,52 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
+                                {
+                                    "PSTATE", 
+                                    0x04, 
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_rot_clk", 
+                                            0x03, 
+                                            0x0124F800, 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "BUSARB", 
+                                        Package (0x05)
+                                        {
+                                            0x03, 
+                                            "ICBID_MASTER_APPSS_PROC", 
+                                            "ICBID_SLAVE_DISPLAY_CFG", 
+                                            0x0124F800, 
+                                            Zero
+                                        }
+                                    }
+                                }, 
+
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     0x05, 
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_rot_clk", 
+                                            0x03, 
+                                            Zero, 
+                                            One
+                                        }
+                                    }, 
+
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -19925,7 +20457,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE_SET", 
                                 0x02, 
-                                Package (0x12)
+                                Package (0x14)
                                 {
                                     "PSTATE", 
                                     Zero, 
@@ -20020,7 +20552,27 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                         "CLOCK", 
                                         Package (0x02)
                                         {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x02)
+                                        {
                                             "disp_cc_mdss_pclk0_clk", 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x02)
+                                        {
+                                            "disp_cc_mdss_rot_clk", 
                                             One
                                         }
                                     }, 
@@ -20096,7 +20648,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x12)
+                                Package (0x14)
                                 {
                                     "PSTATE", 
                                     One, 
@@ -20191,6 +20743,26 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                         "CLOCK", 
                                         Package (0x02)
                                         {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x02)
+                                        {
+                                            "disp_cc_mdss_rot_clk", 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x02)
+                                        {
                                             "disp_cc_mdss_pclk0_clk", 
                                             One
                                         }
@@ -20267,7 +20839,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x12)
+                                Package (0x14)
                                 {
                                     "PSTATE", 
                                     0x02, 
@@ -20362,6 +20934,26 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                         "CLOCK", 
                                         Package (0x02)
                                         {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x02)
+                                        {
+                                            "disp_cc_mdss_rot_clk", 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x02)
+                                        {
                                             "disp_cc_mdss_pclk0_clk", 
                                             One
                                         }
@@ -20438,7 +21030,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x12)
+                                Package (0x14)
                                 {
                                     "PSTATE", 
                                     0x03, 
@@ -20533,6 +21125,26 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                         "CLOCK", 
                                         Package (0x02)
                                         {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x02)
+                                        {
+                                            "disp_cc_mdss_rot_clk", 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x02)
+                                        {
                                             "disp_cc_mdss_pclk0_clk", 
                                             0x02
                                         }
@@ -20609,10 +21221,30 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x12)
+                                Package (0x14)
                                 {
                                     "PSTATE", 
                                     0x04, 
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x02)
+                                        {
+                                            "disp_cc_mdss_rot_clk", 
+                                            0x02
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x02)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x02
+                                        }
+                                    }, 
+
                                     Package (0x02)
                                     {
                                         "CLOCK", 
@@ -20809,10 +21441,22 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE_SET", 
                                 0x03, 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     Zero, 
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x1B6B0B00, 
+                                            One
+                                        }
+                                    }, 
+
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -20827,12 +21471,24 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     One, 
                                     Package (0x02)
                                     {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x14904840, 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
                                         "BUSARB", 
                                         Package (0x05)
                                         {
@@ -20845,12 +21501,24 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     0x02, 
                                     Package (0x02)
                                     {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x11E1A300, 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
                                         "BUSARB", 
                                         Package (0x05)
                                         {
@@ -20863,12 +21531,24 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     0x03, 
                                     Package (0x02)
                                     {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x0BEBC200, 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
                                         "BUSARB", 
                                         Package (0x05)
                                         {
@@ -20881,12 +21561,24 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     0x04, 
                                     Package (0x02)
                                     {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x0A37CADB, 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
                                         "BUSARB", 
                                         Package (0x05)
                                         {
@@ -20899,12 +21591,24 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     0x05, 
                                     Package (0x02)
                                     {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x08F0D180, 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
                                         "BUSARB", 
                                         Package (0x05)
                                         {
@@ -20917,12 +21621,24 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     0x06, 
                                     Package (0x02)
                                     {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x05F5E100, 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
                                         "BUSARB", 
                                         Package (0x05)
                                         {
@@ -20935,28 +21651,22 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     0x07, 
                                     Package (0x02)
                                     {
-                                        "BUSARB", 
-                                        Package (0x05)
+                                        "CLOCK", 
+                                        Package (0x04)
                                         {
+                                            "disp_cc_mdss_mdp_clk", 
                                             0x03, 
-                                            "ICBID_MASTER_APPSS_PROC", 
-                                            "ICBID_SLAVE_DISPLAY_CFG", 
-                                            0x0124F800, 
-                                            Zero
+                                            0x051BD4B0, 
+                                            One
                                         }
-                                    }
-                                }, 
+                                    }, 
 
-                                Package (0x03)
-                                {
-                                    "PSTATE", 
-                                    0x08, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -20971,10 +21681,52 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
+                                {
+                                    "PSTATE", 
+                                    0x08, 
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x0124F800, 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "BUSARB", 
+                                        Package (0x05)
+                                        {
+                                            0x03, 
+                                            "ICBID_MASTER_APPSS_PROC", 
+                                            "ICBID_SLAVE_DISPLAY_CFG", 
+                                            0x0124F800, 
+                                            Zero
+                                        }
+                                    }
+                                }, 
+
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     0x09, 
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            Zero, 
+                                            One
+                                        }
+                                    }, 
+
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -22705,7 +23457,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "FSTATE", 
                                 One, 
-                                Package (0x14)
+                                Package (0x16)
                                 {
                                     "ENTER", 
                                     Package (0x02)
@@ -22755,6 +23507,26 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                         {
                                             0x05, 
                                             0x03
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x02)
+                                        {
+                                            "disp_cc_mdss_rot_clk", 
+                                            0x02
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x02)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x02
                                         }
                                     }, 
 
@@ -22921,7 +23693,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x12)
+                                Package (0x14)
                                 {
                                     "EXIT", 
                                     Package (0x02)
@@ -23060,6 +23832,26 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                         Package (0x02)
                                         {
                                             "disp_cc_mdss_vsync_clk", 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x02)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x02)
+                                        {
+                                            "disp_cc_mdss_rot_clk", 
                                             One
                                         }
                                     }, 
@@ -23210,10 +24002,22 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE_SET", 
                                 0x02, 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     Zero, 
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x1B6B0B00, 
+                                            One
+                                        }
+                                    }, 
+
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -23228,12 +24032,24 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     One, 
                                     Package (0x02)
                                     {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x14904840, 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
                                         "BUSARB", 
                                         Package (0x05)
                                         {
@@ -23246,12 +24062,24 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     0x02, 
                                     Package (0x02)
                                     {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x11E1A300, 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
                                         "BUSARB", 
                                         Package (0x05)
                                         {
@@ -23264,12 +24092,24 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     0x03, 
                                     Package (0x02)
                                     {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x0BEBC200, 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
                                         "BUSARB", 
                                         Package (0x05)
                                         {
@@ -23282,12 +24122,24 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     0x04, 
                                     Package (0x02)
                                     {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x0A37CADB, 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
                                         "BUSARB", 
                                         Package (0x05)
                                         {
@@ -23300,12 +24152,24 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     0x05, 
                                     Package (0x02)
                                     {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x08F0D180, 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
                                         "BUSARB", 
                                         Package (0x05)
                                         {
@@ -23318,12 +24182,24 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     0x06, 
                                     Package (0x02)
                                     {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x05F5E100, 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
                                         "BUSARB", 
                                         Package (0x05)
                                         {
@@ -23336,28 +24212,22 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     0x07, 
                                     Package (0x02)
                                     {
-                                        "BUSARB", 
-                                        Package (0x05)
+                                        "CLOCK", 
+                                        Package (0x04)
                                         {
+                                            "disp_cc_mdss_mdp_clk", 
                                             0x03, 
-                                            "ICBID_MASTER_APPSS_PROC", 
-                                            "ICBID_SLAVE_DISPLAY_CFG", 
-                                            0x0124F800, 
-                                            Zero
+                                            0x051BD4B0, 
+                                            One
                                         }
-                                    }
-                                }, 
+                                    }, 
 
-                                Package (0x03)
-                                {
-                                    "PSTATE", 
-                                    0x08, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -23372,10 +24242,52 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
+                                {
+                                    "PSTATE", 
+                                    0x08, 
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x0124F800, 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "BUSARB", 
+                                        Package (0x05)
+                                        {
+                                            0x03, 
+                                            "ICBID_MASTER_APPSS_PROC", 
+                                            "ICBID_SLAVE_DISPLAY_CFG", 
+                                            0x0124F800, 
+                                            Zero
+                                        }
+                                    }
+                                }, 
+
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     0x09, 
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            Zero, 
+                                            One
+                                        }
+                                    }, 
+
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -25537,7 +26449,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "FSTATE", 
                                 One, 
-                                Package (0x14)
+                                Package (0x16)
                                 {
                                     "ENTER", 
                                     Package (0x02)
@@ -25587,6 +26499,26 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                         {
                                             0x05, 
                                             0x03
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x02)
+                                        {
+                                            "disp_cc_mdss_rot_clk", 
+                                            0x02
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x02)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x02
                                         }
                                     }, 
 
@@ -25753,7 +26685,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x12)
+                                Package (0x14)
                                 {
                                     "EXIT", 
                                     Package (0x02)
@@ -25892,6 +26824,26 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                         Package (0x02)
                                         {
                                             "disp_cc_mdss_vsync_clk", 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x02)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x02)
+                                        {
+                                            "disp_cc_mdss_rot_clk", 
                                             One
                                         }
                                     }, 
@@ -26042,10 +26994,22 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE_SET", 
                                 0x02, 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     Zero, 
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x1B6B0B00, 
+                                            One
+                                        }
+                                    }, 
+
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -26060,12 +27024,24 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     One, 
                                     Package (0x02)
                                     {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x14904840, 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
                                         "BUSARB", 
                                         Package (0x05)
                                         {
@@ -26078,12 +27054,24 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     0x02, 
                                     Package (0x02)
                                     {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x11E1A300, 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
                                         "BUSARB", 
                                         Package (0x05)
                                         {
@@ -26096,12 +27084,24 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     0x03, 
                                     Package (0x02)
                                     {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x0BEBC200, 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
                                         "BUSARB", 
                                         Package (0x05)
                                         {
@@ -26114,12 +27114,24 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     0x04, 
                                     Package (0x02)
                                     {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x0A37CADB, 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
                                         "BUSARB", 
                                         Package (0x05)
                                         {
@@ -26132,12 +27144,24 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     0x05, 
                                     Package (0x02)
                                     {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x08F0D180, 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
                                         "BUSARB", 
                                         Package (0x05)
                                         {
@@ -26150,12 +27174,24 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     0x06, 
                                     Package (0x02)
                                     {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x05F5E100, 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
                                         "BUSARB", 
                                         Package (0x05)
                                         {
@@ -26168,28 +27204,22 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     0x07, 
                                     Package (0x02)
                                     {
-                                        "BUSARB", 
-                                        Package (0x05)
+                                        "CLOCK", 
+                                        Package (0x04)
                                         {
+                                            "disp_cc_mdss_mdp_clk", 
                                             0x03, 
-                                            "ICBID_MASTER_APPSS_PROC", 
-                                            "ICBID_SLAVE_DISPLAY_CFG", 
-                                            0x0124F800, 
-                                            Zero
+                                            0x051BD4B0, 
+                                            One
                                         }
-                                    }
-                                }, 
+                                    }, 
 
-                                Package (0x03)
-                                {
-                                    "PSTATE", 
-                                    0x08, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -26204,10 +27234,52 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
+                                {
+                                    "PSTATE", 
+                                    0x08, 
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x0124F800, 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "BUSARB", 
+                                        Package (0x05)
+                                        {
+                                            0x03, 
+                                            "ICBID_MASTER_APPSS_PROC", 
+                                            "ICBID_SLAVE_DISPLAY_CFG", 
+                                            0x0124F800, 
+                                            Zero
+                                        }
+                                    }
+                                }, 
+
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     0x09, 
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            Zero, 
+                                            One
+                                        }
+                                    }, 
+
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -26429,7 +27501,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "FSTATE", 
                                 One, 
-                                Package (0x18)
+                                Package (0x1A)
                                 {
                                     "ENTER", 
                                     Package (0x02)
@@ -26479,6 +27551,26 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                         {
                                             0x05, 
                                             0x03
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x02)
+                                        {
+                                            "disp_cc_mdss_rot_clk", 
+                                            0x02
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x02)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x02
                                         }
                                     }, 
 
@@ -26697,7 +27789,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x16)
+                                Package (0x18)
                                 {
                                     "EXIT", 
                                     Package (0x02)
@@ -26856,6 +27948,26 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                         Package (0x02)
                                         {
                                             "disp_cc_mdss_vsync_clk", 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x02)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x02)
+                                        {
+                                            "disp_cc_mdss_rot_clk", 
                                             One
                                         }
                                     }, 
@@ -27038,10 +28150,22 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE_SET", 
                                 0x02, 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     Zero, 
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x1B6B0B00, 
+                                            One
+                                        }
+                                    }, 
+
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -27056,12 +28180,24 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     One, 
                                     Package (0x02)
                                     {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x14904840, 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
                                         "BUSARB", 
                                         Package (0x05)
                                         {
@@ -27074,12 +28210,24 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     0x02, 
                                     Package (0x02)
                                     {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x11E1A300, 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
                                         "BUSARB", 
                                         Package (0x05)
                                         {
@@ -27092,12 +28240,24 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     0x03, 
                                     Package (0x02)
                                     {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x0BEBC200, 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
                                         "BUSARB", 
                                         Package (0x05)
                                         {
@@ -27110,12 +28270,24 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     0x04, 
                                     Package (0x02)
                                     {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x0A37CADB, 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
                                         "BUSARB", 
                                         Package (0x05)
                                         {
@@ -27128,12 +28300,24 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     0x05, 
                                     Package (0x02)
                                     {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x08F0D180, 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
                                         "BUSARB", 
                                         Package (0x05)
                                         {
@@ -27146,12 +28330,24 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     0x06, 
                                     Package (0x02)
                                     {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x05F5E100, 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
                                         "BUSARB", 
                                         Package (0x05)
                                         {
@@ -27164,28 +28360,22 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     0x07, 
                                     Package (0x02)
                                     {
-                                        "BUSARB", 
-                                        Package (0x05)
+                                        "CLOCK", 
+                                        Package (0x04)
                                         {
+                                            "disp_cc_mdss_mdp_clk", 
                                             0x03, 
-                                            "ICBID_MASTER_APPSS_PROC", 
-                                            "ICBID_SLAVE_DISPLAY_CFG", 
-                                            0x0124F800, 
-                                            Zero
+                                            0x051BD4B0, 
+                                            One
                                         }
-                                    }
-                                }, 
+                                    }, 
 
-                                Package (0x03)
-                                {
-                                    "PSTATE", 
-                                    0x08, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -27200,10 +28390,52 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
+                                {
+                                    "PSTATE", 
+                                    0x08, 
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x0124F800, 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "BUSARB", 
+                                        Package (0x05)
+                                        {
+                                            0x03, 
+                                            "ICBID_MASTER_APPSS_PROC", 
+                                            "ICBID_SLAVE_DISPLAY_CFG", 
+                                            0x0124F800, 
+                                            Zero
+                                        }
+                                    }
+                                }, 
+
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     0x09, 
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            Zero, 
+                                            One
+                                        }
+                                    }, 
+
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -29365,7 +30597,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "FSTATE", 
                                 One, 
-                                Package (0x18)
+                                Package (0x1A)
                                 {
                                     "ENTER", 
                                     Package (0x02)
@@ -29415,6 +30647,26 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                         {
                                             0x05, 
                                             0x03
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x02)
+                                        {
+                                            "disp_cc_mdss_rot_clk", 
+                                            0x02
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x02)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x02
                                         }
                                     }, 
 
@@ -29633,7 +30885,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x16)
+                                Package (0x18)
                                 {
                                     "EXIT", 
                                     Package (0x02)
@@ -29792,6 +31044,26 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                         Package (0x02)
                                         {
                                             "disp_cc_mdss_vsync_clk", 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x02)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x02)
+                                        {
+                                            "disp_cc_mdss_rot_clk", 
                                             One
                                         }
                                     }, 
@@ -29974,10 +31246,22 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE_SET", 
                                 0x02, 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     Zero, 
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x1B6B0B00, 
+                                            One
+                                        }
+                                    }, 
+
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -29992,12 +31276,24 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     One, 
                                     Package (0x02)
                                     {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x14904840, 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
                                         "BUSARB", 
                                         Package (0x05)
                                         {
@@ -30010,12 +31306,24 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     0x02, 
                                     Package (0x02)
                                     {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x11E1A300, 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
                                         "BUSARB", 
                                         Package (0x05)
                                         {
@@ -30028,12 +31336,24 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     0x03, 
                                     Package (0x02)
                                     {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x0BEBC200, 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
                                         "BUSARB", 
                                         Package (0x05)
                                         {
@@ -30046,12 +31366,24 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     0x04, 
                                     Package (0x02)
                                     {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x0A37CADB, 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
                                         "BUSARB", 
                                         Package (0x05)
                                         {
@@ -30064,12 +31396,24 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     0x05, 
                                     Package (0x02)
                                     {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x08F0D180, 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
                                         "BUSARB", 
                                         Package (0x05)
                                         {
@@ -30082,12 +31426,24 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     0x06, 
                                     Package (0x02)
                                     {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x05F5E100, 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
                                         "BUSARB", 
                                         Package (0x05)
                                         {
@@ -30100,28 +31456,22 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     0x07, 
                                     Package (0x02)
                                     {
-                                        "BUSARB", 
-                                        Package (0x05)
+                                        "CLOCK", 
+                                        Package (0x04)
                                         {
+                                            "disp_cc_mdss_mdp_clk", 
                                             0x03, 
-                                            "ICBID_MASTER_APPSS_PROC", 
-                                            "ICBID_SLAVE_DISPLAY_CFG", 
-                                            0x0124F800, 
-                                            Zero
+                                            0x051BD4B0, 
+                                            One
                                         }
-                                    }
-                                }, 
+                                    }, 
 
-                                Package (0x03)
-                                {
-                                    "PSTATE", 
-                                    0x08, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -30136,10 +31486,52 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
+                                {
+                                    "PSTATE", 
+                                    0x08, 
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x0124F800, 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "BUSARB", 
+                                        Package (0x05)
+                                        {
+                                            0x03, 
+                                            "ICBID_MASTER_APPSS_PROC", 
+                                            "ICBID_SLAVE_DISPLAY_CFG", 
+                                            0x0124F800, 
+                                            Zero
+                                        }
+                                    }
+                                }, 
+
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     0x09, 
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            Zero, 
+                                            One
+                                        }
+                                    }, 
+
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -32261,7 +33653,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "FSTATE", 
                                 One, 
-                                Package (0x18)
+                                Package (0x1A)
                                 {
                                     "ENTER", 
                                     Package (0x02)
@@ -32311,6 +33703,26 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                         {
                                             0x05, 
                                             0x03
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x02)
+                                        {
+                                            "disp_cc_mdss_rot_clk", 
+                                            0x02
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x02)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x02
                                         }
                                     }, 
 
@@ -32529,7 +33941,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x16)
+                                Package (0x18)
                                 {
                                     "EXIT", 
                                     Package (0x02)
@@ -32688,6 +34100,26 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                         Package (0x02)
                                         {
                                             "disp_cc_mdss_vsync_clk", 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x02)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x02)
+                                        {
+                                            "disp_cc_mdss_rot_clk", 
                                             One
                                         }
                                     }, 
@@ -32870,10 +34302,22 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE_SET", 
                                 0x02, 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     Zero, 
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x1B6B0B00, 
+                                            One
+                                        }
+                                    }, 
+
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -32888,12 +34332,24 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     One, 
                                     Package (0x02)
                                     {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x14904840, 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
                                         "BUSARB", 
                                         Package (0x05)
                                         {
@@ -32906,12 +34362,24 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     0x02, 
                                     Package (0x02)
                                     {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x11E1A300, 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
                                         "BUSARB", 
                                         Package (0x05)
                                         {
@@ -32924,12 +34392,24 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     0x03, 
                                     Package (0x02)
                                     {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x0BEBC200, 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
                                         "BUSARB", 
                                         Package (0x05)
                                         {
@@ -32942,12 +34422,24 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     0x04, 
                                     Package (0x02)
                                     {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x0A37CADB, 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
                                         "BUSARB", 
                                         Package (0x05)
                                         {
@@ -32960,12 +34452,24 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     0x05, 
                                     Package (0x02)
                                     {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x08F0D180, 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
                                         "BUSARB", 
                                         Package (0x05)
                                         {
@@ -32978,12 +34482,24 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     0x06, 
                                     Package (0x02)
                                     {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x05F5E100, 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
                                         "BUSARB", 
                                         Package (0x05)
                                         {
@@ -32996,28 +34512,22 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     0x07, 
                                     Package (0x02)
                                     {
-                                        "BUSARB", 
-                                        Package (0x05)
+                                        "CLOCK", 
+                                        Package (0x04)
                                         {
+                                            "disp_cc_mdss_mdp_clk", 
                                             0x03, 
-                                            "ICBID_MASTER_APPSS_PROC", 
-                                            "ICBID_SLAVE_DISPLAY_CFG", 
-                                            0x0124F800, 
-                                            Zero
+                                            0x051BD4B0, 
+                                            One
                                         }
-                                    }
-                                }, 
+                                    }, 
 
-                                Package (0x03)
-                                {
-                                    "PSTATE", 
-                                    0x08, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -33032,10 +34542,52 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
+                                {
+                                    "PSTATE", 
+                                    0x08, 
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x0124F800, 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "BUSARB", 
+                                        Package (0x05)
+                                        {
+                                            0x03, 
+                                            "ICBID_MASTER_APPSS_PROC", 
+                                            "ICBID_SLAVE_DISPLAY_CFG", 
+                                            0x0124F800, 
+                                            Zero
+                                        }
+                                    }
+                                }, 
+
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     0x09, 
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            Zero, 
+                                            One
+                                        }
+                                    }, 
+
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -33257,7 +34809,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "FSTATE", 
                                 One, 
-                                Package (0x18)
+                                Package (0x1A)
                                 {
                                     "ENTER", 
                                     Package (0x02)
@@ -33307,6 +34859,26 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                         {
                                             0x05, 
                                             0x03
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x02)
+                                        {
+                                            "disp_cc_mdss_rot_clk", 
+                                            0x02
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x02)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x02
                                         }
                                     }, 
 
@@ -33525,7 +35097,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x16)
+                                Package (0x18)
                                 {
                                     "EXIT", 
                                     Package (0x02)
@@ -33684,6 +35256,26 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                         Package (0x02)
                                         {
                                             "disp_cc_mdss_vsync_clk", 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x02)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x02)
+                                        {
+                                            "disp_cc_mdss_rot_clk", 
                                             One
                                         }
                                     }, 
@@ -33866,10 +35458,22 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE_SET", 
                                 0x02, 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     Zero, 
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x1B6B0B00, 
+                                            One
+                                        }
+                                    }, 
+
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -33884,12 +35488,24 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     One, 
                                     Package (0x02)
                                     {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x14904840, 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
                                         "BUSARB", 
                                         Package (0x05)
                                         {
@@ -33902,12 +35518,24 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     0x02, 
                                     Package (0x02)
                                     {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x11E1A300, 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
                                         "BUSARB", 
                                         Package (0x05)
                                         {
@@ -33920,12 +35548,24 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     0x03, 
                                     Package (0x02)
                                     {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x0BEBC200, 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
                                         "BUSARB", 
                                         Package (0x05)
                                         {
@@ -33938,12 +35578,24 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     0x04, 
                                     Package (0x02)
                                     {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x0A37CADB, 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
                                         "BUSARB", 
                                         Package (0x05)
                                         {
@@ -33956,12 +35608,24 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     0x05, 
                                     Package (0x02)
                                     {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x08F0D180, 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
                                         "BUSARB", 
                                         Package (0x05)
                                         {
@@ -33974,12 +35638,24 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     0x06, 
                                     Package (0x02)
                                     {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x05F5E100, 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
                                         "BUSARB", 
                                         Package (0x05)
                                         {
@@ -33992,28 +35668,22 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     0x07, 
                                     Package (0x02)
                                     {
-                                        "BUSARB", 
-                                        Package (0x05)
+                                        "CLOCK", 
+                                        Package (0x04)
                                         {
+                                            "disp_cc_mdss_mdp_clk", 
                                             0x03, 
-                                            "ICBID_MASTER_APPSS_PROC", 
-                                            "ICBID_SLAVE_DISPLAY_CFG", 
-                                            0x0124F800, 
-                                            Zero
+                                            0x051BD4B0, 
+                                            One
                                         }
-                                    }
-                                }, 
+                                    }, 
 
-                                Package (0x03)
-                                {
-                                    "PSTATE", 
-                                    0x08, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -34028,10 +35698,52 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x03)
+                                Package (0x04)
+                                {
+                                    "PSTATE", 
+                                    0x08, 
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            0x0124F800, 
+                                            One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "BUSARB", 
+                                        Package (0x05)
+                                        {
+                                            0x03, 
+                                            "ICBID_MASTER_APPSS_PROC", 
+                                            "ICBID_SLAVE_DISPLAY_CFG", 
+                                            0x0124F800, 
+                                            Zero
+                                        }
+                                    }
+                                }, 
+
+                                Package (0x04)
                                 {
                                     "PSTATE", 
                                     0x09, 
+                                    Package (0x02)
+                                    {
+                                        "CLOCK", 
+                                        Package (0x04)
+                                        {
+                                            "disp_cc_mdss_mdp_clk", 
+                                            0x03, 
+                                            Zero, 
+                                            One
+                                        }
+                                    }, 
+
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -36596,7 +38308,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         }
                     }, 
 
-                    Package (0x06)
+                    Package (0x0A)
                     {
                         "DSTATE", 
                         Zero, 
@@ -36622,6 +38334,62 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
                         Package (0x02)
                         {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO10_A", 
+                                One, 
+                                0x002C4FC0, 
+                                One, 
+                                0x07, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO9_A", 
+                                One, 
+                                0x00124F80, 
+                                One, 
+                                0x07, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO3_C", 
+                                One, 
+                                0x00124F80, 
+                                One, 
+                                0x07, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO5_A", 
+                                One, 
+                                0x000D6D80, 
+                                One, 
+                                0x07, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
                             "DELAY", 
                             Package (0x01)
                             {
@@ -36640,7 +38408,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         }
                     }, 
 
-                    Package (0x05)
+                    Package (0x09)
                     {
                         "DSTATE", 
                         0x03, 
@@ -36651,6 +38419,62 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 One, 
                                 One
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO5_A", 
+                                One, 
+                                0x000D6D80, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO3_C", 
+                                One, 
+                                Zero, 
+                                Zero, 
+                                Zero, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO9_A", 
+                                One, 
+                                0x00124F80, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO10_A", 
+                                One, 
+                                Zero, 
+                                Zero, 
+                                Zero, 
+                                Zero
                             }
                         }, 
 
@@ -37066,7 +38890,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         }
                     }, 
 
-                    Package (0x06)
+                    Package (0x0A)
                     {
                         "DSTATE", 
                         Zero, 
@@ -37092,6 +38916,62 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
                         Package (0x02)
                         {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO10_A", 
+                                One, 
+                                0x00263540, 
+                                One, 
+                                0x07, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO9_A", 
+                                One, 
+                                0x00124F80, 
+                                One, 
+                                0x07, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO3_C", 
+                                One, 
+                                0x00124F80, 
+                                One, 
+                                0x07, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO5_A", 
+                                One, 
+                                0x000D6D80, 
+                                One, 
+                                0x07, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
                             "DELAY", 
                             Package (0x01)
                             {
@@ -37110,7 +38990,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         }
                     }, 
 
-                    Package (0x05)
+                    Package (0x09)
                     {
                         "DSTATE", 
                         0x03, 
@@ -37121,6 +39001,62 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 One, 
                                 One
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO5_A", 
+                                One, 
+                                0x000D6D80, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO3_C", 
+                                One, 
+                                Zero, 
+                                Zero, 
+                                Zero, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO9_A", 
+                                One, 
+                                0x00124F80, 
+                                One, 
+                                0x04, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO10_A", 
+                                One, 
+                                Zero, 
+                                Zero, 
+                                Zero, 
+                                Zero
                             }
                         }, 
 
@@ -38115,10 +40051,37 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         Zero
                     }, 
 
-                    Package (0x02)
+                    Package (0x04)
                     {
                         "DSTATE", 
-                        0x03
+                        0x03, 
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO9_A", 
+                                One, 
+                                Zero, 
+                                Zero, 
+                                Zero, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x06)
+                            {
+                                "PPP_RESOURCE_ID_LDO10_A", 
+                                One, 
+                                Zero, 
+                                Zero, 
+                                Zero, 
+                                Zero
+                            }
+                        }
                     }
                 }
             })
