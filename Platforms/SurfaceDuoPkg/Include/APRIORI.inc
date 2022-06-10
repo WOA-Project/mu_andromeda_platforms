@@ -384,7 +384,7 @@ APRIORI DXE {
 
 # CHANGE
     FILE DRIVER = 7a26d1bd-0557-4b78-8ca1-1e40c7ad9f4d  {
-            SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1-202206-202201/volume-0/file-2/section0/section1/volume-0/file-7a26d1bd-0557-4b78-8ca1-1e40c7ad9f4d/section0.dxe.depex
+            SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1-202206/volume-0/file-2/section0/section1/volume-0/file-7a26d1bd-0557-4b78-8ca1-1e40c7ad9f4d/section0.dxe.depex
             SECTION PE32 = SurfaceDuoPkg/PatchedBinaries/ColorbarsDxe.efi
             SECTION UI = "ColorbarsDxe"
     }
