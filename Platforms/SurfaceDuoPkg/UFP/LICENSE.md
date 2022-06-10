@@ -54,7 +54,7 @@ These license terms are an agreement between you and Microsoft Corporation (or o
      1. add significant primary functionality to it in your applications;
      1. require distributors and external end users to agree to terms that protect it and Microsoft at least as much as this agreement; and
      1. indemnify, defend, and hold harmless Microsoft from any claims, including attorneys’ fees, related to the distribution or use of your applications, except to the extent that any claim is based solely on the unmodified distributable code.
-  1. ## **Distribution Restrictions.** You may not:
+  1. **Distribution Restrictions.** You may not:
      1. Distribute the code and text files for use in live operating environment;
      1. use Microsoft’s trademarks or trade dress in your application in any way that suggests your application comes from or is endorsed by Microsoft; or
      1. modify or distribute the source code of any distributable code so that any part of it becomes subject to any license that requires that the distributable code, any other part of the software, or any of Microsoft’s other intellectual property be disclosed or distributed in source code form, or that others have the right to modify it.
