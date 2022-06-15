@@ -63,7 +63,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
         Name (SIDT, 0x00000001)
         Name (SOSN, 0x00000407D4506A22)
         Name (PLST, 0x00000000)
-        Name (RMTB, 0x89B00000)
+        Name (RMTB, 0x85D00000)
         Name (RMTX, 0x00200000)
         Name (RFMB, 0x00000000)
         Name (RFMS, 0x00000000)
@@ -93007,6 +93007,15 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             Name (_HID, "QCOM049F")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Name (_CID, "QCOM046C")  // _CID: Compatible ID
+            Name (_PLD, Package (One)  // _PLD: Physical Location of Device
+            {
+                Buffer (0x14)
+                {
+                    /* 0000 */  0x02, 0x00, 0x00, 0x00, 0x46, 0x05, 0x08, 0x07,  // ....F...
+                    /* 0008 */  0x21, 0x0C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,  // !.......
+                    /* 0010 */  0xBE, 0x00, 0x1E, 0x00                           // ....
+                }
+            })
         }
 
         Device (SEN3)
@@ -93021,6 +93030,15 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             Name (_HID, "QCOM04A0")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Name (_CID, "QCOM046C")  // _CID: Compatible ID
+            Name (_PLD, Package (One)  // _PLD: Physical Location of Device
+            {
+                Buffer (0x14)
+                {
+                    /* 0000 */  0x02, 0x00, 0x00, 0x00, 0x46, 0x05, 0x08, 0x07,  // ....F...
+                    /* 0008 */  0x21, 0x0C, 0x00, 0x00, 0x04, 0x00, 0x00, 0x00,  // !.......
+                    /* 0010 */  0xBE, 0x00, 0x0A, 0x00                           // ....
+                }
+            })
         }
 
         Device (LID0)
