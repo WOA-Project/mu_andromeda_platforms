@@ -93021,6 +93021,20 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             })
         }
 
+        Device (SEN4)
+        {
+            Name (_DEP, Package (0x04)  // _DEP: Dependencies
+            {
+                \_SB.IPC0, 
+                \_SB.SCSS, 
+                \_SB.ARPC, 
+                \_SB.SEN3
+            })
+            Name (_HID, "QCOM04D1")  // _HID: Hardware ID
+            Alias (\_SB.PSUB, _SUB)
+            Name (_CID, "QCOM046C")  // _CID: Compatible ID
+        }
+
         Device (LID0)
         {
             Name (_HID, "PNP0C0D" /* Lid Device */)  // _HID: Hardware ID
