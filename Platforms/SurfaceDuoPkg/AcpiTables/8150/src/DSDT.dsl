@@ -96083,7 +96083,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             {
                 Method (_HID, 0, NotSerialized)  // _HID: Hardware ID
                 {
-                    Return ("MSHW0134")
+                    Return ("MSHW0235")
                 }
 
                 Name (_CID, "PNP0C51")  // _CID: Compatible ID
@@ -99950,6 +99950,274 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                 Sleep (0x05)
                 DWD2 = 0x02
                 Sleep (0x05)
+            }
+        }
+    }
+
+    Scope (\_SB)
+    {
+        Device (WSLT)
+        {
+            Method (_HID, 0, NotSerialized)  // _HID: Hardware ID
+            {
+                Return ("MSHW0005")
+            }
+
+            Name (_CID, "PNP0C60" /* Display Sensor Device */)  // _CID: Compatible ID
+            Method (_STA, 0, NotSerialized)  // _STA: Status
+            {
+                Return (0x0F)
+            }
+        }
+    }
+
+    Scope (\_SB)
+    {
+        Device (SHPS)
+        {
+            Name (_HID, "MSHW0153")  // _HID: Hardware ID
+            Method (_STA, 0, Serialized)  // _STA: Status
+            {
+                Return (Zero)
+            }
+
+            Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
+            {
+                If ((Arg0 == ToUUID ("5515a847-ed55-4b27-8352-cd320e10360a") /* Unknown UUID */))
+                {
+                    If ((ToInteger (Arg1) == One))
+                    {
+                        If ((ToInteger (Arg2) == Zero))
+                        {
+                            Return (Buffer (One)
+                            {
+                                 0x41                                             // A
+                            })
+                        }
+
+                        If ((ToInteger (Arg2) == 0x06))
+                        {
+                            Local0 = 0x0E
+                            Return (Local0)
+                        }
+                    }
+                }
+
+                Return (Buffer (One)
+                {
+                     0x00                                             // .
+                })
+            }
+        }
+    }
+
+    Scope (\_SB)
+    {
+        Device (WSID)
+        {
+            Name (_HID, "MSHW0115")  // _HID: Hardware ID
+            Method (_STA, 0, NotSerialized)  // _STA: Status
+            {
+                Return (Zero)
+            }
+
+            Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
+            {
+                If ((Arg0 == ToUUID ("a653cdf4-476c-44fb-b366-a73cedf6e14c") /* Unknown UUID */))
+                {
+                    If ((Arg1 == Zero))
+                    {
+                        If ((Arg2 == Zero))
+                        {
+                            Return (Buffer (One)
+                            {
+                                 0x09                                             // .
+                            })
+                        }
+
+                        If ((Arg2 == 0x03))
+                        {
+                            Return (OCEL) /* \OCEL */
+                        }
+
+                        Return (Buffer (One)
+                        {
+                             0x00                                             // .
+                        })
+                    }
+                    Else
+                    {
+                        Return (Buffer (One)
+                        {
+                             0x00                                             // .
+                        })
+                    }
+                }
+                Else
+                {
+                    Return (Buffer (One)
+                    {
+                         0x00                                             // .
+                    })
+                }
+            }
+        }
+    }
+
+    ThermalZone (TPOL)
+    {
+        Name (_HID, "MSHW0187")  // _HID: Hardware ID
+        Name (_UID, One)  // _UID: Unique ID
+        Method (_DEP, 0, NotSerialized)  // _DEP: Dependencies
+        {
+            Return (Package (One)
+            {
+                \_SB.PEP0
+            })
+        }
+
+        Method (_STA, 0, NotSerialized)  // _STA: Status
+        {
+            Return (0x0F)
+        }
+
+        Method (INPS, 0, NotSerialized)
+        {
+            Name (CFG0, Package (0x02)
+            {
+                "\\_SB.TZ2", 
+                "\\_SB.TZ5"
+            })
+            Return (CFG0) /* \TPOL.INPS.CFG0 */
+        }
+
+        Method (OPTS, 0, NotSerialized)
+        {
+            Name (CFG0, Package (0x05)
+            {
+                "\\_SB.SYSM.CLUS.CPU4", 
+                "\\_SB.SYSM.CLUS.CPU5", 
+                "\\_SB.SYSM.CLUS.CPU6", 
+                "\\_SB.SYSM.CLUS.CPU7", 
+                "\\_SB.GPU0"
+            })
+            Return (CFG0) /* \TPOL.OPTS.CFG0 */
+        }
+    }
+
+    Scope (\_SB)
+    {
+        Device (MSBT)
+        {
+            Name (_DEP, Package (0x01)  // _DEP: Dependencies
+            {
+                \_SB.PM01
+            })
+            Method (_HID, 0, NotSerialized)  // _HID: Hardware ID
+            {
+                Return ("MSHW0040")
+            }
+
+            Method (_STA, 0, NotSerialized)  // _STA: Status
+            {
+                Return (Zero)
+            }
+
+            Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
+            {
+                Name (RBUF, ResourceTemplate ()
+                {
+                    GpioInt (Edge, ActiveBoth, SharedAndWake, PullDown, 0x0000,
+                        "\\_SB.PM01", 0x00, ResourceConsumer, ,
+                        )
+                        {   // Pin list
+                            0x0000
+                        }
+                    GpioIo (Shared, PullDown, 0x0000, 0x0000, IoRestrictionInputOnly,
+                        "\\_SB.PM01", 0x00, ResourceConsumer, ,
+                        )
+                        {   // Pin list
+                            0x0000
+                        }
+                    GpioInt (Edge, ActiveBoth, Shared, PullUp, 0x0000,
+                        "\\_SB.PM01", 0x00, ResourceConsumer, ,
+                        )
+                        {   // Pin list
+                            0x0085
+                        }
+                    GpioIo (Shared, PullUp, 0x0000, 0x0000, IoRestrictionInputOnly,
+                        "\\_SB.PM01", 0x00, ResourceConsumer, ,
+                        )
+                        {   // Pin list
+                            0x0085
+                        }
+                    GpioInt (Edge, ActiveBoth, Shared, PullDown, 0x0000,
+                        "\\_SB.PM01", 0x00, ResourceConsumer, ,
+                        )
+                        {   // Pin list
+                            0x0001
+                        }
+                    GpioIo (Shared, PullUp, 0x0000, 0x0000, IoRestrictionInputOnly,
+                        "\\_SB.PM01", 0x00, ResourceConsumer, ,
+                        )
+                        {   // Pin list
+                            0x0001
+                        }
+                })
+                Return (RBUF) /* \_SB_.MSBT._CRS.RBUF */
+            }
+
+            Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
+            {
+                If ((Arg0 == ToUUID ("6fd05c69-cde3-49f4-95ed-ab1665498035") /* Unknown UUID */))
+                {
+                    If ((Arg1 == One))
+                    {
+                        If ((Arg2 == Zero))
+                        {
+                            Return (Buffer (One)
+                            {
+                                 0x0F                                             // .
+                            })
+                        }
+
+                        If ((Arg2 == One)){}
+                        If ((Arg2 == 0x02))
+                        {
+                            Local0 = 0x06
+                            Return (Local0)
+                        }
+
+                        If ((Arg2 == 0x03))
+                        {
+                            Return (Buffer (One)
+                            {
+                                 0x0C                                             // .
+                            })
+                        }
+                        Else
+                        {
+                            Return (Buffer (One)
+                            {
+                                 0xFF                                             // .
+                            })
+                        }
+                    }
+                    Else
+                    {
+                        Return (Buffer (One)
+                        {
+                             0x00                                             // .
+                        })
+                    }
+                }
+                Else
+                {
+                    Return (Buffer (One)
+                    {
+                         0x00                                             // .
+                    })
+                }
             }
         }
     }
