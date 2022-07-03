@@ -64151,407 +64151,50 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     {
                         "COMPONENT", 
                         0x02, 
-                        Package (0x11)
+                        Package (0x02)
                         {
                             "FSTATE", 
-                            Zero, 
-                            Package (0x02)
-                            {
-                                "NPARESOURCE", 
-                                Package (0x03)
-                                {
-                                    One, 
-                                    "/arc/client/rail_mmcx", 
-                                    0x30
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "gcc_camera_xo_clk", 
-                                    One
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "cam_cc_gdsc_clk", 
-                                    One
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "FOOTSWITCH", 
-                                Package (0x02)
-                                {
-                                    "titan_top_gdsc", 
-                                    One
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "cam_cc_cpas_ahb_clk", 
-                                    One
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "cam_cc_camnoc_axi_clk", 
-                                    One
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "cam_cc_camnoc_dcd_xo_clk", 
-                                    One
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "FOOTSWITCH", 
-                                Package (0x02)
-                                {
-                                    "ife_2_gdsc", 
-                                    One
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "cam_cc_ife_2_clk", 
-                                    One
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "PSTATE_ADJUST", 
-                                Package (0x02)
-                                {
-                                    Zero, 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x04)
-                                {
-                                    "cam_cc_ife_2_cphy_rx_clk", 
-                                    0x08, 
-                                    0x17D78400, 
-                                    0x03
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "cam_cc_ife_2_csid_clk", 
-                                    One
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "PSTATE_ADJUST", 
-                                Package (0x02)
-                                {
-                                    One, 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "cam_cc_ife_2_dsp_clk", 
-                                    One
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "cam_cc_ife_2_axi_clk", 
-                                    One
-                                }
-                            }
+                            Zero
                         }, 
 
-                        Package (0x11)
+                        Package (0x02)
                         {
                             "FSTATE", 
-                            One, 
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "cam_cc_ife_2_axi_clk", 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "cam_cc_ife_2_dsp_clk", 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "PSTATE_ADJUST", 
-                                Package (0x02)
-                                {
-                                    One, 
-                                    0x03
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "cam_cc_ife_2_csid_clk", 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "cam_cc_ife_2_cphy_rx_clk", 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "PSTATE_ADJUST", 
-                                Package (0x02)
-                                {
-                                    Zero, 
-                                    0x04
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "cam_cc_ife_2_clk", 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "FOOTSWITCH", 
-                                Package (0x02)
-                                {
-                                    "ife_2_gdsc", 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "cam_cc_camnoc_dcd_xo_clk", 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "cam_cc_camnoc_axi_clk", 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "cam_cc_cpas_ahb_clk", 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "FOOTSWITCH", 
-                                Package (0x02)
-                                {
-                                    "titan_top_gdsc", 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "cam_cc_gdsc_clk", 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "gcc_camera_xo_clk", 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "NPARESOURCE", 
-                                Package (0x03)
-                                {
-                                    One, 
-                                    "/arc/client/rail_mmcx", 
-                                    Zero
-                                }
-                            }
+                            One
                         }, 
 
                         Package (0x07)
                         {
                             "PSTATE_SET", 
                             Zero, 
-                            Package (0x03)
+                            Package (0x02)
                             {
                                 "PSTATE", 
-                                Zero, 
-                                Package (0x02)
-                                {
-                                    "CLOCK", 
-                                    Package (0x04)
-                                    {
-                                        "cam_cc_ife_2_clk", 
-                                        0x03, 
-                                        0x2D4CAE00, 
-                                        0x03
-                                    }
-                                }
+                                Zero
                             }, 
 
-                            Package (0x03)
+                            Package (0x02)
                             {
                                 "PSTATE", 
-                                One, 
-                                Package (0x02)
-                                {
-                                    "CLOCK", 
-                                    Package (0x04)
-                                    {
-                                        "cam_cc_ife_2_clk", 
-                                        0x03, 
-                                        0x25F7D940, 
-                                        0x03
-                                    }
-                                }
+                                One
                             }, 
 
-                            Package (0x03)
+                            Package (0x02)
                             {
                                 "PSTATE", 
-                                0x02, 
-                                Package (0x02)
-                                {
-                                    "CLOCK", 
-                                    Package (0x04)
-                                    {
-                                        "cam_cc_ife_2_clk", 
-                                        0x03, 
-                                        0x21426780, 
-                                        0x03
-                                    }
-                                }
+                                0x02
                             }, 
 
-                            Package (0x03)
+                            Package (0x02)
                             {
                                 "PSTATE", 
-                                0x03, 
-                                Package (0x02)
-                                {
-                                    "CLOCK", 
-                                    Package (0x04)
-                                    {
-                                        "cam_cc_ife_2_clk", 
-                                        0x03, 
-                                        0x17D78400, 
-                                        0x03
-                                    }
-                                }
+                                0x03
                             }, 
 
-                            Package (0x03)
+                            Package (0x02)
                             {
                                 "PSTATE", 
-                                0x04, 
-                                Package (0x02)
-                                {
-                                    "CLOCK", 
-                                    Package (0x04)
-                                    {
-                                        "cam_cc_ife_2_clk", 
-                                        0x03, 
-                                        Zero, 
-                                        0x03
-                                    }
-                                }
+                                0x04
                             }
                         }, 
 
@@ -64559,72 +64202,28 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         {
                             "PSTATE_SET", 
                             One, 
-                            Package (0x03)
+                            Package (0x02)
                             {
                                 "PSTATE", 
-                                Zero, 
-                                Package (0x02)
-                                {
-                                    "CLOCK", 
-                                    Package (0x04)
-                                    {
-                                        "cam_cc_ife_2_csid_clk", 
-                                        0x03, 
-                                        0x23C34600, 
-                                        0x03
-                                    }
-                                }
+                                Zero
                             }, 
 
-                            Package (0x03)
+                            Package (0x02)
                             {
                                 "PSTATE", 
-                                One, 
-                                Package (0x02)
-                                {
-                                    "CLOCK", 
-                                    Package (0x04)
-                                    {
-                                        "cam_cc_ife_2_csid_clk", 
-                                        0x03, 
-                                        0x1C9C3800, 
-                                        0x03
-                                    }
-                                }
+                                One
                             }, 
 
-                            Package (0x03)
+                            Package (0x02)
                             {
                                 "PSTATE", 
-                                0x02, 
-                                Package (0x02)
-                                {
-                                    "CLOCK", 
-                                    Package (0x04)
-                                    {
-                                        "cam_cc_ife_2_csid_clk", 
-                                        0x03, 
-                                        0x17D78400, 
-                                        0x03
-                                    }
-                                }
+                                0x02
                             }, 
 
-                            Package (0x03)
+                            Package (0x02)
                             {
                                 "PSTATE", 
-                                0x03, 
-                                Package (0x02)
-                                {
-                                    "CLOCK", 
-                                    Package (0x04)
-                                    {
-                                        "cam_cc_ife_2_csid_clk", 
-                                        0x03, 
-                                        Zero, 
-                                        0x03
-                                    }
-                                }
+                                0x03
                             }
                         }
                     }, 
@@ -64633,407 +64232,50 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     {
                         "COMPONENT", 
                         0x03, 
-                        Package (0x11)
+                        Package (0x02)
                         {
                             "FSTATE", 
-                            Zero, 
-                            Package (0x02)
-                            {
-                                "NPARESOURCE", 
-                                Package (0x03)
-                                {
-                                    One, 
-                                    "/arc/client/rail_mmcx", 
-                                    0x30
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "gcc_camera_xo_clk", 
-                                    One
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "cam_cc_gdsc_clk", 
-                                    One
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "FOOTSWITCH", 
-                                Package (0x02)
-                                {
-                                    "titan_top_gdsc", 
-                                    One
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "cam_cc_cpas_ahb_clk", 
-                                    One
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "cam_cc_camnoc_axi_clk", 
-                                    One
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "cam_cc_camnoc_dcd_xo_clk", 
-                                    One
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "FOOTSWITCH", 
-                                Package (0x02)
-                                {
-                                    "ife_3_gdsc", 
-                                    One
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "cam_cc_ife_3_clk", 
-                                    One
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "PSTATE_ADJUST", 
-                                Package (0x02)
-                                {
-                                    Zero, 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x04)
-                                {
-                                    "cam_cc_ife_3_cphy_rx_clk", 
-                                    0x08, 
-                                    0x17D78400, 
-                                    0x03
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "cam_cc_ife_3_csid_clk", 
-                                    One
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "PSTATE_ADJUST", 
-                                Package (0x02)
-                                {
-                                    One, 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "cam_cc_ife_3_dsp_clk", 
-                                    One
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "cam_cc_ife_3_axi_clk", 
-                                    One
-                                }
-                            }
+                            Zero
                         }, 
 
-                        Package (0x11)
+                        Package (0x02)
                         {
                             "FSTATE", 
-                            One, 
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "cam_cc_ife_3_axi_clk", 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "cam_cc_ife_3_dsp_clk", 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "PSTATE_ADJUST", 
-                                Package (0x02)
-                                {
-                                    One, 
-                                    0x03
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "cam_cc_ife_3_csid_clk", 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "cam_cc_ife_3_cphy_rx_clk", 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "PSTATE_ADJUST", 
-                                Package (0x02)
-                                {
-                                    Zero, 
-                                    0x04
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "cam_cc_ife_3_clk", 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "FOOTSWITCH", 
-                                Package (0x02)
-                                {
-                                    "ife_3_gdsc", 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "cam_cc_camnoc_dcd_xo_clk", 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "cam_cc_camnoc_axi_clk", 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "cam_cc_cpas_ahb_clk", 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "FOOTSWITCH", 
-                                Package (0x02)
-                                {
-                                    "titan_top_gdsc", 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "cam_cc_gdsc_clk", 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "gcc_camera_xo_clk", 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "NPARESOURCE", 
-                                Package (0x03)
-                                {
-                                    One, 
-                                    "/arc/client/rail_mmcx", 
-                                    Zero
-                                }
-                            }
+                            One
                         }, 
 
                         Package (0x07)
                         {
                             "PSTATE_SET", 
                             Zero, 
-                            Package (0x03)
+                            Package (0x02)
                             {
                                 "PSTATE", 
-                                Zero, 
-                                Package (0x02)
-                                {
-                                    "CLOCK", 
-                                    Package (0x04)
-                                    {
-                                        "cam_cc_ife_3_clk", 
-                                        0x03, 
-                                        0x2D4CAE00, 
-                                        0x03
-                                    }
-                                }
+                                Zero
                             }, 
 
-                            Package (0x03)
+                            Package (0x02)
                             {
                                 "PSTATE", 
-                                One, 
-                                Package (0x02)
-                                {
-                                    "CLOCK", 
-                                    Package (0x04)
-                                    {
-                                        "cam_cc_ife_3_clk", 
-                                        0x03, 
-                                        0x25F7D940, 
-                                        0x03
-                                    }
-                                }
+                                One
                             }, 
 
-                            Package (0x03)
+                            Package (0x02)
                             {
                                 "PSTATE", 
-                                0x02, 
-                                Package (0x02)
-                                {
-                                    "CLOCK", 
-                                    Package (0x04)
-                                    {
-                                        "cam_cc_ife_3_clk", 
-                                        0x03, 
-                                        0x21426780, 
-                                        0x03
-                                    }
-                                }
+                                0x02
                             }, 
 
-                            Package (0x03)
+                            Package (0x02)
                             {
                                 "PSTATE", 
-                                0x03, 
-                                Package (0x02)
-                                {
-                                    "CLOCK", 
-                                    Package (0x04)
-                                    {
-                                        "cam_cc_ife_3_clk", 
-                                        0x03, 
-                                        0x17D78400, 
-                                        0x03
-                                    }
-                                }
+                                0x03
                             }, 
 
-                            Package (0x03)
+                            Package (0x02)
                             {
                                 "PSTATE", 
-                                0x04, 
-                                Package (0x02)
-                                {
-                                    "CLOCK", 
-                                    Package (0x04)
-                                    {
-                                        "cam_cc_ife_3_clk", 
-                                        0x03, 
-                                        Zero, 
-                                        0x03
-                                    }
-                                }
+                                0x04
                             }
                         }, 
 
@@ -65041,72 +64283,28 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         {
                             "PSTATE_SET", 
                             One, 
-                            Package (0x03)
+                            Package (0x02)
                             {
                                 "PSTATE", 
-                                Zero, 
-                                Package (0x02)
-                                {
-                                    "CLOCK", 
-                                    Package (0x04)
-                                    {
-                                        "cam_cc_ife_3_csid_clk", 
-                                        0x03, 
-                                        0x23C34600, 
-                                        0x03
-                                    }
-                                }
+                                Zero
                             }, 
 
-                            Package (0x03)
+                            Package (0x02)
                             {
                                 "PSTATE", 
-                                One, 
-                                Package (0x02)
-                                {
-                                    "CLOCK", 
-                                    Package (0x04)
-                                    {
-                                        "cam_cc_ife_3_csid_clk", 
-                                        0x03, 
-                                        0x1C9C3800, 
-                                        0x03
-                                    }
-                                }
+                                One
                             }, 
 
-                            Package (0x03)
+                            Package (0x02)
                             {
                                 "PSTATE", 
-                                0x02, 
-                                Package (0x02)
-                                {
-                                    "CLOCK", 
-                                    Package (0x04)
-                                    {
-                                        "cam_cc_ife_3_csid_clk", 
-                                        0x03, 
-                                        0x17D78400, 
-                                        0x03
-                                    }
-                                }
+                                0x02
                             }, 
 
-                            Package (0x03)
+                            Package (0x02)
                             {
                                 "PSTATE", 
-                                0x03, 
-                                Package (0x02)
-                                {
-                                    "CLOCK", 
-                                    Package (0x04)
-                                    {
-                                        "cam_cc_ife_3_csid_clk", 
-                                        0x03, 
-                                        Zero, 
-                                        0x03
-                                    }
-                                }
+                                0x03
                             }
                         }
                     }, 
@@ -65979,347 +65177,50 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     {
                         "COMPONENT", 
                         0x06, 
-                        Package (0x0E)
+                        Package (0x02)
                         {
                             "FSTATE", 
-                            Zero, 
-                            Package (0x02)
-                            {
-                                "NPARESOURCE", 
-                                Package (0x03)
-                                {
-                                    One, 
-                                    "/arc/client/rail_mmcx", 
-                                    0x30
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "gcc_camera_xo_clk", 
-                                    One
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "cam_cc_gdsc_clk", 
-                                    One
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "FOOTSWITCH", 
-                                Package (0x02)
-                                {
-                                    "titan_top_gdsc", 
-                                    One
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "cam_cc_cpas_ahb_clk", 
-                                    One
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "cam_cc_camnoc_axi_clk", 
-                                    One
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "cam_cc_camnoc_dcd_xo_clk", 
-                                    One
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "cam_cc_ife_lite_2_clk", 
-                                    One
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "PSTATE_ADJUST", 
-                                Package (0x02)
-                                {
-                                    Zero, 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x04)
-                                {
-                                    "cam_cc_ife_lite_2_cphy_rx_clk", 
-                                    0x08, 
-                                    0x17D78400, 
-                                    0x03
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "cam_cc_ife_lite_2_csid_clk", 
-                                    One
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "PSTATE_ADJUST", 
-                                Package (0x02)
-                                {
-                                    One, 
-                                    0x02
-                                }
-                            }
+                            Zero
                         }, 
 
-                        Package (0x0E)
+                        Package (0x02)
                         {
                             "FSTATE", 
-                            One, 
-                            Package (0x02)
-                            {
-                                "PSTATE_ADJUST", 
-                                Package (0x02)
-                                {
-                                    One, 
-                                    0x03
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "cam_cc_ife_lite_2_csid_clk", 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "cam_cc_ife_lite_2_cphy_rx_clk", 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "PSTATE_ADJUST", 
-                                Package (0x02)
-                                {
-                                    Zero, 
-                                    0x04
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "cam_cc_ife_lite_2_clk", 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "cam_cc_camnoc_dcd_xo_clk", 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "cam_cc_camnoc_axi_clk", 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "cam_cc_cpas_ahb_clk", 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "FOOTSWITCH", 
-                                Package (0x02)
-                                {
-                                    "titan_top_gdsc", 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "cam_cc_gdsc_clk", 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "gcc_camera_xo_clk", 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "NPARESOURCE", 
-                                Package (0x03)
-                                {
-                                    One, 
-                                    "/arc/client/rail_mmcx", 
-                                    Zero
-                                }
-                            }
+                            One
                         }, 
 
                         Package (0x07)
                         {
                             "PSTATE_SET", 
                             Zero, 
-                            Package (0x03)
+                            Package (0x02)
                             {
                                 "PSTATE", 
-                                Zero, 
-                                Package (0x02)
-                                {
-                                    "CLOCK", 
-                                    Package (0x04)
-                                    {
-                                        "cam_cc_ife_lite_2_clk", 
-                                        0x03, 
-                                        0x23C34600, 
-                                        0x03
-                                    }
-                                }
+                                Zero
                             }, 
 
-                            Package (0x03)
+                            Package (0x02)
                             {
                                 "PSTATE", 
-                                One, 
-                                Package (0x02)
-                                {
-                                    "CLOCK", 
-                                    Package (0x04)
-                                    {
-                                        "cam_cc_ife_lite_2_clk", 
-                                        0x03, 
-                                        0x1C9C3800, 
-                                        0x03
-                                    }
-                                }
+                                One
                             }, 
 
-                            Package (0x03)
+                            Package (0x02)
                             {
                                 "PSTATE", 
-                                0x02, 
-                                Package (0x02)
-                                {
-                                    "CLOCK", 
-                                    Package (0x04)
-                                    {
-                                        "cam_cc_ife_lite_2_clk", 
-                                        0x03, 
-                                        0x17D78400, 
-                                        0x03
-                                    }
-                                }
+                                0x02
                             }, 
 
-                            Package (0x03)
+                            Package (0x02)
                             {
                                 "PSTATE", 
-                                0x03, 
-                                Package (0x02)
-                                {
-                                    "CLOCK", 
-                                    Package (0x04)
-                                    {
-                                        "cam_cc_ife_lite_2_clk", 
-                                        0x03, 
-                                        0x1312D000, 
-                                        0x03
-                                    }
-                                }
+                                0x03
                             }, 
 
-                            Package (0x03)
+                            Package (0x02)
                             {
                                 "PSTATE", 
-                                0x04, 
-                                Package (0x02)
-                                {
-                                    "CLOCK", 
-                                    Package (0x04)
-                                    {
-                                        "cam_cc_ife_lite_2_clk", 
-                                        0x03, 
-                                        Zero, 
-                                        0x03
-                                    }
-                                }
+                                0x04
                             }
                         }, 
 
@@ -66327,72 +65228,28 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         {
                             "PSTATE_SET", 
                             One, 
-                            Package (0x03)
+                            Package (0x02)
                             {
                                 "PSTATE", 
-                                Zero, 
-                                Package (0x02)
-                                {
-                                    "CLOCK", 
-                                    Package (0x04)
-                                    {
-                                        "cam_cc_ife_lite_2_csid_clk", 
-                                        0x03, 
-                                        0x23C34600, 
-                                        0x03
-                                    }
-                                }
+                                Zero
                             }, 
 
-                            Package (0x03)
+                            Package (0x02)
                             {
                                 "PSTATE", 
-                                One, 
-                                Package (0x02)
-                                {
-                                    "CLOCK", 
-                                    Package (0x04)
-                                    {
-                                        "cam_cc_ife_lite_2_csid_clk", 
-                                        0x03, 
-                                        0x1C9C3800, 
-                                        0x03
-                                    }
-                                }
+                                One
                             }, 
 
-                            Package (0x03)
+                            Package (0x02)
                             {
                                 "PSTATE", 
-                                0x02, 
-                                Package (0x02)
-                                {
-                                    "CLOCK", 
-                                    Package (0x04)
-                                    {
-                                        "cam_cc_ife_lite_2_csid_clk", 
-                                        0x03, 
-                                        0x17D78400, 
-                                        0x03
-                                    }
-                                }
+                                0x02
                             }, 
 
-                            Package (0x03)
+                            Package (0x02)
                             {
                                 "PSTATE", 
-                                0x03, 
-                                Package (0x02)
-                                {
-                                    "CLOCK", 
-                                    Package (0x04)
-                                    {
-                                        "cam_cc_ife_lite_2_csid_clk", 
-                                        0x03, 
-                                        Zero, 
-                                        0x03
-                                    }
-                                }
+                                0x03
                             }
                         }
                     }, 
@@ -66401,347 +65258,50 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     {
                         "COMPONENT", 
                         0x07, 
-                        Package (0x0E)
+                        Package (0x02)
                         {
                             "FSTATE", 
-                            Zero, 
-                            Package (0x02)
-                            {
-                                "NPARESOURCE", 
-                                Package (0x03)
-                                {
-                                    One, 
-                                    "/arc/client/rail_mmcx", 
-                                    0x30
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "gcc_camera_xo_clk", 
-                                    One
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "cam_cc_gdsc_clk", 
-                                    One
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "FOOTSWITCH", 
-                                Package (0x02)
-                                {
-                                    "titan_top_gdsc", 
-                                    One
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "cam_cc_cpas_ahb_clk", 
-                                    One
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "cam_cc_camnoc_axi_clk", 
-                                    One
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "cam_cc_camnoc_dcd_xo_clk", 
-                                    One
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "cam_cc_ife_lite_3_clk", 
-                                    One
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "PSTATE_ADJUST", 
-                                Package (0x02)
-                                {
-                                    Zero, 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x04)
-                                {
-                                    "cam_cc_ife_lite_3_cphy_rx_clk", 
-                                    0x08, 
-                                    0x17D78400, 
-                                    0x03
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "cam_cc_ife_lite_3_csid_clk", 
-                                    One
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "PSTATE_ADJUST", 
-                                Package (0x02)
-                                {
-                                    One, 
-                                    0x02
-                                }
-                            }
+                            Zero
                         }, 
 
-                        Package (0x0E)
+                        Package (0x02)
                         {
                             "FSTATE", 
-                            One, 
-                            Package (0x02)
-                            {
-                                "PSTATE_ADJUST", 
-                                Package (0x02)
-                                {
-                                    One, 
-                                    0x03
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "cam_cc_ife_lite_3_csid_clk", 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "cam_cc_ife_lite_3_cphy_rx_clk", 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "PSTATE_ADJUST", 
-                                Package (0x02)
-                                {
-                                    Zero, 
-                                    0x04
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "cam_cc_ife_lite_3_clk", 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "cam_cc_camnoc_dcd_xo_clk", 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "cam_cc_camnoc_axi_clk", 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "cam_cc_cpas_ahb_clk", 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "FOOTSWITCH", 
-                                Package (0x02)
-                                {
-                                    "titan_top_gdsc", 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "cam_cc_gdsc_clk", 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "CLOCK", 
-                                Package (0x02)
-                                {
-                                    "gcc_camera_xo_clk", 
-                                    0x02
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "NPARESOURCE", 
-                                Package (0x03)
-                                {
-                                    One, 
-                                    "/arc/client/rail_mmcx", 
-                                    Zero
-                                }
-                            }
+                            One
                         }, 
 
                         Package (0x07)
                         {
                             "PSTATE_SET", 
                             Zero, 
-                            Package (0x03)
+                            Package (0x02)
                             {
                                 "PSTATE", 
-                                Zero, 
-                                Package (0x02)
-                                {
-                                    "CLOCK", 
-                                    Package (0x04)
-                                    {
-                                        "cam_cc_ife_lite_3_clk", 
-                                        0x03, 
-                                        0x23C34600, 
-                                        0x03
-                                    }
-                                }
+                                Zero
                             }, 
 
-                            Package (0x03)
+                            Package (0x02)
                             {
                                 "PSTATE", 
-                                One, 
-                                Package (0x02)
-                                {
-                                    "CLOCK", 
-                                    Package (0x04)
-                                    {
-                                        "cam_cc_ife_lite_3_clk", 
-                                        0x03, 
-                                        0x1C9C3800, 
-                                        0x03
-                                    }
-                                }
+                                One
                             }, 
 
-                            Package (0x03)
+                            Package (0x02)
                             {
                                 "PSTATE", 
-                                0x02, 
-                                Package (0x02)
-                                {
-                                    "CLOCK", 
-                                    Package (0x04)
-                                    {
-                                        "cam_cc_ife_lite_3_clk", 
-                                        0x03, 
-                                        0x17D78400, 
-                                        0x03
-                                    }
-                                }
+                                0x02
                             }, 
 
-                            Package (0x03)
+                            Package (0x02)
                             {
                                 "PSTATE", 
-                                0x03, 
-                                Package (0x02)
-                                {
-                                    "CLOCK", 
-                                    Package (0x04)
-                                    {
-                                        "cam_cc_ife_lite_3_clk", 
-                                        0x03, 
-                                        0x1312D000, 
-                                        0x03
-                                    }
-                                }
+                                0x03
                             }, 
 
-                            Package (0x03)
+                            Package (0x02)
                             {
                                 "PSTATE", 
-                                0x04, 
-                                Package (0x02)
-                                {
-                                    "CLOCK", 
-                                    Package (0x04)
-                                    {
-                                        "cam_cc_ife_lite_3_clk", 
-                                        0x03, 
-                                        Zero, 
-                                        0x03
-                                    }
-                                }
+                                0x04
                             }
                         }, 
 
@@ -66749,72 +65309,28 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         {
                             "PSTATE_SET", 
                             One, 
-                            Package (0x03)
+                            Package (0x02)
                             {
                                 "PSTATE", 
-                                Zero, 
-                                Package (0x02)
-                                {
-                                    "CLOCK", 
-                                    Package (0x04)
-                                    {
-                                        "cam_cc_ife_lite_3_csid_clk", 
-                                        0x03, 
-                                        0x23C34600, 
-                                        0x03
-                                    }
-                                }
+                                Zero
                             }, 
 
-                            Package (0x03)
+                            Package (0x02)
                             {
                                 "PSTATE", 
-                                One, 
-                                Package (0x02)
-                                {
-                                    "CLOCK", 
-                                    Package (0x04)
-                                    {
-                                        "cam_cc_ife_lite_3_csid_clk", 
-                                        0x03, 
-                                        0x1C9C3800, 
-                                        0x03
-                                    }
-                                }
+                                One
                             }, 
 
-                            Package (0x03)
+                            Package (0x02)
                             {
                                 "PSTATE", 
-                                0x02, 
-                                Package (0x02)
-                                {
-                                    "CLOCK", 
-                                    Package (0x04)
-                                    {
-                                        "cam_cc_ife_lite_3_csid_clk", 
-                                        0x03, 
-                                        0x17D78400, 
-                                        0x03
-                                    }
-                                }
+                                0x02
                             }, 
 
-                            Package (0x03)
+                            Package (0x02)
                             {
                                 "PSTATE", 
-                                0x03, 
-                                Package (0x02)
-                                {
-                                    "CLOCK", 
-                                    Package (0x04)
-                                    {
-                                        "cam_cc_ife_lite_3_csid_clk", 
-                                        0x03, 
-                                        Zero, 
-                                        0x03
-                                    }
-                                }
+                                0x03
                             }
                         }
                     }, 
