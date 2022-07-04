@@ -61432,9 +61432,9 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             "CLOCK", 
                             Package (0x04)
                             {
-                                "cam_cc_mclk0_clk", 
+                                "cam_cc_mclk1_clk", 
                                 0x08, 
-                                0x016E3600, 
+                                0x0124F800, 
                                 0x03
                             }
                         }, 
@@ -61523,7 +61523,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             "CLOCK", 
                             Package (0x04)
                             {
-                                "cam_cc_mclk0_clk", 
+                                "cam_cc_mclk1_clk", 
                                 0x0C, 
                                 Zero, 
                                 0x03
@@ -61751,9 +61751,9 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             "CLOCK", 
                             Package (0x04)
                             {
-                                "cam_cc_mclk0_clk", 
+                                "cam_cc_mclk1_clk", 
                                 0x08, 
-                                0x016E3600, 
+                                0x0124F800, 
                                 0x03
                             }
                         }, 
@@ -61842,7 +61842,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             "CLOCK", 
                             Package (0x04)
                             {
-                                "cam_cc_mclk0_clk", 
+                                "cam_cc_mclk1_clk", 
                                 0x0C, 
                                 Zero, 
                                 0x03
@@ -89949,8 +89949,8 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         Package (0x09)
                         {
                             0x03, 
-                            0x00010300, 
-                            0x00010010, 
+                            0x00110100, 
+                            0x00110010, 
                             Zero, 
                             Zero, 
                             Zero, 
@@ -89967,8 +89967,8 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         Package (0x09)
                         {
                             0x03, 
-                            0x00010300, 
-                            0x00010010, 
+                            0x00110100, 
+                            0x00110010, 
                             Zero, 
                             Zero, 
                             Zero, 
@@ -90375,8 +90375,8 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     {
                         "com.qti.sensormodule.sony_imx351.bin", 
                         "com.qti.tuned.sony_imx351.bin", 
-                        0x00150018, 
-                        0xEB000016, 
+                        0x001500A0, 
+                        0xE00A0016, 
                         Zero
                     }
                 })
