@@ -519,4 +519,6 @@
   EmbeddedPkg/SimpleTextInOutSerial/SimpleTextInOutSerial.inf
   MdeModulePkg/Universal/ResetSystemRuntimeDxe/ResetSystemRuntimeDxe.inf
 
+  MdeModulePkg/Universal/EsrtFmpDxe/EsrtFmpDxe.inf
+
   SurfaceDuoPkg/UFP/ufpdevicefw.inf
