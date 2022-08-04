@@ -61306,7 +61306,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                 {
                     "DEVICE", 
                     "\\_SB.CAMS", 
-                    Package (0x10)
+                    Package (0x11)
                     {
                         "DSTATE", 
                         Zero, 
@@ -61429,6 +61429,21 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
                         Package (0x02)
                         {
+                            "PMICVREGVOTE", 
+                            Package (0x07)
+                            {
+                                "PPP_RESOURCE_ID_BUCK_BOOST1_C", 
+                                0x0C, 
+                                0x00328980, 
+                                One, 
+                                0x02, 
+                                "HLOS_DRV", 
+                                "SUPPRESSIBLE"
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
                             "CLOCK", 
                             Package (0x04)
                             {
@@ -61477,7 +61492,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         }
                     }, 
 
-                    Package (0x0E)
+                    Package (0x0F)
                     {
                         "DSTATE", 
                         0x03, 
@@ -61527,6 +61542,21 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 0x0C, 
                                 Zero, 
                                 0x03
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x07)
+                            {
+                                "PPP_RESOURCE_ID_BUCK_BOOST1_C", 
+                                0x0C, 
+                                Zero, 
+                                Zero, 
+                                0x02, 
+                                "HLOS_DRV", 
+                                "SUPPRESSIBLE"
                             }
                         }, 
 
@@ -61625,7 +61655,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                 {
                     "DEVICE", 
                     "\\_SB.CAMF", 
-                    Package (0x10)
+                    Package (0x11)
                     {
                         "DSTATE", 
                         Zero, 
@@ -61748,6 +61778,21 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
                         Package (0x02)
                         {
+                            "PMICVREGVOTE", 
+                            Package (0x07)
+                            {
+                                "PPP_RESOURCE_ID_BUCK_BOOST1_C", 
+                                0x0C, 
+                                0x00328980, 
+                                One, 
+                                0x02, 
+                                "HLOS_DRV", 
+                                "SUPPRESSIBLE"
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
                             "CLOCK", 
                             Package (0x04)
                             {
@@ -61796,7 +61841,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         }
                     }, 
 
-                    Package (0x0E)
+                    Package (0x0F)
                     {
                         "DSTATE", 
                         0x03, 
@@ -61846,6 +61891,21 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 0x0C, 
                                 Zero, 
                                 0x03
+                            }
+                        }, 
+
+                        Package (0x02)
+                        {
+                            "PMICVREGVOTE", 
+                            Package (0x07)
+                            {
+                                "PPP_RESOURCE_ID_BUCK_BOOST1_C", 
+                                0x0C, 
+                                Zero, 
+                                Zero, 
+                                0x02, 
+                                "HLOS_DRV", 
+                                "SUPPRESSIBLE"
                             }
                         }, 
 
