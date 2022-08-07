@@ -5124,7 +5124,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 }
                             }, 
 
-                            Package (0x38)
+                            Package (0x39)
                             {
                                 "PSTATE_SET", 
                                 0x04, 
@@ -5141,7 +5141,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000003AECEF2A0
+                                            0x000000054EFC6400
                                         }
                                     }, 
 
@@ -5154,7 +5154,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000003AECEF2A0
+                                            0x000000054EFC6400
                                         }
                                     }
                                 }, 
@@ -5172,7 +5172,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x0000000396F76EA0
+                                            0x00000003AECEF2A0
                                         }
                                     }, 
 
@@ -5185,7 +5185,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x0000000396F76EA0
+                                            0x00000003AECEF2A0
                                         }
                                     }
                                 }, 
@@ -5203,7 +5203,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x000000037F1FEAA0
+                                            0x0000000396F76EA0
                                         }
                                     }, 
 
@@ -5216,7 +5216,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x000000037F1FEAA0
+                                            0x0000000396F76EA0
                                         }
                                     }
                                 }, 
@@ -5234,7 +5234,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000003674866A0
+                                            0x000000037F1FEAA0
                                         }
                                     }, 
 
@@ -5247,7 +5247,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000003674866A0
+                                            0x000000037F1FEAA0
                                         }
                                     }
                                 }, 
@@ -5265,7 +5265,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x000000034F70E2A0
+                                            0x00000003674866A0
                                         }
                                     }, 
 
@@ -5278,7 +5278,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x000000034F70E2A0
+                                            0x00000003674866A0
                                         }
                                     }
                                 }, 
@@ -5296,7 +5296,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x0000000337995EA0
+                                            0x000000034F70E2A0
                                         }
                                     }, 
 
@@ -5309,7 +5309,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x0000000337995EA0
+                                            0x000000034F70E2A0
                                         }
                                     }
                                 }, 
@@ -5327,7 +5327,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x000000031FC1DAA0
+                                            0x0000000337995EA0
                                         }
                                     }, 
 
@@ -5340,7 +5340,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x000000031FC1DAA0
+                                            0x0000000337995EA0
                                         }
                                     }
                                 }, 
@@ -5358,7 +5358,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x0000000307EA56A0
+                                            0x000000031FC1DAA0
                                         }
                                     }, 
 
@@ -5371,7 +5371,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x0000000307EA56A0
+                                            0x000000031FC1DAA0
                                         }
                                     }
                                 }, 
@@ -5389,7 +5389,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000002F012D2A0
+                                            0x0000000307EA56A0
                                         }
                                     }, 
 
@@ -5402,7 +5402,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000002F012D2A0
+                                            0x0000000307EA56A0
                                         }
                                     }
                                 }, 
@@ -5420,7 +5420,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000002D83B4EA0
+                                            0x00000002F012D2A0
                                         }
                                     }, 
 
@@ -5433,7 +5433,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000002D83B4EA0
+                                            0x00000002F012D2A0
                                         }
                                     }
                                 }, 
@@ -5451,7 +5451,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000002C063CAA0
+                                            0x00000002D83B4EA0
                                         }
                                     }, 
 
@@ -5464,7 +5464,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000002C063CAA0
+                                            0x00000002D83B4EA0
                                         }
                                     }
                                 }, 
@@ -5482,7 +5482,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000002A88C46A0
+                                            0x00000002C063CAA0
                                         }
                                     }, 
 
@@ -5495,7 +5495,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000002A88C46A0
+                                            0x00000002C063CAA0
                                         }
                                     }
                                 }, 
@@ -5513,7 +5513,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x0000000290B4C2A0
+                                            0x00000002A88C46A0
                                         }
                                     }, 
 
@@ -5526,7 +5526,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x0000000290B4C2A0
+                                            0x00000002A88C46A0
                                         }
                                     }
                                 }, 
@@ -5544,7 +5544,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x0000000278DD3EA0
+                                            0x0000000290B4C2A0
                                         }
                                     }, 
 
@@ -5557,7 +5557,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x0000000278DD3EA0
+                                            0x0000000290B4C2A0
                                         }
                                     }
                                 }, 
@@ -5575,7 +5575,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x000000026105BAA0
+                                            0x0000000278DD3EA0
                                         }
                                     }, 
 
@@ -5588,7 +5588,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x000000026105BAA0
+                                            0x0000000278DD3EA0
                                         }
                                     }
                                 }, 
@@ -5606,7 +5606,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x000000025B8E7F80
+                                            0x000000026105BAA0
                                         }
                                     }, 
 
@@ -5619,7 +5619,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x000000025B8E7F80
+                                            0x000000026105BAA0
                                         }
                                     }
                                 }, 
@@ -5637,7 +5637,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x000000023C346000
+                                            0x000000025B8E7F80
                                         }
                                     }, 
 
@@ -5650,7 +5650,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x000000023C346000
+                                            0x000000025B8E7F80
                                         }
                                     }
                                 }, 
@@ -5668,7 +5668,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000002245CDC00
+                                            0x000000023C346000
                                         }
                                     }, 
 
@@ -5681,7 +5681,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000002245CDC00
+                                            0x000000023C346000
                                         }
                                     }
                                 }, 
@@ -5699,7 +5699,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x000000020C855800
+                                            0x00000002245CDC00
                                         }
                                     }, 
 
@@ -5712,7 +5712,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x000000020C855800
+                                            0x00000002245CDC00
                                         }
                                     }
                                 }, 
@@ -5730,7 +5730,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000001F4ADD400
+                                            0x000000020C855800
                                         }
                                     }, 
 
@@ -5743,7 +5743,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000001F4ADD400
+                                            0x000000020C855800
                                         }
                                     }
                                 }, 
@@ -5761,7 +5761,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000001DCD65000
+                                            0x00000001F4ADD400
                                         }
                                     }, 
 
@@ -5774,7 +5774,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000001DCD65000
+                                            0x00000001F4ADD400
                                         }
                                     }
                                 }, 
@@ -5792,7 +5792,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000001C4FECC00
+                                            0x00000001DCD65000
                                         }
                                     }, 
 
@@ -5805,7 +5805,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000001C4FECC00
+                                            0x00000001DCD65000
                                         }
                                     }
                                 }, 
@@ -5823,7 +5823,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000001AD274800
+                                            0x00000001C4FECC00
                                         }
                                     }, 
 
@@ -5836,7 +5836,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000001AD274800
+                                            0x00000001C4FECC00
                                         }
                                     }
                                 }, 
@@ -5854,7 +5854,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000001954FC400
+                                            0x00000001AD274800
                                         }
                                     }, 
 
@@ -5867,7 +5867,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000001954FC400
+                                            0x00000001AD274800
                                         }
                                     }
                                 }, 
@@ -5885,7 +5885,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x000000017D784000
+                                            0x00000001954FC400
                                         }
                                     }, 
 
@@ -5898,7 +5898,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x000000017D784000
+                                            0x00000001954FC400
                                         }
                                     }
                                 }, 
@@ -5916,7 +5916,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x0000000165A0BC00
+                                            0x000000017D784000
                                         }
                                     }, 
 
@@ -5929,7 +5929,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x0000000165A0BC00
+                                            0x000000017D784000
                                         }
                                     }
                                 }, 
@@ -5947,7 +5947,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x000000014DC93800
+                                            0x0000000165A0BC00
                                         }
                                     }, 
 
@@ -5960,7 +5960,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x000000014DC93800
+                                            0x0000000165A0BC00
                                         }
                                     }
                                 }, 
@@ -5978,7 +5978,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x0000000135F1B400
+                                            0x000000014DC93800
                                         }
                                     }, 
 
@@ -5991,7 +5991,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x0000000135F1B400
+                                            0x000000014DC93800
                                         }
                                     }
                                 }, 
@@ -6009,7 +6009,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x000000011E1A3000
+                                            0x0000000135F1B400
                                         }
                                     }, 
 
@@ -6022,7 +6022,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x000000011E1A3000
+                                            0x0000000135F1B400
                                         }
                                     }
                                 }, 
@@ -6040,7 +6040,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x000000010642AC00
+                                            0x000000011E1A3000
                                         }
                                     }, 
 
@@ -6053,7 +6053,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x000000010642AC00
+                                            0x000000011E1A3000
                                         }
                                     }
                                 }, 
@@ -6071,7 +6071,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0xEE6B2800
+                                            0x000000010642AC00
                                         }
                                     }, 
 
@@ -6084,7 +6084,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0xEE6B2800
+                                            0x000000010642AC00
                                         }
                                     }
                                 }, 
@@ -6102,7 +6102,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0xD693A400
+                                            0xEE6B2800
                                         }
                                     }, 
 
@@ -6115,7 +6115,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0xD693A400
+                                            0xEE6B2800
                                         }
                                     }
                                 }, 
@@ -6133,7 +6133,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0xBEBC2000
+                                            0xD693A400
                                         }
                                     }, 
 
@@ -6146,7 +6146,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0xBEBC2000
+                                            0xD693A400
                                         }
                                     }
                                 }, 
@@ -6164,7 +6164,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0xA6E49C00
+                                            0xBEBC2000
                                         }
                                     }, 
 
@@ -6177,7 +6177,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0xA6E49C00
+                                            0xBEBC2000
                                         }
                                     }
                                 }, 
@@ -6195,7 +6195,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x8F0D1800
+                                            0xA6E49C00
                                         }
                                     }, 
 
@@ -6208,7 +6208,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x8F0D1800
+                                            0xA6E49C00
                                         }
                                     }
                                 }, 
@@ -6226,7 +6226,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x77359400
+                                            0x8F0D1800
                                         }
                                     }, 
 
@@ -6239,7 +6239,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x77359400
+                                            0x8F0D1800
                                         }
                                     }
                                 }, 
@@ -6257,7 +6257,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x5F5E1000
+                                            0x77359400
                                         }
                                     }, 
 
@@ -6270,7 +6270,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x5F5E1000
+                                            0x77359400
                                         }
                                     }
                                 }, 
@@ -6288,7 +6288,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x59682F00
+                                            0x5F5E1000
                                         }
                                     }, 
 
@@ -6301,7 +6301,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x59682F00
+                                            0x5F5E1000
                                         }
                                     }
                                 }, 
@@ -6319,7 +6319,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x53724E00
+                                            0x59682F00
                                         }
                                     }, 
 
@@ -6332,7 +6332,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x53724E00
+                                            0x59682F00
                                         }
                                     }
                                 }, 
@@ -6350,7 +6350,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x4D7C6D00
+                                            0x53724E00
                                         }
                                     }, 
 
@@ -6363,7 +6363,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x4D7C6D00
+                                            0x53724E00
                                         }
                                     }
                                 }, 
@@ -6381,7 +6381,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x47868C00
+                                            0x4D7C6D00
                                         }
                                     }, 
 
@@ -6394,7 +6394,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x47868C00
+                                            0x4D7C6D00
                                         }
                                     }
                                 }, 
@@ -6412,7 +6412,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x4190AB00
+                                            0x47868C00
                                         }
                                     }, 
 
@@ -6425,7 +6425,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x4190AB00
+                                            0x47868C00
                                         }
                                     }
                                 }, 
@@ -6443,7 +6443,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x3B9ACA00
+                                            0x4190AB00
                                         }
                                     }, 
 
@@ -6456,7 +6456,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x3B9ACA00
+                                            0x4190AB00
                                         }
                                     }
                                 }, 
@@ -6474,7 +6474,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x35A4E900
+                                            0x3B9ACA00
                                         }
                                     }, 
 
@@ -6487,7 +6487,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x35A4E900
+                                            0x3B9ACA00
                                         }
                                     }
                                 }, 
@@ -6505,7 +6505,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x2FAF0800
+                                            0x35A4E900
                                         }
                                     }, 
 
@@ -6518,7 +6518,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x2FAF0800
+                                            0x35A4E900
                                         }
                                     }
                                 }, 
@@ -6536,7 +6536,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x29B92700
+                                            0x2FAF0800
                                         }
                                     }, 
 
@@ -6549,7 +6549,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x29B92700
+                                            0x2FAF0800
                                         }
                                     }
                                 }, 
@@ -6567,7 +6567,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x23C34600
+                                            0x29B92700
                                         }
                                     }, 
 
@@ -6580,7 +6580,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x23C34600
+                                            0x29B92700
                                         }
                                     }
                                 }, 
@@ -6598,6 +6598,37 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
+                                            0x23C34600
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "BUSARB", 
+                                        Package (0x05)
+                                        {
+                                            0x03, 
+                                            "ICBID_MASTER_MNOC_HF_MEM_NOC", 
+                                            "ICBID_SLAVE_EBI1", 
+                                            Zero, 
+                                            0x23C34600
+                                        }
+                                    }
+                                }, 
+
+                                Package (0x04)
+                                {
+                                    "PSTATE", 
+                                    0x30, 
+                                    Package (0x02)
+                                    {
+                                        "BUSARB", 
+                                        Package (0x05)
+                                        {
+                                            0x03, 
+                                            "ICBID_MASTER_MDP0", 
+                                            "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
+                                            Zero, 
                                             0x1DCD6500
                                         }
                                     }, 
@@ -6619,7 +6650,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x04)
                                 {
                                     "PSTATE", 
-                                    0x30, 
+                                    0x31, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -6650,7 +6681,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x04)
                                 {
                                     "PSTATE", 
-                                    0x31, 
+                                    0x32, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -6681,25 +6712,25 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x02)
                                 {
                                     "PRELOAD_PSTATE", 
-                                    0x23
+                                    0x24
                                 }, 
 
                                 Package (0x02)
                                 {
                                     "PREPARE_PSTATE", 
-                                    0x23
+                                    0x24
                                 }, 
 
                                 Package (0x02)
                                 {
                                     "ABANDON_PSTATE", 
-                                    0x23
+                                    0x24
                                 }, 
 
                                 Package (0x02)
                                 {
                                     "CRASHDUMP_PSTATE", 
-                                    0x23
+                                    0x24
                                 }
                             }, 
 
@@ -7967,7 +7998,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 }
                             }, 
 
-                            Package (0x3A)
+                            Package (0x3B)
                             {
                                 "PSTATE_SET", 
                                 0x03, 
@@ -7975,6 +8006,24 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 {
                                     "PSTATE", 
                                     Zero, 
+                                    Package (0x02)
+                                    {
+                                        "BUSARB", 
+                                        Package (0x05)
+                                        {
+                                            0x03, 
+                                            "ICBID_MASTER_MDP0", 
+                                            "ICBID_SLAVE_EBI1", 
+                                            0x000000054EFC6400, 
+                                            0x000000054EFC6400
+                                        }
+                                    }
+                                }, 
+
+                                Package (0x03)
+                                {
+                                    "PSTATE", 
+                                    One, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -7992,7 +8041,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    One, 
+                                    0x02, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -8010,7 +8059,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x02, 
+                                    0x03, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -8028,7 +8077,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x03, 
+                                    0x04, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -8046,7 +8095,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x04, 
+                                    0x05, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -8064,7 +8113,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x05, 
+                                    0x06, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -8082,7 +8131,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x06, 
+                                    0x07, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -8100,7 +8149,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x07, 
+                                    0x08, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -8118,7 +8167,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x08, 
+                                    0x09, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -8136,7 +8185,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x09, 
+                                    0x0A, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -8154,7 +8203,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x0A, 
+                                    0x0B, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -8172,7 +8221,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x0B, 
+                                    0x0C, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -8190,7 +8239,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x0C, 
+                                    0x0D, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -8208,7 +8257,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x0D, 
+                                    0x0E, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -8226,7 +8275,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x0E, 
+                                    0x0F, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -8244,7 +8293,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x0F, 
+                                    0x10, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -8262,7 +8311,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x10, 
+                                    0x11, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -8280,7 +8329,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x11, 
+                                    0x12, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -8298,7 +8347,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x12, 
+                                    0x13, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -8316,7 +8365,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x13, 
+                                    0x14, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -8334,7 +8383,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x14, 
+                                    0x15, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -8352,7 +8401,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x15, 
+                                    0x16, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -8370,7 +8419,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x16, 
+                                    0x17, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -8388,7 +8437,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x17, 
+                                    0x18, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -8406,7 +8455,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x18, 
+                                    0x19, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -8424,7 +8473,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x19, 
+                                    0x1A, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -8442,7 +8491,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x1A, 
+                                    0x1B, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -8460,7 +8509,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x1B, 
+                                    0x1C, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -8478,7 +8527,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x1C, 
+                                    0x1D, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -8496,7 +8545,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x1D, 
+                                    0x1E, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -8514,7 +8563,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x1E, 
+                                    0x1F, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -8532,7 +8581,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x1F, 
+                                    0x20, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -8550,7 +8599,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x20, 
+                                    0x21, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -8568,7 +8617,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x21, 
+                                    0x22, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -8586,7 +8635,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x22, 
+                                    0x23, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -8604,7 +8653,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x23, 
+                                    0x24, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -8622,7 +8671,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x24, 
+                                    0x25, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -8640,7 +8689,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x25, 
+                                    0x26, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -8658,7 +8707,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x26, 
+                                    0x27, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -8676,7 +8725,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x27, 
+                                    0x28, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -8694,7 +8743,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x28, 
+                                    0x29, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -8712,7 +8761,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x29, 
+                                    0x2A, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -8730,7 +8779,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x2A, 
+                                    0x2B, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -8748,7 +8797,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x2B, 
+                                    0x2C, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -8766,7 +8815,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x2C, 
+                                    0x2D, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -8784,7 +8833,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x2D, 
+                                    0x2E, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -8802,7 +8851,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x2E, 
+                                    0x2F, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -8820,7 +8869,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x2F, 
+                                    0x30, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -8838,7 +8887,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x30, 
+                                    0x31, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -8856,7 +8905,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x31, 
+                                    0x32, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -8874,7 +8923,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x32, 
+                                    0x33, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -8892,7 +8941,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x33, 
+                                    0x34, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -8910,7 +8959,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x34, 
+                                    0x35, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -8928,7 +8977,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x35, 
+                                    0x36, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -8946,7 +8995,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x36, 
+                                    0x37, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -8964,7 +9013,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x37, 
+                                    0x38, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -9912,7 +9961,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 }
                             }, 
 
-                            Package (0x3A)
+                            Package (0x3B)
                             {
                                 "PSTATE_SET", 
                                 0x03, 
@@ -9920,6 +9969,24 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 {
                                     "PSTATE", 
                                     Zero, 
+                                    Package (0x02)
+                                    {
+                                        "BUSARB", 
+                                        Package (0x05)
+                                        {
+                                            0x03, 
+                                            "ICBID_MASTER_ROTATOR", 
+                                            "ICBID_SLAVE_EBI1", 
+                                            0x000000054EFC6400, 
+                                            0x000000054EFC6400
+                                        }
+                                    }
+                                }, 
+
+                                Package (0x03)
+                                {
+                                    "PSTATE", 
+                                    One, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -9937,7 +10004,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    One, 
+                                    0x02, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -9955,7 +10022,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x02, 
+                                    0x03, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -9973,7 +10040,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x03, 
+                                    0x04, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -9991,7 +10058,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x04, 
+                                    0x05, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -10009,7 +10076,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x05, 
+                                    0x06, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -10027,7 +10094,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x06, 
+                                    0x07, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -10045,7 +10112,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x07, 
+                                    0x08, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -10063,7 +10130,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x08, 
+                                    0x09, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -10081,7 +10148,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x09, 
+                                    0x0A, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -10099,7 +10166,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x0A, 
+                                    0x0B, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -10117,7 +10184,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x0B, 
+                                    0x0C, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -10135,7 +10202,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x0C, 
+                                    0x0D, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -10153,7 +10220,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x0D, 
+                                    0x0E, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -10171,7 +10238,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x0E, 
+                                    0x0F, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -10189,7 +10256,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x0F, 
+                                    0x10, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -10207,7 +10274,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x10, 
+                                    0x11, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -10225,7 +10292,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x11, 
+                                    0x12, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -10243,7 +10310,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x12, 
+                                    0x13, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -10261,7 +10328,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x13, 
+                                    0x14, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -10279,7 +10346,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x14, 
+                                    0x15, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -10297,7 +10364,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x15, 
+                                    0x16, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -10315,7 +10382,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x16, 
+                                    0x17, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -10333,7 +10400,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x17, 
+                                    0x18, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -10351,7 +10418,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x18, 
+                                    0x19, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -10369,7 +10436,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x19, 
+                                    0x1A, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -10387,7 +10454,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x1A, 
+                                    0x1B, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -10405,7 +10472,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x1B, 
+                                    0x1C, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -10423,7 +10490,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x1C, 
+                                    0x1D, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -10441,7 +10508,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x1D, 
+                                    0x1E, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -10459,7 +10526,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x1E, 
+                                    0x1F, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -10477,7 +10544,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x1F, 
+                                    0x20, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -10495,7 +10562,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x20, 
+                                    0x21, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -10513,7 +10580,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x21, 
+                                    0x22, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -10531,7 +10598,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x22, 
+                                    0x23, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -10549,7 +10616,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x23, 
+                                    0x24, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -10567,7 +10634,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x24, 
+                                    0x25, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -10585,7 +10652,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x25, 
+                                    0x26, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -10603,7 +10670,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x26, 
+                                    0x27, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -10621,7 +10688,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x27, 
+                                    0x28, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -10639,7 +10706,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x28, 
+                                    0x29, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -10657,7 +10724,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x29, 
+                                    0x2A, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -10675,7 +10742,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x2A, 
+                                    0x2B, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -10693,7 +10760,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x2B, 
+                                    0x2C, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -10711,7 +10778,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x2C, 
+                                    0x2D, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -10729,7 +10796,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x2D, 
+                                    0x2E, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -10747,7 +10814,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x2E, 
+                                    0x2F, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -10765,7 +10832,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x2F, 
+                                    0x30, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -10783,7 +10850,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x30, 
+                                    0x31, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -10801,7 +10868,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x31, 
+                                    0x32, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -10819,7 +10886,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x32, 
+                                    0x33, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -10837,7 +10904,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x33, 
+                                    0x34, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -10855,7 +10922,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x34, 
+                                    0x35, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -10873,7 +10940,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x35, 
+                                    0x36, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -10891,7 +10958,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x36, 
+                                    0x37, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -10909,7 +10976,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x03)
                                 {
                                     "PSTATE", 
-                                    0x37, 
+                                    0x38, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -21746,7 +21813,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 }
                             }, 
 
-                            Package (0x38)
+                            Package (0x39)
                             {
                                 "PSTATE_SET", 
                                 0x04, 
@@ -21763,7 +21830,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000003AECEF2A0
+                                            0x000000054EFC6400
                                         }
                                     }, 
 
@@ -21776,7 +21843,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000003AECEF2A0
+                                            0x000000054EFC6400
                                         }
                                     }
                                 }, 
@@ -21794,7 +21861,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x0000000396F76EA0
+                                            0x00000003AECEF2A0
                                         }
                                     }, 
 
@@ -21807,7 +21874,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x0000000396F76EA0
+                                            0x00000003AECEF2A0
                                         }
                                     }
                                 }, 
@@ -21825,7 +21892,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x000000037F1FEAA0
+                                            0x0000000396F76EA0
                                         }
                                     }, 
 
@@ -21838,7 +21905,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x000000037F1FEAA0
+                                            0x0000000396F76EA0
                                         }
                                     }
                                 }, 
@@ -21856,7 +21923,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000003674866A0
+                                            0x000000037F1FEAA0
                                         }
                                     }, 
 
@@ -21869,7 +21936,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000003674866A0
+                                            0x000000037F1FEAA0
                                         }
                                     }
                                 }, 
@@ -21887,7 +21954,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x000000034F70E2A0
+                                            0x00000003674866A0
                                         }
                                     }, 
 
@@ -21900,7 +21967,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x000000034F70E2A0
+                                            0x00000003674866A0
                                         }
                                     }
                                 }, 
@@ -21918,7 +21985,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x0000000337995EA0
+                                            0x000000034F70E2A0
                                         }
                                     }, 
 
@@ -21931,7 +21998,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x0000000337995EA0
+                                            0x000000034F70E2A0
                                         }
                                     }
                                 }, 
@@ -21949,7 +22016,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x000000031FC1DAA0
+                                            0x0000000337995EA0
                                         }
                                     }, 
 
@@ -21962,7 +22029,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x000000031FC1DAA0
+                                            0x0000000337995EA0
                                         }
                                     }
                                 }, 
@@ -21980,7 +22047,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x0000000307EA56A0
+                                            0x000000031FC1DAA0
                                         }
                                     }, 
 
@@ -21993,7 +22060,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x0000000307EA56A0
+                                            0x000000031FC1DAA0
                                         }
                                     }
                                 }, 
@@ -22011,7 +22078,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000002F012D2A0
+                                            0x0000000307EA56A0
                                         }
                                     }, 
 
@@ -22024,7 +22091,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000002F012D2A0
+                                            0x0000000307EA56A0
                                         }
                                     }
                                 }, 
@@ -22042,7 +22109,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000002D83B4EA0
+                                            0x00000002F012D2A0
                                         }
                                     }, 
 
@@ -22055,7 +22122,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000002D83B4EA0
+                                            0x00000002F012D2A0
                                         }
                                     }
                                 }, 
@@ -22073,7 +22140,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000002C063CAA0
+                                            0x00000002D83B4EA0
                                         }
                                     }, 
 
@@ -22086,7 +22153,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000002C063CAA0
+                                            0x00000002D83B4EA0
                                         }
                                     }
                                 }, 
@@ -22104,7 +22171,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000002A88C46A0
+                                            0x00000002C063CAA0
                                         }
                                     }, 
 
@@ -22117,7 +22184,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000002A88C46A0
+                                            0x00000002C063CAA0
                                         }
                                     }
                                 }, 
@@ -22135,7 +22202,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x0000000290B4C2A0
+                                            0x00000002A88C46A0
                                         }
                                     }, 
 
@@ -22148,7 +22215,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x0000000290B4C2A0
+                                            0x00000002A88C46A0
                                         }
                                     }
                                 }, 
@@ -22166,7 +22233,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x0000000278DD3EA0
+                                            0x0000000290B4C2A0
                                         }
                                     }, 
 
@@ -22179,7 +22246,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x0000000278DD3EA0
+                                            0x0000000290B4C2A0
                                         }
                                     }
                                 }, 
@@ -22197,7 +22264,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x000000026105BAA0
+                                            0x0000000278DD3EA0
                                         }
                                     }, 
 
@@ -22210,7 +22277,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x000000026105BAA0
+                                            0x0000000278DD3EA0
                                         }
                                     }
                                 }, 
@@ -22228,7 +22295,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x000000025B8E7F80
+                                            0x000000026105BAA0
                                         }
                                     }, 
 
@@ -22241,7 +22308,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x000000025B8E7F80
+                                            0x000000026105BAA0
                                         }
                                     }
                                 }, 
@@ -22259,7 +22326,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x000000023C346000
+                                            0x000000025B8E7F80
                                         }
                                     }, 
 
@@ -22272,7 +22339,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x000000023C346000
+                                            0x000000025B8E7F80
                                         }
                                     }
                                 }, 
@@ -22290,7 +22357,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000002245CDC00
+                                            0x000000023C346000
                                         }
                                     }, 
 
@@ -22303,7 +22370,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000002245CDC00
+                                            0x000000023C346000
                                         }
                                     }
                                 }, 
@@ -22321,7 +22388,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x000000020C855800
+                                            0x00000002245CDC00
                                         }
                                     }, 
 
@@ -22334,7 +22401,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x000000020C855800
+                                            0x00000002245CDC00
                                         }
                                     }
                                 }, 
@@ -22352,7 +22419,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000001F4ADD400
+                                            0x000000020C855800
                                         }
                                     }, 
 
@@ -22365,7 +22432,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000001F4ADD400
+                                            0x000000020C855800
                                         }
                                     }
                                 }, 
@@ -22383,7 +22450,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000001DCD65000
+                                            0x00000001F4ADD400
                                         }
                                     }, 
 
@@ -22396,7 +22463,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000001DCD65000
+                                            0x00000001F4ADD400
                                         }
                                     }
                                 }, 
@@ -22414,7 +22481,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000001C4FECC00
+                                            0x00000001DCD65000
                                         }
                                     }, 
 
@@ -22427,7 +22494,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000001C4FECC00
+                                            0x00000001DCD65000
                                         }
                                     }
                                 }, 
@@ -22445,7 +22512,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000001AD274800
+                                            0x00000001C4FECC00
                                         }
                                     }, 
 
@@ -22458,7 +22525,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000001AD274800
+                                            0x00000001C4FECC00
                                         }
                                     }
                                 }, 
@@ -22476,7 +22543,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000001954FC400
+                                            0x00000001AD274800
                                         }
                                     }, 
 
@@ -22489,7 +22556,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000001954FC400
+                                            0x00000001AD274800
                                         }
                                     }
                                 }, 
@@ -22507,7 +22574,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x000000017D784000
+                                            0x00000001954FC400
                                         }
                                     }, 
 
@@ -22520,7 +22587,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x000000017D784000
+                                            0x00000001954FC400
                                         }
                                     }
                                 }, 
@@ -22538,7 +22605,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x0000000165A0BC00
+                                            0x000000017D784000
                                         }
                                     }, 
 
@@ -22551,7 +22618,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x0000000165A0BC00
+                                            0x000000017D784000
                                         }
                                     }
                                 }, 
@@ -22569,7 +22636,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x000000014DC93800
+                                            0x0000000165A0BC00
                                         }
                                     }, 
 
@@ -22582,7 +22649,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x000000014DC93800
+                                            0x0000000165A0BC00
                                         }
                                     }
                                 }, 
@@ -22600,7 +22667,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x0000000135F1B400
+                                            0x000000014DC93800
                                         }
                                     }, 
 
@@ -22613,7 +22680,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x0000000135F1B400
+                                            0x000000014DC93800
                                         }
                                     }
                                 }, 
@@ -22631,7 +22698,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x000000011E1A3000
+                                            0x0000000135F1B400
                                         }
                                     }, 
 
@@ -22644,7 +22711,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x000000011E1A3000
+                                            0x0000000135F1B400
                                         }
                                     }
                                 }, 
@@ -22662,7 +22729,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x000000010642AC00
+                                            0x000000011E1A3000
                                         }
                                     }, 
 
@@ -22675,7 +22742,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x000000010642AC00
+                                            0x000000011E1A3000
                                         }
                                     }
                                 }, 
@@ -22693,7 +22760,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0xEE6B2800
+                                            0x000000010642AC00
                                         }
                                     }, 
 
@@ -22706,7 +22773,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0xEE6B2800
+                                            0x000000010642AC00
                                         }
                                     }
                                 }, 
@@ -22724,7 +22791,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0xD693A400
+                                            0xEE6B2800
                                         }
                                     }, 
 
@@ -22737,7 +22804,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0xD693A400
+                                            0xEE6B2800
                                         }
                                     }
                                 }, 
@@ -22755,7 +22822,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0xBEBC2000
+                                            0xD693A400
                                         }
                                     }, 
 
@@ -22768,7 +22835,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0xBEBC2000
+                                            0xD693A400
                                         }
                                     }
                                 }, 
@@ -22786,7 +22853,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0xA6E49C00
+                                            0xBEBC2000
                                         }
                                     }, 
 
@@ -22799,7 +22866,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0xA6E49C00
+                                            0xBEBC2000
                                         }
                                     }
                                 }, 
@@ -22817,7 +22884,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x8F0D1800
+                                            0xA6E49C00
                                         }
                                     }, 
 
@@ -22830,7 +22897,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x8F0D1800
+                                            0xA6E49C00
                                         }
                                     }
                                 }, 
@@ -22848,7 +22915,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x77359400
+                                            0x8F0D1800
                                         }
                                     }, 
 
@@ -22861,7 +22928,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x77359400
+                                            0x8F0D1800
                                         }
                                     }
                                 }, 
@@ -22879,7 +22946,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x5F5E1000
+                                            0x77359400
                                         }
                                     }, 
 
@@ -22892,7 +22959,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x5F5E1000
+                                            0x77359400
                                         }
                                     }
                                 }, 
@@ -22910,7 +22977,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x59682F00
+                                            0x5F5E1000
                                         }
                                     }, 
 
@@ -22923,7 +22990,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x59682F00
+                                            0x5F5E1000
                                         }
                                     }
                                 }, 
@@ -22941,7 +23008,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x53724E00
+                                            0x59682F00
                                         }
                                     }, 
 
@@ -22954,7 +23021,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x53724E00
+                                            0x59682F00
                                         }
                                     }
                                 }, 
@@ -22972,7 +23039,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x4D7C6D00
+                                            0x53724E00
                                         }
                                     }, 
 
@@ -22985,7 +23052,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x4D7C6D00
+                                            0x53724E00
                                         }
                                     }
                                 }, 
@@ -23003,7 +23070,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x47868C00
+                                            0x4D7C6D00
                                         }
                                     }, 
 
@@ -23016,7 +23083,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x47868C00
+                                            0x4D7C6D00
                                         }
                                     }
                                 }, 
@@ -23034,7 +23101,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x4190AB00
+                                            0x47868C00
                                         }
                                     }, 
 
@@ -23047,7 +23114,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x4190AB00
+                                            0x47868C00
                                         }
                                     }
                                 }, 
@@ -23065,7 +23132,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x3B9ACA00
+                                            0x4190AB00
                                         }
                                     }, 
 
@@ -23078,7 +23145,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x3B9ACA00
+                                            0x4190AB00
                                         }
                                     }
                                 }, 
@@ -23096,7 +23163,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x35A4E900
+                                            0x3B9ACA00
                                         }
                                     }, 
 
@@ -23109,7 +23176,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x35A4E900
+                                            0x3B9ACA00
                                         }
                                     }
                                 }, 
@@ -23127,7 +23194,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x2FAF0800
+                                            0x35A4E900
                                         }
                                     }, 
 
@@ -23140,7 +23207,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x2FAF0800
+                                            0x35A4E900
                                         }
                                     }
                                 }, 
@@ -23158,7 +23225,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x29B92700
+                                            0x2FAF0800
                                         }
                                     }, 
 
@@ -23171,7 +23238,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x29B92700
+                                            0x2FAF0800
                                         }
                                     }
                                 }, 
@@ -23189,7 +23256,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x23C34600
+                                            0x29B92700
                                         }
                                     }, 
 
@@ -23202,7 +23269,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x23C34600
+                                            0x29B92700
                                         }
                                     }
                                 }, 
@@ -23220,6 +23287,37 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
+                                            0x23C34600
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "BUSARB", 
+                                        Package (0x05)
+                                        {
+                                            0x03, 
+                                            "ICBID_MASTER_MNOC_HF_MEM_NOC", 
+                                            "ICBID_SLAVE_EBI1", 
+                                            Zero, 
+                                            0x23C34600
+                                        }
+                                    }
+                                }, 
+
+                                Package (0x04)
+                                {
+                                    "PSTATE", 
+                                    0x30, 
+                                    Package (0x02)
+                                    {
+                                        "BUSARB", 
+                                        Package (0x05)
+                                        {
+                                            0x03, 
+                                            "ICBID_MASTER_MDP0", 
+                                            "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
+                                            Zero, 
                                             0x1DCD6500
                                         }
                                     }, 
@@ -23241,7 +23339,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x04)
                                 {
                                     "PSTATE", 
-                                    0x30, 
+                                    0x31, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -23272,7 +23370,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x04)
                                 {
                                     "PSTATE", 
-                                    0x31, 
+                                    0x32, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -23303,25 +23401,25 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x02)
                                 {
                                     "PRELOAD_PSTATE", 
-                                    0x23
+                                    0x24
                                 }, 
 
                                 Package (0x02)
                                 {
                                     "PREPARE_PSTATE", 
-                                    0x23
+                                    0x24
                                 }, 
 
                                 Package (0x02)
                                 {
                                     "ABANDON_PSTATE", 
-                                    0x23
+                                    0x24
                                 }, 
 
                                 Package (0x02)
                                 {
                                     "CRASHDUMP_PSTATE", 
-                                    0x23
+                                    0x24
                                 }
                             }, 
 
@@ -24301,7 +24399,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 }
                             }, 
 
-                            Package (0x37)
+                            Package (0x38)
                             {
                                 "PSTATE_SET", 
                                 0x03, 
@@ -24318,7 +24416,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000003AECEF2A0
+                                            0x000000054EFC6400
                                         }
                                     }, 
 
@@ -24331,7 +24429,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000003AECEF2A0
+                                            0x000000054EFC6400
                                         }
                                     }
                                 }, 
@@ -24349,7 +24447,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x0000000396F76EA0
+                                            0x00000003AECEF2A0
                                         }
                                     }, 
 
@@ -24362,7 +24460,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x0000000396F76EA0
+                                            0x00000003AECEF2A0
                                         }
                                     }
                                 }, 
@@ -24380,7 +24478,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x000000037F1FEAA0
+                                            0x0000000396F76EA0
                                         }
                                     }, 
 
@@ -24393,7 +24491,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x000000037F1FEAA0
+                                            0x0000000396F76EA0
                                         }
                                     }
                                 }, 
@@ -24411,7 +24509,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000003674866A0
+                                            0x000000037F1FEAA0
                                         }
                                     }, 
 
@@ -24424,7 +24522,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000003674866A0
+                                            0x000000037F1FEAA0
                                         }
                                     }
                                 }, 
@@ -24442,7 +24540,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x000000034F70E2A0
+                                            0x00000003674866A0
                                         }
                                     }, 
 
@@ -24455,7 +24553,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x000000034F70E2A0
+                                            0x00000003674866A0
                                         }
                                     }
                                 }, 
@@ -24473,7 +24571,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x0000000337995EA0
+                                            0x000000034F70E2A0
                                         }
                                     }, 
 
@@ -24486,7 +24584,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x0000000337995EA0
+                                            0x000000034F70E2A0
                                         }
                                     }
                                 }, 
@@ -24504,7 +24602,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x000000031FC1DAA0
+                                            0x0000000337995EA0
                                         }
                                     }, 
 
@@ -24517,7 +24615,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x000000031FC1DAA0
+                                            0x0000000337995EA0
                                         }
                                     }
                                 }, 
@@ -24535,7 +24633,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x0000000307EA56A0
+                                            0x000000031FC1DAA0
                                         }
                                     }, 
 
@@ -24548,7 +24646,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x0000000307EA56A0
+                                            0x000000031FC1DAA0
                                         }
                                     }
                                 }, 
@@ -24566,7 +24664,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000002F012D2A0
+                                            0x0000000307EA56A0
                                         }
                                     }, 
 
@@ -24579,7 +24677,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000002F012D2A0
+                                            0x0000000307EA56A0
                                         }
                                     }
                                 }, 
@@ -24597,7 +24695,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000002D83B4EA0
+                                            0x00000002F012D2A0
                                         }
                                     }, 
 
@@ -24610,7 +24708,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000002D83B4EA0
+                                            0x00000002F012D2A0
                                         }
                                     }
                                 }, 
@@ -24628,7 +24726,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000002C063CAA0
+                                            0x00000002D83B4EA0
                                         }
                                     }, 
 
@@ -24641,7 +24739,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000002C063CAA0
+                                            0x00000002D83B4EA0
                                         }
                                     }
                                 }, 
@@ -24659,7 +24757,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000002A88C46A0
+                                            0x00000002C063CAA0
                                         }
                                     }, 
 
@@ -24672,7 +24770,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000002A88C46A0
+                                            0x00000002C063CAA0
                                         }
                                     }
                                 }, 
@@ -24690,7 +24788,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x0000000290B4C2A0
+                                            0x00000002A88C46A0
                                         }
                                     }, 
 
@@ -24703,7 +24801,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x0000000290B4C2A0
+                                            0x00000002A88C46A0
                                         }
                                     }
                                 }, 
@@ -24721,7 +24819,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x0000000278DD3EA0
+                                            0x0000000290B4C2A0
                                         }
                                     }, 
 
@@ -24734,7 +24832,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x0000000278DD3EA0
+                                            0x0000000290B4C2A0
                                         }
                                     }
                                 }, 
@@ -24752,7 +24850,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x000000026105BAA0
+                                            0x0000000278DD3EA0
                                         }
                                     }, 
 
@@ -24765,7 +24863,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x000000026105BAA0
+                                            0x0000000278DD3EA0
                                         }
                                     }
                                 }, 
@@ -24783,7 +24881,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x000000025B8E7F80
+                                            0x000000026105BAA0
                                         }
                                     }, 
 
@@ -24796,7 +24894,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x000000025B8E7F80
+                                            0x000000026105BAA0
                                         }
                                     }
                                 }, 
@@ -24814,7 +24912,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x000000023C346000
+                                            0x000000025B8E7F80
                                         }
                                     }, 
 
@@ -24827,7 +24925,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x000000023C346000
+                                            0x000000025B8E7F80
                                         }
                                     }
                                 }, 
@@ -24845,7 +24943,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000002245CDC00
+                                            0x000000023C346000
                                         }
                                     }, 
 
@@ -24858,7 +24956,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000002245CDC00
+                                            0x000000023C346000
                                         }
                                     }
                                 }, 
@@ -24876,7 +24974,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x000000020C855800
+                                            0x00000002245CDC00
                                         }
                                     }, 
 
@@ -24889,7 +24987,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x000000020C855800
+                                            0x00000002245CDC00
                                         }
                                     }
                                 }, 
@@ -24907,7 +25005,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000001F4ADD400
+                                            0x000000020C855800
                                         }
                                     }, 
 
@@ -24920,7 +25018,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000001F4ADD400
+                                            0x000000020C855800
                                         }
                                     }
                                 }, 
@@ -24938,7 +25036,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000001DCD65000
+                                            0x00000001F4ADD400
                                         }
                                     }, 
 
@@ -24951,7 +25049,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000001DCD65000
+                                            0x00000001F4ADD400
                                         }
                                     }
                                 }, 
@@ -24969,7 +25067,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000001C4FECC00
+                                            0x00000001DCD65000
                                         }
                                     }, 
 
@@ -24982,7 +25080,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000001C4FECC00
+                                            0x00000001DCD65000
                                         }
                                     }
                                 }, 
@@ -25000,7 +25098,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000001AD274800
+                                            0x00000001C4FECC00
                                         }
                                     }, 
 
@@ -25013,7 +25111,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000001AD274800
+                                            0x00000001C4FECC00
                                         }
                                     }
                                 }, 
@@ -25031,7 +25129,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000001954FC400
+                                            0x00000001AD274800
                                         }
                                     }, 
 
@@ -25044,7 +25142,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000001954FC400
+                                            0x00000001AD274800
                                         }
                                     }
                                 }, 
@@ -25062,7 +25160,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x000000017D784000
+                                            0x00000001954FC400
                                         }
                                     }, 
 
@@ -25075,7 +25173,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x000000017D784000
+                                            0x00000001954FC400
                                         }
                                     }
                                 }, 
@@ -25093,7 +25191,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x0000000165A0BC00
+                                            0x000000017D784000
                                         }
                                     }, 
 
@@ -25106,7 +25204,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x0000000165A0BC00
+                                            0x000000017D784000
                                         }
                                     }
                                 }, 
@@ -25124,7 +25222,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x000000014DC93800
+                                            0x0000000165A0BC00
                                         }
                                     }, 
 
@@ -25137,7 +25235,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x000000014DC93800
+                                            0x0000000165A0BC00
                                         }
                                     }
                                 }, 
@@ -25155,7 +25253,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x0000000135F1B400
+                                            0x000000014DC93800
                                         }
                                     }, 
 
@@ -25168,7 +25266,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x0000000135F1B400
+                                            0x000000014DC93800
                                         }
                                     }
                                 }, 
@@ -25186,7 +25284,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x000000011E1A3000
+                                            0x0000000135F1B400
                                         }
                                     }, 
 
@@ -25199,7 +25297,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x000000011E1A3000
+                                            0x0000000135F1B400
                                         }
                                     }
                                 }, 
@@ -25217,7 +25315,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x000000010642AC00
+                                            0x000000011E1A3000
                                         }
                                     }, 
 
@@ -25230,7 +25328,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x000000010642AC00
+                                            0x000000011E1A3000
                                         }
                                     }
                                 }, 
@@ -25248,7 +25346,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0xEE6B2800
+                                            0x000000010642AC00
                                         }
                                     }, 
 
@@ -25261,7 +25359,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0xEE6B2800
+                                            0x000000010642AC00
                                         }
                                     }
                                 }, 
@@ -25279,7 +25377,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0xD693A400
+                                            0xEE6B2800
                                         }
                                     }, 
 
@@ -25292,7 +25390,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0xD693A400
+                                            0xEE6B2800
                                         }
                                     }
                                 }, 
@@ -25310,7 +25408,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0xBEBC2000
+                                            0xD693A400
                                         }
                                     }, 
 
@@ -25323,7 +25421,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0xBEBC2000
+                                            0xD693A400
                                         }
                                     }
                                 }, 
@@ -25341,7 +25439,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0xA6E49C00
+                                            0xBEBC2000
                                         }
                                     }, 
 
@@ -25354,7 +25452,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0xA6E49C00
+                                            0xBEBC2000
                                         }
                                     }
                                 }, 
@@ -25372,7 +25470,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x8F0D1800
+                                            0xA6E49C00
                                         }
                                     }, 
 
@@ -25385,7 +25483,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x8F0D1800
+                                            0xA6E49C00
                                         }
                                     }
                                 }, 
@@ -25403,7 +25501,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x77359400
+                                            0x8F0D1800
                                         }
                                     }, 
 
@@ -25416,7 +25514,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x77359400
+                                            0x8F0D1800
                                         }
                                     }
                                 }, 
@@ -25434,7 +25532,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x5F5E1000
+                                            0x77359400
                                         }
                                     }, 
 
@@ -25447,7 +25545,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x5F5E1000
+                                            0x77359400
                                         }
                                     }
                                 }, 
@@ -25465,7 +25563,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x59682F00
+                                            0x5F5E1000
                                         }
                                     }, 
 
@@ -25478,7 +25576,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x59682F00
+                                            0x5F5E1000
                                         }
                                     }
                                 }, 
@@ -25496,7 +25594,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x53724E00
+                                            0x59682F00
                                         }
                                     }, 
 
@@ -25509,7 +25607,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x53724E00
+                                            0x59682F00
                                         }
                                     }
                                 }, 
@@ -25527,7 +25625,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x4D7C6D00
+                                            0x53724E00
                                         }
                                     }, 
 
@@ -25540,7 +25638,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x4D7C6D00
+                                            0x53724E00
                                         }
                                     }
                                 }, 
@@ -25558,7 +25656,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x47868C00
+                                            0x4D7C6D00
                                         }
                                     }, 
 
@@ -25571,7 +25669,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x47868C00
+                                            0x4D7C6D00
                                         }
                                     }
                                 }, 
@@ -25589,7 +25687,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x4190AB00
+                                            0x47868C00
                                         }
                                     }, 
 
@@ -25602,7 +25700,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x4190AB00
+                                            0x47868C00
                                         }
                                     }
                                 }, 
@@ -25620,7 +25718,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x3B9ACA00
+                                            0x4190AB00
                                         }
                                     }, 
 
@@ -25633,7 +25731,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x3B9ACA00
+                                            0x4190AB00
                                         }
                                     }
                                 }, 
@@ -25651,7 +25749,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x35A4E900
+                                            0x3B9ACA00
                                         }
                                     }, 
 
@@ -25664,7 +25762,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x35A4E900
+                                            0x3B9ACA00
                                         }
                                     }
                                 }, 
@@ -25682,7 +25780,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x2FAF0800
+                                            0x35A4E900
                                         }
                                     }, 
 
@@ -25695,7 +25793,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x2FAF0800
+                                            0x35A4E900
                                         }
                                     }
                                 }, 
@@ -25713,7 +25811,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x29B92700
+                                            0x2FAF0800
                                         }
                                     }, 
 
@@ -25726,7 +25824,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x29B92700
+                                            0x2FAF0800
                                         }
                                     }
                                 }, 
@@ -25744,7 +25842,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x23C34600
+                                            0x29B92700
                                         }
                                     }, 
 
@@ -25757,7 +25855,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x23C34600
+                                            0x29B92700
                                         }
                                     }
                                 }, 
@@ -25775,6 +25873,37 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
+                                            0x23C34600
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "BUSARB", 
+                                        Package (0x05)
+                                        {
+                                            0x03, 
+                                            "ICBID_MASTER_MNOC_HF_MEM_NOC", 
+                                            "ICBID_SLAVE_EBI1", 
+                                            Zero, 
+                                            0x23C34600
+                                        }
+                                    }
+                                }, 
+
+                                Package (0x04)
+                                {
+                                    "PSTATE", 
+                                    0x30, 
+                                    Package (0x02)
+                                    {
+                                        "BUSARB", 
+                                        Package (0x05)
+                                        {
+                                            0x03, 
+                                            "ICBID_MASTER_MDP0", 
+                                            "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
+                                            Zero, 
                                             0x1DCD6500
                                         }
                                     }, 
@@ -25796,7 +25925,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x04)
                                 {
                                     "PSTATE", 
-                                    0x30, 
+                                    0x31, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -25827,7 +25956,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x04)
                                 {
                                     "PSTATE", 
-                                    0x31, 
+                                    0x32, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -25858,19 +25987,19 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x02)
                                 {
                                     "PRELOAD_PSTATE", 
-                                    0x23
+                                    0x24
                                 }, 
 
                                 Package (0x02)
                                 {
                                     "PREPARE_PSTATE", 
-                                    0x23
+                                    0x24
                                 }, 
 
                                 Package (0x02)
                                 {
                                     "ABANDON_PSTATE", 
-                                    0x23
+                                    0x24
                                 }
                             }, 
 
@@ -27481,7 +27610,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "FSTATE", 
                                 One, 
-                                Package (0x1A)
+                                Package (0x1B)
                                 {
                                     "ENTER", 
                                     Package (0x02)
@@ -27706,6 +27835,20 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
                                     Package (0x02)
                                     {
+                                        "TLMMGPIO", 
+                                        Package (0x06)
+                                        {
+                                            0x26, 
+                                            One, 
+                                            Zero, 
+                                            Zero, 
+                                            Zero, 
+                                            Zero
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
                                         "PMICVREGVOTE", 
                                         Package (0x08)
                                         {
@@ -27769,7 +27912,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x18)
+                                Package (0x19)
                                 {
                                     "EXIT", 
                                     Package (0x02)
@@ -27969,6 +28112,20 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                         {
                                             0x02, 
                                             One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "TLMMGPIO", 
+                                        Package (0x06)
+                                        {
+                                            0x26, 
+                                            One, 
+                                            One, 
+                                            One, 
+                                            Zero, 
+                                            Zero
                                         }
                                     }, 
 
@@ -28449,7 +28606,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 }
                             }, 
 
-                            Package (0x37)
+                            Package (0x38)
                             {
                                 "PSTATE_SET", 
                                 0x03, 
@@ -28466,7 +28623,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000003AECEF2A0
+                                            0x000000054EFC6400
                                         }
                                     }, 
 
@@ -28479,7 +28636,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000003AECEF2A0
+                                            0x000000054EFC6400
                                         }
                                     }
                                 }, 
@@ -28497,7 +28654,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x0000000396F76EA0
+                                            0x00000003AECEF2A0
                                         }
                                     }, 
 
@@ -28510,7 +28667,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x0000000396F76EA0
+                                            0x00000003AECEF2A0
                                         }
                                     }
                                 }, 
@@ -28528,7 +28685,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x000000037F1FEAA0
+                                            0x0000000396F76EA0
                                         }
                                     }, 
 
@@ -28541,7 +28698,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x000000037F1FEAA0
+                                            0x0000000396F76EA0
                                         }
                                     }
                                 }, 
@@ -28559,7 +28716,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000003674866A0
+                                            0x000000037F1FEAA0
                                         }
                                     }, 
 
@@ -28572,7 +28729,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000003674866A0
+                                            0x000000037F1FEAA0
                                         }
                                     }
                                 }, 
@@ -28590,7 +28747,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x000000034F70E2A0
+                                            0x00000003674866A0
                                         }
                                     }, 
 
@@ -28603,7 +28760,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x000000034F70E2A0
+                                            0x00000003674866A0
                                         }
                                     }
                                 }, 
@@ -28621,7 +28778,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x0000000337995EA0
+                                            0x000000034F70E2A0
                                         }
                                     }, 
 
@@ -28634,7 +28791,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x0000000337995EA0
+                                            0x000000034F70E2A0
                                         }
                                     }
                                 }, 
@@ -28652,7 +28809,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x000000031FC1DAA0
+                                            0x0000000337995EA0
                                         }
                                     }, 
 
@@ -28665,7 +28822,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x000000031FC1DAA0
+                                            0x0000000337995EA0
                                         }
                                     }
                                 }, 
@@ -28683,7 +28840,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x0000000307EA56A0
+                                            0x000000031FC1DAA0
                                         }
                                     }, 
 
@@ -28696,7 +28853,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x0000000307EA56A0
+                                            0x000000031FC1DAA0
                                         }
                                     }
                                 }, 
@@ -28714,7 +28871,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000002F012D2A0
+                                            0x0000000307EA56A0
                                         }
                                     }, 
 
@@ -28727,7 +28884,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000002F012D2A0
+                                            0x0000000307EA56A0
                                         }
                                     }
                                 }, 
@@ -28745,7 +28902,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000002D83B4EA0
+                                            0x00000002F012D2A0
                                         }
                                     }, 
 
@@ -28758,7 +28915,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000002D83B4EA0
+                                            0x00000002F012D2A0
                                         }
                                     }
                                 }, 
@@ -28776,7 +28933,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000002C063CAA0
+                                            0x00000002D83B4EA0
                                         }
                                     }, 
 
@@ -28789,7 +28946,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000002C063CAA0
+                                            0x00000002D83B4EA0
                                         }
                                     }
                                 }, 
@@ -28807,7 +28964,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000002A88C46A0
+                                            0x00000002C063CAA0
                                         }
                                     }, 
 
@@ -28820,7 +28977,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000002A88C46A0
+                                            0x00000002C063CAA0
                                         }
                                     }
                                 }, 
@@ -28838,7 +28995,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x0000000290B4C2A0
+                                            0x00000002A88C46A0
                                         }
                                     }, 
 
@@ -28851,7 +29008,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x0000000290B4C2A0
+                                            0x00000002A88C46A0
                                         }
                                     }
                                 }, 
@@ -28869,7 +29026,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x0000000278DD3EA0
+                                            0x0000000290B4C2A0
                                         }
                                     }, 
 
@@ -28882,7 +29039,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x0000000278DD3EA0
+                                            0x0000000290B4C2A0
                                         }
                                     }
                                 }, 
@@ -28900,7 +29057,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x000000026105BAA0
+                                            0x0000000278DD3EA0
                                         }
                                     }, 
 
@@ -28913,7 +29070,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x000000026105BAA0
+                                            0x0000000278DD3EA0
                                         }
                                     }
                                 }, 
@@ -28931,7 +29088,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x000000025B8E7F80
+                                            0x000000026105BAA0
                                         }
                                     }, 
 
@@ -28944,7 +29101,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x000000025B8E7F80
+                                            0x000000026105BAA0
                                         }
                                     }
                                 }, 
@@ -28962,7 +29119,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x000000023C346000
+                                            0x000000025B8E7F80
                                         }
                                     }, 
 
@@ -28975,7 +29132,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x000000023C346000
+                                            0x000000025B8E7F80
                                         }
                                     }
                                 }, 
@@ -28993,7 +29150,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000002245CDC00
+                                            0x000000023C346000
                                         }
                                     }, 
 
@@ -29006,7 +29163,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000002245CDC00
+                                            0x000000023C346000
                                         }
                                     }
                                 }, 
@@ -29024,7 +29181,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x000000020C855800
+                                            0x00000002245CDC00
                                         }
                                     }, 
 
@@ -29037,7 +29194,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x000000020C855800
+                                            0x00000002245CDC00
                                         }
                                     }
                                 }, 
@@ -29055,7 +29212,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000001F4ADD400
+                                            0x000000020C855800
                                         }
                                     }, 
 
@@ -29068,7 +29225,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000001F4ADD400
+                                            0x000000020C855800
                                         }
                                     }
                                 }, 
@@ -29086,7 +29243,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000001DCD65000
+                                            0x00000001F4ADD400
                                         }
                                     }, 
 
@@ -29099,7 +29256,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000001DCD65000
+                                            0x00000001F4ADD400
                                         }
                                     }
                                 }, 
@@ -29117,7 +29274,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000001C4FECC00
+                                            0x00000001DCD65000
                                         }
                                     }, 
 
@@ -29130,7 +29287,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000001C4FECC00
+                                            0x00000001DCD65000
                                         }
                                     }
                                 }, 
@@ -29148,7 +29305,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000001AD274800
+                                            0x00000001C4FECC00
                                         }
                                     }, 
 
@@ -29161,7 +29318,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000001AD274800
+                                            0x00000001C4FECC00
                                         }
                                     }
                                 }, 
@@ -29179,7 +29336,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000001954FC400
+                                            0x00000001AD274800
                                         }
                                     }, 
 
@@ -29192,7 +29349,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000001954FC400
+                                            0x00000001AD274800
                                         }
                                     }
                                 }, 
@@ -29210,7 +29367,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x000000017D784000
+                                            0x00000001954FC400
                                         }
                                     }, 
 
@@ -29223,7 +29380,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x000000017D784000
+                                            0x00000001954FC400
                                         }
                                     }
                                 }, 
@@ -29241,7 +29398,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x0000000165A0BC00
+                                            0x000000017D784000
                                         }
                                     }, 
 
@@ -29254,7 +29411,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x0000000165A0BC00
+                                            0x000000017D784000
                                         }
                                     }
                                 }, 
@@ -29272,7 +29429,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x000000014DC93800
+                                            0x0000000165A0BC00
                                         }
                                     }, 
 
@@ -29285,7 +29442,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x000000014DC93800
+                                            0x0000000165A0BC00
                                         }
                                     }
                                 }, 
@@ -29303,7 +29460,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x0000000135F1B400
+                                            0x000000014DC93800
                                         }
                                     }, 
 
@@ -29316,7 +29473,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x0000000135F1B400
+                                            0x000000014DC93800
                                         }
                                     }
                                 }, 
@@ -29334,7 +29491,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x000000011E1A3000
+                                            0x0000000135F1B400
                                         }
                                     }, 
 
@@ -29347,7 +29504,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x000000011E1A3000
+                                            0x0000000135F1B400
                                         }
                                     }
                                 }, 
@@ -29365,7 +29522,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x000000010642AC00
+                                            0x000000011E1A3000
                                         }
                                     }, 
 
@@ -29378,7 +29535,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x000000010642AC00
+                                            0x000000011E1A3000
                                         }
                                     }
                                 }, 
@@ -29396,7 +29553,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0xEE6B2800
+                                            0x000000010642AC00
                                         }
                                     }, 
 
@@ -29409,7 +29566,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0xEE6B2800
+                                            0x000000010642AC00
                                         }
                                     }
                                 }, 
@@ -29427,7 +29584,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0xD693A400
+                                            0xEE6B2800
                                         }
                                     }, 
 
@@ -29440,7 +29597,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0xD693A400
+                                            0xEE6B2800
                                         }
                                     }
                                 }, 
@@ -29458,7 +29615,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0xBEBC2000
+                                            0xD693A400
                                         }
                                     }, 
 
@@ -29471,7 +29628,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0xBEBC2000
+                                            0xD693A400
                                         }
                                     }
                                 }, 
@@ -29489,7 +29646,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0xA6E49C00
+                                            0xBEBC2000
                                         }
                                     }, 
 
@@ -29502,7 +29659,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0xA6E49C00
+                                            0xBEBC2000
                                         }
                                     }
                                 }, 
@@ -29520,7 +29677,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x8F0D1800
+                                            0xA6E49C00
                                         }
                                     }, 
 
@@ -29533,7 +29690,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x8F0D1800
+                                            0xA6E49C00
                                         }
                                     }
                                 }, 
@@ -29551,7 +29708,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x77359400
+                                            0x8F0D1800
                                         }
                                     }, 
 
@@ -29564,7 +29721,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x77359400
+                                            0x8F0D1800
                                         }
                                     }
                                 }, 
@@ -29582,7 +29739,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x5F5E1000
+                                            0x77359400
                                         }
                                     }, 
 
@@ -29595,7 +29752,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x5F5E1000
+                                            0x77359400
                                         }
                                     }
                                 }, 
@@ -29613,7 +29770,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x59682F00
+                                            0x5F5E1000
                                         }
                                     }, 
 
@@ -29626,7 +29783,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x59682F00
+                                            0x5F5E1000
                                         }
                                     }
                                 }, 
@@ -29644,7 +29801,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x53724E00
+                                            0x59682F00
                                         }
                                     }, 
 
@@ -29657,7 +29814,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x53724E00
+                                            0x59682F00
                                         }
                                     }
                                 }, 
@@ -29675,7 +29832,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x4D7C6D00
+                                            0x53724E00
                                         }
                                     }, 
 
@@ -29688,7 +29845,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x4D7C6D00
+                                            0x53724E00
                                         }
                                     }
                                 }, 
@@ -29706,7 +29863,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x47868C00
+                                            0x4D7C6D00
                                         }
                                     }, 
 
@@ -29719,7 +29876,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x47868C00
+                                            0x4D7C6D00
                                         }
                                     }
                                 }, 
@@ -29737,7 +29894,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x4190AB00
+                                            0x47868C00
                                         }
                                     }, 
 
@@ -29750,7 +29907,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x4190AB00
+                                            0x47868C00
                                         }
                                     }
                                 }, 
@@ -29768,7 +29925,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x3B9ACA00
+                                            0x4190AB00
                                         }
                                     }, 
 
@@ -29781,7 +29938,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x3B9ACA00
+                                            0x4190AB00
                                         }
                                     }
                                 }, 
@@ -29799,7 +29956,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x35A4E900
+                                            0x3B9ACA00
                                         }
                                     }, 
 
@@ -29812,7 +29969,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x35A4E900
+                                            0x3B9ACA00
                                         }
                                     }
                                 }, 
@@ -29830,7 +29987,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x2FAF0800
+                                            0x35A4E900
                                         }
                                     }, 
 
@@ -29843,7 +30000,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x2FAF0800
+                                            0x35A4E900
                                         }
                                     }
                                 }, 
@@ -29861,7 +30018,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x29B92700
+                                            0x2FAF0800
                                         }
                                     }, 
 
@@ -29874,7 +30031,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x29B92700
+                                            0x2FAF0800
                                         }
                                     }
                                 }, 
@@ -29892,7 +30049,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x23C34600
+                                            0x29B92700
                                         }
                                     }, 
 
@@ -29905,7 +30062,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x23C34600
+                                            0x29B92700
                                         }
                                     }
                                 }, 
@@ -29923,6 +30080,37 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
+                                            0x23C34600
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "BUSARB", 
+                                        Package (0x05)
+                                        {
+                                            0x03, 
+                                            "ICBID_MASTER_MNOC_HF_MEM_NOC", 
+                                            "ICBID_SLAVE_EBI1", 
+                                            Zero, 
+                                            0x23C34600
+                                        }
+                                    }
+                                }, 
+
+                                Package (0x04)
+                                {
+                                    "PSTATE", 
+                                    0x30, 
+                                    Package (0x02)
+                                    {
+                                        "BUSARB", 
+                                        Package (0x05)
+                                        {
+                                            0x03, 
+                                            "ICBID_MASTER_MDP0", 
+                                            "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
+                                            Zero, 
                                             0x1DCD6500
                                         }
                                     }, 
@@ -29944,7 +30132,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x04)
                                 {
                                     "PSTATE", 
-                                    0x30, 
+                                    0x31, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -29975,7 +30163,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x04)
                                 {
                                     "PSTATE", 
-                                    0x31, 
+                                    0x32, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -30006,19 +30194,19 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x02)
                                 {
                                     "PRELOAD_PSTATE", 
-                                    0x23
+                                    0x24
                                 }, 
 
                                 Package (0x02)
                                 {
                                     "PREPARE_PSTATE", 
-                                    0x23
+                                    0x24
                                 }, 
 
                                 Package (0x02)
                                 {
                                     "ABANDON_PSTATE", 
-                                    0x23
+                                    0x24
                                 }
                             }, 
 
@@ -30577,7 +30765,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "FSTATE", 
                                 One, 
-                                Package (0x1A)
+                                Package (0x1B)
                                 {
                                     "ENTER", 
                                     Package (0x02)
@@ -30802,6 +30990,20 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
                                     Package (0x02)
                                     {
+                                        "TLMMGPIO", 
+                                        Package (0x06)
+                                        {
+                                            0x26, 
+                                            One, 
+                                            Zero, 
+                                            Zero, 
+                                            Zero, 
+                                            Zero
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
                                         "PMICVREGVOTE", 
                                         Package (0x08)
                                         {
@@ -30865,7 +31067,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     }
                                 }, 
 
-                                Package (0x18)
+                                Package (0x19)
                                 {
                                     "EXIT", 
                                     Package (0x02)
@@ -31065,6 +31267,20 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                         {
                                             0x02, 
                                             One
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "TLMMGPIO", 
+                                        Package (0x06)
+                                        {
+                                            0x26, 
+                                            One, 
+                                            One, 
+                                            One, 
+                                            Zero, 
+                                            Zero
                                         }
                                     }, 
 
@@ -31545,7 +31761,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 }
                             }, 
 
-                            Package (0x37)
+                            Package (0x38)
                             {
                                 "PSTATE_SET", 
                                 0x03, 
@@ -31562,7 +31778,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000003AECEF2A0
+                                            0x000000054EFC6400
                                         }
                                     }, 
 
@@ -31575,7 +31791,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000003AECEF2A0
+                                            0x000000054EFC6400
                                         }
                                     }
                                 }, 
@@ -31593,7 +31809,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x0000000396F76EA0
+                                            0x00000003AECEF2A0
                                         }
                                     }, 
 
@@ -31606,7 +31822,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x0000000396F76EA0
+                                            0x00000003AECEF2A0
                                         }
                                     }
                                 }, 
@@ -31624,7 +31840,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x000000037F1FEAA0
+                                            0x0000000396F76EA0
                                         }
                                     }, 
 
@@ -31637,7 +31853,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x000000037F1FEAA0
+                                            0x0000000396F76EA0
                                         }
                                     }
                                 }, 
@@ -31655,7 +31871,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000003674866A0
+                                            0x000000037F1FEAA0
                                         }
                                     }, 
 
@@ -31668,7 +31884,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000003674866A0
+                                            0x000000037F1FEAA0
                                         }
                                     }
                                 }, 
@@ -31686,7 +31902,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x000000034F70E2A0
+                                            0x00000003674866A0
                                         }
                                     }, 
 
@@ -31699,7 +31915,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x000000034F70E2A0
+                                            0x00000003674866A0
                                         }
                                     }
                                 }, 
@@ -31717,7 +31933,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x0000000337995EA0
+                                            0x000000034F70E2A0
                                         }
                                     }, 
 
@@ -31730,7 +31946,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x0000000337995EA0
+                                            0x000000034F70E2A0
                                         }
                                     }
                                 }, 
@@ -31748,7 +31964,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x000000031FC1DAA0
+                                            0x0000000337995EA0
                                         }
                                     }, 
 
@@ -31761,7 +31977,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x000000031FC1DAA0
+                                            0x0000000337995EA0
                                         }
                                     }
                                 }, 
@@ -31779,7 +31995,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x0000000307EA56A0
+                                            0x000000031FC1DAA0
                                         }
                                     }, 
 
@@ -31792,7 +32008,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x0000000307EA56A0
+                                            0x000000031FC1DAA0
                                         }
                                     }
                                 }, 
@@ -31810,7 +32026,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000002F012D2A0
+                                            0x0000000307EA56A0
                                         }
                                     }, 
 
@@ -31823,7 +32039,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000002F012D2A0
+                                            0x0000000307EA56A0
                                         }
                                     }
                                 }, 
@@ -31841,7 +32057,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000002D83B4EA0
+                                            0x00000002F012D2A0
                                         }
                                     }, 
 
@@ -31854,7 +32070,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000002D83B4EA0
+                                            0x00000002F012D2A0
                                         }
                                     }
                                 }, 
@@ -31872,7 +32088,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000002C063CAA0
+                                            0x00000002D83B4EA0
                                         }
                                     }, 
 
@@ -31885,7 +32101,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000002C063CAA0
+                                            0x00000002D83B4EA0
                                         }
                                     }
                                 }, 
@@ -31903,7 +32119,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000002A88C46A0
+                                            0x00000002C063CAA0
                                         }
                                     }, 
 
@@ -31916,7 +32132,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000002A88C46A0
+                                            0x00000002C063CAA0
                                         }
                                     }
                                 }, 
@@ -31934,7 +32150,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x0000000290B4C2A0
+                                            0x00000002A88C46A0
                                         }
                                     }, 
 
@@ -31947,7 +32163,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x0000000290B4C2A0
+                                            0x00000002A88C46A0
                                         }
                                     }
                                 }, 
@@ -31965,7 +32181,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x0000000278DD3EA0
+                                            0x0000000290B4C2A0
                                         }
                                     }, 
 
@@ -31978,7 +32194,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x0000000278DD3EA0
+                                            0x0000000290B4C2A0
                                         }
                                     }
                                 }, 
@@ -31996,7 +32212,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x000000026105BAA0
+                                            0x0000000278DD3EA0
                                         }
                                     }, 
 
@@ -32009,7 +32225,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x000000026105BAA0
+                                            0x0000000278DD3EA0
                                         }
                                     }
                                 }, 
@@ -32027,7 +32243,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x000000025B8E7F80
+                                            0x000000026105BAA0
                                         }
                                     }, 
 
@@ -32040,7 +32256,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x000000025B8E7F80
+                                            0x000000026105BAA0
                                         }
                                     }
                                 }, 
@@ -32058,7 +32274,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x000000023C346000
+                                            0x000000025B8E7F80
                                         }
                                     }, 
 
@@ -32071,7 +32287,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x000000023C346000
+                                            0x000000025B8E7F80
                                         }
                                     }
                                 }, 
@@ -32089,7 +32305,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000002245CDC00
+                                            0x000000023C346000
                                         }
                                     }, 
 
@@ -32102,7 +32318,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000002245CDC00
+                                            0x000000023C346000
                                         }
                                     }
                                 }, 
@@ -32120,7 +32336,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x000000020C855800
+                                            0x00000002245CDC00
                                         }
                                     }, 
 
@@ -32133,7 +32349,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x000000020C855800
+                                            0x00000002245CDC00
                                         }
                                     }
                                 }, 
@@ -32151,7 +32367,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000001F4ADD400
+                                            0x000000020C855800
                                         }
                                     }, 
 
@@ -32164,7 +32380,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000001F4ADD400
+                                            0x000000020C855800
                                         }
                                     }
                                 }, 
@@ -32182,7 +32398,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000001DCD65000
+                                            0x00000001F4ADD400
                                         }
                                     }, 
 
@@ -32195,7 +32411,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000001DCD65000
+                                            0x00000001F4ADD400
                                         }
                                     }
                                 }, 
@@ -32213,7 +32429,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000001C4FECC00
+                                            0x00000001DCD65000
                                         }
                                     }, 
 
@@ -32226,7 +32442,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000001C4FECC00
+                                            0x00000001DCD65000
                                         }
                                     }
                                 }, 
@@ -32244,7 +32460,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000001AD274800
+                                            0x00000001C4FECC00
                                         }
                                     }, 
 
@@ -32257,7 +32473,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000001AD274800
+                                            0x00000001C4FECC00
                                         }
                                     }
                                 }, 
@@ -32275,7 +32491,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000001954FC400
+                                            0x00000001AD274800
                                         }
                                     }, 
 
@@ -32288,7 +32504,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000001954FC400
+                                            0x00000001AD274800
                                         }
                                     }
                                 }, 
@@ -32306,7 +32522,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x000000017D784000
+                                            0x00000001954FC400
                                         }
                                     }, 
 
@@ -32319,7 +32535,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x000000017D784000
+                                            0x00000001954FC400
                                         }
                                     }
                                 }, 
@@ -32337,7 +32553,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x0000000165A0BC00
+                                            0x000000017D784000
                                         }
                                     }, 
 
@@ -32350,7 +32566,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x0000000165A0BC00
+                                            0x000000017D784000
                                         }
                                     }
                                 }, 
@@ -32368,7 +32584,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x000000014DC93800
+                                            0x0000000165A0BC00
                                         }
                                     }, 
 
@@ -32381,7 +32597,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x000000014DC93800
+                                            0x0000000165A0BC00
                                         }
                                     }
                                 }, 
@@ -32399,7 +32615,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x0000000135F1B400
+                                            0x000000014DC93800
                                         }
                                     }, 
 
@@ -32412,7 +32628,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x0000000135F1B400
+                                            0x000000014DC93800
                                         }
                                     }
                                 }, 
@@ -32430,7 +32646,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x000000011E1A3000
+                                            0x0000000135F1B400
                                         }
                                     }, 
 
@@ -32443,7 +32659,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x000000011E1A3000
+                                            0x0000000135F1B400
                                         }
                                     }
                                 }, 
@@ -32461,7 +32677,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x000000010642AC00
+                                            0x000000011E1A3000
                                         }
                                     }, 
 
@@ -32474,7 +32690,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x000000010642AC00
+                                            0x000000011E1A3000
                                         }
                                     }
                                 }, 
@@ -32492,7 +32708,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0xEE6B2800
+                                            0x000000010642AC00
                                         }
                                     }, 
 
@@ -32505,7 +32721,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0xEE6B2800
+                                            0x000000010642AC00
                                         }
                                     }
                                 }, 
@@ -32523,7 +32739,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0xD693A400
+                                            0xEE6B2800
                                         }
                                     }, 
 
@@ -32536,7 +32752,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0xD693A400
+                                            0xEE6B2800
                                         }
                                     }
                                 }, 
@@ -32554,7 +32770,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0xBEBC2000
+                                            0xD693A400
                                         }
                                     }, 
 
@@ -32567,7 +32783,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0xBEBC2000
+                                            0xD693A400
                                         }
                                     }
                                 }, 
@@ -32585,7 +32801,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0xA6E49C00
+                                            0xBEBC2000
                                         }
                                     }, 
 
@@ -32598,7 +32814,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0xA6E49C00
+                                            0xBEBC2000
                                         }
                                     }
                                 }, 
@@ -32616,7 +32832,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x8F0D1800
+                                            0xA6E49C00
                                         }
                                     }, 
 
@@ -32629,7 +32845,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x8F0D1800
+                                            0xA6E49C00
                                         }
                                     }
                                 }, 
@@ -32647,7 +32863,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x77359400
+                                            0x8F0D1800
                                         }
                                     }, 
 
@@ -32660,7 +32876,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x77359400
+                                            0x8F0D1800
                                         }
                                     }
                                 }, 
@@ -32678,7 +32894,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x5F5E1000
+                                            0x77359400
                                         }
                                     }, 
 
@@ -32691,7 +32907,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x5F5E1000
+                                            0x77359400
                                         }
                                     }
                                 }, 
@@ -32709,7 +32925,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x59682F00
+                                            0x5F5E1000
                                         }
                                     }, 
 
@@ -32722,7 +32938,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x59682F00
+                                            0x5F5E1000
                                         }
                                     }
                                 }, 
@@ -32740,7 +32956,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x53724E00
+                                            0x59682F00
                                         }
                                     }, 
 
@@ -32753,7 +32969,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x53724E00
+                                            0x59682F00
                                         }
                                     }
                                 }, 
@@ -32771,7 +32987,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x4D7C6D00
+                                            0x53724E00
                                         }
                                     }, 
 
@@ -32784,7 +33000,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x4D7C6D00
+                                            0x53724E00
                                         }
                                     }
                                 }, 
@@ -32802,7 +33018,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x47868C00
+                                            0x4D7C6D00
                                         }
                                     }, 
 
@@ -32815,7 +33031,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x47868C00
+                                            0x4D7C6D00
                                         }
                                     }
                                 }, 
@@ -32833,7 +33049,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x4190AB00
+                                            0x47868C00
                                         }
                                     }, 
 
@@ -32846,7 +33062,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x4190AB00
+                                            0x47868C00
                                         }
                                     }
                                 }, 
@@ -32864,7 +33080,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x3B9ACA00
+                                            0x4190AB00
                                         }
                                     }, 
 
@@ -32877,7 +33093,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x3B9ACA00
+                                            0x4190AB00
                                         }
                                     }
                                 }, 
@@ -32895,7 +33111,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x35A4E900
+                                            0x3B9ACA00
                                         }
                                     }, 
 
@@ -32908,7 +33124,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x35A4E900
+                                            0x3B9ACA00
                                         }
                                     }
                                 }, 
@@ -32926,7 +33142,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x2FAF0800
+                                            0x35A4E900
                                         }
                                     }, 
 
@@ -32939,7 +33155,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x2FAF0800
+                                            0x35A4E900
                                         }
                                     }
                                 }, 
@@ -32957,7 +33173,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x29B92700
+                                            0x2FAF0800
                                         }
                                     }, 
 
@@ -32970,7 +33186,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x29B92700
+                                            0x2FAF0800
                                         }
                                     }
                                 }, 
@@ -32988,7 +33204,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x23C34600
+                                            0x29B92700
                                         }
                                     }, 
 
@@ -33001,7 +33217,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x23C34600
+                                            0x29B92700
                                         }
                                     }
                                 }, 
@@ -33019,6 +33235,37 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
+                                            0x23C34600
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "BUSARB", 
+                                        Package (0x05)
+                                        {
+                                            0x03, 
+                                            "ICBID_MASTER_MNOC_HF_MEM_NOC", 
+                                            "ICBID_SLAVE_EBI1", 
+                                            Zero, 
+                                            0x23C34600
+                                        }
+                                    }
+                                }, 
+
+                                Package (0x04)
+                                {
+                                    "PSTATE", 
+                                    0x30, 
+                                    Package (0x02)
+                                    {
+                                        "BUSARB", 
+                                        Package (0x05)
+                                        {
+                                            0x03, 
+                                            "ICBID_MASTER_MDP0", 
+                                            "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
+                                            Zero, 
                                             0x1DCD6500
                                         }
                                     }, 
@@ -33040,7 +33287,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x04)
                                 {
                                     "PSTATE", 
-                                    0x30, 
+                                    0x31, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -33071,7 +33318,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x04)
                                 {
                                     "PSTATE", 
-                                    0x31, 
+                                    0x32, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -33102,19 +33349,19 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x02)
                                 {
                                     "PRELOAD_PSTATE", 
-                                    0x23
+                                    0x24
                                 }, 
 
                                 Package (0x02)
                                 {
                                     "PREPARE_PSTATE", 
-                                    0x23
+                                    0x24
                                 }, 
 
                                 Package (0x02)
                                 {
                                     "ABANDON_PSTATE", 
-                                    0x23
+                                    0x24
                                 }
                             }, 
 
@@ -35757,7 +36004,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 }
                             }, 
 
-                            Package (0x37)
+                            Package (0x38)
                             {
                                 "PSTATE_SET", 
                                 0x03, 
@@ -35774,7 +36021,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000003AECEF2A0
+                                            0x000000054EFC6400
                                         }
                                     }, 
 
@@ -35787,7 +36034,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000003AECEF2A0
+                                            0x000000054EFC6400
                                         }
                                     }
                                 }, 
@@ -35805,7 +36052,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x0000000396F76EA0
+                                            0x00000003AECEF2A0
                                         }
                                     }, 
 
@@ -35818,7 +36065,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x0000000396F76EA0
+                                            0x00000003AECEF2A0
                                         }
                                     }
                                 }, 
@@ -35836,7 +36083,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x000000037F1FEAA0
+                                            0x0000000396F76EA0
                                         }
                                     }, 
 
@@ -35849,7 +36096,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x000000037F1FEAA0
+                                            0x0000000396F76EA0
                                         }
                                     }
                                 }, 
@@ -35867,7 +36114,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000003674866A0
+                                            0x000000037F1FEAA0
                                         }
                                     }, 
 
@@ -35880,7 +36127,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000003674866A0
+                                            0x000000037F1FEAA0
                                         }
                                     }
                                 }, 
@@ -35898,7 +36145,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x000000034F70E2A0
+                                            0x00000003674866A0
                                         }
                                     }, 
 
@@ -35911,7 +36158,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x000000034F70E2A0
+                                            0x00000003674866A0
                                         }
                                     }
                                 }, 
@@ -35929,7 +36176,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x0000000337995EA0
+                                            0x000000034F70E2A0
                                         }
                                     }, 
 
@@ -35942,7 +36189,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x0000000337995EA0
+                                            0x000000034F70E2A0
                                         }
                                     }
                                 }, 
@@ -35960,7 +36207,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x000000031FC1DAA0
+                                            0x0000000337995EA0
                                         }
                                     }, 
 
@@ -35973,7 +36220,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x000000031FC1DAA0
+                                            0x0000000337995EA0
                                         }
                                     }
                                 }, 
@@ -35991,7 +36238,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x0000000307EA56A0
+                                            0x000000031FC1DAA0
                                         }
                                     }, 
 
@@ -36004,7 +36251,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x0000000307EA56A0
+                                            0x000000031FC1DAA0
                                         }
                                     }
                                 }, 
@@ -36022,7 +36269,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000002F012D2A0
+                                            0x0000000307EA56A0
                                         }
                                     }, 
 
@@ -36035,7 +36282,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000002F012D2A0
+                                            0x0000000307EA56A0
                                         }
                                     }
                                 }, 
@@ -36053,7 +36300,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000002D83B4EA0
+                                            0x00000002F012D2A0
                                         }
                                     }, 
 
@@ -36066,7 +36313,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000002D83B4EA0
+                                            0x00000002F012D2A0
                                         }
                                     }
                                 }, 
@@ -36084,7 +36331,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000002C063CAA0
+                                            0x00000002D83B4EA0
                                         }
                                     }, 
 
@@ -36097,7 +36344,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000002C063CAA0
+                                            0x00000002D83B4EA0
                                         }
                                     }
                                 }, 
@@ -36115,7 +36362,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000002A88C46A0
+                                            0x00000002C063CAA0
                                         }
                                     }, 
 
@@ -36128,7 +36375,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000002A88C46A0
+                                            0x00000002C063CAA0
                                         }
                                     }
                                 }, 
@@ -36146,7 +36393,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x0000000290B4C2A0
+                                            0x00000002A88C46A0
                                         }
                                     }, 
 
@@ -36159,7 +36406,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x0000000290B4C2A0
+                                            0x00000002A88C46A0
                                         }
                                     }
                                 }, 
@@ -36177,7 +36424,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x0000000278DD3EA0
+                                            0x0000000290B4C2A0
                                         }
                                     }, 
 
@@ -36190,7 +36437,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x0000000278DD3EA0
+                                            0x0000000290B4C2A0
                                         }
                                     }
                                 }, 
@@ -36208,7 +36455,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x000000026105BAA0
+                                            0x0000000278DD3EA0
                                         }
                                     }, 
 
@@ -36221,7 +36468,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x000000026105BAA0
+                                            0x0000000278DD3EA0
                                         }
                                     }
                                 }, 
@@ -36239,7 +36486,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x000000025B8E7F80
+                                            0x000000026105BAA0
                                         }
                                     }, 
 
@@ -36252,7 +36499,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x000000025B8E7F80
+                                            0x000000026105BAA0
                                         }
                                     }
                                 }, 
@@ -36270,7 +36517,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x000000023C346000
+                                            0x000000025B8E7F80
                                         }
                                     }, 
 
@@ -36283,7 +36530,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x000000023C346000
+                                            0x000000025B8E7F80
                                         }
                                     }
                                 }, 
@@ -36301,7 +36548,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000002245CDC00
+                                            0x000000023C346000
                                         }
                                     }, 
 
@@ -36314,7 +36561,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000002245CDC00
+                                            0x000000023C346000
                                         }
                                     }
                                 }, 
@@ -36332,7 +36579,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x000000020C855800
+                                            0x00000002245CDC00
                                         }
                                     }, 
 
@@ -36345,7 +36592,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x000000020C855800
+                                            0x00000002245CDC00
                                         }
                                     }
                                 }, 
@@ -36363,7 +36610,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000001F4ADD400
+                                            0x000000020C855800
                                         }
                                     }, 
 
@@ -36376,7 +36623,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000001F4ADD400
+                                            0x000000020C855800
                                         }
                                     }
                                 }, 
@@ -36394,7 +36641,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000001DCD65000
+                                            0x00000001F4ADD400
                                         }
                                     }, 
 
@@ -36407,7 +36654,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000001DCD65000
+                                            0x00000001F4ADD400
                                         }
                                     }
                                 }, 
@@ -36425,7 +36672,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000001C4FECC00
+                                            0x00000001DCD65000
                                         }
                                     }, 
 
@@ -36438,7 +36685,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000001C4FECC00
+                                            0x00000001DCD65000
                                         }
                                     }
                                 }, 
@@ -36456,7 +36703,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000001AD274800
+                                            0x00000001C4FECC00
                                         }
                                     }, 
 
@@ -36469,7 +36716,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000001AD274800
+                                            0x00000001C4FECC00
                                         }
                                     }
                                 }, 
@@ -36487,7 +36734,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x00000001954FC400
+                                            0x00000001AD274800
                                         }
                                     }, 
 
@@ -36500,7 +36747,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x00000001954FC400
+                                            0x00000001AD274800
                                         }
                                     }
                                 }, 
@@ -36518,7 +36765,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x000000017D784000
+                                            0x00000001954FC400
                                         }
                                     }, 
 
@@ -36531,7 +36778,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x000000017D784000
+                                            0x00000001954FC400
                                         }
                                     }
                                 }, 
@@ -36549,7 +36796,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x0000000165A0BC00
+                                            0x000000017D784000
                                         }
                                     }, 
 
@@ -36562,7 +36809,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x0000000165A0BC00
+                                            0x000000017D784000
                                         }
                                     }
                                 }, 
@@ -36580,7 +36827,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x000000014DC93800
+                                            0x0000000165A0BC00
                                         }
                                     }, 
 
@@ -36593,7 +36840,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x000000014DC93800
+                                            0x0000000165A0BC00
                                         }
                                     }
                                 }, 
@@ -36611,7 +36858,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x0000000135F1B400
+                                            0x000000014DC93800
                                         }
                                     }, 
 
@@ -36624,7 +36871,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x0000000135F1B400
+                                            0x000000014DC93800
                                         }
                                     }
                                 }, 
@@ -36642,7 +36889,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x000000011E1A3000
+                                            0x0000000135F1B400
                                         }
                                     }, 
 
@@ -36655,7 +36902,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x000000011E1A3000
+                                            0x0000000135F1B400
                                         }
                                     }
                                 }, 
@@ -36673,7 +36920,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x000000010642AC00
+                                            0x000000011E1A3000
                                         }
                                     }, 
 
@@ -36686,7 +36933,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x000000010642AC00
+                                            0x000000011E1A3000
                                         }
                                     }
                                 }, 
@@ -36704,7 +36951,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0xEE6B2800
+                                            0x000000010642AC00
                                         }
                                     }, 
 
@@ -36717,7 +36964,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0xEE6B2800
+                                            0x000000010642AC00
                                         }
                                     }
                                 }, 
@@ -36735,7 +36982,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0xD693A400
+                                            0xEE6B2800
                                         }
                                     }, 
 
@@ -36748,7 +36995,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0xD693A400
+                                            0xEE6B2800
                                         }
                                     }
                                 }, 
@@ -36766,7 +37013,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0xBEBC2000
+                                            0xD693A400
                                         }
                                     }, 
 
@@ -36779,7 +37026,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0xBEBC2000
+                                            0xD693A400
                                         }
                                     }
                                 }, 
@@ -36797,7 +37044,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0xA6E49C00
+                                            0xBEBC2000
                                         }
                                     }, 
 
@@ -36810,7 +37057,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0xA6E49C00
+                                            0xBEBC2000
                                         }
                                     }
                                 }, 
@@ -36828,7 +37075,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x8F0D1800
+                                            0xA6E49C00
                                         }
                                     }, 
 
@@ -36841,7 +37088,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x8F0D1800
+                                            0xA6E49C00
                                         }
                                     }
                                 }, 
@@ -36859,7 +37106,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x77359400
+                                            0x8F0D1800
                                         }
                                     }, 
 
@@ -36872,7 +37119,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x77359400
+                                            0x8F0D1800
                                         }
                                     }
                                 }, 
@@ -36890,7 +37137,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x5F5E1000
+                                            0x77359400
                                         }
                                     }, 
 
@@ -36903,7 +37150,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x5F5E1000
+                                            0x77359400
                                         }
                                     }
                                 }, 
@@ -36921,7 +37168,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x59682F00
+                                            0x5F5E1000
                                         }
                                     }, 
 
@@ -36934,7 +37181,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x59682F00
+                                            0x5F5E1000
                                         }
                                     }
                                 }, 
@@ -36952,7 +37199,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x53724E00
+                                            0x59682F00
                                         }
                                     }, 
 
@@ -36965,7 +37212,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x53724E00
+                                            0x59682F00
                                         }
                                     }
                                 }, 
@@ -36983,7 +37230,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x4D7C6D00
+                                            0x53724E00
                                         }
                                     }, 
 
@@ -36996,7 +37243,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x4D7C6D00
+                                            0x53724E00
                                         }
                                     }
                                 }, 
@@ -37014,7 +37261,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x47868C00
+                                            0x4D7C6D00
                                         }
                                     }, 
 
@@ -37027,7 +37274,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x47868C00
+                                            0x4D7C6D00
                                         }
                                     }
                                 }, 
@@ -37045,7 +37292,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x4190AB00
+                                            0x47868C00
                                         }
                                     }, 
 
@@ -37058,7 +37305,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x4190AB00
+                                            0x47868C00
                                         }
                                     }
                                 }, 
@@ -37076,7 +37323,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x3B9ACA00
+                                            0x4190AB00
                                         }
                                     }, 
 
@@ -37089,7 +37336,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x3B9ACA00
+                                            0x4190AB00
                                         }
                                     }
                                 }, 
@@ -37107,7 +37354,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x35A4E900
+                                            0x3B9ACA00
                                         }
                                     }, 
 
@@ -37120,7 +37367,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x35A4E900
+                                            0x3B9ACA00
                                         }
                                     }
                                 }, 
@@ -37138,7 +37385,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x2FAF0800
+                                            0x35A4E900
                                         }
                                     }, 
 
@@ -37151,7 +37398,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x2FAF0800
+                                            0x35A4E900
                                         }
                                     }
                                 }, 
@@ -37169,7 +37416,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x29B92700
+                                            0x2FAF0800
                                         }
                                     }, 
 
@@ -37182,7 +37429,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x29B92700
+                                            0x2FAF0800
                                         }
                                     }
                                 }, 
@@ -37200,7 +37447,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
-                                            0x23C34600
+                                            0x29B92700
                                         }
                                     }, 
 
@@ -37213,7 +37460,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MNOC_HF_MEM_NOC", 
                                             "ICBID_SLAVE_EBI1", 
                                             Zero, 
-                                            0x23C34600
+                                            0x29B92700
                                         }
                                     }
                                 }, 
@@ -37231,6 +37478,37 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                             "ICBID_MASTER_MDP0", 
                                             "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
                                             Zero, 
+                                            0x23C34600
+                                        }
+                                    }, 
+
+                                    Package (0x02)
+                                    {
+                                        "BUSARB", 
+                                        Package (0x05)
+                                        {
+                                            0x03, 
+                                            "ICBID_MASTER_MNOC_HF_MEM_NOC", 
+                                            "ICBID_SLAVE_EBI1", 
+                                            Zero, 
+                                            0x23C34600
+                                        }
+                                    }
+                                }, 
+
+                                Package (0x04)
+                                {
+                                    "PSTATE", 
+                                    0x30, 
+                                    Package (0x02)
+                                    {
+                                        "BUSARB", 
+                                        Package (0x05)
+                                        {
+                                            0x03, 
+                                            "ICBID_MASTER_MDP0", 
+                                            "ICBID_SLAVE_MNOC_HF_MEM_NOC", 
+                                            Zero, 
                                             0x1DCD6500
                                         }
                                     }, 
@@ -37252,7 +37530,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x04)
                                 {
                                     "PSTATE", 
-                                    0x30, 
+                                    0x31, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -37283,7 +37561,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x04)
                                 {
                                     "PSTATE", 
-                                    0x31, 
+                                    0x32, 
                                     Package (0x02)
                                     {
                                         "BUSARB", 
@@ -37314,19 +37592,19 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x02)
                                 {
                                     "PRELOAD_PSTATE", 
-                                    0x23
+                                    0x24
                                 }, 
 
                                 Package (0x02)
                                 {
                                     "PREPARE_PSTATE", 
-                                    0x23
+                                    0x24
                                 }, 
 
                                 Package (0x02)
                                 {
                                     "ABANDON_PSTATE", 
-                                    0x23
+                                    0x24
                                 }
                             }, 
 
@@ -73623,21 +73901,21 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             }
                         }, 
 
-                        Package (0x3A)
+                        Package (0x3B)
                         {
                             "PSTATE_SET", 
                             0x04, 
                             "INTERNAL1_EBI_BANDWIDTH", 
                             "*", 
                             "BANDWIDTH", 
-                            0x32, 
-                            0x23, 
+                            0x33, 
+                            0x24, 
                             Zero, 
                             Package (0x04)
                             {
                                 "PSTATE", 
                                 Zero, 
-                                0x00000003AECEF2A0, 
+                                0x000000054EFC6400, 
                                 Zero
                             }, 
 
@@ -73645,7 +73923,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 One, 
-                                0x0000000396F76EA0, 
+                                0x00000003AECEF2A0, 
                                 Zero
                             }, 
 
@@ -73653,7 +73931,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x02, 
-                                0x000000037F1FEAA0, 
+                                0x0000000396F76EA0, 
                                 Zero
                             }, 
 
@@ -73661,7 +73939,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x03, 
-                                0x00000003674866A0, 
+                                0x000000037F1FEAA0, 
                                 Zero
                             }, 
 
@@ -73669,7 +73947,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x04, 
-                                0x000000034F70E2A0, 
+                                0x00000003674866A0, 
                                 Zero
                             }, 
 
@@ -73677,7 +73955,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x05, 
-                                0x0000000337995EA0, 
+                                0x000000034F70E2A0, 
                                 Zero
                             }, 
 
@@ -73685,7 +73963,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x06, 
-                                0x000000031FC1DAA0, 
+                                0x0000000337995EA0, 
                                 Zero
                             }, 
 
@@ -73693,7 +73971,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x07, 
-                                0x0000000307EA56A0, 
+                                0x000000031FC1DAA0, 
                                 Zero
                             }, 
 
@@ -73701,7 +73979,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x08, 
-                                0x00000002F012D2A0, 
+                                0x0000000307EA56A0, 
                                 Zero
                             }, 
 
@@ -73709,7 +73987,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x09, 
-                                0x00000002D83B4EA0, 
+                                0x00000002F012D2A0, 
                                 Zero
                             }, 
 
@@ -73717,7 +73995,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x0A, 
-                                0x00000002C063CAA0, 
+                                0x00000002D83B4EA0, 
                                 Zero
                             }, 
 
@@ -73725,7 +74003,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x0B, 
-                                0x00000002A88C46A0, 
+                                0x00000002C063CAA0, 
                                 Zero
                             }, 
 
@@ -73733,7 +74011,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x0C, 
-                                0x0000000290B4C2A0, 
+                                0x00000002A88C46A0, 
                                 Zero
                             }, 
 
@@ -73741,7 +74019,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x0D, 
-                                0x0000000278DD3EA0, 
+                                0x0000000290B4C2A0, 
                                 Zero
                             }, 
 
@@ -73749,6 +74027,14 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x0E, 
+                                0x0000000278DD3EA0, 
+                                Zero
+                            }, 
+
+                            Package (0x04)
+                            {
+                                "PSTATE", 
+                                0x0F, 
                                 0x000000026105BAA0, 
                                 One
                             }, 
@@ -73756,7 +74042,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x0F, 
+                                0x10, 
                                 0x000000025B8E7F80, 
                                 One
                             }, 
@@ -73764,7 +74050,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x10, 
+                                0x11, 
                                 0x000000023C346000, 
                                 One
                             }, 
@@ -73772,7 +74058,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x11, 
+                                0x12, 
                                 0x00000002245CDC00, 
                                 One
                             }, 
@@ -73780,7 +74066,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x12, 
+                                0x13, 
                                 0x000000020C855800, 
                                 One
                             }, 
@@ -73788,7 +74074,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x13, 
+                                0x14, 
                                 0x00000001F4ADD400, 
                                 One
                             }, 
@@ -73796,7 +74082,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x14, 
+                                0x15, 
                                 0x00000001DCD65000, 
                                 One
                             }, 
@@ -73804,7 +74090,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x15, 
+                                0x16, 
                                 0x00000001C4FECC00, 
                                 One
                             }, 
@@ -73812,7 +74098,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x16, 
+                                0x17, 
                                 0x00000001AD274800, 
                                 One
                             }, 
@@ -73820,7 +74106,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x17, 
+                                0x18, 
                                 0x00000001954FC400, 
                                 One
                             }, 
@@ -73828,7 +74114,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x18, 
+                                0x19, 
                                 0x000000017D784000, 
                                 One
                             }, 
@@ -73836,7 +74122,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x19, 
+                                0x1A, 
                                 0x0000000165A0BC00, 
                                 One
                             }, 
@@ -73844,7 +74130,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x1A, 
+                                0x1B, 
                                 0x000000014DC93800, 
                                 One
                             }, 
@@ -73852,7 +74138,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x1B, 
+                                0x1C, 
                                 0x0000000135F1B400, 
                                 0x02
                             }, 
@@ -73860,7 +74146,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x1C, 
+                                0x1D, 
                                 0x000000011E1A3000, 
                                 0x02
                             }, 
@@ -73868,7 +74154,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x1D, 
+                                0x1E, 
                                 0x000000010642AC00, 
                                 0x02
                             }, 
@@ -73876,7 +74162,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x1E, 
+                                0x1F, 
                                 0xEE6B2800, 
                                 0x02
                             }, 
@@ -73884,7 +74170,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x1F, 
+                                0x20, 
                                 0xD693A400, 
                                 0x02
                             }, 
@@ -73892,7 +74178,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x20, 
+                                0x21, 
                                 0xBEBC2000, 
                                 0x02
                             }, 
@@ -73900,7 +74186,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x21, 
+                                0x22, 
                                 0xA6E49C00, 
                                 0x02
                             }, 
@@ -73908,7 +74194,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x22, 
+                                0x23, 
                                 0x8F0D1800, 
                                 0x02
                             }, 
@@ -73916,7 +74202,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x23, 
+                                0x24, 
                                 0x77359400, 
                                 0x02
                             }, 
@@ -73924,7 +74210,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x24, 
+                                0x25, 
                                 0x5F5E1000, 
                                 0x02
                             }, 
@@ -73932,7 +74218,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x25, 
+                                0x26, 
                                 0x59682F00, 
                                 0x02
                             }, 
@@ -73940,7 +74226,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x26, 
+                                0x27, 
                                 0x53724E00, 
                                 0x02
                             }, 
@@ -73948,7 +74234,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x27, 
+                                0x28, 
                                 0x4D7C6D00, 
                                 0x02
                             }, 
@@ -73956,7 +74242,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x28, 
+                                0x29, 
                                 0x47868C00, 
                                 0x02
                             }, 
@@ -73964,7 +74250,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x29, 
+                                0x2A, 
                                 0x4190AB00, 
                                 0x02
                             }, 
@@ -73972,7 +74258,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x2A, 
+                                0x2B, 
                                 0x3B9ACA00, 
                                 0x02
                             }, 
@@ -73980,7 +74266,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x2B, 
+                                0x2C, 
                                 0x35A4E900, 
                                 0x02
                             }, 
@@ -73988,7 +74274,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x2C, 
+                                0x2D, 
                                 0x2FAF0800, 
                                 0x02
                             }, 
@@ -73996,7 +74282,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x2D, 
+                                0x2E, 
                                 0x29B92700, 
                                 0x02
                             }, 
@@ -74004,7 +74290,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x2E, 
+                                0x2F, 
                                 0x23C34600, 
                                 0x02
                             }, 
@@ -74012,7 +74298,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x2F, 
+                                0x30, 
                                 0x1DCD6500, 
                                 0x02
                             }, 
@@ -74020,7 +74306,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x30, 
+                                0x31, 
                                 0x17D78400, 
                                 0x02
                             }, 
@@ -74028,7 +74314,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x31, 
+                                0x32, 
                                 Zero, 
                                 0x02
                             }
@@ -74404,20 +74690,33 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             }
                         }, 
 
-                        Package (0x40)
+                        Package (0x41)
                         {
                             "PSTATE_SET", 
                             0x03, 
                             "MDPBLT_AXI_BANDWIDTH_CONTROL", 
                             "*", 
                             "BANDWIDTH", 
-                            0x38, 
+                            0x39, 
                             0xFFFFFFFF, 
                             Zero, 
                             Package (0x05)
                             {
                                 "PSTATE", 
                                 Zero, 
+                                0x000000054EFC6400, 
+                                Zero, 
+                                Package (0x02)
+                                {
+                                    "GPU", 
+                                    0x64
+                                }
+                            }, 
+
+                            Package (0x05)
+                            {
+                                "PSTATE", 
+                                One, 
                                 0x00000003AECEF2A0, 
                                 Zero, 
                                 Package (0x02)
@@ -74430,7 +74729,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                One, 
+                                0x02, 
                                 0x0000000396F76EA0, 
                                 Zero, 
                                 Package (0x02)
@@ -74443,7 +74742,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x02, 
+                                0x03, 
                                 0x000000037F1FEAA0, 
                                 Zero, 
                                 Package (0x02)
@@ -74456,7 +74755,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x03, 
+                                0x04, 
                                 0x00000003674866A0, 
                                 Zero, 
                                 Package (0x02)
@@ -74469,7 +74768,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x04, 
+                                0x05, 
                                 0x000000034F70E2A0, 
                                 Zero, 
                                 Package (0x02)
@@ -74482,7 +74781,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x05, 
+                                0x06, 
                                 0x0000000337995EA0, 
                                 Zero, 
                                 Package (0x02)
@@ -74495,7 +74794,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x06, 
+                                0x07, 
                                 0x000000031FC1DAA0, 
                                 Zero, 
                                 Package (0x02)
@@ -74508,7 +74807,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x07, 
+                                0x08, 
                                 0x0000000307EA56A0, 
                                 Zero, 
                                 Package (0x02)
@@ -74521,7 +74820,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x08, 
+                                0x09, 
                                 0x00000002F012D2A0, 
                                 Zero, 
                                 Package (0x02)
@@ -74534,7 +74833,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x09, 
+                                0x0A, 
                                 0x00000002D83B4EA0, 
                                 Zero, 
                                 Package (0x02)
@@ -74547,7 +74846,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x0A, 
+                                0x0B, 
                                 0x00000002C063CAA0, 
                                 Zero, 
                                 Package (0x02)
@@ -74560,7 +74859,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x0B, 
+                                0x0C, 
                                 0x00000002A88C46A0, 
                                 Zero, 
                                 Package (0x02)
@@ -74573,7 +74872,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x0C, 
+                                0x0D, 
                                 0x0000000290B4C2A0, 
                                 Zero, 
                                 Package (0x02)
@@ -74586,7 +74885,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x0D, 
+                                0x0E, 
                                 0x0000000278DD3EA0, 
                                 Zero, 
                                 Package (0x02)
@@ -74599,7 +74898,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x0E, 
+                                0x0F, 
                                 0x000000026105BAA0, 
                                 One, 
                                 Package (0x02)
@@ -74612,7 +74911,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x0F, 
+                                0x10, 
                                 0x00000002492E36A0, 
                                 One, 
                                 Package (0x02)
@@ -74625,7 +74924,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x10, 
+                                0x11, 
                                 0x000000023156B2A0, 
                                 One, 
                                 Package (0x02)
@@ -74638,7 +74937,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x11, 
+                                0x12, 
                                 0x00000002197F2EA0, 
                                 One, 
                                 Package (0x02)
@@ -74651,7 +74950,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x12, 
+                                0x13, 
                                 0x0000000201A7AAA0, 
                                 One, 
                                 Package (0x02)
@@ -74664,7 +74963,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x13, 
+                                0x14, 
                                 0x00000001E9D026A0, 
                                 One, 
                                 Package (0x02)
@@ -74677,7 +74976,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x14, 
+                                0x15, 
                                 0x00000001D1F8A2A0, 
                                 One, 
                                 Package (0x02)
@@ -74690,7 +74989,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x15, 
+                                0x16, 
                                 0x00000001BA211EA0, 
                                 One, 
                                 Package (0x02)
@@ -74703,7 +75002,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x16, 
+                                0x17, 
                                 0x00000001A2499AA0, 
                                 One, 
                                 Package (0x02)
@@ -74716,7 +75015,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x17, 
+                                0x18, 
                                 0x000000018A7216A0, 
                                 One, 
                                 Package (0x02)
@@ -74729,7 +75028,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x18, 
+                                0x19, 
                                 0x00000001729A92A0, 
                                 One, 
                                 Package (0x02)
@@ -74742,7 +75041,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x19, 
+                                0x1A, 
                                 0x000000015AC30EA0, 
                                 One, 
                                 Package (0x02)
@@ -74755,7 +75054,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x1A, 
+                                0x1B, 
                                 0x0000000142EB8AA0, 
                                 0x02, 
                                 Package (0x02)
@@ -74768,7 +75067,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x1B, 
+                                0x1C, 
                                 0x000000012B1406A0, 
                                 0x02, 
                                 Package (0x02)
@@ -74781,7 +75080,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x1C, 
+                                0x1D, 
                                 0x00000001133C82A0, 
                                 0x02, 
                                 Package (0x02)
@@ -74794,7 +75093,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x1D, 
+                                0x1E, 
                                 0xFB64FEA0, 
                                 0x02, 
                                 Package (0x02)
@@ -74807,7 +75106,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x1E, 
+                                0x1F, 
                                 0xE38D7AA0, 
                                 0x02, 
                                 Package (0x02)
@@ -74820,7 +75119,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x1F, 
+                                0x20, 
                                 0xCBB5F6A0, 
                                 0x02, 
                                 Package (0x02)
@@ -74833,7 +75132,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x20, 
+                                0x21, 
                                 0xB3DE72A0, 
                                 0x02, 
                                 Package (0x02)
@@ -74846,7 +75145,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x21, 
+                                0x22, 
                                 0x9C06EEA0, 
                                 0x02, 
                                 Package (0x02)
@@ -74859,7 +75158,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x22, 
+                                0x23, 
                                 0x8F0D1800, 
                                 0x02, 
                                 Package (0x02)
@@ -74872,7 +75171,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x23, 
+                                0x24, 
                                 0x89173700, 
                                 0x02, 
                                 Package (0x02)
@@ -74885,7 +75184,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x24, 
+                                0x25, 
                                 0x83215600, 
                                 0x02, 
                                 Package (0x02)
@@ -74898,7 +75197,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x25, 
+                                0x26, 
                                 0x7D2B7500, 
                                 0x02, 
                                 Package (0x02)
@@ -74911,7 +75210,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x26, 
+                                0x27, 
                                 0x77359400, 
                                 0x02, 
                                 Package (0x02)
@@ -74924,7 +75223,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x27, 
+                                0x28, 
                                 0x713FB300, 
                                 0x02, 
                                 Package (0x02)
@@ -74937,7 +75236,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x28, 
+                                0x29, 
                                 0x6B49D200, 
                                 0x02, 
                                 Package (0x02)
@@ -74950,7 +75249,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x29, 
+                                0x2A, 
                                 0x6553F100, 
                                 0x02, 
                                 Package (0x02)
@@ -74963,7 +75262,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x2A, 
+                                0x2B, 
                                 0x5F5E1000, 
                                 0x02, 
                                 Package (0x02)
@@ -74976,7 +75275,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x2B, 
+                                0x2C, 
                                 0x59682F00, 
                                 0x02, 
                                 Package (0x02)
@@ -74989,7 +75288,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x2C, 
+                                0x2D, 
                                 0x53724E00, 
                                 0x02, 
                                 Package (0x02)
@@ -75002,7 +75301,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x2D, 
+                                0x2E, 
                                 0x4D7C6D00, 
                                 0x02, 
                                 Package (0x02)
@@ -75015,7 +75314,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x2E, 
+                                0x2F, 
                                 0x47868C00, 
                                 0x02, 
                                 Package (0x02)
@@ -75028,7 +75327,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x2F, 
+                                0x30, 
                                 0x4190AB00, 
                                 0x02, 
                                 Package (0x02)
@@ -75041,7 +75340,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x30, 
+                                0x31, 
                                 0x3B9ACA00, 
                                 0x02, 
                                 Package (0x02)
@@ -75054,7 +75353,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x31, 
+                                0x32, 
                                 0x35A4E900, 
                                 0x02, 
                                 Package (0x02)
@@ -75067,7 +75366,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x32, 
+                                0x33, 
                                 0x2FAF0800, 
                                 0x02, 
                                 Package (0x02)
@@ -75080,7 +75379,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x33, 
+                                0x34, 
                                 0x29B92700, 
                                 0x02, 
                                 Package (0x02)
@@ -75093,7 +75392,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x34, 
+                                0x35, 
                                 0x23C34600, 
                                 0x02, 
                                 Package (0x02)
@@ -75106,7 +75405,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x35, 
+                                0x36, 
                                 0x1DCD6500, 
                                 0x02, 
                                 Package (0x02)
@@ -75119,7 +75418,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x36, 
+                                0x37, 
                                 0x17D78400, 
                                 0x02, 
                                 Package (0x02)
@@ -75132,7 +75431,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x37, 
+                                0x38, 
                                 Zero, 
                                 0x02, 
                                 Package (0x02)
@@ -75332,20 +75631,33 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             }
                         }, 
 
-                        Package (0x40)
+                        Package (0x41)
                         {
                             "PSTATE_SET", 
                             0x03, 
                             "ROTATOR_AXI_BANDWIDTH_CONTROL", 
                             "*", 
                             "BANDWIDTH", 
-                            0x38, 
+                            0x39, 
                             0xFFFFFFFF, 
                             Zero, 
                             Package (0x05)
                             {
                                 "PSTATE", 
                                 Zero, 
+                                0x000000054EFC6400, 
+                                Zero, 
+                                Package (0x02)
+                                {
+                                    "GPU", 
+                                    0x64
+                                }
+                            }, 
+
+                            Package (0x05)
+                            {
+                                "PSTATE", 
+                                One, 
                                 0x00000003AECEF2A0, 
                                 Zero, 
                                 Package (0x02)
@@ -75358,7 +75670,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                One, 
+                                0x02, 
                                 0x0000000396F76EA0, 
                                 Zero, 
                                 Package (0x02)
@@ -75371,7 +75683,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x02, 
+                                0x03, 
                                 0x000000037F1FEAA0, 
                                 Zero, 
                                 Package (0x02)
@@ -75384,7 +75696,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x03, 
+                                0x04, 
                                 0x00000003674866A0, 
                                 Zero, 
                                 Package (0x02)
@@ -75397,7 +75709,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x04, 
+                                0x05, 
                                 0x000000034F70E2A0, 
                                 Zero, 
                                 Package (0x02)
@@ -75410,7 +75722,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x05, 
+                                0x06, 
                                 0x0000000337995EA0, 
                                 Zero, 
                                 Package (0x02)
@@ -75423,7 +75735,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x06, 
+                                0x07, 
                                 0x000000031FC1DAA0, 
                                 Zero, 
                                 Package (0x02)
@@ -75436,7 +75748,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x07, 
+                                0x08, 
                                 0x0000000307EA56A0, 
                                 Zero, 
                                 Package (0x02)
@@ -75449,7 +75761,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x08, 
+                                0x09, 
                                 0x00000002F012D2A0, 
                                 Zero, 
                                 Package (0x02)
@@ -75462,7 +75774,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x09, 
+                                0x0A, 
                                 0x00000002D83B4EA0, 
                                 Zero, 
                                 Package (0x02)
@@ -75475,7 +75787,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x0A, 
+                                0x0B, 
                                 0x00000002C063CAA0, 
                                 Zero, 
                                 Package (0x02)
@@ -75488,7 +75800,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x0B, 
+                                0x0C, 
                                 0x00000002A88C46A0, 
                                 Zero, 
                                 Package (0x02)
@@ -75501,7 +75813,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x0C, 
+                                0x0D, 
                                 0x0000000290B4C2A0, 
                                 Zero, 
                                 Package (0x02)
@@ -75514,7 +75826,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x0D, 
+                                0x0E, 
                                 0x0000000278DD3EA0, 
                                 Zero, 
                                 Package (0x02)
@@ -75527,7 +75839,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x0E, 
+                                0x0F, 
                                 0x000000026105BAA0, 
                                 One, 
                                 Package (0x02)
@@ -75540,7 +75852,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x0F, 
+                                0x10, 
                                 0x00000002492E36A0, 
                                 One, 
                                 Package (0x02)
@@ -75553,7 +75865,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x10, 
+                                0x11, 
                                 0x000000023156B2A0, 
                                 One, 
                                 Package (0x02)
@@ -75566,7 +75878,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x11, 
+                                0x12, 
                                 0x00000002197F2EA0, 
                                 One, 
                                 Package (0x02)
@@ -75579,7 +75891,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x12, 
+                                0x13, 
                                 0x0000000201A7AAA0, 
                                 One, 
                                 Package (0x02)
@@ -75592,7 +75904,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x13, 
+                                0x14, 
                                 0x00000001E9D026A0, 
                                 One, 
                                 Package (0x02)
@@ -75605,7 +75917,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x14, 
+                                0x15, 
                                 0x00000001D1F8A2A0, 
                                 One, 
                                 Package (0x02)
@@ -75618,7 +75930,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x15, 
+                                0x16, 
                                 0x00000001BA211EA0, 
                                 One, 
                                 Package (0x02)
@@ -75631,7 +75943,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x16, 
+                                0x17, 
                                 0x00000001A2499AA0, 
                                 One, 
                                 Package (0x02)
@@ -75644,7 +75956,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x17, 
+                                0x18, 
                                 0x000000018A7216A0, 
                                 One, 
                                 Package (0x02)
@@ -75657,7 +75969,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x18, 
+                                0x19, 
                                 0x00000001729A92A0, 
                                 One, 
                                 Package (0x02)
@@ -75670,7 +75982,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x19, 
+                                0x1A, 
                                 0x000000015AC30EA0, 
                                 One, 
                                 Package (0x02)
@@ -75683,7 +75995,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x1A, 
+                                0x1B, 
                                 0x0000000142EB8AA0, 
                                 0x02, 
                                 Package (0x02)
@@ -75696,7 +76008,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x1B, 
+                                0x1C, 
                                 0x000000012B1406A0, 
                                 0x02, 
                                 Package (0x02)
@@ -75709,7 +76021,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x1C, 
+                                0x1D, 
                                 0x00000001133C82A0, 
                                 0x02, 
                                 Package (0x02)
@@ -75722,7 +76034,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x1D, 
+                                0x1E, 
                                 0xFB64FEA0, 
                                 0x02, 
                                 Package (0x02)
@@ -75735,7 +76047,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x1E, 
+                                0x1F, 
                                 0xE38D7AA0, 
                                 0x02, 
                                 Package (0x02)
@@ -75748,7 +76060,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x1F, 
+                                0x20, 
                                 0xCBB5F6A0, 
                                 0x02, 
                                 Package (0x02)
@@ -75761,7 +76073,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x20, 
+                                0x21, 
                                 0xB3DE72A0, 
                                 0x02, 
                                 Package (0x02)
@@ -75774,7 +76086,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x21, 
+                                0x22, 
                                 0x9C06EEA0, 
                                 0x02, 
                                 Package (0x02)
@@ -75787,7 +76099,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x22, 
+                                0x23, 
                                 0x8F0D1800, 
                                 0x02, 
                                 Package (0x02)
@@ -75800,7 +76112,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x23, 
+                                0x24, 
                                 0x89173700, 
                                 0x02, 
                                 Package (0x02)
@@ -75813,7 +76125,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x24, 
+                                0x25, 
                                 0x83215600, 
                                 0x02, 
                                 Package (0x02)
@@ -75826,7 +76138,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x25, 
+                                0x26, 
                                 0x7D2B7500, 
                                 0x02, 
                                 Package (0x02)
@@ -75839,7 +76151,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x26, 
+                                0x27, 
                                 0x77359400, 
                                 0x02, 
                                 Package (0x02)
@@ -75852,7 +76164,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x27, 
+                                0x28, 
                                 0x713FB300, 
                                 0x02, 
                                 Package (0x02)
@@ -75865,7 +76177,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x28, 
+                                0x29, 
                                 0x6B49D200, 
                                 0x02, 
                                 Package (0x02)
@@ -75878,7 +76190,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x29, 
+                                0x2A, 
                                 0x6553F100, 
                                 0x02, 
                                 Package (0x02)
@@ -75891,7 +76203,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x2A, 
+                                0x2B, 
                                 0x5F5E1000, 
                                 0x02, 
                                 Package (0x02)
@@ -75904,7 +76216,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x2B, 
+                                0x2C, 
                                 0x59682F00, 
                                 0x02, 
                                 Package (0x02)
@@ -75917,7 +76229,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x2C, 
+                                0x2D, 
                                 0x53724E00, 
                                 0x02, 
                                 Package (0x02)
@@ -75930,7 +76242,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x2D, 
+                                0x2E, 
                                 0x4D7C6D00, 
                                 0x02, 
                                 Package (0x02)
@@ -75943,7 +76255,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x2E, 
+                                0x2F, 
                                 0x47868C00, 
                                 0x02, 
                                 Package (0x02)
@@ -75956,7 +76268,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x2F, 
+                                0x30, 
                                 0x4190AB00, 
                                 0x02, 
                                 Package (0x02)
@@ -75969,7 +76281,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x30, 
+                                0x31, 
                                 0x3B9ACA00, 
                                 0x02, 
                                 Package (0x02)
@@ -75982,7 +76294,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x31, 
+                                0x32, 
                                 0x35A4E900, 
                                 0x02, 
                                 Package (0x02)
@@ -75995,7 +76307,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x32, 
+                                0x33, 
                                 0x2FAF0800, 
                                 0x02, 
                                 Package (0x02)
@@ -76008,7 +76320,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x33, 
+                                0x34, 
                                 0x29B92700, 
                                 0x02, 
                                 Package (0x02)
@@ -76021,7 +76333,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x34, 
+                                0x35, 
                                 0x23C34600, 
                                 0x02, 
                                 Package (0x02)
@@ -76034,7 +76346,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x35, 
+                                0x36, 
                                 0x1DCD6500, 
                                 0x02, 
                                 Package (0x02)
@@ -76047,7 +76359,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x36, 
+                                0x37, 
                                 0x17D78400, 
                                 0x02, 
                                 Package (0x02)
@@ -76060,7 +76372,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x05)
                             {
                                 "PSTATE", 
-                                0x37, 
+                                0x38, 
                                 Zero, 
                                 0x02, 
                                 Package (0x02)
@@ -78436,21 +78748,21 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             }
                         }, 
 
-                        Package (0x3A)
+                        Package (0x3B)
                         {
                             "PSTATE_SET", 
                             0x04, 
                             "INTERNAL2_EBI_BANDWIDTH", 
                             "*", 
                             "BANDWIDTH", 
-                            0x32, 
-                            0x23, 
+                            0x33, 
+                            0x24, 
                             Zero, 
                             Package (0x04)
                             {
                                 "PSTATE", 
                                 Zero, 
-                                0x00000003AECEF2A0, 
+                                0x000000054EFC6400, 
                                 Zero
                             }, 
 
@@ -78458,7 +78770,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 One, 
-                                0x0000000396F76EA0, 
+                                0x00000003AECEF2A0, 
                                 Zero
                             }, 
 
@@ -78466,7 +78778,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x02, 
-                                0x000000037F1FEAA0, 
+                                0x0000000396F76EA0, 
                                 Zero
                             }, 
 
@@ -78474,7 +78786,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x03, 
-                                0x00000003674866A0, 
+                                0x000000037F1FEAA0, 
                                 Zero
                             }, 
 
@@ -78482,7 +78794,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x04, 
-                                0x000000034F70E2A0, 
+                                0x00000003674866A0, 
                                 Zero
                             }, 
 
@@ -78490,7 +78802,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x05, 
-                                0x0000000337995EA0, 
+                                0x000000034F70E2A0, 
                                 Zero
                             }, 
 
@@ -78498,7 +78810,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x06, 
-                                0x000000031FC1DAA0, 
+                                0x0000000337995EA0, 
                                 Zero
                             }, 
 
@@ -78506,7 +78818,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x07, 
-                                0x0000000307EA56A0, 
+                                0x000000031FC1DAA0, 
                                 Zero
                             }, 
 
@@ -78514,7 +78826,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x08, 
-                                0x00000002F012D2A0, 
+                                0x0000000307EA56A0, 
                                 Zero
                             }, 
 
@@ -78522,7 +78834,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x09, 
-                                0x00000002D83B4EA0, 
+                                0x00000002F012D2A0, 
                                 Zero
                             }, 
 
@@ -78530,7 +78842,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x0A, 
-                                0x00000002C063CAA0, 
+                                0x00000002D83B4EA0, 
                                 Zero
                             }, 
 
@@ -78538,7 +78850,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x0B, 
-                                0x00000002A88C46A0, 
+                                0x00000002C063CAA0, 
                                 Zero
                             }, 
 
@@ -78546,7 +78858,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x0C, 
-                                0x0000000290B4C2A0, 
+                                0x00000002A88C46A0, 
                                 Zero
                             }, 
 
@@ -78554,7 +78866,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x0D, 
-                                0x0000000278DD3EA0, 
+                                0x0000000290B4C2A0, 
                                 Zero
                             }, 
 
@@ -78562,6 +78874,14 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x0E, 
+                                0x0000000278DD3EA0, 
+                                Zero
+                            }, 
+
+                            Package (0x04)
+                            {
+                                "PSTATE", 
+                                0x0F, 
                                 0x000000026105BAA0, 
                                 One
                             }, 
@@ -78569,7 +78889,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x0F, 
+                                0x10, 
                                 0x000000025B8E7F80, 
                                 One
                             }, 
@@ -78577,7 +78897,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x10, 
+                                0x11, 
                                 0x000000023C346000, 
                                 One
                             }, 
@@ -78585,7 +78905,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x11, 
+                                0x12, 
                                 0x00000002245CDC00, 
                                 One
                             }, 
@@ -78593,7 +78913,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x12, 
+                                0x13, 
                                 0x000000020C855800, 
                                 One
                             }, 
@@ -78601,7 +78921,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x13, 
+                                0x14, 
                                 0x00000001F4ADD400, 
                                 One
                             }, 
@@ -78609,7 +78929,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x14, 
+                                0x15, 
                                 0x00000001DCD65000, 
                                 One
                             }, 
@@ -78617,7 +78937,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x15, 
+                                0x16, 
                                 0x00000001C4FECC00, 
                                 One
                             }, 
@@ -78625,7 +78945,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x16, 
+                                0x17, 
                                 0x00000001AD274800, 
                                 One
                             }, 
@@ -78633,7 +78953,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x17, 
+                                0x18, 
                                 0x00000001954FC400, 
                                 One
                             }, 
@@ -78641,7 +78961,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x18, 
+                                0x19, 
                                 0x000000017D784000, 
                                 One
                             }, 
@@ -78649,7 +78969,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x19, 
+                                0x1A, 
                                 0x0000000165A0BC00, 
                                 One
                             }, 
@@ -78657,7 +78977,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x1A, 
+                                0x1B, 
                                 0x000000014DC93800, 
                                 One
                             }, 
@@ -78665,7 +78985,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x1B, 
+                                0x1C, 
                                 0x0000000135F1B400, 
                                 0x02
                             }, 
@@ -78673,7 +78993,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x1C, 
+                                0x1D, 
                                 0x000000011E1A3000, 
                                 0x02
                             }, 
@@ -78681,7 +79001,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x1D, 
+                                0x1E, 
                                 0x000000010642AC00, 
                                 0x02
                             }, 
@@ -78689,7 +79009,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x1E, 
+                                0x1F, 
                                 0xEE6B2800, 
                                 0x02
                             }, 
@@ -78697,7 +79017,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x1F, 
+                                0x20, 
                                 0xD693A400, 
                                 0x02
                             }, 
@@ -78705,7 +79025,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x20, 
+                                0x21, 
                                 0xBEBC2000, 
                                 0x02
                             }, 
@@ -78713,7 +79033,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x21, 
+                                0x22, 
                                 0xA6E49C00, 
                                 0x02
                             }, 
@@ -78721,7 +79041,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x22, 
+                                0x23, 
                                 0x8F0D1800, 
                                 0x02
                             }, 
@@ -78729,7 +79049,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x23, 
+                                0x24, 
                                 0x77359400, 
                                 0x02
                             }, 
@@ -78737,7 +79057,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x24, 
+                                0x25, 
                                 0x5F5E1000, 
                                 0x02
                             }, 
@@ -78745,7 +79065,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x25, 
+                                0x26, 
                                 0x59682F00, 
                                 0x02
                             }, 
@@ -78753,7 +79073,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x26, 
+                                0x27, 
                                 0x53724E00, 
                                 0x02
                             }, 
@@ -78761,7 +79081,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x27, 
+                                0x28, 
                                 0x4D7C6D00, 
                                 0x02
                             }, 
@@ -78769,7 +79089,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x28, 
+                                0x29, 
                                 0x47868C00, 
                                 0x02
                             }, 
@@ -78777,7 +79097,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x29, 
+                                0x2A, 
                                 0x4190AB00, 
                                 0x02
                             }, 
@@ -78785,7 +79105,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x2A, 
+                                0x2B, 
                                 0x3B9ACA00, 
                                 0x02
                             }, 
@@ -78793,7 +79113,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x2B, 
+                                0x2C, 
                                 0x35A4E900, 
                                 0x02
                             }, 
@@ -78801,7 +79121,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x2C, 
+                                0x2D, 
                                 0x2FAF0800, 
                                 0x02
                             }, 
@@ -78809,7 +79129,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x2D, 
+                                0x2E, 
                                 0x29B92700, 
                                 0x02
                             }, 
@@ -78817,7 +79137,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x2E, 
+                                0x2F, 
                                 0x23C34600, 
                                 0x02
                             }, 
@@ -78825,7 +79145,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x2F, 
+                                0x30, 
                                 0x1DCD6500, 
                                 0x02
                             }, 
@@ -78833,7 +79153,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x30, 
+                                0x31, 
                                 0x17D78400, 
                                 0x02
                             }, 
@@ -78841,7 +79161,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x31, 
+                                0x32, 
                                 Zero, 
                                 0x02
                             }
@@ -79055,21 +79375,21 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             }
                         }, 
 
-                        Package (0x3A)
+                        Package (0x3B)
                         {
                             "PSTATE_SET", 
                             0x03, 
                             "EXTERNAL1_EBI_BANDWIDTH", 
                             "*", 
                             "BANDWIDTH", 
-                            0x32, 
-                            0x23, 
+                            0x33, 
+                            0x24, 
                             Zero, 
                             Package (0x04)
                             {
                                 "PSTATE", 
                                 Zero, 
-                                0x00000003AECEF2A0, 
+                                0x000000054EFC6400, 
                                 Zero
                             }, 
 
@@ -79077,7 +79397,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 One, 
-                                0x0000000396F76EA0, 
+                                0x00000003AECEF2A0, 
                                 Zero
                             }, 
 
@@ -79085,7 +79405,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x02, 
-                                0x000000037F1FEAA0, 
+                                0x0000000396F76EA0, 
                                 Zero
                             }, 
 
@@ -79093,7 +79413,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x03, 
-                                0x00000003674866A0, 
+                                0x000000037F1FEAA0, 
                                 Zero
                             }, 
 
@@ -79101,7 +79421,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x04, 
-                                0x000000034F70E2A0, 
+                                0x00000003674866A0, 
                                 Zero
                             }, 
 
@@ -79109,7 +79429,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x05, 
-                                0x0000000337995EA0, 
+                                0x000000034F70E2A0, 
                                 Zero
                             }, 
 
@@ -79117,7 +79437,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x06, 
-                                0x000000031FC1DAA0, 
+                                0x0000000337995EA0, 
                                 Zero
                             }, 
 
@@ -79125,7 +79445,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x07, 
-                                0x0000000307EA56A0, 
+                                0x000000031FC1DAA0, 
                                 Zero
                             }, 
 
@@ -79133,7 +79453,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x08, 
-                                0x00000002F012D2A0, 
+                                0x0000000307EA56A0, 
                                 Zero
                             }, 
 
@@ -79141,7 +79461,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x09, 
-                                0x00000002D83B4EA0, 
+                                0x00000002F012D2A0, 
                                 Zero
                             }, 
 
@@ -79149,7 +79469,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x0A, 
-                                0x00000002C063CAA0, 
+                                0x00000002D83B4EA0, 
                                 Zero
                             }, 
 
@@ -79157,7 +79477,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x0B, 
-                                0x00000002A88C46A0, 
+                                0x00000002C063CAA0, 
                                 Zero
                             }, 
 
@@ -79165,7 +79485,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x0C, 
-                                0x0000000290B4C2A0, 
+                                0x00000002A88C46A0, 
                                 Zero
                             }, 
 
@@ -79173,7 +79493,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x0D, 
-                                0x0000000278DD3EA0, 
+                                0x0000000290B4C2A0, 
                                 Zero
                             }, 
 
@@ -79181,6 +79501,14 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x0E, 
+                                0x0000000278DD3EA0, 
+                                Zero
+                            }, 
+
+                            Package (0x04)
+                            {
+                                "PSTATE", 
+                                0x0F, 
                                 0x000000026105BAA0, 
                                 One
                             }, 
@@ -79188,7 +79516,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x0F, 
+                                0x10, 
                                 0x000000025B8E7F80, 
                                 One
                             }, 
@@ -79196,7 +79524,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x10, 
+                                0x11, 
                                 0x000000023C346000, 
                                 One
                             }, 
@@ -79204,7 +79532,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x11, 
+                                0x12, 
                                 0x00000002245CDC00, 
                                 One
                             }, 
@@ -79212,7 +79540,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x12, 
+                                0x13, 
                                 0x000000020C855800, 
                                 One
                             }, 
@@ -79220,7 +79548,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x13, 
+                                0x14, 
                                 0x00000001F4ADD400, 
                                 One
                             }, 
@@ -79228,7 +79556,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x14, 
+                                0x15, 
                                 0x00000001DCD65000, 
                                 One
                             }, 
@@ -79236,7 +79564,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x15, 
+                                0x16, 
                                 0x00000001C4FECC00, 
                                 One
                             }, 
@@ -79244,7 +79572,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x16, 
+                                0x17, 
                                 0x00000001AD274800, 
                                 One
                             }, 
@@ -79252,7 +79580,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x17, 
+                                0x18, 
                                 0x00000001954FC400, 
                                 One
                             }, 
@@ -79260,7 +79588,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x18, 
+                                0x19, 
                                 0x000000017D784000, 
                                 One
                             }, 
@@ -79268,7 +79596,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x19, 
+                                0x1A, 
                                 0x0000000165A0BC00, 
                                 One
                             }, 
@@ -79276,7 +79604,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x1A, 
+                                0x1B, 
                                 0x000000014DC93800, 
                                 One
                             }, 
@@ -79284,7 +79612,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x1B, 
+                                0x1C, 
                                 0x0000000135F1B400, 
                                 0x02
                             }, 
@@ -79292,7 +79620,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x1C, 
+                                0x1D, 
                                 0x000000011E1A3000, 
                                 0x02
                             }, 
@@ -79300,7 +79628,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x1D, 
+                                0x1E, 
                                 0x000000010642AC00, 
                                 0x02
                             }, 
@@ -79308,7 +79636,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x1E, 
+                                0x1F, 
                                 0xEE6B2800, 
                                 0x02
                             }, 
@@ -79316,7 +79644,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x1F, 
+                                0x20, 
                                 0xD693A400, 
                                 0x02
                             }, 
@@ -79324,7 +79652,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x20, 
+                                0x21, 
                                 0xBEBC2000, 
                                 0x02
                             }, 
@@ -79332,7 +79660,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x21, 
+                                0x22, 
                                 0xA6E49C00, 
                                 0x02
                             }, 
@@ -79340,7 +79668,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x22, 
+                                0x23, 
                                 0x8F0D1800, 
                                 0x02
                             }, 
@@ -79348,7 +79676,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x23, 
+                                0x24, 
                                 0x77359400, 
                                 0x02
                             }, 
@@ -79356,7 +79684,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x24, 
+                                0x25, 
                                 0x5F5E1000, 
                                 0x02
                             }, 
@@ -79364,7 +79692,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x25, 
+                                0x26, 
                                 0x59682F00, 
                                 0x02
                             }, 
@@ -79372,7 +79700,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x26, 
+                                0x27, 
                                 0x53724E00, 
                                 0x02
                             }, 
@@ -79380,7 +79708,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x27, 
+                                0x28, 
                                 0x4D7C6D00, 
                                 0x02
                             }, 
@@ -79388,7 +79716,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x28, 
+                                0x29, 
                                 0x47868C00, 
                                 0x02
                             }, 
@@ -79396,7 +79724,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x29, 
+                                0x2A, 
                                 0x4190AB00, 
                                 0x02
                             }, 
@@ -79404,7 +79732,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x2A, 
+                                0x2B, 
                                 0x3B9ACA00, 
                                 0x02
                             }, 
@@ -79412,7 +79740,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x2B, 
+                                0x2C, 
                                 0x35A4E900, 
                                 0x02
                             }, 
@@ -79420,7 +79748,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x2C, 
+                                0x2D, 
                                 0x2FAF0800, 
                                 0x02
                             }, 
@@ -79428,7 +79756,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x2D, 
+                                0x2E, 
                                 0x29B92700, 
                                 0x02
                             }, 
@@ -79436,7 +79764,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x2E, 
+                                0x2F, 
                                 0x23C34600, 
                                 0x02
                             }, 
@@ -79444,7 +79772,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x2F, 
+                                0x30, 
                                 0x1DCD6500, 
                                 0x02
                             }, 
@@ -79452,7 +79780,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x30, 
+                                0x31, 
                                 0x17D78400, 
                                 0x02
                             }, 
@@ -79460,7 +79788,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x31, 
+                                0x32, 
                                 Zero, 
                                 0x02
                             }
@@ -79731,8 +80059,8 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 Zero, 
-                                0x00000003AECEF2A0, 
-                                Zero
+                                0x77359400, 
+                                0x02
                             }
                         }, 
 
@@ -79987,21 +80315,21 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             }
                         }, 
 
-                        Package (0x3A)
+                        Package (0x3B)
                         {
                             "PSTATE_SET", 
                             0x03, 
                             "EXTERNAL3_EBI_BANDWIDTH", 
                             "*", 
                             "BANDWIDTH", 
-                            0x32, 
-                            0x23, 
+                            0x33, 
+                            0x24, 
                             Zero, 
                             Package (0x04)
                             {
                                 "PSTATE", 
                                 Zero, 
-                                0x00000003AECEF2A0, 
+                                0x000000054EFC6400, 
                                 Zero
                             }, 
 
@@ -80009,7 +80337,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 One, 
-                                0x0000000396F76EA0, 
+                                0x00000003AECEF2A0, 
                                 Zero
                             }, 
 
@@ -80017,7 +80345,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x02, 
-                                0x000000037F1FEAA0, 
+                                0x0000000396F76EA0, 
                                 Zero
                             }, 
 
@@ -80025,7 +80353,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x03, 
-                                0x00000003674866A0, 
+                                0x000000037F1FEAA0, 
                                 Zero
                             }, 
 
@@ -80033,7 +80361,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x04, 
-                                0x000000034F70E2A0, 
+                                0x00000003674866A0, 
                                 Zero
                             }, 
 
@@ -80041,7 +80369,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x05, 
-                                0x0000000337995EA0, 
+                                0x000000034F70E2A0, 
                                 Zero
                             }, 
 
@@ -80049,7 +80377,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x06, 
-                                0x000000031FC1DAA0, 
+                                0x0000000337995EA0, 
                                 Zero
                             }, 
 
@@ -80057,7 +80385,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x07, 
-                                0x0000000307EA56A0, 
+                                0x000000031FC1DAA0, 
                                 Zero
                             }, 
 
@@ -80065,7 +80393,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x08, 
-                                0x00000002F012D2A0, 
+                                0x0000000307EA56A0, 
                                 Zero
                             }, 
 
@@ -80073,7 +80401,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x09, 
-                                0x00000002D83B4EA0, 
+                                0x00000002F012D2A0, 
                                 Zero
                             }, 
 
@@ -80081,7 +80409,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x0A, 
-                                0x00000002C063CAA0, 
+                                0x00000002D83B4EA0, 
                                 Zero
                             }, 
 
@@ -80089,7 +80417,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x0B, 
-                                0x00000002A88C46A0, 
+                                0x00000002C063CAA0, 
                                 Zero
                             }, 
 
@@ -80097,7 +80425,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x0C, 
-                                0x0000000290B4C2A0, 
+                                0x00000002A88C46A0, 
                                 Zero
                             }, 
 
@@ -80105,7 +80433,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x0D, 
-                                0x0000000278DD3EA0, 
+                                0x0000000290B4C2A0, 
                                 Zero
                             }, 
 
@@ -80113,6 +80441,14 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x0E, 
+                                0x0000000278DD3EA0, 
+                                Zero
+                            }, 
+
+                            Package (0x04)
+                            {
+                                "PSTATE", 
+                                0x0F, 
                                 0x000000026105BAA0, 
                                 One
                             }, 
@@ -80120,7 +80456,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x0F, 
+                                0x10, 
                                 0x000000025B8E7F80, 
                                 One
                             }, 
@@ -80128,7 +80464,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x10, 
+                                0x11, 
                                 0x000000023C346000, 
                                 One
                             }, 
@@ -80136,7 +80472,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x11, 
+                                0x12, 
                                 0x00000002245CDC00, 
                                 One
                             }, 
@@ -80144,7 +80480,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x12, 
+                                0x13, 
                                 0x000000020C855800, 
                                 One
                             }, 
@@ -80152,7 +80488,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x13, 
+                                0x14, 
                                 0x00000001F4ADD400, 
                                 One
                             }, 
@@ -80160,7 +80496,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x14, 
+                                0x15, 
                                 0x00000001DCD65000, 
                                 One
                             }, 
@@ -80168,7 +80504,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x15, 
+                                0x16, 
                                 0x00000001C4FECC00, 
                                 One
                             }, 
@@ -80176,7 +80512,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x16, 
+                                0x17, 
                                 0x00000001AD274800, 
                                 One
                             }, 
@@ -80184,7 +80520,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x17, 
+                                0x18, 
                                 0x00000001954FC400, 
                                 One
                             }, 
@@ -80192,7 +80528,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x18, 
+                                0x19, 
                                 0x000000017D784000, 
                                 One
                             }, 
@@ -80200,7 +80536,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x19, 
+                                0x1A, 
                                 0x0000000165A0BC00, 
                                 One
                             }, 
@@ -80208,7 +80544,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x1A, 
+                                0x1B, 
                                 0x000000014DC93800, 
                                 One
                             }, 
@@ -80216,7 +80552,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x1B, 
+                                0x1C, 
                                 0x0000000135F1B400, 
                                 0x02
                             }, 
@@ -80224,7 +80560,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x1C, 
+                                0x1D, 
                                 0x000000011E1A3000, 
                                 0x02
                             }, 
@@ -80232,7 +80568,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x1D, 
+                                0x1E, 
                                 0x000000010642AC00, 
                                 0x02
                             }, 
@@ -80240,7 +80576,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x1E, 
+                                0x1F, 
                                 0xEE6B2800, 
                                 0x02
                             }, 
@@ -80248,7 +80584,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x1F, 
+                                0x20, 
                                 0xD693A400, 
                                 0x02
                             }, 
@@ -80256,7 +80592,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x20, 
+                                0x21, 
                                 0xBEBC2000, 
                                 0x02
                             }, 
@@ -80264,7 +80600,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x21, 
+                                0x22, 
                                 0xA6E49C00, 
                                 0x02
                             }, 
@@ -80272,7 +80608,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x22, 
+                                0x23, 
                                 0x8F0D1800, 
                                 0x02
                             }, 
@@ -80280,7 +80616,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x23, 
+                                0x24, 
                                 0x77359400, 
                                 0x02
                             }, 
@@ -80288,7 +80624,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x24, 
+                                0x25, 
                                 0x5F5E1000, 
                                 0x02
                             }, 
@@ -80296,7 +80632,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x25, 
+                                0x26, 
                                 0x59682F00, 
                                 0x02
                             }, 
@@ -80304,7 +80640,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x26, 
+                                0x27, 
                                 0x53724E00, 
                                 0x02
                             }, 
@@ -80312,7 +80648,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x27, 
+                                0x28, 
                                 0x4D7C6D00, 
                                 0x02
                             }, 
@@ -80320,7 +80656,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x28, 
+                                0x29, 
                                 0x47868C00, 
                                 0x02
                             }, 
@@ -80328,7 +80664,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x29, 
+                                0x2A, 
                                 0x4190AB00, 
                                 0x02
                             }, 
@@ -80336,7 +80672,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x2A, 
+                                0x2B, 
                                 0x3B9ACA00, 
                                 0x02
                             }, 
@@ -80344,7 +80680,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x2B, 
+                                0x2C, 
                                 0x35A4E900, 
                                 0x02
                             }, 
@@ -80352,7 +80688,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x2C, 
+                                0x2D, 
                                 0x2FAF0800, 
                                 0x02
                             }, 
@@ -80360,7 +80696,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x2D, 
+                                0x2E, 
                                 0x29B92700, 
                                 0x02
                             }, 
@@ -80368,7 +80704,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x2E, 
+                                0x2F, 
                                 0x23C34600, 
                                 0x02
                             }, 
@@ -80376,7 +80712,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x2F, 
+                                0x30, 
                                 0x1DCD6500, 
                                 0x02
                             }, 
@@ -80384,7 +80720,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x30, 
+                                0x31, 
                                 0x17D78400, 
                                 0x02
                             }, 
@@ -80392,7 +80728,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x31, 
+                                0x32, 
                                 Zero, 
                                 0x02
                             }
@@ -80649,21 +80985,21 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             }
                         }, 
 
-                        Package (0x3A)
+                        Package (0x3B)
                         {
                             "PSTATE_SET", 
                             0x03, 
                             "EXTERNAL4_EBI_BANDWIDTH", 
                             "*", 
                             "BANDWIDTH", 
-                            0x32, 
-                            0x23, 
+                            0x33, 
+                            0x24, 
                             Zero, 
                             Package (0x04)
                             {
                                 "PSTATE", 
                                 Zero, 
-                                0x00000003AECEF2A0, 
+                                0x000000054EFC6400, 
                                 Zero
                             }, 
 
@@ -80671,7 +81007,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 One, 
-                                0x0000000396F76EA0, 
+                                0x00000003AECEF2A0, 
                                 Zero
                             }, 
 
@@ -80679,7 +81015,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x02, 
-                                0x000000037F1FEAA0, 
+                                0x0000000396F76EA0, 
                                 Zero
                             }, 
 
@@ -80687,7 +81023,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x03, 
-                                0x00000003674866A0, 
+                                0x000000037F1FEAA0, 
                                 Zero
                             }, 
 
@@ -80695,7 +81031,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x04, 
-                                0x000000034F70E2A0, 
+                                0x00000003674866A0, 
                                 Zero
                             }, 
 
@@ -80703,7 +81039,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x05, 
-                                0x0000000337995EA0, 
+                                0x000000034F70E2A0, 
                                 Zero
                             }, 
 
@@ -80711,7 +81047,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x06, 
-                                0x000000031FC1DAA0, 
+                                0x0000000337995EA0, 
                                 Zero
                             }, 
 
@@ -80719,7 +81055,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x07, 
-                                0x0000000307EA56A0, 
+                                0x000000031FC1DAA0, 
                                 Zero
                             }, 
 
@@ -80727,7 +81063,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x08, 
-                                0x00000002F012D2A0, 
+                                0x0000000307EA56A0, 
                                 Zero
                             }, 
 
@@ -80735,7 +81071,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x09, 
-                                0x00000002D83B4EA0, 
+                                0x00000002F012D2A0, 
                                 Zero
                             }, 
 
@@ -80743,7 +81079,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x0A, 
-                                0x00000002C063CAA0, 
+                                0x00000002D83B4EA0, 
                                 Zero
                             }, 
 
@@ -80751,7 +81087,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x0B, 
-                                0x00000002A88C46A0, 
+                                0x00000002C063CAA0, 
                                 Zero
                             }, 
 
@@ -80759,7 +81095,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x0C, 
-                                0x0000000290B4C2A0, 
+                                0x00000002A88C46A0, 
                                 Zero
                             }, 
 
@@ -80767,7 +81103,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x0D, 
-                                0x0000000278DD3EA0, 
+                                0x0000000290B4C2A0, 
                                 Zero
                             }, 
 
@@ -80775,6 +81111,14 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x0E, 
+                                0x0000000278DD3EA0, 
+                                Zero
+                            }, 
+
+                            Package (0x04)
+                            {
+                                "PSTATE", 
+                                0x0F, 
                                 0x000000026105BAA0, 
                                 One
                             }, 
@@ -80782,7 +81126,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x0F, 
+                                0x10, 
                                 0x000000025B8E7F80, 
                                 One
                             }, 
@@ -80790,7 +81134,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x10, 
+                                0x11, 
                                 0x000000023C346000, 
                                 One
                             }, 
@@ -80798,7 +81142,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x11, 
+                                0x12, 
                                 0x00000002245CDC00, 
                                 One
                             }, 
@@ -80806,7 +81150,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x12, 
+                                0x13, 
                                 0x000000020C855800, 
                                 One
                             }, 
@@ -80814,7 +81158,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x13, 
+                                0x14, 
                                 0x00000001F4ADD400, 
                                 One
                             }, 
@@ -80822,7 +81166,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x14, 
+                                0x15, 
                                 0x00000001DCD65000, 
                                 One
                             }, 
@@ -80830,7 +81174,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x15, 
+                                0x16, 
                                 0x00000001C4FECC00, 
                                 One
                             }, 
@@ -80838,7 +81182,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x16, 
+                                0x17, 
                                 0x00000001AD274800, 
                                 One
                             }, 
@@ -80846,7 +81190,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x17, 
+                                0x18, 
                                 0x00000001954FC400, 
                                 One
                             }, 
@@ -80854,7 +81198,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x18, 
+                                0x19, 
                                 0x000000017D784000, 
                                 One
                             }, 
@@ -80862,7 +81206,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x19, 
+                                0x1A, 
                                 0x0000000165A0BC00, 
                                 One
                             }, 
@@ -80870,7 +81214,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x1A, 
+                                0x1B, 
                                 0x000000014DC93800, 
                                 One
                             }, 
@@ -80878,7 +81222,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x1B, 
+                                0x1C, 
                                 0x0000000135F1B400, 
                                 0x02
                             }, 
@@ -80886,7 +81230,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x1C, 
+                                0x1D, 
                                 0x000000011E1A3000, 
                                 0x02
                             }, 
@@ -80894,7 +81238,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x1D, 
+                                0x1E, 
                                 0x000000010642AC00, 
                                 0x02
                             }, 
@@ -80902,7 +81246,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x1E, 
+                                0x1F, 
                                 0xEE6B2800, 
                                 0x02
                             }, 
@@ -80910,7 +81254,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x1F, 
+                                0x20, 
                                 0xD693A400, 
                                 0x02
                             }, 
@@ -80918,7 +81262,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x20, 
+                                0x21, 
                                 0xBEBC2000, 
                                 0x02
                             }, 
@@ -80926,7 +81270,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x21, 
+                                0x22, 
                                 0xA6E49C00, 
                                 0x02
                             }, 
@@ -80934,7 +81278,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x22, 
+                                0x23, 
                                 0x8F0D1800, 
                                 0x02
                             }, 
@@ -80942,7 +81286,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x23, 
+                                0x24, 
                                 0x77359400, 
                                 0x02
                             }, 
@@ -80950,7 +81294,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x24, 
+                                0x25, 
                                 0x5F5E1000, 
                                 0x02
                             }, 
@@ -80958,7 +81302,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x25, 
+                                0x26, 
                                 0x59682F00, 
                                 0x02
                             }, 
@@ -80966,7 +81310,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x26, 
+                                0x27, 
                                 0x53724E00, 
                                 0x02
                             }, 
@@ -80974,7 +81318,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x27, 
+                                0x28, 
                                 0x4D7C6D00, 
                                 0x02
                             }, 
@@ -80982,7 +81326,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x28, 
+                                0x29, 
                                 0x47868C00, 
                                 0x02
                             }, 
@@ -80990,7 +81334,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x29, 
+                                0x2A, 
                                 0x4190AB00, 
                                 0x02
                             }, 
@@ -80998,7 +81342,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x2A, 
+                                0x2B, 
                                 0x3B9ACA00, 
                                 0x02
                             }, 
@@ -81006,7 +81350,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x2B, 
+                                0x2C, 
                                 0x35A4E900, 
                                 0x02
                             }, 
@@ -81014,7 +81358,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x2C, 
+                                0x2D, 
                                 0x2FAF0800, 
                                 0x02
                             }, 
@@ -81022,7 +81366,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x2D, 
+                                0x2E, 
                                 0x29B92700, 
                                 0x02
                             }, 
@@ -81030,7 +81374,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x2E, 
+                                0x2F, 
                                 0x23C34600, 
                                 0x02
                             }, 
@@ -81038,7 +81382,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x2F, 
+                                0x30, 
                                 0x1DCD6500, 
                                 0x02
                             }, 
@@ -81046,7 +81390,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x30, 
+                                0x31, 
                                 0x17D78400, 
                                 0x02
                             }, 
@@ -81054,7 +81398,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x31, 
+                                0x32, 
                                 Zero, 
                                 0x02
                             }
@@ -81325,8 +81669,8 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 Zero, 
-                                0x00000003AECEF2A0, 
-                                Zero
+                                0x77359400, 
+                                0x02
                             }
                         }, 
 
@@ -81581,21 +81925,21 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             }
                         }, 
 
-                        Package (0x3A)
+                        Package (0x3B)
                         {
                             "PSTATE_SET", 
                             0x03, 
                             "EXTERNAL6_EBI_BANDWIDTH", 
                             "*", 
                             "BANDWIDTH", 
-                            0x32, 
-                            0x23, 
+                            0x33, 
+                            0x24, 
                             Zero, 
                             Package (0x04)
                             {
                                 "PSTATE", 
                                 Zero, 
-                                0x00000003AECEF2A0, 
+                                0x000000054EFC6400, 
                                 Zero
                             }, 
 
@@ -81603,7 +81947,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 One, 
-                                0x0000000396F76EA0, 
+                                0x00000003AECEF2A0, 
                                 Zero
                             }, 
 
@@ -81611,7 +81955,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x02, 
-                                0x000000037F1FEAA0, 
+                                0x0000000396F76EA0, 
                                 Zero
                             }, 
 
@@ -81619,7 +81963,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x03, 
-                                0x00000003674866A0, 
+                                0x000000037F1FEAA0, 
                                 Zero
                             }, 
 
@@ -81627,7 +81971,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x04, 
-                                0x000000034F70E2A0, 
+                                0x00000003674866A0, 
                                 Zero
                             }, 
 
@@ -81635,7 +81979,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x05, 
-                                0x0000000337995EA0, 
+                                0x000000034F70E2A0, 
                                 Zero
                             }, 
 
@@ -81643,7 +81987,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x06, 
-                                0x000000031FC1DAA0, 
+                                0x0000000337995EA0, 
                                 Zero
                             }, 
 
@@ -81651,7 +81995,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x07, 
-                                0x0000000307EA56A0, 
+                                0x000000031FC1DAA0, 
                                 Zero
                             }, 
 
@@ -81659,7 +82003,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x08, 
-                                0x00000002F012D2A0, 
+                                0x0000000307EA56A0, 
                                 Zero
                             }, 
 
@@ -81667,7 +82011,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x09, 
-                                0x00000002D83B4EA0, 
+                                0x00000002F012D2A0, 
                                 Zero
                             }, 
 
@@ -81675,7 +82019,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x0A, 
-                                0x00000002C063CAA0, 
+                                0x00000002D83B4EA0, 
                                 Zero
                             }, 
 
@@ -81683,7 +82027,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x0B, 
-                                0x00000002A88C46A0, 
+                                0x00000002C063CAA0, 
                                 Zero
                             }, 
 
@@ -81691,7 +82035,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x0C, 
-                                0x0000000290B4C2A0, 
+                                0x00000002A88C46A0, 
                                 Zero
                             }, 
 
@@ -81699,7 +82043,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x0D, 
-                                0x0000000278DD3EA0, 
+                                0x0000000290B4C2A0, 
                                 Zero
                             }, 
 
@@ -81707,6 +82051,14 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             {
                                 "PSTATE", 
                                 0x0E, 
+                                0x0000000278DD3EA0, 
+                                Zero
+                            }, 
+
+                            Package (0x04)
+                            {
+                                "PSTATE", 
+                                0x0F, 
                                 0x000000026105BAA0, 
                                 One
                             }, 
@@ -81714,7 +82066,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x0F, 
+                                0x10, 
                                 0x000000025B8E7F80, 
                                 One
                             }, 
@@ -81722,7 +82074,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x10, 
+                                0x11, 
                                 0x000000023C346000, 
                                 One
                             }, 
@@ -81730,7 +82082,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x11, 
+                                0x12, 
                                 0x00000002245CDC00, 
                                 One
                             }, 
@@ -81738,7 +82090,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x12, 
+                                0x13, 
                                 0x000000020C855800, 
                                 One
                             }, 
@@ -81746,7 +82098,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x13, 
+                                0x14, 
                                 0x00000001F4ADD400, 
                                 One
                             }, 
@@ -81754,7 +82106,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x14, 
+                                0x15, 
                                 0x00000001DCD65000, 
                                 One
                             }, 
@@ -81762,7 +82114,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x15, 
+                                0x16, 
                                 0x00000001C4FECC00, 
                                 One
                             }, 
@@ -81770,7 +82122,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x16, 
+                                0x17, 
                                 0x00000001AD274800, 
                                 One
                             }, 
@@ -81778,7 +82130,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x17, 
+                                0x18, 
                                 0x00000001954FC400, 
                                 One
                             }, 
@@ -81786,7 +82138,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x18, 
+                                0x19, 
                                 0x000000017D784000, 
                                 One
                             }, 
@@ -81794,7 +82146,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x19, 
+                                0x1A, 
                                 0x0000000165A0BC00, 
                                 One
                             }, 
@@ -81802,7 +82154,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x1A, 
+                                0x1B, 
                                 0x000000014DC93800, 
                                 One
                             }, 
@@ -81810,7 +82162,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x1B, 
+                                0x1C, 
                                 0x0000000135F1B400, 
                                 0x02
                             }, 
@@ -81818,7 +82170,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x1C, 
+                                0x1D, 
                                 0x000000011E1A3000, 
                                 0x02
                             }, 
@@ -81826,7 +82178,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x1D, 
+                                0x1E, 
                                 0x000000010642AC00, 
                                 0x02
                             }, 
@@ -81834,7 +82186,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x1E, 
+                                0x1F, 
                                 0xEE6B2800, 
                                 0x02
                             }, 
@@ -81842,7 +82194,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x1F, 
+                                0x20, 
                                 0xD693A400, 
                                 0x02
                             }, 
@@ -81850,7 +82202,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x20, 
+                                0x21, 
                                 0xBEBC2000, 
                                 0x02
                             }, 
@@ -81858,7 +82210,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x21, 
+                                0x22, 
                                 0xA6E49C00, 
                                 0x02
                             }, 
@@ -81866,7 +82218,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x22, 
+                                0x23, 
                                 0x8F0D1800, 
                                 0x02
                             }, 
@@ -81874,7 +82226,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x23, 
+                                0x24, 
                                 0x77359400, 
                                 0x02
                             }, 
@@ -81882,7 +82234,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x24, 
+                                0x25, 
                                 0x5F5E1000, 
                                 0x02
                             }, 
@@ -81890,7 +82242,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x25, 
+                                0x26, 
                                 0x59682F00, 
                                 0x02
                             }, 
@@ -81898,7 +82250,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x26, 
+                                0x27, 
                                 0x53724E00, 
                                 0x02
                             }, 
@@ -81906,7 +82258,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x27, 
+                                0x28, 
                                 0x4D7C6D00, 
                                 0x02
                             }, 
@@ -81914,7 +82266,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x28, 
+                                0x29, 
                                 0x47868C00, 
                                 0x02
                             }, 
@@ -81922,7 +82274,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x29, 
+                                0x2A, 
                                 0x4190AB00, 
                                 0x02
                             }, 
@@ -81930,7 +82282,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x2A, 
+                                0x2B, 
                                 0x3B9ACA00, 
                                 0x02
                             }, 
@@ -81938,7 +82290,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x2B, 
+                                0x2C, 
                                 0x35A4E900, 
                                 0x02
                             }, 
@@ -81946,7 +82298,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x2C, 
+                                0x2D, 
                                 0x2FAF0800, 
                                 0x02
                             }, 
@@ -81954,7 +82306,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x2D, 
+                                0x2E, 
                                 0x29B92700, 
                                 0x02
                             }, 
@@ -81962,7 +82314,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x2E, 
+                                0x2F, 
                                 0x23C34600, 
                                 0x02
                             }, 
@@ -81970,7 +82322,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x2F, 
+                                0x30, 
                                 0x1DCD6500, 
                                 0x02
                             }, 
@@ -81978,7 +82330,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x30, 
+                                0x31, 
                                 0x17D78400, 
                                 0x02
                             }, 
@@ -81986,7 +82338,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             Package (0x04)
                             {
                                 "PSTATE", 
-                                0x31, 
+                                0x32, 
                                 Zero, 
                                 0x02
                             }
@@ -83738,7 +84090,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     /* 0F80 */  0x0A, 0x20, 0x20, 0x20, 0x20, 0x3C, 0x44, 0x53,  // .    <DS
                     /* 0F88 */  0x49, 0x42, 0x69, 0x74, 0x43, 0x6C, 0x6F, 0x63,  // IBitCloc
                     /* 0F90 */  0x6B, 0x46, 0x72, 0x65, 0x71, 0x75, 0x65, 0x6E,  // kFrequen
-                    /* 0F98 */  0x63, 0x79, 0x3E, 0x35, 0x30, 0x30, 0x30, 0x30,  // cy>50000
+                    /* 0F98 */  0x63, 0x79, 0x3E, 0x37, 0x30, 0x30, 0x30, 0x30,  // cy>70000
                     /* 0FA0 */  0x30, 0x30, 0x30, 0x30, 0x3C, 0x2F, 0x44, 0x53,  // 0000</DS
                     /* 0FA8 */  0x49, 0x42, 0x69, 0x74, 0x43, 0x6C, 0x6F, 0x63,  // IBitCloc
                     /* 0FB0 */  0x6B, 0x46, 0x72, 0x65, 0x71, 0x75, 0x65, 0x6E,  // kFrequen
@@ -84703,7 +85055,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     /* 0F80 */  0x0A, 0x20, 0x20, 0x20, 0x20, 0x3C, 0x44, 0x53,  // .    <DS
                     /* 0F88 */  0x49, 0x42, 0x69, 0x74, 0x43, 0x6C, 0x6F, 0x63,  // IBitCloc
                     /* 0F90 */  0x6B, 0x46, 0x72, 0x65, 0x71, 0x75, 0x65, 0x6E,  // kFrequen
-                    /* 0F98 */  0x63, 0x79, 0x3E, 0x35, 0x30, 0x30, 0x30, 0x30,  // cy>50000
+                    /* 0F98 */  0x63, 0x79, 0x3E, 0x37, 0x30, 0x30, 0x30, 0x30,  // cy>70000
                     /* 0FA0 */  0x30, 0x30, 0x30, 0x30, 0x3C, 0x2F, 0x44, 0x53,  // 0000</DS
                     /* 0FA8 */  0x49, 0x42, 0x69, 0x74, 0x43, 0x6C, 0x6F, 0x63,  // IBitCloc
                     /* 0FB0 */  0x6B, 0x46, 0x72, 0x65, 0x71, 0x75, 0x65, 0x6E,  // kFrequen
