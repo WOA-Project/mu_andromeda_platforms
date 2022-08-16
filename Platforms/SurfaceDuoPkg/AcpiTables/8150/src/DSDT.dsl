@@ -45240,11 +45240,11 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                 {
                     "DEVICE", 
                     "\\_SB.CAMP", 
-                    Package (0x0D)
+                    Package (0x0F)
                     {
                         "COMPONENT", 
                         Zero, 
-                        Package (0x20)
+                        Package (0x22)
                         {
                             "FSTATE", 
                             Zero, 
@@ -45294,28 +45294,8 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 "PSTATE_ADJUST", 
                                 Package (0x02)
                                 {
-                                    0x02, 
-                                    0x23
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "PSTATE_ADJUST", 
-                                Package (0x02)
-                                {
-                                    0x03, 
-                                    0x23
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "PSTATE_ADJUST", 
-                                Package (0x02)
-                                {
                                     0x04, 
-                                    0x18
+                                    0x23
                                 }
                             }, 
 
@@ -45325,7 +45305,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x02)
                                 {
                                     0x05, 
-                                    0x18
+                                    0x23
                                 }
                             }, 
 
@@ -45345,6 +45325,26 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x02)
                                 {
                                     0x07, 
+                                    0x18
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "PSTATE_ADJUST", 
+                                Package (0x02)
+                                {
+                                    0x08, 
+                                    0x18
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "PSTATE_ADJUST", 
+                                Package (0x02)
+                                {
+                                    0x09, 
                                     0x18
                                 }
                             }, 
@@ -45425,6 +45425,26 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x02)
                                 {
                                     One, 
+                                    Zero
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "PSTATE_ADJUST", 
+                                Package (0x02)
+                                {
+                                    0x02, 
+                                    Zero
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "PSTATE_ADJUST", 
+                                Package (0x02)
+                                {
+                                    0x03, 
                                     Zero
                                 }
                             }, 
@@ -45835,28 +45855,8 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 "PSTATE_ADJUST", 
                                 Package (0x02)
                                 {
-                                    0x02, 
-                                    0x25
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "PSTATE_ADJUST", 
-                                Package (0x02)
-                                {
-                                    0x03, 
-                                    0x25
-                                }
-                            }, 
-
-                            Package (0x02)
-                            {
-                                "PSTATE_ADJUST", 
-                                Package (0x02)
-                                {
                                     0x04, 
-                                    0x1D
+                                    0x25
                                 }
                             }, 
 
@@ -45866,7 +45866,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x02)
                                 {
                                     0x05, 
-                                    0x1D
+                                    0x25
                                 }
                             }, 
 
@@ -45886,6 +45886,26 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x02)
                                 {
                                     0x07, 
+                                    0x1D
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "PSTATE_ADJUST", 
+                                Package (0x02)
+                                {
+                                    0x08, 
+                                    0x1D
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "PSTATE_ADJUST", 
+                                Package (0x02)
+                                {
+                                    0x09, 
                                     0x1D
                                 }
                             }, 
@@ -46010,1385 +46030,41 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             }
                         }, 
 
-                        Package (0x28)
+                        Package (0x04)
                         {
                             "PSTATE_SET", 
                             0x02, 
-                            Package (0x03)
+                            Package (0x02)
                             {
                                 "PSTATE", 
-                                Zero, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
-                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
-                                        0x00000002CB417800, 
-                                        0x00000002CB417800
-                                    }
-                                }
+                                Zero
                             }, 
 
-                            Package (0x03)
+                            Package (0x02)
                             {
                                 "PSTATE", 
-                                One, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
-                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
-                                        0x00000002AD741300, 
-                                        0x00000002AD741300
-                                    }
-                                }
+                                One
+                            }
+                        }, 
+
+                        Package (0x04)
+                        {
+                            "PSTATE_SET", 
+                            0x03, 
+                            Package (0x02)
+                            {
+                                "PSTATE", 
+                                Zero
                             }, 
 
-                            Package (0x03)
+                            Package (0x02)
                             {
                                 "PSTATE", 
-                                0x02, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
-                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
-                                        0x000000028FA6AE00, 
-                                        0x000000028FA6AE00
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x03, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
-                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
-                                        0x0000000271D94900, 
-                                        0x0000000271D94900
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x04, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
-                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
-                                        0x00000002540BE400, 
-                                        0x00000002540BE400
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x05, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
-                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
-                                        0x00000002363E7F00, 
-                                        0x00000002363E7F00
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x06, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
-                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
-                                        0x0000000218711A00, 
-                                        0x0000000218711A00
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x07, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
-                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
-                                        0x00000001FAA3B500, 
-                                        0x00000001FAA3B500
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x08, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
-                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
-                                        0x00000001DCD65000, 
-                                        0x00000001DCD65000
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x09, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
-                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
-                                        0x00000001BF08EB00, 
-                                        0x00000001BF08EB00
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x0A, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
-                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
-                                        0x00000001A13B8600, 
-                                        0x00000001A13B8600
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x0B, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
-                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
-                                        0x00000001836E2100, 
-                                        0x00000001836E2100
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x0C, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
-                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
-                                        0x0000000165A0BC00, 
-                                        0x0000000165A0BC00
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x0D, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
-                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
-                                        0x0000000147D35700, 
-                                        0x0000000147D35700
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x0E, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
-                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
-                                        0x000000012A05F200, 
-                                        0x000000012A05F200
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x0F, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
-                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
-                                        0x000000010C388D00, 
-                                        0x000000010C388D00
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x10, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
-                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
-                                        0xEE6B2800, 
-                                        0xEE6B2800
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x11, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
-                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
-                                        0xD09DC300, 
-                                        0xD09DC300
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x12, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
-                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
-                                        0xC4B20100, 
-                                        0xC4B20100
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x13, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
-                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
-                                        0xB8C63F00, 
-                                        0xB8C63F00
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x14, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
-                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
-                                        0xACDA7D00, 
-                                        0xACDA7D00
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x15, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
-                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
-                                        0xA0EEBB00, 
-                                        0xA0EEBB00
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x16, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
-                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
-                                        0x9502F900, 
-                                        0x9502F900
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x17, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
-                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
-                                        0x89173700, 
-                                        0x89173700
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x18, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
-                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
-                                        0x7D2B7500, 
-                                        0x7D2B7500
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x19, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
-                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
-                                        0x713FB300, 
-                                        0x713FB300
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x1A, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
-                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
-                                        0x6553F100, 
-                                        0x6553F100
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x1B, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
-                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
-                                        0x59682F00, 
-                                        0x59682F00
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x1C, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
-                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
-                                        0x4D7C6D00, 
-                                        0x4D7C6D00
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x1D, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
-                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
-                                        0x4190AB00, 
-                                        0x4190AB00
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x1E, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
-                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
-                                        0x35A4E900, 
-                                        0x35A4E900
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x1F, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
-                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
-                                        0x29B92700, 
-                                        0x29B92700
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x20, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
-                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
-                                        0x1DCD6500, 
-                                        0x1DCD6500
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x21, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
-                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
-                                        0x17D78400, 
-                                        0x17D78400
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x22, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
-                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
-                                        0x11E1A300, 
-                                        0x11E1A300
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x23, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
-                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
-                                        0x0BEBC200, 
-                                        0x0BEBC200
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x24, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
-                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
-                                        0x05F5E100, 
-                                        0x05F5E100
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x25, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
-                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
-                                        Zero, 
-                                        Zero
-                                    }
-                                }
+                                One
                             }
                         }, 
 
                         Package (0x28)
-                        {
-                            "PSTATE_SET", 
-                            0x03, 
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                Zero, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF", 
-                                        "ICBID_SLAVE_EBI1", 
-                                        0x00000002CB417800, 
-                                        0x00000002CB417800
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                One, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF", 
-                                        "ICBID_SLAVE_EBI1", 
-                                        0x00000002AD741300, 
-                                        0x00000002AD741300
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x02, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF", 
-                                        "ICBID_SLAVE_EBI1", 
-                                        0x000000028FA6AE00, 
-                                        0x000000028FA6AE00
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x03, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF", 
-                                        "ICBID_SLAVE_EBI1", 
-                                        0x0000000271D94900, 
-                                        0x0000000271D94900
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x04, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF", 
-                                        "ICBID_SLAVE_EBI1", 
-                                        0x00000002540BE400, 
-                                        0x00000002540BE400
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x05, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF", 
-                                        "ICBID_SLAVE_EBI1", 
-                                        0x00000002363E7F00, 
-                                        0x00000002363E7F00
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x06, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF", 
-                                        "ICBID_SLAVE_EBI1", 
-                                        0x0000000218711A00, 
-                                        0x0000000218711A00
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x07, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF", 
-                                        "ICBID_SLAVE_EBI1", 
-                                        0x00000001FAA3B500, 
-                                        0x00000001FAA3B500
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x08, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF", 
-                                        "ICBID_SLAVE_EBI1", 
-                                        0x00000001DCD65000, 
-                                        0x00000001DCD65000
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x09, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF", 
-                                        "ICBID_SLAVE_EBI1", 
-                                        0x00000001BF08EB00, 
-                                        0x00000001BF08EB00
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x0A, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF", 
-                                        "ICBID_SLAVE_EBI1", 
-                                        0x00000001A13B8600, 
-                                        0x00000001A13B8600
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x0B, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF", 
-                                        "ICBID_SLAVE_EBI1", 
-                                        0x00000001836E2100, 
-                                        0x00000001836E2100
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x0C, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF", 
-                                        "ICBID_SLAVE_EBI1", 
-                                        0x0000000165A0BC00, 
-                                        0x0000000165A0BC00
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x0D, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF", 
-                                        "ICBID_SLAVE_EBI1", 
-                                        0x0000000147D35700, 
-                                        0x0000000147D35700
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x0E, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF", 
-                                        "ICBID_SLAVE_EBI1", 
-                                        0x000000012A05F200, 
-                                        0x000000012A05F200
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x0F, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF", 
-                                        "ICBID_SLAVE_EBI1", 
-                                        0x000000010C388D00, 
-                                        0x000000010C388D00
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x10, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF", 
-                                        "ICBID_SLAVE_EBI1", 
-                                        0xEE6B2800, 
-                                        0xEE6B2800
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x11, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF", 
-                                        "ICBID_SLAVE_EBI1", 
-                                        0xD09DC300, 
-                                        0xD09DC300
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x12, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF", 
-                                        "ICBID_SLAVE_EBI1", 
-                                        0xC4B20100, 
-                                        0xC4B20100
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x13, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF", 
-                                        "ICBID_SLAVE_EBI1", 
-                                        0xB8C63F00, 
-                                        0xB8C63F00
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x14, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF", 
-                                        "ICBID_SLAVE_EBI1", 
-                                        0xACDA7D00, 
-                                        0xACDA7D00
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x15, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF", 
-                                        "ICBID_SLAVE_EBI1", 
-                                        0xA0EEBB00, 
-                                        0xA0EEBB00
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x16, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF", 
-                                        "ICBID_SLAVE_EBI1", 
-                                        0x9502F900, 
-                                        0x9502F900
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x17, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF", 
-                                        "ICBID_SLAVE_EBI1", 
-                                        0x89173700, 
-                                        0x89173700
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x18, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF", 
-                                        "ICBID_SLAVE_EBI1", 
-                                        0x7D2B7500, 
-                                        0x7D2B7500
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x19, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF", 
-                                        "ICBID_SLAVE_EBI1", 
-                                        0x713FB300, 
-                                        0x713FB300
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x1A, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF", 
-                                        "ICBID_SLAVE_EBI1", 
-                                        0x6553F100, 
-                                        0x6553F100
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x1B, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF", 
-                                        "ICBID_SLAVE_EBI1", 
-                                        0x59682F00, 
-                                        0x59682F00
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x1C, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF", 
-                                        "ICBID_SLAVE_EBI1", 
-                                        0x4D7C6D00, 
-                                        0x4D7C6D00
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x1D, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF", 
-                                        "ICBID_SLAVE_EBI1", 
-                                        0x4190AB00, 
-                                        0x4190AB00
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x1E, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF", 
-                                        "ICBID_SLAVE_EBI1", 
-                                        0x35A4E900, 
-                                        0x35A4E900
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x1F, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF", 
-                                        "ICBID_SLAVE_EBI1", 
-                                        0x29B92700, 
-                                        0x29B92700
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x20, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF", 
-                                        "ICBID_SLAVE_EBI1", 
-                                        0x1DCD6500, 
-                                        0x1DCD6500
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x21, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF", 
-                                        "ICBID_SLAVE_EBI1", 
-                                        0x17D78400, 
-                                        0x17D78400
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x22, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF", 
-                                        "ICBID_SLAVE_EBI1", 
-                                        0x11E1A300, 
-                                        0x11E1A300
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x23, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF", 
-                                        "ICBID_SLAVE_EBI1", 
-                                        0x0BEBC200, 
-                                        0x0BEBC200
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x24, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF", 
-                                        "ICBID_SLAVE_EBI1", 
-                                        0x05F5E100, 
-                                        0x05F5E100
-                                    }
-                                }
-                            }, 
-
-                            Package (0x03)
-                            {
-                                "PSTATE", 
-                                0x25, 
-                                Package (0x02)
-                                {
-                                    "BUSARB", 
-                                    Package (0x05)
-                                    {
-                                        0x03, 
-                                        "ICBID_MASTER_CAMNOC_SF", 
-                                        "ICBID_SLAVE_EBI1", 
-                                        Zero, 
-                                        Zero
-                                    }
-                                }
-                            }
-                        }, 
-
-                        Package (0x20)
                         {
                             "PSTATE_SET", 
                             0x04, 
@@ -47402,10 +46078,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     Package (0x05)
                                     {
                                         0x03, 
-                                        "ICBID_MASTER_CAMNOC_HF0_UNCOMP", 
+                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
                                         "ICBID_SLAVE_CAMNOC_UNCOMP", 
-                                        0x00000008D8F9FC00, 
-                                        0x00000008D8F9FC00
+                                        0x00000002CB417800, 
+                                        0x00000002CB417800
                                     }
                                 }
                             }, 
@@ -47420,10 +46096,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     Package (0x05)
                                     {
                                         0x03, 
-                                        "ICBID_MASTER_CAMNOC_HF0_UNCOMP", 
+                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
                                         "ICBID_SLAVE_CAMNOC_UNCOMP", 
-                                        0x0000000826299E00, 
-                                        0x0000000826299E00
+                                        0x00000002AD741300, 
+                                        0x00000002AD741300
                                     }
                                 }
                             }, 
@@ -47438,10 +46114,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     Package (0x05)
                                     {
                                         0x03, 
-                                        "ICBID_MASTER_CAMNOC_HF0_UNCOMP", 
+                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
                                         "ICBID_SLAVE_CAMNOC_UNCOMP", 
-                                        0x0000000684EE1800, 
-                                        0x0000000684EE1800
+                                        0x000000028FA6AE00, 
+                                        0x000000028FA6AE00
                                     }
                                 }
                             }, 
@@ -47456,10 +46132,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     Package (0x05)
                                     {
                                         0x03, 
-                                        "ICBID_MASTER_CAMNOC_HF0_UNCOMP", 
+                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
                                         "ICBID_SLAVE_CAMNOC_UNCOMP", 
-                                        0x000000055AE82600, 
-                                        0x000000055AE82600
+                                        0x0000000271D94900, 
+                                        0x0000000271D94900
                                     }
                                 }
                             }, 
@@ -47474,10 +46150,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     Package (0x05)
                                     {
                                         0x03, 
-                                        "ICBID_MASTER_CAMNOC_HF0_UNCOMP", 
+                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
                                         "ICBID_SLAVE_CAMNOC_UNCOMP", 
-                                        0x00000004A817C800, 
-                                        0x00000004A817C800
+                                        0x00000002540BE400, 
+                                        0x00000002540BE400
                                     }
                                 }
                             }, 
@@ -47492,10 +46168,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     Package (0x05)
                                     {
                                         0x03, 
-                                        "ICBID_MASTER_CAMNOC_HF0_UNCOMP", 
+                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
                                         "ICBID_SLAVE_CAMNOC_UNCOMP", 
-                                        0x00000003B9ACA000, 
-                                        0x00000003B9ACA000
+                                        0x00000002363E7F00, 
+                                        0x00000002363E7F00
                                     }
                                 }
                             }, 
@@ -47510,10 +46186,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     Package (0x05)
                                     {
                                         0x03, 
-                                        "ICBID_MASTER_CAMNOC_HF0_UNCOMP", 
+                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
                                         "ICBID_SLAVE_CAMNOC_UNCOMP", 
-                                        0x0000000342770C00, 
-                                        0x0000000342770C00
+                                        0x0000000218711A00, 
+                                        0x0000000218711A00
                                     }
                                 }
                             }, 
@@ -47528,10 +46204,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     Package (0x05)
                                     {
                                         0x03, 
-                                        "ICBID_MASTER_CAMNOC_HF0_UNCOMP", 
+                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
                                         "ICBID_SLAVE_CAMNOC_UNCOMP", 
-                                        0x00000002CB417800, 
-                                        0x00000002CB417800
+                                        0x00000001FAA3B500, 
+                                        0x00000001FAA3B500
                                     }
                                 }
                             }, 
@@ -47546,10 +46222,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     Package (0x05)
                                     {
                                         0x03, 
-                                        "ICBID_MASTER_CAMNOC_HF0_UNCOMP", 
+                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
                                         "ICBID_SLAVE_CAMNOC_UNCOMP", 
-                                        0xEE6B2800, 
-                                        0xEE6B2800
+                                        0x00000001DCD65000, 
+                                        0x00000001DCD65000
                                     }
                                 }
                             }, 
@@ -47564,10 +46240,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     Package (0x05)
                                     {
                                         0x03, 
-                                        "ICBID_MASTER_CAMNOC_HF0_UNCOMP", 
+                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
                                         "ICBID_SLAVE_CAMNOC_UNCOMP", 
-                                        0xD09DC300, 
-                                        0xD09DC300
+                                        0x00000001BF08EB00, 
+                                        0x00000001BF08EB00
                                     }
                                 }
                             }, 
@@ -47582,10 +46258,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     Package (0x05)
                                     {
                                         0x03, 
-                                        "ICBID_MASTER_CAMNOC_HF0_UNCOMP", 
+                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
                                         "ICBID_SLAVE_CAMNOC_UNCOMP", 
-                                        0xC4B20100, 
-                                        0xC4B20100
+                                        0x00000001A13B8600, 
+                                        0x00000001A13B8600
                                     }
                                 }
                             }, 
@@ -47600,10 +46276,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     Package (0x05)
                                     {
                                         0x03, 
-                                        "ICBID_MASTER_CAMNOC_HF0_UNCOMP", 
+                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
                                         "ICBID_SLAVE_CAMNOC_UNCOMP", 
-                                        0xB8C63F00, 
-                                        0xB8C63F00
+                                        0x00000001836E2100, 
+                                        0x00000001836E2100
                                     }
                                 }
                             }, 
@@ -47618,10 +46294,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     Package (0x05)
                                     {
                                         0x03, 
-                                        "ICBID_MASTER_CAMNOC_HF0_UNCOMP", 
+                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
                                         "ICBID_SLAVE_CAMNOC_UNCOMP", 
-                                        0xACDA7D00, 
-                                        0xACDA7D00
+                                        0x0000000165A0BC00, 
+                                        0x0000000165A0BC00
                                     }
                                 }
                             }, 
@@ -47636,10 +46312,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     Package (0x05)
                                     {
                                         0x03, 
-                                        "ICBID_MASTER_CAMNOC_HF0_UNCOMP", 
+                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
                                         "ICBID_SLAVE_CAMNOC_UNCOMP", 
-                                        0xA0EEBB00, 
-                                        0xA0EEBB00
+                                        0x0000000147D35700, 
+                                        0x0000000147D35700
                                     }
                                 }
                             }, 
@@ -47654,10 +46330,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     Package (0x05)
                                     {
                                         0x03, 
-                                        "ICBID_MASTER_CAMNOC_HF0_UNCOMP", 
+                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
                                         "ICBID_SLAVE_CAMNOC_UNCOMP", 
-                                        0x9502F900, 
-                                        0x9502F900
+                                        0x000000012A05F200, 
+                                        0x000000012A05F200
                                     }
                                 }
                             }, 
@@ -47672,10 +46348,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     Package (0x05)
                                     {
                                         0x03, 
-                                        "ICBID_MASTER_CAMNOC_HF0_UNCOMP", 
+                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
                                         "ICBID_SLAVE_CAMNOC_UNCOMP", 
-                                        0x89173700, 
-                                        0x89173700
+                                        0x000000010C388D00, 
+                                        0x000000010C388D00
                                     }
                                 }
                             }, 
@@ -47690,10 +46366,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     Package (0x05)
                                     {
                                         0x03, 
-                                        "ICBID_MASTER_CAMNOC_HF0_UNCOMP", 
+                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
                                         "ICBID_SLAVE_CAMNOC_UNCOMP", 
-                                        0x7D2B7500, 
-                                        0x7D2B7500
+                                        0xEE6B2800, 
+                                        0xEE6B2800
                                     }
                                 }
                             }, 
@@ -47708,10 +46384,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     Package (0x05)
                                     {
                                         0x03, 
-                                        "ICBID_MASTER_CAMNOC_HF0_UNCOMP", 
+                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
                                         "ICBID_SLAVE_CAMNOC_UNCOMP", 
-                                        0x713FB300, 
-                                        0x713FB300
+                                        0xD09DC300, 
+                                        0xD09DC300
                                     }
                                 }
                             }, 
@@ -47726,10 +46402,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     Package (0x05)
                                     {
                                         0x03, 
-                                        "ICBID_MASTER_CAMNOC_HF0_UNCOMP", 
+                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
                                         "ICBID_SLAVE_CAMNOC_UNCOMP", 
-                                        0x6553F100, 
-                                        0x6553F100
+                                        0xC4B20100, 
+                                        0xC4B20100
                                     }
                                 }
                             }, 
@@ -47744,10 +46420,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     Package (0x05)
                                     {
                                         0x03, 
-                                        "ICBID_MASTER_CAMNOC_HF0_UNCOMP", 
+                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
                                         "ICBID_SLAVE_CAMNOC_UNCOMP", 
-                                        0x59682F00, 
-                                        0x59682F00
+                                        0xB8C63F00, 
+                                        0xB8C63F00
                                     }
                                 }
                             }, 
@@ -47762,10 +46438,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     Package (0x05)
                                     {
                                         0x03, 
-                                        "ICBID_MASTER_CAMNOC_HF0_UNCOMP", 
+                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
                                         "ICBID_SLAVE_CAMNOC_UNCOMP", 
-                                        0x4D7C6D00, 
-                                        0x4D7C6D00
+                                        0xACDA7D00, 
+                                        0xACDA7D00
                                     }
                                 }
                             }, 
@@ -47780,10 +46456,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     Package (0x05)
                                     {
                                         0x03, 
-                                        "ICBID_MASTER_CAMNOC_HF0_UNCOMP", 
+                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
                                         "ICBID_SLAVE_CAMNOC_UNCOMP", 
-                                        0x4190AB00, 
-                                        0x4190AB00
+                                        0xA0EEBB00, 
+                                        0xA0EEBB00
                                     }
                                 }
                             }, 
@@ -47798,10 +46474,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     Package (0x05)
                                     {
                                         0x03, 
-                                        "ICBID_MASTER_CAMNOC_HF0_UNCOMP", 
+                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
                                         "ICBID_SLAVE_CAMNOC_UNCOMP", 
-                                        0x35A4E900, 
-                                        0x35A4E900
+                                        0x9502F900, 
+                                        0x9502F900
                                     }
                                 }
                             }, 
@@ -47816,10 +46492,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     Package (0x05)
                                     {
                                         0x03, 
-                                        "ICBID_MASTER_CAMNOC_HF0_UNCOMP", 
+                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
                                         "ICBID_SLAVE_CAMNOC_UNCOMP", 
-                                        0x29B92700, 
-                                        0x29B92700
+                                        0x89173700, 
+                                        0x89173700
                                     }
                                 }
                             }, 
@@ -47834,10 +46510,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     Package (0x05)
                                     {
                                         0x03, 
-                                        "ICBID_MASTER_CAMNOC_HF0_UNCOMP", 
+                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
                                         "ICBID_SLAVE_CAMNOC_UNCOMP", 
-                                        0x1DCD6500, 
-                                        0x1DCD6500
+                                        0x7D2B7500, 
+                                        0x7D2B7500
                                     }
                                 }
                             }, 
@@ -47852,10 +46528,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     Package (0x05)
                                     {
                                         0x03, 
-                                        "ICBID_MASTER_CAMNOC_HF0_UNCOMP", 
+                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
                                         "ICBID_SLAVE_CAMNOC_UNCOMP", 
-                                        0x17D78400, 
-                                        0x17D78400
+                                        0x713FB300, 
+                                        0x713FB300
                                     }
                                 }
                             }, 
@@ -47870,10 +46546,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     Package (0x05)
                                     {
                                         0x03, 
-                                        "ICBID_MASTER_CAMNOC_HF0_UNCOMP", 
+                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
                                         "ICBID_SLAVE_CAMNOC_UNCOMP", 
-                                        0x11E1A300, 
-                                        0x11E1A300
+                                        0x6553F100, 
+                                        0x6553F100
                                     }
                                 }
                             }, 
@@ -47888,10 +46564,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     Package (0x05)
                                     {
                                         0x03, 
-                                        "ICBID_MASTER_CAMNOC_HF0_UNCOMP", 
+                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
                                         "ICBID_SLAVE_CAMNOC_UNCOMP", 
-                                        0x0BEBC200, 
-                                        0x0BEBC200
+                                        0x59682F00, 
+                                        0x59682F00
                                     }
                                 }
                             }, 
@@ -47906,10 +46582,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     Package (0x05)
                                     {
                                         0x03, 
-                                        "ICBID_MASTER_CAMNOC_HF0_UNCOMP", 
+                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
                                         "ICBID_SLAVE_CAMNOC_UNCOMP", 
-                                        0x05F5E100, 
-                                        0x05F5E100
+                                        0x4D7C6D00, 
+                                        0x4D7C6D00
                                     }
                                 }
                             }, 
@@ -47924,7 +46600,151 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     Package (0x05)
                                     {
                                         0x03, 
-                                        "ICBID_MASTER_CAMNOC_HF0_UNCOMP", 
+                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
+                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
+                                        0x4190AB00, 
+                                        0x4190AB00
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x1E, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
+                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
+                                        0x35A4E900, 
+                                        0x35A4E900
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x1F, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
+                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
+                                        0x29B92700, 
+                                        0x29B92700
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x20, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
+                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
+                                        0x1DCD6500, 
+                                        0x1DCD6500
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x21, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
+                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
+                                        0x17D78400, 
+                                        0x17D78400
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x22, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
+                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
+                                        0x11E1A300, 
+                                        0x11E1A300
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x23, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
+                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
+                                        0x0BEBC200, 
+                                        0x0BEBC200
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x24, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
+                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
+                                        0x05F5E100, 
+                                        0x05F5E100
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x25, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_SF_UNCOMP", 
                                         "ICBID_SLAVE_CAMNOC_UNCOMP", 
                                         Zero, 
                                         Zero
@@ -47933,7 +46753,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             }
                         }, 
 
-                        Package (0x20)
+                        Package (0x28)
                         {
                             "PSTATE_SET", 
                             0x05, 
@@ -47947,10 +46767,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     Package (0x05)
                                     {
                                         0x03, 
-                                        "ICBID_MASTER_CAMNOC_HF0", 
+                                        "ICBID_MASTER_CAMNOC_SF", 
                                         "ICBID_SLAVE_EBI1", 
-                                        0x00000008D8F9FC00, 
-                                        0x00000008D8F9FC00
+                                        0x00000002CB417800, 
+                                        0x00000002CB417800
                                     }
                                 }
                             }, 
@@ -47965,10 +46785,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     Package (0x05)
                                     {
                                         0x03, 
-                                        "ICBID_MASTER_CAMNOC_HF0", 
+                                        "ICBID_MASTER_CAMNOC_SF", 
                                         "ICBID_SLAVE_EBI1", 
-                                        0x0000000826299E00, 
-                                        0x0000000826299E00
+                                        0x00000002AD741300, 
+                                        0x00000002AD741300
                                     }
                                 }
                             }, 
@@ -47983,10 +46803,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     Package (0x05)
                                     {
                                         0x03, 
-                                        "ICBID_MASTER_CAMNOC_HF0", 
+                                        "ICBID_MASTER_CAMNOC_SF", 
                                         "ICBID_SLAVE_EBI1", 
-                                        0x0000000684EE1800, 
-                                        0x0000000684EE1800
+                                        0x000000028FA6AE00, 
+                                        0x000000028FA6AE00
                                     }
                                 }
                             }, 
@@ -48001,10 +46821,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     Package (0x05)
                                     {
                                         0x03, 
-                                        "ICBID_MASTER_CAMNOC_HF0", 
+                                        "ICBID_MASTER_CAMNOC_SF", 
                                         "ICBID_SLAVE_EBI1", 
-                                        0x000000055AE82600, 
-                                        0x000000055AE82600
+                                        0x0000000271D94900, 
+                                        0x0000000271D94900
                                     }
                                 }
                             }, 
@@ -48019,10 +46839,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     Package (0x05)
                                     {
                                         0x03, 
-                                        "ICBID_MASTER_CAMNOC_HF0", 
+                                        "ICBID_MASTER_CAMNOC_SF", 
                                         "ICBID_SLAVE_EBI1", 
-                                        0x00000004A817C800, 
-                                        0x00000004A817C800
+                                        0x00000002540BE400, 
+                                        0x00000002540BE400
                                     }
                                 }
                             }, 
@@ -48037,10 +46857,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     Package (0x05)
                                     {
                                         0x03, 
-                                        "ICBID_MASTER_CAMNOC_HF0", 
+                                        "ICBID_MASTER_CAMNOC_SF", 
                                         "ICBID_SLAVE_EBI1", 
-                                        0x00000003B9ACA000, 
-                                        0x00000003B9ACA000
+                                        0x00000002363E7F00, 
+                                        0x00000002363E7F00
                                     }
                                 }
                             }, 
@@ -48055,10 +46875,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     Package (0x05)
                                     {
                                         0x03, 
-                                        "ICBID_MASTER_CAMNOC_HF0", 
+                                        "ICBID_MASTER_CAMNOC_SF", 
                                         "ICBID_SLAVE_EBI1", 
-                                        0x0000000342770C00, 
-                                        0x0000000342770C00
+                                        0x0000000218711A00, 
+                                        0x0000000218711A00
                                     }
                                 }
                             }, 
@@ -48073,10 +46893,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     Package (0x05)
                                     {
                                         0x03, 
-                                        "ICBID_MASTER_CAMNOC_HF0", 
+                                        "ICBID_MASTER_CAMNOC_SF", 
                                         "ICBID_SLAVE_EBI1", 
-                                        0x00000002CB417800, 
-                                        0x00000002CB417800
+                                        0x00000001FAA3B500, 
+                                        0x00000001FAA3B500
                                     }
                                 }
                             }, 
@@ -48091,10 +46911,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     Package (0x05)
                                     {
                                         0x03, 
-                                        "ICBID_MASTER_CAMNOC_HF0", 
+                                        "ICBID_MASTER_CAMNOC_SF", 
                                         "ICBID_SLAVE_EBI1", 
-                                        0xEE6B2800, 
-                                        0xEE6B2800
+                                        0x00000001DCD65000, 
+                                        0x00000001DCD65000
                                     }
                                 }
                             }, 
@@ -48109,10 +46929,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     Package (0x05)
                                     {
                                         0x03, 
-                                        "ICBID_MASTER_CAMNOC_HF0", 
+                                        "ICBID_MASTER_CAMNOC_SF", 
                                         "ICBID_SLAVE_EBI1", 
-                                        0xD09DC300, 
-                                        0xD09DC300
+                                        0x00000001BF08EB00, 
+                                        0x00000001BF08EB00
                                     }
                                 }
                             }, 
@@ -48127,10 +46947,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     Package (0x05)
                                     {
                                         0x03, 
-                                        "ICBID_MASTER_CAMNOC_HF0", 
+                                        "ICBID_MASTER_CAMNOC_SF", 
                                         "ICBID_SLAVE_EBI1", 
-                                        0xC4B20100, 
-                                        0xC4B20100
+                                        0x00000001A13B8600, 
+                                        0x00000001A13B8600
                                     }
                                 }
                             }, 
@@ -48145,10 +46965,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     Package (0x05)
                                     {
                                         0x03, 
-                                        "ICBID_MASTER_CAMNOC_HF0", 
+                                        "ICBID_MASTER_CAMNOC_SF", 
                                         "ICBID_SLAVE_EBI1", 
-                                        0xB8C63F00, 
-                                        0xB8C63F00
+                                        0x00000001836E2100, 
+                                        0x00000001836E2100
                                     }
                                 }
                             }, 
@@ -48163,10 +46983,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     Package (0x05)
                                     {
                                         0x03, 
-                                        "ICBID_MASTER_CAMNOC_HF0", 
+                                        "ICBID_MASTER_CAMNOC_SF", 
                                         "ICBID_SLAVE_EBI1", 
-                                        0xACDA7D00, 
-                                        0xACDA7D00
+                                        0x0000000165A0BC00, 
+                                        0x0000000165A0BC00
                                     }
                                 }
                             }, 
@@ -48181,10 +47001,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     Package (0x05)
                                     {
                                         0x03, 
-                                        "ICBID_MASTER_CAMNOC_HF0", 
+                                        "ICBID_MASTER_CAMNOC_SF", 
                                         "ICBID_SLAVE_EBI1", 
-                                        0xA0EEBB00, 
-                                        0xA0EEBB00
+                                        0x0000000147D35700, 
+                                        0x0000000147D35700
                                     }
                                 }
                             }, 
@@ -48199,10 +47019,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     Package (0x05)
                                     {
                                         0x03, 
-                                        "ICBID_MASTER_CAMNOC_HF0", 
+                                        "ICBID_MASTER_CAMNOC_SF", 
                                         "ICBID_SLAVE_EBI1", 
-                                        0x9502F900, 
-                                        0x9502F900
+                                        0x000000012A05F200, 
+                                        0x000000012A05F200
                                     }
                                 }
                             }, 
@@ -48217,10 +47037,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     Package (0x05)
                                     {
                                         0x03, 
-                                        "ICBID_MASTER_CAMNOC_HF0", 
+                                        "ICBID_MASTER_CAMNOC_SF", 
                                         "ICBID_SLAVE_EBI1", 
-                                        0x89173700, 
-                                        0x89173700
+                                        0x000000010C388D00, 
+                                        0x000000010C388D00
                                     }
                                 }
                             }, 
@@ -48235,10 +47055,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     Package (0x05)
                                     {
                                         0x03, 
-                                        "ICBID_MASTER_CAMNOC_HF0", 
+                                        "ICBID_MASTER_CAMNOC_SF", 
                                         "ICBID_SLAVE_EBI1", 
-                                        0x7D2B7500, 
-                                        0x7D2B7500
+                                        0xEE6B2800, 
+                                        0xEE6B2800
                                     }
                                 }
                             }, 
@@ -48253,10 +47073,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     Package (0x05)
                                     {
                                         0x03, 
-                                        "ICBID_MASTER_CAMNOC_HF0", 
+                                        "ICBID_MASTER_CAMNOC_SF", 
                                         "ICBID_SLAVE_EBI1", 
-                                        0x713FB300, 
-                                        0x713FB300
+                                        0xD09DC300, 
+                                        0xD09DC300
                                     }
                                 }
                             }, 
@@ -48271,10 +47091,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     Package (0x05)
                                     {
                                         0x03, 
-                                        "ICBID_MASTER_CAMNOC_HF0", 
+                                        "ICBID_MASTER_CAMNOC_SF", 
                                         "ICBID_SLAVE_EBI1", 
-                                        0x6553F100, 
-                                        0x6553F100
+                                        0xC4B20100, 
+                                        0xC4B20100
                                     }
                                 }
                             }, 
@@ -48289,10 +47109,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     Package (0x05)
                                     {
                                         0x03, 
-                                        "ICBID_MASTER_CAMNOC_HF0", 
+                                        "ICBID_MASTER_CAMNOC_SF", 
                                         "ICBID_SLAVE_EBI1", 
-                                        0x59682F00, 
-                                        0x59682F00
+                                        0xB8C63F00, 
+                                        0xB8C63F00
                                     }
                                 }
                             }, 
@@ -48307,10 +47127,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     Package (0x05)
                                     {
                                         0x03, 
-                                        "ICBID_MASTER_CAMNOC_HF0", 
+                                        "ICBID_MASTER_CAMNOC_SF", 
                                         "ICBID_SLAVE_EBI1", 
-                                        0x4D7C6D00, 
-                                        0x4D7C6D00
+                                        0xACDA7D00, 
+                                        0xACDA7D00
                                     }
                                 }
                             }, 
@@ -48325,10 +47145,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     Package (0x05)
                                     {
                                         0x03, 
-                                        "ICBID_MASTER_CAMNOC_HF0", 
+                                        "ICBID_MASTER_CAMNOC_SF", 
                                         "ICBID_SLAVE_EBI1", 
-                                        0x4190AB00, 
-                                        0x4190AB00
+                                        0xA0EEBB00, 
+                                        0xA0EEBB00
                                     }
                                 }
                             }, 
@@ -48343,10 +47163,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     Package (0x05)
                                     {
                                         0x03, 
-                                        "ICBID_MASTER_CAMNOC_HF0", 
+                                        "ICBID_MASTER_CAMNOC_SF", 
                                         "ICBID_SLAVE_EBI1", 
-                                        0x35A4E900, 
-                                        0x35A4E900
+                                        0x9502F900, 
+                                        0x9502F900
                                     }
                                 }
                             }, 
@@ -48361,10 +47181,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     Package (0x05)
                                     {
                                         0x03, 
-                                        "ICBID_MASTER_CAMNOC_HF0", 
+                                        "ICBID_MASTER_CAMNOC_SF", 
                                         "ICBID_SLAVE_EBI1", 
-                                        0x29B92700, 
-                                        0x29B92700
+                                        0x89173700, 
+                                        0x89173700
                                     }
                                 }
                             }, 
@@ -48379,10 +47199,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     Package (0x05)
                                     {
                                         0x03, 
-                                        "ICBID_MASTER_CAMNOC_HF0", 
+                                        "ICBID_MASTER_CAMNOC_SF", 
                                         "ICBID_SLAVE_EBI1", 
-                                        0x1DCD6500, 
-                                        0x1DCD6500
+                                        0x7D2B7500, 
+                                        0x7D2B7500
                                     }
                                 }
                             }, 
@@ -48397,10 +47217,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     Package (0x05)
                                     {
                                         0x03, 
-                                        "ICBID_MASTER_CAMNOC_HF0", 
+                                        "ICBID_MASTER_CAMNOC_SF", 
                                         "ICBID_SLAVE_EBI1", 
-                                        0x17D78400, 
-                                        0x17D78400
+                                        0x713FB300, 
+                                        0x713FB300
                                     }
                                 }
                             }, 
@@ -48415,10 +47235,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     Package (0x05)
                                     {
                                         0x03, 
-                                        "ICBID_MASTER_CAMNOC_HF0", 
+                                        "ICBID_MASTER_CAMNOC_SF", 
                                         "ICBID_SLAVE_EBI1", 
-                                        0x11E1A300, 
-                                        0x11E1A300
+                                        0x6553F100, 
+                                        0x6553F100
                                     }
                                 }
                             }, 
@@ -48433,10 +47253,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     Package (0x05)
                                     {
                                         0x03, 
-                                        "ICBID_MASTER_CAMNOC_HF0", 
+                                        "ICBID_MASTER_CAMNOC_SF", 
                                         "ICBID_SLAVE_EBI1", 
-                                        0x0BEBC200, 
-                                        0x0BEBC200
+                                        0x59682F00, 
+                                        0x59682F00
                                     }
                                 }
                             }, 
@@ -48451,10 +47271,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     Package (0x05)
                                     {
                                         0x03, 
-                                        "ICBID_MASTER_CAMNOC_HF0", 
+                                        "ICBID_MASTER_CAMNOC_SF", 
                                         "ICBID_SLAVE_EBI1", 
-                                        0x05F5E100, 
-                                        0x05F5E100
+                                        0x4D7C6D00, 
+                                        0x4D7C6D00
                                     }
                                 }
                             }, 
@@ -48469,7 +47289,151 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     Package (0x05)
                                     {
                                         0x03, 
-                                        "ICBID_MASTER_CAMNOC_HF0", 
+                                        "ICBID_MASTER_CAMNOC_SF", 
+                                        "ICBID_SLAVE_EBI1", 
+                                        0x4190AB00, 
+                                        0x4190AB00
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x1E, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_SF", 
+                                        "ICBID_SLAVE_EBI1", 
+                                        0x35A4E900, 
+                                        0x35A4E900
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x1F, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_SF", 
+                                        "ICBID_SLAVE_EBI1", 
+                                        0x29B92700, 
+                                        0x29B92700
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x20, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_SF", 
+                                        "ICBID_SLAVE_EBI1", 
+                                        0x1DCD6500, 
+                                        0x1DCD6500
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x21, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_SF", 
+                                        "ICBID_SLAVE_EBI1", 
+                                        0x17D78400, 
+                                        0x17D78400
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x22, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_SF", 
+                                        "ICBID_SLAVE_EBI1", 
+                                        0x11E1A300, 
+                                        0x11E1A300
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x23, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_SF", 
+                                        "ICBID_SLAVE_EBI1", 
+                                        0x0BEBC200, 
+                                        0x0BEBC200
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x24, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_SF", 
+                                        "ICBID_SLAVE_EBI1", 
+                                        0x05F5E100, 
+                                        0x05F5E100
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x25, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_SF", 
                                         "ICBID_SLAVE_EBI1", 
                                         Zero, 
                                         Zero
@@ -48492,6 +47456,1096 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     Package (0x05)
                                     {
                                         0x03, 
+                                        "ICBID_MASTER_CAMNOC_HF0_UNCOMP", 
+                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
+                                        0x00000008D8F9FC00, 
+                                        0x00000008D8F9FC00
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                One, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_HF0_UNCOMP", 
+                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
+                                        0x0000000826299E00, 
+                                        0x0000000826299E00
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x02, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_HF0_UNCOMP", 
+                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
+                                        0x0000000684EE1800, 
+                                        0x0000000684EE1800
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x03, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_HF0_UNCOMP", 
+                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
+                                        0x000000055AE82600, 
+                                        0x000000055AE82600
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x04, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_HF0_UNCOMP", 
+                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
+                                        0x00000004A817C800, 
+                                        0x00000004A817C800
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x05, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_HF0_UNCOMP", 
+                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
+                                        0x00000003B9ACA000, 
+                                        0x00000003B9ACA000
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x06, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_HF0_UNCOMP", 
+                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
+                                        0x0000000342770C00, 
+                                        0x0000000342770C00
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x07, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_HF0_UNCOMP", 
+                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
+                                        0x00000002CB417800, 
+                                        0x00000002CB417800
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x08, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_HF0_UNCOMP", 
+                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
+                                        0xEE6B2800, 
+                                        0xEE6B2800
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x09, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_HF0_UNCOMP", 
+                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
+                                        0xD09DC300, 
+                                        0xD09DC300
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x0A, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_HF0_UNCOMP", 
+                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
+                                        0xC4B20100, 
+                                        0xC4B20100
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x0B, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_HF0_UNCOMP", 
+                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
+                                        0xB8C63F00, 
+                                        0xB8C63F00
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x0C, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_HF0_UNCOMP", 
+                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
+                                        0xACDA7D00, 
+                                        0xACDA7D00
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x0D, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_HF0_UNCOMP", 
+                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
+                                        0xA0EEBB00, 
+                                        0xA0EEBB00
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x0E, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_HF0_UNCOMP", 
+                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
+                                        0x9502F900, 
+                                        0x9502F900
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x0F, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_HF0_UNCOMP", 
+                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
+                                        0x89173700, 
+                                        0x89173700
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x10, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_HF0_UNCOMP", 
+                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
+                                        0x7D2B7500, 
+                                        0x7D2B7500
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x11, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_HF0_UNCOMP", 
+                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
+                                        0x713FB300, 
+                                        0x713FB300
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x12, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_HF0_UNCOMP", 
+                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
+                                        0x6553F100, 
+                                        0x6553F100
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x13, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_HF0_UNCOMP", 
+                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
+                                        0x59682F00, 
+                                        0x59682F00
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x14, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_HF0_UNCOMP", 
+                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
+                                        0x4D7C6D00, 
+                                        0x4D7C6D00
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x15, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_HF0_UNCOMP", 
+                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
+                                        0x4190AB00, 
+                                        0x4190AB00
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x16, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_HF0_UNCOMP", 
+                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
+                                        0x35A4E900, 
+                                        0x35A4E900
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x17, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_HF0_UNCOMP", 
+                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
+                                        0x29B92700, 
+                                        0x29B92700
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x18, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_HF0_UNCOMP", 
+                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
+                                        0x1DCD6500, 
+                                        0x1DCD6500
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x19, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_HF0_UNCOMP", 
+                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
+                                        0x17D78400, 
+                                        0x17D78400
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x1A, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_HF0_UNCOMP", 
+                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
+                                        0x11E1A300, 
+                                        0x11E1A300
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x1B, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_HF0_UNCOMP", 
+                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
+                                        0x0BEBC200, 
+                                        0x0BEBC200
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x1C, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_HF0_UNCOMP", 
+                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
+                                        0x05F5E100, 
+                                        0x05F5E100
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x1D, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_HF0_UNCOMP", 
+                                        "ICBID_SLAVE_CAMNOC_UNCOMP", 
+                                        Zero, 
+                                        Zero
+                                    }
+                                }
+                            }
+                        }, 
+
+                        Package (0x20)
+                        {
+                            "PSTATE_SET", 
+                            0x07, 
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                Zero, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_HF0", 
+                                        "ICBID_SLAVE_EBI1", 
+                                        0x00000008D8F9FC00, 
+                                        0x00000008D8F9FC00
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                One, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_HF0", 
+                                        "ICBID_SLAVE_EBI1", 
+                                        0x0000000826299E00, 
+                                        0x0000000826299E00
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x02, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_HF0", 
+                                        "ICBID_SLAVE_EBI1", 
+                                        0x0000000684EE1800, 
+                                        0x0000000684EE1800
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x03, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_HF0", 
+                                        "ICBID_SLAVE_EBI1", 
+                                        0x000000055AE82600, 
+                                        0x000000055AE82600
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x04, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_HF0", 
+                                        "ICBID_SLAVE_EBI1", 
+                                        0x00000004A817C800, 
+                                        0x00000004A817C800
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x05, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_HF0", 
+                                        "ICBID_SLAVE_EBI1", 
+                                        0x00000003B9ACA000, 
+                                        0x00000003B9ACA000
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x06, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_HF0", 
+                                        "ICBID_SLAVE_EBI1", 
+                                        0x0000000342770C00, 
+                                        0x0000000342770C00
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x07, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_HF0", 
+                                        "ICBID_SLAVE_EBI1", 
+                                        0x00000002CB417800, 
+                                        0x00000002CB417800
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x08, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_HF0", 
+                                        "ICBID_SLAVE_EBI1", 
+                                        0xEE6B2800, 
+                                        0xEE6B2800
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x09, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_HF0", 
+                                        "ICBID_SLAVE_EBI1", 
+                                        0xD09DC300, 
+                                        0xD09DC300
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x0A, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_HF0", 
+                                        "ICBID_SLAVE_EBI1", 
+                                        0xC4B20100, 
+                                        0xC4B20100
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x0B, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_HF0", 
+                                        "ICBID_SLAVE_EBI1", 
+                                        0xB8C63F00, 
+                                        0xB8C63F00
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x0C, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_HF0", 
+                                        "ICBID_SLAVE_EBI1", 
+                                        0xACDA7D00, 
+                                        0xACDA7D00
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x0D, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_HF0", 
+                                        "ICBID_SLAVE_EBI1", 
+                                        0xA0EEBB00, 
+                                        0xA0EEBB00
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x0E, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_HF0", 
+                                        "ICBID_SLAVE_EBI1", 
+                                        0x9502F900, 
+                                        0x9502F900
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x0F, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_HF0", 
+                                        "ICBID_SLAVE_EBI1", 
+                                        0x89173700, 
+                                        0x89173700
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x10, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_HF0", 
+                                        "ICBID_SLAVE_EBI1", 
+                                        0x7D2B7500, 
+                                        0x7D2B7500
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x11, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_HF0", 
+                                        "ICBID_SLAVE_EBI1", 
+                                        0x713FB300, 
+                                        0x713FB300
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x12, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_HF0", 
+                                        "ICBID_SLAVE_EBI1", 
+                                        0x6553F100, 
+                                        0x6553F100
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x13, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_HF0", 
+                                        "ICBID_SLAVE_EBI1", 
+                                        0x59682F00, 
+                                        0x59682F00
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x14, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_HF0", 
+                                        "ICBID_SLAVE_EBI1", 
+                                        0x4D7C6D00, 
+                                        0x4D7C6D00
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x15, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_HF0", 
+                                        "ICBID_SLAVE_EBI1", 
+                                        0x4190AB00, 
+                                        0x4190AB00
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x16, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_HF0", 
+                                        "ICBID_SLAVE_EBI1", 
+                                        0x35A4E900, 
+                                        0x35A4E900
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x17, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_HF0", 
+                                        "ICBID_SLAVE_EBI1", 
+                                        0x29B92700, 
+                                        0x29B92700
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x18, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_HF0", 
+                                        "ICBID_SLAVE_EBI1", 
+                                        0x1DCD6500, 
+                                        0x1DCD6500
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x19, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_HF0", 
+                                        "ICBID_SLAVE_EBI1", 
+                                        0x17D78400, 
+                                        0x17D78400
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x1A, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_HF0", 
+                                        "ICBID_SLAVE_EBI1", 
+                                        0x11E1A300, 
+                                        0x11E1A300
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x1B, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_HF0", 
+                                        "ICBID_SLAVE_EBI1", 
+                                        0x0BEBC200, 
+                                        0x0BEBC200
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x1C, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_HF0", 
+                                        "ICBID_SLAVE_EBI1", 
+                                        0x05F5E100, 
+                                        0x05F5E100
+                                    }
+                                }
+                            }, 
+
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                0x1D, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
+                                        "ICBID_MASTER_CAMNOC_HF0", 
+                                        "ICBID_SLAVE_EBI1", 
+                                        Zero, 
+                                        Zero
+                                    }
+                                }
+                            }
+                        }, 
+
+                        Package (0x20)
+                        {
+                            "PSTATE_SET", 
+                            0x08, 
+                            Package (0x03)
+                            {
+                                "PSTATE", 
+                                Zero, 
+                                Package (0x02)
+                                {
+                                    "BUSARB", 
+                                    Package (0x05)
+                                    {
+                                        0x03, 
                                         "ICBID_MASTER_CAMNOC_HF1_UNCOMP", 
                                         "ICBID_SLAVE_CAMNOC_UNCOMP", 
                                         0x00000008D8F9FC00, 
@@ -49026,7 +49080,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         Package (0x20)
                         {
                             "PSTATE_SET", 
-                            0x07, 
+                            0x09, 
                             Package (0x03)
                             {
                                 "PSTATE", 
@@ -49571,7 +49625,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         Package (0x08)
                         {
                             "PSTATE_SET", 
-                            0x08, 
+                            0x0A, 
                             Package (0x03)
                             {
                                 "PSTATE", 
@@ -51768,7 +51822,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             })
             Name (CPC2, Package (0x01)
             {
-                Package (0x0B)
+                Package (0x0F)
                 {
                     "DEVICE", 
                     "\\_SB.VFE0", 
@@ -52740,6 +52794,528 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     {
                         "COMPONENT", 
                         0x02, 
+                        Package (0x0B)
+                        {
+                            "FSTATE", 
+                            Zero, 
+                            Package (0x02)
+                            {
+                                "NPARESOURCE", 
+                                Package (0x03)
+                                {
+                                    One, 
+                                    "/arc/client/rail_mmcx", 
+                                    0x30
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "CLOCK", 
+                                Package (0x02)
+                                {
+                                    "gcc_camera_xo_clk", 
+                                    One
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "CLOCK", 
+                                Package (0x02)
+                                {
+                                    "cam_cc_gdsc_clk", 
+                                    One
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "FOOTSWITCH", 
+                                Package (0x02)
+                                {
+                                    "titan_top_gdsc", 
+                                    One
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "CLOCK", 
+                                Package (0x02)
+                                {
+                                    "cam_cc_cpas_ahb_clk", 
+                                    One
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "CLOCK", 
+                                Package (0x02)
+                                {
+                                    "cam_cc_camnoc_axi_clk", 
+                                    One
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "CLOCK", 
+                                Package (0x02)
+                                {
+                                    "cam_cc_camnoc_dcd_xo_clk", 
+                                    One
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "PSTATE_ADJUST", 
+                                Package (0x02)
+                                {
+                                    Zero, 
+                                    0x02
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "PSTATE_ADJUST", 
+                                Package (0x02)
+                                {
+                                    One, 
+                                    0x02
+                                }
+                            }
+                        }, 
+
+                        Package (0x0B)
+                        {
+                            "FSTATE", 
+                            One, 
+                            Package (0x02)
+                            {
+                                "PSTATE_ADJUST", 
+                                Package (0x02)
+                                {
+                                    One, 
+                                    0x03
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "PSTATE_ADJUST", 
+                                Package (0x02)
+                                {
+                                    Zero, 
+                                    0x04
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "CLOCK", 
+                                Package (0x02)
+                                {
+                                    "cam_cc_camnoc_dcd_xo_clk", 
+                                    0x02
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "CLOCK", 
+                                Package (0x02)
+                                {
+                                    "cam_cc_camnoc_axi_clk", 
+                                    0x02
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "CLOCK", 
+                                Package (0x02)
+                                {
+                                    "cam_cc_cpas_ahb_clk", 
+                                    0x02
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "FOOTSWITCH", 
+                                Package (0x02)
+                                {
+                                    "titan_top_gdsc", 
+                                    0x02
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "CLOCK", 
+                                Package (0x02)
+                                {
+                                    "cam_cc_gdsc_clk", 
+                                    0x02
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "CLOCK", 
+                                Package (0x02)
+                                {
+                                    "gcc_camera_xo_clk", 
+                                    0x02
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "NPARESOURCE", 
+                                Package (0x03)
+                                {
+                                    One, 
+                                    "/arc/client/rail_mmcx", 
+                                    Zero
+                                }
+                            }
+                        }, 
+
+                        Package (0x07)
+                        {
+                            "PSTATE_SET", 
+                            Zero, 
+                            Package (0x02)
+                            {
+                                "PSTATE", 
+                                Zero
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "PSTATE", 
+                                One
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "PSTATE", 
+                                0x02
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "PSTATE", 
+                                0x03
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "PSTATE", 
+                                0x04
+                            }
+                        }, 
+
+                        Package (0x06)
+                        {
+                            "PSTATE_SET", 
+                            One, 
+                            Package (0x02)
+                            {
+                                "PSTATE", 
+                                Zero
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "PSTATE", 
+                                One
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "PSTATE", 
+                                0x02
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "PSTATE", 
+                                0x03
+                            }
+                        }
+                    }, 
+
+                    Package (0x06)
+                    {
+                        "COMPONENT", 
+                        0x03, 
+                        Package (0x0B)
+                        {
+                            "FSTATE", 
+                            Zero, 
+                            Package (0x02)
+                            {
+                                "NPARESOURCE", 
+                                Package (0x03)
+                                {
+                                    One, 
+                                    "/arc/client/rail_mmcx", 
+                                    0x30
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "CLOCK", 
+                                Package (0x02)
+                                {
+                                    "gcc_camera_xo_clk", 
+                                    One
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "CLOCK", 
+                                Package (0x02)
+                                {
+                                    "cam_cc_gdsc_clk", 
+                                    One
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "FOOTSWITCH", 
+                                Package (0x02)
+                                {
+                                    "titan_top_gdsc", 
+                                    One
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "CLOCK", 
+                                Package (0x02)
+                                {
+                                    "cam_cc_cpas_ahb_clk", 
+                                    One
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "CLOCK", 
+                                Package (0x02)
+                                {
+                                    "cam_cc_camnoc_axi_clk", 
+                                    One
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "CLOCK", 
+                                Package (0x02)
+                                {
+                                    "cam_cc_camnoc_dcd_xo_clk", 
+                                    One
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "PSTATE_ADJUST", 
+                                Package (0x02)
+                                {
+                                    Zero, 
+                                    0x02
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "PSTATE_ADJUST", 
+                                Package (0x02)
+                                {
+                                    One, 
+                                    0x02
+                                }
+                            }
+                        }, 
+
+                        Package (0x0B)
+                        {
+                            "FSTATE", 
+                            One, 
+                            Package (0x02)
+                            {
+                                "PSTATE_ADJUST", 
+                                Package (0x02)
+                                {
+                                    One, 
+                                    0x03
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "PSTATE_ADJUST", 
+                                Package (0x02)
+                                {
+                                    Zero, 
+                                    0x04
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "CLOCK", 
+                                Package (0x02)
+                                {
+                                    "cam_cc_camnoc_dcd_xo_clk", 
+                                    0x02
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "CLOCK", 
+                                Package (0x02)
+                                {
+                                    "cam_cc_camnoc_axi_clk", 
+                                    0x02
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "CLOCK", 
+                                Package (0x02)
+                                {
+                                    "cam_cc_cpas_ahb_clk", 
+                                    0x02
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "FOOTSWITCH", 
+                                Package (0x02)
+                                {
+                                    "titan_top_gdsc", 
+                                    0x02
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "CLOCK", 
+                                Package (0x02)
+                                {
+                                    "cam_cc_gdsc_clk", 
+                                    0x02
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "CLOCK", 
+                                Package (0x02)
+                                {
+                                    "gcc_camera_xo_clk", 
+                                    0x02
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "NPARESOURCE", 
+                                Package (0x03)
+                                {
+                                    One, 
+                                    "/arc/client/rail_mmcx", 
+                                    Zero
+                                }
+                            }
+                        }, 
+
+                        Package (0x07)
+                        {
+                            "PSTATE_SET", 
+                            Zero, 
+                            Package (0x02)
+                            {
+                                "PSTATE", 
+                                Zero
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "PSTATE", 
+                                One
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "PSTATE", 
+                                0x02
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "PSTATE", 
+                                0x03
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "PSTATE", 
+                                0x04
+                            }
+                        }, 
+
+                        Package (0x06)
+                        {
+                            "PSTATE_SET", 
+                            One, 
+                            Package (0x02)
+                            {
+                                "PSTATE", 
+                                Zero
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "PSTATE", 
+                                One
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "PSTATE", 
+                                0x02
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "PSTATE", 
+                                0x03
+                            }
+                        }
+                    }, 
+
+                    Package (0x06)
+                    {
+                        "COMPONENT", 
+                        0x04, 
                         Package (0x0F)
                         {
                             "FSTATE", 
@@ -53181,7 +53757,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     Package (0x06)
                     {
                         "COMPONENT", 
-                        0x03, 
+                        0x05, 
                         Package (0x0E)
                         {
                             "FSTATE", 
@@ -53600,10 +54176,532 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         }
                     }, 
 
+                    Package (0x06)
+                    {
+                        "COMPONENT", 
+                        0x06, 
+                        Package (0x0B)
+                        {
+                            "FSTATE", 
+                            Zero, 
+                            Package (0x02)
+                            {
+                                "NPARESOURCE", 
+                                Package (0x03)
+                                {
+                                    One, 
+                                    "/arc/client/rail_mmcx", 
+                                    0x30
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "CLOCK", 
+                                Package (0x02)
+                                {
+                                    "gcc_camera_xo_clk", 
+                                    One
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "CLOCK", 
+                                Package (0x02)
+                                {
+                                    "cam_cc_gdsc_clk", 
+                                    One
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "FOOTSWITCH", 
+                                Package (0x02)
+                                {
+                                    "titan_top_gdsc", 
+                                    One
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "CLOCK", 
+                                Package (0x02)
+                                {
+                                    "cam_cc_cpas_ahb_clk", 
+                                    One
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "CLOCK", 
+                                Package (0x02)
+                                {
+                                    "cam_cc_camnoc_axi_clk", 
+                                    One
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "CLOCK", 
+                                Package (0x02)
+                                {
+                                    "cam_cc_camnoc_dcd_xo_clk", 
+                                    One
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "PSTATE_ADJUST", 
+                                Package (0x02)
+                                {
+                                    Zero, 
+                                    0x02
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "PSTATE_ADJUST", 
+                                Package (0x02)
+                                {
+                                    One, 
+                                    0x02
+                                }
+                            }
+                        }, 
+
+                        Package (0x0B)
+                        {
+                            "FSTATE", 
+                            One, 
+                            Package (0x02)
+                            {
+                                "PSTATE_ADJUST", 
+                                Package (0x02)
+                                {
+                                    One, 
+                                    0x03
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "PSTATE_ADJUST", 
+                                Package (0x02)
+                                {
+                                    Zero, 
+                                    0x04
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "CLOCK", 
+                                Package (0x02)
+                                {
+                                    "cam_cc_camnoc_dcd_xo_clk", 
+                                    0x02
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "CLOCK", 
+                                Package (0x02)
+                                {
+                                    "cam_cc_camnoc_axi_clk", 
+                                    0x02
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "CLOCK", 
+                                Package (0x02)
+                                {
+                                    "cam_cc_cpas_ahb_clk", 
+                                    0x02
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "FOOTSWITCH", 
+                                Package (0x02)
+                                {
+                                    "titan_top_gdsc", 
+                                    0x02
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "CLOCK", 
+                                Package (0x02)
+                                {
+                                    "cam_cc_gdsc_clk", 
+                                    0x02
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "CLOCK", 
+                                Package (0x02)
+                                {
+                                    "gcc_camera_xo_clk", 
+                                    0x02
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "NPARESOURCE", 
+                                Package (0x03)
+                                {
+                                    One, 
+                                    "/arc/client/rail_mmcx", 
+                                    Zero
+                                }
+                            }
+                        }, 
+
+                        Package (0x07)
+                        {
+                            "PSTATE_SET", 
+                            Zero, 
+                            Package (0x02)
+                            {
+                                "PSTATE", 
+                                Zero
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "PSTATE", 
+                                One
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "PSTATE", 
+                                0x02
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "PSTATE", 
+                                0x03
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "PSTATE", 
+                                0x04
+                            }
+                        }, 
+
+                        Package (0x06)
+                        {
+                            "PSTATE_SET", 
+                            One, 
+                            Package (0x02)
+                            {
+                                "PSTATE", 
+                                Zero
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "PSTATE", 
+                                One
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "PSTATE", 
+                                0x02
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "PSTATE", 
+                                0x03
+                            }
+                        }
+                    }, 
+
+                    Package (0x06)
+                    {
+                        "COMPONENT", 
+                        0x07, 
+                        Package (0x0B)
+                        {
+                            "FSTATE", 
+                            Zero, 
+                            Package (0x02)
+                            {
+                                "NPARESOURCE", 
+                                Package (0x03)
+                                {
+                                    One, 
+                                    "/arc/client/rail_mmcx", 
+                                    0x30
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "CLOCK", 
+                                Package (0x02)
+                                {
+                                    "gcc_camera_xo_clk", 
+                                    One
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "CLOCK", 
+                                Package (0x02)
+                                {
+                                    "cam_cc_gdsc_clk", 
+                                    One
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "FOOTSWITCH", 
+                                Package (0x02)
+                                {
+                                    "titan_top_gdsc", 
+                                    One
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "CLOCK", 
+                                Package (0x02)
+                                {
+                                    "cam_cc_cpas_ahb_clk", 
+                                    One
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "CLOCK", 
+                                Package (0x02)
+                                {
+                                    "cam_cc_camnoc_axi_clk", 
+                                    One
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "CLOCK", 
+                                Package (0x02)
+                                {
+                                    "cam_cc_camnoc_dcd_xo_clk", 
+                                    One
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "PSTATE_ADJUST", 
+                                Package (0x02)
+                                {
+                                    Zero, 
+                                    0x02
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "PSTATE_ADJUST", 
+                                Package (0x02)
+                                {
+                                    One, 
+                                    0x02
+                                }
+                            }
+                        }, 
+
+                        Package (0x0B)
+                        {
+                            "FSTATE", 
+                            One, 
+                            Package (0x02)
+                            {
+                                "PSTATE_ADJUST", 
+                                Package (0x02)
+                                {
+                                    One, 
+                                    0x03
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "PSTATE_ADJUST", 
+                                Package (0x02)
+                                {
+                                    Zero, 
+                                    0x04
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "CLOCK", 
+                                Package (0x02)
+                                {
+                                    "cam_cc_camnoc_dcd_xo_clk", 
+                                    0x02
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "CLOCK", 
+                                Package (0x02)
+                                {
+                                    "cam_cc_camnoc_axi_clk", 
+                                    0x02
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "CLOCK", 
+                                Package (0x02)
+                                {
+                                    "cam_cc_cpas_ahb_clk", 
+                                    0x02
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "FOOTSWITCH", 
+                                Package (0x02)
+                                {
+                                    "titan_top_gdsc", 
+                                    0x02
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "CLOCK", 
+                                Package (0x02)
+                                {
+                                    "cam_cc_gdsc_clk", 
+                                    0x02
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "CLOCK", 
+                                Package (0x02)
+                                {
+                                    "gcc_camera_xo_clk", 
+                                    0x02
+                                }
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "NPARESOURCE", 
+                                Package (0x03)
+                                {
+                                    One, 
+                                    "/arc/client/rail_mmcx", 
+                                    Zero
+                                }
+                            }
+                        }, 
+
+                        Package (0x07)
+                        {
+                            "PSTATE_SET", 
+                            Zero, 
+                            Package (0x02)
+                            {
+                                "PSTATE", 
+                                Zero
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "PSTATE", 
+                                One
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "PSTATE", 
+                                0x02
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "PSTATE", 
+                                0x03
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "PSTATE", 
+                                0x04
+                            }
+                        }, 
+
+                        Package (0x06)
+                        {
+                            "PSTATE_SET", 
+                            One, 
+                            Package (0x02)
+                            {
+                                "PSTATE", 
+                                Zero
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "PSTATE", 
+                                One
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "PSTATE", 
+                                0x02
+                            }, 
+
+                            Package (0x02)
+                            {
+                                "PSTATE", 
+                                0x03
+                            }
+                        }
+                    }, 
+
                     Package (0x0B)
                     {
                         "COMPONENT", 
-                        0x04, 
+                        0x08, 
                         Package (0x13)
                         {
                             "FSTATE", 
@@ -54262,7 +55360,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     Package (0x08)
                     {
                         "COMPONENT", 
-                        0x05, 
+                        0x09, 
                         Package (0x16)
                         {
                             "FSTATE", 
@@ -55039,7 +56137,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     Package (0x06)
                     {
                         "COMPONENT", 
-                        0x06, 
+                        0x0A, 
                         Package (0x0F)
                         {
                             "FSTATE", 
@@ -55496,7 +56594,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     Package (0x05)
                     {
                         "COMPONENT", 
-                        0x07, 
+                        0x0B, 
                         Package (0x09)
                         {
                             "FSTATE", 
@@ -55743,7 +56841,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     Package (0x06)
                     {
                         "COMPONENT", 
-                        0x08, 
+                        0x0C, 
                         Package (0x0D)
                         {
                             "FSTATE", 
@@ -75474,6 +76572,14 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         0x0AC4B000,         // Address Base
                         0x00001000,         // Address Length
                         )
+                    Memory32Fixed (ReadWrite,
+                        0x0AC4C000,         // Address Base
+                        0x00001000,         // Address Length
+                        )
+                    Memory32Fixed (ReadWrite,
+                        0x0AC4D000,         // Address Base
+                        0x00001000,         // Address Length
+                        )
                     Interrupt (ResourceConsumer, Edge, ActiveHigh, Exclusive, ,, )
                     {
                         0x000001EC,
@@ -75481,6 +76587,14 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     Interrupt (ResourceConsumer, Edge, ActiveHigh, Exclusive, ,, )
                     {
                         0x0000012F,
+                    }
+                    Interrupt (ResourceConsumer, Edge, ActiveHigh, Exclusive, ,, )
+                    {
+                        0x000002AB,
+                    }
+                    Interrupt (ResourceConsumer, Edge, ActiveHigh, Exclusive, ,, )
+                    {
+                        0x000002AA,
                     }
                 })
                 Return (RBUF) /* \_SB_.CAMP._CRS.RBUF */
@@ -75530,7 +76644,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             {
                 Name (EBUF, Package (0x01)
                 {
-                    Package (0x0B)
+                    Package (0x0D)
                     {
                         "COMPONENT", 
                         Zero, 
@@ -75568,6 +76682,36 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         {
                             "PSTATE_SET", 
                             0x02, 
+                            Zero, 
+                            "CAMP_CLK2", 
+                            Package (0x04)
+                            {
+                                "PSTATE", 
+                                Zero, 
+                                0x0124F800, 
+                                0x023C3460
+                            }
+                        }, 
+
+                        Package (0x05)
+                        {
+                            "PSTATE_SET", 
+                            0x03, 
+                            Zero, 
+                            "CAMP_CLK3", 
+                            Package (0x04)
+                            {
+                                "PSTATE", 
+                                Zero, 
+                                0x0124F800, 
+                                0x023C3460
+                            }
+                        }, 
+
+                        Package (0x05)
+                        {
+                            "PSTATE_SET", 
+                            0x04, 
                             One, 
                             "NRT_UNCOMP_BANDWIDTH", 
                             Package (0x28)
@@ -75618,7 +76762,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         Package (0x05)
                         {
                             "PSTATE_SET", 
-                            0x03, 
+                            0x05, 
                             One, 
                             "NRT_BANDWIDTH", 
                             Package (0x28)
@@ -75669,7 +76813,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         Package (0x05)
                         {
                             "PSTATE_SET", 
-                            0x04, 
+                            0x06, 
                             One, 
                             "RT_UNCOMP_BANDWIDTH", 
                             Package (0x20)
@@ -75712,7 +76856,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         Package (0x05)
                         {
                             "PSTATE_SET", 
-                            0x05, 
+                            0x07, 
                             One, 
                             "RT_COMP_BANDWIDTH", 
                             Package (0x20)
@@ -75755,7 +76899,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         Package (0x05)
                         {
                             "PSTATE_SET", 
-                            0x06, 
+                            0x08, 
                             One, 
                             "RT1_UNCOMP_BANDWIDTH", 
                             Package (0x20)
@@ -75798,7 +76942,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         Package (0x05)
                         {
                             "PSTATE_SET", 
-                            0x07, 
+                            0x09, 
                             One, 
                             "RT1_COMP_BANDWIDTH", 
                             Package (0x20)
@@ -75841,7 +76985,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         Package (0x05)
                         {
                             "PSTATE_SET", 
-                            0x08, 
+                            0x0A, 
                             Zero, 
                             "CAMNOC_AXI_CLK", 
                             Package (0x08)
@@ -76262,11 +77406,27 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         0x00005000,         // Address Length
                         )
                     Memory32Fixed (ReadWrite,
+                        0x0ACBD000,         // Address Base
+                        0x00005000,         // Address Length
+                        )
+                    Memory32Fixed (ReadWrite,
+                        0x0ACE0000,         // Address Base
+                        0x00005000,         // Address Length
+                        )
+                    Memory32Fixed (ReadWrite,
                         0x0ACC4000,         // Address Base
                         0x00005000,         // Address Length
                         )
                     Memory32Fixed (ReadWrite,
                         0x0ACCB000,         // Address Base
+                        0x00005000,         // Address Length
+                        )
+                    Memory32Fixed (ReadWrite,
+                        0x0ACD2000,         // Address Base
+                        0x00005000,         // Address Length
+                        )
+                    Memory32Fixed (ReadWrite,
+                        0x0ACD9000,         // Address Base
                         0x00005000,         // Address Length
                         )
                     Memory32Fixed (ReadWrite,
@@ -76307,11 +77467,27 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     }
                     Interrupt (ResourceConsumer, Edge, ActiveHigh, Exclusive, ,, )
                     {
+                        0x0000031D,
+                    }
+                    Interrupt (ResourceConsumer, Edge, ActiveHigh, Exclusive, ,, )
+                    {
+                        0x0000031C,
+                    }
+                    Interrupt (ResourceConsumer, Edge, ActiveHigh, Exclusive, ,, )
+                    {
                         0x000001F5,
                     }
                     Interrupt (ResourceConsumer, Edge, ActiveHigh, Exclusive, ,, )
                     {
                         0x00000188,
+                    }
+                    Interrupt (ResourceConsumer, Edge, ActiveHigh, Exclusive, ,, )
+                    {
+                        0x00000319,
+                    }
+                    Interrupt (ResourceConsumer, Edge, ActiveHigh, Exclusive, ,, )
+                    {
+                        0x00000318,
                     }
                     Interrupt (ResourceConsumer, Edge, ActiveHigh, Exclusive, ,, )
                     {
@@ -76331,11 +77507,27 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     }
                     Interrupt (ResourceConsumer, Edge, ActiveHigh, Exclusive, ,, )
                     {
+                        0x0000031B,
+                    }
+                    Interrupt (ResourceConsumer, Edge, ActiveHigh, Exclusive, ,, )
+                    {
+                        0x0000031A,
+                    }
+                    Interrupt (ResourceConsumer, Edge, ActiveHigh, Exclusive, ,, )
+                    {
                         0x000001F4,
                     }
                     Interrupt (ResourceConsumer, Edge, ActiveHigh, Exclusive, ,, )
                     {
                         0x00000187,
+                    }
+                    Interrupt (ResourceConsumer, Edge, ActiveHigh, Exclusive, ,, )
+                    {
+                        0x00000317,
+                    }
+                    Interrupt (ResourceConsumer, Edge, ActiveHigh, Exclusive, ,, )
+                    {
+                        0x00000316,
                     }
                 })
                 Return (RBUF) /* \_SB_.VFE0._CRS.RBUF */
@@ -76343,7 +77535,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
             Method (PERF, 0, NotSerialized)
             {
-                Name (EBUF, Package (0x09)
+                Name (EBUF, Package (0x0D)
                 {
                     Package (0x04)
                     {
@@ -76434,6 +77626,86 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             "PSTATE_SET", 
                             Zero, 
                             Zero, 
+                            "IFE2_CLK", 
+                            Package (0x07)
+                            {
+                                "PSTATE", 
+                                Zero, 
+                                0x2D4CAE00, 
+                                0x25F7D940, 
+                                0x21426780, 
+                                0x17D78400, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x05)
+                        {
+                            "PSTATE_SET", 
+                            One, 
+                            Zero, 
+                            "IFE2_CSID_CLK", 
+                            Package (0x06)
+                            {
+                                "PSTATE", 
+                                Zero, 
+                                0x23C34600, 
+                                0x1C9C3800, 
+                                0x17D78400, 
+                                Zero
+                            }
+                        }
+                    }, 
+
+                    Package (0x04)
+                    {
+                        "COMPONENT", 
+                        0x03, 
+                        Package (0x05)
+                        {
+                            "PSTATE_SET", 
+                            Zero, 
+                            Zero, 
+                            "IFE3_CLK", 
+                            Package (0x07)
+                            {
+                                "PSTATE", 
+                                Zero, 
+                                0x2D4CAE00, 
+                                0x25F7D940, 
+                                0x21426780, 
+                                0x17D78400, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x05)
+                        {
+                            "PSTATE_SET", 
+                            One, 
+                            Zero, 
+                            "IFE3_CSID_CLK", 
+                            Package (0x06)
+                            {
+                                "PSTATE", 
+                                Zero, 
+                                0x23C34600, 
+                                0x1C9C3800, 
+                                0x17D78400, 
+                                Zero
+                            }
+                        }
+                    }, 
+
+                    Package (0x04)
+                    {
+                        "COMPONENT", 
+                        0x04, 
+                        Package (0x05)
+                        {
+                            "PSTATE_SET", 
+                            Zero, 
+                            Zero, 
                             "IFE_LITE0_CLK", 
                             Package (0x07)
                             {
@@ -76468,7 +77740,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     Package (0x04)
                     {
                         "COMPONENT", 
-                        0x03, 
+                        0x05, 
                         Package (0x05)
                         {
                             "PSTATE_SET", 
@@ -76505,10 +77777,90 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         }
                     }, 
 
+                    Package (0x04)
+                    {
+                        "COMPONENT", 
+                        0x06, 
+                        Package (0x05)
+                        {
+                            "PSTATE_SET", 
+                            Zero, 
+                            Zero, 
+                            "IFE_LITE2_CLK", 
+                            Package (0x07)
+                            {
+                                "PSTATE", 
+                                Zero, 
+                                0x23C34600, 
+                                0x1C9C3800, 
+                                0x17D78400, 
+                                0x1312D000, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x05)
+                        {
+                            "PSTATE_SET", 
+                            One, 
+                            Zero, 
+                            "IFE_LITE2_CSID_CLK", 
+                            Package (0x06)
+                            {
+                                "PSTATE", 
+                                Zero, 
+                                0x23C34600, 
+                                0x1C9C3800, 
+                                0x17D78400, 
+                                Zero
+                            }
+                        }
+                    }, 
+
+                    Package (0x04)
+                    {
+                        "COMPONENT", 
+                        0x07, 
+                        Package (0x05)
+                        {
+                            "PSTATE_SET", 
+                            Zero, 
+                            Zero, 
+                            "IFE_LITE3_CLK", 
+                            Package (0x07)
+                            {
+                                "PSTATE", 
+                                Zero, 
+                                0x23C34600, 
+                                0x1C9C3800, 
+                                0x17D78400, 
+                                0x1312D000, 
+                                Zero
+                            }
+                        }, 
+
+                        Package (0x05)
+                        {
+                            "PSTATE_SET", 
+                            One, 
+                            Zero, 
+                            "IFE_LITE3_CSID_CLK", 
+                            Package (0x06)
+                            {
+                                "PSTATE", 
+                                Zero, 
+                                0x23C34600, 
+                                0x1C9C3800, 
+                                0x17D78400, 
+                                Zero
+                            }
+                        }
+                    }, 
+
                     Package (0x09)
                     {
                         "COMPONENT", 
-                        0x04, 
+                        0x08, 
                         Package (0x05)
                         {
                             "PSTATE_SET", 
@@ -76619,7 +77971,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     Package (0x06)
                     {
                         "COMPONENT", 
-                        0x05, 
+                        0x09, 
                         Package (0x05)
                         {
                             "PSTATE_SET", 
@@ -76696,7 +78048,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     Package (0x04)
                     {
                         "COMPONENT", 
-                        0x06, 
+                        0x0A, 
                         Package (0x05)
                         {
                             "PSTATE_SET", 
@@ -76737,7 +78089,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     Package (0x03)
                     {
                         "COMPONENT", 
-                        0x07, 
+                        0x0B, 
                         Package (0x05)
                         {
                             "PSTATE_SET", 
@@ -76760,7 +78112,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     Package (0x04)
                     {
                         "COMPONENT", 
-                        0x08, 
+                        0x0C, 
                         Package (0x05)
                         {
                             "PSTATE_SET", 
