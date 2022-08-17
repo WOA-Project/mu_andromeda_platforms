@@ -37,4 +37,3 @@
 [Protocols]
   gEfiGraphicsOutputProtocolGuid
   gEfiSimpleTextInProtocolGuid
-  gQcomScmProtocolGuid
