@@ -45,6 +45,7 @@
   # Platform-specific libraries
   MemoryInitPeiLib
   PlatformPeiLib
+  PlatformHobLib
 
 [Guids]
   gEfiSystemNvDataFvGuid

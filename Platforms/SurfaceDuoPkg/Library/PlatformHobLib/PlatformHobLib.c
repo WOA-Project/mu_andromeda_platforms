@@ -1,5 +1,5 @@
-#include "Sm8150PlatformHobInternal.h"
-#include "Sm8150PlatformHob.h"
+#include "PlatformHobLibInternal.h"
+#include <Library/PlatformHobLib.h>
 
 STATIC
 EFI_STATUS

@@ -25,7 +25,7 @@
 #include <Library/PrePiLib.h>
 #include <Library/SerialPortLib.h>
 
-#include "Sm8150PlatformHob.h"
+#include <Library/PlatformHobLib.h>
 
 #define TLMM_WEST  0x03100000
 #define TLMM_EAST  0x03500000
