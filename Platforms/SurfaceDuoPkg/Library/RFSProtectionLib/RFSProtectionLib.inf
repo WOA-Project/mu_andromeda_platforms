@@ -21,6 +21,7 @@
   SurfaceDuoPkg/SurfaceDuoPkg.dec
 
 [LibraryClasses]
+  ArmLib
   DebugLib
   MemoryAllocationLib
   DevicePathLib
