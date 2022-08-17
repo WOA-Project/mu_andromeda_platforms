@@ -56,7 +56,7 @@ static CONFIGURATION_DESCRIPTOR_EX gDeviceConfigurationDescriptorEx[] = {
     {"TzDiagSize", 0x2000},
     {"UfsSmmuConfigForOtherBootDev", 1},
     {"UsbFnIoRevNum", 0x00010001},
-    {"USBHS1_Config", 0x0}
+    {"USBHS1_Config", 0x0},
     /* Terminator */
     {"Terminator", 0xFFFFFFFF}};
 
