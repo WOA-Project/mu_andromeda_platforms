@@ -81,7 +81,7 @@ CfgGetCfgInfoVal(CHAR8 *Key, UINT32 *Value)
   // Run through each configuration descriptor
   while (ConfigurationDescriptorEx->Value != 0xFFFFFFFF) {
     if (AsciiStriCmp(Key, ConfigurationDescriptorEx->Name) == 0) {
-      *Value = ConfigurationDescriptorEx->Value;
+      *Value = (UINT32)(ConfigurationDescriptorEx->Value & 0xFFFFFFFF);
       return EFI_SUCCESS;
     }
     ConfigurationDescriptorEx++;
@@ -97,13 +97,18 @@ STATIC
 EFI_STATUS
 CfgGetCfgInfoVal64(CHAR8 *Key, UINT64 *Value)
 {
+  PCONFIGURATION_DESCRIPTOR_EX ConfigurationDescriptorEx =
+      gDeviceConfigurationDescriptorEx;
+
   DEBUG((EFI_D_INFO, "[PlatformHob] CfgGetCfgInfoVal64(%a) Entry...\n", Key));
 
-  UINT32 TmpValue = 0;
-
-  if (CfgGetCfgInfoVal(Key, &TmpValue) == EFI_SUCCESS) {
-    *Value = TmpValue;
-    return EFI_SUCCESS;
+  // Run through each configuration descriptor
+  while (ConfigurationDescriptorEx->Value != 0xFFFFFFFF) {
+    if (AsciiStriCmp(Key, ConfigurationDescriptorEx->Name) == 0) {
+      *Value = ConfigurationDescriptorEx->Value;
+      return EFI_SUCCESS;
+    }
+    ConfigurationDescriptorEx++;
   }
 
   DEBUG(

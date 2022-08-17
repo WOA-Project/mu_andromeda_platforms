@@ -5,7 +5,7 @@
 
 typedef struct {
   CHAR8                        Name[CONFIGURATION_NAME_MAX_LENGTH];
-  UINT32                       Value;
+  UINT64                       Value;
 } CONFIGURATION_DESCRIPTOR_EX, *PCONFIGURATION_DESCRIPTOR_EX;
 
 static CONFIGURATION_DESCRIPTOR_EX gDeviceConfigurationDescriptorEx[] = {
