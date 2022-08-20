@@ -29,7 +29,7 @@ static CONFIGURATION_DESCRIPTOR_EX gDeviceConfigurationDescriptorEx[] = {
     {"EnableSDHCSwitch", 0x1},
     {"EnableSecondaryUFSforHLOS", 0},
     {"EnableShell", 0x1},
-    {"EnableUfsIOC", 0},
+    {"EnableUfsIOC", 1},
     {"EnableVariablePolicyEngine", 7},
     {"GccCe1ClkCntlReg", 0x00152004},
     {"GccCe1ClkCntlVal", 0x00000038},
