@@ -48,7 +48,7 @@ APRIORI DXE {
 
     FILE DRIVER = 9a00771f-36d4-4dd5-8916-c48ed9b16b86 {
             SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1-202206/volume-0/file-2/section0/section1/volume-0/file-9a00771f-36d4-4dd5-8916-c48ed9b16b86/section0.dxe.depex
-            SECTION PE32 = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0-00527-SM8150LZB-1-202206/volume-0/file-2/section0/section1/volume-0/file-9a00771f-36d4-4dd5-8916-c48ed9b16b86/section1.pe
+            SECTION PE32 = SurfaceDuoPkg/PatchedBinaries/HALIOMMU.efi
             SECTION UI = "HALIOMMU"
     }
 
