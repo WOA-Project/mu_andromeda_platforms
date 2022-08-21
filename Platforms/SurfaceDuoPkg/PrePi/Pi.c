@@ -53,11 +53,11 @@ typedef VOID (*LINUX_KERNEL) (UINT64 ParametersBase,
 
 VOID EFIAPI ProcessLibraryConstructorList(VOID);
 
-PARM_MEMORY_REGION_DESCRIPTOR_EX PStoreMemoryRegion = NULL;
+PARM_MEMORY_REGION_DESCRIPTOR_EX PStoreMemoryRegion2 = NULL;
 
 EFI_STATUS
 EFIAPI
-SerialPortLocateArea(PARM_MEMORY_REGION_DESCRIPTOR_EX* MemoryDescriptor)
+SerialPortLocateArea2(PARM_MEMORY_REGION_DESCRIPTOR_EX* MemoryDescriptor)
 {
   PARM_MEMORY_REGION_DESCRIPTOR_EX MemoryDescriptorEx =
       gDeviceMemoryDescriptorEx;
@@ -122,11 +122,11 @@ VOID Main(IN VOID *StackBase, IN UINTN StackSize, IN VOID *KernelLoadAddress, IN
   UINT32 Lid0Status    = 0;
 
 #if USE_MEMORY_FOR_SERIAL_OUTPUT == 1
-  SerialPortLocateArea(&PStoreMemoryRegion);
+  SerialPortLocateArea2(&PStoreMemoryRegion2);
 
   // Clear PStore area
-  UINT8 *base = (UINT8 *)PStoreMemoryRegion->Address;
-  for (UINTN i = 0; i < PStoreMemoryRegion->Length; i++) {
+  UINT8 *base = (UINT8 *)PStoreMemoryRegion2->Address;
+  for (UINTN i = 0; i < PStoreMemoryRegion2->Length; i++) {
     base[i] = 0;
   }
 #endif
