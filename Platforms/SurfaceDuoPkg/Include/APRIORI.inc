@@ -348,7 +348,7 @@ APRIORI DXE {
             SECTION UI = "MpPowerDxe"
     }
 
-    FILE DRIVER = c62f4b20-681e-11df-8f0d-0002a5d5c51b  {
+    FILE DRIVER = c62f4b20-681e-11df-8f0d-0002a5d5c51b {
             SECTION DXE_DEPEX = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0.1-00243-SC8180XWZB-2/volume-0/file-2/section0/section1/volume-0/file-c62f4b20-681e-11df-8f0d-0002a5d5c51b/section0.dxe.depex
             SECTION PE32 = SurfaceDuoPkg/PatchedBinaries/PciHostBridgeDxe.efi
             SECTION UI = "PciHostBridge"
