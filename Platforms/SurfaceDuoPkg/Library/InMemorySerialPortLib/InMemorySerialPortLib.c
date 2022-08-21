@@ -60,7 +60,7 @@ SerialPortInitialize(VOID)
 
 static void mem_putchar(UINT8 c)
 {
-  static       UINTN size   = PStoreMemoryRegion->Length - sizeof(UINTN);
+  UINTN              size   = PStoreMemoryRegion->Length - sizeof(UINTN);
   UINT8 *            base   = (UINT8 *)PStoreMemoryRegion->Address;
   UINTN *            offset = (UINTN *)((UINTN)base + size);
 
