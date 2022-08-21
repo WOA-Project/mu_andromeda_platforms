@@ -37,5 +37,6 @@
 
 [LibraryClasses]
   ArmLib
+  BaseLib
   CacheMaintenanceLib
 

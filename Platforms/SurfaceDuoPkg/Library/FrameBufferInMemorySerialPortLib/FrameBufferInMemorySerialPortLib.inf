@@ -16,6 +16,7 @@
 
 [LibraryClasses]
   ArmLib
+  BaseLib
   PcdLib
   IoLib
   HobLib

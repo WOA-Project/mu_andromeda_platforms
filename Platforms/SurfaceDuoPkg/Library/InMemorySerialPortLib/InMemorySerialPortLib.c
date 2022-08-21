@@ -14,6 +14,7 @@ be found at http://opensource.org/licenses/bsd-license.php.
 
 #include <Base.h>
 #include <Library/ArmLib.h>
+#include <Library/BaseLib.h>
 #include <Library/CacheMaintenanceLib.h>
 #include <Library/SerialPortLib.h>
 #include <Configuration/DeviceMemoryMap.h>

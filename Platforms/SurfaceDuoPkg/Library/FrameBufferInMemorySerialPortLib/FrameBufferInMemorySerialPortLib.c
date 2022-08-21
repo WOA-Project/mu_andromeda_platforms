@@ -1,6 +1,7 @@
 #include <PiDxe.h>
 
 #include <Library/ArmLib.h>
+#include <Library/BaseLib.h>
 #include <Library/CacheMaintenanceLib.h>
 #include <Library/HobLib.h>
 #include <Library/SerialPortLib.h>
