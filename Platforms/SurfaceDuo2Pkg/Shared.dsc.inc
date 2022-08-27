@@ -275,7 +275,6 @@
   MemoryInitPeiLib|SurfaceDuo2Pkg/Library/MemoryInitPeiLib/PeiMemoryAllocationLib.inf
   PlatformPeiLib|SurfacePkg/Library/PlatformPeiLib/PlatformPeiLib.inf
   PlatformHobLib|SurfaceDuo2Pkg/Library/PlatformHobLib/PlatformHobLib.inf
-  RFSProtectionLib|SurfaceDuo2Pkg/Library/RFSProtectionLib/RFSProtectionLib.inf
 
   # System Reset
   HwResetSystemLib|ArmPkg/Library/ArmSmcPsciResetSystemLib/ArmSmcPsciResetSystemLib.inf

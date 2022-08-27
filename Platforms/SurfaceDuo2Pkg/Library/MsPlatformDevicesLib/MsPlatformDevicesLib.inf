@@ -32,7 +32,6 @@
   MemoryAllocationLib
   DevicePathLib
   UefiBootServicesTableLib
-  RFSProtectionLib
 
 [Protocols]
   gEfiGraphicsOutputProtocolGuid
