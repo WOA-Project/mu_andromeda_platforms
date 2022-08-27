@@ -45,6 +45,16 @@
   # Platform-specific
   gArmTokenSpaceGuid.PcdSystemMemoryBase|0x80000000         # 6GB
   gArmTokenSpaceGuid.PcdSystemMemorySize|0x180000000        # 6GB
+
+  # Simple FrameBuffer
+  gSurfacePkgTokenSpaceGuid.PcdMipiFrameBufferAddress|0x80600000
+  gSurfacePkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1350
+  gSurfacePkgTokenSpaceGuid.PcdMipiFrameBufferHeight|1800
+  gSurfacePkgTokenSpaceGuid.PcdMipiFrameBufferPixelBpp|32
+
+  # PStore
+  gSurfacePkgTokenSpaceGuid.PcdPStoreBufferAddress|0x17FE00000
+  gSurfacePkgTokenSpaceGuid.PcdPStoreBufferSize|0x00200000
   
 !include SurfaceDuo1Pkg/Shared.dsc.inc
 !include SurfacePkg/FrontpageDsc.inc

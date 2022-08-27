@@ -50,11 +50,11 @@ typedef VOID (*LINUX_KERNEL) (UINT64 ParametersBase,
 
 VOID EFIAPI ProcessLibraryConstructorList(VOID);
 
-PARM_MEMORY_REGION_DESCRIPTOR_EX PStoreMemoryRegion2 = NULL;
+PARM_MEMORY_REGION_DESCRIPTOR_EX PStoreMemoryRegion = NULL;
 
 EFI_STATUS
 EFIAPI
-SerialPortLocateArea2(PARM_MEMORY_REGION_DESCRIPTOR_EX* MemoryDescriptor)
+SerialPortLocateArea(PARM_MEMORY_REGION_DESCRIPTOR_EX* MemoryDescriptor)
 {
   PARM_MEMORY_REGION_DESCRIPTOR_EX MemoryDescriptorEx =
       gDeviceMemoryDescriptorEx;
@@ -119,11 +119,11 @@ VOID Main(IN VOID *StackBase, IN UINTN StackSize, IN VOID *KernelLoadAddress, IN
   UINT32 Lid0Status    = 0;
 
 #if USE_MEMORY_FOR_SERIAL_OUTPUT == 1
-  SerialPortLocateArea2(&PStoreMemoryRegion2);
+  SerialPortLocateArea(&PStoreMemoryRegion);
 
   // Clear PStore area
-  UINT8 *base = (UINT8 *)PStoreMemoryRegion2->Address;
-  for (UINTN i = 0; i < PStoreMemoryRegion2->Length; i++) {
+  UINT8 *base = (UINT8 *)PStoreMemoryRegion->Address;
+  for (UINTN i = 0; i < PStoreMemoryRegion->Length; i++) {
     base[i] = 0;
   }
 #endif
@@ -171,6 +171,10 @@ VOID Main(IN VOID *StackBase, IN UINTN StackSize, IN VOID *KernelLoadAddress, IN
       CpuDeadLoop();
     }
   }
+
+  DEBUG((EFI_D_INFO | EFI_D_LOAD, "Disabling Qualcomm Watchdog Reboot timer\n"));
+  MmioWrite32(0x17C10008, 0x00000000);
+  DEBUG((EFI_D_INFO | EFI_D_LOAD, "Qualcomm Watchdog Reboot timer disabled\n"));
 
   // Set up HOB
   HobList = HobConstructor(

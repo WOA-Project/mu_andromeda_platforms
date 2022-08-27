@@ -260,13 +260,13 @@
   # Platform Drivers
 !if $(USE_SCREEN_FOR_SERIAL_OUTPUT) == 1
 !if $(USE_MEMORY_FOR_SERIAL_OUTPUT) == 1
-  SerialPortLib|SurfaceDuo1Pkg/Library/FrameBufferInMemorySerialPortLib/FrameBufferInMemorySerialPortLib.inf
+  SerialPortLib|SurfacePkg/Library/FrameBufferInMemorySerialPortLib/FrameBufferInMemorySerialPortLib.inf
 !else
-  SerialPortLib|SurfaceDuo1Pkg/Library/FrameBufferSerialPortLib/FrameBufferSerialPortLib.inf
+  SerialPortLib|SurfacePkg/Library/FrameBufferSerialPortLib/FrameBufferSerialPortLib.inf
 !endif
 !else
 !if $(USE_MEMORY_FOR_SERIAL_OUTPUT) == 1
-  SerialPortLib|SurfaceDuo1Pkg/Library/InMemorySerialPortLib/InMemorySerialPortLib.inf
+  SerialPortLib|SurfacePkg/Library/InMemorySerialPortLib/InMemorySerialPortLib.inf
 !else
   SerialPortLib|MdePkg/Library/BaseSerialPortLibNull/BaseSerialPortLibNull.inf
 !endif
@@ -408,13 +408,13 @@
     <LibraryClasses>
     !if $(USE_SCREEN_FOR_SERIAL_OUTPUT) == 1
     !if $(USE_MEMORY_FOR_SERIAL_OUTPUT) == 1
-      SerialPortLib|SurfaceDuo1Pkg/Library/FrameBufferInMemorySerialPortLib/FrameBufferInMemorySerialPortLib.inf
+      SerialPortLib|SurfacePkg/Library/FrameBufferInMemorySerialPortLib/FrameBufferInMemorySerialPortLib.inf
     !else
-      SerialPortLib|SurfaceDuo1Pkg/Library/FrameBufferSerialPortLib/FrameBufferSerialPortLib.inf
+      SerialPortLib|SurfacePkg/Library/FrameBufferSerialPortLib/FrameBufferSerialPortLib.inf
     !endif
     !else
     !if $(USE_MEMORY_FOR_SERIAL_OUTPUT) == 1
-      SerialPortLib|SurfaceDuo1Pkg/Library/InMemorySerialPortLib/InMemorySerialPortLib.inf
+      SerialPortLib|SurfacePkg/Library/InMemorySerialPortLib/InMemorySerialPortLib.inf
     !else
       SerialPortLib|MdePkg/Library/BaseSerialPortLibNull/BaseSerialPortLibNull.inf
     !endif
@@ -510,7 +510,7 @@
 
   # ACPI and SMBIOS
   # We use pre-built ACPI tables, so only core components are loaded
-  SurfaceDuo1Pkg/AcpiTables/SurfaceDuoAcpiTables.inf
+  SurfaceDuo1Pkg/AcpiTables/SurfaceDuo1AcpiTables.inf
   SurfaceDuo1Pkg/Driver/SmBiosTableDxe/SmBiosTableDxe.inf
   MdeModulePkg/Universal/Acpi/AcpiTableDxe/AcpiTableDxe.inf
   MdeModulePkg/Universal/Acpi/AcpiPlatformDxe/AcpiPlatformDxe.inf

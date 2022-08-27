@@ -1,6 +1,7 @@
 #include <PiDxe.h>
 
 #include <Library/ArmLib.h>
+#include <Library/BaseLib.h>
 #include <Library/CacheMaintenanceLib.h>
 #include <Library/HobLib.h>
 #include <Library/SerialPortLib.h>
@@ -290,6 +291,19 @@ void FbConFlush(void)
       (total_x * total_y * bytes_per_bpp));
 }
 
+static void mem_putchar(UINT8 c)
+{
+  UINTN              size   = FixedPcdGet32(PcdPStoreBufferSize) - sizeof(UINTN);
+  UINT8 *            base   = (UINT8 *)FixedPcdGet64(PcdPStoreBufferAddress);
+  UINTN *            offset = (UINTN *)((UINTN)base + size);
+
+  *offset                   = *offset % size;
+  base[*offset]             = c;
+  *offset                   = (*offset + 1) % size;
+
+  WriteBackInvalidateDataCacheRange(base, size);
+}
+
 UINTN
 EFIAPI
 SerialPortWrite(IN UINT8 *Buffer, IN UINTN NumberOfBytes)
@@ -297,6 +311,10 @@ SerialPortWrite(IN UINT8 *Buffer, IN UINTN NumberOfBytes)
   UINT8 *CONST Final          = &Buffer[NumberOfBytes];
   UINTN        InterruptState = ArmGetInterruptState();
   ArmDisableInterrupts();
+
+  for (UINTN i = 0; i < NumberOfBytes; i++) {
+    mem_putchar(Buffer[i]);
+  }
 
   while (Buffer < Final) {
     FbConPutCharWithFactor(*Buffer++, FBCON_COMMON_MSG, SCALE_FACTOR);
@@ -316,6 +334,11 @@ SerialPortWriteCritical(IN UINT8 *Buffer, IN UINTN NumberOfBytes)
   UINTN        InterruptState    = ArmGetInterruptState();
 
   ArmDisableInterrupts();
+
+  for (UINTN i = 0; i < NumberOfBytes; i++) {
+    mem_putchar(Buffer[i]);
+  }
+
   m_Color.Foreground = FB_BGRA8888_YELLOW;
 
   while (Buffer < Final) {

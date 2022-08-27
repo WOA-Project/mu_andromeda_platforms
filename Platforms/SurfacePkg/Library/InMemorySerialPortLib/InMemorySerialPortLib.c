@@ -17,28 +17,6 @@ be found at http://opensource.org/licenses/bsd-license.php.
 #include <Library/BaseLib.h>
 #include <Library/CacheMaintenanceLib.h>
 #include <Library/SerialPortLib.h>
-#include <Configuration/DeviceMemoryMap.h>
-
-PARM_MEMORY_REGION_DESCRIPTOR_EX PStoreMemoryRegion = NULL;
-
-RETURN_STATUS
-EFIAPI
-SerialPortLocateArea(PARM_MEMORY_REGION_DESCRIPTOR_EX* MemoryDescriptor)
-{
-  PARM_MEMORY_REGION_DESCRIPTOR_EX MemoryDescriptorEx =
-      gDeviceMemoryDescriptorEx;
-
-  // Run through each memory descriptor
-  while (MemoryDescriptorEx->Length != 0) {
-    if (AsciiStriCmp("PStore", MemoryDescriptorEx->Name) == 0) {
-      *MemoryDescriptor = MemoryDescriptorEx;
-	return RETURN_SUCCESS;
-    }
-    MemoryDescriptorEx++;
-  }
-
-  return RETURN_UNSUPPORTED;
-}
 
 /**
   Initialize the serial device hardware.
@@ -56,19 +34,13 @@ RETURN_STATUS
 EFIAPI
 SerialPortInitialize(VOID)
 {
-  return SerialPortLocateArea(&PStoreMemoryRegion);
+  return RETURN_SUCCESS;
 }
 
 static void mem_putchar(UINT8 c)
 {
-  if (PStoreMemoryRegion == NULL)
-    SerialPortLocateArea(&PStoreMemoryRegion);
-
-  if (PStoreMemoryRegion == NULL)
-    return;
-
-  UINTN              size   = PStoreMemoryRegion->Length - sizeof(UINTN);
-  UINT8 *            base   = (UINT8 *)PStoreMemoryRegion->Address;
+  UINTN              size   = FixedPcdGet32(PcdPStoreBufferSize) - sizeof(UINTN);
+  UINT8 *            base   = (UINT8 *)FixedPcdGet64(PcdPStoreBufferAddress);
   UINTN *            offset = (UINTN *)((UINTN)base + size);
 
   *offset                   = *offset % size;

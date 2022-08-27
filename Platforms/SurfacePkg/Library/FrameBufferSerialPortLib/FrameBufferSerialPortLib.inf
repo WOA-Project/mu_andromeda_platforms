@@ -12,7 +12,7 @@
 [Packages]
   MdePkg/MdePkg.dec
   ArmPkg/ArmPkg.dec
-  SurfaceDuo2Pkg/SurfaceDuo2Pkg.dec
+  SurfacePkg/SurfacePkg.dec
 
 [LibraryClasses]
   ArmLib
@@ -23,8 +23,8 @@
   CacheMaintenanceLib
 
 [Pcd]
-  gSurfaceDuo2PkgTokenSpaceGuid.PcdMipiFrameBufferAddress
-  gSurfaceDuo2PkgTokenSpaceGuid.PcdMipiFrameBufferWidth
-  gSurfaceDuo2PkgTokenSpaceGuid.PcdMipiFrameBufferHeight
-  gSurfaceDuo2PkgTokenSpaceGuid.PcdMipiFrameBufferPixelBpp
-  gSurfaceDuo2PkgTokenSpaceGuid.PcdEnableScreenSerial
+  gSurfacePkgTokenSpaceGuid.PcdMipiFrameBufferAddress
+  gSurfacePkgTokenSpaceGuid.PcdMipiFrameBufferWidth
+  gSurfacePkgTokenSpaceGuid.PcdMipiFrameBufferHeight
+  gSurfacePkgTokenSpaceGuid.PcdMipiFrameBufferPixelBpp
+  gSurfacePkgTokenSpaceGuid.PcdEnableScreenSerial

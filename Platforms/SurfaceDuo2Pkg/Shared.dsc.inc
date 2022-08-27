@@ -260,13 +260,13 @@
   # Platform Drivers
 !if $(USE_SCREEN_FOR_SERIAL_OUTPUT) == 1
 !if $(USE_MEMORY_FOR_SERIAL_OUTPUT) == 1
-  SerialPortLib|SurfaceDuo2Pkg/Library/FrameBufferInMemorySerialPortLib/FrameBufferInMemorySerialPortLib.inf
+  SerialPortLib|SurfacePkg/Library/FrameBufferInMemorySerialPortLib/FrameBufferInMemorySerialPortLib.inf
 !else
-  SerialPortLib|SurfaceDuo2Pkg/Library/FrameBufferSerialPortLib/FrameBufferSerialPortLib.inf
+  SerialPortLib|SurfacePkg/Library/FrameBufferSerialPortLib/FrameBufferSerialPortLib.inf
 !endif
 !else
 !if $(USE_MEMORY_FOR_SERIAL_OUTPUT) == 1
-  SerialPortLib|SurfaceDuo2Pkg/Library/InMemorySerialPortLib/InMemorySerialPortLib.inf
+  SerialPortLib|SurfacePkg/Library/InMemorySerialPortLib/InMemorySerialPortLib.inf
 !else
   SerialPortLib|MdePkg/Library/BaseSerialPortLibNull/BaseSerialPortLibNull.inf
 !endif
@@ -408,13 +408,13 @@
     <LibraryClasses>
     !if $(USE_SCREEN_FOR_SERIAL_OUTPUT) == 1
     !if $(USE_MEMORY_FOR_SERIAL_OUTPUT) == 1
-      SerialPortLib|SurfaceDuo2Pkg/Library/FrameBufferInMemorySerialPortLib/FrameBufferInMemorySerialPortLib.inf
+      SerialPortLib|SurfacePkg/Library/FrameBufferInMemorySerialPortLib/FrameBufferInMemorySerialPortLib.inf
     !else
-      SerialPortLib|SurfaceDuo2Pkg/Library/FrameBufferSerialPortLib/FrameBufferSerialPortLib.inf
+      SerialPortLib|SurfacePkg/Library/FrameBufferSerialPortLib/FrameBufferSerialPortLib.inf
     !endif
     !else
     !if $(USE_MEMORY_FOR_SERIAL_OUTPUT) == 1
-      SerialPortLib|SurfaceDuo2Pkg/Library/InMemorySerialPortLib/InMemorySerialPortLib.inf
+      SerialPortLib|SurfacePkg/Library/InMemorySerialPortLib/InMemorySerialPortLib.inf
     !else
       SerialPortLib|MdePkg/Library/BaseSerialPortLibNull/BaseSerialPortLibNull.inf
     !endif

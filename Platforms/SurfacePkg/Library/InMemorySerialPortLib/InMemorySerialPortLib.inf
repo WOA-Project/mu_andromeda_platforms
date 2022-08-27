@@ -34,10 +34,13 @@
 [Packages]
   MdePkg/MdePkg.dec
   ArmPkg/ArmPkg.dec
-  SurfaceDuo1Pkg/SurfaceDuo1Pkg.dec
+  SurfacePkg/SurfacePkg.dec
 
 [LibraryClasses]
   ArmLib
   BaseLib
   CacheMaintenanceLib
 
+[Pcd]
+  gSurfacePkgTokenSpaceGuid.PcdPStoreBufferAddress
+  gSurfacePkgTokenSpaceGuid.PcdPStoreBufferSize

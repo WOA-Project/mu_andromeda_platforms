@@ -53,11 +53,11 @@ typedef VOID (*LINUX_KERNEL) (UINT64 ParametersBase,
 
 VOID EFIAPI ProcessLibraryConstructorList(VOID);
 
-PARM_MEMORY_REGION_DESCRIPTOR_EX PStoreMemoryRegion2 = NULL;
+PARM_MEMORY_REGION_DESCRIPTOR_EX PStoreMemoryRegion = NULL;
 
 EFI_STATUS
 EFIAPI
-SerialPortLocateArea2(PARM_MEMORY_REGION_DESCRIPTOR_EX* MemoryDescriptor)
+SerialPortLocateArea(PARM_MEMORY_REGION_DESCRIPTOR_EX* MemoryDescriptor)
 {
   PARM_MEMORY_REGION_DESCRIPTOR_EX MemoryDescriptorEx =
       gDeviceMemoryDescriptorEx;
@@ -78,7 +78,7 @@ STATIC VOID UartInit(VOID)
 {
   SerialPortInitialize();
 
-  DEBUG((EFI_D_INFO, "\nProjectMu on Duo (AArch64)\n"));
+  DEBUG((EFI_D_INFO, "\nProjectMu on Duo 1 (AArch64)\n"));
   DEBUG(
       (EFI_D_INFO, "Firmware version %s built %a %a\n\n",
        (CHAR16 *)PcdGetPtr(PcdFirmwareVersionString), __TIME__, __DATE__));
@@ -122,11 +122,11 @@ VOID Main(IN VOID *StackBase, IN UINTN StackSize, IN VOID *KernelLoadAddress, IN
   UINT32 Lid0Status    = 0;
 
 #if USE_MEMORY_FOR_SERIAL_OUTPUT == 1
-  SerialPortLocateArea2(&PStoreMemoryRegion2);
+  SerialPortLocateArea(&PStoreMemoryRegion);
 
   // Clear PStore area
-  UINT8 *base = (UINT8 *)PStoreMemoryRegion2->Address;
-  for (UINTN i = 0; i < PStoreMemoryRegion2->Length; i++) {
+  UINT8 *base = (UINT8 *)PStoreMemoryRegion->Address;
+  for (UINTN i = 0; i < PStoreMemoryRegion->Length; i++) {
     base[i] = 0;
   }
 #endif

@@ -108,19 +108,10 @@
   gQcomDisplayUtilsProtocolGuid =      { 0xc0dd69ac, 0x76ba, 0x11e6, { 0xab, 0x24, 0x1f, 0xc7, 0xf5, 0x57, 0x5f, 0x19 } }
 
 [PcdsFixedAtBuild.common]
-  # Simple FrameBuffer
-  gSurfaceDuo2PkgTokenSpaceGuid.PcdMipiFrameBufferAddress|0xe1000000|UINT32|0x0000a400
-  gSurfaceDuo2PkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1344|UINT32|0x0000a401
-  gSurfaceDuo2PkgTokenSpaceGuid.PcdMipiFrameBufferHeight|1892|UINT32|0x0000a402
-  gSurfaceDuo2PkgTokenSpaceGuid.PcdMipiFrameBufferPixelBpp|32|UINT32|0x0000a403
-
   # FD
   gSurfaceDuo2PkgTokenSpaceGuid.PcdFdBaseAddress|0x9F000000|UINT64|0x0000a103
   gSurfaceDuo2PkgTokenSpaceGuid.PcdFdSize|0x00500000|UINT32|0x0000a104
 
-  # Debug Screen Serial
-  gSurfaceDuo2PkgTokenSpaceGuid.PcdEnableScreenSerial|FALSE|BOOLEAN|0x00000a105
-  
   # Memory allocation
   gSurfaceDuo2PkgTokenSpaceGuid.PcdPreAllocatedMemorySize|0x50000000|UINT64|0x00000a106
   gSurfaceDuo2PkgTokenSpaceGuid.PcdUefiMemPoolSize|0x78000000|UINT32|0x00000a107

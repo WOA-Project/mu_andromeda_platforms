@@ -16,7 +16,7 @@
   MdeModulePkg/MdeModulePkg.dec
   EmbeddedPkg/EmbeddedPkg.dec
   ArmPkg/ArmPkg.dec
-  SurfaceDuo2Pkg/SurfaceDuo2Pkg.dec
+  SurfacePkg/SurfacePkg.dec
 
 [LibraryClasses]
   BaseLib
@@ -36,10 +36,10 @@
   gEfiCpuArchProtocolGuid
 
 [FixedPcd]
-  gSurfaceDuo2PkgTokenSpaceGuid.PcdMipiFrameBufferAddress
-  gSurfaceDuo2PkgTokenSpaceGuid.PcdMipiFrameBufferWidth
-  gSurfaceDuo2PkgTokenSpaceGuid.PcdMipiFrameBufferHeight
-  gSurfaceDuo2PkgTokenSpaceGuid.PcdEnableScreenSerial
+  gSurfacePkgTokenSpaceGuid.PcdMipiFrameBufferAddress
+  gSurfacePkgTokenSpaceGuid.PcdMipiFrameBufferWidth
+  gSurfacePkgTokenSpaceGuid.PcdMipiFrameBufferHeight
+  gSurfacePkgTokenSpaceGuid.PcdEnableScreenSerial
 
 [Guids]
   gEfiMdeModulePkgTokenSpaceGuid
