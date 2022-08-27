@@ -1,0 +1,31 @@
+[Defines]
+  INF_VERSION    = 0x00010005
+  FILE_GUID      = 33220897-2430-1CD5-EA89-CB01B138CF3A
+  BASE_NAME      = FrameBufferInMemorySerialPortLib
+  MODULE_TYPE    = BASE
+  VERSION_STRING = 1.1
+  LIBRARY_CLASS  = SerialPortLib
+
+[Sources.common]
+  FrameBufferInMemorySerialPortLib.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  ArmPkg/ArmPkg.dec
+  SurfaceDuo1Pkg/SurfaceDuo1Pkg.dec
+
+[LibraryClasses]
+  ArmLib
+  BaseLib
+  PcdLib
+  IoLib
+  HobLib
+  CompilerIntrinsicsLib
+  CacheMaintenanceLib
+
+[Pcd]
+  gSurfaceDuo1PkgTokenSpaceGuid.PcdMipiFrameBufferAddress
+  gSurfaceDuo1PkgTokenSpaceGuid.PcdMipiFrameBufferWidth
+  gSurfaceDuo1PkgTokenSpaceGuid.PcdMipiFrameBufferHeight
+  gSurfaceDuo1PkgTokenSpaceGuid.PcdMipiFrameBufferPixelBpp
+  gSurfaceDuo1PkgTokenSpaceGuid.PcdEnableScreenSerial

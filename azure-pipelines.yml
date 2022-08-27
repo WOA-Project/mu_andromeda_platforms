@@ -49,17 +49,17 @@ steps:
 
 # Publish UEFI (1 target)
 - task: PublishBuildArtifacts@1
-  displayName: 'Publish SM8150 UEFI build (Surface Duo)'
+  displayName: 'Publish SM8150 UEFI build (Surface Duo 1)'
   inputs:
     pathtoPublish: ./ImageResources/Epsilon/uefi.img
-    artifactName: SM8150 UEFI (Surface Duo)
+    artifactName: SM8150 UEFI (Surface Duo 1)
 
 # Publish Boot (1 target)
 - task: PublishBuildArtifacts@1
-  displayName: 'Publish SM8150 Boot build (Surface Duo)'
+  displayName: 'Publish SM8150 Boot build (Surface Duo 1)'
   inputs:
     pathtoPublish: ./ImageResources/Epsilon/boot.img
-    artifactName: SM8150 Boot (Surface Duo)
+    artifactName: SM8150 Boot (Surface Duo 1)
 
 # Publish UEFI (1 target)
 - task: PublishBuildArtifacts@1

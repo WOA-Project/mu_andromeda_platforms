@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cat ./Build/SurfaceDuo-AARCH64/DEBUG_CLANG38/FV/SM8150_EFI.fd ./ImageResources/dummykernel > ./ImageResources/Epsilon/bootpayload.bin
+cat ./Build/SurfaceDuo1-AARCH64/DEBUG_CLANG38/FV/SM8150_EFI.fd ./ImageResources/dummykernel > ./ImageResources/Epsilon/bootpayload.bin
 
 python3 ./ImageResources/mkbootimg.py \
   --kernel ./ImageResources/Epsilon/bootpayload.bin \
@@ -15,7 +15,7 @@ python3 ./ImageResources/mkbootimg.py \
   --os_patch_level 2022-05-01 \
   --second_offset 0xf00000
 
-cat ./Build/SurfaceDuo-AARCH64/DEBUG_CLANG38/FV/SM8150_EFI.fd ./ImageResources/Epsilon/kernel > ./ImageResources/Epsilon/bootpayload.bin
+cat ./Build/SurfaceDuo1-AARCH64/DEBUG_CLANG38/FV/SM8150_EFI.fd ./ImageResources/Epsilon/kernel > ./ImageResources/Epsilon/bootpayload.bin
 
 python3 ./ImageResources/mkbootimg.py \
   --kernel ./ImageResources/Epsilon/bootpayload.bin \
