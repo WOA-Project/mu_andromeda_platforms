@@ -8,7 +8,6 @@ trigger:
     exclude:
     - README.md
     - LICENSE
-    - Platforms/SurfaceDuo2Pkg
 
 pool:
   vmImage: 'Ubuntu-latest'
@@ -50,14 +49,28 @@ steps:
 
 # Publish UEFI (1 target)
 - task: PublishBuildArtifacts@1
-  displayName: 'Publish UEFI build (Surface Duo)'
+  displayName: 'Publish SM8150 UEFI build (Surface Duo)'
   inputs:
     pathtoPublish: ./ImageResources/Epsilon/uefi.img
     artifactName: SM8150 UEFI (Surface Duo)
 
 # Publish Boot (1 target)
 - task: PublishBuildArtifacts@1
-  displayName: 'Publish Boot build (Surface Duo)'
+  displayName: 'Publish SM8150 Boot build (Surface Duo)'
   inputs:
     pathtoPublish: ./ImageResources/Epsilon/boot.img
     artifactName: SM8150 Boot (Surface Duo)
+
+# Publish UEFI (1 target)
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish SM8350 UEFI build (Surface Duo 2)'
+  inputs:
+    pathtoPublish: ./ImageResources/Zeta/uefi.img
+    artifactName: SM8350 UEFI (Surface Duo 2)
+
+# Publish Boot (1 target)
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish SM8350 Boot build (Surface Duo 2)'
+  inputs:
+    pathtoPublish: ./ImageResources/Zeta/boot.img
+    artifactName: SM8350 Boot (Surface Duo 2)

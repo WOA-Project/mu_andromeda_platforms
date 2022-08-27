@@ -48,4 +48,5 @@ if ($commit) {
     )
 
     Set-Content -Path Platforms/SurfaceDuoPkg/Include/Resources/ReleaseInfo.h -Value $releaseInfoContent -ErrorAction SilentlyContinue -Force
+    Set-Content -Path Platforms/SurfaceDuo2Pkg/Include/Resources/ReleaseInfo.h -Value $releaseInfoContent -ErrorAction SilentlyContinue -Force
 }

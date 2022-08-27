@@ -1,5 +1,6 @@
 # Dynamic Generated
 Platforms/SurfaceDuoPkg/Include/Resources/ReleaseInfo.h
+Platforms/SurfaceDuo2Pkg/Include/Resources/ReleaseInfo.h
 
 # Local
 .DS_Store
@@ -18,3 +19,4 @@ BuildConfig.conf
 
 /Conf/
 /SurfaceDuo/
+/SurfaceDuo2/

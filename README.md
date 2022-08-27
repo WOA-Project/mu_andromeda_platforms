@@ -1,4 +1,4 @@
-# Project Mu UEFI Implementation for Surface Duo
+# Project Mu UEFI Implementation for Surface Duo Platforms
 
 ## Build
 
