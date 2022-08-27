@@ -112,7 +112,7 @@
   # Device specific actions in support of PlatformBootManagerLib.
   # Sort of a wrapper for MsPlatformDevicesLib, which needs to be written for each platform.
   #
-  DeviceBootManagerLib|SurfaceDuoPkg/Library/DeviceBootManagerLib/DeviceBootManagerLib.inf
+  DeviceBootManagerLib|SurfacePkg/Library/DeviceBootManagerLib/DeviceBootManagerLib.inf
   #
   # LIbrary to display the On screen notifications for the platform
   #
@@ -128,7 +128,7 @@
   #
   # Library that is attached BdsDxe to implement Microsoft extensions to UefiBootManagerLib.
   #
-  MsBootOptionsLib|SurfaceDuoPkg/Library/MsBootOptionsLib/MsBootOptionsLib.inf
+  MsBootOptionsLib|SurfacePkg/Library/MsBootOptionsLib/MsBootOptionsLib.inf
   #
   # A shared place for all colors used in this package
   #
@@ -164,7 +164,7 @@
   #
   # Library that platform implemented to determine boot type
   #
-  MsBootPolicyLib|SurfaceDuoPkg/Library/MsBootPolicyLib/MsBootPolicyLib.inf
+  MsBootPolicyLib|SurfacePkg/Library/MsBootPolicyLib/MsBootPolicyLib.inf
   BmpSupportLib|MdeModulePkg/Library/BaseBmpSupportLib/BaseBmpSupportLib.inf
   #
   # Supplies the theme for this platform to the UEFI settings UI

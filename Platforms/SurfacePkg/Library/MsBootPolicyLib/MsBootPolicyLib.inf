@@ -30,7 +30,7 @@
   DfciPkg/DfciPkg.dec
   MsCorePkg/MsCorePkg.dec
   MdeModulePkg/MdeModulePkg.dec
-  SurfaceDuoPkg/SurfaceDuoPkg.dec
+  SurfacePkg/SurfacePkg.dec
 
 [LibraryClasses]
   DebugLib

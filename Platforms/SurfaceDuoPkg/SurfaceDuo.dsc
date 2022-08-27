@@ -47,4 +47,4 @@
   gArmTokenSpaceGuid.PcdSystemMemorySize|0x180000000        # 6GB
   
 !include SurfaceDuoPkg/Shared.dsc.inc
-!include SurfaceDuoPkg/FrontpageDsc.inc
+!include SurfacePkg/FrontpageDsc.inc

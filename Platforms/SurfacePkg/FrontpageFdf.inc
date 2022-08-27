@@ -28,7 +28,7 @@
     SECTION UI= "EdkShell"
   }
   FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdLogoFile) {
-    SECTION RAW = SurfaceDuoPkg/Include/Resources/BootLogo.bmp
+    SECTION RAW = SurfacePkg/Include/Resources/BootLogo.bmp
     SECTION UI = "Logo"
   }
   FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdFrontPageLogoFile) {
@@ -50,5 +50,5 @@
     SECTION RAW = OemPkg/FrontPage/Resources/NoBoot.bmp
   }
   FILE FREEFORM = PCD(gMsCorePkgTokenSpaceGuid.PcdRegulatoryGraphicFileGuid) {
-    SECTION RAW = SurfaceDuoPkg/Include/Resources/RegulatoryLogos.png
+    SECTION RAW = SurfacePkg/Include/Resources/RegulatoryLogos.png
   }

@@ -273,7 +273,7 @@
 !endif
   
   MemoryInitPeiLib|SurfaceDuoPkg/Library/MemoryInitPeiLib/PeiMemoryAllocationLib.inf
-  PlatformPeiLib|SurfaceDuoPkg/Library/PlatformPeiLib/PlatformPeiLib.inf
+  PlatformPeiLib|SurfacePkg/Library/PlatformPeiLib/PlatformPeiLib.inf
   PlatformHobLib|SurfaceDuoPkg/Library/PlatformHobLib/PlatformHobLib.inf
   RFSProtectionLib|SurfaceDuoPkg/Library/RFSProtectionLib/RFSProtectionLib.inf
 
@@ -319,7 +319,7 @@
   OemHookStatusCodeLib|MdeModulePkg/Library/OemHookStatusCodeLibNull/OemHookStatusCodeLibNull.inf
   PasswordPolicyLib|OemPkg/Library/PasswordPolicyLib/PasswordPolicyLib.inf
   PlatformBootManagerLib|MsCorePkg/Library/PlatformBootManagerLib/PlatformBootManagerLib.inf
-  SecureBootKeyStoreLib|SurfaceDuoPkg/Library/SecureBootKeyStoreLib/SecureBootKeyStoreLib.inf
+  SecureBootKeyStoreLib|SurfacePkg/Library/SecureBootKeyStoreLib/SecureBootKeyStoreLib.inf
   PlatformThemeLib|MsGraphicsPkg/Library/SamplePlatformThemeLib/PlatformThemeLib.inf
   ReportStatusCodeLib|MdeModulePkg/Library/DxeReportStatusCodeLib/DxeReportStatusCodeLib.inf
   ShellLib|ShellPkg/Library/UefiShellLib/UefiShellLib.inf
@@ -443,7 +443,7 @@
   EmbeddedPkg/MetronomeDxe/MetronomeDxe.inf
   EmbeddedPkg/RealTimeClockRuntimeDxe/RealTimeClockRuntimeDxe.inf {
     <LibraryClasses>
-	  RealTimeClockLib|SurfaceDuoPkg/Library/VirtualRealTimeClockLib/VirtualRealTimeClockLib.inf
+	  RealTimeClockLib|SurfacePkg/Library/VirtualRealTimeClockLib/VirtualRealTimeClockLib.inf
   }
 
   # Debug heartbeat
@@ -469,7 +469,7 @@
 
 !if $(SECURE_BOOT_ENABLE) == TRUE
   SecurityPkg/VariableAuthenticated/SecureBootConfigDxe/SecureBootConfigDxe.inf
-  SurfaceDuoPkg/Driver/SecureBootProvisioningDxe/SecureBootProvisioningDxe.inf
+  SurfacePkg/Driver/SecureBootProvisioningDxe/SecureBootProvisioningDxe.inf
 !endif
 
   MsCorePkg/MuVarPolicyFoundationDxe/MuVarPolicyFoundationDxe.inf
@@ -526,4 +526,4 @@
 
   MdeModulePkg/Universal/EsrtFmpDxe/EsrtFmpDxe.inf
 
-  SurfaceDuoPkg/UFP/ufpdevicefw.inf
+  SurfacePkg/UFP/ufpdevicefw.inf

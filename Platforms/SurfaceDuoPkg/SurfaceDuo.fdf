@@ -113,7 +113,7 @@ READ_LOCK_STATUS   = TRUE
   # Secure Boot Key Enroll
   !if $(SECURE_BOOT_ENABLE) == TRUE
     INF SecurityPkg/VariableAuthenticated/SecureBootConfigDxe/SecureBootConfigDxe.inf
-    # INF SurfaceDuoPkg/Driver/SecureBootProvisioningDxe/SecureBootProvisioningDxe.inf
+    # INF SurfacePkg/Driver/SecureBootProvisioningDxe/SecureBootProvisioningDxe.inf
   !endif
 
   INF EmbeddedPkg/Drivers/VirtualKeyboardDxe/VirtualKeyboardDxe.inf
@@ -129,7 +129,7 @@ READ_LOCK_STATUS   = TRUE
 
   # Why is this different yet using the same names and GUIDs? (Uses different function signatures for callbacks...)
   FILE DRIVER = d4e2f6ad-f3ad-40c5-aa14-183e68f4b5bd  {
-    SECTION PE32 = SurfaceDuoPkg/FirmwareBinaries/BOOT.XF.3.0.1-00243-SC8180XWZB-2/volume-0/file-2/section0/section1/volume-0/file-d4e2f6ad-f3ad-40c5-aa14-183e68f4b5bd/section0.pe
+    SECTION PE32 = SurfaceDuoBinaries/BOOT.XF.3.0.1-00243-SC8180XWZB-2/volume-0/file-2/section0/section1/volume-0/file-d4e2f6ad-f3ad-40c5-aa14-183e68f4b5bd/section0.pe
     SECTION UI = "HidMouseAbsolutePointerDxe"
   }
 
@@ -154,9 +154,9 @@ READ_LOCK_STATUS   = TRUE
 
   INF MdeModulePkg/Universal/EsrtFmpDxe/EsrtFmpDxe.inf
 
-  !include SurfaceDuoPkg/FrontpageFdf.inc
+  !include SurfacePkg/FrontpageFdf.inc
 
-  INF SurfaceDuoPkg/UFP/ufpdevicefw.inf
+  INF SurfacePkg/UFP/ufpdevicefw.inf
 
 [FV.FVMAIN_COMPACT]
 FvAlignment        = 8
