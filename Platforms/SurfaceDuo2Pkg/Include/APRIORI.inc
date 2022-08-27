@@ -163,7 +163,7 @@ APRIORI DXE {
 
     FILE DRIVER = 0d35cd8e-97ea-4f9a-96af-0f0d89f76567 {
             SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-1/section0/section1/volume-0/file-0d35cd8e-97ea-4f9a-96af-0f0d89f76567/section0.dxe.depex
-            SECTION PE32 = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-1/section0/section1/volume-0/file-0d35cd8e-97ea-4f9a-96af-0f0d89f76567/section1.pe
+            SECTION PE32 = SurfaceDuo2Pkg/PatchedBinaries/UFSDxe.efi
             SECTION UI = "UFSDxe"
     }
 
@@ -315,13 +315,13 @@ APRIORI DXE {
 
     FILE DRIVER = cd823a4d-7dec-4531-ae5d-4134fa4127b8 {
             SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-cd823a4d-7dec-4531-ae5d-4134fa4127b8/section0.dxe.depex
-            SECTION PE32 = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-cd823a4d-7dec-4531-ae5d-4134fa4127b8/section1.pe
+            SECTION PE32 = SurfaceDuo2Pkg/PatchedBinaries/UsbConfigDxe.efi
             SECTION UI = "UsbConfigDxe"
     }
 
     FILE DRIVER = 5bd181db-0487-4f1a-ae73-820e165611b3 {
             SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-5bd181db-0487-4f1a-ae73-820e165611b3/section0.dxe.depex
-            SECTION PE32 = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-5bd181db-0487-4f1a-ae73-820e165611b3/section1.pe
+            SECTION PE32 = SurfaceDuo2Pkg/PatchedBinaries/ButtonsDxe.efi
             SECTION UI = "ButtonsDxe"
     }
 
