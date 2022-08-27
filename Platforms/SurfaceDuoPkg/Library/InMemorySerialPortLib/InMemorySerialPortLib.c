@@ -61,6 +61,12 @@ SerialPortInitialize(VOID)
 
 static void mem_putchar(UINT8 c)
 {
+  if (PStoreMemoryRegion == NULL)
+    SerialPortLocateArea(&PStoreMemoryRegion);
+
+  if (PStoreMemoryRegion == NULL)
+    return;
+
   UINTN              size   = PStoreMemoryRegion->Length - sizeof(UINTN);
   UINT8 *            base   = (UINT8 *)PStoreMemoryRegion->Address;
   UINTN *            offset = (UINTN *)((UINTN)base + size);
