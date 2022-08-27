@@ -187,7 +187,7 @@
             SECTION UI = "FeatureEnablerDxe"
     }
 
-    INF SurfaceDuo2Pkg/Driver/SimpleFbDxe/SimpleFbDxe.inf
+    INF SurfacePkg/Driver/SimpleFbDxe/SimpleFbDxe.inf
 
     FILE DRIVER = 1d317734-4083-47c6-83ea-e3a42f2a6bff {
             SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-1d317734-4083-47c6-83ea-e3a42f2a6bff/section0.dxe.depex

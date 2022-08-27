@@ -196,7 +196,7 @@ APRIORI DXE {
             SECTION UI = "FeatureEnablerDxe"
     }
 
-    INF SurfaceDuo2Pkg/Driver/SimpleFbDxe/SimpleFbDxe.inf
+    INF SurfacePkg/Driver/SimpleFbDxe/SimpleFbDxe.inf
 
     FILE DRIVER = e2534a24-1d9a-4a54-aaec-be8836d0f45d {
             SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-e2534a24-1d9a-4a54-aaec-be8836d0f45d/section0.dxe.depex

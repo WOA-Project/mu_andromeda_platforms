@@ -489,7 +489,7 @@
   MdeModulePkg/Universal/BdsDxe/BdsDxe.inf
 
   # Graphics Driver
-  SurfaceDuo2Pkg/Driver/SimpleFbDxe/SimpleFbDxe.inf
+  SurfacePkg/Driver/SimpleFbDxe/SimpleFbDxe.inf
 
   # HID Support
   HidPkg/HidKeyboardDxe/HidKeyboardDxe.inf
