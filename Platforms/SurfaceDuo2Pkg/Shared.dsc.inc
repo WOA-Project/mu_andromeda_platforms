@@ -112,7 +112,7 @@
   gEfiMdePkgTokenSpaceGuid.PcdPlatformBootTimeOut|2
 
   # Enable Debug
-  gSurfaceDuo2PkgTokenSpaceGuid.PcdEnableScreenSerial|TRUE
+  gSurfacePkgTokenSpaceGuid.PcdEnableScreenSerial|TRUE
 
   # Variable Services
   # Each Size of 0xA0000
