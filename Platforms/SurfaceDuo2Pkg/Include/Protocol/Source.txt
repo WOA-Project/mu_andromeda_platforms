@@ -1,2 +1,2 @@
-URL:    https://source.codeaurora.org/quic/la/abl/tianocore/edk2
-BRANCH: LA.UM.8.1.r1-17800-sm8150.0
+URL:    https://git.codelinaro.org/clo/la/abl/tianocore/edk2
+BRANCH: LA.UM.9.14.r1-20200.01-LAHAINA.QSSI12.0

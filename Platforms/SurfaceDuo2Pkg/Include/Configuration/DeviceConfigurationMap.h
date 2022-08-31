@@ -52,7 +52,7 @@ static CONFIGURATION_DESCRIPTOR_EX gDeviceConfigurationDescriptorEx[] = {
     {"SecurityFlag", 0x1C4},
     {"SharedIMEMBaseAddr", 0x146BF000},
     {"ShmBridgememSize", 0xA00000},
-    {"SmcInvokeConfig ", 0x20040100 },
+    {"SmcInvokeConfig", 0x20040100},
     {"UefiMemUseThreshold", 0xE1},
     {"TzDiagOffset", 0x720},
     {"TzDiagSize", 0x2000},

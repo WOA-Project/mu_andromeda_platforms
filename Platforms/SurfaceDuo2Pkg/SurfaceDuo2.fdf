@@ -128,9 +128,9 @@ READ_LOCK_STATUS   = TRUE
   # INF HidPkg/HidMouseAbsolutePointerDxe/HidMouseAbsolutePointerDxe.inf
 
   # Why is this different yet using the same names and GUIDs? (Uses different function signatures for callbacks...)
-  FILE DRIVER = d4e2f6ad-f3ad-40c5-aa14-183e68f4b5bd  {
-    SECTION PE32 = SurfaceDuoBinaries/BOOT.XF.3.0.1-00243-SC8180XWZB-2/volume-0/file-2/section0/section1/volume-0/file-d4e2f6ad-f3ad-40c5-aa14-183e68f4b5bd/section0.pe
-    SECTION UI = "HidMouseAbsolutePointerDxe"
+  FILE DRIVER = 99710012-4230-4842-9712-b9785b723812 {
+          SECTION PE32 = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-99710012-4230-4842-9712-b9785b723812/section0.pe
+          SECTION UI = "HidMouseAbsolutePointerDxe"
   }
 
   # Disk IO

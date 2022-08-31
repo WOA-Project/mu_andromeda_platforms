@@ -13,12 +13,7 @@
 
     # Core Drivers
     INF EmbeddedPkg/MetronomeDxe/MetronomeDxe.inf
-
-    FILE DRIVER = 49ea041e-6752-42ca-b0b1-7344fe2546b7 {
-            SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-1/section0/section1/volume-0/file-49ea041e-6752-42ca-b0b1-7344fe2546b7/section0.dxe.depex
-            SECTION PE32 = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-1/section0/section1/volume-0/file-49ea041e-6752-42ca-b0b1-7344fe2546b7/section1.pe
-            SECTION UI = "ArmTimerDxe"
-    }
+    INF SurfaceDuo2Pkg/Driver/TimerDxe/TimerDxe.inf
 
     FILE DRIVER = f541d663-4a48-40aa-aabf-ff158ccae34c {
             SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-1/section0/section1/volume-0/file-f541d663-4a48-40aa-aabf-ff158ccae34c/section0.dxe.depex
@@ -94,7 +89,7 @@
 
     FILE DRIVER = 4db5dea6-5302-4d1a-8a82-677a683b0d29 {
             SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-1/section0/section1/volume-0/file-4db5dea6-5302-4d1a-8a82-677a683b0d29/section0.dxe.depex
-            SECTION PE32 = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-1/section0/section1/volume-0/file-4db5dea6-5302-4d1a-8a82-677a683b0d29/section1.pe
+            SECTION PE32 = SurfaceDuo2Pkg/PatchedBinaries/ClockDxe.efi
             SECTION UI = "ClockDxe"
     }
 
@@ -111,8 +106,8 @@
     }
 
     FILE DRIVER = 4b4973ee-401b-4f36-a6a9-533dfccdfc33 {
-            SECTION PE32 = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-1/section0/section1/volume-0/file-4b4973ee-401b-4f36-a6a9-533dfccdfc33/section0.pe
-            SECTION UI = "ScmDxeLA"
+            SECTION PE32 = SurfaceDuo2Pkg/PatchedBinaries/ScmDxe.efi
+            SECTION UI = "ScmDxe"
     }
 
     FILE DRIVER = 6b38f7b4-ad98-40e9-9093-aca2b5a253c4 {
@@ -140,8 +135,8 @@
     INF FatPkg/EnhancedFatDxe/Fat.inf
 
     FILE DRIVER = cf6dfc66-14ab-4e13-84db-9c02912d1404 {
-            SECTION PE32 = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-1/section0/section1/volume-0/file-cf6dfc66-14ab-4e13-84db-9c02912d1404/section0.pe
-            SECTION UI = "TzDxeLA"
+            SECTION PE32 = SurfaceDuo2Pkg/PatchedBinaries/TzDxe.efi
+            SECTION UI = "TzDxe"
     }
 
     INF MdeModulePkg/Universal/Variable/RuntimeDxe/VariableRuntimeDxe.inf
@@ -152,11 +147,11 @@
             SECTION UI = "MsEnvDxe"
     }
 
-    FILE DRIVER = 040e1e61-0afb-411b-9ec9-00f3fc59cc13 {
-            SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-1/section0/section1/volume-0/file-040e1e61-0afb-411b-9ec9-00f3fc59cc13/section0.dxe.depex
-            SECTION PE32 = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-1/section0/section1/volume-0/file-040e1e61-0afb-411b-9ec9-00f3fc59cc13/section1.pe
-            SECTION UI = "QcomWDogDxe"
-    }
+    # FILE DRIVER = 040e1e61-0afb-411b-9ec9-00f3fc59cc13 {
+    #       SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-1/section0/section1/volume-0/file-040e1e61-0afb-411b-9ec9-00f3fc59cc13/section0.dxe.depex
+    #       SECTION PE32 = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-1/section0/section1/volume-0/file-040e1e61-0afb-411b-9ec9-00f3fc59cc13/section1.pe
+    #       SECTION UI = "QcomWDogDxe"
+    # }
 
     FILE DRIVER = 8681cc5a-0df6-441e-b4b8-e915c538f067 {
             SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-8681cc5a-0df6-441e-b4b8-e915c538f067/section0.dxe.depex
@@ -178,22 +173,22 @@
 
     FILE DRIVER = 5776232e-082d-4b75-9a0e-fe1d13f7a5d9 {
             SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-5776232e-082d-4b75-9a0e-fe1d13f7a5d9/section0.dxe.depex
-            SECTION PE32 = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-5776232e-082d-4b75-9a0e-fe1d13f7a5d9/section1.pe
+            SECTION PE32 = SurfaceDuo2Pkg/PatchedBinaries/PmicDxe.efi
             SECTION UI = "PmicDxe"
     }
 
-    FILE DRIVER = 1c04f529-0612-4319-9315-b2e75c16810a {
-            SECTION PE32 = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-1c04f529-0612-4319-9315-b2e75c16810a/section0.pe
-            SECTION UI = "FeatureEnablerDxe"
-    }
+    # FILE DRIVER = 1c04f529-0612-4319-9315-b2e75c16810a {
+    #         SECTION PE32 = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-1c04f529-0612-4319-9315-b2e75c16810a/section0.pe
+    #         SECTION UI = "FeatureEnablerDxe"
+    # }
 
     INF SurfacePkg/Driver/SimpleFbDxe/SimpleFbDxe.inf
 
-    FILE DRIVER = 1d317734-4083-47c6-83ea-e3a42f2a6bff {
-            SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-1d317734-4083-47c6-83ea-e3a42f2a6bff/section0.dxe.depex
-            SECTION PE32 = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-1d317734-4083-47c6-83ea-e3a42f2a6bff/section1.pe
-            SECTION UI = "PILDxe"
-    }
+    # FILE DRIVER = 1d317734-4083-47c6-83ea-e3a42f2a6bff {
+    #         SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-1d317734-4083-47c6-83ea-e3a42f2a6bff/section0.dxe.depex
+    #         SECTION PE32 = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-1d317734-4083-47c6-83ea-e3a42f2a6bff/section1.pe
+    #         SECTION UI = "PILDxe"
+    # }
 
     FILE DRIVER = 5f0937cd-73f9-445e-b320-bb6fd5d3cbde {
             SECTION PE32 = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-5f0937cd-73f9-445e-b320-bb6fd5d3cbde/section0.pe
@@ -209,23 +204,23 @@
     INF MdeModulePkg/Universal/PrintDxe/PrintDxe.inf
     INF MdeModulePkg/Universal/DevicePathDxe/DevicePathDxe.inf
 
-    FILE DRIVER = e2534a24-1d9a-4a54-aaec-be8836d0f45d {
-            SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-e2534a24-1d9a-4a54-aaec-be8836d0f45d/section0.dxe.depex
-            SECTION PE32 = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-e2534a24-1d9a-4a54-aaec-be8836d0f45d/section1.pe
-            SECTION UI = "FvDxe"
-    }
+    # FILE DRIVER = e2534a24-1d9a-4a54-aaec-be8836d0f45d {
+    #         SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-e2534a24-1d9a-4a54-aaec-be8836d0f45d/section0.dxe.depex
+    #         SECTION PE32 = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-e2534a24-1d9a-4a54-aaec-be8836d0f45d/section1.pe
+    #         SECTION UI = "FvDxe"
+    # }
 
-    FILE DRIVER = 8cf9c920-d5e6-4dac-bef9-6e6a4eec7add {
-            SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-8cf9c920-d5e6-4dac-bef9-6e6a4eec7add/section0.dxe.depex
-            SECTION PE32 = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-8cf9c920-d5e6-4dac-bef9-6e6a4eec7add/section1.pe
-            SECTION UI = "PILProxyDxe"
-    }
+    # FILE DRIVER = 8cf9c920-d5e6-4dac-bef9-6e6a4eec7add {
+    #         SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-8cf9c920-d5e6-4dac-bef9-6e6a4eec7add/section0.dxe.depex
+    #         SECTION PE32 = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-8cf9c920-d5e6-4dac-bef9-6e6a4eec7add/section1.pe
+    #         SECTION UI = "PILProxyDxe"
+    # }
 
-    FILE DRIVER = 5d787b6c-6254-43f5-a7a8-cb25329cf97e {
-            SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-5d787b6c-6254-43f5-a7a8-cb25329cf97e/section0.dxe.depex
-            SECTION PE32 = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-5d787b6c-6254-43f5-a7a8-cb25329cf97e/section1.pe
-            SECTION UI = "SPSSDxe"
-    }
+    # FILE DRIVER = 5d787b6c-6254-43f5-a7a8-cb25329cf97e {
+    #         SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-5d787b6c-6254-43f5-a7a8-cb25329cf97e/section0.dxe.depex
+    #         SECTION PE32 = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-5d787b6c-6254-43f5-a7a8-cb25329cf97e/section1.pe
+    #         SECTION UI = "SPSSDxe"
+    # }
 
     FILE DRIVER = 42031f68-1f0b-429b-93f1-0eb0cf89ddbf {
             SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-42031f68-1f0b-429b-93f1-0eb0cf89ddbf/section0.dxe.depex
@@ -305,7 +300,7 @@
 
     FILE DRIVER = 569ea0de-b557-4043-84cf-01103fe516e5 {
             SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-569ea0de-b557-4043-84cf-01103fe516e5/section0.dxe.depex
-            SECTION PE32 = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-569ea0de-b557-4043-84cf-01103fe516e5/section1.pe
+            SECTION PE32 = SurfaceDuo2Pkg/PatchedBinaries/GpiDxe.efi
             SECTION UI = "GpiDxe"
     }
 
@@ -320,11 +315,11 @@
             SECTION UI = "ManufacturingModeDxe"
     }
 
-    FILE DRIVER = 1b52138d-3fa3-4e50-b958-20887353f809 {
-            SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-1b52138d-3fa3-4e50-b958-20887353f809/section0.dxe.depex
-            SECTION PE32 = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-1b52138d-3fa3-4e50-b958-20887353f809/section1.pe
-            SECTION UI = "CPRDxe"
-    }
+    # FILE DRIVER = 1b52138d-3fa3-4e50-b958-20887353f809 {
+    #         SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-1b52138d-3fa3-4e50-b958-20887353f809/section0.dxe.depex
+    #         SECTION PE32 = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-1b52138d-3fa3-4e50-b958-20887353f809/section1.pe
+    #         SECTION UI = "CPRDxe"
+    # }
 
     FILE DRIVER = 7942a7eb-b7d5-4e2e-b908-831e4de55b58 {
             SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-7942a7eb-b7d5-4e2e-b908-831e4de55b58/section0.dxe.depex
@@ -409,9 +404,83 @@
     #         SECTION UI = "ColorbarsDxe"
     # }
 
+    FILE DRIVER = 73c39be5-1dbe-40b2-ae12-ac8d065f01ad {
+            SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-73c39be5-1dbe-40b2-ae12-ac8d065f01ad/section0.dxe.depex
+            SECTION PE32 = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-73c39be5-1dbe-40b2-ae12-ac8d065f01ad/section1.pe
+            SECTION UI = "TouchPointDxe"
+    }
+
+    FILE DRIVER = 2a0ecdce-01ae-446e-9ffd-c4217de0340f {
+            SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-2a0ecdce-01ae-446e-9ffd-c4217de0340f/section0.dxe.depex
+            SECTION PE32 = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-2a0ecdce-01ae-446e-9ffd-c4217de0340f/section1.pe
+            SECTION UI = "MinidumpTADxe"
+    }
+
+    FILE DRIVER = 4a568b8a-4d9d-4984-9c75-cee33698e451 {
+            SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-4a568b8a-4d9d-4984-9c75-cee33698e451/section0.dxe.depex
+            SECTION PE32 = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-4a568b8a-4d9d-4984-9c75-cee33698e451/section1.pe
+            SECTION UI = "ParserDxe"
+    }
+
+    FILE DRIVER = 6201ace5-5f41-4eb5-bfad-6980ea341d92 {
+            SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-6201ace5-5f41-4eb5-bfad-6980ea341d92/section0.dxe.depex
+            SECTION PE32 = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-6201ace5-5f41-4eb5-bfad-6980ea341d92/section1.pe
+            SECTION UI = "MSFRU"
+    }
+
+    FILE DRIVER = 6201ace5-5f41-4eb5-bfad-6980ea343619 {
+            SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-6201ace5-5f41-4eb5-bfad-6980ea343619/section0.dxe.depex
+            SECTION PE32 = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-6201ace5-5f41-4eb5-bfad-6980ea343619/section1.pe
+            SECTION UI = "MSDfci"
+    }
+
+    FILE DRIVER = 93f8bcc8-ff16-11ea-a6e6-47a970294471 {
+            SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-93f8bcc8-ff16-11ea-a6e6-47a970294471/section0.dxe.depex
+            SECTION PE32 = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-93f8bcc8-ff16-11ea-a6e6-47a970294471/section1.pe
+            SECTION UI = "SfpdUtils"
+    }
+
+    FILE DRIVER = 726f08e6-213c-4248-9e53-3ee5ff0b2f2b {
+            SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-726f08e6-213c-4248-9e53-3ee5ff0b2f2b/section0.dxe.depex
+            SECTION PE32 = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-726f08e6-213c-4248-9e53-3ee5ff0b2f2b/section1.pe
+            SECTION UI = "SurfaceTouchHidDxe"
+    }
+
+    FILE DRIVER = bd97f704-ce48-11eb-916c-db1f9c585103 {
+            SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-bd97f704-ce48-11eb-916c-db1f9c585103/section0.dxe.depex
+            SECTION PE32 = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-bd97f704-ce48-11eb-916c-db1f9c585103/section1.pe
+            SECTION UI = "MsAbstractLayerDxe"
+    }
+
+    FILE DRIVER = 0b0293c7-3930-4d49-8e0d-f48992266ed9 {
+            SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-0b0293c7-3930-4d49-8e0d-f48992266ed9/section0.dxe.depex
+            SECTION PE32 = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-0b0293c7-3930-4d49-8e0d-f48992266ed9/section1.pe
+            SECTION UI = "MsXblHlosHobDxe"
+    }
+
+    FILE DRIVER = 4eec629b-7ce2-4717-a22d-91af2a4b42a7 {
+            SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-4eec629b-7ce2-4717-a22d-91af2a4b42a7/section0.dxe.depex
+            SECTION PE32 = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-4eec629b-7ce2-4717-a22d-91af2a4b42a7/section1.pe
+            SECTION UI = "MsDebugDxe"
+    }
+
+    INF MdeModulePkg/Universal/TimestampDxe/TimestampDxe.inf
+
+    FILE DRIVER = 6add2abe-b88e-4afd-a0ff-438f91d51cf5 {
+            SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-6add2abe-b88e-4afd-a0ff-438f91d51cf5/section0.dxe.depex
+            SECTION PE32 = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-6add2abe-b88e-4afd-a0ff-438f91d51cf5/section1.pe
+            SECTION UI = "TouchUtilsDxe"
+    }
+
     FILE APPLICATION = eee9c2b1-16ca-4f34-87ea-2e6d1e160cc4 {
             SECTION UI = "QcomChargerApp"
             SECTION PE32 = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-eee9c2b1-16ca-4f34-87ea-2e6d1e160cc4/section1.pe
+    }
+
+    FILE DRIVER = 0fcf3c47-4a1f-434c-a0bc-2d964c0fc1fd {
+            SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.XF.3.0-00527-SM8150LZB-1-202206/volume-0/file-2/section0/section1/volume-0/file-0fcf3c47-4a1f-434c-a0bc-2d964c0fc1fd/section0.dxe.depex
+            SECTION PE32 = SurfaceDuoBinaries/BOOT.XF.3.0-00527-SM8150LZB-1-202206/volume-0/file-2/section0/section1/volume-0/file-0fcf3c47-4a1f-434c-a0bc-2d964c0fc1fd/section1.pe
+            SECTION UI = "GpioButtons"
     }
 
     FILE FREEFORM = a91d838e-a5fa-4138-825d-455e2303079e {

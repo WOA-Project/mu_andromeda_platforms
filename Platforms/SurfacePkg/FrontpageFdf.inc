@@ -7,7 +7,7 @@
   INF MsGraphicsPkg/DisplayEngineDxe/DisplayEngineDxe.inf
   INF OemPkg/BootMenu/BootMenu.inf
   INF OemPkg/FrontPage/FrontPage.inf
-  INF PcBdsPkg/MsBootPolicy/MsBootPolicy.inf
+  INF SurfacePkg/MsBootPolicy/MsBootPolicy.inf
   INF MdeModulePkg/Universal/BootManagerPolicyDxe/BootManagerPolicyDxe.inf
   INF MdeModulePkg/Universal/RegularExpressionDxe/RegularExpressionDxe.inf
   INF DfciPkg/DfciManager/DfciManager.inf

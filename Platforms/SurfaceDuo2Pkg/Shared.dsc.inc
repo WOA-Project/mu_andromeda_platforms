@@ -178,7 +178,7 @@
 [LibraryClasses.common]
   ArmLib|ArmPkg/Library/ArmLib/ArmBaseLib.inf
   ArmMmuLib|ArmPkg/Library/ArmMmuLib/ArmMmuBaseLib.inf
-  ArmGenericTimerCounterLib|ArmPkg/Library/ArmGenericTimerPhyCounterLib/ArmGenericTimerPhyCounterLib.inf
+  ArmGenericTimerCounterLib|ArmPkg/Library/ArmGenericTimerVirtCounterLib/ArmGenericTimerVirtCounterLib.inf
   ArmDisassemblerLib|ArmPkg/Library/ArmDisassemblerLib/ArmDisassemblerLib.inf
   ArmGicLib|ArmPkg/Drivers/ArmGic/ArmGicLib.inf
   ArmSmcLib|ArmPkg/Library/ArmSmcLib/ArmSmcLib.inf
@@ -436,7 +436,7 @@
 
   # Processor Core Services
   ArmPkg/Drivers/CpuDxe/CpuDxe.inf
-  ArmPkg/Drivers/TimerDxe/TimerDxe.inf
+  SurfaceDuo2Pkg/Driver/TimerDxe/TimerDxe.inf
   ArmPkg/Drivers/ArmGic/ArmGicDxe.inf
   MdeModulePkg/Universal/WatchdogTimerDxe/WatchdogTimer.inf
   EmbeddedPkg/MetronomeDxe/MetronomeDxe.inf
@@ -527,5 +527,7 @@
   MdeModulePkg/Universal/ResetSystemRuntimeDxe/ResetSystemRuntimeDxe.inf
 
   MdeModulePkg/Universal/EsrtFmpDxe/EsrtFmpDxe.inf
+
+  MdeModulePkg/Universal/TimestampDxe/TimestampDxe.inf
 
   SurfacePkg/UFP/ufpdevicefw.inf

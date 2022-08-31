@@ -113,7 +113,9 @@ UfsSmmuConfigForOtherBootDev = 1
 #PCIeRPNumber=0x0101
 
 ## Security flag ##
-SecurityFlag = 0xC4
+## MSCHANGE enabling TZ APP logging
+SecurityFlag = 0x1C4
+
 # SecBootEnableFlag = 0x1               i.e. 0b00000001
 # TreeTpmEnableFlag = 0x2               i.e. 0b00000010
 # CommonMbnLoadFlag = 0x4               i.e. 0b00000100

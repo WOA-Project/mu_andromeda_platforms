@@ -688,7 +688,7 @@ VOID SysInfoUpdateSmbiosType1(VOID)
   // Update serial number from Board DXE
   if (mBoardProtocol != NULL) {
     mBoardProtocol->GetSerialNumber(mBoardProtocol, &serial);
-    AsciiSPrint(serialNo, sizeof(serialNo), "%d", serial);
+    AsciiSPrint(serialNo, sizeof(serialNo), "%u", serial);
     mSysInfoType1Strings[3] = serialNo;
 
     mSysInfoType1.Uuid.Data1 = serial;
@@ -709,7 +709,7 @@ VOID BoardInfoUpdateSmbiosType2(VOID)
   // Update serial number from Board DXE
   if (mBoardProtocol != NULL) {
     mBoardProtocol->GetSerialNumber(mBoardProtocol, &serial);
-    AsciiSPrint(serialNo, sizeof(serialNo), "%d", serial);
+    AsciiSPrint(serialNo, sizeof(serialNo), "%u", serial);
     mBoardInfoType2Strings[3] = serialNo;
   }
 
@@ -729,7 +729,7 @@ VOID EnclosureInfoUpdateSmbiosType3(VOID)
   // Update serial number from Board DXE
   if (mBoardProtocol != NULL) {
     mBoardProtocol->GetSerialNumber(mBoardProtocol, &serial);
-    AsciiSPrint(serialNo, sizeof(serialNo), "%d", serial);
+    AsciiSPrint(serialNo, sizeof(serialNo), "%u", serial);
     mEnclosureInfoType3Strings[2] = serialNo;
   }
 

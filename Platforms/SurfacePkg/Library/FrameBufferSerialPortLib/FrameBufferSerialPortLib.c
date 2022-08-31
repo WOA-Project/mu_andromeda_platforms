@@ -10,7 +10,7 @@
 
 #include <Library/FrameBufferSerialPortLib.h>
 
-FBCON_POSITION m_Position;
+FBCON_POSITION* p_Position = (FBCON_POSITION*)(FixedPcdGet32(PcdMipiFrameBufferAddress) + (FixedPcdGet32(PcdMipiFrameBufferWidth) * FixedPcdGet32(PcdMipiFrameBufferHeight) * FixedPcdGet32(PcdMipiFrameBufferPixelBpp) / 8));
 FBCON_POSITION m_MaxPosition;
 FBCON_COLOR    m_Color;
 BOOLEAN        m_Initialized = FALSE;
@@ -79,8 +79,8 @@ void ResetFb(void)
 void FbConReset(void)
 {
   // Reset position.
-  m_Position.x = 0;
-  m_Position.y = 0;
+  p_Position->x = 0;
+  p_Position->y = 0;
 
   // Calc max position.
   m_MaxPosition.x = gWidth / (FONT_WIDTH + 1);
@@ -108,7 +108,7 @@ paint:
       goto newline;
     }
     else if (c == '\r') {
-      m_Position.x = 0;
+      p_Position->x = 0;
       return;
     }
     else {
@@ -117,7 +117,7 @@ paint:
   }
 
   // Save some space
-  if (m_Position.x == 0 && (unsigned char)c == ' ' &&
+  if (p_Position->x == 0 && (unsigned char)c == ' ' &&
       type != FBCON_SUBTITLE_MSG && type != FBCON_TITLE_MSG)
     return;
 
@@ -125,15 +125,15 @@ paint:
   ArmDisableInterrupts();
 
   Pixels = (void *)FixedPcdGet32(PcdMipiFrameBufferAddress);
-  Pixels += m_Position.y * ((gBpp / 8) * FONT_HEIGHT * gWidth);
-  Pixels += m_Position.x * scale_factor * ((gBpp / 8) * (FONT_WIDTH + 1));
+  Pixels += p_Position->y * ((gBpp / 8) * FONT_HEIGHT * gWidth);
+  Pixels += p_Position->x * scale_factor * ((gBpp / 8) * (FONT_WIDTH + 1));
 
   FbConDrawglyph(
       Pixels, gWidth, (gBpp / 8), font5x12 + (c - 32) * 2, scale_factor);
 
-  m_Position.x++;
+  p_Position->x++;
 
-  if (m_Position.x >= (int)(m_MaxPosition.x / scale_factor))
+  if (p_Position->x >= (int)(m_MaxPosition.x / scale_factor))
     goto newline;
 
   if (intstate)
@@ -141,12 +141,12 @@ paint:
   return;
 
 newline:
-  m_Position.y += scale_factor;
-  m_Position.x = 0;
-  if (m_Position.y >= m_MaxPosition.y - scale_factor) {
+  p_Position->y += scale_factor;
+  p_Position->x = 0;
+  if (p_Position->y >= m_MaxPosition.y - scale_factor) {
     ResetFb();
     FbConFlush();
-    m_Position.y = 0;
+    p_Position->y = 0;
 
     if (intstate)
       ArmEnableInterrupts();

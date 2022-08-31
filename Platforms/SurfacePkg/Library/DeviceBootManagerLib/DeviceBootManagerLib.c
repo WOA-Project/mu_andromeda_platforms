@@ -190,7 +190,7 @@ MsPreBootChecks (
 
       Status = SystemPowerMitigate (PowerCaseBoot);
       if (EFI_ERROR (Status)) {
-        DEBUG ((DEBUG_INFO, "SystemPowerMitigate(Boot) failed - %r.  Shutdown now\n"));
+        DEBUG ((DEBUG_INFO, "SystemPowerMitigate(Boot) failed - %r.  Shutdown now\n", Status));
 
         PowerGood = FALSE;
         goto CleanUp;
@@ -346,7 +346,7 @@ BdsBootLockBootVariables (
   if (EFI_ERROR (Status)) {
     DEBUG ((DEBUG_ERROR, "Unable to lock BootNext. Code=%r\n", Status));
   } else {
-    DEBUG ((DEBUG_INFO, "Variable BootNext locked\n", OptionName));
+    DEBUG ((DEBUG_INFO, "Variable BootNext locked\n"));
   }
 
   GetVariable2 (
@@ -702,7 +702,7 @@ DeviceBootManagerConstructor (
                   &mPreReadyToBootEvent
                   );
   if (EFI_ERROR (Status)) {
-    DEBUG ((DEBUG_ERROR, "ERROR [BDS]: Failed to register OnReadyToBoot.\r\n", Status));
+    DEBUG ((DEBUG_ERROR, "ERROR [BDS]: Failed to register OnReadyToBoot (%r).\r\n", Status));
   }
 
   Status = gBS->CreateEventEx (
@@ -714,7 +714,7 @@ DeviceBootManagerConstructor (
                   &mPostReadyToBootEvent
                   );
   if (EFI_ERROR (Status)) {
-    DEBUG ((DEBUG_ERROR, "ERROR [BDS]: Failed to register OnReadyToBoot.\r\n", Status));
+    DEBUG ((DEBUG_ERROR, "ERROR [BDS]: Failed to register OnReadyToBoot (%r).\r\n", Status));
   }
 
   // Constructor MUST return EFI_SUCCESS as a failure can result in an unusable system

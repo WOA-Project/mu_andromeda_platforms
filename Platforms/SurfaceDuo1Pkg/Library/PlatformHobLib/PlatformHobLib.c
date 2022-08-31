@@ -63,6 +63,11 @@ CfgGetCfgInfoString(CHAR8 *Key, CHAR8 *Value, UINTN *ValBuffSize)
 {
   DEBUG((EFI_D_INFO, "[PlatformHob] CfgGetCfgInfoString(%a) Entry...\n", Key));
 
+  if (AsciiStriCmp(Key, "OsTypeString") == 0) {
+    AsciiStrCpyS(Value, *ValBuffSize, "LA");
+    return EFI_SUCCESS;
+  }
+
   DEBUG(
       (EFI_D_ERROR,
        "[PlatformHob] CfgGetCfgInfoString Exit FAIL, unknown %a...\n", Key));
