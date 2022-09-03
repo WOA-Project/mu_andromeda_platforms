@@ -12,7 +12,7 @@ sudo apt-get update
 sudo apt-get install -y mono-devel
 
 # Host utilities
-sudo apt-get install -y python3 python3-venv python3-pip python git-core git build-essential
+sudo apt-get install -y python3 python3-venv python3-pip git-core git build-essential
 
 # PowerShell
 # Import the public repository GPG keys

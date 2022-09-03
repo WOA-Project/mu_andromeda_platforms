@@ -32,6 +32,12 @@ steps:
 # - script: cd acpica-tools && make clean && make && sudo make install && cd ..
 #   displayName: 'Build and install ACPICA tools'
 
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '3.10.x'
+    architecture: 'x64'
+  displayName: Install correct Python
+
 - script: chmod +x ./setup_env.sh && sudo ./setup_env.sh
   displayName: 'Prepare pre-build environment, phase 0'
 
