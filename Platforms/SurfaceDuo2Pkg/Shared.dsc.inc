@@ -436,7 +436,7 @@
 
   # Processor Core Services
   ArmPkg/Drivers/CpuDxe/CpuDxe.inf
-  SurfaceDuo2Pkg/Driver/TimerDxe/TimerDxe.inf
+  ArmPkg/Drivers/TimerDxe/TimerDxe.inf
   ArmPkg/Drivers/ArmGic/ArmGicDxe.inf
   MdeModulePkg/Universal/WatchdogTimerDxe/WatchdogTimer.inf
   EmbeddedPkg/MetronomeDxe/MetronomeDxe.inf
