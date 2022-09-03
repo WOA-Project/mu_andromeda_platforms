@@ -1,6 +1,6 @@
 
     # First, install the PCD driver and call DxeInit
-    INF MdeModulePkg/Core/Dxe/DxeMain.inf
+    INF SurfaceDuo2Pkg/Dxe/DxeMain.inf
     INF MdeModulePkg/Universal/PCD/Dxe/Pcd.inf
 
     INF MdeModulePkg/Universal/ReportStatusCodeRouter/RuntimeDxe/ReportStatusCodeRouterRuntimeDxe.inf
@@ -135,8 +135,8 @@
     INF FatPkg/EnhancedFatDxe/Fat.inf
 
     FILE DRIVER = cf6dfc66-14ab-4e13-84db-9c02912d1404 {
-            SECTION PE32 = SurfaceDuo2Pkg/PatchedBinaries/TzDxe.efi
-            SECTION UI = "TzDxe"
+            SECTION PE32 = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-1/section0/section1/volume-0/file-cf6dfc66-14ab-4e13-84db-9c02912d1404/section0.pe
+            SECTION UI = "TzDxeLA"
     }
 
     INF MdeModulePkg/Universal/Variable/RuntimeDxe/VariableRuntimeDxe.inf
@@ -481,6 +481,12 @@
             SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.XF.3.0-00527-SM8150LZB-1-202206/volume-0/file-2/section0/section1/volume-0/file-0fcf3c47-4a1f-434c-a0bc-2d964c0fc1fd/section0.dxe.depex
             SECTION PE32 = SurfaceDuoBinaries/BOOT.XF.3.0-00527-SM8150LZB-1-202206/volume-0/file-2/section0/section1/volume-0/file-0fcf3c47-4a1f-434c-a0bc-2d964c0fc1fd/section1.pe
             SECTION UI = "GpioButtons"
+    }
+
+    FILE DRIVER = 3977d4c4-b0eb-4548-96b9-671fa2e36820 {
+            SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.XF.3.0-00527-SM8150LZB-1-202206/volume-0/file-2/section0/section1/volume-0/file-3977d4c4-b0eb-4548-96b9-671fa2e36820/section0.dxe.depex
+            SECTION PE32 = SurfaceDuoBinaries/BOOT.XF.3.0-00527-SM8150LZB-1-202206/volume-0/file-2/section0/section1/volume-0/file-3977d4c4-b0eb-4548-96b9-671fa2e36820/section1.pe
+            SECTION UI = "MsEarlyGraphicsDxe"
     }
 
     FILE FREEFORM = a91d838e-a5fa-4138-825d-455e2303079e {

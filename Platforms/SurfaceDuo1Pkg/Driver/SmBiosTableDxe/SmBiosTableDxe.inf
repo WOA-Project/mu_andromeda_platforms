@@ -13,6 +13,14 @@
   gArmPlatformTokenSpaceGuid.PcdCoreCount
   gArmTokenSpaceGuid.PcdSystemMemoryBase
   gArmTokenSpaceGuid.PcdSystemMemorySize
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVendor
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVersionString
+  gSurfaceDuo1PkgTokenSpaceGuid.PcdSmbiosSystemModel
+  gSurfaceDuo1PkgTokenSpaceGuid.PcdSmbiosSystemRetailModel
+  gSurfaceDuo1PkgTokenSpaceGuid.PcdSmbiosSystemRetailSku
+  gSurfaceDuo1PkgTokenSpaceGuid.PcdSmbiosProcessorModel
+  gSurfaceDuo1PkgTokenSpaceGuid.PcdSmbiosBoardModel
+  gSurfaceDuo1PkgTokenSpaceGuid.PcdSmbiosBoardRetailModel
   
 [Packages]
   ArmPkg/ArmPkg.dec

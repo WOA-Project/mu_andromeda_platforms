@@ -28,6 +28,7 @@ enum FbConMsgType {
   FBCON_SELECT_MSG_BG_COLOR,
 };
 
+void InitializeFb(void);
 void ResetFb(void);
 
 UINTN

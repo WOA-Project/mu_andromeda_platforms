@@ -7,20 +7,23 @@
 
 [Sources.common]
   Pi.c
+  EarlyQGic/EarlyQGic.c
 
 [Sources.AARCH64]
-  ReleaseInfo.S | GCC
   ProcessorSupport.S | GCC
   ModuleEntryPoint.S | GCC
+  EarlyQGic/ArmGicV3.S | GCC
 
 [BuildOptions.AARCH64]
   GCC:*_*_*_CC_FLAGS = -Werror -Wno-error=unused-function
 
 [Packages]
+  ArmPkg/ArmPkg.dec
+  ArmPlatformPkg/ArmPlatformPkg.dec
   MdePkg/MdePkg.dec
   MdeModulePkg/MdeModulePkg.dec
   EmbeddedPkg/EmbeddedPkg.dec
-  ArmPkg/ArmPkg.dec
+  SurfacePkg/SurfacePkg.dec
   SurfaceDuo2Pkg/SurfaceDuo2Pkg.dec
 
 [LibraryClasses]
@@ -45,6 +48,8 @@
   MemoryInitPeiLib
   PlatformPeiLib
   PlatformHobLib
+  # MpPark
+  ArmSmcLib
 
 [Guids]
   gEfiSystemNvDataFvGuid
@@ -58,6 +63,9 @@
   gArmTokenSpaceGuid.PcdFvSize
   gArmTokenSpaceGuid.PcdFdBaseAddress
   gArmTokenSpaceGuid.PcdFdSize
+  gArmTokenSpaceGuid.PcdGicDistributorBase
+  gArmTokenSpaceGuid.PcdGicInterruptInterfaceBase
+  gArmPlatformTokenSpaceGuid.PcdCoreCount
   gEfiMdePkgTokenSpaceGuid.PcdUartDefaultBaudRate
   gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVersionString
   gEmbeddedTokenSpaceGuid.PcdPrePiStackBase
@@ -65,3 +73,6 @@
   gEmbeddedTokenSpaceGuid.PcdPrePiCpuIoSize
   gSurfaceDuo2PkgTokenSpaceGuid.PcdPreAllocatedMemorySize
   gSurfaceDuo2PkgTokenSpaceGuid.PcdUefiMemPoolSize
+
+[FeaturePcd]
+  gSurfaceDuo2PkgTokenSpaceGuid.PcdIsLkBuild

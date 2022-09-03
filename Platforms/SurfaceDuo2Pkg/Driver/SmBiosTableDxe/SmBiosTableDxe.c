@@ -685,6 +685,11 @@ VOID SysInfoUpdateSmbiosType1(VOID)
   CHAR8  serialNo[13];
   UINT32 serial;
 
+  // Update string table before proceeds
+  mSysInfoType1Strings[1] = (CHAR8 *)FixedPcdGetPtr(PcdSmbiosSystemModel);
+  mSysInfoType1Strings[2] = (CHAR8 *)FixedPcdGetPtr(PcdSmbiosSystemRetailModel);
+  mSysInfoType1Strings[4] = (CHAR8 *)FixedPcdGetPtr(PcdSmbiosSystemRetailSku);
+
   // Update serial number from Board DXE
   if (mBoardProtocol != NULL) {
     mBoardProtocol->GetSerialNumber(mBoardProtocol, &serial);
@@ -705,6 +710,11 @@ VOID BoardInfoUpdateSmbiosType2(VOID)
 {
   CHAR8  serialNo[13];
   UINT32 serial;
+
+  // Update string table before proceeds
+  mBoardInfoType2Strings[1] = (CHAR8 *)FixedPcdGetPtr(PcdSmbiosBoardModel);
+  mBoardInfoType2Strings[2] =
+      (CHAR8 *)FixedPcdGetPtr(PcdSmbiosBoardRetailModel);
 
   // Update serial number from Board DXE
   if (mBoardProtocol != NULL) {
@@ -757,6 +767,10 @@ VOID ProcessorInfoUpdateSmbiosType4(IN UINTN MaxCpus)
       (EFI_SMBIOS_TABLE_HEADER *)&mCacheInfoType7_L3C, mCacheInfoType7_L3CStrings,
       &SmbiosHandle);
   mProcessorInfoType4.L3CacheHandle = (UINT16)SmbiosHandle;
+
+  // Update string table before proceeds
+  mProcessorInfoType4Strings[2] =
+      (CHAR8 *)FixedPcdGetPtr(PcdSmbiosProcessorModel);
 
   LogSmbiosData(
       (EFI_SMBIOS_TABLE_HEADER *)&mProcessorInfoType4,

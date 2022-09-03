@@ -4,14 +4,39 @@
 	.set CTRL_C_BIT,	 (1 << 2)
 	.set CTRL_B_BIT,	 (1 << 7)
 	.set CTRL_I_BIT,	 (1 << 12)
-	.set CACHE_LINE,		64
 
 	.section "s_ArmDeInitialize", "ax"
 
 	GCC_ASM_EXPORT (ArmDeInitialize)
-	GCC_ASM_EXPORT (ArmCleanInvalidateCacheRange)
-	GCC_ASM_EXPORT (ArmCallSmcHardCoded)
-	GCC_ASM_EXPORT (ArmReadCntFrq2)
+	GCC_ASM_EXPORT (ArmRelocateFirmware)
+
+ArmRelocateFirmware:
+	// check if we're located at expected location
+	adr	   x4, .
+	ldr	   x5, =ArmRelocateFirmware
+	cmp	   x4, x5
+	bne	   _CopyUEFI
+	ret
+
+	_CopyUEFI:
+	// find our start address by getting our expected offset, then subtracting it from our actual address
+	ldr	   x6, =FixedPcdGet64 (PcdFdBaseAddress)
+	sub	   x5, x5, x6 // x5 now holds offset of _ModuleEntryPoint from start of FD base
+	sub	   x4, x4, x5 // x4 now holds address of actual FD base
+	// tweak the return address
+
+	// note: x30 is lr; gcc5 doesn't have the alias
+	sub	   x30, x30, x4
+	add	   x30, x30, x6
+	ldr	   x5, =FixedPcdGet64 (PcdFdSize)
+
+	// ugly memcpy
+	_CopyLoop:
+	ldp	   x2, x3, [x4], #16
+	stp	   x2, x3, [x6], #16
+	subs   x5, x5, #16
+	b.ne   _CopyLoop
+	ret
 
 ArmDeInitialize:
 	// Enter critical section: disable interrupt
@@ -87,40 +112,6 @@ Finished:
 	isb
 
 	// Return
-	ret
-
-ArmCleanInvalidateCacheRange:
-	// cache-ops.S @ lk
-	dsb	 sy
-	add	 x2, x0, x1							// Calculate the end address
-	bic	 x3, x0, #(CACHE_LINE-1)				// Align start with cache line
-ArmCleanInvalidateCacheRange0:
-	dc civac, x3							// Clean & invalidate cache to PoC by MVA
-	add	 x3, x3, #CACHE_LINE
-	cmp	 x3, x2
-	blo    ArmCleanInvalidateCacheRange0
-
-	dsb	 sy
-
-	ret
-
-ArmCallSmcHardCoded:
-	// Load the SMC arguments values into the appropriate registers
-	ldr	 x7, =0
-	ldr	 x6, =0
-	ldr	 x5, =0
-	ldr	 x4, =0
-	ldr	 x3, =0x50
-	ldr	 x2, =0xA0000000
-	ldr	 x1, =0x12
-	ldr	 x0, =0x0200010f
-
-	smc	 #0
-
-	ret
-
-ArmReadCntFrq2:
-	mrs	x0, cntfrq_el0						// Read CNTFRQ
 	ret
 
 	.end

@@ -15,6 +15,7 @@
 #include <Library/CacheMaintenanceLib.h>
 #include <Library/DebugAgentLib.h>
 #include <Library/DebugLib.h>
+#include <Library/FrameBufferSerialPortLib.h>
 #include <Library/HobLib.h>
 #include <Library/IoLib.h>
 #include <Library/MemoryAllocationLib.h>
@@ -24,6 +25,10 @@
 #include <Library/PrePiHobListPointerLib.h>
 #include <Library/PrePiLib.h>
 #include <Library/SerialPortLib.h>
+
+#include <IndustryStandard/ArmStdSmc.h>
+#include <Library/ArmHvcLib.h>
+#include <Library/ArmSmcLib.h>
 
 #include <Library/PlatformHobLib.h>
 #include <Configuration/DeviceMemoryMap.h>
@@ -77,6 +82,8 @@ SerialPortLocateArea(PARM_MEMORY_REGION_DESCRIPTOR_EX* MemoryDescriptor)
 STATIC VOID UartInit(VOID)
 {
   SerialPortInitialize();
+  InitializeFb();
+  ResetFb();
 
   DEBUG((EFI_D_INFO, "\nProjectMu on Duo 1 (AArch64)\n"));
   DEBUG(
@@ -199,6 +206,16 @@ VOID Main(IN VOID *StackBase, IN UINTN StackSize, IN VOID *KernelLoadAddress, IN
   }
 
   DEBUG((EFI_D_LOAD | EFI_D_INFO, "MMU configured from device config\n"));
+
+  // Initialize GIC
+  if (!FixedPcdGetBool(PcdIsLkBuild)) {
+    Status = QGicPeim();
+
+    if (EFI_ERROR(Status)) {
+      DEBUG((EFI_D_ERROR, "Failed to configure GIC\n"));
+      CpuDeadLoop();
+    }
+  }
 
   // Add HOBs
   BuildStackHob((UINTN)StackBase, StackSize);

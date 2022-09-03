@@ -45,6 +45,8 @@
 
   gEfiMdeModulePkgTokenSpaceGuid.PcdPciBusHotplugDeviceSupport|FALSE
 
+  gSurfaceDuo2PkgTokenSpaceGuid.PcdIsLkBuild|FALSE
+
 [PcdsFixedAtBuild.common]
   gArmTokenSpaceGuid.PcdSystemMemoryBase|0x80000000         # Starting address
   gArmTokenSpaceGuid.PcdCpuVectorBaseAddress|0x9ff8c000
@@ -96,7 +98,7 @@
   gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiBootServicesData|800
   gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiLoaderCode|10
   gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiLoaderData|0
-  gEmbeddedTokenSpaceGuid.PcdPrePiStackBase|0x9f590000
+  gEmbeddedTokenSpaceGuid.PcdPrePiStackBase|0x9ff90000
   gEmbeddedTokenSpaceGuid.PcdPrePiStackSize|0x00040000      # 256K stack
   gEmbeddedTokenSpaceGuid.PcdInterruptBaseAddress|0x09bc0000
   gEmbeddedTokenSpaceGuid.PcdPrePiCpuIoSize|44
@@ -149,7 +151,7 @@
   # a PCD that controls the enumeration and connection of ConIn's. When true, ConIn is only connected once a console input is requests 
   gEfiMdeModulePkgTokenSpaceGuid.PcdConInConnectOnDemand|FALSE
 
-# Enable SHELL to build instead of just taking the binary
+  # Enable SHELL to build instead of just taking the binary
   gEfiMdePkgTokenSpaceGuid.PcdUefiLibMaxPrintBufferSize|16000
   gEfiShellPkgTokenSpaceGuid.PcdShellProfileMask|0x1f    # All profiles
 
@@ -170,7 +172,7 @@
   gEfiMdeModulePkgTokenSpaceGuid.PcdVideoVerticalResolution|1892
   gEfiMdeModulePkgTokenSpaceGuid.PcdSetupVideoHorizontalResolution|1344
   gEfiMdeModulePkgTokenSpaceGuid.PcdSetupVideoVerticalResolution|1892
-  gEfiMdeModulePkgTokenSpaceGuid.PcdSetupConOutRow|150
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSetupConOutRow|158
   gEfiMdeModulePkgTokenSpaceGuid.PcdSetupConOutColumn|150
 
 !include MdePkg/MdeLibs.dsc.inc
@@ -405,23 +407,15 @@
   # PrePI
   SurfaceDuo2Pkg/PrePi/PrePi.inf {
     <LibraryClasses>
-    !if $(USE_SCREEN_FOR_SERIAL_OUTPUT) == 1
     !if $(USE_MEMORY_FOR_SERIAL_OUTPUT) == 1
       SerialPortLib|SurfacePkg/Library/FrameBufferInMemorySerialPortLib/FrameBufferInMemorySerialPortLib.inf
     !else
       SerialPortLib|SurfacePkg/Library/FrameBufferSerialPortLib/FrameBufferSerialPortLib.inf
     !endif
-    !else
-    !if $(USE_MEMORY_FOR_SERIAL_OUTPUT) == 1
-      SerialPortLib|SurfacePkg/Library/InMemorySerialPortLib/InMemorySerialPortLib.inf
-    !else
-      SerialPortLib|MdePkg/Library/BaseSerialPortLibNull/BaseSerialPortLibNull.inf
-    !endif
-    !endif
   }
 
   # DXE
-  MdeModulePkg/Core/Dxe/DxeMain.inf {
+  SurfaceDuo2Pkg/Dxe/DxeMain.inf {
     <LibraryClasses>
     NULL|MdeModulePkg/Library/DxeCrc32GuidedSectionExtractLib/DxeCrc32GuidedSectionExtractLib.inf
     NULL|MdeModulePkg/Library/DxeCrc32GuidedSectionExtractLib/DxeCrc32GuidedSectionExtractLib.inf

@@ -1,7 +1,7 @@
 APRIORI DXE {
 
     # First, install the PCD driver and call DxeInit
-    INF MdeModulePkg/Core/Dxe/DxeMain.inf
+    INF SurfaceDuo2Pkg/Dxe/DxeMain.inf
     INF MdeModulePkg/Universal/PCD/Dxe/Pcd.inf
 
     # INF MdeModulePkg/Universal/ReportStatusCodeRouter/RuntimeDxe/ReportStatusCodeRouterRuntimeDxe.inf
@@ -107,8 +107,8 @@ APRIORI DXE {
     }
 
     FILE DRIVER = 4b4973ee-401b-4f36-a6a9-533dfccdfc33 {
-            SECTION PE32 = SurfaceDuo2Pkg/PatchedBinaries/ScmDxe.efi
-            SECTION UI = "ScmDxe"
+            SECTION PE32 = SurfaceDuo2Pkg/PatchedBinaries/ScmDxeLA.efi
+            SECTION UI = "ScmDxeLA"
     }
 
     FILE DRIVER = 8681cc5a-0df6-441e-b4b8-e915c538f067 {
@@ -166,8 +166,8 @@ APRIORI DXE {
     INF FatPkg/EnhancedFatDxe/Fat.inf
 
     FILE DRIVER = cf6dfc66-14ab-4e13-84db-9c02912d1404 {
-            SECTION PE32 = SurfaceDuo2Pkg/PatchedBinaries/TzDxe.efi
-            SECTION UI = "TzDxe"
+            SECTION PE32 = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-1/section0/section1/volume-0/file-cf6dfc66-14ab-4e13-84db-9c02912d1404/section0.pe
+            SECTION UI = "TzDxeLA"
     }
 
     INF MdeModulePkg/Universal/Variable/RuntimeDxe/VariableRuntimeDxe.inf
