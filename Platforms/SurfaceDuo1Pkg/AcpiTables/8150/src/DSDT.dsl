@@ -61795,7 +61795,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                 Package (0x02)
                                 {
                                     "GmemSize", 
-                                    0x00200000
+                                    0x00100000
                                 }, 
 
                                 Package (0x02)
