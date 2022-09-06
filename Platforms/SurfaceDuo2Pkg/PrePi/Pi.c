@@ -182,7 +182,7 @@ VOID Main(IN VOID *StackBase, IN UINTN StackSize, IN VOID *KernelLoadAddress, IN
         "Lid Status = 0x%llx\n",
         Lid0Status));
 
-    if (Lid0Status == 1) {
+    if (Lid0Status == 0) {
       BootLinux(KernelLoadAddress, DeviceTreeLoadAddress);
 
       // We should never reach here
