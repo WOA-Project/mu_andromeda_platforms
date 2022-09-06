@@ -351,6 +351,8 @@ APRIORI DXE {
     INF EmbeddedPkg/SimpleTextInOutSerial/SimpleTextInOutSerial.inf
 
 # CHANGE
+    INF SurfacePkg/Driver/ColorbarsDxe/ColorbarsDxe.inf
+
     INF DfciPkg/SettingsManager/SettingsManagerDxe.inf
     INF DfciPkg/IdentityAndAuthManager/IdentityAndAuthManagerDxe.inf
     INF MsGraphicsPkg/MsUiTheme/Dxe/MsUiThemeProtocol.inf

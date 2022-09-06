@@ -403,6 +403,8 @@
     #         SECTION PE32 = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-7a26d1bd-0557-4b78-8ca1-1e40c7ad9f4d/section1.pe
     #         SECTION UI = "ColorbarsDxe"
     # }
+    
+    INF SurfacePkg/Driver/ColorbarsDxe/ColorbarsDxe.inf
 
     FILE DRIVER = 73c39be5-1dbe-40b2-ae12-ac8d065f01ad {
             SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-73c39be5-1dbe-40b2-ae12-ac8d065f01ad/section0.dxe.depex

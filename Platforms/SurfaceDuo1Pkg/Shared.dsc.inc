@@ -520,4 +520,6 @@
 
   MdeModulePkg/Universal/EsrtFmpDxe/EsrtFmpDxe.inf
 
+  SurfacePkg/Driver/ColorbarsDxe/ColorbarsDxe.inf
+
   SurfacePkg/UFP/ufpdevicefw.inf

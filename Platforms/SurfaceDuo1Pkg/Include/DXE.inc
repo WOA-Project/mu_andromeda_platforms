@@ -444,11 +444,13 @@
             SECTION UI = "FmpDxe"
     }
 
-    FILE DRIVER = 7a26d1bd-0557-4b78-8ca1-1e40c7ad9f4d  {
-            SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.XF.3.0-00527-SM8150LZB-1-202206/volume-0/file-2/section0/section1/volume-0/file-7a26d1bd-0557-4b78-8ca1-1e40c7ad9f4d/section0.dxe.depex
-            SECTION PE32 = SurfaceDuo1Pkg/PatchedBinaries/ColorbarsDxe.efi
-            SECTION UI = "ColorbarsDxe"
-    }
+    # FILE DRIVER = 7a26d1bd-0557-4b78-8ca1-1e40c7ad9f4d  {
+    #         SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.XF.3.0-00527-SM8150LZB-1-202206/volume-0/file-2/section0/section1/volume-0/file-7a26d1bd-0557-4b78-8ca1-1e40c7ad9f4d/section0.dxe.depex
+    #         SECTION PE32 = SurfaceDuo1Pkg/PatchedBinaries/ColorbarsDxe.efi
+    #         SECTION UI = "ColorbarsDxe"
+    # }
+    
+    INF SurfacePkg/Driver/ColorbarsDxe/ColorbarsDxe.inf
 
     FILE APPLICATION = eee9c2b1-16ca-4f34-87ea-2e6d1e160cc4 {
             SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.XF.3.0-00527-SM8150LZB-1-202206/volume-0/file-2/section0/section1/volume-0/file-eee9c2b1-16ca-4f34-87ea-2e6d1e160cc4/section0.dxe.depex

@@ -524,4 +524,6 @@
 
   MdeModulePkg/Universal/TimestampDxe/TimestampDxe.inf
 
+  SurfacePkg/Driver/ColorbarsDxe/ColorbarsDxe.inf
+
   SurfacePkg/UFP/ufpdevicefw.inf
