@@ -289,7 +289,7 @@ CoreSetTimer (
 
   DEBUG((EFI_D_ERROR, "CoreSetTimer Called!\n"));
   if (Type != TimerCancel && Type != TimerPeriodic) {
-    if (CountPassthroughTimer != 0) {
+    if (CountPassthroughTimer >= 2) {
       CoreSignalEvent(UserEvent);
     }
     CountPassthroughTimer++;
