@@ -218,7 +218,7 @@
   #
   OemPkg/BootMenu/BootMenu.inf
 
-  SurfacePkg/MsBootPolicy/MsBootPolicy.inf
+  PcBdsPkg/MsBootPolicy/MsBootPolicy.inf
 
   MdeModulePkg/Universal/BootManagerPolicyDxe/BootManagerPolicyDxe.inf
   #
