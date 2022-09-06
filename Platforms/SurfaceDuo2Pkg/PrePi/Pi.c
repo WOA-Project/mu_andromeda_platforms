@@ -120,7 +120,6 @@ VOID DisableWatchDogTimer()
   ArmCallSmc(&StubArgsSmc);
   if (StubArgsSmc.Arg0 != 0) {
     DEBUG((EFI_D_ERROR, "Disabling Qualcomm Watchdog Reboot timer failed! Status=%d\n", StubArgsSmc.Arg0));
-    CpuDeadLoop();
   }
 }
 

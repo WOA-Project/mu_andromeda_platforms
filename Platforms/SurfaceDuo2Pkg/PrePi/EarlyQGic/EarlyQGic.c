@@ -211,7 +211,7 @@ QGicPeim(VOID)
 {
   DEBUG((EFI_D_LOAD | EFI_D_INFO, "QGicPeim Start!\n"));
   DEBUG((EFI_D_LOAD | EFI_D_INFO, "QGicHardwareReset\n"));
-  //QGicHardwareReset();
+  QGicHardwareReset();
   DEBUG((EFI_D_LOAD | EFI_D_INFO, "QGicSetBinpoint\n"));
   QGicSetBinpoint();
   DEBUG((EFI_D_LOAD | EFI_D_INFO, "QGicDistInit\n"));
