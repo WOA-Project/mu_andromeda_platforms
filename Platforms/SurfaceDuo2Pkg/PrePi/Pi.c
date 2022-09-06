@@ -32,7 +32,6 @@
 
 #include <Library/PlatformHobLib.h>
 #include <Configuration/DeviceMemoryMap.h>
-#include "ProcessorSupport.h"
 
 #define TLMM_ADDR 0x0F100000
 
@@ -113,6 +112,18 @@ VOID BootLinux(IN VOID *KernelLoadAddress, IN VOID *DeviceTreeLoadAddress)
   CpuDeadLoop();
 }
 
+VOID DisableWatchDogTimer()
+{
+  ARM_SMC_ARGS         StubArgsSmc;
+  StubArgsSmc.Arg0 = 0x86000005;
+  StubArgsSmc.Arg1 = 2;
+  ArmCallSmc(&StubArgsSmc);
+  if (StubArgsSmc.Arg0 != 0) {
+    DEBUG((EFI_D_ERROR, "Disabling Qualcomm Watchdog Reboot timer failed! Status=%d\n", StubArgsSmc.Arg0));
+    CpuDeadLoop();
+  }
+}
+
 VOID Main(IN VOID *StackBase, IN UINTN StackSize, IN VOID *KernelLoadAddress, IN VOID *DeviceTreeLoadAddress)
 {
 
@@ -181,11 +192,7 @@ VOID Main(IN VOID *StackBase, IN UINTN StackSize, IN VOID *KernelLoadAddress, IN
   }
 
   DEBUG((EFI_D_INFO | EFI_D_LOAD, "Disabling Qualcomm Watchdog Reboot timer\n"));
-  Status = QcHavenWatchdogCall(0x86000005, 2, 0, NULL);
-  if (Status != 0) {
-    DEBUG((EFI_D_ERROR, "Disabling Qualcomm Watchdog Reboot timer failed! Status=%d\n", Status));
-    CpuDeadLoop();
-  }
+  DisableWatchDogTimer();
   DEBUG((EFI_D_INFO | EFI_D_LOAD, "Qualcomm Watchdog Reboot timer disabled\n"));
 
   // Set up HOB

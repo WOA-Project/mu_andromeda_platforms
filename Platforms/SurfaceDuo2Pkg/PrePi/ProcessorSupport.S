@@ -9,7 +9,6 @@
 
 	GCC_ASM_EXPORT (ArmDeInitialize)
 	GCC_ASM_EXPORT (ArmRelocateFirmware)
-	GCC_ASM_EXPORT (QcHavenWatchdogCall)
 
 ArmRelocateFirmware:
 	// check if we're located at expected location
@@ -113,13 +112,6 @@ Finished:
 	isb
 
 	// Return
-	ret
-
-QcHavenWatchdogCall:
-	stp x29, x30, [sp, #-0x10]!
-	mov x29,sp
-	smc #0
-	ldp x29, x30, [sp], #0x10
 	ret
 
 	.end
