@@ -9,10 +9,6 @@ CfgGetMemInfoByName(
   PARM_MEMORY_REGION_DESCRIPTOR_EX MemoryDescriptorEx =
       gDeviceMemoryDescriptorEx;
 
-  DEBUG(
-      (EFI_D_INFO, "[PlatformHob] CfgGetMemInfoByName(%a) Entry...\n",
-       RegionName));
-
   // Run through each memory descriptor
   while (MemoryDescriptorEx->Length != 0) {
     if (AsciiStriCmp(RegionName, MemoryDescriptorEx->Name) == 0) {
@@ -22,10 +18,6 @@ CfgGetMemInfoByName(
     MemoryDescriptorEx++;
   }
 
-  DEBUG(
-      (EFI_D_ERROR,
-       "[PlatformHob] CfgGetMemInfoByName(%a) Exit FAIL, unknown region...\n",
-       RegionName));
   return EFI_NOT_FOUND;
 }
 
@@ -37,10 +29,6 @@ CfgGetMemInfoByAddress(
   PARM_MEMORY_REGION_DESCRIPTOR_EX MemoryDescriptorEx =
       gDeviceMemoryDescriptorEx;
 
-  DEBUG(
-      (EFI_D_INFO, "[PlatformHob] CfgGetMemInfoByAddress(%d) Entry...\n",
-       RegionBaseAddress));
-
   // Run through each memory descriptor
   while (MemoryDescriptorEx->Length != 0) {
     if (MemoryDescriptorEx->Address == RegionBaseAddress) {
@@ -50,10 +38,6 @@ CfgGetMemInfoByAddress(
     MemoryDescriptorEx++;
   }
 
-  DEBUG((
-      EFI_D_ERROR,
-      "[PlatformHob] CfgGetMemInfoByAddress(%d) Exit FAIL, unknown region...\n",
-      RegionBaseAddress));
   return EFI_NOT_FOUND;
 }
 
@@ -61,16 +45,11 @@ STATIC
 EFI_STATUS
 CfgGetCfgInfoString(CHAR8 *Key, CHAR8 *Value, UINTN *ValBuffSize)
 {
-  DEBUG((EFI_D_INFO, "[PlatformHob] CfgGetCfgInfoString(%a) Entry...\n", Key));
-
   if (AsciiStriCmp(Key, "OsTypeString") == 0) {
     AsciiStrCpyS(Value, *ValBuffSize, "LA");
     return EFI_SUCCESS;
   }
 
-  DEBUG(
-      (EFI_D_ERROR,
-       "[PlatformHob] CfgGetCfgInfoString Exit FAIL, unknown %a...\n", Key));
   return EFI_NOT_FOUND;
 }
 
@@ -81,8 +60,6 @@ CfgGetCfgInfoVal(CHAR8 *Key, UINT32 *Value)
   PCONFIGURATION_DESCRIPTOR_EX ConfigurationDescriptorEx =
       gDeviceConfigurationDescriptorEx;
 
-  DEBUG((EFI_D_INFO, "[PlatformHob] CfgGetCfgInfoVal(%a) Entry...\n", Key));
-
   // Run through each configuration descriptor
   while (ConfigurationDescriptorEx->Value != 0xFFFFFFFF) {
     if (AsciiStriCmp(Key, ConfigurationDescriptorEx->Name) == 0) {
@@ -92,9 +69,6 @@ CfgGetCfgInfoVal(CHAR8 *Key, UINT32 *Value)
     ConfigurationDescriptorEx++;
   }
 
-  DEBUG(
-      (EFI_D_ERROR, "[PlatformHob] CfgGetCfgInfoVal Exit FAIL, unknown %a...\n",
-       Key));
   return EFI_NOT_FOUND;
 }
 
@@ -105,8 +79,6 @@ CfgGetCfgInfoVal64(CHAR8 *Key, UINT64 *Value)
   PCONFIGURATION_DESCRIPTOR_EX ConfigurationDescriptorEx =
       gDeviceConfigurationDescriptorEx;
 
-  DEBUG((EFI_D_INFO, "[PlatformHob] CfgGetCfgInfoVal64(%a) Entry...\n", Key));
-
   // Run through each configuration descriptor
   while (ConfigurationDescriptorEx->Value != 0xFFFFFFFF) {
     if (AsciiStriCmp(Key, ConfigurationDescriptorEx->Name) == 0) {
@@ -116,9 +88,6 @@ CfgGetCfgInfoVal64(CHAR8 *Key, UINT64 *Value)
     ConfigurationDescriptorEx++;
   }
 
-  DEBUG(
-      (EFI_D_ERROR,
-       "[PlatformHob] CfgGetCfgInfoVal64 Exit FAIL, unknown %a...\n", Key));
   return EFI_NOT_FOUND;
 }
 
@@ -153,23 +122,15 @@ ShLoadLib(CHAR8 *LibName, UINT32 LibVersion, VOID **LibIntf)
   if (LibIntf == NULL)
     return EFI_NOT_FOUND;
 
-  DEBUG((EFI_D_INFO, "[PlatformHob] ShLoadLib Entry...\n"));
-
   if (AsciiStriCmp(LibName, "UEFI Config Lib") == 0) {
-    DEBUG((EFI_D_INFO, "[PlatformHob] ShLoadLib UEFI Config Lib Entry...\n"));
     *LibIntf = &ConfigLib;
     return EFI_SUCCESS;
   }
 
   if (AsciiStriCmp(LibName, "SerialPort Lib") == 0) {
-    DEBUG((EFI_D_INFO, "[PlatformHob] ShLoadLib SerialPort Lib Entry...\n"));
     *LibIntf = &SioLib;
     return EFI_SUCCESS;
   }
-
-  DEBUG((
-      EFI_D_ERROR, "[PlatformHob] ShLoadLib Exit FAIL, unknown %a Ver: %d...\n",
-      LibName, LibVersion));
 
   return EFI_NOT_FOUND;
 }
@@ -204,7 +165,6 @@ VOID InstallPlatformHob()
   if (!initialized) {
     UINTN Data = (UINTN)&ShLib;
 
-    DEBUG((EFI_D_INFO, "[PlatformHob] InstallPlatformHob Entry...\n"));
     BuildMemHobForFv(EFI_HOB_TYPE_FV2);
     BuildGuidDataHob(&gEfiShLibHobGuid, &Data, sizeof(Data));
 
