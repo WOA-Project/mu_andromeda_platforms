@@ -86,7 +86,8 @@ VOID QGicHardwareReset(VOID)
 
   /* Disabling GIC */
   MmioWrite32(GIC_DIST_CTRL, 0);
-  MmioWrite32(GIC_DIST_CGCR, 0);
+  // Reboots, GIC400 only? At least this makes a one instruction reboot command... :)
+  //MmioWrite32(GIC_DIST_CGCR, 0);
   ArmGicV3DisableInterruptInterface();
   ArmGicV3SetPriorityMask(0);
   ArmGicV3SetBinaryPointer(0);
@@ -199,16 +200,10 @@ EFI_STATUS
 EFIAPI
 QGicPeim(VOID)
 {
-  DEBUG((EFI_D_LOAD | EFI_D_INFO, "QGicPeim Start!\n"));
-  DEBUG((EFI_D_LOAD | EFI_D_INFO, "QGicHardwareReset\n"));
-  //QGicHardwareReset();
-  DEBUG((EFI_D_LOAD | EFI_D_INFO, "QGicSetBinpoint\n"));
+  QGicHardwareReset();
   QGicSetBinpoint();
-  DEBUG((EFI_D_LOAD | EFI_D_INFO, "QGicDistInit\n"));
   QGicDistInit();
-  DEBUG((EFI_D_LOAD | EFI_D_INFO, "QGicCpuInit\n"));
   QGicCpuInit();
-  DEBUG((EFI_D_LOAD | EFI_D_INFO, "QGicPeim Done!\n"));
 
   return EFI_SUCCESS;
 }

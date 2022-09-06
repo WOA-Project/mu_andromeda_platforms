@@ -85,36 +85,27 @@ VOID QGicHardwareReset(VOID)
   UINT32 n;
 
   /* Disabling GIC */
-  DEBUG((EFI_D_LOAD | EFI_D_INFO, "QGicHardwareReset 1\n"));
   MmioWrite32(GIC_DIST_CTRL, 0);
-  DEBUG((EFI_D_LOAD | EFI_D_INFO, "QGicHardwareReset 2\n"));
-  //MmioWrite32(GIC_DIST_CGCR, 0); // Reboots, GIC400 only? At least this makes a one instruction reboot command... :)
-  DEBUG((EFI_D_LOAD | EFI_D_INFO, "QGicHardwareReset 3\n"));
+  // Reboots, GIC400 only? At least this makes a one instruction reboot command... :)
+  //MmioWrite32(GIC_DIST_CGCR, 0);
   ArmGicV3DisableInterruptInterface();
-  DEBUG((EFI_D_LOAD | EFI_D_INFO, "QGicHardwareReset 4\n"));
   ArmGicV3SetPriorityMask(0);
-  DEBUG((EFI_D_LOAD | EFI_D_INFO, "QGicHardwareReset 5\n"));
   ArmGicV3SetBinaryPointer(0);
 
-  DEBUG((EFI_D_LOAD | EFI_D_INFO, "QGicHardwareReset 6\n"));
   for (n = 0; n <= 11; n++) {
     MmioWrite32(GIC_DIST_REG(0x80 + 4 * n), 0);
     MmioWrite32(GIC_DIST_REG(0x180 + 4 * n), 0xFFFFFFFF);
     MmioWrite32(GIC_DIST_REG(0x280 + 4 * n), 0xFFFFFFFF);
   }
 
-  DEBUG((EFI_D_LOAD | EFI_D_INFO, "QGicHardwareReset 7\n"));
   for (n = 0; n <= 95; n++) {
     MmioWrite32(GIC_DIST_REG(0x400 + 4 * n), 0);
     MmioWrite32(GIC_DIST_REG(0x800 + 4 * n), 0);
   }
 
-  DEBUG((EFI_D_LOAD | EFI_D_INFO, "QGicHardwareReset 8\n"));
   for (n = 0; n <= 23; n++) {
     MmioWrite32(GIC_DIST_REG(0xc00 + 4 * n), 0);
   }
-
-  DEBUG((EFI_D_LOAD | EFI_D_INFO, "QGicHardwareReset 9\n"));
 }
 
 VOID QGicSetBinpoint(VOID)
@@ -209,16 +200,10 @@ EFI_STATUS
 EFIAPI
 QGicPeim(VOID)
 {
-  DEBUG((EFI_D_LOAD | EFI_D_INFO, "QGicPeim Start!\n"));
-  DEBUG((EFI_D_LOAD | EFI_D_INFO, "QGicHardwareReset\n"));
   QGicHardwareReset();
-  DEBUG((EFI_D_LOAD | EFI_D_INFO, "QGicSetBinpoint\n"));
   QGicSetBinpoint();
-  DEBUG((EFI_D_LOAD | EFI_D_INFO, "QGicDistInit\n"));
   QGicDistInit();
-  DEBUG((EFI_D_LOAD | EFI_D_INFO, "QGicCpuInit\n"));
   QGicCpuInit();
-  DEBUG((EFI_D_LOAD | EFI_D_INFO, "QGicPeim Done!\n"));
 
   return EFI_SUCCESS;
 }
