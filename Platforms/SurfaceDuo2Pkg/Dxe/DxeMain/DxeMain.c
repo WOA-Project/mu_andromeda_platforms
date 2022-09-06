@@ -772,8 +772,6 @@ CoreExitBootServices (
 {
   EFI_STATUS  Status;
 
-  DEBUG((EFI_D_ERROR, "CoreExitBootServices Entry!\n"));
-
   // MU_CHANGE begin
   // NOTE: This must be before disabling the timer.
   STATIC BOOLEAN  PreExitBootServicesSignaled = FALSE;
@@ -785,16 +783,10 @@ CoreExitBootServices (
 
   // MU_CHANGE end
 
-
-  DEBUG((EFI_D_ERROR, "CoreExitBootServices 1!\n"));
-
   //
   // Disable Timer
   //
   gTimer->SetTimerPeriod (gTimer, 0);
-
-
-  DEBUG((EFI_D_ERROR, "CoreExitBootServices 2!\n"));
 
   //
   // Terminate memory services if the MapKey matches
@@ -810,16 +802,10 @@ CoreExitBootServices (
 
   gMemoryMapTerminated = TRUE;
 
-
-  DEBUG((EFI_D_ERROR, "CoreExitBootServices 3!\n"));
-
   //
   // Notify other drivers that we are exiting boot services.
   //
-  CoreNotifySignalList (&gEfiEventExitBootServicesGuid); // heh
-
-
-  DEBUG((EFI_D_ERROR, "CoreExitBootServices 4!\n"));
+  CoreNotifySignalList (&gEfiEventExitBootServicesGuid);
 
   //
   // Report that ExitBootServices() has been called
@@ -831,24 +817,15 @@ CoreExitBootServices (
 
   MemoryProtectionExitBootServicesCallback ();
 
-
-  DEBUG((EFI_D_ERROR, "CoreExitBootServices 5!\n"));
-
   //
   // Disable interrupt of Debug timer.
   //
   SaveAndSetDebugTimerInterrupt (FALSE);
 
-
-  DEBUG((EFI_D_ERROR, "CoreExitBootServices 6!\n"));
-
   //
   // Disable CPU Interrupts
   //
   gCpu->DisableInterrupt (gCpu);
-
-
-  DEBUG((EFI_D_ERROR, "CoreExitBootServices 7!\n"));
 
   //
   // Clear the non-runtime values of the EFI System Table
@@ -866,24 +843,16 @@ CoreExitBootServices (
   //
   CalculateEfiHdrCrc (&gDxeCoreST->Hdr);
 
-
-  DEBUG((EFI_D_ERROR, "CoreExitBootServices 8!\n"));
-
   //
   // Zero out the Boot Service Table
   //
   ZeroMem (gBS, sizeof (EFI_BOOT_SERVICES));
   gBS = NULL;
 
-
-  DEBUG((EFI_D_ERROR, "CoreExitBootServices 9!\n"));
-
   //
   // Update the AtRuntime field in Runtiem AP.
   //
   gRuntime->AtRuntime = TRUE;
-
-  DEBUG((EFI_D_ERROR, "CoreExitBootServices Exit!\n"));
 
   return Status;
 }
