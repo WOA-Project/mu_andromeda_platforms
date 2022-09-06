@@ -43,6 +43,7 @@ WITHOUT WARRANTIES OR REPRESENTATIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED.
 #include <Library/PrePiLib.h>
 #include <Library/SerialPortLib.h>
 
+#include "ArmGicV3Extensions.h"
 #include "EarlyQGic.h"
 
 #define GIC_WAKER_PROCESSORSLEEP 2
@@ -83,27 +84,7 @@ VOID QGicDistConfig(UINT32 NumIrq)
 VOID QGicHardwareReset(VOID)
 {
   UINT32 n;
-
-  UINT64 typer = MmioRead64(0x17a60008);
-
-  if ((typer & 2) && (typer & 128)) {
-    UINT64 val;
-
-    DEBUG(
-        (EFI_D_INFO | EFI_D_LOAD,
-         "GIC Redistributor needs boot time cleanup...\n"));
-
-    val = MmioRead64(0x17a80078);
-    if (val & 0x8000000000000000) {
-      MmioWrite64(0x17a80078, 0x2000000000000000);
-    }
-
-    val = MmioRead64(0x17a80070);
-    val &= ~0x8000000000000000;
-    MmioWrite64(0x17a80070, val);
-
-    DEBUG((EFI_D_INFO | EFI_D_LOAD, "GIC Redistributor was cleaned up!\n"));
-  }
+  UINT32 num_irq = 0;
 
   /* Disabling GIC */
   MmioWrite32(GIC_DIST_CTRL, 0);
@@ -114,19 +95,15 @@ VOID QGicHardwareReset(VOID)
   ArmGicV3SetPriorityMask(0);
   ArmGicV3SetBinaryPointer(0);
 
-  for (n = 0; n <= 11; n++) {
-    MmioWrite32(GIC_DIST_REG(0x80 + 4 * n), 0);
+  /* Find out how many interrupts are supported. */
+  num_irq = MmioRead32(GIC_DIST_CTR) & 0x1f;
+  num_irq = (num_irq + 1);
+
+  for (n = 0; n < num_irq; n++) {
     MmioWrite32(GIC_DIST_REG(0x180 + 4 * n), 0xFFFFFFFF);
     MmioWrite32(GIC_DIST_REG(0x280 + 4 * n), 0xFFFFFFFF);
-  }
-
-  for (n = 0; n <= 95; n++) {
-    MmioWrite32(GIC_DIST_REG(0x400 + 4 * n), 0);
-    MmioWrite32(GIC_DIST_REG(0x800 + 4 * n), 0);
-  }
-
-  for (n = 0; n <= 23; n++) {
-    MmioWrite32(GIC_DIST_REG(0xc00 + 4 * n), 0);
+    MmioWrite32(GIC_DIST_REG(0x80 + 4 * n), 0xFFFFFFFF);
+    MmioWrite32(GIC_DIST_REG(0xd00 + 4 * n), 0);
   }
 }
 
@@ -167,10 +144,9 @@ VOID QGicDistInit(VOID)
 /* Intialize cpu specific controller */
 VOID QGicCpuInit(VOID)
 {
-  UINT32 retry = 1000;
+  UINT32 retry = 1000000;
   UINT32 sre   = 0;
   UINT32 pmr   = 0xff;
-  // UINT32 eoimode = 0;
 
   /* For cpu init need to wake up the redistributor */
   MmioWrite32(
@@ -207,10 +183,7 @@ VOID QGicCpuInit(VOID)
   ArmGicV3SetPriorityMask(pmr);
 
   /* Make sure EOI is handled in NS EL3 */
-  //__asm__ volatile("mrc p15, 0, %0, c12, c12, 4" : "=r" (eoimode));
-  // eoimode &= ~BIT(1);
-  //__asm__ volatile("mcr p15, 0, %0, c12, c12, 4" :: "r" (eoimode));
-  // isb();
+  ArmGicV3Disable();
 
   /* Enable grp1 interrupts for NS EL3*/
   ArmGicV3EnableInterruptInterface();

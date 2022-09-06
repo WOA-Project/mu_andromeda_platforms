@@ -6,6 +6,7 @@
 #
 
 #include <AsmMacroIoLibV8.h>
+#include "ArmGicV3Extensions.h"
 
 #if !defined(__clang__)
 
@@ -23,8 +24,19 @@
 #define ICC_IAR1_EL1            S3_0_C12_C12_0
 #define ICC_PMR_EL1             S3_0_C4_C6_0
 #define ICC_BPR1_EL1            S3_0_C12_C12_3
+#define ICC_CTLR_EL1            S3_0_C12_C12_4
 
 #endif
+
+//VOID
+//EFIAPI
+//ArmGicV3Disable (
+//  VOID
+//  );
+ASM_FUNC(ArmGicV3Disable)
+        mov     x0, #0
+        msr     ICC_CTLR_EL1, x0
+        ret
 
 //UINT32
 //EFIAPI
