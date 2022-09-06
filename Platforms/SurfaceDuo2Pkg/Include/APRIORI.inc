@@ -170,6 +170,12 @@ APRIORI DXE {
             SECTION UI = "TzDxeLA"
     }
 
+    FILE DRIVER = 615676d8-f930-40dd-aff2-f1fae384337f {
+            SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-615676d8-f930-40dd-aff2-f1fae384337f/section0.dxe.depex
+            SECTION PE32 = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-615676d8-f930-40dd-aff2-f1fae384337f/section1.pe
+            SECTION UI = "MsEnvDxe"
+    }
+
     INF MdeModulePkg/Universal/Variable/RuntimeDxe/VariableRuntimeDxe.inf
 
     # FILE DRIVER = 040e1e61-0afb-411b-9ec9-00f3fc59cc13 {
