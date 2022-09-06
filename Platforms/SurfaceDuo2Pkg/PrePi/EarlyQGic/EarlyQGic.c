@@ -88,7 +88,7 @@ VOID QGicHardwareReset(VOID)
   DEBUG((EFI_D_LOAD | EFI_D_INFO, "QGicHardwareReset 1\n"));
   MmioWrite32(GIC_DIST_CTRL, 0);
   DEBUG((EFI_D_LOAD | EFI_D_INFO, "QGicHardwareReset 2\n"));
-  MmioWrite32(GIC_DIST_CGCR, 0);
+  //MmioWrite32(GIC_DIST_CGCR, 0); // Reboots, GIC400 only? At least this makes a one instruction reboot command... :)
   DEBUG((EFI_D_LOAD | EFI_D_INFO, "QGicHardwareReset 3\n"));
   ArmGicV3DisableInterruptInterface();
   DEBUG((EFI_D_LOAD | EFI_D_INFO, "QGicHardwareReset 4\n"));
