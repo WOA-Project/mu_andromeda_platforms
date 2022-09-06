@@ -84,10 +84,32 @@ VOID QGicHardwareReset(VOID)
 {
   UINT32 n;
 
+  UINT64 typer = MmioRead64(0x17a60008);
+
+  if ((typer & 2) && (typer & 128)) {
+    UINT64 val;
+
+    DEBUG(
+        (EFI_D_INFO | EFI_D_LOAD,
+         "GIC Redistributor needs boot time cleanup...\n"));
+
+    val = MmioRead64(0x17a80078);
+    if (val & 0x8000000000000000) {
+      MmioWrite64(0x17a80078, 0x2000000000000000);
+    }
+
+    val = MmioRead64(0x17a80070);
+    val &= ~0x8000000000000000;
+    MmioWrite64(0x17a80070, val);
+
+    DEBUG((EFI_D_INFO | EFI_D_LOAD, "GIC Redistributor was cleaned up!\n"));
+  }
+
   /* Disabling GIC */
   MmioWrite32(GIC_DIST_CTRL, 0);
-  // Reboots, GIC400 only? At least this makes a one instruction reboot command... :)
-  //MmioWrite32(GIC_DIST_CGCR, 0);
+  // Reboots, GIC400 only? At least this makes a one instruction reboot
+  // command... :)
+  // MmioWrite32(GIC_DIST_CGCR, 0);
   ArmGicV3DisableInterruptInterface();
   ArmGicV3SetPriorityMask(0);
   ArmGicV3SetBinaryPointer(0);
@@ -120,80 +142,78 @@ VOID QGicDistInit(VOID)
   UINT32 num_irq = 0;
   UINT32 affinity;
 
-	/* Read the mpidr register to find out the boot up cluster */
+  /* Read the mpidr register to find out the boot up cluster */
   affinity = ArmReadMpidr();
 
-	/* For aarch32 mode we have only 3 affinity values: aff0:aff1:aff2*/
+  /* For aarch32 mode we have only 3 affinity values: aff0:aff1:aff2*/
   affinity = affinity & 0x00ffffff;
 
   /* Find out how many interrupts are supported. */
   num_irq = MmioRead32(GIC_DIST_CTR) & 0x1f;
   num_irq = (num_irq + 1) * 32;
 
-	/* Do the qgic dist initialization */
+  /* Do the qgic dist initialization */
   QGicDistConfig(num_irq);
 
-	/* Write the affinity value, for routing all the SPIs */
+  /* Write the affinity value, for routing all the SPIs */
   for (i = 32; i < num_irq; i++) {
     MmioWrite32(GICD_IROUTER + i * 8, affinity);
   }
 
-	/* Enable affinity routing of grp0/grp1 interrupts */
-	MmioWrite32(GIC_DIST_CTRL, ENABLE_GRP0_SEC | ENABLE_GRP1_NS | ENABLE_ARE);
+  /* Enable affinity routing of grp0/grp1 interrupts */
+  MmioWrite32(GIC_DIST_CTRL, ENABLE_GRP0_SEC | ENABLE_GRP1_NS | ENABLE_ARE);
 }
 
 /* Intialize cpu specific controller */
 VOID QGicCpuInit(VOID)
 {
-	UINT32 retry = 1000;
-	UINT32 sre = 0;
-	UINT32 pmr = 0xff;
-	//UINT32 eoimode = 0;
+  UINT32 retry = 1000;
+  UINT32 sre   = 0;
+  UINT32 pmr   = 0xff;
+  // UINT32 eoimode = 0;
 
-	/* For cpu init need to wake up the redistributor */
-	MmioWrite32(GICR_WAKER_CPU0, (MmioRead32(GICR_WAKER_CPU0) & ~GIC_WAKER_PROCESSORSLEEP));
+  /* For cpu init need to wake up the redistributor */
+  MmioWrite32(
+      GICR_WAKER_CPU0,
+      (MmioRead32(GICR_WAKER_CPU0) & ~GIC_WAKER_PROCESSORSLEEP));
 
-	/* Wait until redistributor is up */
-	while (MmioRead32(GICR_WAKER_CPU0) & GIC_WAKER_CHILDRENASLEEP)
-	{
-		retry--;
-		if (!retry)
-		{
-			DEBUG((EFI_D_ERROR, "Failed to wake redistributor for CPU0\n"));
-			ASSERT(FALSE);
-		}
+  /* Wait until redistributor is up */
+  while (MmioRead32(GICR_WAKER_CPU0) & GIC_WAKER_CHILDRENASLEEP) {
+    retry--;
+    if (!retry) {
+      DEBUG((EFI_D_ERROR, "Failed to wake redistributor for CPU0\n"));
+      ASSERT(FALSE);
+    }
 
-    //MicroSecondDelay(1);
-	}
+    // MicroSecondDelay(1);
+  }
 
+  /* Make sure the system register access is enabled for us */
+  sre = ArmGicV3GetControlSystemRegisterEnable();
+  sre |= 1;
+  ArmGicV3SetControlSystemRegisterEnable(sre);
 
-	/* Make sure the system register access is enabled for us */
-	sre = ArmGicV3GetControlSystemRegisterEnable();
-	sre |= 1;
-	ArmGicV3SetControlSystemRegisterEnable(sre);
+  /* If system register access is not set, we fail */
+  sre = ArmGicV3GetControlSystemRegisterEnable();
+  if (!(sre & 1)) {
+    DEBUG((EFI_D_ERROR, "Failed to set SRE for NS world\n"));
+    ASSERT(FALSE);
+  }
 
-	/* If system register access is not set, we fail */
-	sre = ArmGicV3GetControlSystemRegisterEnable();
-	if (!(sre & 1))
-	{
-		DEBUG((EFI_D_ERROR, "Failed to set SRE for NS world\n"));
-		ASSERT(FALSE);
-	}
+  /* Set the priortiy mask register, interrupts with priority
+   * higher than this value will be signalled to processor.
+   * Lower value means higher priority.
+   */
+  ArmGicV3SetPriorityMask(pmr);
 
-	/* Set the priortiy mask register, interrupts with priority
-	 * higher than this value will be signalled to processor.
-	 * Lower value means higher priority.
-	 */
-	ArmGicV3SetPriorityMask(pmr);
+  /* Make sure EOI is handled in NS EL3 */
+  //__asm__ volatile("mrc p15, 0, %0, c12, c12, 4" : "=r" (eoimode));
+  // eoimode &= ~BIT(1);
+  //__asm__ volatile("mcr p15, 0, %0, c12, c12, 4" :: "r" (eoimode));
+  // isb();
 
-	/* Make sure EOI is handled in NS EL3 */
-	//__asm__ volatile("mrc p15, 0, %0, c12, c12, 4" : "=r" (eoimode));
-	//eoimode &= ~BIT(1);
-	//__asm__ volatile("mcr p15, 0, %0, c12, c12, 4" :: "r" (eoimode));
-	//isb();
-
-	/* Enable grp1 interrupts for NS EL3*/
-	ArmGicV3EnableInterruptInterface();
+  /* Enable grp1 interrupts for NS EL3*/
+  ArmGicV3EnableInterruptInterface();
 }
 
 EFI_STATUS
@@ -246,7 +266,7 @@ ArmGicGetMaxNumInterrupts(IN INTN GicDistributorBase)
 }
 
 VOID EFIAPI
-     ArmGicEndOfInterrupt(IN UINTN GicInterruptInterfaceBase, IN UINTN Source)
+ArmGicEndOfInterrupt(IN UINTN GicInterruptInterfaceBase, IN UINTN Source)
 {
   ArmGicV3EndOfInterrupt(Source);
 }
