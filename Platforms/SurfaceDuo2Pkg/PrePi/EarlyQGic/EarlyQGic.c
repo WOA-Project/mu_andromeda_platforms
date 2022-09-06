@@ -84,6 +84,26 @@ VOID QGicHardwareReset(VOID)
 {
   UINT32 n;
 
+	UINT64 typer = MmioRead64(0x17a60008);
+	UINT32 ctlr = MmioRead32(0x17a60000);
+
+	if ((typer & 2) && (typer & 128)) {
+		UINT64 val;
+
+		DEBUG((EFI_D_ERROR, "GIC Redistributor needs boot time cleanup...\n"));
+
+		val = MmioRead64(0x17a80078);
+		if (val & 0x8000000000000000) {
+      MmioWrite64(0x17a80078, 0x2000000000000000);
+    }
+
+		val = MmioRead64(0x17a80070);
+		val &= ~0x8000000000000000;
+		MmioWrite64(0x17a80070, val);
+
+		DEBUG((EFI_D_ERROR, "GIC Redistributor was cleaned up!\n"));
+	}
+
   /* Disabling GIC */
   MmioWrite32(GIC_DIST_CTRL, 0);
   // Reboots, GIC400 only? At least this makes a one instruction reboot command... :)
