@@ -244,7 +244,7 @@ CoreSetTimer (
   IEVENT  *Event;
 
   Event = UserEvent;
-  
+
   if (Event == NULL) {
     return EFI_INVALID_PARAMETER;
   }

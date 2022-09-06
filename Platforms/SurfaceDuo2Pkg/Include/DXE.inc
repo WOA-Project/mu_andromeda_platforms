@@ -106,8 +106,8 @@
     }
 
     FILE DRIVER = 4b4973ee-401b-4f36-a6a9-533dfccdfc33 {
-            SECTION PE32 = SurfaceDuo2Pkg/PatchedBinaries/ScmDxe.efi
-            SECTION UI = "ScmDxe"
+            SECTION PE32 = SurfaceDuo2Pkg/PatchedBinaries/ScmDxeLA.efi
+            SECTION UI = "ScmDxeLA"
     }
 
     FILE DRIVER = 6b38f7b4-ad98-40e9-9093-aca2b5a253c4 {

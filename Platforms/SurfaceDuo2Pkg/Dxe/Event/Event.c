@@ -304,7 +304,6 @@ CoreNotifySignalList (
   Head = &gEventSignalQueue;
   for (Link = Head->ForwardLink; Link != Head; Link = Link->ForwardLink) {
     Event = CR (Link, IEVENT, SignalLink, EVENT_SIGNATURE);
-
     if (CompareGuid (&Event->EventGroup, EventGroup)) {
       CoreNotifyEvent (Event);
     }
