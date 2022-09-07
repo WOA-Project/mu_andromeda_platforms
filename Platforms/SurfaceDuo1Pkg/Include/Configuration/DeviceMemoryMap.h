@@ -14,7 +14,7 @@
       EFI_RESOURCE_ATTRIBUTE_WRITE_BACK_CACHEABLE |                            \
       EFI_RESOURCE_ATTRIBUTE_EXECUTION_PROTECTABLE
 
-typedef enum { NoHob, AddMem, AddDev, MaxMem } DeviceMemoryAddHob;
+typedef enum { NoHob, AddMem, AddDev, HobOnlyNoCacheSetting, MaxMem } DeviceMemoryAddHob;
 
 #define MEMORY_REGION_NAME_MAX_LENGTH 32
 

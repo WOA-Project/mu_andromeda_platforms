@@ -14,7 +14,7 @@
       EFI_RESOURCE_ATTRIBUTE_WRITE_BACK_CACHEABLE |                            \
       EFI_RESOURCE_ATTRIBUTE_EXECUTION_PROTECTABLE
 
-typedef enum { NoHob, AddMem, AddDev, MaxMem } DeviceMemoryAddHob;
+typedef enum { NoHob, AddMem, AddDev, HobOnlyNoCacheSetting, MaxMem } DeviceMemoryAddHob;
 
 #define MEMORY_REGION_NAME_MAX_LENGTH 32
 
@@ -43,7 +43,6 @@ typedef struct {
 #define BsData EfiBootServicesData
 #define RtData EfiRuntimeServicesData
 #define MmIO EfiMemoryMappedIO
-#define HobOnlyNoCacheSetting AddMem
 
 #define NS_DEVICE ARM_MEMORY_REGION_ATTRIBUTE_NONSECURE_DEVICE
 #define WRITE_THROUGH ARM_MEMORY_REGION_ATTRIBUTE_WRITE_THROUGH
