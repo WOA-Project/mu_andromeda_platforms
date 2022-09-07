@@ -14,6 +14,7 @@
 FBCON_POSITION* p_Position = (FBCON_POSITION*)(FixedPcdGet32(PcdMipiFrameBufferAddress) + (FixedPcdGet32(PcdMipiFrameBufferWidth) * FixedPcdGet32(PcdMipiFrameBufferHeight) * FixedPcdGet32(PcdMipiFrameBufferPixelBpp) / 8));
 FBCON_POSITION m_MaxPosition;
 FBCON_COLOR    m_Color;
+BOOLEAN        m_Initialized = FALSE;
 
 UINTN gWidth = FixedPcdGet32(PcdMipiFrameBufferWidth);
 // Reserve half screen for output
@@ -35,38 +36,17 @@ RETURN_STATUS
 EFIAPI
 SerialPortInitialize(VOID)
 {
-  UINTN InterruptState = 0;
-
-  // Interrupt Disable
-  InterruptState = ArmGetInterruptState();
-  ArmDisableInterrupts();
-
-  // Calc max position.
-  m_MaxPosition.x = gWidth / (FONT_WIDTH + 1);
-  m_MaxPosition.y = (gHeight - 1) / FONT_HEIGHT;
-
-  // Reset color.
-  m_Color.Foreground = FB_BGRA8888_WHITE;
-  m_Color.Background = FB_BGRA8888_BLACK;
-
-  if (InterruptState)
-    ArmEnableInterrupts();
-  return RETURN_SUCCESS;
-}
-
-void InitializeFb(void)
-{
-  UINTN InterruptState = 0;
-
-  // Interrupt Disable
-  InterruptState = ArmGetInterruptState();
-  ArmDisableInterrupts();
+  // Prevent dup initialization
+  if (m_Initialized)
+    return RETURN_SUCCESS;
 
   // Reset console
   FbConReset();
 
-  if (InterruptState)
-    ArmEnableInterrupts();
+  // Set flag
+  m_Initialized = TRUE;
+
+  return RETURN_SUCCESS;
 }
 
 void ResetFb(void)
@@ -91,10 +71,6 @@ void ResetFb(void)
 
 void FbConReset(void)
 {
-  // Reset position.
-  p_Position->x = 0;
-  p_Position->y = 0;
-
   // Calc max position.
   m_MaxPosition.x = gWidth / (FONT_WIDTH + 1);
   m_MaxPosition.y = (gHeight - 1) / FONT_HEIGHT;

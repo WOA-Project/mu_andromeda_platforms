@@ -76,10 +76,28 @@ SerialPortLocateArea(PARM_MEMORY_REGION_DESCRIPTOR_EX* MemoryDescriptor)
   return EFI_NOT_FOUND;
 }
 
+STATIC VOID InitializeSharedUartBuffers(VOID)
+{
+  INTN* pFbConPosition = (INTN*)(FixedPcdGet32(PcdMipiFrameBufferAddress) + (FixedPcdGet32(PcdMipiFrameBufferWidth) * FixedPcdGet32(PcdMipiFrameBufferHeight) * FixedPcdGet32(PcdMipiFrameBufferPixelBpp) / 8));
+
+  *(pFbConPosition + 0) = 0;
+  *(pFbConPosition + 1) = 0;
+
+#if USE_MEMORY_FOR_SERIAL_OUTPUT == 1
+  SerialPortLocateArea(&PStoreMemoryRegion);
+
+  // Clear PStore area
+  UINT8 *base = (UINT8 *)PStoreMemoryRegion->Address;
+  for (UINTN i = 0; i < PStoreMemoryRegion->Length; i++) {
+    base[i] = 0;
+  }
+#endif
+}
+
 STATIC VOID UartInit(VOID)
 {
   SerialPortInitialize();
-  InitializeFb();
+  InitializeSharedUartBuffers();
 
   DEBUG((EFI_D_INFO, "\nProjectMu on Duo 2 (AArch64)\n"));
   DEBUG(
@@ -213,32 +231,9 @@ VOID ContinueBoot(IN UINTN StackSize)
   CpuDeadLoop();
 }
 
-VOID Main(IN VOID *StackBase, IN UINTN StackSize, IN VOID *KernelLoadAddress, IN VOID *DeviceTreeLoadAddress)
+VOID ContinueToLinuxIfAllowed(IN VOID *KernelLoadAddress, IN VOID *DeviceTreeLoadAddress)
 {
-  EFI_STATUS                  Status;
-
   UINT32 Lid0Status    = 0;
-
-#if USE_MEMORY_FOR_SERIAL_OUTPUT == 1
-  SerialPortLocateArea(&PStoreMemoryRegion);
-
-  // Clear PStore area
-  UINT8 *base = (UINT8 *)PStoreMemoryRegion->Address;
-  for (UINTN i = 0; i < PStoreMemoryRegion->Length; i++) {
-    base[i] = 0;
-  }
-#endif
-
-  // Initialize (fake) UART.
-  UartInit();
-
-  // Which EL?
-  if (ArmReadCurrentEL() == AARCH64_EL2) {
-    DEBUG((EFI_D_ERROR, "Running at EL2 \n"));
-  }
-  else {
-    DEBUG((EFI_D_ERROR, "Running at EL1 \n"));
-  }
 
   if (IsLinuxAvailable(KernelLoadAddress)) {
     DEBUG(
@@ -257,6 +252,24 @@ VOID Main(IN VOID *StackBase, IN UINTN StackSize, IN VOID *KernelLoadAddress, IN
       CpuDeadLoop();
     }
   }
+}
+
+VOID Main(IN VOID *StackBase, IN UINTN StackSize, IN VOID *KernelLoadAddress, IN VOID *DeviceTreeLoadAddress)
+{
+  EFI_STATUS                  Status;
+
+  // Initialize (fake) UART.
+  UartInit();
+
+  // Which EL?
+  if (ArmReadCurrentEL() == AARCH64_EL2) {
+    DEBUG((EFI_D_ERROR, "Running at EL2 \n"));
+  }
+  else {
+    DEBUG((EFI_D_ERROR, "Running at EL1 \n"));
+  }
+
+  ContinueToLinuxIfAllowed(KernelLoadAddress, DeviceTreeLoadAddress);
 
   DEBUG((EFI_D_INFO | EFI_D_LOAD, "Disabling Qualcomm Watchdog Reboot timer\n"));
   DisableWatchDogTimer();
