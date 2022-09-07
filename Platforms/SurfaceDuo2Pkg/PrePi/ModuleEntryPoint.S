@@ -38,6 +38,20 @@ _ModuleEntryPoint:
   // backup device tree address into x21
   mov    x21, x0
 
+  /* mdss_dsi0 + DSI_CTRL */
+  mov	   x1, #0x4004
+  movk   x1, #0xae9, lsl #16
+  ldr    w2, [x1]
+  and    w2, w2, #~0x7
+  str    w2, [x1]
+
+  /* mdss_dsi1 + DSI_CTRL */
+  mov    x1, #0x6004
+  movk   x1, #0xae9, lsl #16
+  ldr    w2, [x1]
+  and    w2, w2, #~0x7
+  str    w2, [x1]
+
   /* World reset */
   bl ASM_PFX(ArmDeInitialize)
 
