@@ -177,10 +177,10 @@
             SECTION UI = "PmicDxe"
     }
 
-    # FILE DRIVER = 1c04f529-0612-4319-9315-b2e75c16810a {
-    #         SECTION PE32 = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-1c04f529-0612-4319-9315-b2e75c16810a/section0.pe
-    #         SECTION UI = "FeatureEnablerDxe"
-    # }
+    FILE DRIVER = 1c04f529-0612-4319-9315-b2e75c16810a {
+            SECTION PE32 = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-1c04f529-0612-4319-9315-b2e75c16810a/section0.pe
+            SECTION UI = "FeatureEnablerDxe"
+    }
 
     INF SurfacePkg/Driver/SimpleFbDxe/SimpleFbDxe.inf
 
@@ -198,7 +198,13 @@
     INF MdeModulePkg/Universal/WatchdogTimerDxe/WatchdogTimer.inf
 
     INF EmbeddedPkg/EmbeddedMonotonicCounter/EmbeddedMonotonicCounter.inf
-    INF MdeModulePkg/Universal/ResetSystemRuntimeDxe/ResetSystemRuntimeDxe.inf
+
+    FILE DRIVER = 3ae17db7-3cc5-4b89-9304-9549211057ef {
+            SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-1/section0/section1/volume-0/file-3ae17db7-3cc5-4b89-9304-9549211057ef/section0.dxe.depex
+            SECTION PE32 = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-1/section0/section1/volume-0/file-3ae17db7-3cc5-4b89-9304-9549211057ef/section1.pe
+            SECTION UI = "ResetRuntimeDxe"
+    }
+
     INF EmbeddedPkg/RealTimeClockRuntimeDxe/RealTimeClockRuntimeDxe.inf
 
     INF MdeModulePkg/Universal/PrintDxe/PrintDxe.inf
@@ -218,7 +224,7 @@
 
     FILE DRIVER = 5d787b6c-6254-43f5-a7a8-cb25329cf97e {
             SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-5d787b6c-6254-43f5-a7a8-cb25329cf97e/section0.dxe.depex
-            SECTION PE32 = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-5d787b6c-6254-43f5-a7a8-cb25329cf97e/section1.pe
+            SECTION PE32 = SurfaceDuo2Pkg/PatchedBinaries/SPSSDxe.efi
             SECTION UI = "SPSSDxe"
     }
 
@@ -315,11 +321,11 @@
             SECTION UI = "ManufacturingModeDxe"
     }
 
-    FILE DRIVER = 1b52138d-3fa3-4e50-b958-20887353f809 {
-            SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-1b52138d-3fa3-4e50-b958-20887353f809/section0.dxe.depex
-            SECTION PE32 = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-1b52138d-3fa3-4e50-b958-20887353f809/section1.pe
-            SECTION UI = "CPRDxe"
-    }
+    # FILE DRIVER = 1b52138d-3fa3-4e50-b958-20887353f809 {
+    #         SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-1b52138d-3fa3-4e50-b958-20887353f809/section0.dxe.depex
+    #         SECTION PE32 = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-1b52138d-3fa3-4e50-b958-20887353f809/section1.pe
+    #         SECTION UI = "CPRDxe"
+    # }
 
     FILE DRIVER = 7942a7eb-b7d5-4e2e-b908-831e4de55b58 {
             SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-7942a7eb-b7d5-4e2e-b908-831e4de55b58/section0.dxe.depex
@@ -693,7 +699,7 @@
 
     FILE FREEFORM = 21e9bdd9-6c3f-4f10-84a5-bbec322741f1 {
             SECTION UI = "uefipil.cfg"
-            SECTION RAW = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-21e9bdd9-6c3f-4f10-84a5-bbec322741f1/section1.raw
+            SECTION RAW = SurfaceDuo2Pkg/PatchedBinaries/uefipil.cfg
     }
 
     FILE FREEFORM = 45fe4b7c-150c-45da-a021-4beb2048ec6f {
