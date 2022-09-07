@@ -177,10 +177,10 @@
             SECTION UI = "PmicDxe"
     }
 
-    FILE DRIVER = 1c04f529-0612-4319-9315-b2e75c16810a {
-            SECTION PE32 = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-1c04f529-0612-4319-9315-b2e75c16810a/section0.pe
-            SECTION UI = "FeatureEnablerDxe"
-    }
+    # FILE DRIVER = 1c04f529-0612-4319-9315-b2e75c16810a {
+    #         SECTION PE32 = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-1c04f529-0612-4319-9315-b2e75c16810a/section0.pe
+    #         SECTION UI = "FeatureEnablerDxe"
+    # }
 
     INF SurfacePkg/Driver/SimpleFbDxe/SimpleFbDxe.inf
 
