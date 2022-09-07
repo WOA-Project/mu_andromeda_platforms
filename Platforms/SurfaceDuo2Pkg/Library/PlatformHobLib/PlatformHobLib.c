@@ -1,5 +1,6 @@
 #include "PlatformHobLibInternal.h"
 #include <Library/PlatformHobLib.h>
+#include <Protocol/EFIKernelInterface.h>
 
 STATIC
 EFI_STATUS
@@ -136,6 +137,7 @@ ShLoadLib(CHAR8 *LibName, UINT32 LibVersion, VOID **LibIntf)
 }
 
 ShLibLoaderType ShLib = {0x00010001, ShInstallLib, ShLoadLib};
+EFI_KERNEL_PROTOCOL* pSchedIntf = (EFI_KERNEL_PROTOCOL*)0x9FC37980;
 
 STATIC
 VOID BuildMemHobForFv(IN UINT16 Type)
@@ -156,17 +158,45 @@ VOID BuildMemHobForFv(IN UINT16 Type)
   }
 }
 
-STATIC GUID gEfiShLibHobGuid = EFI_SHIM_LIBRARY_GUID;
+STATIC GUID gEfiShLibHobGuid  = EFI_SHIM_LIBRARY_GUID;
+STATIC GUID gEfiSchedIntfGuid = EFI_SCHEDULER_INTERFACE_GUID;
+STATIC GUID gEfiInfoBlkHobGuid = EFI_INFORMATION_BLOCK_GUID;
 
 VOID InstallPlatformHob()
 {
   static int initialized = 0;
 
   if (!initialized) {
-    UINTN Data = (UINTN)&ShLib;
+    UINTN Data  = (UINTN)&ShLib;
+    UINTN Data2 = 0x9FC37980;
+    UINTN Data3 = 0x9FFFF000;
 
     BuildMemHobForFv(EFI_HOB_TYPE_FV2);
     BuildGuidDataHob(&gEfiShLibHobGuid, &Data, sizeof(Data));
+
+    UINT32 SchedulingLibVersion = pSchedIntf->GetLibVersion();
+    DEBUG((EFI_D_INFO | EFI_D_LOAD, "Scheduling Library Version %d.%d\n", (SchedulingLibVersion >> 16) & 0xFFFF, SchedulingLibVersion & 0xFFFF));
+    BuildGuidDataHob(&gEfiSchedIntfGuid, &Data2, sizeof(Data2));
+
+    for (UINT32 i = 0; i < 8; i++) {
+      if (pSchedIntf->MpCpu->MpcoreIsCpuActive(i)) {
+        DEBUG((EFI_D_INFO | EFI_D_LOAD, "CPU %d is online.\n", i));
+      } else {
+        DEBUG((EFI_D_INFO | EFI_D_LOAD, "CPU %d is offline.\n", i));
+      }
+    }
+
+    for (UINT32 i = 1; i < 8; i++) {
+      if (pSchedIntf->MpCpu->MpcoreIsCpuActive(i)) {
+        DEBUG((EFI_D_INFO | EFI_D_LOAD, "CPU %d is online. Shutting it down!\n", i));
+        pSchedIntf->MpCpu->MpcorePowerOffCpu(1 << i);
+      }
+    }
+
+    DEBUG((EFI_D_INFO | EFI_D_LOAD, "Disabling Watchdog.\n"));
+    pSchedIntf->WDog->WdogDisable();
+
+    BuildGuidDataHob (&gEfiInfoBlkHobGuid, &Data3, sizeof(Data3));
 
     initialized = 1;
   }

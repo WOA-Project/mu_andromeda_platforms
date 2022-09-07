@@ -9,6 +9,7 @@
 .align 3
 
 GCC_ASM_IMPORT (CEntryPoint)
+GCC_ASM_IMPORT (SecondaryCEntryPoint)
 GCC_ASM_IMPORT (ArmWriteCpacr)
 GCC_ASM_IMPORT (ArmEnableInstructionCache)
 GCC_ASM_IMPORT (ArmEnableDataCache)
@@ -17,6 +18,7 @@ GCC_ASM_IMPORT (ArmDeInitialize)
 GCC_ASM_IMPORT (ArmRelocateFirmware)
 
 GCC_ASM_EXPORT (_ModuleEntryPoint)
+GCC_ASM_EXPORT (SecondaryCpuEntry)
 
 .global _StackBase 
 .global _StackSize
@@ -79,19 +81,19 @@ _CpuIndex:
   /* Keep the CPU index in x19 */
   mov x19, x0
 
-  /* Secondary startup is not expected */
+  /* Secondary startup case */
   cmp x19, #0x0
-  bne dead
+  bne SecondaryCpuEntry
 
   /* First ensure all interrupts are disabled */
   bl ASM_PFX(ArmDisableInterrupts)
 
   /* Ensure that the MMU and caches are off */
   bl ASM_PFX(ArmDisableCachesAndMmu)
- 
+
   /* Invalide I-Cache */
   bl ASM_PFX(ArmInvalidateInstructionCache)
-  
+
   /* Invalidate TLB */
   bl ASM_PFX(ArmInvalidateTlb)
 
@@ -116,10 +118,10 @@ _FillVectors:
 
   cmp x0, #0x5
   b.eq _SetupEl1VBar
-  
+
 _SetupEl1VBar:
   msr vbar_el1, x0        
-    
+
 _DonNotTrap_VFP_SIMD:
   mrs x0, CPACR_EL1
   /* Bit 20 and 21 */
@@ -129,7 +131,7 @@ _DonNotTrap_VFP_SIMD:
 _SetupPrimaryCoreStack:
   ldr x0, _StackBase     /* Stack base arg0 */
   ldr x1, _StackSize     /* Stack size arg1 */
-  
+
   /* Zero Init stack */
   add x2, x0, x1         /* End of Stack */
   mov x3, x0             /* Stack Base */
@@ -139,15 +141,15 @@ _SetupPrimaryCoreStack:
   mov v5.2d, v4.2d 
   mov v6.2d, v4.2d
   mov v7.2d, v4.2d 
-  
+
 _ClearStack: 
   /* Assumes StackBase is 128-bit aligned, StackSize is a multiple of 64B */
   st4     {v4.2d, v5.2d, v6.2d, v7.2d}, [x3], #64  /* Fill every 64 bytes */
   cmp     x3, x2                                   /* Compare Size */ 
   b.lt     _ClearStack 
-  
+
   add sp, x2, xzr                                  /* Initalize SP */
-  
+
 _EnableCache: 
   bl ArmInvalidateDataCache
   bl ASM_PFX(ArmEnableInstructionCache)
@@ -165,3 +167,38 @@ _PrepareArguments:
 .align 3
 dead:  
   b dead                      /* We should never get here */
+
+SecondaryCpuEntry:
+  mov x19, x4
+
+  mov x5, #0x8
+  sub x4, x5, x4
+
+  ubfiz   x2, x4, #15, #8
+
+_SetupSecondaryCoreStack:
+  ldr x3, _StackBase     /* Stack base arg0 */
+
+  add x2, x3, x2
+  sub x3, x2,#0x8000     /* Stack size arg1 */
+
+  mov x4, xzr
+  mov x5, xzr
+
+_ClearStackSecondary: 
+  /* Assumes StackBase is 128-bit aligned, StackSize is a multiple of 64B */
+  st4     {v4.2d, v5.2d, v6.2d, v7.2d}, [x3], #64  /* Fill every 64 bytes */
+  cmp     x3, x2                                   /* Compare Size */ 
+  b.lt     _ClearStackSecondary 
+
+  add sp, x2, xzr                                  /* Initalize SP */
+
+  bl ArmInvalidateDataCache
+
+  /* Enter MpPark spin */
+  mov x0, x19
+  bl SecondaryCEntryPoint
+
+secondarydead:
+  wfe
+  b secondarydead                      /* We should never get here */

@@ -71,7 +71,7 @@ SerialPortLocateArea(PARM_MEMORY_REGION_DESCRIPTOR_EX* MemoryDescriptor)
   while (MemoryDescriptorEx->Length != 0) {
     if (AsciiStriCmp("PStore", MemoryDescriptorEx->Name) == 0) {
       *MemoryDescriptor = MemoryDescriptorEx;
-	return EFI_SUCCESS;
+      return EFI_SUCCESS;
     }
     MemoryDescriptorEx++;
   }
@@ -115,28 +115,22 @@ VOID BootLinux(IN VOID *KernelLoadAddress, IN VOID *DeviceTreeLoadAddress)
   CpuDeadLoop();
 }
 
-VOID Main(IN VOID *StackBase, IN UINTN StackSize, IN VOID *KernelLoadAddress, IN VOID *DeviceTreeLoadAddress)
+VOID DisableWatchDogTimer()
+{
+  MmioWrite32(0x17C10008, 0x00000000);
+}
+
+VOID ContinueBoot(IN UINTN StackSize)
 {
 
   EFI_HOB_HANDOFF_INFO_TABLE *HobList;
   EFI_STATUS                  Status;
 
+  VOID* StackBase = NULL;
   UINTN MemoryBase     = 0;
   UINTN MemorySize     = 0;
   UINTN UefiMemoryBase = 0;
   UINTN UefiMemorySize = 0;
-
-  UINT32 Lid0Status    = 0;
-
-#if USE_MEMORY_FOR_SERIAL_OUTPUT == 1
-  SerialPortLocateArea(&PStoreMemoryRegion);
-
-  // Clear PStore area
-  UINT8 *base = (UINT8 *)PStoreMemoryRegion->Address;
-  for (UINTN i = 0; i < PStoreMemoryRegion->Length; i++) {
-    base[i] = 0;
-  }
-#endif
 
   // Architecture-specific initialization
   // Enable Floating Point
@@ -161,37 +155,12 @@ VOID Main(IN VOID *StackBase, IN UINTN StackSize, IN VOID *KernelLoadAddress, IN
        "Size = 0x%llx\n",
        UefiMemoryBase, UefiMemorySize, StackBase, StackSize));
 
-  DEBUG(
-      (EFI_D_INFO | EFI_D_LOAD,
-       "Kernel Load Address = 0x%llx, Device Tree Load Address = 0x%llx\n",
-       KernelLoadAddress, DeviceTreeLoadAddress));
-
-  if (IsLinuxAvailable(KernelLoadAddress)) {
-    Lid0Status = MmioRead32(LID0_GPIO121_STATUS_ADDR) & 1;
-
-    DEBUG(
-        (EFI_D_INFO | EFI_D_LOAD,
-        "Lid Status = 0x%llx\n",
-        Lid0Status));
-
-    if (Lid0Status == 1) {
-      BootLinux(KernelLoadAddress, DeviceTreeLoadAddress);
-
-      // We should never reach here
-      CpuDeadLoop();
-    }
-  }
-
-  DEBUG((EFI_D_INFO | EFI_D_LOAD, "Disabling Qualcomm Watchdog Reboot timer\n"));
-  MmioWrite32(0x17C10008, 0x00000000);
-  DEBUG((EFI_D_INFO | EFI_D_LOAD, "Qualcomm Watchdog Reboot timer disabled\n"));
-
   // Set up HOB
   HobList = HobConstructor(
       (VOID *)UefiMemoryBase, UefiMemorySize, (VOID *)UefiMemoryBase,
       StackBase);
 
-  PrePeiSetHobList(HobList);
+  PrePeiSetHobList (HobList);
 
   // Invalidate cache
   InvalidateDataCacheRange(
@@ -207,24 +176,14 @@ VOID Main(IN VOID *StackBase, IN UINTN StackSize, IN VOID *KernelLoadAddress, IN
 
   DEBUG((EFI_D_LOAD | EFI_D_INFO, "MMU configured from device config\n"));
 
-  // Initialize GIC
-  if (!FixedPcdGetBool(PcdIsLkBuild)) {
-    Status = QGicPeim();
-
-    if (EFI_ERROR(Status)) {
-      DEBUG((EFI_D_ERROR, "Failed to configure GIC\n"));
-      CpuDeadLoop();
-    }
-  }
-
   // Add HOBs
-  BuildStackHob((UINTN)StackBase, StackSize);
+  BuildStackHob ((UINTN)StackBase, StackSize);
 
   // TODO: Call CpuPei as a library
-  BuildCpuHob(ArmGetPhysicalAddressBits(), PcdGet8(PcdPrePiCpuIoSize));
+  BuildCpuHob (ArmGetPhysicalAddressBits (), PcdGet8 (PcdPrePiCpuIoSize));
 
   // Set the Boot Mode
-  SetBootMode(BOOT_WITH_FULL_CONFIGURATION);
+  SetBootMode (BOOT_WITH_DEFAULT_SETTINGS);
 
   // Initialize Platform HOBs (CpuHob and FvHob)
   Status = PlatformPeim();
@@ -233,14 +192,14 @@ VOID Main(IN VOID *StackBase, IN UINTN StackSize, IN VOID *KernelLoadAddress, IN
   // Install SoC driver HOBs
   InstallPlatformHob();
 
-  // Now, the HOB List has been initialized, we can register performance
-  // information PERF_START (NULL, "PEI", NULL, StartTimeStamp);
+  // Now, the HOB List has been initialized, we can register performance information
+  // PERF_START (NULL, "PEI", NULL, StartTimeStamp);
 
   // SEC phase needs to run library constructors by hand.
   ProcessLibraryConstructorList();
 
-  // Assume the FV that contains the PI (our code) also contains a compressed
-  // FV.
+  // Assume the FV that contains the PI (our code) also contains a
+  // compressed FV.
   Status = DecompressFirstFv();
   ASSERT_EFI_ERROR(Status);
 
@@ -264,7 +223,78 @@ VOID Main(IN VOID *StackBase, IN UINTN StackSize, IN VOID *KernelLoadAddress, IN
   CpuDeadLoop();
 }
 
+VOID Main(IN VOID *StackBase, IN UINTN StackSize, IN VOID *KernelLoadAddress, IN VOID *DeviceTreeLoadAddress)
+{
+  EFI_STATUS                  Status;
+
+  UINT32 Lid0Status    = 0;
+
+#if USE_MEMORY_FOR_SERIAL_OUTPUT == 1
+  SerialPortLocateArea(&PStoreMemoryRegion);
+
+  // Clear PStore area
+  UINT8 *base = (UINT8 *)PStoreMemoryRegion->Address;
+  for (UINTN i = 0; i < PStoreMemoryRegion->Length; i++) {
+    base[i] = 0;
+  }
+#endif
+
+  // Initialize (fake) UART.
+  UartInit();
+
+  // Which EL?
+  if (ArmReadCurrentEL() == AARCH64_EL2) {
+    DEBUG((EFI_D_ERROR, "Running at EL2 \n"));
+  }
+  else {
+    DEBUG((EFI_D_ERROR, "Running at EL1 \n"));
+  }
+
+  if (IsLinuxAvailable(KernelLoadAddress)) {
+    DEBUG(
+        (EFI_D_INFO | EFI_D_LOAD,
+        "Kernel Load Address = 0x%llx, Device Tree Load Address = 0x%llx\n",
+        KernelLoadAddress, DeviceTreeLoadAddress));
+
+    Lid0Status = MmioRead32(LID0_GPIO121_STATUS_ADDR) & 1;
+
+    DEBUG((EFI_D_INFO | EFI_D_LOAD, "Lid Status = 0x%llx\n", Lid0Status));
+
+    if (Lid0Status == 1) {
+      BootLinux(KernelLoadAddress, DeviceTreeLoadAddress);
+
+      // We should never reach here
+      CpuDeadLoop();
+    }
+  }
+
+  DEBUG((EFI_D_INFO | EFI_D_LOAD, "Disabling Qualcomm Watchdog Reboot timer\n"));
+  DisableWatchDogTimer();
+  DEBUG((EFI_D_INFO | EFI_D_LOAD, "Qualcomm Watchdog Reboot timer disabled\n"));
+
+  // Initialize GIC
+  if (!FixedPcdGetBool(PcdIsLkBuild)) {
+    Status = QGicPeim();
+
+    if (EFI_ERROR(Status)) {
+      DEBUG((EFI_D_ERROR, "Failed to configure GIC\n"));
+      CpuDeadLoop();
+    }
+  }
+
+  ContinueBoot(StackSize);
+
+  // We should never reach here
+  CpuDeadLoop();
+}
+
 VOID CEntryPoint(IN VOID *StackBase, IN UINTN StackSize, IN VOID *KernelLoadAddress, IN VOID *DeviceTreeLoadAddress)
 {
   Main(StackBase, StackSize, KernelLoadAddress, DeviceTreeLoadAddress);
+}
+
+VOID SecondaryCEntryPoint(IN UINT64 Argument)
+{
+  // We should never reach here
+  CpuDeadLoop();
 }

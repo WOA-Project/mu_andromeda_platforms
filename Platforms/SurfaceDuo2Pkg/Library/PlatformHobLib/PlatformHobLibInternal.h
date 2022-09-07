@@ -76,4 +76,20 @@ typedef struct {
     }                                                                          \
   }
 
+#define EFI_SCHEDULER_INTERFACE_GUID                                                  \
+  {                                                                            \
+    0x8ec2bd8d, 0x56d7, 0x49ef,                                                \
+    {                                                                          \
+      0x87, 0x96, 0x63, 0x17, 0x78, 0xf8, 0xeb, 0xf8                           \
+    }                                                                          \
+  }
+
+#define EFI_INFORMATION_BLOCK_GUID                                                  \
+  {                                                                            \
+    0x90a49afd, 0x422f, 0x08ae,                                                \
+    {                                                                          \
+      0x96, 0x11, 0xe7, 0x88, 0xd3, 0x80, 0x48, 0x45                           \
+    }                                                                          \
+  }
+
 #endif // __PLATFORM_HOB_INTERNAL_H
