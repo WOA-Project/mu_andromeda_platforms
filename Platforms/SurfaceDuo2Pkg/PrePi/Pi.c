@@ -32,7 +32,6 @@
 
 #include <Library/PlatformHobLib.h>
 #include <Configuration/DeviceMemoryMap.h>
-#include <Protocol/EFIKernelInterface.h>
 
 #define TLMM_ADDR 0x0F100000
 
@@ -48,18 +47,6 @@
 
 #define LINUX_KERNEL_ARCH_MAGIC_OFFSET 0x38
 #define LINUX_KERNEL_AARCH64_MAGIC 0x644D5241
-
-typedef VOID (*LITTLE_KERNEL_CALLBACK) (UINT64 Argument);
-
-typedef VOID (*LITTLE_KERNEL) (LITTLE_KERNEL_CALLBACK PrimaryEntry,
-                               UINT64 Argument, 
-                               UINT64 HeapBase,
-                               UINT64 HeapSize,
-                               UINT64 SecondaryEntry,
-                               UINT32 MaxCoreCount,
-                               UINT32 CoreCount);
-
-extern VOID* _ModuleEntryPoint;
 
 typedef VOID (*LINUX_KERNEL) (UINT64 ParametersBase,
                               UINT64 Reserved0,
@@ -93,7 +80,6 @@ STATIC VOID UartInit(VOID)
 {
   SerialPortInitialize();
   InitializeFb();
-  ResetFb();
 
   DEBUG((EFI_D_INFO, "\nProjectMu on Duo 2 (AArch64)\n"));
   DEBUG(
@@ -227,24 +213,6 @@ VOID ContinueBoot(IN UINTN StackSize)
   CpuDeadLoop();
 }
 
-VOID LKTrampoline(IN UINTN StackSize)
-{
-  DEBUG((EFI_D_INFO | EFI_D_LOAD, "About to jump...!\n"));
-
-  EFI_KERNEL_PROTOCOL* pSchedIntf = (EFI_KERNEL_PROTOCOL*)0x9FC37980;
-
-  UINT32 SchedulingLibVersion = pSchedIntf->GetLibVersion();
-  DEBUG((EFI_D_INFO | EFI_D_LOAD, "Scheduling Library Version %d.%d\n", (SchedulingLibVersion >> 16) & 0xFFFF, SchedulingLibVersion & 0xFFFF));
-
-  //LITTLE_KERNEL LittleKernel = (LITTLE_KERNEL) 0x9FC05548;
-  //LittleKernel(ContinueBoot, StackSize, 0x9FB00000, 0x00400000, (UINT64)&_ModuleEntryPoint, 8, 2);
-
-  DEBUG((EFI_D_INFO | EFI_D_LOAD, "Jump failed!\n"));
-
-  // In case of failure, jump to ContinueBoot anyway.
-  ContinueBoot(StackSize);
-}
-
 VOID Main(IN VOID *StackBase, IN UINTN StackSize, IN VOID *KernelLoadAddress, IN VOID *DeviceTreeLoadAddress)
 {
   EFI_STATUS                  Status;
@@ -304,11 +272,9 @@ VOID Main(IN VOID *StackBase, IN UINTN StackSize, IN VOID *KernelLoadAddress, IN
     }
   }
 
-  // Immediately launch all CPUs, 7 CPUs hold
-  DEBUG((EFI_D_LOAD | EFI_D_INFO, "Launching CPUs\n"));
+  PlatformSchedulerInit();
 
-  // Launch all CPUs, hold and jump
-  LKTrampoline(StackSize);
+  ContinueBoot(StackSize);
 
   // We should never reach here
   CpuDeadLoop();
@@ -321,6 +287,6 @@ VOID CEntryPoint(IN VOID *StackBase, IN UINTN StackSize, IN VOID *KernelLoadAddr
 
 VOID SecondaryCEntryPoint(IN UINT64 Argument)
 {
-  LITTLE_KERNEL_CALLBACK CallBack = (LITTLE_KERNEL_CALLBACK)0x9FC05298;
-  CallBack(Argument);
+  // We should never reach here
+  CpuDeadLoop();
 }

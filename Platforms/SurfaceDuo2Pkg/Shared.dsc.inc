@@ -45,7 +45,7 @@
 
   gEfiMdeModulePkgTokenSpaceGuid.PcdPciBusHotplugDeviceSupport|FALSE
 
-  gSurfaceDuo2PkgTokenSpaceGuid.PcdIsLkBuild|FALSE
+  gSurfaceDuo2PkgTokenSpaceGuid.PcdIsLkBuild|TRUE
 
 [PcdsFixedAtBuild.common]
   gArmTokenSpaceGuid.PcdSystemMemoryBase|0x80000000         # Starting address

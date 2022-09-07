@@ -1,6 +1,5 @@
 #include "PlatformHobLibInternal.h"
 #include <Library/PlatformHobLib.h>
-#include <Protocol/EFIKernelInterface.h>
 
 STATIC
 EFI_STATUS
@@ -136,8 +135,7 @@ ShLoadLib(CHAR8 *LibName, UINT32 LibVersion, VOID **LibIntf)
   return EFI_NOT_FOUND;
 }
 
-ShLibLoaderType      ShLib      = {0x00010001, ShInstallLib, ShLoadLib};
-EFI_KERNEL_PROTOCOL *pSchedIntf = (EFI_KERNEL_PROTOCOL *)0x9FC37980;
+ShLibLoaderType ShLib = {0x00010001, ShInstallLib, ShLoadLib};
 
 STATIC
 VOID BuildMemHobForFv(IN UINT16 Type)
@@ -159,55 +157,19 @@ VOID BuildMemHobForFv(IN UINT16 Type)
 }
 
 STATIC GUID gEfiShLibHobGuid   = EFI_SHIM_LIBRARY_GUID;
-STATIC GUID gEfiSchedIntfGuid  = EFI_SCHEDULER_INTERFACE_GUID;
 STATIC GUID gEfiInfoBlkHobGuid = EFI_INFORMATION_BLOCK_GUID;
-
-VOID PlatformSchedulerInit()
-{
-  UINT32 SchedulingLibVersion = pSchedIntf->GetLibVersion();
-  UINT32 MajorVersion         = (SchedulingLibVersion >> 16) & 0xFFFF;
-  UINT32 MinorVersion         = SchedulingLibVersion & 0xFFFF;
-
-  DEBUG(
-      (EFI_D_INFO | EFI_D_LOAD, "Scheduling Library Version %d.%d\n",
-       MajorVersion, MinorVersion));
-
-  UINT32 MaxCpuCount   = pSchedIntf->MpCpu->MpcoreGetMaxCpuCount();
-  UINT32 AvailCpuCount = pSchedIntf->MpCpu->MpcoreGetAvailCpuCount();
-
-  DEBUG((EFI_D_INFO | EFI_D_LOAD, "Maximum CPU Count: %d\n", MaxCpuCount));
-  DEBUG((EFI_D_INFO | EFI_D_LOAD, "Available CPU Count: %d\n", AvailCpuCount));
-
-  for (UINT32 i = 0; i < MaxCpuCount; i++) {
-    if (pSchedIntf->MpCpu->MpcoreIsCpuActive(i)) {
-      DEBUG((EFI_D_INFO | EFI_D_LOAD, "CPU %d is online.\n", i));
-
-      if (i != 0) {
-        DEBUG((EFI_D_INFO | EFI_D_LOAD, "Shutting down CPU %d...\n", i));
-        pSchedIntf->MpCpu->MpcorePowerOffCpu(1 << i);
-      }
-    }
-    else {
-      DEBUG((EFI_D_INFO | EFI_D_LOAD, "CPU %d is offline.\n", i));
-    }
-  }
-}
 
 VOID InstallPlatformHob()
 {
   static int initialized = 0;
 
   if (!initialized) {
-    PlatformSchedulerInit();
-
     UINTN Data  = (UINTN)&ShLib;
-    UINTN Data2 = (UINTN)pSchedIntf;
-    UINTN Data3 = 0x9FFFF000;
+    UINTN Data2 = 0x9FFFF000;
 
     BuildMemHobForFv(EFI_HOB_TYPE_FV2);
     BuildGuidDataHob(&gEfiShLibHobGuid, &Data, sizeof(Data));
-    BuildGuidDataHob(&gEfiSchedIntfGuid, &Data2, sizeof(Data2));
-    BuildGuidDataHob(&gEfiInfoBlkHobGuid, &Data3, sizeof(Data3));
+    BuildGuidDataHob(&gEfiInfoBlkHobGuid, &Data2, sizeof(Data2));
 
     initialized = 1;
   }

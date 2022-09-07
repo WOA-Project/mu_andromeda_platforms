@@ -156,7 +156,7 @@ VOID BuildMemHobForFv(IN UINT16 Type)
   }
 }
 
-STATIC GUID gEfiShLibHobGuid  = EFI_SHIM_LIBRARY_GUID;
+STATIC GUID gEfiShLibHobGuid   = EFI_SHIM_LIBRARY_GUID;
 STATIC GUID gEfiInfoBlkHobGuid = EFI_INFORMATION_BLOCK_GUID;
 
 VOID InstallPlatformHob()
@@ -165,11 +165,11 @@ VOID InstallPlatformHob()
 
   if (!initialized) {
     UINTN Data  = (UINTN)&ShLib;
-    UINTN Data3 = 0x9FFFF000;
+    UINTN Data2 = 0x9FFFF000;
 
     BuildMemHobForFv(EFI_HOB_TYPE_FV2);
     BuildGuidDataHob(&gEfiShLibHobGuid, &Data, sizeof(Data));
-    BuildGuidDataHob (&gEfiInfoBlkHobGuid, &Data3, sizeof(Data3));
+    BuildGuidDataHob(&gEfiInfoBlkHobGuid, &Data2, sizeof(Data2));
 
     initialized = 1;
   }

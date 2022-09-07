@@ -42,6 +42,8 @@ EFI_STATUS
 EFIAPI
 QGicPeim(VOID);
 
+VOID PlatformSchedulerInit(VOID);
+
 VOID QGicCpuInit(VOID);
 VOID QgicCpuInitSecondary(VOID);
 

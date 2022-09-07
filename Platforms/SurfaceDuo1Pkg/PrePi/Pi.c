@@ -83,7 +83,6 @@ STATIC VOID UartInit(VOID)
 {
   SerialPortInitialize();
   InitializeFb();
-  ResetFb();
 
   DEBUG((EFI_D_INFO, "\nProjectMu on Duo 1 (AArch64)\n"));
   DEBUG(
