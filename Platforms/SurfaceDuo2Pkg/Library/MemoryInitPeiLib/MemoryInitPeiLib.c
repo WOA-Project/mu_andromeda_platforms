@@ -1,17 +1,10 @@
 /** @file
- *
- *  Copyright (c) 2011-2015, ARM Limited. All rights reserved.
- *
- *  This program and the accompanying materials
- *  are licensed and made available under the terms and conditions of the BSD
- *License which accompanies this distribution.  The full text of the license may
- *be found at http://opensource.org/licenses/bsd-license.php
- *
- *  THE PROGRAM IS DISTRIBUTED UNDER THE BSD LICENSE ON AN "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR REPRESENTATIONS OF ANY KIND, EITHER EXPRESS OR
- *IMPLIED.
- *
- **/
+
+  Copyright (c) 2011-2015, ARM Limited. All rights reserved.
+
+  SPDX-License-Identifier: BSD-2-Clause-Patent
+
+**/
 
 #include <PiPei.h>
 
@@ -25,13 +18,16 @@
 // This varies by device
 #include <Configuration/DeviceMemoryMap.h>
 
-extern UINT64 mSystemMemoryEnd;
-
-VOID BuildMemoryTypeInformationHob(VOID);
-
+VOID
+BuildMemoryTypeInformationHob(
+  VOID
+  );
 
 STATIC
-VOID InitMmu(IN ARM_MEMORY_REGION_DESCRIPTOR *MemoryTable)
+VOID
+InitMmu(
+  IN ARM_MEMORY_REGION_DESCRIPTOR  *MemoryTable
+  )
 {
 
   VOID *        TranslationTableBase;
@@ -81,7 +77,10 @@ Returns:
 --*/
 EFI_STATUS
 EFIAPI
-MemoryPeim(IN EFI_PHYSICAL_ADDRESS UefiMemoryBase, IN UINT64 UefiMemorySize)
+MemoryPeim(
+  IN EFI_PHYSICAL_ADDRESS  UefiMemoryBase,
+  IN UINT64                UefiMemorySize
+  )
 {
 
   PARM_MEMORY_REGION_DESCRIPTOR_EX MemoryDescriptorEx =
@@ -131,9 +130,7 @@ MemoryPeim(IN EFI_PHYSICAL_ADDRESS UefiMemoryBase, IN UINT64 UefiMemorySize)
   MemoryDescriptor[Index].Attributes   = 0;
 
   // Build Memory Allocation Hob
-  DEBUG((EFI_D_INFO, "Configure MMU In \n"));
   InitMmu(MemoryDescriptor);
-  DEBUG((EFI_D_INFO, "Configure MMU Out \n"));
 
   if (FeaturePcdGet(PcdPrePiProduceMemoryTypeInformationHob)) {
     // Optional feature that helps prevent EFI memory map fragmentation.

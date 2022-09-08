@@ -9,6 +9,7 @@
 
 #include <Guid/LzmaDecompress.h>
 #include <Ppi/GuidedSectionExtraction.h>
+#include <Ppi/SecPerformance.h>
 
 #include <Library/ArmLib.h>
 #include <Library/BaseMemoryLib.h>
@@ -25,37 +26,22 @@
 #include <Library/PrePiHobListPointerLib.h>
 #include <Library/PrePiLib.h>
 #include <Library/SerialPortLib.h>
+#include <Library/TimerLib.h>
 
 #include <IndustryStandard/ArmStdSmc.h>
 #include <Library/ArmHvcLib.h>
 #include <Library/ArmSmcLib.h>
 
-#include <Library/PlatformHobLib.h>
 #include <Configuration/DeviceMemoryMap.h>
+#include <Library/PlatformHobLib.h>
 
-#define TLMM_ADDR 0x0F100000
+#define IS_XIP()  (((UINT64)FixedPcdGet64 (PcdFdBaseAddress) > mSystemMemoryEnd) ||\
+                  ((FixedPcdGet64 (PcdFdBaseAddress) + FixedPcdGet32 (PcdFdSize)) <= FixedPcdGet64 (PcdSystemMemoryBase)))
 
-#define TLMM_ADDR_OFFSET_FOR_PIN(x) (0x1000 * x)
-
-#define TLMM_PIN_CONTROL_REGISTER 0
-#define TLMM_PIN_IO_REGISTER 4
-#define TLMM_PIN_INTERRUPT_CONFIG_REGISTER 8
-#define TLMM_PIN_INTERRUPT_STATUS_REGISTER 0xC
-#define TLMM_PIN_INTERRUPT_TARGET_REGISTER TLMM_PIN_INTERRUPT_CONFIG_REGISTER
-
-#define LID0_GPIO38_STATUS_ADDR (TLMM_ADDR + TLMM_ADDR_OFFSET_FOR_PIN(38) + TLMM_PIN_IO_REGISTER)
-
-#define LINUX_KERNEL_ARCH_MAGIC_OFFSET 0x38
-#define LINUX_KERNEL_AARCH64_MAGIC 0x644D5241
-
-typedef VOID (*LINUX_KERNEL) (UINT64 ParametersBase,
-                              UINT64 Reserved0,
-                              UINT64 Reserved1,
-                              UINT64 Reserved2);
+UINT64  mSystemMemoryEnd = FixedPcdGet64 (PcdSystemMemoryBase) +
+                           FixedPcdGet64 (PcdSystemMemorySize) - 1;
 
 VOID EFIAPI ProcessLibraryConstructorList(VOID);
-
-PARM_MEMORY_REGION_DESCRIPTOR_EX PStoreMemoryRegion = NULL;
 
 EFI_STATUS
 EFIAPI
@@ -78,15 +64,20 @@ SerialPortLocateArea(PARM_MEMORY_REGION_DESCRIPTOR_EX* MemoryDescriptor)
 
 STATIC VOID InitializeSharedUartBuffers(VOID)
 {
-  INTN* pFbConPosition = (INTN*)(FixedPcdGet32(PcdMipiFrameBufferAddress) + (FixedPcdGet32(PcdMipiFrameBufferWidth) * FixedPcdGet32(PcdMipiFrameBufferHeight) * FixedPcdGet32(PcdMipiFrameBufferPixelBpp) / 8));
+#if USE_MEMORY_FOR_SERIAL_OUTPUT == 1
+  PARM_MEMORY_REGION_DESCRIPTOR_EX PStoreMemoryRegion = NULL;
+#endif
+
+  INTN* pFbConPosition = (INTN*)(FixedPcdGet32(PcdMipiFrameBufferAddress) + (FixedPcdGet32(PcdMipiFrameBufferWidth) * 
+                                                                              FixedPcdGet32(PcdMipiFrameBufferHeight) * 
+                                                                              FixedPcdGet32(PcdMipiFrameBufferPixelBpp) / 8));
 
   *(pFbConPosition + 0) = 0;
   *(pFbConPosition + 1) = 0;
 
 #if USE_MEMORY_FOR_SERIAL_OUTPUT == 1
-  SerialPortLocateArea(&PStoreMemoryRegion);
-
   // Clear PStore area
+  SerialPortLocateArea(&PStoreMemoryRegion);
   UINT8 *base = (UINT8 *)PStoreMemoryRegion->Address;
   for (UINTN i = 0; i < PStoreMemoryRegion->Length; i++) {
     base[i] = 0;
@@ -105,62 +96,44 @@ STATIC VOID UartInit(VOID)
        (CHAR16 *)PcdGetPtr(PcdFirmwareVersionString), __TIME__, __DATE__));
 }
 
-BOOLEAN IsLinuxAvailable(IN VOID *KernelLoadAddress)
-{
-  VOID *LinuxKernelAddr = KernelLoadAddress + PcdGet32(PcdFdSize);
-  UINT32 *LinuxKernelMagic = (UINT32*)(LinuxKernelAddr + LINUX_KERNEL_ARCH_MAGIC_OFFSET);
-  return *LinuxKernelMagic == LINUX_KERNEL_AARCH64_MAGIC;
-}
-
-VOID BootLinux(IN VOID *KernelLoadAddress, IN VOID *DeviceTreeLoadAddress)
-{
-  VOID *LinuxKernelAddr = KernelLoadAddress + PcdGet32(PcdFdSize);
-  LINUX_KERNEL LinuxKernel = (LINUX_KERNEL) LinuxKernelAddr;
-
-  DEBUG(
-      (EFI_D_INFO | EFI_D_LOAD,
-       "Kernel Load Address = 0x%llx, Device Tree Load Address = 0x%llx\n",
-       LinuxKernelAddr, DeviceTreeLoadAddress));
-
-  // Jump to linux
-  LinuxKernel ((UINT64)DeviceTreeLoadAddress, 0, 0, 0);
-
-  // We should never reach here
-  CpuDeadLoop();
-}
-
-VOID DisableWatchDogTimer()
-{
-  ARM_SMC_ARGS         StubArgsSmc;
-  StubArgsSmc.Arg0 = 0x86000005;
-  StubArgsSmc.Arg1 = 2;
-  ArmCallSmc(&StubArgsSmc);
-  if (StubArgsSmc.Arg0 != 0) {
-    DEBUG((EFI_D_ERROR, "Disabling Qualcomm Watchdog Reboot timer failed! Status=%d\n", StubArgsSmc.Arg0));
-  }
-}
-
-VOID ContinueBoot(IN UINTN StackSize)
+VOID
+PrePiMain(
+  IN VOID *StackBase, 
+  IN UINTN StackSize, 
+  IN VOID *KernelLoadAddress, 
+  IN VOID *DeviceTreeLoadAddress
+  )
 {
 
   EFI_HOB_HANDOFF_INFO_TABLE *HobList;
   EFI_STATUS                  Status;
 
-  VOID* StackBase = NULL;
   UINTN MemoryBase     = 0;
   UINTN MemorySize     = 0;
   UINTN UefiMemoryBase = 0;
   UINTN UefiMemorySize = 0;
 
+  // Initialize (fake) UART.
+  UartInit();
+
   // Architecture-specific initialization
   // Enable Floating Point
   ArmEnableVFP();
 
+  if (ArmReadCurrentEL() == AARCH64_EL2) {
+    // Trap General Exceptions. All exceptions that would be routed to EL1 are routed to EL2
+    ArmWriteHcr(ARM_HCR_TGE);
+
+    /* Enable Timer access for non-secure EL1 and EL0
+       The cnthctl_el2 register bits are architecturally
+       UNKNOWN on reset.
+       Disable event stream as it is not in use at this stage
+    */
+    ArmWriteCntHctl(CNTHCTL_EL2_EL1PCTEN | CNTHCTL_EL2_EL1PCEN);
+  }
+
   /* Enable program flow prediction, if supported */
   ArmEnableBranchPrediction();
-
-  // Initialize (fake) UART.
-  UartInit();
 
   // Declare UEFI region
   MemoryBase     = FixedPcdGet32(PcdSystemMemoryBase);
@@ -188,13 +161,7 @@ VOID ContinueBoot(IN UINTN StackSize)
 
   // Initialize MMU
   Status = MemoryPeim(UefiMemoryBase, UefiMemorySize);
-
-  if (EFI_ERROR(Status)) {
-    DEBUG((EFI_D_ERROR, "Failed to configure MMU\n"));
-    CpuDeadLoop();
-  }
-
-  DEBUG((EFI_D_LOAD | EFI_D_INFO, "MMU configured from device config\n"));
+  ASSERT_EFI_ERROR (Status);
 
   // Add HOBs
   BuildStackHob ((UINTN)StackBase, StackSize);
@@ -207,7 +174,7 @@ VOID ContinueBoot(IN UINTN StackSize)
 
   // Initialize Platform HOBs (CpuHob and FvHob)
   Status = PlatformPeim();
-  ASSERT_EFI_ERROR(Status);
+  ASSERT_EFI_ERROR (Status);
 
   // Install SoC driver HOBs
   InstallPlatformHob();
@@ -218,88 +185,40 @@ VOID ContinueBoot(IN UINTN StackSize)
   // SEC phase needs to run library constructors by hand.
   ProcessLibraryConstructorList();
 
-  // Assume the FV that contains the PI (our code) also contains a
-  // compressed FV.
+  // Assume the FV that contains the SEC (our code) also contains a compressed FV.
   Status = DecompressFirstFv();
-  ASSERT_EFI_ERROR(Status);
+  ASSERT_EFI_ERROR (Status);
 
   // Load the DXE Core and transfer control to it
   Status = LoadDxeCoreFromFv(NULL, 0);
-  ASSERT_EFI_ERROR(Status);
-
-  // We should never reach here
-  CpuDeadLoop();
+  ASSERT_EFI_ERROR (Status);
 }
 
-VOID ContinueToLinuxIfAllowed(IN VOID *KernelLoadAddress, IN VOID *DeviceTreeLoadAddress)
+VOID
+CEntryPoint(
+  IN VOID *StackBase, 
+  IN UINTN StackSize, 
+  IN VOID *KernelLoadAddress, 
+  IN VOID *DeviceTreeLoadAddress
+  )
 {
-  UINT32 Lid0Status    = 0;
-
-  if (IsLinuxAvailable(KernelLoadAddress)) {
-    DEBUG(
-        (EFI_D_INFO | EFI_D_LOAD,
-        "Kernel Load Address = 0x%llx, Device Tree Load Address = 0x%llx\n",
-        KernelLoadAddress, DeviceTreeLoadAddress));
-
-    Lid0Status = MmioRead32(LID0_GPIO38_STATUS_ADDR) & 1;
-
-    DEBUG((EFI_D_INFO | EFI_D_LOAD, "Lid Status = 0x%llx\n", Lid0Status));
-
-    if (Lid0Status == 0) {
-      BootLinux(KernelLoadAddress, DeviceTreeLoadAddress);
-
-      // We should never reach here
-      CpuDeadLoop();
-    }
-  }
-}
-
-VOID Main(IN VOID *StackBase, IN UINTN StackSize, IN VOID *KernelLoadAddress, IN VOID *DeviceTreeLoadAddress)
-{
-  EFI_STATUS                  Status;
-
-  // Initialize (fake) UART.
-  UartInit();
-
-  // Which EL?
-  if (ArmReadCurrentEL() == AARCH64_EL2) {
-    DEBUG((EFI_D_ERROR, "Running at EL2 \n"));
-  }
-  else {
-    DEBUG((EFI_D_ERROR, "Running at EL1 \n"));
-  }
-
   ContinueToLinuxIfAllowed(KernelLoadAddress, DeviceTreeLoadAddress);
 
-  DEBUG((EFI_D_INFO | EFI_D_LOAD, "Disabling Qualcomm Watchdog Reboot timer\n"));
-  DisableWatchDogTimer();
-  DEBUG((EFI_D_INFO | EFI_D_LOAD, "Qualcomm Watchdog Reboot timer disabled\n"));
+  // Do platform specific initialization here
+  PlatformInitialize();
 
-  // Initialize GIC
-  if (!FixedPcdGetBool(PcdIsLkBuild)) {
-    Status = QGicPeim();
+  // Goto primary Main.
+  PrePiMain(StackBase, StackSize, KernelLoadAddress, DeviceTreeLoadAddress);
 
-    if (EFI_ERROR(Status)) {
-      DEBUG((EFI_D_ERROR, "Failed to configure GIC\n"));
-      CpuDeadLoop();
-    }
-  }
-
-  PlatformSchedulerInit();
-
-  ContinueBoot(StackSize);
-
-  // We should never reach here
-  CpuDeadLoop();
+  // DXE Core should always load and never return
+  ASSERT(FALSE);
 }
 
-VOID CEntryPoint(IN VOID *StackBase, IN UINTN StackSize, IN VOID *KernelLoadAddress, IN VOID *DeviceTreeLoadAddress)
+VOID
+SecondaryCEntryPoint(
+  IN  UINTN  MpId
+  )
 {
-  Main(StackBase, StackSize, KernelLoadAddress, DeviceTreeLoadAddress);
-}
-
-VOID SecondaryCEntryPoint(IN UINT64 Argument)
-{
-  // We should never reach here
-  CpuDeadLoop();
+  // We must never get into this function on UniCore system
+  ASSERT(FALSE);
 }

@@ -181,11 +181,11 @@ APRIORI DXE {
             SECTION UI = "DisplayDxe"
     }
 
-    FILE DRIVER = 1d317734-4083-47c6-83ea-e3a42f2a6bff {
-            SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.XF.3.0-00527-SM8150LZB-1-202206/volume-0/file-2/section0/section1/volume-0/file-1d317734-4083-47c6-83ea-e3a42f2a6bff/section0.dxe.depex
-            SECTION PE32 = SurfaceDuoBinaries/BOOT.XF.3.0-00527-SM8150LZB-1-202206/volume-0/file-2/section0/section1/volume-0/file-1d317734-4083-47c6-83ea-e3a42f2a6bff/section1.pe
-            SECTION UI = "PILDxe"
-    }
+    # FILE DRIVER = 1d317734-4083-47c6-83ea-e3a42f2a6bff {
+    #         SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.XF.3.0-00527-SM8150LZB-1-202206/volume-0/file-2/section0/section1/volume-0/file-1d317734-4083-47c6-83ea-e3a42f2a6bff/section0.dxe.depex
+    #         SECTION PE32 = SurfaceDuoBinaries/BOOT.XF.3.0-00527-SM8150LZB-1-202206/volume-0/file-2/section0/section1/volume-0/file-1d317734-4083-47c6-83ea-e3a42f2a6bff/section1.pe
+    #         SECTION UI = "PILDxe"
+    # }
 
     FILE DRIVER = 1b52138d-3fa3-4e50-b958-20887353f809 {
             SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.XF.3.0.1-00243-SC8180XWZB-2/volume-0/file-2/section0/section1/volume-0/file-1b52138d-3fa3-4e50-b958-20887353f809/section0.dxe.depex

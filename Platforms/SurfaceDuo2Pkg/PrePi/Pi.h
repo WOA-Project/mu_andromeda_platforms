@@ -1,48 +1,53 @@
 /** @file
- *
- *  Copyright (c) 2011-2012, ARM Limited. All rights reserved.
- *
- *  This program and the accompanying materials
- *  are licensed and made available under the terms and conditions of the BSD
- *License which accompanies this distribution.  The full text of the license may
- *be found at http://opensource.org/licenses/bsd-license.php
- *
- *  THE PROGRAM IS DISTRIBUTED UNDER THE BSD LICENSE ON AN "AS IS" BASIS,
- *  WITHOUT WARRANTIES OR REPRESENTATIONS OF ANY KIND, EITHER EXPRESS OR
- *IMPLIED.
- *
- **/
+
+  Copyright (c) 2011 - 2020, Arm Limited. All rights reserved.<BR>
+
+  SPDX-License-Identifier: BSD-2-Clause-Patent
+
+**/
 
 #ifndef _PREPI_H_
 #define _PREPI_H_
 
 #include <PiPei.h>
 
+#include <Library/PcdLib.h>
 #include <Library/ArmLib.h>
 #include <Library/BaseMemoryLib.h>
 #include <Library/DebugLib.h>
-#include <Library/HobLib.h>
 #include <Library/IoLib.h>
 #include <Library/MemoryAllocationLib.h>
-#include <Library/PcdLib.h>
+#include <Library/HobLib.h>
 #include <Library/SerialPortLib.h>
 
-EFI_STATUS
+extern UINT64  mSystemMemoryEnd;
+
+RETURN_STATUS
 EFIAPI
-MemoryPeim(IN EFI_PHYSICAL_ADDRESS UefiMemoryBase, IN UINT64 UefiMemorySize);
+TimerConstructor (
+  VOID
+  );
 
 EFI_STATUS
 EFIAPI
-PlatformPeim(VOID);
+MemoryPeim (
+  IN EFI_PHYSICAL_ADDRESS  UefiMemoryBase,
+  IN UINT64                UefiMemorySize
+  );
+
+EFI_STATUS
+EFIAPI
+PlatformPeim (
+  VOID
+  );
 
 // Either implemented by PrePiLib or by MemoryInitPei
-VOID BuildMemoryTypeInformationHob(VOID);
+VOID
+BuildMemoryTypeInformationHob (
+  VOID
+  );
 
-EFI_STATUS
-EFIAPI
-QGicPeim(VOID);
-
-VOID PlatformSchedulerInit(VOID);
+VOID ContinueToLinuxIfAllowed(IN VOID *KernelLoadAddress, IN VOID *DeviceTreeLoadAddress);
 
 VOID QGicCpuInit(VOID);
 VOID QgicCpuInitSecondary(VOID);
@@ -55,6 +60,13 @@ VOID EFIAPI
 ArmGicEndOfInterrupt(IN UINTN GicInterruptInterfaceBase, IN UINTN Source);
 
 UINTN EFIAPI ArmGicGetMaxNumInterrupts(IN INTN GicDistributorBase);
+
+BOOLEAN IsLinuxBootRequested(VOID);
+VOID PlatformInitialize();
+
+EFI_STATUS
+EFIAPI
+QGicPeim(VOID);
 
 #pragma pack(1)
 typedef struct {

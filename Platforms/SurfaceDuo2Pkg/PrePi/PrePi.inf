@@ -7,6 +7,8 @@
 
 [Sources.common]
   Pi.c
+  LinuxUtils.c
+  PlatformUtils.c
   LittleKernelHooks.c
   EarlyQGic/EarlyQGic.c
 
@@ -49,12 +51,21 @@
   MemoryInitPeiLib
   PlatformPeiLib
   PlatformHobLib
+  TimerLib
   # MpPark
   ArmSmcLib
 
 [Guids]
   gEfiSystemNvDataFvGuid
   gEfiVariableGuid
+  gEfiFirmwarePerformanceGuid
+
+[FeaturePcd]
+  gEmbeddedTokenSpaceGuid.PcdPrePiProduceMemoryTypeInformationHob
+  gSurfaceDuo2PkgTokenSpaceGuid.PcdIsLkBuild
+
+[Pcd]
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVersionString
 
 [FixedPcd]
   gArmTokenSpaceGuid.PcdSystemMemoryBase
@@ -68,7 +79,6 @@
   gArmTokenSpaceGuid.PcdGicInterruptInterfaceBase
   gArmPlatformTokenSpaceGuid.PcdCoreCount
   gEfiMdePkgTokenSpaceGuid.PcdUartDefaultBaudRate
-  gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVersionString
   gEmbeddedTokenSpaceGuid.PcdPrePiStackBase
   gEmbeddedTokenSpaceGuid.PcdPrePiStackSize
   gEmbeddedTokenSpaceGuid.PcdPrePiCpuIoSize
@@ -78,6 +88,3 @@
   gSurfacePkgTokenSpaceGuid.PcdMipiFrameBufferPixelBpp
   gSurfaceDuo2PkgTokenSpaceGuid.PcdPreAllocatedMemorySize
   gSurfaceDuo2PkgTokenSpaceGuid.PcdUefiMemPoolSize
-
-[FeaturePcd]
-  gSurfaceDuo2PkgTokenSpaceGuid.PcdIsLkBuild

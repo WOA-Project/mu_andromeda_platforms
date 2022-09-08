@@ -33,9 +33,9 @@ _ModuleEntryPoint:
   /* First ensure we are at the correct location */
   bl ASM_PFX(ArmRelocateFirmware)
 
-  // backup start address into x20
+  /* Backup start address into x20 */
   mov    x20, x1
-  // backup device tree address into x21
+  /* Backup device tree address into x21 */
   mov    x21, x0
 
   /* World reset */

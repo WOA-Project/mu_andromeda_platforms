@@ -33,27 +33,13 @@ _ModuleEntryPoint:
   /* First ensure we are at the correct location */
   bl ASM_PFX(ArmRelocateFirmware)
 
-  // backup start address into x20
+  /* Backup start address into x20 */
   mov    x20, x1
-  // backup device tree address into x21
+  /* Backup device tree address into x21 */
   mov    x21, x0
 
   /* World reset */
   bl ASM_PFX(ArmDeInitialize)
-
-  /* mdss_dsi0 + DSI_CTRL */
-  mov	   x1, #0x4004
-  movk   x1, #0xae9, lsl #16
-  ldr    w2, [x1]
-  and    w2, w2, #~0x7
-  str    w2, [x1]
-
-  /* mdss_dsi1 + DSI_CTRL */
-  mov    x1, #0x6004
-  movk   x1, #0xae9, lsl #16
-  ldr    w2, [x1]
-  and    w2, w2, #~0x7
-  str    w2, [x1]
 
   /* Clear x0 for function calls below */
   mov x0, #0
