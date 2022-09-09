@@ -115,3 +115,15 @@
   gSurfaceDuo1PkgTokenSpaceGuid.PcdSmbiosSystemRetailSku|"Surface_Duo_1930"|VOID*|0x0000a304
   gSurfaceDuo1PkgTokenSpaceGuid.PcdSmbiosBoardModel|"Surface Duo"|VOID*|0x0000a305
   gSurfaceDuo1PkgTokenSpaceGuid.PcdSmbiosBoardRetailModel|"Not Specified"|VOID*|0x0000a306
+
+  # FD
+  gSurfaceDuo1PkgTokenSpaceGuid.PcdFdBaseAddress|0x9FC00000|UINT64|0x0000a103
+  gSurfaceDuo1PkgTokenSpaceGuid.PcdFdSize|0x00300000|UINT32|0x0000a104
+
+  # Memory allocation
+  gSurfaceDuo1PkgTokenSpaceGuid.PcdPreAllocatedMemorySize|0x20000000|UINT64|0x00000a106
+  gSurfaceDuo1PkgTokenSpaceGuid.PcdUefiMemPoolSize|0x78000000|UINT32|0x00000a107
+
+[PcdsFeatureFlag.common]
+  # LK Build
+  gSurfaceDuo1PkgTokenSpaceGuid.PcdIsLkBuild|TRUE|BOOLEAN|0x0000b101
