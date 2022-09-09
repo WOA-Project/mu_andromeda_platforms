@@ -20,34 +20,7 @@
 #include <Library/HobLib.h>
 #include <Library/SerialPortLib.h>
 
-extern UINT64  mSystemMemoryEnd;
-
-RETURN_STATUS
-EFIAPI
-TimerConstructor (
-  VOID
-  );
-
-EFI_STATUS
-EFIAPI
-MemoryPeim (
-  IN EFI_PHYSICAL_ADDRESS  UefiMemoryBase,
-  IN UINT64                UefiMemorySize
-  );
-
-EFI_STATUS
-EFIAPI
-PlatformPeim (
-  VOID
-  );
-
-// Either implemented by PrePiLib or by MemoryInitPei
-VOID
-BuildMemoryTypeInformationHob (
-  VOID
-  );
-
-VOID ContinueToLinuxIfAllowed(IN VOID *KernelLoadAddress, IN VOID *DeviceTreeLoadAddress);
+VOID ContinueToLinuxIfAllowed(IN VOID *DeviceTreeLoadAddress, IN VOID *KernelLoadAddress);
 
 VOID QGicCpuInit(VOID);
 VOID QgicCpuInitSecondary(VOID);
@@ -67,17 +40,5 @@ VOID PlatformInitialize();
 EFI_STATUS
 EFIAPI
 QGicPeim(VOID);
-
-#pragma pack(1)
-typedef struct {
-  /* First 2KB is reserved for OS */
-  UINT32 ProcessorId;
-  UINT32 Reserved;
-  UINT64 JumpAddress;
-  UINT8  OsReserved[2032];
-  /* Next 2KB is reserved for firmware */
-  UINT64 El2JumpFlag;
-} EFI_PROCESSOR_MAILBOX, *PEFI_PROCESSOR_MAILBOX;
-#pragma pack()
 
 #endif /* _PREPI_H_ */

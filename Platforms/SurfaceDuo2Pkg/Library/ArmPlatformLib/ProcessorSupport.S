@@ -8,42 +8,6 @@
   .section "s_ArmDeInitialize", "ax"
 
   GCC_ASM_EXPORT (ArmDeInitialize)
-  GCC_ASM_EXPORT (ArmRelocateFirmware)
-
-ArmRelocateFirmware:
-  /* Check if we're located at expected location */
-  adr	   x4, .
-  ldr	   x5, =ArmRelocateFirmware
-  cmp	   x4, x5
-  bne	   _CopyUEFI
-
-  /* If we are, just return, we have nothing to do here */
-  ret
-
-  _CopyUEFI:
-  /* Find our start address by getting our expected offset, then subtracting it from our actual address */
-  ldr	   x6, =FixedPcdGet64 (PcdFdBaseAddress)
-
-  /* x5 holds offset of ArmRelocateFirmware from start of FD base */
-  sub	   x5, x5, x6
-
-  /* x4 holds address of actual FD base */
-  sub	   x4, x4, x5
-
-  // tweak the return address
-  // note: x30 is lr; gcc5 doesn't have the alias
-  sub	   x30, x30, x4
-  add	   x30, x30, x6
-  ldr	   x5, =FixedPcdGet64 (PcdFdSize)
-
-  /* Copy UEFI code into place */
-  _CopyLoop:
-  ldp	   x2, x3, [x4], #16
-  stp	   x2, x3, [x6], #16
-  subs   x5, x5, #16
-  b.ne   _CopyLoop
-  
-  ret
 
 ArmDeInitialize:
   // Enter critical section: disable interrupt

@@ -10,14 +10,14 @@ typedef VOID (*LINUX_KERNEL) (UINT64 ParametersBase,
 
 BOOLEAN IsLinuxAvailable(IN VOID *KernelLoadAddress)
 {
-  VOID *LinuxKernelAddr = KernelLoadAddress + PcdGet32(PcdFdSize);
+  VOID *LinuxKernelAddr = KernelLoadAddress + 0x40 + PcdGet32(PcdFdSize);
   UINT32 *LinuxKernelMagic = (UINT32*)(LinuxKernelAddr + LINUX_KERNEL_ARCH_MAGIC_OFFSET);
   return *LinuxKernelMagic == LINUX_KERNEL_AARCH64_MAGIC;
 }
 
-VOID BootLinux(IN VOID *KernelLoadAddress, IN VOID *DeviceTreeLoadAddress)
+VOID BootLinux(IN VOID *DeviceTreeLoadAddress, IN VOID *KernelLoadAddress)
 {
-  VOID *LinuxKernelAddr = KernelLoadAddress + PcdGet32(PcdFdSize);
+  VOID *LinuxKernelAddr = KernelLoadAddress + 0x40 + PcdGet32(PcdFdSize);
   LINUX_KERNEL LinuxKernel = (LINUX_KERNEL) LinuxKernelAddr;
 
   DEBUG(
@@ -32,7 +32,7 @@ VOID BootLinux(IN VOID *KernelLoadAddress, IN VOID *DeviceTreeLoadAddress)
   CpuDeadLoop();
 }
 
-VOID ContinueToLinuxIfAllowed(IN VOID *KernelLoadAddress, IN VOID *DeviceTreeLoadAddress)
+VOID ContinueToLinuxIfAllowed(IN VOID *DeviceTreeLoadAddress, IN VOID *KernelLoadAddress)
 {
   if (IsLinuxAvailable(KernelLoadAddress)) {
     DEBUG(
@@ -41,7 +41,7 @@ VOID ContinueToLinuxIfAllowed(IN VOID *KernelLoadAddress, IN VOID *DeviceTreeLoa
         KernelLoadAddress, DeviceTreeLoadAddress));
 
     if (IsLinuxBootRequested()) {
-      BootLinux(KernelLoadAddress, DeviceTreeLoadAddress);
+      BootLinux(DeviceTreeLoadAddress, KernelLoadAddress);
     }
   }
 }
