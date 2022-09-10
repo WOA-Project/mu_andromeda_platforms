@@ -10,7 +10,6 @@
 
 GCC_ASM_IMPORT (CEntryPoint)
 GCC_ASM_IMPORT (SecondaryCEntryPoint)
-GCC_ASM_IMPORT (ArmWriteCpacr)
 GCC_ASM_IMPORT (ArmEnableInstructionCache)
 GCC_ASM_IMPORT (ArmEnableDataCache)
 GCC_ASM_IMPORT (ArmInvalidateTlb)
@@ -30,13 +29,6 @@ _StackSize:
 _ModuleEntryPoint:
   /* Continue to linux if allowed */
   bl ASM_PFX(ContinueToLinuxIfAllowed)
-
-  /* Clear x0 for function calls below */
-  mov x0, #0
-  mov x1, #0
-
-_FirmwareEntryPoint:
-  mov x0, #0
 
   /* Know about the current CPU index */
   mrs x3, mpidr_el1
