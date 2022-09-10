@@ -9,11 +9,11 @@ _Head:
 
 _StackBase:
 	/* Text Offset */
-	.quad 0x80000
+	.quad 0x9FC00000
 
 _StackSize:
 	/* Image Size */
-	.quad 0x200000
+	.quad 0x00300000
 
 	/* Flags */
 	.quad 0
