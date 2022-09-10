@@ -15,7 +15,6 @@ GCC_ASM_IMPORT (ArmEnableInstructionCache)
 GCC_ASM_IMPORT (ArmEnableDataCache)
 GCC_ASM_IMPORT (ArmInvalidateTlb)
 GCC_ASM_IMPORT (ArmDeInitialize)
-GCC_ASM_IMPORT (ArmRelocateFirmware)
 
 GCC_ASM_EXPORT (_ModuleEntryPoint)
 GCC_ASM_EXPORT (SecondaryCpuEntry)
@@ -30,9 +29,6 @@ _StackSize:
   .quad FixedPcdGet32(PcdPrePiStackSize)
 
 _ModuleEntryPoint:
-  /* First ensure we are at the correct location */
-  bl ASM_PFX(ArmRelocateFirmware)
-
   /* Continue to linux if allowed */
   bl ASM_PFX(ContinueToLinuxIfAllowed)
 
