@@ -14,7 +14,6 @@ GCC_ASM_IMPORT (ArmWriteCpacr)
 GCC_ASM_IMPORT (ArmEnableInstructionCache)
 GCC_ASM_IMPORT (ArmEnableDataCache)
 GCC_ASM_IMPORT (ArmInvalidateTlb)
-GCC_ASM_IMPORT (ArmDeInitialize)
 
 GCC_ASM_EXPORT (_ModuleEntryPoint)
 GCC_ASM_EXPORT (SecondaryCpuEntry)
@@ -31,9 +30,6 @@ _StackSize:
 _ModuleEntryPoint:
   /* Continue to linux if allowed */
   bl ASM_PFX(ContinueToLinuxIfAllowed)
-
-  /* World reset */
-  bl ASM_PFX(ArmDeInitialize)
 
   /* Clear x0 for function calls below */
   mov x0, #0

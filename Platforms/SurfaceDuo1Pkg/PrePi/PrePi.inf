@@ -12,7 +12,6 @@
   EarlyQGic/EarlyQGic.c
 
 [Sources.AARCH64]
-  ProcessorSupport.S | GCC
   ModuleEntryPoint.S | GCC
   EarlyQGic/ArmGicV3.S | GCC
 
