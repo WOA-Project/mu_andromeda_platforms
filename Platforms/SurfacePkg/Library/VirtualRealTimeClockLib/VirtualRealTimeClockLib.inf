@@ -38,6 +38,3 @@
   TimerLib
   HobLib
   PcdLib
-
-[FixedPcd]
-  gSurfacePkgTokenSpaceGuid.PcdBootShimInfo1

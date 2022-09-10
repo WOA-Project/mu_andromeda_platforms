@@ -32,9 +32,6 @@
   gSurfacePkgTokenSpaceGuid.PcdPStoreBufferAddress|0x17FE00000|UINT64|0x0000a404
   gSurfacePkgTokenSpaceGuid.PcdPStoreBufferSize|0x00200000|UINT32|0x0000a405
 
-  # RTC information
-  gSurfacePkgTokenSpaceGuid.PcdBootShimInfo1|0xb0000000|UINT64|0x00000a601
-
   ## This PCD points to the file name GUID of the UFPMenuApp
   #  Platform can customize the PCD to point to different application for UFP Menu
   # @Prompt UFP Menu File
