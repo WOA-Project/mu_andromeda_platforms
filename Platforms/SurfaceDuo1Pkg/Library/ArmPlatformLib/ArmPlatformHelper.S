@@ -19,9 +19,6 @@ ASM_FUNC(ArmPlatformPeiBootAction)
   /* Continue to linux if allowed */
   bl ASM_PFX(ContinueToLinuxIfAllowed)
 
-  /* World reset */
-  bl ASM_PFX(ArmDeInitialize)
-
   ret
 
 //UINTN

@@ -43,7 +43,6 @@
 
 [Sources.AArch64]
   ArmPlatformHelper.S
-  ProcessorSupport.S
   EarlyQGic/ArmGicV3.S
 
 [Pcd]
