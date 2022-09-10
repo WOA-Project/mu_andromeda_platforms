@@ -11,9 +11,6 @@
 
 GCC_ASM_IMPORT (ContinueToLinuxIfAllowed)
 
-.text
-.align 3
-
 ASM_FUNC(ArmPlatformPeiBootAction)
 
   /* Continue to linux if allowed */
