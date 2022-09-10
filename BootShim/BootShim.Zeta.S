@@ -1,5 +1,5 @@
 _Head:
-	/* Set _start address */
+	/* Set _Entry address */
 	adr x1, #0x70
 
 	/* Jump to the real code */
