@@ -116,7 +116,3 @@
   # Memory allocation
   gSurfaceDuo2PkgTokenSpaceGuid.PcdPreAllocatedMemorySize|0x50000000|UINT64|0x00000a106
   gSurfaceDuo2PkgTokenSpaceGuid.PcdUefiMemPoolSize|0x78000000|UINT32|0x00000a107
-
-[PcdsFeatureFlag.common]
-  # LK Build
-  gSurfaceDuo2PkgTokenSpaceGuid.PcdIsLkBuild|TRUE|BOOLEAN|0x0000b101
