@@ -1,15 +1,17 @@
-_head:
-	/* Set current address */
-	adr x1, #0
+_Head:
+	/* Set _start address */
+	adr x1, #0x70
 
 	/* Jump to the real code */
-	b _start
-	
+	b _Start
+
 	/* Fake Linux kernel header */
 
+_StackBase:
 	/* Text Offset */
 	.quad 0x80000
 
+_StackSize:
 	/* Image Size */
 	.quad 0x200000
 
@@ -31,5 +33,24 @@ _head:
 	/* Reserved */
 	.long 0
 
-_start:
+_Start:
+	ldr		x5, _StackBase
+	cmp		x1, x5
+	beq 	_Entry
+	ldr		x6,  _StackSize
+
+_CopyLoop:
+	ldp		x2, x3, [x1], #16
+	stp		x2, x3, [x5], #16
+	subs	x6, x6, #16
+	b.ne   _CopyLoop
+
+_Entry:
+	br       x5
 	/* Your code will get ran right after this binary */
+	nop
+	nop
+
+	/* We should never get here */
+dead:
+	b		dead
