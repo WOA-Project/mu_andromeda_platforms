@@ -15,20 +15,20 @@
   gArmTokenSpaceGuid.PcdSystemMemorySize
   gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVendor
   gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVersionString
-  gSurfaceDuo2PkgTokenSpaceGuid.PcdSmbiosSystemModel
-  gSurfaceDuo2PkgTokenSpaceGuid.PcdSmbiosSystemRetailModel
-  gSurfaceDuo2PkgTokenSpaceGuid.PcdSmbiosSystemRetailSku
-  gSurfaceDuo2PkgTokenSpaceGuid.PcdSmbiosProcessorModel
-  gSurfaceDuo2PkgTokenSpaceGuid.PcdSmbiosBoardModel
-  gSurfaceDuo2PkgTokenSpaceGuid.PcdSmbiosBoardRetailModel
-  
+  gSurfacePkgTokenSpaceGuid.PcdSmbiosSystemModel
+  gSurfacePkgTokenSpaceGuid.PcdSmbiosSystemRetailModel
+  gSurfacePkgTokenSpaceGuid.PcdSmbiosSystemRetailSku
+  gSurfacePkgTokenSpaceGuid.PcdSmbiosProcessorModel
+  gSurfacePkgTokenSpaceGuid.PcdSmbiosProcessorRetailModel
+  gSurfacePkgTokenSpaceGuid.PcdSmbiosBoardModel
+
 [Packages]
   ArmPkg/ArmPkg.dec
   ArmPlatformPkg/ArmPlatformPkg.dec
   MdePkg/MdePkg.dec
   EmbeddedPkg/EmbeddedPkg.dec
   MdeModulePkg/MdeModulePkg.dec
-  SurfaceDuo2Pkg/SurfaceDuo2Pkg.dec
+  SurfacePkg/SurfacePkg.dec
 
 [LibraryClasses]
   BaseLib

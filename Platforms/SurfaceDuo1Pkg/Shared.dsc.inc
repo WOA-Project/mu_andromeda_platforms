@@ -504,7 +504,7 @@
   # ACPI and SMBIOS
   # We use pre-built ACPI tables, so only core components are loaded
   SurfaceDuo1Pkg/AcpiTables/SurfaceDuo1AcpiTables.inf
-  SurfaceDuo1Pkg/Driver/SmBiosTableDxe/SmBiosTableDxe.inf
+  SurfacePkg/Driver/SmBiosTableDxe/SmBiosTableDxe.inf
   MdeModulePkg/Universal/Acpi/AcpiTableDxe/AcpiTableDxe.inf
   MdeModulePkg/Universal/Acpi/AcpiPlatformDxe/AcpiPlatformDxe.inf
   MdeModulePkg/Universal/Acpi/BootGraphicsResourceTableDxe/BootGraphicsResourceTableDxe.inf

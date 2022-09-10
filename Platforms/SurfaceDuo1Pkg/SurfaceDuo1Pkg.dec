@@ -109,12 +109,12 @@
 
 [PcdsFixedAtBuild.common]
   # SMBIOS
-  gSurfaceDuo1PkgTokenSpaceGuid.PcdSmbiosSystemModel|"Surface Duo"|VOID*|0x0000a301
-  gSurfaceDuo1PkgTokenSpaceGuid.PcdSmbiosProcessorModel|"Snapdragon (TM) 855 @ 2.84 GHz"|VOID*|0x0000a302
-  gSurfaceDuo1PkgTokenSpaceGuid.PcdSmbiosSystemRetailModel|"1930"|VOID*|0x0000a303
-  gSurfaceDuo1PkgTokenSpaceGuid.PcdSmbiosSystemRetailSku|"Surface_Duo_1930"|VOID*|0x0000a304
-  gSurfaceDuo1PkgTokenSpaceGuid.PcdSmbiosBoardModel|"Surface Duo"|VOID*|0x0000a305
-  gSurfaceDuo1PkgTokenSpaceGuid.PcdSmbiosBoardRetailModel|"Not Specified"|VOID*|0x0000a306
+  gSurfaceDuo1PkgTokenSpaceGuid.PcdSmbiosProcessorModel|"Snapdragon (TM) 855 @ 2.84 GHz"|VOID*|0x0000a301
+  gSurfaceDuo1PkgTokenSpaceGuid.PcdSmbiosProcessorRetailModel|"SM8150"|VOID*|0x0000a302
+  gSurfaceDuo1PkgTokenSpaceGuid.PcdSmbiosSystemModel|"Surface Duo"|VOID*|0x0000a303
+  gSurfaceDuo1PkgTokenSpaceGuid.PcdSmbiosSystemRetailModel|"1930"|VOID*|0x0000a304
+  gSurfaceDuo1PkgTokenSpaceGuid.PcdSmbiosSystemRetailSku|"Surface_Duo_1930"|VOID*|0x0000a305
+  gSurfaceDuo1PkgTokenSpaceGuid.PcdSmbiosBoardModel|"Surface Duo"|VOID*|0x0000a306
 
   # FD
   gSurfaceDuo1PkgTokenSpaceGuid.PcdFdBaseAddress|0x9FC00000|UINT64|0x0000a103

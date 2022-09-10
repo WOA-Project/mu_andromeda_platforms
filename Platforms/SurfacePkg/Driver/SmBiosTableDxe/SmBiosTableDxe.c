@@ -173,8 +173,8 @@ SMBIOS_TABLE_TYPE1 mSysInfoType1 = {
     6, // Family String
 };
 CHAR8 *mSysInfoType1Strings[] = {
-    "Microsoft Corporation", "Surface Duo 2", "1995", "Not Specified",
-    "Surface_Duo_2_1995",      "Surface",        NULL};
+    "Microsoft Corporation", "Not Specified", "Not Specified", "Not Specified",
+    "Not Specified",      "Surface",        NULL};
 
 /***********************************************************************
         SMBIOS data definition  TYPE2  Board Information
@@ -202,7 +202,7 @@ SMBIOS_TABLE_TYPE2 mBoardInfoType2 = {
     {0}                       // ContainedObjectHandles[1];
 };
 CHAR8 *mBoardInfoType2Strings[] = {
-    "Microsoft Corporation", "Surface Duo 2", "Not Specified", "Not Specified", "Not Specified", "Not Specified", NULL};
+    "Microsoft Corporation", "Not Specified", "Not Specified", "Not Specified", "Not Specified", "Not Specified", NULL};
 
 /***********************************************************************
         SMBIOS data definition  TYPE3  Enclosure Information
@@ -318,8 +318,8 @@ SMBIOS_TABLE_TYPE4 mProcessorInfoType4 = {
 };
 
 CHAR8 *mProcessorInfoType4Strings[] = {
-    "Qualcomm", "Qualcomm Technologies Inc", "Snapdragon (TM) 888 @ 2.84 GHz",
-    "SM8350", NULL};
+    "Qualcomm", "Qualcomm Technologies Inc", "Not Specified",
+    "Not Specified", NULL};
 
 /***********************************************************************
         SMBIOS data definition  TYPE7  Cache Information
@@ -713,8 +713,6 @@ VOID BoardInfoUpdateSmbiosType2(VOID)
 
   // Update string table before proceeds
   mBoardInfoType2Strings[1] = (CHAR8 *)FixedPcdGetPtr(PcdSmbiosBoardModel);
-  mBoardInfoType2Strings[2] =
-      (CHAR8 *)FixedPcdGetPtr(PcdSmbiosBoardRetailModel);
 
   // Update serial number from Board DXE
   if (mBoardProtocol != NULL) {
@@ -771,6 +769,8 @@ VOID ProcessorInfoUpdateSmbiosType4(IN UINTN MaxCpus)
   // Update string table before proceeds
   mProcessorInfoType4Strings[2] =
       (CHAR8 *)FixedPcdGetPtr(PcdSmbiosProcessorModel);
+  mProcessorInfoType4Strings[3] =
+      (CHAR8 *)FixedPcdGetPtr(PcdSmbiosProcessorRetailModel);
 
   LogSmbiosData(
       (EFI_SMBIOS_TABLE_HEADER *)&mProcessorInfoType4,

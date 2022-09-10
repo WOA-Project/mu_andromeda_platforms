@@ -13,6 +13,17 @@
 [Protocols]
 
 [PcdsFixedAtBuild.common]
+  # Debug Screen Serial
+  gSurfacePkgTokenSpaceGuid.PcdEnableScreenSerial|FALSE|BOOLEAN|0x00000a105
+
+  # SMBIOS
+  gSurfacePkgTokenSpaceGuid.PcdSmbiosProcessorModel|"Snapdragon (TM) 855 @ 2.84 GHz"|VOID*|0x0000a301
+  gSurfacePkgTokenSpaceGuid.PcdSmbiosProcessorRetailModel|"SM8150"|VOID*|0x0000a302
+  gSurfacePkgTokenSpaceGuid.PcdSmbiosSystemModel|"Surface Duo"|VOID*|0x0000a303
+  gSurfacePkgTokenSpaceGuid.PcdSmbiosSystemRetailModel|"1930"|VOID*|0x0000a304
+  gSurfacePkgTokenSpaceGuid.PcdSmbiosSystemRetailSku|"Surface_Duo_1930"|VOID*|0x0000a305
+  gSurfacePkgTokenSpaceGuid.PcdSmbiosBoardModel|"Surface Duo"|VOID*|0x0000a306
+
   # Simple FrameBuffer
   gSurfacePkgTokenSpaceGuid.PcdMipiFrameBufferAddress|0x80600000|UINT32|0x0000a400
   gSurfacePkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1350|UINT32|0x0000a401
@@ -24,9 +35,6 @@
   # RTC information
   gSurfacePkgTokenSpaceGuid.PcdBootShimInfo1|0xb0000000|UINT64|0x00000a601
 
-  # Debug Screen Serial
-  gSurfacePkgTokenSpaceGuid.PcdEnableScreenSerial|FALSE|BOOLEAN|0x00000a105
-  
   ## This PCD points to the file name GUID of the UFPMenuApp
   #  Platform can customize the PCD to point to different application for UFP Menu
   # @Prompt UFP Menu File

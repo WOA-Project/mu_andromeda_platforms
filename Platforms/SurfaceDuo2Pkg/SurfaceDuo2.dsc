@@ -45,7 +45,15 @@
   # Platform-specific
   gArmTokenSpaceGuid.PcdSystemMemoryBase|0x80000000         # 8GB
   gArmTokenSpaceGuid.PcdSystemMemorySize|0x280000000        # 8GB
-  
+
+  # SMBIOS
+  gSurfacePkgTokenSpaceGuid.PcdSmbiosProcessorModel|"Snapdragon (TM) 888 @ 2.84 GHz"
+  gSurfacePkgTokenSpaceGuid.PcdSmbiosProcessorRetailModel|"SM8350"
+  gSurfacePkgTokenSpaceGuid.PcdSmbiosSystemModel|"Surface Duo 2"
+  gSurfacePkgTokenSpaceGuid.PcdSmbiosSystemRetailModel|"1995"
+  gSurfacePkgTokenSpaceGuid.PcdSmbiosSystemRetailSku|"Surface_Duo_2_1995"
+  gSurfacePkgTokenSpaceGuid.PcdSmbiosBoardModel|"Surface Duo 2"
+
   # Simple FrameBuffer
   gSurfacePkgTokenSpaceGuid.PcdMipiFrameBufferAddress|0xe1000000
   gSurfacePkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1344

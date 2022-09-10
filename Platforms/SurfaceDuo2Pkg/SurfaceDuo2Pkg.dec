@@ -109,14 +109,6 @@
   gEfiKernelProtocolGuid =             { 0xB5062BE7, 0x170B, 0x4A32, { 0xBE, 0x21, 0x68, 0x92, 0x62, 0xFF, 0x43, 0x99 } }
 
 [PcdsFixedAtBuild.common]
-  # SMBIOS
-  gSurfaceDuo2PkgTokenSpaceGuid.PcdSmbiosSystemModel|"Surface Duo 2"|VOID*|0x0000a301
-  gSurfaceDuo2PkgTokenSpaceGuid.PcdSmbiosProcessorModel|"Snapdragon (TM) 888 @ 2.84 GHz"|VOID*|0x0000a302
-  gSurfaceDuo2PkgTokenSpaceGuid.PcdSmbiosSystemRetailModel|"1995"|VOID*|0x0000a303
-  gSurfaceDuo2PkgTokenSpaceGuid.PcdSmbiosSystemRetailSku|"Surface_Duo_2_1995"|VOID*|0x0000a304
-  gSurfaceDuo2PkgTokenSpaceGuid.PcdSmbiosBoardModel|"Surface Duo 2"|VOID*|0x0000a305
-  gSurfaceDuo2PkgTokenSpaceGuid.PcdSmbiosBoardRetailModel|"Not Specified"|VOID*|0x0000a306
-
   # FD
   gSurfaceDuo2PkgTokenSpaceGuid.PcdFdBaseAddress|0x9F000000|UINT64|0x0000a103
   gSurfaceDuo2PkgTokenSpaceGuid.PcdFdSize|0x00500000|UINT32|0x0000a104
