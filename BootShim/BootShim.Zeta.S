@@ -34,23 +34,24 @@ _StackSize:
 	.long 0
 
 _Start:
+	mov     x4, x1
 	ldr		x5, _StackBase
-	cmp		x1, x5
+	cmp		x4, x5
 	beq 	_Entry
 	ldr		x6,  _StackSize
 
 _CopyLoop:
-	ldp		x2, x3, [x1], #16
+	ldp		x2, x3, [x4], #16
 	stp		x2, x3, [x5], #16
 	subs	x6, x6, #16
-	b.ne   _CopyLoop
+	b.ne	_CopyLoop
+	ldr		x5, _StackBase
 
 _Entry:
-	br       x5
-	/* Your code will get ran right after this binary */
-	nop
-	nop
+	br      x5
 
-	/* We should never get here */
 dead:
+	/* We should never get here */
 	b		dead
+
+	/* Your code will get ran right after this binary */
