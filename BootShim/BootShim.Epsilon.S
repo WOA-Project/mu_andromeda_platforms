@@ -1,9 +1,9 @@
 _Head:
 	/* Set _Entry address */
-	adr x1, #0x70
+	adr		x1, #0x70
 
 	/* Jump to the real code */
-	b _Start
+	b		_Start
 
 	/* Fake Linux kernel header */
 
@@ -34,10 +34,10 @@ _StackSize:
 	.long 0
 
 _Start:
-	mov     x4, x1
+	mov		x4, x1
 	ldr		x5, _StackBase
 	cmp		x4, x5
-	beq 	_Entry
+	beq		_Entry
 	ldr		x6,  _StackSize
 
 _CopyLoop:
@@ -48,7 +48,7 @@ _CopyLoop:
 	ldr		x5, _StackBase
 
 _Entry:
-	br      x5
+	br		x5
 
 dead:
 	/* We should never get here */
