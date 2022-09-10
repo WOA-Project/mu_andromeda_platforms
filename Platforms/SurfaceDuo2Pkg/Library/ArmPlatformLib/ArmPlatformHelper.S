@@ -10,45 +10,13 @@
 #include "Pi.h"
 
 GCC_ASM_IMPORT (ArmDeInitialize)
+GCC_ASM_IMPORT (ArmRelocateFirmware)
 GCC_ASM_IMPORT (ContinueToLinuxIfAllowed)
 
-.text
-.align 3
-
 ASM_FUNC(ArmPlatformPeiBootAction)
-  /* Check if we're located at expected location */
-  adr	   x4, .
-  ldr	   x5, =ArmPlatformPeiBootAction
-  cmp	   x4, x5
-  bne	   _CopyUEFI
+  /* First ensure we are at the correct location */
+  bl ASM_PFX(ArmRelocateFirmware)
 
-  /* If we are, just return, we have nothing to do here */
-  b      _ContinuePlatformBootAction
-
-  _CopyUEFI:
-  /* Find our start address by getting our expected offset, then subtracting it from our actual address */
-  ldr	   x6, =FixedPcdGet64 (PcdFdBaseAddress)
-
-  /* x5 holds offset of ArmPlatformPeiBootAction from start of FD base */
-  sub	   x5, x5, x6
-
-  /* x4 holds address of actual FD base */
-  sub	   x4, x4, x5
-
-  // tweak the return address
-  // note: x30 is lr; gcc5 doesn't have the alias
-  sub	   x30, x30, x4
-  add	   x30, x30, x6
-  ldr	   x5, =FixedPcdGet64 (PcdFdSize)
-
-  /* Copy UEFI code into place */
-  _CopyLoop:
-  ldp	   x2, x3, [x4], #16
-  stp	   x2, x3, [x6], #16
-  subs   x5, x5, #16
-  b.ne   _CopyLoop
-
-_ContinuePlatformBootAction:
   /* Continue to linux if allowed */
   bl ASM_PFX(ContinueToLinuxIfAllowed)
 
@@ -60,7 +28,6 @@ _ContinuePlatformBootAction:
   mov x1, #0
 
   ret
-.ltorg
 
 //UINTN
 //ArmPlatformGetCorePosition (
