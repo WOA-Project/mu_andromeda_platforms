@@ -41,6 +41,8 @@
 
   gEfiMdeModulePkgTokenSpaceGuid.PcdPciBusHotplugDeviceSupport|FALSE
 
+  gSurfaceDuo2PkgTokenSpaceGuid.PcdIsLkBuild|TRUE
+
 [PcdsFixedAtBuild.common]
   gArmTokenSpaceGuid.PcdSystemMemoryBase|0x80000000         # Starting address
   gArmTokenSpaceGuid.PcdCpuVectorBaseAddress|0x9f58c000
@@ -97,6 +99,9 @@
   gEmbeddedTokenSpaceGuid.PcdInterruptBaseAddress|0x09bc0000
   gEmbeddedTokenSpaceGuid.PcdPrePiCpuIoSize|44
 
+  gSurfaceDuo2PkgTokenSpaceGuid.PcdUefiMemPoolSize|0x7800000      
+  gSurfaceDuo2PkgTokenSpaceGuid.PcdPreAllocatedMemorySize|0x50000000  # Start here
+
   ## Default Terminal Type
   ## 0-PCANSI, 1-VT100, 2-VT00+, 3-UTF8, 4-TTYTERM
   gEfiMdePkgTokenSpaceGuid.PcdDefaultTerminalType|4 
@@ -106,6 +111,26 @@
 
   # Enable Debug
   gSurfacePkgTokenSpaceGuid.PcdEnableScreenSerial|TRUE
+
+  # Variable Services
+  # Each Size of 0xA0000
+  # gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageVariableBase|0x80000000
+  # gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageVariableSize|0x000A0000
+  # gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwSpareBase|0x800A0000
+  # gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwSpareSize|0x000A0000
+  # gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwWorkingBase|0x80140000 
+  # gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwWorkingSize|0x000A0000
+  # gSurfaceDuo2PkgTokenSpaceGuid.PcdNvStorageVolatileStorageBase|0x801E0000
+
+  # eMMC should have block size of 512 bytes. (Assert)
+  # Allocate 640KB (less than provisioned) so 500 blocks
+  # And times 3 for other regions
+  # And it starts at the beginning of the logical partition of "uefi_vars"
+  # Synchronize the change in LK when the size changes
+  # gSurfaceDuo2PkgTokenSpaceGuid.PcdNvStorageVariableBlockCount|3840
+  # gSurfaceDuo2PkgTokenSpaceGuid.PcdNvStorageVariableBlockSize|512
+  # gSurfaceDuo2PkgTokenSpaceGuid.PcdNvStorageVariableBlockLba|0
+  # gSurfaceDuo2PkgTokenSpaceGuid.PcdNvStorageScratchAddress|0x90000000
 
   # PCI Express
   gEfiMdeModulePkgTokenSpaceGuid.PcdSrIovSupport|FALSE
@@ -150,14 +175,12 @@
 	  
 [LibraryClasses.common]
   ArmLib|ArmPkg/Library/ArmLib/ArmBaseLib.inf
-  ArmPlatformLib|SurfaceDuo2Pkg/Library/ArmPlatformLib/ArmPlatformLib.inf
   ArmMmuLib|ArmPkg/Library/ArmMmuLib/ArmMmuBaseLib.inf
   ArmGenericTimerCounterLib|ArmPkg/Library/ArmGenericTimerVirtCounterLib/ArmGenericTimerVirtCounterLib.inf
   ArmDisassemblerLib|ArmPkg/Library/ArmDisassemblerLib/ArmDisassemblerLib.inf
   ArmGicLib|ArmPkg/Drivers/ArmGic/ArmGicLib.inf
   ArmSmcLib|ArmPkg/Library/ArmSmcLib/ArmSmcLib.inf
   ArmGicArchLib|ArmPkg/Library/ArmGicArchLib/ArmGicArchLib.inf
-  ArmPlatformStackLib|ArmPlatformPkg/Library/ArmPlatformStackLib/ArmPlatformStackLib.inf
   TimerLib|ArmPkg/Library/ArmArchTimerLib/ArmArchTimerLib.inf
   BaseLib|MdePkg/Library/BaseLib/BaseLib.inf
   BaseMemoryLib|MdePkg/Library/BaseMemoryLib/BaseMemoryLib.inf
@@ -247,7 +270,7 @@
 !endif
 !endif
 
-  MemoryInitPeiLib|ArmPlatformPkg/MemoryInitPei/MemoryInitPeiLib.inf
+  MemoryInitPeiLib|SurfaceDuo2Pkg/Library/MemoryInitPeiLib/PeiMemoryAllocationLib.inf
   PlatformPeiLib|SurfacePkg/Library/PlatformPeiLib/PlatformPeiLib.inf
   PlatformHobLib|SurfaceDuo2Pkg/Library/PlatformHobLib/PlatformHobLib.inf
 
@@ -378,7 +401,22 @@
 
 [Components.common]
   # PrePI
-  ArmPlatformPkg/PrePi/PeiUniCore.inf
+  SurfaceDuo2Pkg/PrePi/PrePi.inf {
+    <LibraryClasses>
+    !if $(USE_SCREEN_FOR_SERIAL_OUTPUT) == 1
+    !if $(USE_MEMORY_FOR_SERIAL_OUTPUT) == 1
+      SerialPortLib|SurfacePkg/Library/FrameBufferInMemorySerialPortLib/FrameBufferInMemorySerialPortLib.inf
+    !else
+      SerialPortLib|SurfacePkg/Library/FrameBufferSerialPortLib/FrameBufferSerialPortLib.inf
+    !endif
+    !else
+    !if $(USE_MEMORY_FOR_SERIAL_OUTPUT) == 1
+      SerialPortLib|SurfacePkg/Library/InMemorySerialPortLib/InMemorySerialPortLib.inf
+    !else
+      SerialPortLib|MdePkg/Library/BaseSerialPortLibNull/BaseSerialPortLibNull.inf
+    !endif
+    !endif
+  }
 
   # DXE
   MdeModulePkg/Core/Dxe/DxeMain.inf {
