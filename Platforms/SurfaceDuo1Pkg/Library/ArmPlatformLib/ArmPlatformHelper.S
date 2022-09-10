@@ -16,13 +16,6 @@ GCC_ASM_IMPORT (ContinueToLinuxIfAllowed)
 .align 3
 
 ASM_FUNC(ArmPlatformPeiBootAction)
-  /* Check if we're located at expected location */
-  adr	   x4, .
-  ldr	   x5, =ArmPlatformPeiBootAction
-  cmp	   x4, x5
-  bne	   _CopyUEFI
-
-  /* If we are, just continue actions */
 
   /* Continue to linux if allowed */
   bl ASM_PFX(ContinueToLinuxIfAllowed)
@@ -30,13 +23,21 @@ ASM_FUNC(ArmPlatformPeiBootAction)
   /* World reset */
   bl ASM_PFX(ArmDeInitialize)
 
+ArmRelocateFirmware:
+  /* Check if we're located at expected location */
+  adr	   x4, .
+  ldr	   x5, =ArmRelocateFirmware
+  cmp	   x4, x5
+  bne	   _CopyUEFI
+
+  /* If we are, just return, we have nothing to do here */
   ret
 
   _CopyUEFI:
   /* Find our start address by getting our expected offset, then subtracting it from our actual address */
   ldr	   x6, =FixedPcdGet64 (PcdFdBaseAddress)
 
-  /* x5 holds offset of ArmPlatformPeiBootAction from start of FD base */
+  /* x5 holds offset of ArmRelocateFirmware from start of FD base */
   sub	   x5, x5, x6
 
   /* x4 holds address of actual FD base */
@@ -54,14 +55,6 @@ ASM_FUNC(ArmPlatformPeiBootAction)
   stp	   x2, x3, [x6], #16
   subs   x5, x5, #16
   b.ne   _CopyLoop
-
-  /* Now continue */
-
-  /* Continue to linux if allowed */
-  bl ASM_PFX(ContinueToLinuxIfAllowed)
-
-  /* World reset */
-  bl ASM_PFX(ArmDeInitialize)
 
   ret
 
