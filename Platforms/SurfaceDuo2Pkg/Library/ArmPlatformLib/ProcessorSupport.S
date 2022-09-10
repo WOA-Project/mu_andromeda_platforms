@@ -10,6 +10,9 @@
   GCC_ASM_EXPORT (ArmDeInitialize)
   GCC_ASM_EXPORT (ArmRelocateFirmware)
 
+.text
+.align 3
+
 ArmRelocateFirmware:
   /* Check if we're located at expected location */
   adr	   x4, .
@@ -44,6 +47,8 @@ ArmRelocateFirmware:
   b.ne   _CopyLoop
   
   ret
+
+.ltorg
 
 ArmDeInitialize:
   // Enter critical section: disable interrupt

@@ -13,6 +13,9 @@ GCC_ASM_IMPORT (ArmDeInitialize)
 GCC_ASM_IMPORT (ArmRelocateFirmware)
 GCC_ASM_IMPORT (ContinueToLinuxIfAllowed)
 
+.text
+.align 3
+
 ASM_FUNC(ArmPlatformPeiBootAction)
   /* First ensure we are at the correct location */
   bl ASM_PFX(ArmRelocateFirmware)
@@ -28,6 +31,8 @@ ASM_FUNC(ArmPlatformPeiBootAction)
   mov x1, #0
 
   ret
+
+.ltorg
 
 //UINTN
 //ArmPlatformGetCorePosition (
