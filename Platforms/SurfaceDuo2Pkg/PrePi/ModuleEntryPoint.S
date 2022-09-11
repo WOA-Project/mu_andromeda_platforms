@@ -5,7 +5,21 @@
 //
 //
 
+#include <Library/PcdLib.h>
 #include <AsmMacroIoLibV8.h>
+#include <Chipset/AArch64.h>
+
+.text
+.align 3
+
+.global _StackBase 
+.global _StackSize
+
+_StackBase:
+  .quad 0x9f590000
+
+_StackSize:
+  .quad 0x00040000
 
 ASM_FUNC(_ModuleEntryPoint)
   // Do early platform specific actions
