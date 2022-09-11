@@ -49,7 +49,7 @@
     # }
 
     INF ArmPkg/Drivers/ArmGic/ArmGicDxe.inf
-    INF ArmPkg/Drivers/TimerDxe/TimerDxe.inf
+    INF SurfaceDuo2Pkg/Driver/TimerDxe/TimerDxe.inf
 
     FILE DRIVER = 10e193df-9966-44e7-b17c-59dd831e20fc {
             SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-1/section0/section1/volume-0/file-10e193df-9966-44e7-b17c-59dd831e20fc/section0.dxe.depex
