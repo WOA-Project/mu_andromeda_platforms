@@ -1,97 +1,88 @@
-#/** @file
-#
-#  (C) Copyright 2015 Hewlett-Packard Development Company, L.P.<BR>
-#  Copyright (c) 2011-2017, ARM Ltd. All rights reserved.<BR>
-#  Copyright (c) 2020, Arm Limited. All rights reserved.<BR>
-#
-#  SPDX-License-Identifier: BSD-2-Clause-Patent
-#
-#**/
-
 [Defines]
   INF_VERSION                    = 0x00010005
   BASE_NAME                      = Sec
-  FILE_GUID                      = 3e401783-cc94-4fcd-97bc-bd35ac369d2f
+  FILE_GUID                      = 8AF09F13-44C5-96EC-1437-DD899CB5EE5D
   MODULE_TYPE                    = SEC
   VERSION_STRING                 = 1.0
 
-[Sources]
-  Pi.h
+[Sources.common]
   Pi.c
+  LinuxUtils.c
+  LittleKernelHooks.c
+  PlatformUtils.c
+  EarlyQGic/EarlyQGic.c
 
-[Sources.AArch64]
-  ModuleEntryPoint.S    | GCC
+[Sources.AARCH64]
+  ModuleEntryPoint.S | GCC
+  EarlyQGic/ArmGicV3.S | GCC
+
+[BuildOptions.AARCH64]
+  GCC:*_*_*_CC_FLAGS = -Werror -Wno-error=unused-function
 
 [Packages]
+  ArmPkg/ArmPkg.dec
+  ArmPlatformPkg/ArmPlatformPkg.dec
   MdePkg/MdePkg.dec
   MdeModulePkg/MdeModulePkg.dec
   EmbeddedPkg/EmbeddedPkg.dec
-  ArmPkg/ArmPkg.dec
-  ArmPlatformPkg/ArmPlatformPkg.dec
+  SurfacePkg/SurfacePkg.dec
+  SurfaceDuo2Pkg/SurfaceDuo2Pkg.dec
 
 [LibraryClasses]
-  BaseLib
-  CacheMaintenanceLib
-  DebugLib
-  DebugAgentLib
   ArmLib
+  ArmMmuLib
+  BaseLib
+  DebugLib
   IoLib
-  TimerLib
-  SerialPortLib
   ExtractGuidedSectionLib
   LzmaDecompressLib
-  DebugAgentLib
-  PrePiLib
-  ArmPlatformLib
-  ArmPlatformStackLib
-  MemoryAllocationLib
-  HobLib
+  PeCoffGetEntryPointLib
   PrePiHobListPointerLib
-  PlatformPeiLib
+  CacheMaintenanceLib
+  DebugAgentLib
+  SerialPortLib
+  MemoryAllocationLib
+  PrePiMemoryAllocationLib
+  PerformanceLib
+  HobLib
+  CompilerIntrinsicsLib
+  # Platform-specific libraries
   MemoryInitPeiLib
-
-[Ppis]
-  gArmMpCoreInfoPpiGuid
+  PlatformPeiLib
+  PlatformHobLib
+  TimerLib
+  # MpPark
+  ArmSmcLib
 
 [Guids]
-  gArmMpCoreInfoGuid
+  gEfiSystemNvDataFvGuid
+  gEfiVariableGuid
   gEfiFirmwarePerformanceGuid
 
 [FeaturePcd]
   gEmbeddedTokenSpaceGuid.PcdPrePiProduceMemoryTypeInformationHob
-  gArmPlatformTokenSpaceGuid.PcdSendSgiToBringUpSecondaryCores
 
 [Pcd]
   gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVersionString
 
 [FixedPcd]
-  gArmTokenSpaceGuid.PcdVFPEnabled
-
-  gArmTokenSpaceGuid.PcdFdBaseAddress
-  gArmTokenSpaceGuid.PcdFdSize
-
-  gArmTokenSpaceGuid.PcdFvBaseAddress
-  gArmTokenSpaceGuid.PcdFvSize
-
-  gArmPlatformTokenSpaceGuid.PcdCPUCorePrimaryStackSize
-  gArmPlatformTokenSpaceGuid.PcdCPUCoreSecondaryStackSize
-
-  gArmPlatformTokenSpaceGuid.PcdSystemMemoryUefiRegionSize
-
-  gArmPlatformTokenSpaceGuid.PcdCoreCount
-
-  gEmbeddedTokenSpaceGuid.PcdPrePiCpuIoSize
-
-  gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiACPIReclaimMemory
-  gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiACPIMemoryNVS
-  gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiReservedMemoryType
-  gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiRuntimeServicesData
-  gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiRuntimeServicesCode
-  gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiBootServicesCode
-  gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiBootServicesData
-  gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiLoaderCode
-  gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiLoaderData
-
-[Pcd]
   gArmTokenSpaceGuid.PcdSystemMemoryBase
   gArmTokenSpaceGuid.PcdSystemMemorySize
+  gArmTokenSpaceGuid.PcdCpuVectorBaseAddress
+  gArmTokenSpaceGuid.PcdFvBaseAddress
+  gArmTokenSpaceGuid.PcdFvSize
+  gArmTokenSpaceGuid.PcdFdBaseAddress
+  gArmTokenSpaceGuid.PcdFdSize
+  gArmTokenSpaceGuid.PcdGicDistributorBase
+  gArmTokenSpaceGuid.PcdGicInterruptInterfaceBase
+  gArmPlatformTokenSpaceGuid.PcdCoreCount
+  gEfiMdePkgTokenSpaceGuid.PcdUartDefaultBaudRate
+  gEmbeddedTokenSpaceGuid.PcdPrePiStackBase
+  gEmbeddedTokenSpaceGuid.PcdPrePiStackSize
+  gEmbeddedTokenSpaceGuid.PcdPrePiCpuIoSize
+  gSurfacePkgTokenSpaceGuid.PcdMipiFrameBufferAddress
+  gSurfacePkgTokenSpaceGuid.PcdMipiFrameBufferWidth
+  gSurfacePkgTokenSpaceGuid.PcdMipiFrameBufferHeight
+  gSurfacePkgTokenSpaceGuid.PcdMipiFrameBufferPixelBpp
+  gSurfaceDuo2PkgTokenSpaceGuid.PcdPreAllocatedMemorySize
+  gSurfaceDuo2PkgTokenSpaceGuid.PcdUefiMemPoolSize

@@ -97,8 +97,8 @@
   gEmbeddedTokenSpaceGuid.PcdInterruptBaseAddress|0x09bc0000
   gEmbeddedTokenSpaceGuid.PcdPrePiCpuIoSize|44
 
-  gSurfaceDuo2PkgTokenSpaceGuid.PcdUefiMemPoolSize|0x7800000      
-  gSurfaceDuo2PkgTokenSpaceGuid.PcdPreAllocatedMemorySize|0x50000000  # Start here
+  gSurfaceDuo2PkgTokenSpaceGuid.PcdUefiMemPoolSize|0x10C00000      
+  gSurfaceDuo2PkgTokenSpaceGuid.PcdPreAllocatedMemorySize|0x0E400000  # Start here
 
   ## Default Terminal Type
   ## 0-PCANSI, 1-VT100, 2-VT00+, 3-UTF8, 4-TTYTERM
@@ -173,14 +173,12 @@
 	  
 [LibraryClasses.common]
   ArmLib|ArmPkg/Library/ArmLib/ArmBaseLib.inf
-  ArmPlatformLib|SurfaceDuo2Pkg/Library/ArmPlatformLib/ArmPlatformLib.inf
   ArmMmuLib|ArmPkg/Library/ArmMmuLib/ArmMmuBaseLib.inf
   ArmGenericTimerCounterLib|ArmPkg/Library/ArmGenericTimerVirtCounterLib/ArmGenericTimerVirtCounterLib.inf
   ArmDisassemblerLib|ArmPkg/Library/ArmDisassemblerLib/ArmDisassemblerLib.inf
   ArmGicLib|ArmPkg/Drivers/ArmGic/ArmGicLib.inf
   ArmSmcLib|ArmPkg/Library/ArmSmcLib/ArmSmcLib.inf
   ArmGicArchLib|ArmPkg/Library/ArmGicArchLib/ArmGicArchLib.inf
-  ArmPlatformStackLib|ArmPlatformPkg/Library/ArmPlatformStackLib/ArmPlatformStackLib.inf
   TimerLib|ArmPkg/Library/ArmArchTimerLib/ArmArchTimerLib.inf
   BaseLib|MdePkg/Library/BaseLib/BaseLib.inf
   BaseMemoryLib|MdePkg/Library/BaseMemoryLib/BaseMemoryLib.inf
@@ -270,7 +268,7 @@
 !endif
 !endif
 
-  MemoryInitPeiLib|ArmPlatformPkg/MemoryInitPei/MemoryInitPeiLib.inf
+  MemoryInitPeiLib|SurfaceDuo2Pkg/Library/MemoryInitPeiLib/PeiMemoryAllocationLib.inf
   PlatformPeiLib|SurfacePkg/Library/PlatformPeiLib/PlatformPeiLib.inf
   PlatformHobLib|SurfaceDuo2Pkg/Library/PlatformHobLib/PlatformHobLib.inf
 

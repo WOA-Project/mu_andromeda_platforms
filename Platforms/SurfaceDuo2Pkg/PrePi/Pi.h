@@ -19,52 +19,26 @@
 #include <Library/MemoryAllocationLib.h>
 #include <Library/HobLib.h>
 #include <Library/SerialPortLib.h>
-#include <Library/ArmPlatformLib.h>
 
-extern UINT64  mSystemMemoryEnd;
+VOID ContinueToLinuxIfAllowed(IN VOID *DeviceTreeLoadAddress, IN VOID *KernelLoadAddress);
 
-RETURN_STATUS
-EFIAPI
-TimerConstructor (
-  VOID
-  );
+VOID QGicCpuInit(VOID);
+VOID QgicCpuInitSecondary(VOID);
 
-VOID
-PrePiMain (
-  IN  UINTN   UefiMemoryBase,
-  IN  UINTN   StacksBase,
-  IN  UINT64  StartTimeStamp
-  );
+UINTN EFIAPI ArmGicAcknowledgeInterrupt(
+    IN UINTN GicInterruptInterfaceBase, OUT UINTN *InterruptId);
+VOID EFIAPI ArmGicEnableInterruptInterface(IN INTN GicInterruptInterfaceBase);
 
-EFI_STATUS
-EFIAPI
-MemoryPeim (
-  IN EFI_PHYSICAL_ADDRESS  UefiMemoryBase,
-  IN UINT64                UefiMemorySize
-  );
+VOID EFIAPI
+ArmGicEndOfInterrupt(IN UINTN GicInterruptInterfaceBase, IN UINTN Source);
+
+UINTN EFIAPI ArmGicGetMaxNumInterrupts(IN INTN GicDistributorBase);
+
+BOOLEAN IsLinuxBootRequested(VOID);
+VOID PlatformInitialize();
 
 EFI_STATUS
 EFIAPI
-PlatformPeim (
-  VOID
-  );
-
-// Either implemented by PrePiLib or by MemoryInitPei
-VOID
-BuildMemoryTypeInformationHob (
-  VOID
-  );
-
-EFI_STATUS
-GetPlatformPpi (
-  IN  EFI_GUID  *PpiGuid,
-  OUT VOID      **Ppi
-  );
-
-VOID
-EFIAPI
-ProcessLibraryConstructorList (
-  VOID
-  );
+QGicPeim(VOID);
 
 #endif /* _PREPI_H_ */
