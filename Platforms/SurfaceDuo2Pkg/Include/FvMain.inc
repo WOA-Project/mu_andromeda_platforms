@@ -94,7 +94,7 @@
     INF MdeModulePkg/Universal/FvSimpleFileSystemDxe/FvSimpleFileSystemDxe.inf
 
     FILE DRIVER = 0d35cd8e-97ea-4f9a-96af-0f0d89f76567 {
-            SECTION DXE_DEPEX = SurfaceDuoBinaries/SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-1/section0/section1/volume-0/file-0d35cd8e-97ea-4f9a-96af-0f0d89f76567/section0.dxe.depex
+            SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-1/section0/section1/volume-0/file-0d35cd8e-97ea-4f9a-96af-0f0d89f76567/section0.dxe.depex
             SECTION PE32 = SurfaceDuo2Pkg/PatchedBinaries/UFSDxe.efi
             SECTION UI = "UFSDxe"
     }
@@ -136,7 +136,7 @@
     }
 
     FILE DRIVER = 4db5dea6-5302-4d1a-8a82-677a683b0d29 {
-            SECTION DXE_DEPEX = SurfaceDuoBinaries/SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-1/section0/section1/volume-0/file-4db5dea6-5302-4d1a-8a82-677a683b0d29/section0.dxe.depex
+            SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-1/section0/section1/volume-0/file-4db5dea6-5302-4d1a-8a82-677a683b0d29/section0.dxe.depex
             SECTION PE32 = SurfaceDuo2Pkg/PatchedBinaries/ClockDxe.efi
             SECTION UI = "ClockDxe"
     }
