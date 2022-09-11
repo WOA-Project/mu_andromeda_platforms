@@ -70,7 +70,7 @@
   gEfiMdePkgTokenSpaceGuid.PcdDebugPrintErrorLevel|0x800fee0f
   gEfiMdePkgTokenSpaceGuid.PcdReportStatusCodePropertyMask|0x07
   gEfiMdeModulePkgTokenSpaceGuid.PcdResetOnMemoryTypeInformationChange|FALSE
-  
+
   #
   # Make VariableRuntimeDxe work at emulated non-volatile variable mode.
   #
@@ -97,12 +97,12 @@
   gEmbeddedTokenSpaceGuid.PcdInterruptBaseAddress|0x09bc0000
   gEmbeddedTokenSpaceGuid.PcdPrePiCpuIoSize|44
 
-  gSurfaceDuo1PkgTokenSpaceGuid.PcdUefiMemPoolSize|0x7800000      
-  gSurfaceDuo1PkgTokenSpaceGuid.PcdPreAllocatedMemorySize|0x20000000  # Start here
+  gSurfaceDuo1PkgTokenSpaceGuid.PcdUefiMemPoolSize|0x3500000
+  gSurfaceDuo1PkgTokenSpaceGuid.PcdPreAllocatedMemorySize|0x1AB00000  # Start here
 
   ## Default Terminal Type
   ## 0-PCANSI, 1-VT100, 2-VT00+, 3-UTF8, 4-TTYTERM
-  gEfiMdePkgTokenSpaceGuid.PcdDefaultTerminalType|4 
+  gEfiMdePkgTokenSpaceGuid.PcdDefaultTerminalType|4
 
   # Boot Manager
   gEfiMdePkgTokenSpaceGuid.PcdPlatformBootTimeOut|2
@@ -116,7 +116,7 @@
   # gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageVariableSize|0x000A0000
   # gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwSpareBase|0x800A0000
   # gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwSpareSize|0x000A0000
-  # gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwWorkingBase|0x80140000 
+  # gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwWorkingBase|0x80140000
   # gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwWorkingSize|0x000A0000
   # gSurfaceDuo1PkgTokenSpaceGuid.PcdNvStorageVolatileStorageBase|0x801E0000
 
@@ -142,7 +142,7 @@
   gEfiSecurityPkgTokenSpaceGuid.PcdUserPhysicalPresence|TRUE
 !endif
 
-  # a PCD that controls the enumeration and connection of ConIn's. When true, ConIn is only connected once a console input is requests 
+  # a PCD that controls the enumeration and connection of ConIn's. When true, ConIn is only connected once a console input is requests
   gEfiMdeModulePkgTokenSpaceGuid.PcdConInConnectOnDemand|FALSE
 
   # Enable SHELL to build instead of just taking the binary
@@ -170,7 +170,7 @@
   gEfiMdeModulePkgTokenSpaceGuid.PcdSetupConOutColumn|150
 
 !include MdePkg/MdeLibs.dsc.inc
-	  
+	
 [LibraryClasses.common]
   ArmLib|ArmPkg/Library/ArmLib/ArmBaseLib.inf
   ArmMmuLib|ArmPkg/Library/ArmMmuLib/ArmMmuBaseLib.inf
@@ -446,7 +446,7 @@
   MdeModulePkg/Core/RuntimeDxe/RuntimeDxe.inf
   MdeModulePkg/Universal/CapsuleRuntimeDxe/CapsuleRuntimeDxe.inf
   EmbeddedPkg/EmbeddedMonotonicCounter/EmbeddedMonotonicCounter.inf
-  
+
   # Fake Variable Services
   MdeModulePkg/Universal/Variable/RuntimeDxe/VariableRuntimeDxe.inf
 
@@ -506,7 +506,7 @@
   MdeModulePkg/Universal/Acpi/AcpiTableDxe/AcpiTableDxe.inf
   MdeModulePkg/Universal/Acpi/AcpiPlatformDxe/AcpiPlatformDxe.inf
   MdeModulePkg/Universal/Acpi/BootGraphicsResourceTableDxe/BootGraphicsResourceTableDxe.inf
-  
+
   # Pci
   MdeModulePkg/Bus/Pci/PciBusDxe/PciBusDxe.inf
 
