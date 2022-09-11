@@ -51,7 +51,7 @@
   gArmTokenSpaceGuid.PcdGicRedistributorsBase|0x17a60000
 
   gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVendor|L"DuoWoA authors"
-  gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVersionString|L"2.39"
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVersionString|L"2209.36"
   gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareRevision|0x00024001
   gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultOemId|"QCOM  "
   gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultOemTableId|0x324B44454D4F4351
