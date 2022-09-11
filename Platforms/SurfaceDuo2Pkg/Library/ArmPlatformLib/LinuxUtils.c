@@ -34,9 +34,6 @@ VOID BootLinux(IN VOID *DeviceTreeLoadAddress, IN VOID *KernelLoadAddress)
 
 VOID ContinueToLinuxIfAllowed(IN VOID *DeviceTreeLoadAddress, IN VOID *KernelLoadAddress)
 {
-  // Early Test..
-  PlatformInitialize();
-  
   if (IsLinuxAvailable(KernelLoadAddress)) {
     DEBUG(
         (EFI_D_INFO | EFI_D_LOAD,
