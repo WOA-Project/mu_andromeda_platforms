@@ -1,88 +1,97 @@
+#/** @file
+#
+#  (C) Copyright 2015 Hewlett-Packard Development Company, L.P.<BR>
+#  Copyright (c) 2011-2017, ARM Ltd. All rights reserved.<BR>
+#  Copyright (c) 2020, Arm Limited. All rights reserved.<BR>
+#
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
+#
+#**/
+
 [Defines]
   INF_VERSION                    = 0x00010005
   BASE_NAME                      = Sec
-  FILE_GUID                      = 8AF09F13-44C5-96EC-1437-DD899CB5EE5D
+  FILE_GUID                      = 3e401783-cc94-4fcd-97bc-bd35ac369d2f
   MODULE_TYPE                    = SEC
   VERSION_STRING                 = 1.0
 
-[Sources.common]
+[Sources]
+  Pi.h
   Pi.c
-  LinuxUtils.c
-  PlatformUtils.c
-  LittleKernelHooks.c
-  EarlyQGic/EarlyQGic.c
 
-[Sources.AARCH64]
-  ModuleEntryPoint.S | GCC
-  EarlyQGic/ArmGicV3.S | GCC
-
-[BuildOptions.AARCH64]
-  GCC:*_*_*_CC_FLAGS = -Werror -Wno-error=unused-function
+[Sources.AArch64]
+  ModuleEntryPoint.S    | GCC
 
 [Packages]
-  ArmPkg/ArmPkg.dec
-  ArmPlatformPkg/ArmPlatformPkg.dec
   MdePkg/MdePkg.dec
   MdeModulePkg/MdeModulePkg.dec
   EmbeddedPkg/EmbeddedPkg.dec
-  SurfacePkg/SurfacePkg.dec
-  SurfaceDuo2Pkg/SurfaceDuo2Pkg.dec
+  ArmPkg/ArmPkg.dec
+  ArmPlatformPkg/ArmPlatformPkg.dec
 
 [LibraryClasses]
-  ArmLib
-  ArmMmuLib
   BaseLib
+  CacheMaintenanceLib
   DebugLib
+  DebugAgentLib
+  ArmLib
   IoLib
+  TimerLib
+  SerialPortLib
   ExtractGuidedSectionLib
   LzmaDecompressLib
-  PeCoffGetEntryPointLib
-  PrePiHobListPointerLib
-  CacheMaintenanceLib
   DebugAgentLib
-  SerialPortLib
+  PrePiLib
+  ArmPlatformLib
+  ArmPlatformStackLib
   MemoryAllocationLib
-  PrePiMemoryAllocationLib
-  PerformanceLib
   HobLib
-  CompilerIntrinsicsLib
-  # Platform-specific libraries
-  MemoryInitPeiLib
+  PrePiHobListPointerLib
   PlatformPeiLib
-  PlatformHobLib
-  TimerLib
-  # MpPark
-  ArmSmcLib
+  MemoryInitPeiLib
+
+[Ppis]
+  gArmMpCoreInfoPpiGuid
 
 [Guids]
-  gEfiSystemNvDataFvGuid
-  gEfiVariableGuid
+  gArmMpCoreInfoGuid
   gEfiFirmwarePerformanceGuid
 
 [FeaturePcd]
   gEmbeddedTokenSpaceGuid.PcdPrePiProduceMemoryTypeInformationHob
+  gArmPlatformTokenSpaceGuid.PcdSendSgiToBringUpSecondaryCores
 
 [Pcd]
   gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVersionString
 
 [FixedPcd]
-  gArmTokenSpaceGuid.PcdSystemMemoryBase
-  gArmTokenSpaceGuid.PcdSystemMemorySize
-  gArmTokenSpaceGuid.PcdCpuVectorBaseAddress
-  gArmTokenSpaceGuid.PcdFvBaseAddress
-  gArmTokenSpaceGuid.PcdFvSize
+  gArmTokenSpaceGuid.PcdVFPEnabled
+
   gArmTokenSpaceGuid.PcdFdBaseAddress
   gArmTokenSpaceGuid.PcdFdSize
-  gArmTokenSpaceGuid.PcdGicDistributorBase
-  gArmTokenSpaceGuid.PcdGicInterruptInterfaceBase
+
+  gArmTokenSpaceGuid.PcdFvBaseAddress
+  gArmTokenSpaceGuid.PcdFvSize
+
+  gArmPlatformTokenSpaceGuid.PcdCPUCorePrimaryStackSize
+  gArmPlatformTokenSpaceGuid.PcdCPUCoreSecondaryStackSize
+
+  gArmPlatformTokenSpaceGuid.PcdSystemMemoryUefiRegionSize
+
   gArmPlatformTokenSpaceGuid.PcdCoreCount
-  gEfiMdePkgTokenSpaceGuid.PcdUartDefaultBaudRate
-  gEmbeddedTokenSpaceGuid.PcdPrePiStackBase
-  gEmbeddedTokenSpaceGuid.PcdPrePiStackSize
+
   gEmbeddedTokenSpaceGuid.PcdPrePiCpuIoSize
-  gSurfacePkgTokenSpaceGuid.PcdMipiFrameBufferAddress
-  gSurfacePkgTokenSpaceGuid.PcdMipiFrameBufferWidth
-  gSurfacePkgTokenSpaceGuid.PcdMipiFrameBufferHeight
-  gSurfacePkgTokenSpaceGuid.PcdMipiFrameBufferPixelBpp
-  gSurfaceDuo2PkgTokenSpaceGuid.PcdPreAllocatedMemorySize
-  gSurfaceDuo2PkgTokenSpaceGuid.PcdUefiMemPoolSize
+
+  gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiACPIReclaimMemory
+  gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiACPIMemoryNVS
+  gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiReservedMemoryType
+  gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiRuntimeServicesData
+  gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiRuntimeServicesCode
+  gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiBootServicesCode
+  gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiBootServicesData
+  gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiLoaderCode
+  gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiLoaderData
+
+[Pcd]
+  gArmTokenSpaceGuid.PcdSystemMemoryBase
+  gArmTokenSpaceGuid.PcdSystemMemorySize
