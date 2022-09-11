@@ -1,6 +1,6 @@
 _Head:
 	/* Set _Entry address */
-	adr		x1, #0x70
+	adr		x1, _Payload
 
 	/* Jump to the real code */
 	b		_Start
@@ -50,8 +50,12 @@ _CopyLoop:
 _Entry:
 	br		x5
 
-dead:
+_Dead:
 	/* We should never get here */
-	b		dead
+	b		_Dead
 
+.text
+.align 4
+
+_Payload:
 	/* Your code will get ran right after this binary */

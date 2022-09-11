@@ -31,7 +31,7 @@
   FLASH_DEFINITION               = SurfaceDuo2Pkg/SurfaceDuo2.fdf
 
   DEFINE SECURE_BOOT_ENABLE           = TRUE
-  DEFINE USE_SCREEN_FOR_SERIAL_OUTPUT = 0
+  DEFINE USE_SCREEN_FOR_SERIAL_OUTPUT = 1
   DEFINE USE_MEMORY_FOR_SERIAL_OUTPUT = 0
 
 [BuildOptions.common]
@@ -43,8 +43,8 @@
   
 [PcdsFixedAtBuild.common]
   # Platform-specific
-  gArmTokenSpaceGuid.PcdSystemMemoryBase|0x80000000         # 8GB
-  gArmTokenSpaceGuid.PcdSystemMemorySize|0x280000000        # 8GB
+  gArmTokenSpaceGuid.PcdSystemMemoryBase|0x80000000         # 2GB Base
+  gArmTokenSpaceGuid.PcdSystemMemorySize|0x200000000        # 8GB Size
 
   # SMBIOS
   gSurfacePkgTokenSpaceGuid.PcdSmbiosProcessorModel|"Snapdragon (TM) 888 @ 2.84 GHz"

@@ -26,10 +26,10 @@
 
 [FD.SM8350_EFI]
 BaseAddress   = 0x9F000000|gArmTokenSpaceGuid.PcdFdBaseAddress #The base address of the FLASH Device.
-Size          = 0x00374000|gArmTokenSpaceGuid.PcdFdSize        #The size in bytes of the FLASH Device
+Size          = 0x00500000|gArmTokenSpaceGuid.PcdFdSize        #The size in bytes of the FLASH Device
 ErasePolarity = 1
 BlockSize     = 0x1000
-NumBlocks     = 0x374
+NumBlocks     = 0x500
 
 ################################################################################
 #
@@ -87,28 +87,6 @@ READ_LOCK_STATUS   = TRUE
 
   INF MdeModulePkg/Universal/EsrtFmpDxe/EsrtFmpDxe.inf
 
-[FV.FVSECOND]
-FvNameGuid         = 433EBDDF-4B28-6730-A9ED-DB9FB98058F3
-BlockSize          = 0x1000
-NumBlocks          = 0        # This FV gets compressed so make it just big enough
-FvAlignment        = 8        # FV alignment and FV attributes setting.
-ERASE_POLARITY     = 1
-MEMORY_MAPPED      = TRUE
-STICKY_WRITE       = TRUE
-LOCK_CAP           = TRUE
-LOCK_STATUS        = TRUE
-WRITE_DISABLED_CAP = TRUE
-WRITE_ENABLED_CAP  = TRUE
-WRITE_STATUS       = TRUE
-WRITE_LOCK_CAP     = TRUE
-WRITE_LOCK_STATUS  = TRUE
-READ_DISABLED_CAP  = TRUE
-READ_ENABLED_CAP   = TRUE
-READ_STATUS        = TRUE
-READ_LOCK_CAP      = TRUE
-READ_LOCK_STATUS   = TRUE
-
-  !include SurfaceDuo2Pkg/Include/APRIORI.inc
   !include SurfaceDuo2Pkg/Include/FvSecond.inc
 
   # Debug heartbeat
@@ -187,12 +165,6 @@ READ_LOCK_STATUS   = TRUE
   FILE FV_IMAGE = 9E21FD93-9C72-4c15-8C4B-E77F1DB2D792 {
     SECTION GUIDED EE4E5898-3914-4259-9D6E-DC7BD79403CF PROCESSING_REQUIRED = TRUE {
       SECTION FV_IMAGE = FVMAIN
-    }
-  }
-
-  FILE FV_IMAGE = D14C51ED-4F4D-2F2D-EAE4-77914692D046 {
-    SECTION GUIDED EE4E5898-3914-4259-9D6E-DC7BD79403CF PROCESSING_REQUIRED = TRUE {
-      SECTION FV_IMAGE = FVSECOND
     }
   }
 

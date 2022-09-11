@@ -43,8 +43,8 @@
   
 [PcdsFixedAtBuild.common]
   # Platform-specific
-  gArmTokenSpaceGuid.PcdSystemMemoryBase|0x80000000         # 6GB
-  gArmTokenSpaceGuid.PcdSystemMemorySize|0x180000000        # 6GB
+  gArmTokenSpaceGuid.PcdSystemMemoryBase|0x80000000         # 2GB Base
+  gArmTokenSpaceGuid.PcdSystemMemorySize|0x180000000        # 6GB Size
 
   # SMBIOS
   gSurfacePkgTokenSpaceGuid.PcdSmbiosProcessorModel|"Snapdragon (TM) 855 @ 2.84 GHz"
