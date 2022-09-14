@@ -169,7 +169,6 @@ VOID GICv3SetupDistributor()
 VOID GICv3SetupReDistributor()
 {
   UINT32 mGicRedistributorsBase = 0x17A60000;
-  UINT32 GICR_TYPER = MmioRead32(mGicRedistributorsBase + 0x08);
   UINTN  Index;
 
   UINT32 GICR_WAKER = MmioRead32(mGicRedistributorsBase + 0x014);
