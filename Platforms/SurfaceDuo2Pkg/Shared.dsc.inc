@@ -110,26 +110,6 @@
   # Enable Debug
   gSurfacePkgTokenSpaceGuid.PcdEnableScreenSerial|TRUE
 
-  # Variable Services
-  # Each Size of 0xA0000
-  # gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageVariableBase|0x80000000
-  # gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageVariableSize|0x000A0000
-  # gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwSpareBase|0x800A0000
-  # gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwSpareSize|0x000A0000
-  # gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwWorkingBase|0x80140000
-  # gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwWorkingSize|0x000A0000
-  # gSurfaceDuo2PkgTokenSpaceGuid.PcdNvStorageVolatileStorageBase|0x801E0000
-
-  # eMMC should have block size of 512 bytes. (Assert)
-  # Allocate 640KB (less than provisioned) so 500 blocks
-  # And times 3 for other regions
-  # And it starts at the beginning of the logical partition of "uefi_vars"
-  # Synchronize the change in LK when the size changes
-  # gSurfaceDuo2PkgTokenSpaceGuid.PcdNvStorageVariableBlockCount|3840
-  # gSurfaceDuo2PkgTokenSpaceGuid.PcdNvStorageVariableBlockSize|512
-  # gSurfaceDuo2PkgTokenSpaceGuid.PcdNvStorageVariableBlockLba|0
-  # gSurfaceDuo2PkgTokenSpaceGuid.PcdNvStorageScratchAddress|0x90000000
-
   # PCI Express
   gEfiMdeModulePkgTokenSpaceGuid.PcdSrIovSupport|FALSE
   gEfiMdeModulePkgTokenSpaceGuid.PcdAriSupport|FALSE
