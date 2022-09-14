@@ -24,6 +24,8 @@
 #define GICR_ICENABLER0 0x0180
 #define GICR_ICPENDR0 0x0280
 
+#define VIRT_WDT_CONTROL_SMC 0x86000005
+
 VOID PlatformInitialize();
 BOOLEAN IsLinuxBootRequested(VOID);
 

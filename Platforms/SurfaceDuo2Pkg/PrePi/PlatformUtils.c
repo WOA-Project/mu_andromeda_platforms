@@ -66,17 +66,15 @@ VOID UartInit(VOID)
 
 VOID SetWatchdogState(BOOLEAN Enable)
 {
-  if (!Enable) {
-    ARM_SMC_ARGS StubArgsSmc;
-    StubArgsSmc.Arg0 = 0x86000005;
-    StubArgsSmc.Arg1 = 2;
-    ArmCallSmc(&StubArgsSmc);
-    if (StubArgsSmc.Arg0 != 0) {
-      DEBUG(
-          (EFI_D_ERROR,
-           "Disabling Qualcomm Watchdog Reboot timer failed! Status=%d\n",
-           StubArgsSmc.Arg0));
-    }
+  ARM_SMC_ARGS StubArgsSmc;
+  StubArgsSmc.Arg0 = VIRT_WDT_CONTROL_SMC;
+  StubArgsSmc.Arg1 = Enable ? 3 : 2;
+  ArmCallSmc(&StubArgsSmc);
+  if (StubArgsSmc.Arg0 != 0) {
+    DEBUG(
+        (EFI_D_ERROR,
+         "Disabling Qualcomm Watchdog Reboot timer failed! Status=%d\n",
+         StubArgsSmc.Arg0));
   }
 }
 
