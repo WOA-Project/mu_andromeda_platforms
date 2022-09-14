@@ -105,7 +105,9 @@ VOID GICv3DumpRegisters()
 
 VOID GICv3SetRegisters()
 {
-  for (UINT32 CpuId = 0; CpuId < 8; CpuId++) {
+  UINT32 GICD_BASE = 0x17A00000;
+
+  /*for (UINT32 CpuId = 0; CpuId < 8; CpuId++) {
     UINT32 GICRAddr = 0x17A60000 + CpuId * 0x20000;
 
     MmioWrite32(GICRAddr + 0x10280, 0x10000000);
@@ -114,7 +116,37 @@ VOID GICv3SetRegisters()
   }
 
   UINT32 GICDAddr = 0x17A00000;
-  MmioWrite32(GICDAddr, 0x10);
+  MmioWrite32(GICDAddr, 0x10);*/
+
+  UINT32 ItLines = MmioRead32(GICD_BASE + 0x04) & 0x1F;
+  UINT32 NumIrqs = (ItLines == 0x1f) ? 1020 : 32 * (ItLines + 1);
+
+  //UINT32 GICD_CTRL = MmioRead32(GICD_BASE);
+  //GICD_CTRL &= ~0x12;
+  MmioWrite32(GICD_BASE, 0);
+
+  while (MmioRead32(GICD_BASE) & 0x80000000) 
+    ;
+
+  for (UINT32 i = 32; i < NumIrqs; i += 32) {
+    MmioWrite32(GICD_BASE + 0x0180 + 4 * (i / 32), 0xFFFFFFFF);
+  }
+
+  for (UINT32 i = 32; i < NumIrqs; i += 4) {
+    MmioWrite32(GICD_BASE + 0x0400 + 4 * (i / 4), 0xFFFFFFFF);
+  }
+
+  for (UINT32 i = 32; i < NumIrqs; i += 32) {
+    MmioWrite32(GICD_BASE + 0x0080 + 4 * (i / 32), 0xFFFFFFFF);
+    MmioWrite32(GICD_BASE + 0x0D00 + 4 * (i / 32), 0);
+  }
+
+  for (UINT32 i = 32; i < NumIrqs; i += 16) {
+    MmioWrite32(GICD_BASE + 0x0C00 + 4 * (i / 16), 0);
+  }
+
+  while (MmioRead32(GICD_BASE) & 0x80000000) 
+    ;
 }
 
 VOID PlatformInitialize()
