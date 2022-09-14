@@ -10,6 +10,8 @@
 
 GCC_ASM_IMPORT (CEntryPoint)
 GCC_ASM_IMPORT (SecondaryCEntryPoint)
+GCC_ASM_IMPORT (ContinueToLinuxIfAllowed)
+
 GCC_ASM_IMPORT (ArmEnableInstructionCache)
 GCC_ASM_IMPORT (ArmEnableDataCache)
 GCC_ASM_IMPORT (ArmInvalidateTlb)

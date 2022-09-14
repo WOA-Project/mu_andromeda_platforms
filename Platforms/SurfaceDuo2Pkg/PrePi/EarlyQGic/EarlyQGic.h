@@ -23,4 +23,20 @@
 #define ENABLE_GRP1_NS 2
 #define ENABLE_ARE 16
 
+VOID QGicCpuInit(VOID);
+VOID QgicCpuInitSecondary(VOID);
+
+UINTN EFIAPI ArmGicAcknowledgeInterrupt(
+    IN UINTN GicInterruptInterfaceBase, OUT UINTN *InterruptId);
+VOID EFIAPI ArmGicEnableInterruptInterface(IN INTN GicInterruptInterfaceBase);
+
+VOID EFIAPI
+ArmGicEndOfInterrupt(IN UINTN GicInterruptInterfaceBase, IN UINTN Source);
+
+UINTN EFIAPI ArmGicGetMaxNumInterrupts(IN INTN GicDistributorBase);
+
+EFI_STATUS
+EFIAPI
+QGicPeim(VOID);
+
 #endif

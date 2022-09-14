@@ -47,27 +47,6 @@ BuildMemoryTypeInformationHob (
   VOID
   );
 
-VOID ContinueToLinuxIfAllowed(IN VOID *DeviceTreeLoadAddress, IN VOID *KernelLoadAddress);
-
-VOID QGicCpuInit(VOID);
-VOID QgicCpuInitSecondary(VOID);
-
-UINTN EFIAPI ArmGicAcknowledgeInterrupt(
-    IN UINTN GicInterruptInterfaceBase, OUT UINTN *InterruptId);
-VOID EFIAPI ArmGicEnableInterruptInterface(IN INTN GicInterruptInterfaceBase);
-
-VOID EFIAPI
-ArmGicEndOfInterrupt(IN UINTN GicInterruptInterfaceBase, IN UINTN Source);
-
-UINTN EFIAPI ArmGicGetMaxNumInterrupts(IN INTN GicDistributorBase);
-
-BOOLEAN IsLinuxBootRequested(VOID);
-VOID PlatformInitialize();
-
-EFI_STATUS
-EFIAPI
-QGicPeim(VOID);
-
 #pragma pack(1)
 typedef struct {
   /* First 2KB is reserved for OS */
