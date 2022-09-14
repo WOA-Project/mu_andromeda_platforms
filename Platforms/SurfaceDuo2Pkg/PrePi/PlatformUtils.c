@@ -1,7 +1,6 @@
 #include "Pi.h"
 
 #include <IndustryStandard/ArmStdSmc.h>
-#include <Library/ArmHvcLib.h>
 #include <Library/ArmSmcLib.h>
 
 #include "PlatformUtils.h"

@@ -89,11 +89,6 @@ READ_LOCK_STATUS   = TRUE
 
   !include SurfaceDuo2Pkg/Include/FvSecond.inc
 
-  # Debug heartbeat
-!if $(SEND_HEARTBEAT_TO_SERIAL) == 1
-  INF SurfaceDuo2Pkg/Driver/HeartbeatDxe/HeartbeatDxe.inf
-!endif
-
   # Secure Boot Key Enroll
   !if $(SECURE_BOOT_ENABLE) == TRUE
     INF SecurityPkg/VariableAuthenticated/SecureBootConfigDxe/SecureBootConfigDxe.inf

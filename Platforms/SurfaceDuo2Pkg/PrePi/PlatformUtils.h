@@ -13,7 +13,7 @@
 #define TLMM_PIN_INTERRUPT_STATUS_REGISTER 0xC
 #define TLMM_PIN_INTERRUPT_TARGET_REGISTER TLMM_PIN_INTERRUPT_CONFIG_REGISTER
 
-#define LID0_GPIO38_STATUS_ADDR                                                \
+#define LID0_GPIO38_STATUS_ADDR                                               \
   (TLMM_ADDR + TLMM_ADDR_OFFSET_FOR_PIN(38) + TLMM_PIN_IO_REGISTER)
 
 #define GICD_BASE (UINT32)PcdGet64(PcdGicDistributorBase)
