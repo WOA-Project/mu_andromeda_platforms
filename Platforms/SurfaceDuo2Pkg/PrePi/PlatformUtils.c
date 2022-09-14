@@ -84,23 +84,25 @@ VOID SetWatchdogState(BOOLEAN Enable)
 
 VOID GICv3DumpRegisters()
 {
+  DEBUG((EFI_D_INFO | EFI_D_LOAD, "GIC register status\n"));
+
   for (UINT32 CpuId = 0; CpuId < 8; CpuId++) {
     UINT32 GICRAddr = 0x17A60000 + CpuId * 0x20000;
     
-    DEBUG((EFI_D_INFO | EFI_D_LOAD, "CpuId: %d\n", CpuId));
+    DEBUG((EFI_D_INFO | EFI_D_LOAD, "CPU@%d\n", CpuId));
 
     UINT32 off1 = MmioRead32(GICRAddr + 0x10280);
     UINT32 off2 = MmioRead32(GICRAddr + 0x10180);
     UINT32 off3 = MmioRead32(GICRAddr + 0x0014);
 
-    DEBUG((EFI_D_INFO | EFI_D_LOAD, "GicR off 1: %d\n", off1));
-    DEBUG((EFI_D_INFO | EFI_D_LOAD, "GicR off 2: %d\n", off2));
-    DEBUG((EFI_D_INFO | EFI_D_LOAD, "GicR off 3: %d\n", off3));
+    DEBUG((EFI_D_INFO | EFI_D_LOAD, "GICR + 0x10280: %d\n", off1));
+    DEBUG((EFI_D_INFO | EFI_D_LOAD, "GICR + 0x10180: %d\n", off2));
+    DEBUG((EFI_D_INFO | EFI_D_LOAD, "GICR + 0x00014: %d\n\n", off3));
   }
 
   UINT32 GICDAddr = 0x17A00000;
   UINT32 off4 = MmioRead32(GICDAddr);
-  DEBUG((EFI_D_INFO | EFI_D_LOAD, "GicD off 4: %d\n", off4));
+  DEBUG((EFI_D_INFO | EFI_D_LOAD, "GICD: %d\n\n", off4));
 }
 
 VOID GICv3SetRegisters()
