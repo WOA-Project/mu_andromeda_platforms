@@ -14,9 +14,13 @@
 #define LID0_GPIO38_STATUS_ADDR                                                \
   (TLMM_ADDR + TLMM_ADDR_OFFSET_FOR_PIN(38) + TLMM_PIN_IO_REGISTER)
 
+#define GICD_BASE 0x17A00000
 #define GICR_BASE 0x17A60000
 #define GICR_WAKER 0x0014
 #define GICR_SIZE 0x20000
+#define GICR_SGI 0x10000
+#define GICR_ICENABLER0 0x0180
+#define GICR_ICPENDR0 0x0280
 
 VOID PlatformInitialize();
 BOOLEAN IsLinuxBootRequested(VOID);

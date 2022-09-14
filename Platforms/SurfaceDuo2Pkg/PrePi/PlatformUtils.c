@@ -82,13 +82,21 @@ VOID SetWatchdogState(BOOLEAN Enable)
   }
 }
 
-VOID WakeUpGicRedistributors()
+VOID ConfigureGic()
 {
-  // Wake up GIC Redistributor for CPU0
-  MmioWrite32(GICR_BASE + GICR_WAKER, 0);
+  // Enable GIC Distributor
+  MmioWrite32(GICD_BASE, 0x10);
 
-  // Wake up GIC Redistributor for CPU1
-  MmioWrite32(GICR_BASE + GICR_SIZE + GICR_WAKER, 0);
+  for (UINT32 CpuId = 0; CpuId < 8; CpuId++) {
+    // Wake up GIC Redistributor for this CPU
+    MmioWrite32(GICR_BASE + CpuId * GICR_SIZE + GICR_WAKER, 0);
+
+    // Deactivate Interrupts for this CPU 
+    MmioWrite32(GICR_BASE + CpuId * GICR_SIZE + GICR_SGI + GICR_ICENABLER0, 0);
+
+    // Clear Pending Interrupts for this CPU 
+    MmioWrite32(GICR_BASE + CpuId * GICR_SIZE + GICR_SGI + GICR_ICPENDR0, 0x10000000);
+  }
 }
 
 VOID PlatformInitialize()
