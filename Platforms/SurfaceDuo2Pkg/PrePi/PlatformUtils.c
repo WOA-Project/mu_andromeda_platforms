@@ -108,80 +108,61 @@ VOID GICv3DumpRegisters()
 }
 
 #define GICD_TYPER_SPIS(GICD_TYPER) ((((GICD_TYPER) & 0x1F) + 1) * 32)
-#define GICD_TYPER_ESPIS(GICD_TYPER) (((GICD_TYPER) & 0x100) ? GICD_TYPER_SPIS((GICD_TYPER) >> 0x1B) : 0)
 
 VOID GICv3SetupDistributor()
 {
-  UINT32 GICD_BASE = 0x17A00000;
-  UINT32 GICD_TYPER = MmioRead32(GICD_BASE + 0x04);
+  UINT32 mGicDistributorBase = 0x17A00000;
+  UINT32 GICD_TYPER = MmioRead32(mGicDistributorBase + 0x04);
+  UINTN  Index;
 
-  UINT32 num_irqs = GICD_TYPER_SPIS(GICD_TYPER);
-  if (num_irqs > 1020) {
-    num_irqs = 1020;
+  UINT32 mGicNumInterrupts = GICD_TYPER_SPIS(GICD_TYPER);
+  if (mGicNumInterrupts > 1020) {
+    mGicNumInterrupts = 1020;
   }
 
-  UINT32 num_eirqs = GICD_TYPER_ESPIS(GICD_TYPER);
-
-  DEBUG((EFI_D_INFO | EFI_D_LOAD, "GIC: Spis=%d, ESpis=%d\n", num_irqs, num_eirqs));
+  DEBUG((EFI_D_INFO | EFI_D_LOAD, "GIC: SPIs=%d\n", mGicNumInterrupts));
 
   DEBUG((EFI_D_INFO | EFI_D_LOAD, "GIC: Disabling GIC Distributor\n"));
-  //UINT32 GICD_CTRL = MmioRead32(GICD_BASE);
-  //GICD_CTRL &= ~0x12;
-  MmioWrite32(GICD_BASE, 0);
+  MmioWrite32(mGicDistributorBase, 0);
 
   DEBUG((EFI_D_INFO | EFI_D_LOAD, "GIC: Waiting for Sync\n"));
-  while (MmioRead32(GICD_BASE) & 0x80000000) 
+  while (MmioRead32(mGicDistributorBase) & 0x80000000) 
     ;
 
   DEBUG((EFI_D_INFO | EFI_D_LOAD, "GIC: Configure SPIs as NS Grp 1\n"));
-  for (UINT32 i = 32; i < num_irqs; i += 32) {
-    MmioWrite32(GICD_BASE + 0x0080 + 4 * (i / 32), 0);
+  for (Index = 32; Index < mGicNumInterrupts; Index += 32) {
+    MmioWrite32(mGicDistributorBase + 0x0080 + 4 * (Index / 32), 0);
   }
 
-  DEBUG((EFI_D_INFO | EFI_D_LOAD, "GIC: Extended SPI Range Handling Begin\n"));
-  DEBUG((EFI_D_INFO | EFI_D_LOAD, "GIC: Set all extended IRQs to be active low, level triggered\n"));
-  for (UINT32 i = 0; i < num_eirqs; i += 32) {
-    MmioWrite32(GICD_BASE + 0x1400 + 4 * (i / 32), 0xFFFFFFFF);
-    MmioWrite32(GICD_BASE + 0x1C00 + 4 * (i / 32), 0xFFFFFFFF);
-  }
-
-  DEBUG((EFI_D_INFO | EFI_D_LOAD, "GIC: Set all extended IRQs Group Register\n"));
-  for (UINT32 i = 0; i < num_eirqs; i += 32) {
-    MmioWrite32(GICD_BASE + 0x1000 + 4 * (i / 32), 0xFFFFFFFF);
-  }
-
-  DEBUG((EFI_D_INFO | EFI_D_LOAD, "GIC: Set all extended IRQs Configuration Register\n"));
-  for (UINT32 i = 0; i < num_eirqs; i += 16) {
-    MmioWrite32(GICD_BASE + 0x3000 + 4 * (i / 16), 0);
-  }
-
-  DEBUG((EFI_D_INFO | EFI_D_LOAD, "GIC: Set all extended IRQs Priority Register\n"));
-  for (UINT32 i = 0; i < num_eirqs; i += 4) {
-    MmioWrite32(GICD_BASE + 0x2000 + i, 0xA0A0A0A0);
-  }
-  DEBUG((EFI_D_INFO | EFI_D_LOAD, "GIC: Extended SPI Range Handling End\n"));
-
-  DEBUG((EFI_D_INFO | EFI_D_LOAD, "GIC: Normal SPI Range Handling Begin\n"));
   DEBUG((EFI_D_INFO | EFI_D_LOAD, "GIC: Set all IRQs to be active low, level triggered\n"));
-  for (UINT32 i = 32; i < num_irqs; i += 16) {
-    MmioWrite32(GICD_BASE + 0x0C00 + 4 * (i / 16), 0);
+  for (Index = 32; Index < mGicNumInterrupts; Index += 16) {
+    MmioWrite32(mGicDistributorBase + 0x0C00 + 4 * (Index / 16), 0);
   }
 
   DEBUG((EFI_D_INFO | EFI_D_LOAD, "GIC: Set all IRQs Priority Register\n"));
-  for (UINT32 i = 32; i < num_irqs; i += 4) {
-    MmioWrite32(GICD_BASE + 0x0400 + i, 0xA0A0A0A0);
+  for (Index = 32; Index < mGicNumInterrupts; Index += 4) {
+    MmioWrite32(mGicDistributorBase + 0x0400 + Index, 0xa0a0a0a0);
   }
 
   DEBUG((EFI_D_INFO | EFI_D_LOAD, "GIC: Set all IRQs disable state\n"));
-  for (UINT32 i = 32; i < num_irqs; i += 32) {
-    MmioWrite32(GICD_BASE + 0x0380 + 4 * (i / 32), 0xFFFFFFFF);
-    MmioWrite32(GICD_BASE + 0x0180 + 4 * (i / 32), 0xFFFFFFFF);
+  for (Index = 32; Index < mGicNumInterrupts; Index += 32) {
+    MmioWrite32(mGicDistributorBase + 0x0380 + 4 * (Index / 32), 0xffffffff);
+    MmioWrite32(mGicDistributorBase + 0x0180 + 4 * (Index / 32), 0xffffffff);
   }
-  DEBUG((EFI_D_INFO | EFI_D_LOAD, "GIC: Normal SPI Range Handling End\n"));
+
+  DEBUG((EFI_D_INFO | EFI_D_LOAD, "GIC: Enabling GIC Distributor\n"));
+  MmioWrite32(mGicDistributorBase, 0x13);
 
   DEBUG((EFI_D_INFO | EFI_D_LOAD, "GIC: Waiting for Sync\n"));
-  while (MmioRead32(GICD_BASE) & 0x80000000) 
+  while (MmioRead32(mGicDistributorBase) & 0x80000000) 
     ;
+
+	UINT64 affinity = ArmReadMpidr();
+  affinity &= 0xFF00FFFFFF;
+	for (Index = 32; Index < mGicNumInterrupts; Index++) {
+		MmioWrite64(mGicDistributorBase + 0x6000 + Index * 8, affinity);
+  }
+
   DEBUG((EFI_D_INFO | EFI_D_LOAD, "GIC: Setting registers is done!\n"));
 }
 
@@ -213,7 +194,7 @@ VOID PlatformInitialize()
   GICv3DumpRegisters();
 
   // Hang here for debugging
-  ASSERT(FALSE);
+  // ASSERT(FALSE);
 
   // Disable WatchDog Timer
   // SetWatchdogState(FALSE);
