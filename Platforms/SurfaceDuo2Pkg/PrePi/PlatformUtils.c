@@ -118,8 +118,14 @@ VOID GICv3SetRegisters()
   UINT32 GICDAddr = 0x17A00000;
   MmioWrite32(GICDAddr, 0x10);*/
 
-  UINT32 ItLines = MmioRead32(GICD_BASE + 0x04) & 0x1F;
-  UINT32 NumIrqs = (ItLines == 0x1f) ? 1020 : 32 * (ItLines + 1);
+  UINT32 GICD_TYPER = MmioRead32(GICD_BASE + 0x04);
+
+  UINT32 Spis = ((GICD_TYPER & 0x1F) == 0x1F) ? 1020 : 32 * ((GICD_TYPER & 0x1F) + 1);
+
+  GICD_TYPER = (GICD_TYPER & 0x100) ? GICD_TYPER >> 0x1B : 0;
+  UINT32 ESpis = ((GICD_TYPER & 0x1F) == 0x1F) ? 1020 : 32 * ((GICD_TYPER & 0x1F) + 1);
+
+  DEBUG((EFI_D_INFO | EFI_D_LOAD, "GIC: Spis=%d, ESpis=%d\n", Spis, ESpis));
 
   //UINT32 GICD_CTRL = MmioRead32(GICD_BASE);
   //GICD_CTRL &= ~0x12;
@@ -128,38 +134,38 @@ VOID GICv3SetRegisters()
   while (MmioRead32(GICD_BASE) & 0x80000000) 
     ;
 
-  for (UINT32 i = 32; i < NumIrqs; i += 32) {
+  for (UINT32 i = 32; i < Spis; i += 32) {
     MmioWrite32(GICD_BASE + 0x0080 + 4 * (i / 32), 0);
   }
 
-  for (UINT32 i = 0; i < NumIrqs; i += 32) {
+  for (UINT32 i = 0; i < ESpis; i += 32) {
     MmioWrite32(GICD_BASE + 0x1400 + 4 * (i / 32), 0xFFFFFFFF);
     MmioWrite32(GICD_BASE + 0x1C00 + 4 * (i / 32), 0xFFFFFFFF);
   }
 
-  for (UINT32 i = 0; i < NumIrqs; i += 16) {
+  for (UINT32 i = 0; i < ESpis; i += 16) {
     MmioWrite32(GICD_BASE + 0x1000 + 4 * (i / 32), 0xFFFFFFFF);
   }
 
-  for (UINT32 i = 0; i < NumIrqs; i += 16) {
+  for (UINT32 i = 0; i < ESpis; i += 16) {
     MmioWrite32(GICD_BASE + 0x3000 + 4 * (i / 16), 0);
   }
 
-  for (UINT32 i = 0; i < NumIrqs; i += 4) {
+  for (UINT32 i = 0; i < ESpis; i += 4) {
     MmioWrite32(GICD_BASE + 0x2000 + 4 * (i / 16), 0xA0A0A0A0);
   }
 
 
 
-  for (UINT32 i = 32; i < NumIrqs; i += 16) {
+  for (UINT32 i = 32; i < Spis; i += 16) {
     MmioWrite32(GICD_BASE + 0x0C00 + 4 * (i / 16), 0);
   }
 
-  for (UINT32 i = 32; i < NumIrqs; i += 4) {
+  for (UINT32 i = 32; i < Spis; i += 4) {
     MmioWrite32(GICD_BASE + 0x0400 + 4 * (i / 4), 0xA0A0A0A0);
   }
 
-  for (UINT32 i = 32; i < NumIrqs; i += 32) {
+  for (UINT32 i = 32; i < Spis; i += 32) {
     MmioWrite32(GICD_BASE + 0x0380 + 4 * (i / 32), 0xFFFFFFFF);
     MmioWrite32(GICD_BASE + 0x0180 + 4 * (i / 32), 0xFFFFFFFF);
   }
