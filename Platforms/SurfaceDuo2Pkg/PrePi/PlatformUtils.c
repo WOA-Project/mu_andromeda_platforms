@@ -82,7 +82,9 @@ VOID SetWatchdogState(BOOLEAN Enable)
   }
 }
 
-VOID ConfigureGic()
+EFI_STATUS
+EFIAPI
+QGicEarlyConfiguration(VOID)
 {
   // Enable GIC Distributor
   MmioWrite32(GICD_BASE, 0x10);
@@ -97,13 +99,15 @@ VOID ConfigureGic()
     // Clear Pending Interrupts for this CPU 
     MmioWrite32(GICR_BASE + CpuId * GICR_SIZE + GICR_SGI + GICR_ICPENDR0, 0x10000000);
   }
+
+  return EFI_SUCCESS;
 }
 
 VOID PlatformInitialize()
 {
   UartInit();
 
-  WakeUpGicRedistributors();
+  QGicEarlyConfiguration();
 
   // Disable WatchDog Timer
   SetWatchdogState(FALSE);
