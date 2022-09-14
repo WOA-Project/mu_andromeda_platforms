@@ -100,6 +100,14 @@ UINTN
 SControl(IN UINTN Arg, IN UINTN Param) { return EFI_SUCCESS; }
 
 STATIC
+BOOLEAN
+SPoll(VOID) { return TRUE; }
+
+STATIC
+UINTN
+SDrain(VOID) { return EFI_SUCCESS; }
+
+STATIC
 EFI_STATUS
 ShInstallLib(IN CHAR8 *LibName, IN UINT32 LibVersion, IN VOID *LibIntf)
 {
@@ -111,8 +119,8 @@ UefiCfgLibType ConfigLib = {0x00010002,          CfgGetMemInfoByName,
                             CfgGetCfgInfoVal64,  CfgGetMemInfoByAddress};
 
 SioPortLibType SioLib = {
-    0x00010001, SerialPortRead, SerialPortWrite, NULL,
-    SFlush,     NULL,           SControl,        SerialPortSetAttributes,
+    0x00010001, SerialPortRead, SerialPortWrite, SPoll,
+    SDrain,     SFlush,         SControl,        SerialPortSetAttributes,
 };
 
 STATIC
