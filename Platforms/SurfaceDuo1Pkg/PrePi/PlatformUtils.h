@@ -1,6 +1,8 @@
 #ifndef _PLATFORM_UTILS_H_
 #define _PLATFORM_UTILS_H_
 
+#include <Library/PcdLib.h>
+
 #define TLMM_WEST 0x03100000
 #define TLMM_EAST 0x03500000
 #define TLMM_NORTH 0x03900000

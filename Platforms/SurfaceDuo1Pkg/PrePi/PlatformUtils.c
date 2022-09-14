@@ -1,6 +1,5 @@
 #include "Pi.h"
 #include "PlatformUtils.h"
-#include "EarlyQGic/EarlyQGic.h"
 #include <Configuration/DeviceMemoryMap.h>
 
 BOOLEAN IsLinuxBootRequested()
@@ -87,35 +86,9 @@ VOID SetWatchdogState(BOOLEAN Enable)
   MmioWrite32(APSS_WDT_BASE + APSS_WDT_ENABLE_OFFSET, Enable);
 }
 
-VOID GICv3DumpRegisters()
-{
-  for (UINT32 CpuId = 0; CpuId < 8; CpuId++) {
-    UINT32 GICRAddr = 0x17A60000 + CpuId * 0x20000;
-    
-    DEBUG((EFI_D_INFO | EFI_D_LOAD, "CpuId: %d\n", CpuId));
-
-    UINT32 off1 = MmioRead32(GICRAddr + 0x10280);
-    UINT32 off2 = MmioRead32(GICRAddr + 0x10180);
-    UINT32 off3 = MmioRead32(GICRAddr + 0x0014);
-
-    DEBUG((EFI_D_INFO | EFI_D_LOAD, "GicR off 1: %d\n", off1));
-    DEBUG((EFI_D_INFO | EFI_D_LOAD, "GicR off 2: %d\n", off2));
-    DEBUG((EFI_D_INFO | EFI_D_LOAD, "GicR off 3: %d\n", off3));
-  }
-
-  UINT32 GICDAddr = 0x17A00000;
-  UINT32 off4 = MmioRead32(GICDAddr);
-  DEBUG((EFI_D_INFO | EFI_D_LOAD, "GicD off 4: %d\n", off4));
-
-  // Hang here for debugging
-  ASSERT(FALSE);
-}
-
 VOID PlatformInitialize()
 {
   UartInit();
-
-  GICv3DumpRegisters();
 
   // Disable MDSS DSI0 Controller
   DisableMDSSDSIController(MDSS_DSI0);
@@ -131,12 +104,4 @@ VOID PlatformInitialize()
 
   // Disable WatchDog Timer
   SetWatchdogState(FALSE);
-
-  // Initialize GIC
-  /*if (!FixedPcdGetBool(PcdIsLkBuild)) {
-    if (EFI_ERROR(QGicPeim())) {
-      DEBUG((EFI_D_ERROR, "Failed to configure GIC\n"));
-      CpuDeadLoop();
-    }
-  }*/
 }

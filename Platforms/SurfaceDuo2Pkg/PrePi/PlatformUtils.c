@@ -5,7 +5,6 @@
 #include <Library/ArmSmcLib.h>
 
 #include "PlatformUtils.h"
-#include "EarlyQGic/EarlyQGic.h"
 #include <Configuration/DeviceMemoryMap.h>
 
 BOOLEAN IsLinuxBootRequested()
@@ -111,14 +110,4 @@ VOID PlatformInitialize()
 
   // Disable WatchDog Timer
   SetWatchdogState(FALSE);
-
-  // PlatformSchedulerInit();
-
-  // Initialize GIC
-  /*if (!FixedPcdGetBool(PcdIsLkBuild)) {
-    if (EFI_ERROR(QGicPeim())) {
-      DEBUG((EFI_D_ERROR, "Failed to configure GIC\n"));
-      CpuDeadLoop();
-    }
-  }*/
 }

@@ -8,13 +8,10 @@
 [Sources.common]
   Pi.c
   LinuxUtils.c
-  LittleKernelHooks.c
   PlatformUtils.c
-  EarlyQGic/EarlyQGic.c
 
 [Sources.AARCH64]
   ModuleEntryPoint.S | GCC
-  EarlyQGic/ArmGicV3.S | GCC
 
 [BuildOptions.AARCH64]
   GCC:*_*_*_CC_FLAGS = -Werror -Wno-error=unused-function
@@ -74,6 +71,7 @@
   gArmTokenSpaceGuid.PcdFdBaseAddress
   gArmTokenSpaceGuid.PcdFdSize
   gArmTokenSpaceGuid.PcdGicDistributorBase
+  gArmTokenSpaceGuid.PcdGicRedistributorsBase
   gArmTokenSpaceGuid.PcdGicInterruptInterfaceBase
   gArmPlatformTokenSpaceGuid.PcdCoreCount
   gEfiMdePkgTokenSpaceGuid.PcdUartDefaultBaudRate

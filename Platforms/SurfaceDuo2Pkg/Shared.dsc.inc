@@ -137,10 +137,6 @@
   gArmTokenSpaceGuid.PcdPciBusMin|0x0
   gArmTokenSpaceGuid.PcdPciBusMax|0xff
 
-  # Timer
-  # gQcomTokenSpaceGuid.PcdIntDebugTimerExp|41
-  # gQcomTokenSpaceGuid.PcdQTimerBase|0x17C23000
-
 !if $(SECURE_BOOT_ENABLE) == TRUE
   gEfiMdeModulePkgTokenSpaceGuid.PcdMaxAuthVariableSize|0x2800
   gEfiSecurityPkgTokenSpaceGuid.PcdUserPhysicalPresence|TRUE
@@ -276,9 +272,6 @@
   PlatformPeiLib|SurfacePkg/Library/PlatformPeiLib/PlatformPeiLib.inf
   PlatformHobLib|SurfaceDuo2Pkg/Library/PlatformHobLib/PlatformHobLib.inf
 
-  # SoC Drivers
-  # QTimerLib|SurfaceDuo2Pkg/Library/QTimerLib/QTimerLib.inf
-
   # System Reset
   HwResetSystemLib|ArmPkg/Library/ArmSmcPsciResetSystemLib/ArmSmcPsciResetSystemLib.inf
 
@@ -355,9 +348,6 @@
   HiiLib|MdeModulePkg/Library/UefiHiiLib/UefiHiiLib.inf
   UefiHiiServicesLib|MdeModulePkg/Library/UefiHiiServicesLib/UefiHiiServicesLib.inf
   ExtractGuidedSectionLib|MdePkg/Library/DxeExtractGuidedSectionLib/DxeExtractGuidedSectionLib.inf
-
-  # SoC Drivers
-  # QcomDxeTimerLib|SurfaceDuo2Pkg/Library/QTimerLib/QcomQTimerDxeTimerLib.inf
 
 !if $(SECURE_BOOT_ENABLE) == TRUE
   BaseCryptLib|CryptoPkg/Library/BaseCryptLib/BaseCryptLib.inf
@@ -442,8 +432,6 @@
 
   # Processor Core Services
   ArmPkg/Drivers/CpuDxe/CpuDxe.inf
-  # Even though we switch to QTimer / armv7-timer
-  # We are still building it
   ArmPkg/Drivers/TimerDxe/TimerDxe.inf
   ArmPkg/Drivers/ArmGic/ArmGicDxe.inf
   MdeModulePkg/Universal/WatchdogTimerDxe/WatchdogTimer.inf
@@ -452,9 +440,6 @@
     <LibraryClasses>
 	  RealTimeClockLib|SurfacePkg/Library/VirtualRealTimeClockLib/VirtualRealTimeClockLib.inf
   }
-
-  # SoC Drivers (Cross-referenced from EFIDroid)
-  # SurfaceDuo2Pkg/Driver/TimerDxe/TimerDxe.inf
 
   # Debug heartbeat
 !if $(SEND_HEARTBEAT_TO_SERIAL) == 1

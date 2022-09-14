@@ -15,12 +15,6 @@ APRIORI DXE {
     # Core Drivers
     INF EmbeddedPkg/MetronomeDxe/MetronomeDxe.inf
     INF ArmPkg/Drivers/TimerDxe/TimerDxe.inf
-    # INF SurfaceDuo2Pkg/Driver/TimerDxe/TimerDxe.inf
-
-    # Debug heartbeat
-!if $(SEND_HEARTBEAT_TO_SERIAL) == 1
-    INF SurfaceDuo2Pkg/Driver/HeartbeatDxe/HeartbeatDxe.inf
-!endif
 
     FILE DRIVER = f541d663-4a48-40aa-aabf-ff158ccae34c {
             SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-1/section0/section1/volume-0/file-f541d663-4a48-40aa-aabf-ff158ccae34c/section0.dxe.depex
@@ -113,7 +107,7 @@ APRIORI DXE {
     }
 
     FILE DRIVER = 4b4973ee-401b-4f36-a6a9-533dfccdfc33 {
-            SECTION PE32 = SurfaceDuo2Pkg/PatchedBinaries/ScmDxeLA.efi
+            SECTION PE32 = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-1/section0/section1/volume-0/file-4b4973ee-401b-4f36-a6a9-533dfccdfc33/section0.pe
             SECTION UI = "ScmDxeLA"
     }
 
@@ -202,10 +196,10 @@ APRIORI DXE {
             SECTION UI = "ResetRuntimeDxe"
     }
 
-    FILE DRIVER = 1c04f529-0612-4319-9315-b2e75c16810a {
-            SECTION PE32 = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-1c04f529-0612-4319-9315-b2e75c16810a/section0.pe
-            SECTION UI = "FeatureEnablerDxe"
-    }
+    # FILE DRIVER = 1c04f529-0612-4319-9315-b2e75c16810a {
+    #         SECTION PE32 = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-1c04f529-0612-4319-9315-b2e75c16810a/section0.pe
+    #         SECTION UI = "FeatureEnablerDxe"
+    # }
 
     INF SurfacePkg/Driver/SimpleFbDxe/SimpleFbDxe.inf
 
