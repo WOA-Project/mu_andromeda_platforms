@@ -89,9 +89,9 @@ VOID GICv3DumpRegisters()
     
     DEBUG((EFI_D_INFO | EFI_D_LOAD, "CpuId: %d\n", CpuId));
 
-    UINT32 off1 = MmioRead32(GICRAddr + 0x40A0);
-    UINT32 off2 = MmioRead32(GICRAddr + 0x4060);
-    UINT32 off3 = MmioRead32(GICRAddr + 0x0005);
+    UINT32 off1 = MmioRead32(GICRAddr + 0x10280);
+    UINT32 off2 = MmioRead32(GICRAddr + 0x10180);
+    UINT32 off3 = MmioRead32(GICRAddr + 0x0014);
 
     DEBUG((EFI_D_INFO | EFI_D_LOAD, "GicR off 1: %d\n", off1));
     DEBUG((EFI_D_INFO | EFI_D_LOAD, "GicR off 2: %d\n", off2));
@@ -99,7 +99,7 @@ VOID GICv3DumpRegisters()
   }
 
   UINT32 GICDAddr = 0x17A00000;
-  UINT32 off4 = MmioRead32(GICDAddr + 0x0005);
+  UINT32 off4 = MmioRead32(GICDAddr);
   DEBUG((EFI_D_INFO | EFI_D_LOAD, "GicD off 4: %d\n", off4));
 }
 
