@@ -114,7 +114,7 @@ VOID GICv3SetRegisters()
   }
 
   UINT32 GICDAddr = 0x17A00000;
-  UINT32 off4 = MmioWrite32(GICDAddr, 0x10);
+  MmioWrite32(GICDAddr, 0x10);
 }
 
 VOID PlatformInitialize()
