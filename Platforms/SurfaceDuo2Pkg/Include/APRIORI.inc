@@ -17,6 +17,11 @@ APRIORI DXE {
     INF ArmPkg/Drivers/TimerDxe/TimerDxe.inf
     # INF SurfaceDuo2Pkg/Driver/TimerDxe/TimerDxe.inf
 
+    # Debug heartbeat
+!if $(SEND_HEARTBEAT_TO_SERIAL) == 1
+    INF SurfaceDuo2Pkg/Driver/HeartbeatDxe/HeartbeatDxe.inf
+!endif
+
     FILE DRIVER = f541d663-4a48-40aa-aabf-ff158ccae34c {
             SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-1/section0/section1/volume-0/file-f541d663-4a48-40aa-aabf-ff158ccae34c/section0.dxe.depex
             SECTION PE32 = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-1/section0/section1/volume-0/file-f541d663-4a48-40aa-aabf-ff158ccae34c/section1.pe
