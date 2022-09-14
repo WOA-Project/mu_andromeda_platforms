@@ -101,9 +101,20 @@ VOID GICv3DumpRegisters()
   UINT32 GICDAddr = 0x17A00000;
   UINT32 off4 = MmioRead32(GICDAddr);
   DEBUG((EFI_D_INFO | EFI_D_LOAD, "GicD off 4: %d\n", off4));
+}
 
-  // Hang here for debugging
-  ASSERT(FALSE);
+VOID GICv3SetRegisters()
+{
+  for (UINT32 CpuId = 0; CpuId < 8; CpuId++) {
+    UINT32 GICRAddr = 0x17A60000 + CpuId * 0x20000;
+
+    MmioWrite32(GICRAddr + 0x10280, 0x10000000);
+    MmioWrite32(GICRAddr + 0x10180, 0);
+    MmioWrite32(GICRAddr + 0x00014, 0);
+  }
+
+  UINT32 GICDAddr = 0x17A00000;
+  UINT32 off4 = MmioWrite32(GICDAddr, 0x10);
 }
 
 VOID PlatformInitialize()
@@ -111,6 +122,11 @@ VOID PlatformInitialize()
   UartInit();
 
   GICv3DumpRegisters();
+  GICv3SetRegisters();
+  GICv3DumpRegisters();
+
+  // Hang here for debugging
+  ASSERT(FALSE);
 
   // Disable WatchDog Timer
   // SetWatchdogState(FALSE);
