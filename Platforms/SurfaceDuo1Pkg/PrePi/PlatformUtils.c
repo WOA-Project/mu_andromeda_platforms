@@ -106,6 +106,9 @@ VOID GICv3DumpRegisters()
   UINT32 GICDAddr = 0x17A00000;
   UINT32 off4 = MmioRead32(GICDAddr);
   DEBUG((EFI_D_INFO | EFI_D_LOAD, "GicD off 4: %d\n", off4));
+
+  // Hang here for debugging
+  ASSERT(FALSE);
 }
 
 VOID PlatformInitialize()
