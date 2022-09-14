@@ -152,7 +152,7 @@ VOID GICv3SetRegisters()
   }
 
   DEBUG((EFI_D_INFO | EFI_D_LOAD, "GIC: Set all extended IRQs Group Register\n"));
-  for (UINT32 i = 0; i < ESpis; i += 16) {
+  for (UINT32 i = 0; i < ESpis; i += 32) {
     MmioWrite32(GICD_BASE + 0x1000 + 4 * (i / 32), 0xFFFFFFFF);
   }
 
@@ -163,7 +163,7 @@ VOID GICv3SetRegisters()
 
   DEBUG((EFI_D_INFO | EFI_D_LOAD, "GIC: Set all extended IRQs Priority Register\n"));
   for (UINT32 i = 0; i < ESpis; i += 4) {
-    MmioWrite32(GICD_BASE + 0x2000 + 4 * (i / 16), 0xA0A0A0A0);
+    MmioWrite32(GICD_BASE + 0x2000 + i, 0xA0A0A0A0);
   }
   DEBUG((EFI_D_INFO | EFI_D_LOAD, "GIC: Extended SPI Range Handling End\n"));
 
@@ -175,7 +175,7 @@ VOID GICv3SetRegisters()
 
   DEBUG((EFI_D_INFO | EFI_D_LOAD, "GIC: Set all IRQs Priority Register\n"));
   for (UINT32 i = 32; i < Spis; i += 4) {
-    MmioWrite32(GICD_BASE + 0x0400 + 4 * (i / 4), 0xA0A0A0A0);
+    MmioWrite32(GICD_BASE + 0x0400 + i, 0xA0A0A0A0);
   }
 
   DEBUG((EFI_D_INFO | EFI_D_LOAD, "GIC: Set all IRQs disable state\n"));
