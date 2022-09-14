@@ -166,6 +166,33 @@ VOID GICv3SetupDistributor()
   DEBUG((EFI_D_INFO | EFI_D_LOAD, "GIC: Setting registers is done!\n"));
 }
 
+VOID GICv3SetupReDistributor()
+{
+  UINT32 mGicRedistributorsBase = 0x17A60000;
+  UINT32 GICR_TYPER = MmioRead32(mGicRedistributorsBase + 0x08);
+  UINTN  Index;
+
+  UINT32 GICR_WAKER = MmioRead32(mGicRedistributorsBase + 0x014);
+  GICR_WAKER &= ~0x2;
+  MmioWrite32(mGicRedistributorsBase + 0x014, GICR_WAKER);
+
+  for (Index = 0; Index < 1000000; Index++) {
+    GICR_WAKER = MmioRead32(mGicRedistributorsBase + 0x014);
+    if ((GICR_WAKER & 0x4) == 0) {
+      break;
+    }
+    DEBUG((EFI_D_INFO | EFI_D_LOAD, "GICR: Looping til CPU 0 wakes up...\n"));
+  }
+
+  if (Index == 1000000) {
+    DEBUG((EFI_D_INFO | EFI_D_LOAD, "GICR: CPU 0 failed to wake up!\n"));
+  } else {
+    DEBUG((EFI_D_INFO | EFI_D_LOAD, "GICR: CPU 0 woke up!\n"));
+  }
+
+  DEBUG((EFI_D_INFO | EFI_D_LOAD, "GICR: Setting registers is done!\n"));
+}
+
 VOID GICv3SetRegisters()
 {
   UINT32 GICD_BASE = 0x17A00000;
@@ -189,8 +216,9 @@ VOID PlatformInitialize()
   UartInit();
 
   GICv3DumpRegisters();
+  // GICv3SetupDistributor();
+  // GICv3SetupReDistributor();
   GICv3SetRegisters();
-  GICv3SetupDistributor();
   GICv3DumpRegisters();
 
   // Hang here for debugging
