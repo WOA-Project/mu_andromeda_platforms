@@ -84,10 +84,13 @@ VOID SetWatchdogState(BOOLEAN Enable)
 
 VOID GICv3DumpRegisters()
 {
+  UINT32 GICD_BASE = 0x17A00000;
+  UINT32 GICR_BASE = 0x17A60000;
+
   DEBUG((EFI_D_INFO | EFI_D_LOAD, "GIC register status\n"));
 
   for (UINT32 CpuId = 0; CpuId < 8; CpuId++) {
-    UINT32 GICRAddr = 0x17A60000 + CpuId * 0x20000;
+    UINT32 GICRAddr = GICR_BASE + CpuId * 0x20000;
     
     DEBUG((EFI_D_INFO | EFI_D_LOAD, "CPU@%d\n", CpuId));
 
@@ -100,30 +103,16 @@ VOID GICv3DumpRegisters()
     DEBUG((EFI_D_INFO | EFI_D_LOAD, "GICR + 0x00014: %d\n\n", off3));
   }
 
-  UINT32 GICDAddr = 0x17A00000;
-  UINT32 off4 = MmioRead32(GICDAddr);
+  UINT32 off4 = MmioRead32(GICD_BASE);
   DEBUG((EFI_D_INFO | EFI_D_LOAD, "GICD: %d\n\n", off4));
 }
 
 #define GICD_TYPER_SPIS(GICD_TYPER) ((((GICD_TYPER) & 0x1F) + 1) * 32)
 #define GICD_TYPER_ESPIS(GICD_TYPER) (((GICD_TYPER) & 0x100) ? GICD_TYPER_SPIS((GICD_TYPER) >> 0x1B) : 0)
 
-VOID GICv3SetRegisters()
+VOID GICv3SetupDistributor()
 {
-  DEBUG((EFI_D_INFO | EFI_D_LOAD, "GIC: Setting registers\n"));
   UINT32 GICD_BASE = 0x17A00000;
-
-  /*for (UINT32 CpuId = 0; CpuId < 8; CpuId++) {
-    UINT32 GICRAddr = 0x17A60000 + CpuId * 0x20000;
-
-    MmioWrite32(GICRAddr + 0x10280, 0x10000000);
-    MmioWrite32(GICRAddr + 0x10180, 0);
-    MmioWrite32(GICRAddr + 0x00014, 0);
-  }
-
-  UINT32 GICDAddr = 0x17A00000;
-  MmioWrite32(GICDAddr, 0x10);*/
-
   UINT32 GICD_TYPER = MmioRead32(GICD_BASE + 0x04);
 
   UINT32 num_irqs = GICD_TYPER_SPIS(GICD_TYPER);
@@ -196,12 +185,31 @@ VOID GICv3SetRegisters()
   DEBUG((EFI_D_INFO | EFI_D_LOAD, "GIC: Setting registers is done!\n"));
 }
 
+VOID GICv3SetRegisters()
+{
+  UINT32 GICD_BASE = 0x17A00000;
+  UINT32 GICR_BASE = 0x17A60000;
+
+  DEBUG((EFI_D_INFO | EFI_D_LOAD, "GIC: Setting registers\n"));
+
+  for (UINT32 CpuId = 0; CpuId < 8; CpuId++) {
+    UINT32 GICRAddr = GICR_BASE + CpuId * 0x20000;
+
+    MmioWrite32(GICRAddr + 0x10280, 0x10000000);
+    MmioWrite32(GICRAddr + 0x10180, 0);
+    MmioWrite32(GICRAddr + 0x00014, 0);
+  }
+
+  MmioWrite32(GICD_BASE, 0x10);
+}
+
 VOID PlatformInitialize()
 {
   UartInit();
 
   GICv3DumpRegisters();
   GICv3SetRegisters();
+  GICv3SetupDistributor();
   GICv3DumpRegisters();
 
   // Hang here for debugging
