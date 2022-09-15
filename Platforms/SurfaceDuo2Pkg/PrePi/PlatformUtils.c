@@ -99,6 +99,11 @@ QGicEarlyConfiguration(VOID)
   return EFI_SUCCESS;
 }
 
+VOID RebootExpressTest()
+{
+  MmioWrite32(0x17a00024, 0);
+}
+
 VOID PlatformInitialize()
 {
   UartInit();
@@ -107,4 +112,6 @@ VOID PlatformInitialize()
 
   // Disable WatchDog Timer
   SetWatchdogState(FALSE);
+
+  RebootExpressTest();
 }
