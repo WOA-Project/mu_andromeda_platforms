@@ -326,11 +326,13 @@
             SECTION PE32 = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-eee9c2b1-16ca-4f34-87ea-2e6d1e160cc4/section1.pe
     }
 
-    FILE DRIVER = 0fcf3c47-4a1f-434c-a0bc-2d964c0fc1fd {
-            SECTION DXE_DEPEX = SurfaceDuo2Pkg/PatchedBinaries/GpioButtons.depex
-            SECTION PE32 = SurfaceDuo2Pkg/PatchedBinaries/GpioButtons.efi
-            SECTION UI = "GpioButtons"
-    }
+    # FILE DRIVER = 0fcf3c47-4a1f-434c-a0bc-2d964c0fc1fd {
+    #         SECTION DXE_DEPEX = SurfaceDuo2Pkg/PatchedBinaries/GpioButtons.depex
+    #         SECTION PE32 = SurfaceDuo2Pkg/PatchedBinaries/GpioButtons.efi
+    #         SECTION UI = "GpioButtons"
+    # }
+
+    INF SurfaceDuo2Pkg/Driver/GpioButtons/GpioButtons.inf
 
     FILE DRIVER = 3977d4c4-b0eb-4548-96b9-671fa2e36820 {
             SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.XF.3.0-00527-SM8150LZB-1-202206/volume-0/file-2/section0/section1/volume-0/file-3977d4c4-b0eb-4548-96b9-671fa2e36820/section0.dxe.depex

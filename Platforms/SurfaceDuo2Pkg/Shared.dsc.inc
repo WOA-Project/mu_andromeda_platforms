@@ -503,4 +503,6 @@
 
   SurfacePkg/Driver/ColorbarsDxe/ColorbarsDxe.inf
 
+  SurfaceDuo2Pkg/Driver/GpioButtons/GpioButtons.inf
+
   SurfacePkg/UFP/ufpdevicefw.inf
