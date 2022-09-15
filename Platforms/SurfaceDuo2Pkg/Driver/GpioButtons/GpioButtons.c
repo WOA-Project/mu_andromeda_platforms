@@ -117,6 +117,9 @@ ButtonsInit(IN EFI_HANDLE ImageHandle, IN EFI_SYSTEM_TABLE *SystemTable)
     return Status;
   }
 
+  VolumeUpState   = FALSE;
+  VolumeDownState = FALSE;
+
   KeyData.KeyState.KeyToggleState = 0;
   KeyData.KeyState.KeyShiftState  = 0;
   KeyData.Key.UnicodeChar         = 0;
