@@ -126,6 +126,8 @@ NtBlStatusPrintHook (
   // Send the print string to a Serial Port
   //
   SerialPortWrite ((UINT8 *) Buffer, AsciiStrLen(Buffer));
+
+  return EFI_SUCCESS;
 }
 
 VOID PlatformInitialize()
