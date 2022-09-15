@@ -101,7 +101,7 @@ QGicEarlyConfiguration(VOID)
 
 VOID RebootExpressTest()
 {
-  MmioWrite32(0x17a00024, 0);
+  MmioWrite32(0x80000000, 0);
 }
 
 VOID PlatformInitialize()
