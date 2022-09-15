@@ -50,6 +50,7 @@
   TimerLib
   # MpPark
   ArmSmcLib
+  PrintLib
 
 [Guids]
   gEfiSystemNvDataFvGuid
