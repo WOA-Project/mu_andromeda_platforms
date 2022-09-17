@@ -67,7 +67,7 @@ VOID UartInit(VOID)
 VOID SetWatchdogState(BOOLEAN Enable)
 {
   ARM_SMC_ARGS StubArgsSmc;
-  StubArgsSmc.Arg0 = VIRT_WDT_CONTROL_SMC;
+  StubArgsSmc.Arg0 = QHEE_SMC_VENDOR_HYP_WDOG_CONTROL;
   StubArgsSmc.Arg1 = Enable ? 3 : 2;
   ArmCallSmc(&StubArgsSmc);
   if (StubArgsSmc.Arg0 != 0) {
