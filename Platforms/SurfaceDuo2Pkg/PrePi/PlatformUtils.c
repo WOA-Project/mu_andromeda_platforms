@@ -99,37 +99,6 @@ QGicEarlyConfiguration(VOID)
   return EFI_SUCCESS;
 }
 
-EFI_STATUS
-EFIAPI
-NtBlStatusPrintHook (
-  IN  CONST CHAR8  *Format,
-  ...
-)
-{
-  CHAR8    Buffer[0x200];
-  VA_LIST  Marker;
-
-  //
-  // If Format is NULL, then ASSERT().
-  //
-  ASSERT (Format != NULL);
-
-  //
-  // Convert the DEBUG() message to an ASCII String
-  //
-  VA_START (Marker, Format);
-  AsciiVSPrint (Buffer, sizeof (Buffer), Format, Marker);
-  VA_END (Marker);
-
-  //
-  // Ensure for production mode, only appropriate messages are printed
-  // Send the print string to a Serial Port
-  //
-  SerialPortWrite ((UINT8 *) Buffer, AsciiStrLen(Buffer));
-
-  return EFI_SUCCESS;
-}
-
 VOID PlatformInitialize()
 {
   UartInit();
@@ -138,6 +107,4 @@ VOID PlatformInitialize()
 
   // Disable WatchDog Timer
   SetWatchdogState(FALSE);
-
-  NtBlStatusPrintHook("TESTING!\n");
 }
