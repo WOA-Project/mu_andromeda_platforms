@@ -13,10 +13,3 @@
 [Protocols]
 
 [PcdsFixedAtBuild.common]
-  # FD
-  gSurfaceDuo2PkgTokenSpaceGuid.PcdFdBaseAddress|0x9F000000|UINT64|0x0000a103
-  gSurfaceDuo2PkgTokenSpaceGuid.PcdFdSize|0x00500000|UINT32|0x0000a104
-
-  # Memory allocation
-  gSurfaceDuo2PkgTokenSpaceGuid.PcdPreAllocatedMemorySize|0x0E400000|UINT64|0x00000a106
-  gSurfaceDuo2PkgTokenSpaceGuid.PcdUefiMemPoolSize|0x10C00000|UINT32|0x00000a107

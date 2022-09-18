@@ -23,7 +23,6 @@
   MdeModulePkg/MdeModulePkg.dec
   EmbeddedPkg/EmbeddedPkg.dec
   SurfacePkg/SurfacePkg.dec
-  SurfaceDuo2Pkg/SurfaceDuo2Pkg.dec
 
 [LibraryClasses]
   ArmLib
@@ -46,7 +45,7 @@
   # Platform-specific libraries
   MemoryInitPeiLib
   PlatformPeiLib
-  PlatformHobLib
+  PlatformPrePiLib
   TimerLib
   # MpPark
   ArmSmcLib
@@ -83,5 +82,5 @@
   gSurfacePkgTokenSpaceGuid.PcdMipiFrameBufferWidth
   gSurfacePkgTokenSpaceGuid.PcdMipiFrameBufferHeight
   gSurfacePkgTokenSpaceGuid.PcdMipiFrameBufferPixelBpp
-  gSurfaceDuo2PkgTokenSpaceGuid.PcdPreAllocatedMemorySize
-  gSurfaceDuo2PkgTokenSpaceGuid.PcdUefiMemPoolSize
+  gSurfacePkgTokenSpaceGuid.PcdPreAllocatedMemorySize
+  gSurfacePkgTokenSpaceGuid.PcdUefiMemPoolSize

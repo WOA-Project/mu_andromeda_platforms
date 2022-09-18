@@ -97,8 +97,8 @@
   gEmbeddedTokenSpaceGuid.PcdInterruptBaseAddress|0x09bc0000
   gEmbeddedTokenSpaceGuid.PcdPrePiCpuIoSize|44
 
-  gSurfaceDuo2PkgTokenSpaceGuid.PcdUefiMemPoolSize|0x10C00000
-  gSurfaceDuo2PkgTokenSpaceGuid.PcdPreAllocatedMemorySize|0x0E400000  # Start here
+  gSurfacePkgTokenSpaceGuid.PcdUefiMemPoolSize|0x10C00000
+  gSurfacePkgTokenSpaceGuid.PcdPreAllocatedMemorySize|0x0E400000  # Start here
 
   ## Default Terminal Type
   ## 0-PCANSI, 1-VT100, 2-VT00+, 3-UTF8, 4-TTYTERM
@@ -249,8 +249,7 @@
 !endif
 
   MemoryInitPeiLib|SurfaceDuo2Pkg/Library/MemoryInitPeiLib/PeiMemoryAllocationLib.inf
-  PlatformPeiLib|SurfacePkg/Library/PlatformPeiLib/PlatformPeiLib.inf
-  PlatformHobLib|SurfaceDuo2Pkg/Library/PlatformHobLib/PlatformHobLib.inf
+  PlatformPeiLib|SurfaceDuo2Pkg/Library/PlatformPeiLib/PlatformPeiLib.inf
 
   # System Reset
   HwResetSystemLib|ArmPkg/Library/ArmSmcPsciResetSystemLib/ArmSmcPsciResetSystemLib.inf
@@ -379,7 +378,7 @@
 
 [Components.common]
   # PrePI
-  SurfaceDuo2Pkg/PrePi/PrePi.inf {
+  SurfacePkg/PrePi/PrePi.inf {
     <LibraryClasses>
     !if $(USE_SCREEN_FOR_SERIAL_OUTPUT) == 1
     !if $(USE_MEMORY_FOR_SERIAL_OUTPUT) == 1
