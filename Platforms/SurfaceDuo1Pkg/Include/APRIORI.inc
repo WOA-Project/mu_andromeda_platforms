@@ -398,6 +398,9 @@ APRIORI DXE {
     
     INF SurfacePkg/Driver/ColorbarsDxe/ColorbarsDxe.inf
 
+    INF MdeModulePkg/Universal/SmbiosDxe/SmbiosDxe.inf
+    INF SurfacePkg/Driver/SmBiosTableDxe/SmBiosTableDxe.inf
+
     INF DfciPkg/SettingsManager/SettingsManagerDxe.inf
     INF DfciPkg/IdentityAndAuthManager/IdentityAndAuthManagerDxe.inf
     INF MsGraphicsPkg/MsUiTheme/Dxe/MsUiThemeProtocol.inf
