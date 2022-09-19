@@ -253,6 +253,7 @@
   MemoryInitPeiLib|SurfaceDuo2Pkg/Library/MemoryInitPeiLib/PeiMemoryAllocationLib.inf
   PlatformPeiLib|SurfaceDuo2Pkg/Library/PlatformPeiLib/PlatformPeiLib.inf
   PlatformPrePiLib|SurfaceDuo2Pkg/Library/PlatformPrePiLib/PlatformPrePiLib.inf
+  AslUpdateLib|SurfacePkg/Library/DxeAslUpdateLib/DxeAslUpdateLib.inf
 
   # System Reset
   HwResetSystemLib|ArmPkg/Library/ArmSmcPsciResetSystemLib/ArmSmcPsciResetSystemLib.inf
@@ -488,7 +489,7 @@
   SurfaceDuo2Pkg/AcpiTables/SurfaceDuo2AcpiTables.inf
   SurfacePkg/Driver/SmBiosTableDxe/SmBiosTableDxe.inf
   MdeModulePkg/Universal/Acpi/AcpiTableDxe/AcpiTableDxe.inf
-  SurfaceDuo2Pkg/Driver/AcpiPlatformDxe/AcpiPlatformDxe.inf
+  MdeModulePkg/Universal/Acpi/AcpiPlatformDxe/AcpiPlatformDxe.inf
   MdeModulePkg/Universal/Acpi/BootGraphicsResourceTableDxe/BootGraphicsResourceTableDxe.inf
 
   # Pci

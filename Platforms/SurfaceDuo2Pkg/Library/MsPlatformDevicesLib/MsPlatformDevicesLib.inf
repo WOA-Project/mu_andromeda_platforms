@@ -21,10 +21,12 @@
  MsPlatformDevicesLib.c
 
 [Packages]
+  ArmPkg/ArmPkg.dec
   MdePkg/MdePkg.dec
   PcBdsPkg/PcBdsPkg.dec
   MsCorePkg/MsCorePkg.dec
   MdeModulePkg/MdeModulePkg.dec
+  SurfacePkg/SurfacePkg.dec
   SurfaceDuo2Pkg/SurfaceDuo2Pkg.dec
 
 [LibraryClasses]
@@ -34,3 +36,9 @@
   IoLib
   UefiBootServicesTableLib
   UefiLib
+  AslUpdateLib
+
+[Protocols]
+  gEfiChipInfoProtocolGuid                      ## CONSUMES
+  gEfiSMEMProtocolGuid                          ## CONSUMES
+  gEfiPlatformInfoProtocolGuid                  ## CONSUMES
