@@ -488,7 +488,7 @@
   SurfaceDuo2Pkg/AcpiTables/SurfaceDuo2AcpiTables.inf
   SurfacePkg/Driver/SmBiosTableDxe/SmBiosTableDxe.inf
   MdeModulePkg/Universal/Acpi/AcpiTableDxe/AcpiTableDxe.inf
-  MdeModulePkg/Universal/Acpi/AcpiPlatformDxe/AcpiPlatformDxe.inf
+  SurfaceDuo2Pkg/Driver/AcpiPlatformDxe/AcpiPlatformDxe.inf
   MdeModulePkg/Universal/Acpi/BootGraphicsResourceTableDxe/BootGraphicsResourceTableDxe.inf
 
   # Pci
