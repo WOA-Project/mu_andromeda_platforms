@@ -28,11 +28,9 @@
   SurfaceDuo2Pkg/SurfaceDuo2Pkg.dec
 
 [LibraryClasses]
+  BaseMemoryLib
   DebugLib
-  MemoryAllocationLib
   DevicePathLib
+  IoLib
   UefiBootServicesTableLib
-
-[Protocols]
-  gEfiGraphicsOutputProtocolGuid
-  gEfiSimpleTextInProtocolGuid
+  UefiLib
