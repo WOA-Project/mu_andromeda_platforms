@@ -45,6 +45,8 @@
   PrintLib
 
 [Pcd]
+  gSurfaceDuo2PkgTokenSpaceGuid.PcdStr3
+  gSurfaceDuo2PkgTokenSpaceGuid.PcdStr4
   gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVersionString
 
 [FixedPcd]

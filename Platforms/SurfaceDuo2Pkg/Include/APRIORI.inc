@@ -172,7 +172,7 @@ APRIORI DXE {
 
     FILE DRIVER = bd97f704-ce48-11eb-916c-db1f9c585103 {
             SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-bd97f704-ce48-11eb-916c-db1f9c585103/section0.dxe.depex
-            SECTION PE32 = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-bd97f704-ce48-11eb-916c-db1f9c585103/section1.pe
+            SECTION PE32 = SurfaceDuo2Pkg/PatchedBinaries/MsAbstractLayerDxe.efi
             SECTION UI = "MsAbstractLayerDxe"
     }
 
