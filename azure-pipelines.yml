@@ -73,13 +73,6 @@ steps:
     pathtoPublish: ./ImageResources/Epsilon/boot.img
     artifactName: SM8150 Boot (Surface Duo 1)
 
-# Publish Pcd Token Number (1 target)
-- task: PublishBuildArtifacts@1
-  displayName: 'Publish SM8150 Pcd Token Number build (Surface Duo 1)'
-  inputs:
-    pathtoPublish: ./Build/SurfaceDuo1-AARCH64/DEBUG_CLANG38/PcdTokenNumber
-    artifactName: SM8150 Pcd Token Number (Surface Duo 1)
-
 # Publish UEFI (1 target)
 - task: PublishBuildArtifacts@1
   displayName: 'Publish SM8350 UEFI build (Surface Duo 2)'
@@ -93,10 +86,3 @@ steps:
   inputs:
     pathtoPublish: ./ImageResources/Zeta/boot.img
     artifactName: SM8350 Boot (Surface Duo 2)
-
-# Publish Pcd Token Number (1 target)
-- task: PublishBuildArtifacts@1
-  displayName: 'Publish SM8350 Pcd Token Number build (Surface Duo 2)'
-  inputs:
-    pathtoPublish: ./Build/SurfaceDuo2-AARCH64/DEBUG_CLANG38/PcdTokenNumber
-    artifactName: SM8350 Pcd Token Number (Surface Duo 2)
