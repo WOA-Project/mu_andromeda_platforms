@@ -89,9 +89,10 @@ static ARM_MEMORY_REGION_DESCRIPTOR_EX gDeviceMemoryDescriptorEx[] = {
     {"FV Region",         0x9FF00000, 0x00100000, AddMem, SYS_MEM, SYS_MEM_CAP, BsData, WRITE_BACK_XN},
     {"HLOS4",             0xA0000000, 0x0EB00000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv, WRITE_BACK_XN},
     {"HYP RESERVED",      0xAEB00000, 0x11500000, AddMem, SYS_MEM, SYS_MEM_CAP, Reserv, WRITE_BACK_XN},
-    /* DDR Bank 0 End (0xB9300000) */
-    /* Carveout Region (0xB9300000 -> 0xB9900000, size 0x00600000) */
-    /* DDR Bank 1 0xB9900000 -> 0xBB700000 */
+    /* DDR Bank 0 End (0xB9700000) */
+    /* Carveout Region (0xB9700000 -> 0xB9D00000, size 0x00600000) */
+    /* DDR Bank 1 0xB9D00000 -> 0xBBB00000 */
+    /* Carveout Region (0xBBB00000 -> 0xC0000000, size 0x04500000) */
     /* DDR Bank 2 Start */
     {"RAM Partition",     0xC0000000, 0x01800000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN}, /* Added */
     {"TZApps",            0xC1800000, 0x03900000, NoHob,  SYS_MEM, SYS_MEM_CAP, Reserv, NS_DEVICE},
@@ -107,8 +108,6 @@ static ARM_MEMORY_REGION_DESCRIPTOR_EX gDeviceMemoryDescriptorEx[] = {
 
     /* RAM partition regions */
     {"RAM Partition",     0x140000000,0x40000000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
-    /* DDR Bank 2 End */
-    /* DDR Bank 3 Start */
 #if USE_MEMORY_FOR_SERIAL_OUTPUT == 1
     {"RAM Partition",     0x180000000,0x3FE00000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
     {"PStore",            0x1BFE00000,0x00200000, AddMem, MEM_RES, SYS_MEM_CAP, Reserv, WRITE_THROUGH_XN},
@@ -116,7 +115,7 @@ static ARM_MEMORY_REGION_DESCRIPTOR_EX gDeviceMemoryDescriptorEx[] = {
 #else
     {"RAM Partition",    0x180000000,0x100000000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
 #endif
-    /* DDR Bank 3 End */
+    /* DDR Bank 2 End */
 
     /* Other memory regions */
     {"IMEM Base",         0x14680000, 0x00040000, NoHob,  MMAP_IO, INITIALIZED, Conv,   NS_DEVICE},
