@@ -126,10 +126,13 @@
             SECTION UI = "TouchUtilsDxe"
     }
 
-    # FILE DRIVER = 99710012-4230-4842-9712-b9785b723812 {
-    #         SECTION PE32 = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-99710012-4230-4842-9712-b9785b723812/section0.pe
-    #         SECTION UI = "HidMouseAbsolutePointerDxe"
-    # }
+    # INF HidPkg/HidMouseAbsolutePointerDxe/HidMouseAbsolutePointerDxe.inf
+
+    # Why is this different yet using the same names and GUIDs? (Uses different function signatures for callbacks...)
+    FILE DRIVER = 99710012-4230-4842-9712-b9785b723812 {
+            SECTION PE32 = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-99710012-4230-4842-9712-b9785b723812/section0.pe
+            SECTION UI = "HidMouseAbsolutePointerDxe"
+    }
 
     FILE DRIVER = 73c39be5-1dbe-40b2-ae12-ac8d065f01ad {
             SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-73c39be5-1dbe-40b2-ae12-ac8d065f01ad/section0.dxe.depex
