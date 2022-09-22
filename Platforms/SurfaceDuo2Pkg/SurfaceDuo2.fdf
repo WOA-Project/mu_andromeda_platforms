@@ -130,6 +130,10 @@ READ_LOCK_STATUS   = TRUE
 
   !include SurfacePkg/FrontpageFdf.inc
 
+  FILE FREEFORM = PCD(gMsCorePkgTokenSpaceGuid.PcdRegulatoryGraphicFileGuid) {
+    SECTION RAW = SurfaceDuo2Pkg/Include/Resources/RegulatoryLogos.png
+  }
+
   INF SurfacePkg/UFP/ufpdevicefw.inf
 
 [FV.FVMAIN_COMPACT]
