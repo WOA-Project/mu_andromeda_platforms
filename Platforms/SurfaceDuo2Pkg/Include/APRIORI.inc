@@ -178,11 +178,11 @@ APRIORI DXE {
 
     INF MdeModulePkg/Universal/Variable/RuntimeDxe/VariableRuntimeDxe.inf
 
-    # FILE DRIVER = 040e1e61-0afb-411b-9ec9-00f3fc59cc13 {
-    #       SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-1/section0/section1/volume-0/file-040e1e61-0afb-411b-9ec9-00f3fc59cc13/section0.dxe.depex
-    #       SECTION PE32 = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-1/section0/section1/volume-0/file-040e1e61-0afb-411b-9ec9-00f3fc59cc13/section1.pe
-    #       SECTION UI = "QcomWDogDxe"
-    # }
+    FILE DRIVER = 040e1e61-0afb-411b-9ec9-00f3fc59cc13 {
+          SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-1/section0/section1/volume-0/file-040e1e61-0afb-411b-9ec9-00f3fc59cc13/section0.dxe.depex
+          SECTION PE32 = SurfaceDuo2Pkg/PatchedBinaries/QcomWDogDxe.efi
+          SECTION UI = "QcomWDogDxe"
+    }
 
     FILE DRIVER = 7db0793a-4402-4be1-906e-d0fabad2707e {
             SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-7db0793a-4402-4be1-906e-d0fabad2707e/section0.dxe.depex
@@ -196,10 +196,10 @@ APRIORI DXE {
             SECTION UI = "ResetRuntimeDxe"
     }
 
-    # FILE DRIVER = 1c04f529-0612-4319-9315-b2e75c16810a {
-    #         SECTION PE32 = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-1c04f529-0612-4319-9315-b2e75c16810a/section0.pe
-    #         SECTION UI = "FeatureEnablerDxe"
-    # }
+    FILE DRIVER = 1c04f529-0612-4319-9315-b2e75c16810a {
+            SECTION PE32 = SurfaceDuo2Pkg/PatchedBinaries/FeatureEnablerDxe.efi
+            SECTION UI = "FeatureEnablerDxe"
+    }
 
     INF SurfacePkg/Driver/SimpleFbDxe/SimpleFbDxe.inf
 
