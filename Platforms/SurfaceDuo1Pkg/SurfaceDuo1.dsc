@@ -1,18 +1,13 @@
+## @file
 #
 #  Copyright (c) 2011-2015, ARM Limited. All rights reserved.
 #  Copyright (c) 2014, Linaro Limited. All rights reserved.
 #  Copyright (c) 2015 - 2016, Intel Corporation. All rights reserved.
 #  Copyright (c) 2018, Bingxing Wang. All rights reserved.
 #
-#  This program and the accompanying materials
-#  are licensed and made available under the terms and conditions of the BSD License
-#  which accompanies this distribution.  The full text of the license may be found at
-#  http://opensource.org/licenses/bsd-license.php
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
 #
-#  THE PROGRAM IS DISTRIBUTED UNDER THE BSD LICENSE ON AN "AS IS" BASIS,
-#  WITHOUT WARRANTIES OR REPRESENTATIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED.
-#
-#
+##
 
 ################################################################################
 #
@@ -61,6 +56,12 @@
   gSurfacePkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1350
   gSurfacePkgTokenSpaceGuid.PcdMipiFrameBufferHeight|1800
   gSurfacePkgTokenSpaceGuid.PcdMipiFrameBufferPixelBpp|32
+  gEfiMdeModulePkgTokenSpaceGuid.PcdVideoHorizontalResolution|1350
+  gEfiMdeModulePkgTokenSpaceGuid.PcdVideoVerticalResolution|1800
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSetupVideoHorizontalResolution|1350
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSetupVideoVerticalResolution|1800
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSetupConOutRow|150
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSetupConOutColumn|150
 
   # PStore
   gSurfacePkgTokenSpaceGuid.PcdPStoreBufferAddress|0x17FE00000
