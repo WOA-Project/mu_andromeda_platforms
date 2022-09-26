@@ -56,12 +56,6 @@
   gSurfacePkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1350
   gSurfacePkgTokenSpaceGuid.PcdMipiFrameBufferHeight|1800
   gSurfacePkgTokenSpaceGuid.PcdMipiFrameBufferPixelBpp|32
-  gEfiMdeModulePkgTokenSpaceGuid.PcdVideoHorizontalResolution|1350
-  gEfiMdeModulePkgTokenSpaceGuid.PcdVideoVerticalResolution|1800
-  gEfiMdeModulePkgTokenSpaceGuid.PcdSetupVideoHorizontalResolution|1350
-  gEfiMdeModulePkgTokenSpaceGuid.PcdSetupVideoVerticalResolution|1800
-  gEfiMdeModulePkgTokenSpaceGuid.PcdSetupConOutRow|150
-  gEfiMdeModulePkgTokenSpaceGuid.PcdSetupConOutColumn|150
 
   # PStore
   gSurfacePkgTokenSpaceGuid.PcdPStoreBufferAddress|0x17FE00000
