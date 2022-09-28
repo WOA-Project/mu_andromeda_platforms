@@ -74,7 +74,7 @@
     #         SECTION UI = "ColorbarsDxe"
     # }
 
-    INF SurfacePkg/Driver/ColorbarsDxe/ColorbarsDxe.inf
+    INF SurfaceDuoFamilyPkg/Driver/ColorbarsDxe/ColorbarsDxe.inf
 
     FILE DRIVER = 93f8bcc8-ff16-11ea-a6e6-47a970294471 {
             SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.MXF.1.0-00872-LAHAINA-2/volume-0/file-2/section0/section1/volume-0/file-93f8bcc8-ff16-11ea-a6e6-47a970294471/section0.dxe.depex
@@ -169,7 +169,7 @@
     #         SECTION UI = "DisplayDxe"
     # }
 
-    INF SurfacePkg/Driver/SimpleFbDxe/SimpleFbDxe.inf
+    INF SurfaceDuoFamilyPkg/Driver/SimpleFbDxe/SimpleFbDxe.inf
     INF MdeModulePkg/Bus/Pci/PciBusDxe/PciBusDxe.inf
 
     FILE DRIVER = 5bd181db-0487-4f1a-ae73-820e165611b3 {

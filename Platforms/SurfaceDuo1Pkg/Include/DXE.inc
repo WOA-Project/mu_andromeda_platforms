@@ -450,7 +450,7 @@
     #         SECTION UI = "ColorbarsDxe"
     # }
     
-    INF SurfacePkg/Driver/ColorbarsDxe/ColorbarsDxe.inf
+    INF SurfaceDuoFamilyPkg/Driver/ColorbarsDxe/ColorbarsDxe.inf
 
     FILE APPLICATION = eee9c2b1-16ca-4f34-87ea-2e6d1e160cc4 {
             SECTION DXE_DEPEX = SurfaceDuoBinaries/BOOT.XF.3.0-00527-SM8150LZB-1-202206/volume-0/file-2/section0/section1/volume-0/file-eee9c2b1-16ca-4f34-87ea-2e6d1e160cc4/section0.dxe.depex

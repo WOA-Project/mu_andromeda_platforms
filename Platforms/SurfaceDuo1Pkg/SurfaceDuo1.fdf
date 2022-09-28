@@ -84,7 +84,7 @@ READ_LOCK_STATUS   = TRUE
   # Secure Boot Key Enroll
   !if $(SECURE_BOOT_ENABLE) == TRUE
     INF SecurityPkg/VariableAuthenticated/SecureBootConfigDxe/SecureBootConfigDxe.inf
-    # INF SurfacePkg/Driver/SecureBootProvisioningDxe/SecureBootProvisioningDxe.inf
+    # INF SurfaceDuoFamilyPkg/Driver/SecureBootProvisioningDxe/SecureBootProvisioningDxe.inf
   !endif
 
   INF EmbeddedPkg/Drivers/VirtualKeyboardDxe/VirtualKeyboardDxe.inf
@@ -111,7 +111,7 @@ READ_LOCK_STATUS   = TRUE
   # ACPI and SMBIOS
   INF MdeModulePkg/Universal/Acpi/AcpiTableDxe/AcpiTableDxe.inf
   INF MdeModulePkg/Universal/Acpi/AcpiPlatformDxe/AcpiPlatformDxe.inf
-  INF SurfacePkg/Driver/SmBiosTableDxe/SmBiosTableDxe.inf
+  INF SurfaceDuoFamilyPkg/Driver/SmBiosTableDxe/SmBiosTableDxe.inf
 
   # ACPI Tables
   !include SurfaceDuo1Pkg/Include/ACPI.inc
@@ -122,13 +122,13 @@ READ_LOCK_STATUS   = TRUE
 
   INF MdeModulePkg/Universal/EsrtFmpDxe/EsrtFmpDxe.inf
 
-  !include SurfacePkg/FrontpageFdf.inc
+  !include SurfaceDuoFamilyPkg/Frontpage.fdf.inc
 
   FILE FREEFORM = PCD(gMsCorePkgTokenSpaceGuid.PcdRegulatoryGraphicFileGuid) {
     SECTION RAW = SurfaceDuo1Pkg/Include/Resources/RegulatoryLogos.png
   }
 
-  INF SurfacePkg/UFP/ufpdevicefw.inf
+  INF SurfaceDuoFamilyPkg/UFP/ufpdevicefw.inf
 
 [FV.FVMAIN_COMPACT]
 FvAlignment        = 8
@@ -148,7 +148,12 @@ READ_STATUS        = TRUE
 READ_LOCK_CAP      = TRUE
 READ_LOCK_STATUS   = TRUE
 
-  INF SurfacePkg/PrePi/PrePi.inf
+  INF SurfaceDuoFamilyPkg/PrePi/PrePi.inf
+
+  FILE FREEFORM = dde58710-41cd-4306-dbfb-3fa90bb1d2dd {
+    SECTION UI = "uefiplat.cfg"
+    SECTION RAW = SurfaceDuoBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-3/section1.raw
+  }
 
   FILE FV_IMAGE = 9E21FD93-9C72-4c15-8C4B-E77F1DB2D792 {
     SECTION GUIDED EE4E5898-3914-4259-9D6E-DC7BD79403CF PROCESSING_REQUIRED = TRUE {
@@ -156,4 +161,4 @@ READ_LOCK_STATUS   = TRUE
     }
   }
 
-  !include SurfaceDuo1.fdf.inc
+  !include SurfaceDuoFamilyPkg/SurfaceDuoFamily.fdf.inc

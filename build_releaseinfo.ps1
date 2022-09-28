@@ -47,5 +47,5 @@ if ($commit) {
         "#endif"
     )
 
-    Set-Content -Path Platforms/SurfacePkg/Include/Resources/ReleaseInfo.h -Value $releaseInfoContent -ErrorAction SilentlyContinue -Force
+    Set-Content -Path Platforms/SurfaceDuoFamilyPkg/Include/Resources/ReleaseInfo.h -Value $releaseInfoContent -ErrorAction SilentlyContinue -Force
 }

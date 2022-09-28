@@ -14,7 +14,7 @@
   MdeModulePkg/MdeModulePkg.dec
   EmbeddedPkg/EmbeddedPkg.dec
   ArmPkg/ArmPkg.dec
-  SurfacePkg/SurfacePkg.dec
+  SurfaceDuoFamilyPkg/SurfaceDuoFamilyPkg.dec
   SurfaceDuo2Pkg/SurfaceDuo2Pkg.dec
 
 [LibraryClasses]
@@ -52,7 +52,7 @@
 [FixedPcd]
   gArmTokenSpaceGuid.PcdGicDistributorBase
   gArmTokenSpaceGuid.PcdGicRedistributorsBase
-  gSurfacePkgTokenSpaceGuid.PcdMipiFrameBufferAddress
-  gSurfacePkgTokenSpaceGuid.PcdMipiFrameBufferWidth
-  gSurfacePkgTokenSpaceGuid.PcdMipiFrameBufferHeight
-  gSurfacePkgTokenSpaceGuid.PcdMipiFrameBufferPixelBpp
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferAddress
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferWidth
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferHeight
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferPixelBpp

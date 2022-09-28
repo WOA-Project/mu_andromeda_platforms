@@ -29,13 +29,6 @@
   DEFINE USE_SCREEN_FOR_SERIAL_OUTPUT = 0
   DEFINE USE_MEMORY_FOR_SERIAL_OUTPUT = 0
 
-[BuildOptions.common]
-!if $(USE_MEMORY_FOR_SERIAL_OUTPUT) == 1
-  GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=8350 -DUSE_MEMORY_FOR_SERIAL_OUTPUT=1
-!else
-  GCC:*_*_AARCH64_CC_FLAGS = -DSILICON_PLATFORM=8350
-!endif
-  
 [PcdsFixedAtBuild.common]
   # Platform-specific
   gArmTokenSpaceGuid.PcdSystemMemoryBase|0x80000000         # 2GB Base
@@ -44,22 +37,29 @@
   gArmPlatformTokenSpaceGuid.PcdClusterCount|3
 
   # SMBIOS
-  gSurfacePkgTokenSpaceGuid.PcdSmbiosProcessorModel|"Snapdragon (TM) 888 @ 2.84 GHz"
-  gSurfacePkgTokenSpaceGuid.PcdSmbiosProcessorRetailModel|"SM8350"
-  gSurfacePkgTokenSpaceGuid.PcdSmbiosSystemModel|"Surface Duo 2"
-  gSurfacePkgTokenSpaceGuid.PcdSmbiosSystemRetailModel|"1995"
-  gSurfacePkgTokenSpaceGuid.PcdSmbiosSystemRetailSku|"Surface_Duo_2_1995"
-  gSurfacePkgTokenSpaceGuid.PcdSmbiosBoardModel|"Surface Duo 2"
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemModel|"Surface Duo 2"
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailModel|"1995"
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailSku|"Surface_Duo_2_1995"
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosBoardModel|"Surface Duo 2"
 
   # Simple FrameBuffer
-  gSurfacePkgTokenSpaceGuid.PcdMipiFrameBufferAddress|0xe1000000
-  gSurfacePkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1344
-  gSurfacePkgTokenSpaceGuid.PcdMipiFrameBufferHeight|1892
-  gSurfacePkgTokenSpaceGuid.PcdMipiFrameBufferPixelBpp|32
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferAddress|0xe1000000
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1344
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferHeight|1892
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferPixelBpp|32
 
   # PStore
-  gSurfacePkgTokenSpaceGuid.PcdPStoreBufferAddress|0x1BFE00000
-  gSurfacePkgTokenSpaceGuid.PcdPStoreBufferSize|0x00200000
-  
-!include SurfaceDuo2Pkg/Shared.dsc.inc
-!include SurfacePkg/FrontpageDsc.inc
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdPStoreBufferAddress|0x1BFE00000
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdPStoreBufferSize|0x00200000
+
+[PcdsDynamicDefault.common]
+  gEfiMdeModulePkgTokenSpaceGuid.PcdVideoHorizontalResolution|1344
+  gEfiMdeModulePkgTokenSpaceGuid.PcdVideoVerticalResolution|1892
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSetupVideoHorizontalResolution|1344
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSetupVideoVerticalResolution|1892
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSetupConOutRow|158
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSetupConOutColumn|150
+
+!include SurfaceDuo2Pkg/Sm8350Family.dsc.inc
+!include SurfaceDuoFamilyPkg/SurfaceDuoFamily.dsc.inc
+!include SurfaceDuoFamilyPkg/Frontpage.dsc.inc
