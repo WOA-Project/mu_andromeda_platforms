@@ -393,6 +393,11 @@
 	  RealTimeClockLib|SurfaceDuoFamilyPkg/Library/VirtualRealTimeClockLib/VirtualRealTimeClockLib.inf
   }
 
+  # Debug heartbeat
+!if $(SEND_HEARTBEAT_TO_SERIAL) == 1
+  SurfaceDuoFamilyPkg/Driver/HeartbeatDxe/HeartbeatDxe.inf
+!endif
+
   # Runtime Services
   MdeModulePkg/Core/RuntimeDxe/RuntimeDxe.inf
   MdeModulePkg/Universal/CapsuleRuntimeDxe/CapsuleRuntimeDxe.inf

@@ -91,6 +91,11 @@ READ_LOCK_STATUS   = TRUE
     # INF SurfaceDuoFamilyPkg/Driver/SecureBootProvisioningDxe/SecureBootProvisioningDxe.inf
   !endif
 
+  # Debug heartbeat
+!if $(SEND_HEARTBEAT_TO_SERIAL) == 1
+  INF SurfaceDuoFamilyPkg/Driver/HeartbeatDxe/HeartbeatDxe.inf
+!endif
+
   INF EmbeddedPkg/Drivers/VirtualKeyboardDxe/VirtualKeyboardDxe.inf
 
   # BDS
