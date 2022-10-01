@@ -2,33 +2,55 @@
 
 ![Surface Duo Dual Screen Windows](https://user-images.githubusercontent.com/3755345/170788230-a42e624a-d2ed-4070-b289-a9b34774bcd0.png)
 
+## Description
+
+This repository hosts the code and underlying work behind the Surface Duo Windows UEFI firmware "bootstrapper" for Surface Duo 1 and Surface Duo 2 devices.
+
+## Compatibility
+
+- Surface Duo (First generation, any model)
+- Surface Duo 2 (Second generation, any model) (Currently Windows bringup is not done, in other words, Windows will not boot without debugging)
+
+It is not going to work on any other device even if they use the same SoC as is. You may risk breaking your other device if you even try it. It is only for Surface Duo devices, and there is no interest in adding support for other devices in this repository.
+
 ## Build
 
-Quick notes for building:
+### Minimum System Requirements
 
-- Use Ubuntu 20.04 x64
-- Generate ACPI tables with IASL
-- Follow this quick draft
+- At least 2 cores x86_64 processor running at 2Ghz or higher implementing the X86 ISA with 64 bit AMD extensions (AMD64) (Currently, building on any other ISA is not supported. In other words, do. not. build. this. on. a. phone. running. android. please.)
+- SSD
+- A linux environment capable of running below tool stack:
+  - Bash
+  - Python 3.10 or higher (python3.10, python3.10-venv, python3.10-pip)
+  - mono-devel
+  - git-core, git
+  - build-essential
+  - PowerShell Core 7
+  - clang38 (or higher), llvm, ggc-aarch64-linux-gnu
+- Exported CLANG38_BIN environment variable pointing to LLVM 10 binary folder
+- Exported CLANG38_AARCH64_PREFIX variable equalling to aarch64-linux-gnu-
+- Updated alternative for /usr/bin/objcopy pointing to the aarch64-linux-gnu-objcopy binary due to an issue in edk2 stuart build system
 
-NOTE: The build scripts were designed to run in a CI, take inspiration from them, but the behavior on installs with compilers already installed/env vars set is undefined.
+### Build Instructions
+
+- Clone this repository to a reasonable location on your disk (There is absolutely no need to initialize submodules, stuart will do it for you later on)
+- Run the following commands in order, with 0 typo, and without copy pasting all of them blindly all at once:
 
 ```
 # Setup environment
 sudo ./setup_env.sh
-
-# Activate Workspace
-python3 -m venv SurfaceDuo
-source SurfaceDuo/bin/activate
 
 # Stamp
 ./build_releaseinfo.ps1
 
 # Build UEFI
 pip install --upgrade -r pip-requirements.txt
-./build_uefi.sh
+./build_uefi_epsilon.sh
+./build_uefi_zeta.sh
 
 # Generate ELF image
-./build.sh
+./build_bootshim.sh
+./build_boot_images.sh
 ```
 
 ## Acknowledgements
