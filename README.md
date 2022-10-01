@@ -29,7 +29,6 @@ It is not going to work on any other device even if they use the same SoC as is.
   - clang38 (or higher), llvm, ggc-aarch64-linux-gnu
 - Exported CLANG38_BIN environment variable pointing to LLVM 10 binary folder
 - Exported CLANG38_AARCH64_PREFIX variable equalling to aarch64-linux-gnu-
-- Updated alternative for /usr/bin/objcopy pointing to the aarch64-linux-gnu-objcopy binary due to an issue in edk2 stuart build system
 
 ### Build Instructions
 
