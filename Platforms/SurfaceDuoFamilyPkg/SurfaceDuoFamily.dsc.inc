@@ -40,7 +40,7 @@
 
 [PcdsFixedAtBuild.common]
   gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVendor|L"DuoWoA authors"
-  gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVersionString|L"2209.90"
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVersionString|L"2210.1"
   gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareRevision|0x00024001
   gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultOemId|"QCOM  "
   gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultOemTableId|0x324B44454D4F4351
