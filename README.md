@@ -8,8 +8,10 @@ This repository hosts the code and underlying work behind the Surface Duo Window
 
 ## Compatibility
 
-- Surface Duo (First generation, any model)
-- Surface Duo 2 (Second generation, any model) (Currently Windows bringup is not done, in other words, Windows will not boot without debugging)
+| Device Name   | Device Generation/Year | Codenames/Internal Names | UEFI Port Status | Windows Bootability Status |
+|---------------|------------------------|--------------------------|------------------|----------------------------|
+| Surface Duo   | First generation 2020  | Epsilon, OEMB1, OEMA0 (Bogus?), oema0 oema0 b1 (Bogus?), Andromeda (Bogus?) | ✅ | ✅ |
+| Surface Duo 2 | Second generation 2021 | Zeta, OEMC1, oemc1 sf c1, Andromeda (Bogus?) | ✅ | ❌ |
 
 It is not going to work on any other device even if they use the same SoC as is. You may risk breaking your other device if you even try it. It is only for Surface Duo devices, and there is no interest in adding support for other devices in this repository.
 
