@@ -132,10 +132,21 @@ QGicEarlyConfiguration(VOID)
 
 VOID PlatformInitialize()
 {
+  // Initialize UART Serial
   UartInit();
 
+  // Configure Qualcomm GIC Early
   QGicEarlyConfiguration();
+
+  // Launch all 8 CPUs for Multi Processor Parking Protocol
+  LaunchAllCPUs();
 
   // Disable WatchDog Timer
   SetWatchdogState(FALSE);
+}
+
+VOID SecondaryPlatformInitialize()
+{
+  // Initialize Secondary CPU via MpPark
+  MpParkMain();
 }
