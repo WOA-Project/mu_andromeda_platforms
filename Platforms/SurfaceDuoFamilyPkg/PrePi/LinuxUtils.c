@@ -27,8 +27,16 @@ VOID BootLinux(IN VOID *DeviceTreeLoadAddress, IN VOID *KernelLoadAddress)
   CpuDeadLoop();
 }
 
+STATIC BOOLEAN RanOnceFlag = FALSE;
+
 VOID ContinueToLinuxIfAllowed(IN VOID *DeviceTreeLoadAddress, IN VOID *KernelLoadAddress)
 {
+  if (RanOnceFlag) {
+    return;
+  }
+
+  RanOnceFlag = TRUE;
+
   if (IsLinuxAvailable(KernelLoadAddress)) {
     DEBUG(
         (EFI_D_INFO | EFI_D_LOAD,

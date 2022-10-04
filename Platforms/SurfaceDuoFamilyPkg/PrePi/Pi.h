@@ -40,16 +40,4 @@ BuildMemoryTypeInformationHob (
   VOID
   );
 
-#pragma pack(1)
-typedef struct {
-  /* First 2KB is reserved for OS */
-  UINT32 ProcessorId;
-  UINT32 Reserved;
-  UINT64 JumpAddress;
-  UINT8  OsReserved[2032];
-  /* Next 2KB is reserved for firmware */
-  UINT64 El2JumpFlag;
-} EFI_PROCESSOR_MAILBOX, *PEFI_PROCESSOR_MAILBOX;
-#pragma pack()
-
 #endif /* _PREPI_H_ */

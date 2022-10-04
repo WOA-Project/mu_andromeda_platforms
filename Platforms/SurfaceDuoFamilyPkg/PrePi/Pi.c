@@ -23,7 +23,7 @@ VOID EFIAPI ProcessLibraryConstructorList(VOID);
 
 VOID
 PrePiMain(
-  IN VOID *StackBase, 
+  IN VOID *StackBase,
   IN UINTN StackSize
   )
 {
@@ -113,7 +113,7 @@ PrePiMain(
 
 VOID
 CEntryPoint(
-  IN VOID *StackBase, 
+  IN VOID *StackBase,
   IN UINTN StackSize
   )
 {
