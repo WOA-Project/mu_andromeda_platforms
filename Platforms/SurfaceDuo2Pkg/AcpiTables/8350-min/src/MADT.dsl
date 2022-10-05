@@ -29,7 +29,7 @@
 [05Ch 0092   8]  Hypervisor GIC Base Address : 0000000000000000
 [064h 0100   4]        Virtual GIC Interrupt : 00000019
 [068h 0104   8]   Redistributor Base Address : 0000000000000000
-[070h 0112   8]                    ARM MPIDR : 0000000081000000
+[070h 0112   8]                    ARM MPIDR : 0000000000000000
 [078h 0120   1]             Efficiency Class : 00
 [079h 0121   1]                     Reserved : 00
 [07Ah 0122   2]       SPE Overflow Interrupt : 0000
@@ -37,7 +37,7 @@
 [07Ch 0124   1]                Subtable Type : 0B [Generic Interrupt Controller]
 [07Dh 0125   1]                       Length : 50
 [07Eh 0126   2]                     Reserved : 0000
-[080h 0128   4]         CPU Interface Number : 00000000
+[080h 0128   4]         CPU Interface Number : 00000001
 [084h 0132   4]                Processor UID : 00000001
 [088h 0136   4]        Flags (decoded below) : 00000001
                            Processor Enabled : 1
@@ -51,7 +51,7 @@
 [0ACh 0172   8]  Hypervisor GIC Base Address : 0000000000000000
 [0B4h 0180   4]        Virtual GIC Interrupt : 00000019
 [0B8h 0184   8]   Redistributor Base Address : 0000000000000000
-[0C0h 0192   8]                    ARM MPIDR : 0000000081000100
+[0C0h 0192   8]                    ARM MPIDR : 0000000000000100
 [0C8h 0200   1]             Efficiency Class : 00
 [0C9h 0201   1]                     Reserved : 00
 [0CAh 0202   2]       SPE Overflow Interrupt : 0000
@@ -59,7 +59,7 @@
 [0CCh 0204   1]                Subtable Type : 0B [Generic Interrupt Controller]
 [0CDh 0205   1]                       Length : 50
 [0CEh 0206   2]                     Reserved : 0000
-[0D0h 0208   4]         CPU Interface Number : 00000000
+[0D0h 0208   4]         CPU Interface Number : 00000002
 [0D4h 0212   4]                Processor UID : 00000002
 [0D8h 0216   4]        Flags (decoded below) : 00000001
                            Processor Enabled : 1
@@ -73,7 +73,7 @@
 [0FCh 0252   8]  Hypervisor GIC Base Address : 0000000000000000
 [104h 0260   4]        Virtual GIC Interrupt : 00000019
 [108h 0264   8]   Redistributor Base Address : 0000000000000000
-[110h 0272   8]                    ARM MPIDR : 0000000081000200
+[110h 0272   8]                    ARM MPIDR : 0000000000000200
 [118h 0280   1]             Efficiency Class : 00
 [119h 0281   1]                     Reserved : 00
 [11Ah 0282   2]       SPE Overflow Interrupt : 0000
@@ -81,7 +81,7 @@
 [11Ch 0284   1]                Subtable Type : 0B [Generic Interrupt Controller]
 [11Dh 0285   1]                       Length : 50
 [11Eh 0286   2]                     Reserved : 0000
-[120h 0288   4]         CPU Interface Number : 00000000
+[120h 0288   4]         CPU Interface Number : 00000003
 [124h 0292   4]                Processor UID : 00000003
 [128h 0296   4]        Flags (decoded below) : 00000001
                            Processor Enabled : 1
@@ -95,7 +95,7 @@
 [14Ch 0332   8]  Hypervisor GIC Base Address : 0000000000000000
 [154h 0340   4]        Virtual GIC Interrupt : 00000019
 [158h 0344   8]   Redistributor Base Address : 0000000000000000
-[160h 0352   8]                    ARM MPIDR : 0000000081000300
+[160h 0352   8]                    ARM MPIDR : 0000000000000300
 [168h 0360   1]             Efficiency Class : 00
 [169h 0361   1]                     Reserved : 00
 [16Ah 0362   2]       SPE Overflow Interrupt : 0000
@@ -103,7 +103,7 @@
 [16Ch 0364   1]                Subtable Type : 0B [Generic Interrupt Controller]
 [16Dh 0365   1]                       Length : 50
 [16Eh 0366   2]                     Reserved : 0000
-[170h 0368   4]         CPU Interface Number : 00000000
+[170h 0368   4]         CPU Interface Number : 00000004
 [174h 0372   4]                Processor UID : 00000004
 [178h 0376   4]        Flags (decoded below) : 00000001
                            Processor Enabled : 1
@@ -117,7 +117,7 @@
 [19Ch 0412   8]  Hypervisor GIC Base Address : 0000000000000000
 [1A4h 0420   4]        Virtual GIC Interrupt : 00000019
 [1A8h 0424   8]   Redistributor Base Address : 0000000000000000
-[1B0h 0432   8]                    ARM MPIDR : 0000000081000400
+[1B0h 0432   8]                    ARM MPIDR : 0000000000000400
 [1B8h 0440   1]             Efficiency Class : 01
 [1B9h 0441   1]                     Reserved : 00
 [1BAh 0442   2]       SPE Overflow Interrupt : 0000
@@ -125,7 +125,7 @@
 [1BCh 0444   1]                Subtable Type : 0B [Generic Interrupt Controller]
 [1BDh 0445   1]                       Length : 50
 [1BEh 0446   2]                     Reserved : 0000
-[1C0h 0448   4]         CPU Interface Number : 00000000
+[1C0h 0448   4]         CPU Interface Number : 00000005
 [1C4h 0452   4]                Processor UID : 00000005
 [1C8h 0456   4]        Flags (decoded below) : 00000001
                            Processor Enabled : 1
@@ -139,7 +139,7 @@
 [1ECh 0492   8]  Hypervisor GIC Base Address : 0000000000000000
 [1F4h 0500   4]        Virtual GIC Interrupt : 00000019
 [1F8h 0504   8]   Redistributor Base Address : 0000000000000000
-[200h 0512   8]                    ARM MPIDR : 0000000081000500
+[200h 0512   8]                    ARM MPIDR : 0000000000000500
 [208h 0520   1]             Efficiency Class : 01
 [209h 0521   1]                     Reserved : 00
 [20Ah 0522   2]       SPE Overflow Interrupt : 0000
@@ -147,7 +147,7 @@
 [20Ch 0524   1]                Subtable Type : 0B [Generic Interrupt Controller]
 [20Dh 0525   1]                       Length : 50
 [20Eh 0526   2]                     Reserved : 0000
-[210h 0528   4]         CPU Interface Number : 00000000
+[210h 0528   4]         CPU Interface Number : 00000006
 [214h 0532   4]                Processor UID : 00000006
 [218h 0536   4]        Flags (decoded below) : 00000001
                            Processor Enabled : 1
@@ -161,7 +161,7 @@
 [23Ch 0572   8]  Hypervisor GIC Base Address : 0000000000000000
 [244h 0580   4]        Virtual GIC Interrupt : 00000019
 [248h 0584   8]   Redistributor Base Address : 0000000000000000
-[250h 0592   8]                    ARM MPIDR : 0000000081000600
+[250h 0592   8]                    ARM MPIDR : 0000000000000600
 [258h 0600   1]             Efficiency Class : 01
 [259h 0601   1]                     Reserved : 00
 [25Ah 0602   2]       SPE Overflow Interrupt : 0000
@@ -169,7 +169,7 @@
 [25Ch 0604   1]                Subtable Type : 0B [Generic Interrupt Controller]
 [25Dh 0605   1]                       Length : 50
 [25Eh 0606   2]                     Reserved : 0000
-[260h 0608   4]         CPU Interface Number : 00000000
+[260h 0608   4]         CPU Interface Number : 00000007
 [264h 0612   4]                Processor UID : 00000007
 [268h 0616   4]        Flags (decoded below) : 00000001
                            Processor Enabled : 1
@@ -183,7 +183,7 @@
 [28Ch 0652   8]  Hypervisor GIC Base Address : 0000000000000000
 [294h 0660   4]        Virtual GIC Interrupt : 00000019
 [298h 0664   8]   Redistributor Base Address : 0000000000000000
-[2A0h 0672   8]                    ARM MPIDR : 0000000081000700
+[2A0h 0672   8]                    ARM MPIDR : 0000000000000700
 [2A8h 0680   1]             Efficiency Class : 02
 [2A9h 0681   1]                     Reserved : 00
 [2AAh 0682   2]       SPE Overflow Interrupt : 0000

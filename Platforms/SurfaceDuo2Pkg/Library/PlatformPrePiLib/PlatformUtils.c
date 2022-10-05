@@ -147,10 +147,10 @@ VOID PlatformInitialize()
   SetWatchdogState(FALSE);
 }
 
-VOID SecondaryPlatformInitialize()
+VOID SecondaryPlatformInitialize(UINTN MpIdr)
 {
 #if PREFER_MPPARK_OVER_SMC_PSCI == 1
   // Initialize Secondary CPU via MpPark
-  MpParkMain();
+  MpParkMain(MpIdr);
 #endif
 }

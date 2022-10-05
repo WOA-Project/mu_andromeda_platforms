@@ -12,6 +12,9 @@ GCC_ASM_IMPORT (ArmInvalidateTlb)
 GCC_ASM_EXPORT (_SecondaryModuleEntryPoint)
 
 _SecondaryModuleEntryPoint:
+  /* Keep the CPU index in x19 */
+  mov x19, x0
+
   mov x0, #0
   mov x1, #0
 
@@ -36,7 +39,7 @@ _SetupExceptionVector:
   bl ArmWriteVBar
 
   /* Keep the CPU index in x4 */
-  mrs     x4, mpidr_el1
+  mov     x4, x19
   and     x4, x4, #0xFFFF
   lsr     x4, x4, #8
 
@@ -64,6 +67,7 @@ _ClearStackSecondary:
 
   bl ArmInvalidateDataCache
 
+  mov x0, x19
   bl SecondaryPlatformInitialize
 
 secondarydead:

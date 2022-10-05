@@ -50,10 +50,12 @@
 #define QC_HYP_UID2 0x946f609b
 #define QC_HYP_UID3 0x54539de6
 
-VOID PlatformInitialize();
-VOID SecondaryPlatformInitialize();
+VOID PlatformInitialize(VOID);
+
 BOOLEAN IsLinuxBootRequested(VOID);
-VOID MpParkMain(VOID);
+
 VOID LaunchAllCPUs(VOID);
+VOID SecondaryPlatformInitialize(UINTN MpIdr);
+VOID MpParkMain(UINTN MpIdr);
 
 #endif /* _PLATFORM_UTILS_H_ */

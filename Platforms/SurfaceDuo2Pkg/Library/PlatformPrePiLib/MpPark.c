@@ -1,13 +1,13 @@
-#include <Library/PcdLib.h>
 #include <Library/ArmLib.h>
+#include <Library/BaseLib.h>
 #include <Library/BaseMemoryLib.h>
 #include <Library/DebugLib.h>
+#include <Library/HobLib.h>
 #include <Library/IoLib.h>
 #include <Library/MemoryAllocationLib.h>
-#include <Library/HobLib.h>
-#include <Library/SerialPortLib.h>
+#include <Library/PcdLib.h>
 #include <Library/PrintLib.h>
-#include <Library/BaseLib.h>
+#include <Library/SerialPortLib.h>
 
 #include <IndustryStandard/ArmStdSmc.h>
 #include <Library/ArmSmcLib.h>
@@ -18,17 +18,14 @@
 #include "MpPark.h"
 #include <Configuration/DeviceMemoryMap.h>
 
-// For some reason Qualcomm defines a reserved bit, plus the Multithreading bit, despite
-// Cortex-A55, Cortex-A78 and Cortex-X1 not supporting Multithreading
-// So set the multi processor ids accordingly...
 static UINT32 ProcessorIdMapping[8] = {
-    0x81000000, 0x81000100, 0x81000200, 0x81000300,
-    0x81000400, 0x81000500, 0x81000600, 0x81000700,
+    0x00000000, 0x00000100, 0x00000200, 0x00000300,
+    0x00000400, 0x00000500, 0x00000600, 0x00000700,
 };
 
 EFI_STATUS
 EFIAPI
-MpParkLocateArea(PARM_MEMORY_REGION_DESCRIPTOR_EX* MemoryDescriptor)
+MpParkLocateArea(PARM_MEMORY_REGION_DESCRIPTOR_EX *MemoryDescriptor)
 {
   PARM_MEMORY_REGION_DESCRIPTOR_EX MemoryDescriptorEx =
       gDeviceMemoryDescriptorEx;
@@ -56,8 +53,7 @@ VOID WaitForSecondaryCPUs(VOID)
 
     for (UINTN Index = 1; Index < FixedPcdGet32(PcdCoreCount); Index++) {
       EFI_PHYSICAL_ADDRESS MailboxAddress =
-          MpParkMemoryRegion->Address + 0x10000 * Index +
-          0x1000;
+          MpParkMemoryRegion->Address + 0x10000 * Index + 0x1000;
       PEFI_PROCESSOR_MAILBOX pMailbox =
           (PEFI_PROCESSOR_MAILBOX)(VOID *)MailboxAddress;
 
@@ -75,10 +71,9 @@ VOID WaitForSecondaryCPUs(VOID)
   }
 }
 
-VOID MpParkMain()
+VOID MpParkMain(UINTN MpIdr)
 {
   UINTN MpId  = 0;
-  UINTN MpIdr = ArmReadMpidr();
 
   for (MpId = 0; MpId < FixedPcdGet32(PcdCoreCount); MpId++) {
     if (MpIdr == ProcessorIdMapping[MpId]) {
@@ -126,7 +121,8 @@ VOID MpParkMain()
 
   // Turn on GIC CPU interface as well as SGI interrupts
   ArmGicEnableInterruptInterface(FixedPcdGet64(PcdGicInterruptInterfaceBase));
-  //MmioWrite32(FixedPcdGet64(PcdGicInterruptInterfaceBase) + 0x4, 0xf0); // TODO: Fix me
+  // TODO: Fix me
+  // MmioWrite32(FixedPcdGet64(PcdGicInterruptInterfaceBase) + 0x4, 0xf0);
 
   // But turn off interrupts
   ArmDisableInterrupts();
@@ -175,6 +171,19 @@ VOID MpParkMain()
   ASSERT(FALSE);
 }
 
+UINTN
+PSCI_CPU_ON(UINTN target_cpu, UINTN entry_point_address, UINTN context_id)
+{
+  ARM_SMC_ARGS ArmSmcArgs;
+  ArmSmcArgs.Arg0 = ARM_SMC_ID_PSCI_CPU_ON_AARCH64;
+  ArmSmcArgs.Arg1 = target_cpu;
+  ArmSmcArgs.Arg2 = entry_point_address;
+  ArmSmcArgs.Arg3 = context_id;
+
+  ArmCallSmc(&ArmSmcArgs);
+  return ArmSmcArgs.Arg0;
+}
+
 VOID LaunchAllCPUs(VOID)
 {
   // Immediately launch all CPUs, 7 CPUs hold
@@ -184,14 +193,7 @@ VOID LaunchAllCPUs(VOID)
   if (ArmReadCurrentEL() == AARCH64_EL1) {
     for (UINTN i = 1; i < FixedPcdGet32(PcdCoreCount); i++) {
       DEBUG((EFI_D_INFO | EFI_D_LOAD, "Launching CPU %d\n", i));
-      ARM_SMC_ARGS ArmSmcArgs;
-      ArmSmcArgs.Arg0 = ARM_SMC_ID_PSCI_CPU_ON_AARCH64;
-      ArmSmcArgs.Arg1 = ProcessorIdMapping[i];
-      ArmSmcArgs.Arg2 = (UINTN)&_SecondaryModuleEntryPoint;
-      ArmSmcArgs.Arg3 = i;
-
-      ArmCallSmc(&ArmSmcArgs);
-      ASSERT(ArmSmcArgs.Arg0 == ARM_SMC_PSCI_RET_SUCCESS);
+      ASSERT(PSCI_CPU_ON(ProcessorIdMapping[i], (UINTN)&_SecondaryModuleEntryPoint, ProcessorIdMapping[i]) == ARM_SMC_PSCI_RET_SUCCESS);
     }
   }
 
