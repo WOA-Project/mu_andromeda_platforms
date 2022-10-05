@@ -138,8 +138,10 @@ VOID PlatformInitialize()
   // Configure Qualcomm GIC Early
   QGicEarlyConfiguration();
 
+#if PREFER_MPPARK_OVER_SMC_PSCI == 1
   // Launch all 8 CPUs for Multi Processor Parking Protocol
   LaunchAllCPUs();
+#endif
 
   // Disable WatchDog Timer
   SetWatchdogState(FALSE);
@@ -147,6 +149,8 @@ VOID PlatformInitialize()
 
 VOID SecondaryPlatformInitialize()
 {
+#if PREFER_MPPARK_OVER_SMC_PSCI == 1
   // Initialize Secondary CPU via MpPark
   MpParkMain();
+#endif
 }
