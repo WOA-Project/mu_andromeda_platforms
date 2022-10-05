@@ -10,6 +10,7 @@
 #include <Library/SerialPortLib.h>
 
 #include <IndustryStandard/ArmStdSmc.h>
+#include <Library/ArmHvcLib.h>
 #include <Library/ArmSmcLib.h>
 #include <Library/PlatformPrePiLib.h>
 
@@ -174,14 +175,14 @@ VOID MpParkMain(UINTN MpIdr)
 UINTN
 PSCI_CPU_ON(UINTN target_cpu, UINTN entry_point_address, UINTN context_id)
 {
-  ARM_SMC_ARGS ArmSmcArgs;
-  ArmSmcArgs.Arg0 = ARM_SMC_ID_PSCI_CPU_ON_AARCH64;
-  ArmSmcArgs.Arg1 = target_cpu;
-  ArmSmcArgs.Arg2 = entry_point_address;
-  ArmSmcArgs.Arg3 = context_id;
+  ARM_HVC_ARGS ArmHvcArgs;
+  ArmHvcArgs.Arg0 = ARM_SMC_ID_PSCI_CPU_ON_AARCH64;
+  ArmHvcArgs.Arg1 = target_cpu;
+  ArmHvcArgs.Arg2 = entry_point_address;
+  ArmHvcArgs.Arg3 = context_id;
 
-  ArmCallSmc(&ArmSmcArgs);
-  return ArmSmcArgs.Arg0;
+  ArmCallHvc(&ArmHvcArgs);
+  return ArmHvcArgs.Arg0;
 }
 
 VOID LaunchAllCPUs(VOID)
