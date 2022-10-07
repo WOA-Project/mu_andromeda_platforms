@@ -47,7 +47,6 @@
   PlatformPrePiLib
   TimerLib
   # MpPark
-  ArmHvcLib
   ArmSmcLib
   PrintLib
 
