@@ -18,6 +18,7 @@
   SurfaceDuoFamilyPkg/SurfaceDuoFamilyPkg.dec
 
 [LibraryClasses]
+  ArmLib
   UefiDriverEntryPoint
   DebugLib
   UefiLib

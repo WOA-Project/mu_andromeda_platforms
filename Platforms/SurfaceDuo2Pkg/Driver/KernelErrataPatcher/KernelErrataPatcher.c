@@ -1,6 +1,7 @@
 #include <PiDxe.h>
 #include <Uefi.h>
 
+#include <Library/ArmLib.h>
 #include <Library/BaseLib.h>
 #include <Library/DebugLib.h>
 #include <Library/DevicePathLib.h>
@@ -76,11 +77,20 @@ KernelErrataPatcherLoadImage(
       ImageHandle);
 }
 
+VOID TestProblematicRegister()
+{
+  UINT32 Result = ArmReadAuxCr();
+  DEBUG((EFI_D_ERROR, "ArmReadAuxCr=%d\n", Result));
+}
+
 EFI_STATUS
 EFIAPI
 KernelErrataPatcherEntryPoint(
     IN EFI_HANDLE ImageHandle, IN EFI_SYSTEM_TABLE *SystemTable)
 {
+  // Testing code
+  TestProblematicRegister();
+
   mEfiImageLoad = (EFI_IMAGE_LOAD)SetServicePointer(
       &gBS->Hdr, (VOID **)&gBS->LoadImage,
       (VOID *)&KernelErrataPatcherLoadImage);
