@@ -62,10 +62,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                 }
             }
 
-            Name (_DEP, Package (One)  // _DEP: Dependencies
-            {
-                \_SB.PEP0
-            })
             Name (_HID, "QCOM24A5")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Alias (\_SB.EMUL, EMUL)
@@ -28656,7 +28652,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                     )
             })
             OperationRegion (USBC, SystemMemory, 0x808A0000, 0x30)
-            Field (USBC, ByteAcc, Lock, Preserve)
+            Field (USBC, ByteAcc, NoLock, Preserve)
             {
                 VERS,   16, 
                 RESV,   16, 
@@ -28977,7 +28973,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
             }
 
             OperationRegion (USBC, SystemMemory, 0x808A0040, 0x20)
-            Field (USBC, ByteAcc, Lock, Preserve)
+            Field (USBC, ByteAcc, NoLock, Preserve)
             {
                 INFO,   8, 
                 UPDT,   8, 
