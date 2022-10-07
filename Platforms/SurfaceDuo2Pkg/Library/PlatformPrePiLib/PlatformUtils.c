@@ -109,6 +109,41 @@ VOID SetWatchdogState(BOOLEAN Enable)
   }
 }
 
+VOID SetHypervisorUartState(BOOLEAN Enable)
+{
+  ARM_SMC_ARGS StubArgsSmc;
+
+  UINT32 AttemptCount = 0;
+
+  ArmEnableInterrupts();
+
+  do {
+    StubArgsSmc.Arg0 = Enable ? QHEE_SMC_VENDOR_HYP_UART_ENABLE : QHEE_SMC_VENDOR_HYP_UART_DISABLE;
+    StubArgsSmc.Arg1 = 0;
+    StubArgsSmc.Arg2 = 0;
+    StubArgsSmc.Arg3 = 0;
+    StubArgsSmc.Arg4 = 0;
+    StubArgsSmc.Arg5 = 0;
+    StubArgsSmc.Arg6 = 0;
+    StubArgsSmc.Arg7 = 0;
+    ArmCallSmc(&StubArgsSmc);
+    AttemptCount++;
+  } while (StubArgsSmc.Arg0 == 1 && AttemptCount < 1000); // Interrupted error code
+
+  ArmDisableInterrupts();
+
+  if (StubArgsSmc.Arg0 == 1) {
+    DEBUG(
+        (EFI_D_ERROR,
+         "Qualcomm Hypervisor UART Logging could not be toggled due to SMC call processing being interrupted by another CPU.\n"));
+  } else if (StubArgsSmc.Arg0 != 0) {
+    DEBUG(
+        (EFI_D_ERROR,
+         "Toggling Qualcomm Hypervisor UART Logging failed! Status=%d\n",
+         StubArgsSmc.Arg0));
+  }
+}
+
 EFI_STATUS
 EFIAPI
 QGicEarlyConfiguration(VOID)
@@ -142,6 +177,9 @@ VOID PlatformInitialize()
   // Launch all 8 CPUs for Multi Processor Parking Protocol
   LaunchAllCPUs();
 #endif
+
+  // Enable Hypervisor UART
+  SetHypervisorUartState(TRUE);
 
   // Disable WatchDog Timer
   SetWatchdogState(FALSE);
