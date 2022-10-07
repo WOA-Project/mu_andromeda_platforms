@@ -8,7 +8,8 @@
 #include <Library/MemoryAllocationLib.h>
 #include <Library/UefiBootServicesTableLib.h>
 
-STATIC EFI_IMAGE_LOAD mEfiImageLoad = NULL;
+STATIC EFI_IMAGE_LOAD         mEfiImageLoad        = NULL;
+STATIC EFI_EXIT_BOOT_SERVICES mEfiExitBootServices = NULL;
 
 VOID *SetServicePointer(
     IN OUT EFI_TABLE_HEADER *ServiceTableHeader,
@@ -33,6 +34,15 @@ VOID *SetServicePointer(
   gBS->RestoreTPL(oldTPL);
 
   return OriginalFunction;
+}
+
+EFI_STATUS
+EFIAPI
+KernelErrataPatcherExitBootServices(IN EFI_HANDLE ImageHandle, IN UINTN MapKey)
+{
+  DEBUG((EFI_D_ERROR, "KernelErrataPatcherExitBootServices: Entry\n"));
+
+  return mEfiExitBootServices(ImageHandle, MapKey);
 }
 
 EFI_STATUS
@@ -94,6 +104,10 @@ KernelErrataPatcherEntryPoint(
   mEfiImageLoad = (EFI_IMAGE_LOAD)SetServicePointer(
       &gBS->Hdr, (VOID **)&gBS->LoadImage,
       (VOID *)&KernelErrataPatcherLoadImage);
+
+  mEfiExitBootServices = (EFI_EXIT_BOOT_SERVICES)SetServicePointer(
+      &gBS->Hdr, (VOID **)&gBS->ExitBootServices,
+      (VOID *)&KernelErrataPatcherExitBootServices);
 
   return EFI_SUCCESS;
 }
