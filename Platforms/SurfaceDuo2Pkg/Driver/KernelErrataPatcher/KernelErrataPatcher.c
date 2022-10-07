@@ -8,8 +8,9 @@
 #include <Library/MemoryAllocationLib.h>
 #include <Library/UefiBootServicesTableLib.h>
 
-STATIC EFI_IMAGE_LOAD         mEfiImageLoad        = NULL;
-STATIC EFI_EXIT_BOOT_SERVICES mEfiExitBootServices = NULL;
+STATIC EFI_IMAGE_LOAD         mEfiImageLoad             = NULL;
+STATIC EFI_EXIT_BOOT_SERVICES mEfiExitBootServices      = NULL;
+STATIC EFI_EVENT              virtualAddressChangeEvent = NULL;
 
 VOID *SetServicePointer(
     IN OUT EFI_TABLE_HEADER *ServiceTableHeader,
@@ -34,6 +35,13 @@ VOID *SetServicePointer(
   gBS->RestoreTPL(oldTPL);
 
   return OriginalFunction;
+}
+
+VOID EFIAPI
+KernelErrataPatcherNotifyVirtualAddressChange(EFI_EVENT Event, VOID *Context)
+{
+  DEBUG(
+      (EFI_D_ERROR, "KernelErrataPatcherNotifyVirtualAddressChange: Entry\n"));
 }
 
 EFI_STATUS
@@ -87,20 +95,11 @@ KernelErrataPatcherLoadImage(
       ImageHandle);
 }
 
-VOID TestProblematicRegister()
-{
-  UINT32 Result = ArmReadAuxCr();
-  DEBUG((EFI_D_ERROR, "ArmReadAuxCr=%d\n", Result));
-}
-
 EFI_STATUS
 EFIAPI
 KernelErrataPatcherEntryPoint(
     IN EFI_HANDLE ImageHandle, IN EFI_SYSTEM_TABLE *SystemTable)
 {
-  // Testing code
-  TestProblematicRegister();
-
   mEfiImageLoad = (EFI_IMAGE_LOAD)SetServicePointer(
       &gBS->Hdr, (VOID **)&gBS->LoadImage,
       (VOID *)&KernelErrataPatcherLoadImage);
@@ -108,6 +107,11 @@ KernelErrataPatcherEntryPoint(
   mEfiExitBootServices = (EFI_EXIT_BOOT_SERVICES)SetServicePointer(
       &gBS->Hdr, (VOID **)&gBS->ExitBootServices,
       (VOID *)&KernelErrataPatcherExitBootServices);
+
+  gBS->CreateEvent(
+      EVT_SIGNAL_VIRTUAL_ADDRESS_CHANGE, TPL_NOTIFY,
+      KernelErrataPatcherNotifyVirtualAddressChange, NULL,
+      &virtualAddressChangeEvent);
 
   return EFI_SUCCESS;
 }
