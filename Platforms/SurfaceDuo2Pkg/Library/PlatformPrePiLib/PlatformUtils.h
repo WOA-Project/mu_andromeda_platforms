@@ -16,8 +16,6 @@
 #define LID0_GPIO38_STATUS_ADDR                                               \
   (TLMM_ADDR + TLMM_ADDR_OFFSET_FOR_PIN(38) + TLMM_PIN_IO_REGISTER)
 
-#define GICD_BASE (UINT32)PcdGet64(PcdGicDistributorBase)
-#define GICR_BASE (UINT32)PcdGet64(PcdGicRedistributorsBase)
 #define GICR_WAKER 0x0014
 #define GICR_SIZE 0x20000
 #define GICR_SGI 0x10000
