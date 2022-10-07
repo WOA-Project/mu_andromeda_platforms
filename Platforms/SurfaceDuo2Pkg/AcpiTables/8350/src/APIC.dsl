@@ -1,7 +1,7 @@
 [000h 0000   4]                    Signature : "APIC"    [Multiple APIC Description Table (MADT)]
 [004h 0004   4]                 Table Length : 000002E9
 [008h 0008   1]                     Revision : 05
-[009h 0009   1]                     Checksum : 00
+[009h 0009   1]                     Checksum : 00     /* Incorrect checksum, should be BA */
 [00Ah 0010   6]                       Oem ID : "QCOM  "
 [010h 0016   8]                 Oem Table ID : "QCOMEDK2"
 [018h 0024   4]                 Oem Revision : 00008280
@@ -40,7 +40,7 @@
 [080h 0128   4]         CPU Interface Number : 00000001
 [084h 0132   4]                Processor UID : 00000001
 [088h 0136   4]        Flags (decoded below) : 00000001
-                           Processor Enabled : 0
+                           Processor Enabled : 1
           Performance Interrupt Trigger Mode : 0
           Virtual GIC Interrupt Trigger Mode : 0
 [08Ch 0140   4]     Parking Protocol Version : 00000000
@@ -62,7 +62,7 @@
 [0D0h 0208   4]         CPU Interface Number : 00000002
 [0D4h 0212   4]                Processor UID : 00000002
 [0D8h 0216   4]        Flags (decoded below) : 00000001
-                           Processor Enabled : 0
+                           Processor Enabled : 1
           Performance Interrupt Trigger Mode : 0
           Virtual GIC Interrupt Trigger Mode : 0
 [0DCh 0220   4]     Parking Protocol Version : 00000000
@@ -84,7 +84,7 @@
 [120h 0288   4]         CPU Interface Number : 00000003
 [124h 0292   4]                Processor UID : 00000003
 [128h 0296   4]        Flags (decoded below) : 00000001
-                           Processor Enabled : 0
+                           Processor Enabled : 1
           Performance Interrupt Trigger Mode : 0
           Virtual GIC Interrupt Trigger Mode : 0
 [12Ch 0300   4]     Parking Protocol Version : 00000000
@@ -106,7 +106,7 @@
 [170h 0368   4]         CPU Interface Number : 00000004
 [174h 0372   4]                Processor UID : 00000004
 [178h 0376   4]        Flags (decoded below) : 00000001
-                           Processor Enabled : 0
+                           Processor Enabled : 1
           Performance Interrupt Trigger Mode : 0
           Virtual GIC Interrupt Trigger Mode : 0
 [17Ch 0380   4]     Parking Protocol Version : 00000000
@@ -128,7 +128,7 @@
 [1C0h 0448   4]         CPU Interface Number : 00000005
 [1C4h 0452   4]                Processor UID : 00000005
 [1C8h 0456   4]        Flags (decoded below) : 00000001
-                           Processor Enabled : 0
+                           Processor Enabled : 1
           Performance Interrupt Trigger Mode : 0
           Virtual GIC Interrupt Trigger Mode : 0
 [1CCh 0460   4]     Parking Protocol Version : 00000000
@@ -150,7 +150,7 @@
 [210h 0528   4]         CPU Interface Number : 00000006
 [214h 0532   4]                Processor UID : 00000006
 [218h 0536   4]        Flags (decoded below) : 00000001
-                           Processor Enabled : 0
+                           Processor Enabled : 1
           Performance Interrupt Trigger Mode : 0
           Virtual GIC Interrupt Trigger Mode : 0
 [21Ch 0540   4]     Parking Protocol Version : 00000000
@@ -172,7 +172,7 @@
 [260h 0608   4]         CPU Interface Number : 00000007
 [264h 0612   4]                Processor UID : 00000007
 [268h 0616   4]        Flags (decoded below) : 00000001
-                           Processor Enabled : 0
+                           Processor Enabled : 1
           Performance Interrupt Trigger Mode : 0
           Virtual GIC Interrupt Trigger Mode : 0
 [26Ch 0620   4]     Parking Protocol Version : 00000000
@@ -184,7 +184,7 @@
 [294h 0660   4]        Virtual GIC Interrupt : 00000019
 [298h 0664   8]   Redistributor Base Address : 0000000000000000
 [2A0h 0672   8]                    ARM MPIDR : 0000000000000700
-[2A8h 0680   1]             Efficiency Class : 02
+[2A8h 0680   1]             Efficiency Class : 01
 [2A9h 0681   1]                     Reserved : 00
 [2AAh 0682   2]       SPE Overflow Interrupt : 0000
 
@@ -209,3 +209,53 @@
 [2D9h 0729   4]               Translation ID : 00000000
 [2DDh 0733   8]                 Base Address : 0000000017A40000
 [2E5h 0741   4]                     Reserved : 00000000
+
+Raw Table Data: Length 745 (0x2E9)
+
+    0000: 41 50 49 43 E9 02 00 00 05 00 51 43 4F 4D 20 20  // APIC......QCOM  
+    0010: 51 43 4F 4D 45 44 4B 32 80 82 00 00 51 43 4F 4D  // QCOMEDK2....QCOM
+    0020: 01 00 00 00 00 00 00 00 00 00 00 00 0B 50 00 00  // .............P..
+    0030: 00 00 00 00 00 00 00 00 01 00 00 00 00 00 00 00  // ................
+    0040: 17 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  // ................
+    0050: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  // ................
+    0060: 00 00 00 00 19 00 00 00 00 00 00 00 00 00 00 00  // ................
+    0070: 00 00 00 00 00 00 00 00 00 00 00 00 0B 50 00 00  // .............P..
+    0080: 01 00 00 00 01 00 00 00 01 00 00 00 00 00 00 00  // ................
+    0090: 17 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  // ................
+    00A0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  // ................
+    00B0: 00 00 00 00 19 00 00 00 00 00 00 00 00 00 00 00  // ................
+    00C0: 00 01 00 00 00 00 00 00 00 00 00 00 0B 50 00 00  // .............P..
+    00D0: 02 00 00 00 02 00 00 00 01 00 00 00 00 00 00 00  // ................
+    00E0: 17 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  // ................
+    00F0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  // ................
+    0100: 00 00 00 00 19 00 00 00 00 00 00 00 00 00 00 00  // ................
+    0110: 00 02 00 00 00 00 00 00 00 00 00 00 0B 50 00 00  // .............P..
+    0120: 03 00 00 00 03 00 00 00 01 00 00 00 00 00 00 00  // ................
+    0130: 17 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  // ................
+    0140: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  // ................
+    0150: 00 00 00 00 19 00 00 00 00 00 00 00 00 00 00 00  // ................
+    0160: 00 03 00 00 00 00 00 00 00 00 00 00 0B 50 00 00  // .............P..
+    0170: 04 00 00 00 04 00 00 00 01 00 00 00 00 00 00 00  // ................
+    0180: 17 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  // ................
+    0190: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  // ................
+    01A0: 00 00 00 00 19 00 00 00 00 00 00 00 00 00 00 00  // ................
+    01B0: 00 04 00 00 00 00 00 00 01 00 00 00 0B 50 00 00  // .............P..
+    01C0: 05 00 00 00 05 00 00 00 01 00 00 00 00 00 00 00  // ................
+    01D0: 17 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  // ................
+    01E0: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  // ................
+    01F0: 00 00 00 00 19 00 00 00 00 00 00 00 00 00 00 00  // ................
+    0200: 00 05 00 00 00 00 00 00 01 00 00 00 0B 50 00 00  // .............P..
+    0210: 06 00 00 00 06 00 00 00 01 00 00 00 00 00 00 00  // ................
+    0220: 17 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  // ................
+    0230: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  // ................
+    0240: 00 00 00 00 19 00 00 00 00 00 00 00 00 00 00 00  // ................
+    0250: 00 06 00 00 00 00 00 00 01 00 00 00 0B 50 00 00  // .............P..
+    0260: 07 00 00 00 07 00 00 00 01 00 00 00 00 00 00 00  // ................
+    0270: 17 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  // ................
+    0280: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  // ................
+    0290: 00 00 00 00 19 00 00 00 00 00 00 00 00 00 00 00  // ................
+    02A0: 00 07 00 00 00 00 00 00 01 00 00 00 0C 19 00 00  // ................
+    02B0: 00 00 00 00 00 00 A0 17 00 00 00 00 00 00 00 00  // ................
+    02C0: 03 00 00 00 00 0E 10 00 00 00 00 A6 17 00 00 00  // ................
+    02D0: 00 00 00 10 00 0F 14 00 00 00 00 00 00 00 00 A4  // ................
+    02E0: 17 00 00 00 00 00 00 00 00                       // .........
