@@ -58,5 +58,3 @@
   MdeModulePkg/Universal/TimestampDxe/TimestampDxe.inf
 
   SurfaceDuo2Pkg/Driver/GpioButtons/GpioButtons.inf
-
-  # SurfaceDuo2Pkg/Driver/KernelErrataPatcher/KernelErrataPatcher.inf

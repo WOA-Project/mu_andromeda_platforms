@@ -7,15 +7,10 @@
   LIBRARY_CLASS                  = PlatformPrePiLib
 
 [Sources]
-  MpPark.c
   PlatformUtils.c
-
-[Sources.AARCH64]
-  SecondaryModuleEntryPoint.S | GCC
 
 [Packages]
   ArmPkg/ArmPkg.dec
-  ArmPlatformPkg/ArmPlatformPkg.dec
   EmbeddedPkg/EmbeddedPkg.dec
   MdePkg/MdePkg.dec
   MdeModulePkg/MdeModulePkg.dec
@@ -56,13 +51,9 @@
   gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVersionString
 
 [FixedPcd]
-  gArmTokenSpaceGuid.PcdCpuVectorBaseAddress
   gArmTokenSpaceGuid.PcdGicDistributorBase
   gArmTokenSpaceGuid.PcdGicRedistributorsBase
   gArmTokenSpaceGuid.PcdGicInterruptInterfaceBase
-  gArmPlatformTokenSpaceGuid.PcdCoreCount
-  gEmbeddedTokenSpaceGuid.PcdPrePiStackBase
-  gSurfaceDuo2PkgTokenSpaceGuid.SecondaryCpuIgnoreCpuIdCheck
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferAddress
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferWidth
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferHeight
