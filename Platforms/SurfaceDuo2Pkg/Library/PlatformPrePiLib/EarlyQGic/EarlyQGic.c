@@ -11,7 +11,7 @@
 
 **/
 
-#include "Pi.h"
+#include "PlatformUtils.h"
 
 #include <Guid/LzmaDecompress.h>
 #include <Guid/VariableFormat.h>
