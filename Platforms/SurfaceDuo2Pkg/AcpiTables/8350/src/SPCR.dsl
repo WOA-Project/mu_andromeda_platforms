@@ -1,7 +1,7 @@
 [000h 0000   4]                    Signature : "SPCR"    [Serial Port Console Redirection Table]
 [004h 0004   4]                 Table Length : 00000050
 [008h 0008   1]                     Revision : 02
-[009h 0009   1]                     Checksum : 00     /* Incorrect checksum, should be 11 */
+[009h 0009   1]                     Checksum : 00
 [00Ah 0010   6]                       Oem ID : "QCOM  "
 [010h 0016   8]                 Oem Table ID : "QCOMEDK2"
 [018h 0024   4]                 Oem Revision : 00008280
@@ -35,11 +35,3 @@
 [047h 0071   4]                    PCI Flags : 00000000
 [04Bh 0075   1]                  PCI Segment : 00
 [04Ch 0076   4]                     Reserved : 00000000
-
-Raw Table Data: Length 80 (0x50)
-
-    0000: 53 50 43 52 50 00 00 00 02 00 51 43 4F 4D 20 20  // SPCRP.....QCOM  
-    0010: 51 43 4F 4D 45 44 4B 32 80 82 00 00 51 43 4F 4D  // QCOMEDK2....QCOM
-    0020: 01 00 00 00 11 00 00 00 00 20 00 20 00 00 A9 00  // ......... . ....
-    0030: 00 00 00 00 08 00 82 01 00 00 07 00 01 00 03 00  // ................
-    0040: FF FF FF FF 00 00 00 00 00 00 00 00 00 00 00 00  // ................
