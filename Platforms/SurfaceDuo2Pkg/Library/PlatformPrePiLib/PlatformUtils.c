@@ -204,7 +204,7 @@ EFIAPI
 QGicEarlyConfiguration(VOID)
 {
   // Enable gic distributor
-  ArmGicEnableDistributor(PcdGet64(PcdGicDistributorBase));
+  // ArmGicEnableDistributor(PcdGet64(PcdGicDistributorBase));
 
   for (UINTN i = 1; i < FixedPcdGet32(PcdCoreCount); i++) {
     // Wake up GIC Redistributor for this CPU
@@ -212,7 +212,7 @@ QGicEarlyConfiguration(VOID)
         PcdGet64(PcdGicRedistributorsBase) + i * GICR_SIZE + GICR_WAKER, 0);
 
     // Deactivate Interrupts for this CPU
-    MmioWrite32(
+    /*MmioWrite32(
         PcdGet64(PcdGicRedistributorsBase) + i * GICR_SIZE + GICR_SGI +
             GICR_ICENABLER0,
         0);
@@ -221,11 +221,11 @@ QGicEarlyConfiguration(VOID)
     MmioWrite32(
         PcdGet64(PcdGicRedistributorsBase) + i * GICR_SIZE + GICR_SGI +
             GICR_ICPENDR0,
-        0x10000000);
+        0x10000000);*/
   }
 
   // Disable Gic Distributor
-  ArmGicDisableDistributor(PcdGet64(PcdGicDistributorBase));
+  // ArmGicDisableDistributor(PcdGet64(PcdGicDistributorBase));
 
   return EFI_SUCCESS;
 }
