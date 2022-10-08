@@ -64,9 +64,6 @@ be found at http://opensource.org/licenses/bsd-license.php
 // Must come in order
 #include <Resources/ReleaseInfo.h>
 
-/* Protocol reference */
-EFI_CHIPINFO_PROTOCOL *mBoardProtocol = NULL;
-
 /***********************************************************************
         SMBIOS data definition  TYPE0  BIOS Information
 ************************************************************************/
@@ -680,24 +677,16 @@ VOID BIOSInfoUpdateSmbiosType0(VOID)
         SMBIOS data update  TYPE1  System Information
 ************************************************************************/
 
-VOID SysInfoUpdateSmbiosType1(VOID)
+VOID SysInfoUpdateSmbiosType1(CHAR8 *serialNo, EFIChipInfoSerialNumType serial)
 {
-  CHAR8  serialNo[13];
-  UINT32 serial;
-
   // Update string table before proceeds
   mSysInfoType1Strings[1] = (CHAR8 *)FixedPcdGetPtr(PcdSmbiosSystemModel);
   mSysInfoType1Strings[2] = (CHAR8 *)FixedPcdGetPtr(PcdSmbiosSystemRetailModel);
   mSysInfoType1Strings[4] = (CHAR8 *)FixedPcdGetPtr(PcdSmbiosSystemRetailSku);
 
   // Update serial number from Board DXE
-  if (mBoardProtocol != NULL) {
-    mBoardProtocol->GetSerialNumber(mBoardProtocol, &serial);
-    AsciiSPrint(serialNo, sizeof(serialNo), "%u", serial);
-    mSysInfoType1Strings[3] = serialNo;
-
-    mSysInfoType1.Uuid.Data1 = serial;
-  }
+  mSysInfoType1Strings[3] = serialNo;
+  mSysInfoType1.Uuid.Data1 = serial;
 
   LogSmbiosData(
       (EFI_SMBIOS_TABLE_HEADER *)&mSysInfoType1, mSysInfoType1Strings, NULL);
@@ -706,20 +695,13 @@ VOID SysInfoUpdateSmbiosType1(VOID)
 /***********************************************************************
         SMBIOS data update  TYPE2  Board Information
 ************************************************************************/
-VOID BoardInfoUpdateSmbiosType2(VOID)
+VOID BoardInfoUpdateSmbiosType2(CHAR8 *serialNo)
 {
-  CHAR8  serialNo[13];
-  UINT32 serial;
-
   // Update string table before proceeds
   mBoardInfoType2Strings[1] = (CHAR8 *)FixedPcdGetPtr(PcdSmbiosBoardModel);
 
   // Update serial number from Board DXE
-  if (mBoardProtocol != NULL) {
-    mBoardProtocol->GetSerialNumber(mBoardProtocol, &serial);
-    AsciiSPrint(serialNo, sizeof(serialNo), "%u", serial);
-    mBoardInfoType2Strings[3] = serialNo;
-  }
+  mBoardInfoType2Strings[3] = serialNo;
 
   LogSmbiosData(
       (EFI_SMBIOS_TABLE_HEADER *)&mBoardInfoType2, mBoardInfoType2Strings,
@@ -729,17 +711,10 @@ VOID BoardInfoUpdateSmbiosType2(VOID)
 /***********************************************************************
         SMBIOS data update  TYPE3  Enclosure Information
 ************************************************************************/
-VOID EnclosureInfoUpdateSmbiosType3(VOID)
+VOID EnclosureInfoUpdateSmbiosType3(CHAR8 *serialNo)
 {
-  CHAR8  serialNo[13];
-  UINT32 serial;
-
   // Update serial number from Board DXE
-  if (mBoardProtocol != NULL) {
-    mBoardProtocol->GetSerialNumber(mBoardProtocol, &serial);
-    AsciiSPrint(serialNo, sizeof(serialNo), "%u", serial);
-    mEnclosureInfoType3Strings[2] = serialNo;
-  }
+  mEnclosureInfoType3Strings[2] = serialNo;
 
   LogSmbiosData(
       (EFI_SMBIOS_TABLE_HEADER *)&mEnclosureInfoType3,
@@ -841,16 +816,24 @@ EFIAPI
 SmBiosTableDxeInitialize(
     IN EFI_HANDLE ImageHandle, IN EFI_SYSTEM_TABLE *SystemTable)
 {
-  EFI_STATUS Status;
+  EFI_STATUS               Status;
+  CHAR8                    serialNo[EFICHIPINFO_MAX_ID_LENGTH];
+  EFIChipInfoSerialNumType serial;
+  EFI_CHIPINFO_PROTOCOL    *mBoardProtocol = NULL;
 
   // Locate Qualcomm Board Protocol
   Status = gBS->LocateProtocol(
       &gEfiChipInfoProtocolGuid, NULL, (VOID *)&mBoardProtocol);
 
+  if (mBoardProtocol != NULL) {
+    mBoardProtocol->GetSerialNumber(mBoardProtocol, &serial);
+    AsciiSPrint(serialNo, sizeof(serialNo), "%lld", serial);
+  }
+
   BIOSInfoUpdateSmbiosType0();
-  SysInfoUpdateSmbiosType1();
-  BoardInfoUpdateSmbiosType2();
-  EnclosureInfoUpdateSmbiosType3();
+  SysInfoUpdateSmbiosType1(serialNo, serial);
+  BoardInfoUpdateSmbiosType2(serialNo);
+  EnclosureInfoUpdateSmbiosType3(serialNo);
   ProcessorInfoUpdateSmbiosType4(PcdGet32(PcdCoreCount));
   CacheInfoUpdateSmbiosType7();
   PhyMemArrayInfoUpdateSmbiosType16();
