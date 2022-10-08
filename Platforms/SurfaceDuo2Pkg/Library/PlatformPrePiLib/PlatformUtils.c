@@ -184,7 +184,7 @@ QGicEarlyConfiguration(VOID)
   // Enable gic distributor
   // ArmGicEnableDistributor(PcdGet64(PcdGicDistributorBase));
 
-  for (UINT32 CpuId = 0; CpuId < 1; CpuId++) {
+  for (UINT32 CpuId = 0; CpuId < 8; CpuId++) {
     // Wake up GIC Redistributor for this CPU
     MmioWrite32(
         PcdGet64(PcdGicRedistributorsBase) + CpuId * GICR_SIZE + GICR_WAKER, 0);
