@@ -136,6 +136,21 @@ VOID QGicDistInit(VOID)
   MmioWrite32(GIC_DIST_CTRL, ENABLE_GRP0_SEC | ENABLE_GRP1_NS | ENABLE_ARE);
 }
 
+/* Wake up redistributors */
+VOID QGicCpuEarlyConfig(VOID)
+{
+  for (UINTN i = 1; i < 2; i++) {
+    // Wake up GIC Redistributor for this CPU
+    MmioWrite32(GICR_WAKER_CPU0 + i * GICR_SIZE + GICR_WAKER, 0);
+
+    // Deactivate Interrupts for this CPU
+    MmioWrite32(GICR_WAKER_CPU0 + i * GICR_SIZE + GICR_SGI + GICR_ICENABLER0, 0);
+
+    // Clear Pending Interrupts for this CPU
+    MmioWrite32(GICR_WAKER_CPU0 + i * GICR_SIZE + GICR_SGI + GICR_ICPENDR0, 0x10000000);
+  }
+}
+
 /* Intialize cpu specific controller */
 VOID QGicCpuInit(VOID)
 {
@@ -191,50 +206,8 @@ QGicPeim(VOID)
   QGicHardwareReset();
   QGicSetBinpoint();
   QGicDistInit();
+  QGicCpuEarlyConfig();
   QGicCpuInit();
 
   return EFI_SUCCESS;
-}
-
-UINTN
-EFIAPI
-ArmGicAcknowledgeInterrupt(
-    IN UINTN GicInterruptInterfaceBase, OUT UINTN *InterruptId)
-{
-  UINTN Value;
-
-  Value = ArmGicV3AcknowledgeInterrupt();
-  if (InterruptId != NULL) {
-    *InterruptId = Value & ARM_GIC_ICCIAR_ACKINTID;
-  }
-
-  return Value;
-}
-
-VOID EFIAPI ArmGicSendSgiTo(
-    IN INTN GicDistributorBase, IN INTN TargetListFilter, IN INTN CPUTargetList,
-    IN INTN SgiId)
-{
-  MmioWrite32(
-      GicDistributorBase + ARM_GIC_ICDSGIR, ((TargetListFilter & 0x3) << 24) |
-                                                ((CPUTargetList & 0xFF) << 16) |
-                                                SgiId);
-}
-
-VOID EFIAPI ArmGicEnableInterruptInterface(IN INTN GicInterruptInterfaceBase)
-{
-  ArmGicV3EnableInterruptInterface();
-}
-
-UINTN
-EFIAPI
-ArmGicGetMaxNumInterrupts(IN INTN GicDistributorBase)
-{
-  return 32 * ((MmioRead32(GicDistributorBase + ARM_GIC_ICDICTR) & 0x1F) + 1);
-}
-
-VOID EFIAPI
-ArmGicEndOfInterrupt(IN UINTN GicInterruptInterfaceBase, IN UINTN Source)
-{
-  ArmGicV3EndOfInterrupt(Source);
 }

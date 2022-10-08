@@ -3,6 +3,12 @@
 
 #define GIC_DIST_REG(off) (PcdGet64(PcdGicDistributorBase) + (off))
 
+#define GICR_WAKER 0x0014
+#define GICR_SIZE 0x20000
+#define GICR_SGI 0x10000
+#define GICR_ICENABLER0 0x0180
+#define GICR_ICPENDR0 0x0280
+
 #define GIC_DIST_CTRL GIC_DIST_REG(0x000)
 #define GIC_DIST_CTR GIC_DIST_REG(0x004)
 #define GIC_DIST_CGCR GIC_DIST_REG(0X024)
@@ -22,18 +28,6 @@
 #define ENABLE_GRP0_SEC 1
 #define ENABLE_GRP1_NS 2
 #define ENABLE_ARE 16
-
-VOID QGicCpuInit(VOID);
-VOID QgicCpuInitSecondary(VOID);
-
-UINTN EFIAPI ArmGicAcknowledgeInterrupt(
-    IN UINTN GicInterruptInterfaceBase, OUT UINTN *InterruptId);
-VOID EFIAPI ArmGicEnableInterruptInterface(IN INTN GicInterruptInterfaceBase);
-
-VOID EFIAPI
-ArmGicEndOfInterrupt(IN UINTN GicInterruptInterfaceBase, IN UINTN Source);
-
-UINTN EFIAPI ArmGicGetMaxNumInterrupts(IN INTN GicDistributorBase);
 
 EFI_STATUS
 EFIAPI

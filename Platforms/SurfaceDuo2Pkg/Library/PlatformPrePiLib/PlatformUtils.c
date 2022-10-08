@@ -199,37 +199,6 @@ VOID GICv3DumpRegisters()
   DEBUG((EFI_D_INFO | EFI_D_LOAD, "GicD off 4: %d\n", off4));
 }
 
-EFI_STATUS
-EFIAPI
-QGicEarlyConfiguration(VOID)
-{
-  // Enable gic distributor
-  // ArmGicEnableDistributor(PcdGet64(PcdGicDistributorBase));
-
-  for (UINTN i = 1; i < 2; i++) {
-    // Wake up GIC Redistributor for this CPU
-    MmioWrite32(
-        PcdGet64(PcdGicRedistributorsBase) + i * GICR_SIZE + GICR_WAKER, 0);
-
-    // Deactivate Interrupts for this CPU
-    /*MmioWrite32(
-        PcdGet64(PcdGicRedistributorsBase) + i * GICR_SIZE + GICR_SGI +
-            GICR_ICENABLER0,
-        0);
-
-    // Clear Pending Interrupts for this CPU
-    MmioWrite32(
-        PcdGet64(PcdGicRedistributorsBase) + i * GICR_SIZE + GICR_SGI +
-            GICR_ICPENDR0,
-        0x10000000);*/
-  }
-
-  // Disable Gic Distributor
-  // ArmGicDisableDistributor(PcdGet64(PcdGicDistributorBase));
-
-  return EFI_SUCCESS;
-}
-
 VOID PlatformInitialize()
 {
   // Initialize UART Serial
@@ -242,11 +211,6 @@ VOID PlatformInitialize()
     DEBUG((EFI_D_ERROR, "Failed to configure GIC\n"));
     CpuDeadLoop();
   }
-
-  GICv3DumpRegisters();
-
-  // Configure Qualcomm GIC Early
-  QGicEarlyConfiguration();
 
   GICv3DumpRegisters();
 
