@@ -11,6 +11,7 @@
 
 [Packages]
   ArmPkg/ArmPkg.dec
+  ArmPlatformPkg/ArmPlatformPkg.dec
   EmbeddedPkg/EmbeddedPkg.dec
   MdePkg/MdePkg.dec
   MdeModulePkg/MdeModulePkg.dec
@@ -54,6 +55,7 @@
   gArmTokenSpaceGuid.PcdGicDistributorBase
   gArmTokenSpaceGuid.PcdGicRedistributorsBase
   gArmTokenSpaceGuid.PcdGicInterruptInterfaceBase
+  gArmPlatformTokenSpaceGuid.PcdCoreCount
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferAddress
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferWidth
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferHeight
