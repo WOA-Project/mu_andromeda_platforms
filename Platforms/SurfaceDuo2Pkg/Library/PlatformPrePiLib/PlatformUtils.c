@@ -242,21 +242,16 @@ VOID PlatformInitialize()
 
   GICv3DumpRegisters();
 
-  // Launch all 8 CPUs for Multi Processor Parking Protocol
-  LaunchAllCPUs();
-
-  GICv3DumpRegisters();
-
-  // Configure Qualcomm GIC Early
-  QGicEarlyConfiguration();
-
-  GICv3DumpRegisters();
-
   // Initialize GIC
   if (EFI_ERROR(QGicPeim())) {
     DEBUG((EFI_D_ERROR, "Failed to configure GIC\n"));
     CpuDeadLoop();
   }
+
+  GICv3DumpRegisters();
+
+  // Launch all 8 CPUs for Multi Processor Parking Protocol
+  LaunchAllCPUs();
 
   GICv3DumpRegisters();
 
