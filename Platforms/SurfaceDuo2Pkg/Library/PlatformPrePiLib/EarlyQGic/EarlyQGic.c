@@ -139,7 +139,7 @@ VOID QGicDistInit(VOID)
 /* Wake up redistributors */
 VOID QGicCpuEarlyConfig(VOID)
 {
-  for (UINTN i = 1; i < 2; i++) {
+  for (UINTN i = 1; i < FixedPcdGet32(PcdCoreCount); i++) {
     // Wake up GIC Redistributor for this CPU
     MmioWrite32(GICR_WAKER_CPU0 + i * GICR_SIZE + GICR_WAKER, 0);
 

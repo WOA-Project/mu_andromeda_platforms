@@ -18,7 +18,7 @@
 #include "EarlyQGic/EarlyQGic.h"
 #include <Configuration/DeviceMemoryMap.h>
 
-BOOLEAN IsLinuxBootRequested()
+BOOLEAN IsLinuxBootRequested(VOID)
 {
   return (MmioRead32(LID0_GPIO38_STATUS_ADDR) & 1) == 0;
 }
@@ -178,16 +178,30 @@ VOID SetHypervisorUartState(BOOLEAN Enable)
   }
 }
 
-VOID PlatformInitialize()
+VOID QGicEarlyConfiguration(VOID)
+{
+  // Enable gic distributor
+  ArmGicEnableDistributor(PcdGet64(PcdGicDistributorBase));
+
+  // Wake up redistributors
+  QGicCpuEarlyConfig();
+
+  // Disable Gic distributor
+  ArmGicDisableDistributor(PcdGet64(PcdGicDistributorBase));
+}
+
+VOID PlatformInitialize(VOID)
 {
   // Initialize UART Serial
   UartInit();
 
   // Initialize GIC
-  if (EFI_ERROR(QGicPeim())) {
-    DEBUG((EFI_D_ERROR, "Failed to configure GIC\n"));
-    CpuDeadLoop();
-  }
+  // if (EFI_ERROR(QGicPeim())) {
+  //   DEBUG((EFI_D_ERROR, "Failed to configure GIC\n"));
+  //   CpuDeadLoop();
+  //}
+
+  QGicEarlyConfiguration();
 
 #if PREFER_MPPARK_OVER_SMC_PSCI == 1
   // Launch all 8 CPUs for Multi Processor Parking Protocol

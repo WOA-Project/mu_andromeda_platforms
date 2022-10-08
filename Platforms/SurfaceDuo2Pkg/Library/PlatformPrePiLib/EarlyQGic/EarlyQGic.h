@@ -29,6 +29,9 @@
 #define ENABLE_GRP1_NS 2
 #define ENABLE_ARE 16
 
+VOID
+QGicCpuEarlyConfig(VOID);
+
 EFI_STATUS
 EFIAPI
 QGicPeim(VOID);
