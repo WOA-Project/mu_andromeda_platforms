@@ -96,7 +96,6 @@ PSCI_CPU_OFF()
 
 VOID MpParkMain(UINTN MpIdr)
 {
-#if PREFER_MPPARK_OVER_SMC_PSCI == 1
   UINTN MpId  = 0;
 
   for (MpId = 0; MpId < FixedPcdGet32(PcdCoreCount); MpId++) {
@@ -128,14 +127,12 @@ VOID MpParkMain(UINTN MpIdr)
   UINTN SecondaryEntryAddr;
   UINTN InterruptId;
   UINTN AcknowledgeInterrupt;
-#endif
 
   // MMU, cache and branch predicton must be disabled
   // Cache is disabled in CRT startup code
   ArmDisableMmu();
   ArmDisableBranchPrediction();
 
-#if PREFER_MPPARK_OVER_SMC_PSCI == 1
   // Clear mailbox
   pMailbox->JumpAddress = 0;
   pMailbox->ProcessorId = 0xffffffff;
@@ -144,7 +141,6 @@ VOID MpParkMain(UINTN MpIdr)
   pMailbox->JumpFlag = REDIR_MAILBOX_READY;
   CurrentProcessorId = ProcessorIdMapping[MpId];
   ArmDataSynchronizationBarrier();
-#endif
 
   // Turn on GIC CPU interface as well as SGI interrupts
   ArmGicEnableInterruptInterface(FixedPcdGet64(PcdGicInterruptInterfaceBase));
@@ -154,7 +150,6 @@ VOID MpParkMain(UINTN MpIdr)
   // But turn off interrupts
   ArmDisableInterrupts();
 
-#if PREFER_MPPARK_OVER_SMC_PSCI == 1
   do {
     // Technically we should do a WFI
     // But we just spin here instead
@@ -192,9 +187,6 @@ VOID MpParkMain(UINTN MpIdr)
 
   SecondaryStart = (VOID(*)())SecondaryEntryAddr;
   SecondaryStart(pMailbox);
-#else
-  PSCI_CPU_OFF();
-#endif
 
   // Should never reach here
   ASSERT(FALSE);
@@ -213,9 +205,7 @@ VOID LaunchAllCPUs(VOID)
     }
   }
 
-#if PREFER_MPPARK_OVER_SMC_PSCI == 1
   DEBUG((EFI_D_INFO | EFI_D_LOAD, "Waiting for all CPUs...\n"));
   WaitForSecondaryCPUs();
   DEBUG((EFI_D_INFO | EFI_D_LOAD, "All CPU started.\n"));
-#endif
 }

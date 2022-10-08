@@ -204,33 +204,28 @@ VOID PlatformInitialize()
   // Initialize UART Serial
   UartInit();
 
-  GICv3DumpRegisters();
-
   // Initialize GIC
   if (EFI_ERROR(QGicPeim())) {
     DEBUG((EFI_D_ERROR, "Failed to configure GIC\n"));
     CpuDeadLoop();
   }
 
-  GICv3DumpRegisters();
-
+#if PREFER_MPPARK_OVER_SMC_PSCI == 1
   // Launch all 8 CPUs for Multi Processor Parking Protocol
   LaunchAllCPUs();
-
-  GICv3DumpRegisters();
+#endif
 
   // Enable Hypervisor UART
   // SetHypervisorUartState(TRUE);
 
   // Disable WatchDog Timer
   // SetWatchdogState(FALSE);
-
-  // Hang here for debugging
-  ASSERT(FALSE);
 }
 
 VOID SecondaryPlatformInitialize(UINTN MpIdr)
 {
+#if PREFER_MPPARK_OVER_SMC_PSCI == 1
   // Initialize Secondary CPU via MpPark
   MpParkMain(MpIdr);
+#endif
 }
