@@ -794,6 +794,8 @@ VOID PhyMemArrayInfoUpdateSmbiosType16(VOID)
 {
   EFI_SMBIOS_HANDLE MemArraySmbiosHande;
 
+  mPhyMemArrayInfoType16.ExtendedMaximumCapacity = FixedPcdGet64(PcdSystemMemorySize);
+
   LogSmbiosData(
       (EFI_SMBIOS_TABLE_HEADER *)&mPhyMemArrayInfoType16,
       mPhyMemArrayInfoType16Strings, &MemArraySmbiosHande);
@@ -820,9 +822,9 @@ VOID MemDevInfoUpdateSmbiosType17(VOID)
 VOID MemArrMapInfoUpdateSmbiosType19(VOID)
 {
   mMemArrMapInfoType19.StartingAddress =
-      FixedPcdGet32(PcdSystemMemoryBase) / 1024;
+      FixedPcdGet64(PcdSystemMemoryBase) / 1024;
   mMemArrMapInfoType19.EndingAddress =
-      (FixedPcdGet32(PcdSystemMemorySize) + FixedPcdGet32(PcdSystemMemoryBase) -
+      (FixedPcdGet64(PcdSystemMemorySize) + FixedPcdGet64(PcdSystemMemoryBase) -
        1) /
       1024;
 
