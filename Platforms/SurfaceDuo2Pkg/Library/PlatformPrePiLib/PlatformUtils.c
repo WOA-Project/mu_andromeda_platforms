@@ -15,7 +15,6 @@
 #include <Library/PlatformPrePiLib.h>
 
 #include "PlatformUtils.h"
-#include "EarlyQGic/EarlyQGic.h"
 #include <Configuration/DeviceMemoryMap.h>
 
 BOOLEAN IsLinuxBootRequested(VOID)
@@ -178,13 +177,22 @@ VOID SetHypervisorUartState(BOOLEAN Enable)
   }
 }
 
-VOID QGicEarlyConfiguration(VOID)
+VOID QGicCpuEarlyConfig(VOID)
 {
   // Enable gic distributor
   ArmGicEnableDistributor(PcdGet64(PcdGicDistributorBase));
 
   // Wake up redistributors
-  QGicCpuEarlyConfig();
+  for (UINT32 i = 0; i < FixedPcdGet32(PcdCoreCount); i++) {
+    // Wake up GIC Redistributor for this CPU
+    MmioWrite32(GICR_BASE + i * GICR_SIZE + GICR_WAKER, 0);
+
+    // Deactivate Interrupts for this CPU
+    MmioWrite32(GICR_BASE + i * GICR_SIZE + GICR_SGI + GICR_ICENABLER0, 0);
+
+    // Clear Pending Interrupts for this CPU
+    MmioWrite32(GICR_BASE + i * GICR_SIZE + GICR_SGI + GICR_ICPENDR0, 0x10000000);
+  }
 
   // Disable Gic distributor
   ArmGicDisableDistributor(PcdGet64(PcdGicDistributorBase));
@@ -196,29 +204,11 @@ VOID PlatformInitialize(VOID)
   UartInit();
 
   // Initialize GIC
-  // if (EFI_ERROR(QGicPeim())) {
-  //   DEBUG((EFI_D_ERROR, "Failed to configure GIC\n"));
-  //   CpuDeadLoop();
-  //}
-
-  QGicEarlyConfiguration();
-
-#if PREFER_MPPARK_OVER_SMC_PSCI == 1
-  // Launch all 8 CPUs for Multi Processor Parking Protocol
-  LaunchAllCPUs();
-#endif
+  QGicCpuEarlyConfig();
 
   // Enable Hypervisor UART
   // SetHypervisorUartState(TRUE);
 
   // Disable WatchDog Timer
   // SetWatchdogState(FALSE);
-}
-
-VOID SecondaryPlatformInitialize(UINTN MpIdr)
-{
-#if PREFER_MPPARK_OVER_SMC_PSCI == 1
-  // Initialize Secondary CPU via MpPark
-  MpParkMain(MpIdr);
-#endif
 }

@@ -16,6 +16,14 @@
 #define LID0_GPIO38_STATUS_ADDR                                               \
   (TLMM_ADDR + TLMM_ADDR_OFFSET_FOR_PIN(38) + TLMM_PIN_IO_REGISTER)
 
+#define GICD_BASE (UINT32)PcdGet64(PcdGicDistributorBase)
+#define GICR_BASE (UINT32)PcdGet64(PcdGicRedistributorsBase)
+#define GICR_WAKER 0x0014
+#define GICR_SIZE 0x20000
+#define GICR_SGI 0x10000
+#define GICR_ICENABLER0 0x0180
+#define GICR_ICPENDR0 0x0280
+
 #define QHEE_SMC_VENDOR_HYP_UART_DISABLE 0x86000000
 #define QHEE_SMC_VENDOR_HYP_UART_ENABLE 0x86000001
 #define QHEE_SMC_VENDOR_HYP_WDOG_CONTROL 0x86000005
@@ -44,9 +52,5 @@
 
 VOID PlatformInitialize(VOID);
 BOOLEAN IsLinuxBootRequested(VOID);
-
-VOID LaunchAllCPUs(VOID);
-VOID SecondaryPlatformInitialize(UINTN MpIdr);
-VOID MpParkMain(UINTN MpIdr);
 
 #endif /* _PLATFORM_UTILS_H_ */
