@@ -184,20 +184,20 @@ QGicEarlyConfiguration(VOID)
   // Enable gic distributor
   // ArmGicEnableDistributor(PcdGet64(PcdGicDistributorBase));
 
-  for (UINT32 CpuId = 0; CpuId < 8; CpuId++) {
+  for (UINTN i = 1; i < FixedPcdGet32(PcdCoreCount); i++) {
     // Wake up GIC Redistributor for this CPU
     MmioWrite32(
-        PcdGet64(PcdGicRedistributorsBase) + CpuId * GICR_SIZE + GICR_WAKER, 0);
+        PcdGet64(PcdGicRedistributorsBase) + i * GICR_SIZE + GICR_WAKER, 0);
 
     /*// Deactivate Interrupts for this CPU
     MmioWrite32(
-        PcdGet64(PcdGicRedistributorsBase) + CpuId * GICR_SIZE + GICR_SGI +
+        PcdGet64(PcdGicRedistributorsBase) + i * GICR_SIZE + GICR_SGI +
             GICR_ICENABLER0,
         0);
 
     // Clear Pending Interrupts for this CPU
     MmioWrite32(
-        PcdGet64(PcdGicRedistributorsBase) + CpuId * GICR_SIZE + GICR_SGI +
+        PcdGet64(PcdGicRedistributorsBase) + i * GICR_SIZE + GICR_SGI +
             GICR_ICPENDR0,
         0x10000000);*/
   }
@@ -216,10 +216,8 @@ VOID PlatformInitialize()
   // Configure Qualcomm GIC Early
   QGicEarlyConfiguration();
 
-#if PREFER_MPPARK_OVER_SMC_PSCI == 1
   // Launch all 8 CPUs for Multi Processor Parking Protocol
   LaunchAllCPUs();
-#endif
 
   // Enable Hypervisor UART
   // SetHypervisorUartState(TRUE);
@@ -230,8 +228,6 @@ VOID PlatformInitialize()
 
 VOID SecondaryPlatformInitialize(UINTN MpIdr)
 {
-#if PREFER_MPPARK_OVER_SMC_PSCI == 1
   // Initialize Secondary CPU via MpPark
   MpParkMain(MpIdr);
-#endif
 }
