@@ -9,9 +9,14 @@
 [Sources]
   MpPark.c
   PlatformUtils.c
+  EarlyQGic/EarlyQGic.c
 
 [Sources.AARCH64]
   SecondaryModuleEntryPoint.S | GCC
+  EarlyQGic/ArmGicV3.S | GCC
+
+[BuildOptions.AARCH64]
+  GCC:*_*_*_CC_FLAGS = -Werror -Wno-error=unused-function
 
 [Packages]
   ArmPkg/ArmPkg.dec

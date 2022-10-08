@@ -15,6 +15,7 @@
 #include <Library/PlatformPrePiLib.h>
 
 #include "PlatformUtils.h"
+#include "EarlyQGic/EarlyQGic.h"
 #include <Configuration/DeviceMemoryMap.h>
 
 BOOLEAN IsLinuxBootRequested()
@@ -177,19 +178,40 @@ VOID SetHypervisorUartState(BOOLEAN Enable)
   }
 }
 
+VOID GICv3DumpRegisters()
+{
+  for (UINT32 CpuId = 0; CpuId < 8; CpuId++) {
+    UINT32 GICRAddr = 0x17A60000 + CpuId * 0x20000;
+
+    DEBUG((EFI_D_INFO | EFI_D_LOAD, "CpuId: %d\n", CpuId));
+
+    UINT32 off1 = MmioRead32(GICRAddr + 0x10280);
+    UINT32 off2 = MmioRead32(GICRAddr + 0x10180);
+    UINT32 off3 = MmioRead32(GICRAddr + 0x0014);
+
+    DEBUG((EFI_D_INFO | EFI_D_LOAD, "GicR off 1: %d\n", off1));
+    DEBUG((EFI_D_INFO | EFI_D_LOAD, "GicR off 2: %d\n", off2));
+    DEBUG((EFI_D_INFO | EFI_D_LOAD, "GicR off 3: %d\n", off3));
+  }
+
+  UINT32 GICDAddr = 0x17A00000;
+  UINT32 off4     = MmioRead32(GICDAddr);
+  DEBUG((EFI_D_INFO | EFI_D_LOAD, "GicD off 4: %d\n", off4));
+}
+
 EFI_STATUS
 EFIAPI
 QGicEarlyConfiguration(VOID)
 {
   // Enable gic distributor
-  // ArmGicEnableDistributor(PcdGet64(PcdGicDistributorBase));
+  ArmGicEnableDistributor(PcdGet64(PcdGicDistributorBase));
 
   for (UINTN i = 1; i < FixedPcdGet32(PcdCoreCount); i++) {
     // Wake up GIC Redistributor for this CPU
     MmioWrite32(
         PcdGet64(PcdGicRedistributorsBase) + i * GICR_SIZE + GICR_WAKER, 0);
 
-    /*// Deactivate Interrupts for this CPU
+    // Deactivate Interrupts for this CPU
     MmioWrite32(
         PcdGet64(PcdGicRedistributorsBase) + i * GICR_SIZE + GICR_SGI +
             GICR_ICENABLER0,
@@ -199,11 +221,11 @@ QGicEarlyConfiguration(VOID)
     MmioWrite32(
         PcdGet64(PcdGicRedistributorsBase) + i * GICR_SIZE + GICR_SGI +
             GICR_ICPENDR0,
-        0x10000000);*/
+        0x10000000);
   }
 
   // Disable Gic Distributor
-  // ArmGicDisableDistributor(PcdGet64(PcdGicDistributorBase));
+  ArmGicDisableDistributor(PcdGet64(PcdGicDistributorBase));
 
   return EFI_SUCCESS;
 }
@@ -213,20 +235,39 @@ VOID PlatformInitialize()
   // Initialize UART Serial
   UartInit();
 
+  GICv3DumpRegisters();
+
   // Configure Qualcomm GIC Early
   QGicEarlyConfiguration();
+
+  GICv3DumpRegisters();
 
   // Launch all 8 CPUs for Multi Processor Parking Protocol
   LaunchAllCPUs();
 
+  GICv3DumpRegisters();
+
   // Configure Qualcomm GIC Early
   QGicEarlyConfiguration();
+
+  GICv3DumpRegisters();
+
+  // Initialize GIC
+  if (EFI_ERROR(QGicPeim())) {
+    DEBUG((EFI_D_ERROR, "Failed to configure GIC\n"));
+    CpuDeadLoop();
+  }
+
+  GICv3DumpRegisters();
 
   // Enable Hypervisor UART
   // SetHypervisorUartState(TRUE);
 
   // Disable WatchDog Timer
   // SetWatchdogState(FALSE);
+
+  // Hang here for debugging
+  ASSERT(FALSE);
 }
 
 VOID SecondaryPlatformInitialize(UINTN MpIdr)
