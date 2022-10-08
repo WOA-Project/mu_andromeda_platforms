@@ -219,6 +219,9 @@ VOID PlatformInitialize()
   // Launch all 8 CPUs for Multi Processor Parking Protocol
   LaunchAllCPUs();
 
+  // Configure Qualcomm GIC Early
+  QGicEarlyConfiguration();
+
   // Enable Hypervisor UART
   // SetHypervisorUartState(TRUE);
 
