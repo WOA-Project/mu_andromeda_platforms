@@ -4,7 +4,7 @@
 [009h 0009   1]                     Checksum : 68
 [00Ah 0010   6]                       Oem ID : "QCOM  "
 [010h 0016   8]                 Oem Table ID : "QCOMEDK2"
-[018h 0024   4]                 Oem Revision : 00008150
+[018h 0024   4]                 Oem Revision : 00008180
 [01Ch 0028   4]              Asl Compiler ID : "QCOM"
 [020h 0032   4]        Asl Compiler Revision : 00000001
 

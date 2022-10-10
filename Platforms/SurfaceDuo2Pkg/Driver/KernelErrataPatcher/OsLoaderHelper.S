@@ -1,0 +1,24 @@
+#include <AsmMacroIoLibV8.h>
+#include "KernelErrataPatcher.h"
+
+GCC_ASM_IMPORT (KernelErrataPatcherExitBootServices)
+GCC_ASM_EXPORT (ExitBootServicesWrapper)
+
+// Wrapper around Exit boot service for hooking into winload.efi
+
+//EFI_STATUS
+//EFIAPI
+//ExitBootServicesWrapper (
+//  IN EFI_HANDLE ImageHandle, IN UINTN MapKey
+//  );
+ExitBootServicesWrapper:
+        // winload's OslFwpKernelSetupPhase1 seems to
+        // always save the OsLoaderBlock parameter into
+        // the X19 register right after stack frame setup
+        mov x2, x19
+
+        // the x30 register contains the last return addr
+        mov x3, x30
+
+        // Go for it
+        b KernelErrataPatcherExitBootServices

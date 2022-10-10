@@ -184,7 +184,7 @@
 [294h 0660   4]        Virtual GIC Interrupt : 00000019
 [298h 0664   8]   Redistributor Base Address : 0000000000000000
 [2A0h 0672   8]                    ARM MPIDR : 0000000000000700
-[2A8h 0680   1]             Efficiency Class : 01
+[2A8h 0680   1]             Efficiency Class : 02
 [2A9h 0681   1]                     Reserved : 00
 [2AAh 0682   2]       SPE Overflow Interrupt : 0000
 
