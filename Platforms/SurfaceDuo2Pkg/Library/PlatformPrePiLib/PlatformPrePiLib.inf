@@ -8,6 +8,10 @@
 
 [Sources]
   PlatformUtils.c
+  EarlyQGic/EarlyQGic.c
+
+[Sources.AARCH64]
+  EarlyQGic/ArmGicV3.S | GCC
 
 [Packages]
   ArmPkg/ArmPkg.dec
