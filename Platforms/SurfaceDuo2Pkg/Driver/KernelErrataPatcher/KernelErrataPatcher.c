@@ -34,6 +34,7 @@ VOID KernelErrataPatcherApplyPatches(
   // Fix up #0 (28 10 38 D5 -> E8 7F 40 B2) (ACTRL_EL1 Register Read)
   UINT8  FixedInstruction0[] = {0xE8, 0x7F, 0x40, 0xB2};
   UINT64 IllegalInstruction0 = FindPattern(Base, Size, "28 10 38 D5");
+  UINT8  PatchCounter        = 0;
 
   while (IllegalInstruction0 != 0) {
     if (IsInFirmwareContext) {
@@ -49,7 +50,22 @@ VOID KernelErrataPatcherApplyPatches(
         (UINT64 *)IllegalInstruction0, FixedInstruction0,
         sizeof(FixedInstruction0));
 
-    IllegalInstruction0 = FindPattern(Base, Size, "28 10 38 D5");
+    // Commenting out for boot speed optimization purposes, as there's only
+    // two read occurences really in the kernel and one in winload
+
+    // IllegalInstruction0 = FindPattern(Base, Size, "28 10 38 D5");
+    if (IsInFirmwareContext) {
+      IllegalInstruction0 = 0;
+    }
+    else {
+      PatchCounter++;
+      if (PatchCounter == 1) {
+        IllegalInstruction0 = FindPattern(Base, Size, "28 10 38 D5");
+      }
+      else {
+        IllegalInstruction0 = 0;
+      }
+    }
   }
 
   if (PatchWrites) {
@@ -71,7 +87,11 @@ VOID KernelErrataPatcherApplyPatches(
           (UINT64 *)IllegalInstruction1, FixedInstruction1,
           sizeof(FixedInstruction1));
 
-      IllegalInstruction1 = FindPattern(Base, Size, "29 10 18 D5");
+      // Commenting out for boot speed optimization purposes, as there's only
+      // one write occurence really in the kernel
+
+      // IllegalInstruction1 = FindPattern(Base, Size, "29 10 18 D5");
+      IllegalInstruction1 = 0;
     }
   }
 }
