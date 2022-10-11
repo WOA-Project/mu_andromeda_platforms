@@ -199,10 +199,3 @@ KernelErrataPatcherEntryPoint(
 
   return EFI_SUCCESS;
 }
-
-EFI_STATUS
-EFIAPI
-KernelErrataPatcherUnloadImage(IN EFI_HANDLE ImageHandle)
-{
-  return EFI_ACCESS_DENIED;
-}

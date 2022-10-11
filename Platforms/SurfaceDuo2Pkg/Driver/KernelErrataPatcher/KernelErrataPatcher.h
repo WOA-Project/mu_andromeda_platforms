@@ -25,8 +25,6 @@
 #include <Library/DevicePathLib.h>
 #include <Library/MemoryAllocationLib.h>
 #include <Library/UefiBootServicesTableLib.h>
-#include <Library/UefiRuntimeLib.h>
-#include <Library/UefiRuntimeServicesTableLib.h>
 
 #include "ntdef.h"
 
