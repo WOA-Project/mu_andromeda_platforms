@@ -32,12 +32,12 @@
 [LibraryClasses]
   ArmLib
   ArmMmuLib
-  UefiDriverEntryPoint
-  DebugLib
-  UefiLib
-  UefiBootServicesTableLib
   BaseMemoryLib
+  DebugLib
   MemoryAllocationLib
+  UefiBootServicesTableLib
+  UefiDriverEntryPoint
+  UefiLib
 
 [Guids]
   gEfiEventExitBootServicesGuid       ## CONSUMES

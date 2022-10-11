@@ -24,19 +24,21 @@
 
 [Packages]
   ArmPkg/ArmPkg.dec
+  #ArmPlatformPkg/ArmPlatformPkg.dec
   EmbeddedPkg/EmbeddedPkg.dec
   MdePkg/MdePkg.dec
   MdeModulePkg/MdeModulePkg.dec
 
 [LibraryClasses]
   ArmLib
-  ArmMmuLib
-  UefiDriverEntryPoint
-  DebugLib
-  UefiLib
-  UefiBootServicesTableLib
+  #ArmMmuLib
   BaseMemoryLib
+  DebugLib
+  IoLib
   MemoryAllocationLib
+  UefiBootServicesTableLib
+  UefiDriverEntryPoint
+  UefiLib
 
 [Guids]
   gEfiEventExitBootServicesGuid       ## CONSUMES
@@ -44,6 +46,11 @@
 [Protocols]
 
 [Pcd]
+  
+#[FixedPcd]
+#  gArmTokenSpaceGuid.PcdGicDistributorBase
+#  gArmTokenSpaceGuid.PcdGicRedistributorsBase
+#  gArmPlatformTokenSpaceGuid.PcdCoreCount
 
 [Depex]
   TRUE

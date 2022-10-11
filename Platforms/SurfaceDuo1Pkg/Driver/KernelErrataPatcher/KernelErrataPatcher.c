@@ -40,7 +40,7 @@ VOID KernelErrataPatcherApplyPatches(VOID *Base, UINTN Size)
 
   if (PsciMemProtect != 0) {
     FirmwarePrint(
-        L"PsciMemProtect            -> (phys) 0x%p\n", PsciMemProtectAddr);
+        L"PsciMemProtect            -> (phys) 0x%p\n", PsciMemProtect);
 
     CopyToReadOnly(
         (UINT64 *)PsciMemProtect, RetInstruction, sizeof(RetInstruction));

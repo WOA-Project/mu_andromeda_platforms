@@ -1,7 +1,7 @@
 #ifndef __EARLY_QGIC_H__
 #define __EARLY_QGIC_H__
 
-#define GIC_DIST_REG(off) (PcdGet64(PcdGicDistributorBase) + (off))
+#define GIC_DIST_REG(off) (FixedPcdGet64(PcdGicDistributorBase) + (off))
 
 #define GICR_WAKER 0x0014
 #define GICR_SIZE 0x20000
@@ -23,7 +23,7 @@
 #define GIC_DIST_SOFTINT GIC_DIST_REG(0xf00)
 
 #define GICD_IROUTER GIC_DIST_REG(0x6000)
-#define GIC_REDIST_CPU(cpuid) (PcdGet64(PcdGicRedistributorsBase) + (cpuid * GICR_SIZE))
+#define GIC_REDIST_CPU(cpuid) (FixedPcdGet64(PcdGicRedistributorsBase) + (cpuid * GICR_SIZE))
 #define GICR_WAKER_CPU0 GIC_REDIST_CPU(0) + GICR_WAKER
 
 #define ENABLE_GRP0_SEC 1
