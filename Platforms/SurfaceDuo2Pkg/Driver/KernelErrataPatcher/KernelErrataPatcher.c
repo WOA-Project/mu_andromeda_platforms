@@ -150,7 +150,7 @@ KernelErrataPatcherExitBootServices(
 
   // BlpArchSwitchContext
   BlpArchSwitchContext =
-      (BL_ARCH_SWITCH_CONTEXT)(FindPattern((VOID *)returnAddress, SCAN_MAX, "00 06 80 52 60 00 3E D4") - ARM64_TOTAL_INSTRUCTION_LENGTH(17));
+      (BL_ARCH_SWITCH_CONTEXT)(FindPattern((VOID *)returnAddress, SCAN_MAX, "1F 04 00 71 33 11 88 9A 28 00 40 B9 1F 01 00 6B") - ARM64_TOTAL_INSTRUCTION_LENGTH(9));
 
   if (!BlpArchSwitchContext ||
       ((UINTN)BlpArchSwitchContext & 0xFFFFFFF000000000) != 0) {
