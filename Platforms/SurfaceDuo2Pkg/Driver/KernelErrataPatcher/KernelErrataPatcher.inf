@@ -31,10 +31,10 @@
 
 [LibraryClasses]
   ArmLib
-  #ArmMmuLib
+  ArmMmuLib
   BaseMemoryLib
   DebugLib
-  IoLib
+  #IoLib
   MemoryAllocationLib
   UefiBootServicesTableLib
   UefiDriverEntryPoint
@@ -46,7 +46,7 @@
 [Protocols]
 
 [Pcd]
-  
+
 #[FixedPcd]
 #  gArmTokenSpaceGuid.PcdGicDistributorBase
 #  gArmTokenSpaceGuid.PcdGicRedistributorsBase
