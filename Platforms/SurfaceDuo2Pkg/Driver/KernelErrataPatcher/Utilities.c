@@ -23,7 +23,7 @@ VOID CopyMemory(VOID *destination, VOID *source, UINTN size)
 VOID CopyToReadOnly(VOID *destination, VOID *source, UINTN size)
 {
   BOOLEAN intstate = ArmGetInterruptState();
-  if (!intstate)
+  if (intstate)
     ArmDisableInterrupts();
 
   ArmClearMemoryRegionReadOnly((EFI_PHYSICAL_ADDRESS)destination, size);
