@@ -50,13 +50,17 @@ VOID KernelErrataPatcherApplyPatches(VOID *Base, UINTN Size)
 EFI_STATUS
 EFIAPI
 KernelErrataPatcherExitBootServices(
-    EFI_HANDLE ImageHandle, UINTN MapKey, PLOADER_PARAMETER_BLOCK loaderBlock,
-    UINTN returnAddress)
+    IN EFI_HANDLE ImageHandle, IN UINTN MapKey,
+    IN PLOADER_PARAMETER_BLOCK loaderBlockX19,
+    IN PLOADER_PARAMETER_BLOCK loaderBlockX20, IN UINTN returnAddress)
 {
+  PLOADER_PARAMETER_BLOCK loaderBlock =
+      loaderBlockX19 == NULL ? loaderBlockX20 : loaderBlockX19;
+
   // Might be called multiple times by winload in a loop failing few times
   gBS->ExitBootServices = EfiExitBootServices;
 
-  if (loaderBlock == NULL) {
+  if (loaderBlock == NULL || ((UINTN)loaderBlock & 0xFFFFFFF000000000) == 0) {
     FirmwarePrint(
         L"Failed to find OslLoaderBlock! loaderBlock -> 0x%p\n", loaderBlock);
     goto exit;
@@ -66,7 +70,7 @@ KernelErrataPatcherExitBootServices(
   BlpArchSwitchContext =
       (BL_ARCH_SWITCH_CONTEXT)(FindPattern((VOID *)returnAddress, SCAN_MAX, "1F 04 00 71 33 11 88 9A 28 00 40 B9 1F 01 00 6B") - ARM64_TOTAL_INSTRUCTION_LENGTH(9));
 
-  if (!BlpArchSwitchContext ||
+  if (BlpArchSwitchContext == NULL ||
       ((UINTN)BlpArchSwitchContext & 0xFFFFFFF000000000) != 0) {
     FirmwarePrint(
         L"Failed to find BlpArchSwitchContext! BlpArchSwitchContext -> 0x%p\n",
@@ -112,7 +116,7 @@ KernelErrataPatcherExitBootServices(
 
   if (kernelBase != 0 && kernelSize != 0) {
     ContextPrint(
-        L"Patching OsKernel         -> (phys) 0x%p (size) 0x%p\n", kernelBase,
+        L"Patching OsKernel         -> (virt) 0x%p (size) 0x%p\n", kernelBase,
         kernelSize);
 
     // Fix up ntoskrnl.exe

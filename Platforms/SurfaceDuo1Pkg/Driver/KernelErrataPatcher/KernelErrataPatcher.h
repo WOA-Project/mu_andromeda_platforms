@@ -49,7 +49,8 @@ EFI_STATUS
 EFIAPI
 KernelErrataPatcherExitBootServices(
     IN EFI_HANDLE ImageHandle, IN UINTN MapKey,
-    IN PLOADER_PARAMETER_BLOCK loaderBlock, IN UINTN returnAddress);
+    IN PLOADER_PARAMETER_BLOCK loaderBlockX19,
+    IN PLOADER_PARAMETER_BLOCK loaderBlockX20, IN UINTN returnAddress);
 
 EFI_STATUS
 EFIAPI

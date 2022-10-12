@@ -23,11 +23,14 @@ GCC_ASM_EXPORT (ExitBootServicesWrapper)
 ExitBootServicesWrapper:
         // winload's OslFwpKernelSetupPhase1 seems to
         // always save the OsLoaderBlock parameter into
-        // the X19 register right after stack frame setup
+        // the x19 register right after stack frame setup
         mov x2, x19
 
+        // some older implementations may also use x20
+        mov x3, x20
+
         // the x30 register contains the last return addr
-        mov x3, x30
+        mov x4, x30
 
         // Go for it
         b KernelErrataPatcherExitBootServices
