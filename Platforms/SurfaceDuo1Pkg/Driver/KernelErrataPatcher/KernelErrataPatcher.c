@@ -29,7 +29,8 @@ STATIC EFI_EXIT_BOOT_SERVICES EfiExitBootServices  = NULL;
 #define ContextPrint(x, ...)
 #endif
 
-VOID KernelErrataPatcherApplyPatches(VOID *Base, UINTN Size)
+VOID KernelErrataPatcherApplyPatches(
+    COPY_TO CopyTo, VOID *Base, UINTN Size, BOOLEAN IsInFirmwareContext)
 {
   // Fix up #0 (PsciMemProtect -> C0 03 5F D6) (PsciMemProtect -> RET)
   UINT8  RetInstruction[] = {0xC0, 0x03, 0x5F, 0xD6};
@@ -39,11 +40,16 @@ VOID KernelErrataPatcherApplyPatches(VOID *Base, UINTN Size)
       ARM64_TOTAL_INSTRUCTION_LENGTH(8);
 
   if (PsciMemProtect != 0) {
-    FirmwarePrint(
-        L"PsciMemProtect            -> (phys) 0x%p\n", PsciMemProtect);
+    if (IsInFirmwareContext) {
+      FirmwarePrint(
+          L"PsciMemProtect            -> (phys) 0x%p\n", PsciMemProtect);
+    }
+    else {
+      ContextPrint(
+          L"PsciMemProtect            -> (virt) 0x%p\n", PsciMemProtect);
+    }
 
-    CopyToReadOnly(
-        (UINT64 *)PsciMemProtect, RetInstruction, sizeof(RetInstruction));
+    CopyTo((UINT64 *)PsciMemProtect, RetInstruction, sizeof(RetInstruction));
   }
 }
 
@@ -54,11 +60,14 @@ KernelErrataPatcherExitBootServices(
     IN PLOADER_PARAMETER_BLOCK loaderBlockX19,
     IN PLOADER_PARAMETER_BLOCK loaderBlockX20, IN UINTN returnAddress)
 {
-  PLOADER_PARAMETER_BLOCK loaderBlock =
-      loaderBlockX19 == NULL ? loaderBlockX20 : loaderBlockX19;
-
   // Might be called multiple times by winload in a loop failing few times
   gBS->ExitBootServices = EfiExitBootServices;
+
+  PLOADER_PARAMETER_BLOCK loaderBlock = loaderBlockX19;
+
+  if (loaderBlock == NULL || ((UINTN)loaderBlock & 0xFFFFFFF000000000) == 0) {
+    loaderBlock = loaderBlockX20;
+  }
 
   if (loaderBlock == NULL || ((UINTN)loaderBlock & 0xFFFFFFF000000000) == 0) {
     FirmwarePrint(
@@ -92,11 +101,23 @@ KernelErrataPatcherExitBootServices(
    */
   BlpArchSwitchContext(ApplicationContext);
 
+  UINT32 OsMajorVersion = loaderBlock->OsMajorVersion;
+  UINT32 OsMinorVersion = loaderBlock->OsMinorVersion;
+  UINT32 Size           = loaderBlock->Size;
+
   ContextPrint(
       L"LOADER_PARAMETER_BLOCK    -> OsMajorVersion: %d OsMinorVersion: %d "
       L"Size: %d\n",
-      loaderBlock->OsMajorVersion, loaderBlock->OsMinorVersion,
-      loaderBlock->Size);
+      OsMajorVersion, OsMinorVersion, Size);
+
+  if (OsMajorVersion != 10 || OsMinorVersion != 0 || Size == 0) {
+    ContextPrint(
+        L"Incompatible!           -> OsMajorVersion: %d OsMinorVersion: %d "
+        L"Size: %d\n",
+        OsMajorVersion, OsMinorVersion, Size);
+
+    goto exitToFirmware;
+  }
 
   KLDR_DATA_TABLE_ENTRY kernelModule =
       *GetModule(&loaderBlock->LoadOrderListHead, NT_OS_KERNEL_IMAGE_NAME);
@@ -120,7 +141,8 @@ KernelErrataPatcherExitBootServices(
         kernelSize);
 
     // Fix up ntoskrnl.exe
-    KernelErrataPatcherApplyPatches((VOID *)kernelBase, kernelSize);
+    KernelErrataPatcherApplyPatches(
+        CopyToReadOnly, (VOID *)kernelBase, kernelSize, FALSE);
   }
 
 exitToFirmware:
