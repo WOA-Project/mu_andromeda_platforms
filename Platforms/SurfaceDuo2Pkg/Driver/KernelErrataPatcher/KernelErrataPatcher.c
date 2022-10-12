@@ -67,7 +67,7 @@ VOID KernelErrataPatcherApplyReadACTLREL1Patches(
         sizeof(FixedInstruction0));
 
     // Commenting out for boot speed optimization purposes, as there's only
-    // two read occurences really in the kernel and one in winload
+    // two (3 for VB) read occurences really in the kernel and one in winload
 
     // IllegalInstruction0 = FindPattern(Base, Size, "28 10 38 D5");
     if (IsInFirmwareContext) {
@@ -75,7 +75,7 @@ VOID KernelErrataPatcherApplyReadACTLREL1Patches(
     }
     else {
       PatchCounter++;
-      if (PatchCounter == 1) {
+      if (PatchCounter != 3) {
         IllegalInstruction0 = FindPattern(Base, Size, "28 10 38 D5");
       }
       else {
