@@ -11,7 +11,7 @@
 **/
 #include "KernelErrataPatcher.h"
 
-#define SILENT 0
+#define SILENT 1
 
 STATIC BL_ARCH_SWITCH_CONTEXT BlpArchSwitchContext = NULL;
 STATIC EFI_EXIT_BOOT_SERVICES EfiExitBootServices  = NULL;
@@ -45,12 +45,14 @@ STATIC EFI_EXIT_BOOT_SERVICES EfiExitBootServices  = NULL;
 }*/
 
 VOID KernelErrataPatcherApplyReadACTLREL1Patches(
-    COPY_TO CopyTo, VOID *Base, UINTN Size, BOOLEAN IsInFirmwareContext)
+    COPY_TO CopyTo, EFI_PHYSICAL_ADDRESS Base, UINTN Size,
+    BOOLEAN IsInFirmwareContext)
 {
   // Fix up #0 (28 10 38 D5 -> E8 7F 40 B2) (ACTRL_EL1 Register Read)
-  UINT8  FixedInstruction0[] = {0xE8, 0x7F, 0x40, 0xB2};
-  UINT64 IllegalInstruction0 = FindPattern(Base, Size, "28 10 38 D5");
-  UINT8  PatchCounter        = 0;
+  UINT8                FixedInstruction0[] = {0xE8, 0x7F, 0x40, 0xB2};
+  EFI_PHYSICAL_ADDRESS IllegalInstruction0 =
+      FindPattern(Base, Size, "28 10 38 D5");
+  UINT8 PatchCounter = 0;
 
   while (IllegalInstruction0 != 0) {
     if (IsInFirmwareContext) {
@@ -63,7 +65,7 @@ VOID KernelErrataPatcherApplyReadACTLREL1Patches(
     }
 
     CopyTo(
-        (UINT64 *)IllegalInstruction0, FixedInstruction0,
+        IllegalInstruction0, (EFI_PHYSICAL_ADDRESS)FixedInstruction0,
         sizeof(FixedInstruction0));
 
     // Commenting out for boot speed optimization purposes, as there's only
@@ -86,11 +88,13 @@ VOID KernelErrataPatcherApplyReadACTLREL1Patches(
 }
 
 VOID KernelErrataPatcherApplyWriteACTLREL1Patches(
-    COPY_TO CopyTo, VOID *Base, UINTN Size, BOOLEAN IsInFirmwareContext)
+    COPY_TO CopyTo, EFI_PHYSICAL_ADDRESS Base, UINTN Size,
+    BOOLEAN IsInFirmwareContext)
 {
   // Fix up #1 (29 10 18 D5 -> 1F 20 03 D5) (ACTRL_EL1 Register Write)
-  UINT8  FixedInstruction1[] = {0x1F, 0x20, 0x03, 0xD5};
-  UINT64 IllegalInstruction1 = FindPattern(Base, Size, "29 10 18 D5");
+  UINT8                FixedInstruction1[] = {0x1F, 0x20, 0x03, 0xD5};
+  EFI_PHYSICAL_ADDRESS IllegalInstruction1 =
+      FindPattern(Base, Size, "29 10 18 D5");
 
   while (IllegalInstruction1 != 0) {
     if (IsInFirmwareContext) {
@@ -103,7 +107,7 @@ VOID KernelErrataPatcherApplyWriteACTLREL1Patches(
     }
 
     CopyTo(
-        (UINT64 *)IllegalInstruction1, FixedInstruction1,
+        IllegalInstruction1, (EFI_PHYSICAL_ADDRESS)FixedInstruction1,
         sizeof(FixedInstruction1));
 
     // Commenting out for boot speed optimization purposes, as there's only
@@ -115,13 +119,14 @@ VOID KernelErrataPatcherApplyWriteACTLREL1Patches(
 }
 
 VOID KernelErrataPatcherApplyIncoherentCacheConfigurationPatches(
-    COPY_TO CopyTo, VOID *Base, UINTN Size, BOOLEAN IsInFirmwareContext)
+    COPY_TO CopyTo, EFI_PHYSICAL_ADDRESS Base, UINTN Size,
+    BOOLEAN IsInFirmwareContext)
 {
   // Fix up #3 (KiCacheInitialize (Bugcheck call (first)) -> 1F 20 03 D5)
   // (KiCacheInitialize (Bugcheck call (first)) -> NOP)
-  UINT8  NopInstruction[] = {0x1F, 0x20, 0x03, 0xD5, 0x1F, 0x20, 0x03, 0xD5,
-                             0x1F, 0x20, 0x03, 0xD5, 0x1F, 0x20, 0x03, 0xD5};
-  UINT64 KiCacheInitializeBC1 =
+  UINT8 NopInstruction[] = {0x1F, 0x20, 0x03, 0xD5, 0x1F, 0x20, 0x03, 0xD5,
+                            0x1F, 0x20, 0x03, 0xD5, 0x1F, 0x20, 0x03, 0xD5};
+  EFI_PHYSICAL_ADDRESS KiCacheInitializeBC1 =
       FindPattern(Base, Size, "04 00 80 D2 03 00 80 D2 C0 07 80 52");
 
   if (KiCacheInitializeBC1 != 0) {
@@ -135,7 +140,8 @@ VOID KernelErrataPatcherApplyIncoherentCacheConfigurationPatches(
     }
 
     CopyTo(
-        (UINT64 *)KiCacheInitializeBC1, NopInstruction, sizeof(NopInstruction));
+        KiCacheInitializeBC1, (EFI_PHYSICAL_ADDRESS)NopInstruction,
+        sizeof(NopInstruction));
   }
 }
 
@@ -144,29 +150,35 @@ EFIAPI
 KernelErrataPatcherExitBootServices(
     IN EFI_HANDLE ImageHandle, IN UINTN MapKey,
     IN PLOADER_PARAMETER_BLOCK loaderBlockX19,
-    IN PLOADER_PARAMETER_BLOCK loaderBlockX20, IN UINTN returnAddress)
+    IN PLOADER_PARAMETER_BLOCK loaderBlockX20,
+    IN EFI_PHYSICAL_ADDRESS    returnAddress)
 {
   // Might be called multiple times by winload in a loop failing few times
   gBS->ExitBootServices = EfiExitBootServices;
 
   PLOADER_PARAMETER_BLOCK loaderBlock = loaderBlockX19;
 
-  if (loaderBlock == NULL || ((UINTN)loaderBlock & 0xFFFFFFF000000000) == 0) {
+  if (loaderBlock == NULL ||
+      ((EFI_PHYSICAL_ADDRESS)loaderBlock & 0xFFFFFFF000000000) == 0) {
     loaderBlock = loaderBlockX20;
   }
 
-  if (loaderBlock == NULL || ((UINTN)loaderBlock & 0xFFFFFFF000000000) == 0) {
+  if (loaderBlock == NULL ||
+      ((EFI_PHYSICAL_ADDRESS)loaderBlock & 0xFFFFFFF000000000) == 0) {
     FirmwarePrint(
         L"Failed to find OslLoaderBlock! loaderBlock -> 0x%p\n", loaderBlock);
     goto exit;
   }
 
+  EFI_PHYSICAL_ADDRESS PatternMatch = FindPattern(
+      returnAddress, SCAN_MAX,
+      "1F 04 00 71 33 11 88 9A 28 00 40 B9 1F 01 00 6B");
+
   // BlpArchSwitchContext
   BlpArchSwitchContext =
-      (BL_ARCH_SWITCH_CONTEXT)(FindPattern((VOID *)returnAddress, SCAN_MAX, "1F 04 00 71 33 11 88 9A 28 00 40 B9 1F 01 00 6B") - ARM64_TOTAL_INSTRUCTION_LENGTH(9));
+      (BL_ARCH_SWITCH_CONTEXT)(PatternMatch - ARM64_TOTAL_INSTRUCTION_LENGTH(9));
 
-  if (BlpArchSwitchContext == NULL ||
-      ((UINTN)BlpArchSwitchContext & 0xFFFFFFF000000000) != 0) {
+  if (PatternMatch == 0 || (PatternMatch & 0xFFFFFFF000000000) != 0) {
     FirmwarePrint(
         L"Failed to find BlpArchSwitchContext! BlpArchSwitchContext -> 0x%p\n",
         BlpArchSwitchContext);
@@ -185,7 +197,7 @@ KernelErrataPatcherExitBootServices(
       SCAN_MAX);
 
   KernelErrataPatcherApplyReadACTLREL1Patches(
-      CopyMemory, (VOID *)(returnAddress), SCAN_MAX, TRUE);
+      CopyMemory, returnAddress, SCAN_MAX, TRUE);
 
   /*
    * Switch context to (as defined by winload) application context
@@ -225,8 +237,8 @@ KernelErrataPatcherExitBootServices(
     goto exitToFirmware;
   }
 
-  UINTN kernelBase = (UINTN)kernelModule.DllBase;
-  UINTN kernelSize = kernelModule.SizeOfImage;
+  EFI_PHYSICAL_ADDRESS kernelBase = (EFI_PHYSICAL_ADDRESS)kernelModule.DllBase;
+  UINTN                kernelSize = kernelModule.SizeOfImage;
 
   ContextPrint(L"OsKernel                  -> (virt) 0x%p\n", kernelBase);
 
@@ -237,11 +249,11 @@ KernelErrataPatcherExitBootServices(
 
     // Fix up ntoskrnl.exe
     KernelErrataPatcherApplyReadACTLREL1Patches(
-        CopyToReadOnly, (VOID *)kernelBase, kernelSize, FALSE);
+        CopyToReadOnly, kernelBase, kernelSize, FALSE);
     KernelErrataPatcherApplyWriteACTLREL1Patches(
-        CopyToReadOnly, (VOID *)kernelBase, kernelSize, FALSE);
+        CopyToReadOnly, kernelBase, kernelSize, FALSE);
     KernelErrataPatcherApplyIncoherentCacheConfigurationPatches(
-        CopyToReadOnly, (VOID *)kernelBase, kernelSize, FALSE);
+        CopyToReadOnly, kernelBase, kernelSize, FALSE);
   }
 
 exitToFirmware:
