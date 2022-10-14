@@ -23,8 +23,9 @@
 #define GIC_DIST_SOFTINT GIC_DIST_REG(0xf00)
 
 #define GICD_IROUTER GIC_DIST_REG(0x6000)
-#define GIC_REDIST_CPU(cpuid) (FixedPcdGet64(PcdGicRedistributorsBase) + (cpuid * GICR_SIZE))
-#define GICR_WAKER_CPU0 GIC_REDIST_CPU(0) + GICR_WAKER
+#define CURRENT_CPU_INDEX ((ArmReadMpidr() & 0xFFF) >> 8)
+#define GIC_REDIST_CPU(cpuid) (FixedPcdGet64(PcdGicRedistributorsBase) + (cpuid - CURRENT_CPU_INDEX) * GICR_SIZE)
+#define GICR_WAKER_CURRENT_CPU FixedPcdGet64(PcdGicRedistributorsBase) + GICR_WAKER
 
 #define ENABLE_GRP0_SEC 1
 #define ENABLE_GRP1_NS 2

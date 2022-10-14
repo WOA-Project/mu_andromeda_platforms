@@ -1,6 +1,9 @@
 FILE FREEFORM = 7E374E25-8E01-4FEE-87F2-390C23C606CD {
-	SECTION RAW = SurfaceDuo2Pkg/AcpiTables/8350/builtin/APIC.UniCore.aml
 #	SECTION RAW = SurfaceDuo2Pkg/AcpiTables/8350/builtin/APIC.aml
+#	SECTION RAW = SurfaceDuo2Pkg/AcpiTables/8350/builtin/APIC.QuadCore.aml
+#	SECTION RAW = SurfaceDuo2Pkg/AcpiTables/8350/builtin/APIC.UniCore.aml
+#	SECTION RAW = SurfaceDuo2Pkg/AcpiTables/8350/builtin/APIC.FifthCore.aml
+	SECTION RAW = SurfaceDuo2Pkg/AcpiTables/8350/builtin/APIC.EighthCore.aml
 # 	SECTION RAW = SurfaceDuo2Pkg/AcpiTables/8350/builtin/BERT.aml
 # 	SECTION RAW = SurfaceDuo2Pkg/AcpiTables/8350/builtin/BGRT.aml
 	SECTION RAW = SurfaceDuo2Pkg/AcpiTables/8350/builtin/CSRT.aml

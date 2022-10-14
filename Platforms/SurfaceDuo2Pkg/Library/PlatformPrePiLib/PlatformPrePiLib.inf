@@ -12,6 +12,7 @@
 
 [Sources.AARCH64]
   EarlyQGic/ArmGicV3.S | GCC
+  SecondaryModuleEntryPoint.S | GCC
 
 [Packages]
   ArmPkg/ArmPkg.dec
@@ -56,10 +57,13 @@
   gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVersionString
 
 [FixedPcd]
+  gArmTokenSpaceGuid.PcdCpuVectorBaseAddress
   gArmTokenSpaceGuid.PcdGicDistributorBase
   gArmTokenSpaceGuid.PcdGicRedistributorsBase
   gArmTokenSpaceGuid.PcdGicInterruptInterfaceBase
   gArmPlatformTokenSpaceGuid.PcdCoreCount
+  gEmbeddedTokenSpaceGuid.PcdPrePiStackBase
+  gEmbeddedTokenSpaceGuid.PcdPrePiStackSize
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferAddress
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferWidth
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferHeight

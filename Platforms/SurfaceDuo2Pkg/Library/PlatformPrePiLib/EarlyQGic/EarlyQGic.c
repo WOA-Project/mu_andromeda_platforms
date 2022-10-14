@@ -175,11 +175,11 @@ VOID QGicCpuInit(VOID)
 
   /* For cpu init need to wake up the redistributor */
   MmioWrite32(
-      GICR_WAKER_CPU0,
-      (MmioRead32(GICR_WAKER_CPU0) & ~GIC_WAKER_PROCESSORSLEEP));
+      GICR_WAKER_CURRENT_CPU,
+      (MmioRead32(GICR_WAKER_CURRENT_CPU) & ~GIC_WAKER_PROCESSORSLEEP));
 
   /* Wait until redistributor is up */
-  while (MmioRead32(GICR_WAKER_CPU0) & GIC_WAKER_CHILDRENASLEEP) {
+  while (MmioRead32(GICR_WAKER_CURRENT_CPU) & GIC_WAKER_CHILDRENASLEEP) {
     retry--;
     if (!retry) {
       DEBUG((EFI_D_ERROR, "Failed to wake redistributor for CPU0\n"));

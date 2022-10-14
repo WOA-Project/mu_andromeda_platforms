@@ -14,8 +14,8 @@
 #include <Library/ArmSmcLib.h>
 #include <Library/PlatformPrePiLib.h>
 
-#include "PlatformUtils.h"
 #include "EarlyQGic/EarlyQGic.h"
+#include "PlatformUtils.h"
 #include <Configuration/DeviceMemoryMap.h>
 
 BOOLEAN IsLinuxBootRequested(VOID)
@@ -178,8 +178,56 @@ VOID SetHypervisorUartState(BOOLEAN Enable)
   }
 }
 
+UINTN
+PSCI_CPU_ON(UINTN target_cpu, UINTN entry_point_address, UINTN context_id)
+{
+  ARM_SMC_ARGS ArmSmcArgs;
+  ArmSmcArgs.Arg0 = ARM_SMC_ID_PSCI_CPU_ON_AARCH64;
+  ArmSmcArgs.Arg1 = target_cpu;
+  ArmSmcArgs.Arg2 = entry_point_address;
+  ArmSmcArgs.Arg3 = context_id;
+
+  ArmCallSmc(&ArmSmcArgs);
+  return ArmSmcArgs.Arg0;
+}
+
+UINTN
+PSCI_CPU_OFF()
+{
+  ARM_SMC_ARGS ArmSmcArgs;
+  ArmSmcArgs.Arg0 = ARM_SMC_ID_PSCI_CPU_OFF;
+
+  ArmCallSmc(&ArmSmcArgs);
+  return ArmSmcArgs.Arg0;
+}
+
+VOID EnsureRunningOnCorrectCPU()
+{
+  UINT64 MpId;
+  UINT64 CpuTarget;
+
+  MpId      = ArmReadMpidr();
+  CpuTarget = MpId & 0xFFF;
+
+  // Are we running on the CPU core we want?
+  if (CpuTarget != 0x00000700) {
+    // Jump to the CPU core we want
+    PSCI_CPU_ON(0x00000700, (UINTN)&_SecondaryModuleEntryPoint, 0);
+
+    // Turn off this CPU core
+    PSCI_CPU_OFF();
+
+    // We should never get here
+    CpuDeadLoop();
+  }
+}
+
 VOID PlatformInitialize(VOID)
 {
+  // For now given Multi Core support in Windows is a bit broken, let's move
+  // ourselves to the last CPU for best performance.
+  EnsureRunningOnCorrectCPU();
+
   // Initialize UART Serial
   UartInit();
 

@@ -45,4 +45,6 @@
 VOID PlatformInitialize(VOID);
 BOOLEAN IsLinuxBootRequested(VOID);
 
+extern VOID _SecondaryModuleEntryPoint(VOID);
+
 #endif /* _PLATFORM_UTILS_H_ */
