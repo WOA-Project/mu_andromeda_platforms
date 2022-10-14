@@ -29,6 +29,7 @@ SPDX-License-Identifier: BSD-2-Clause-Patent
 #include <Protocol/EFIChipInfo.h>
 #include <Protocol/EFIPlatformInfo.h>
 #include <Protocol/EFISmem.h>
+#include <Protocol/EFIClock.h>
 
 //
 // Predefined platform default console device path
@@ -50,6 +51,61 @@ BDS_CONSOLE_CONNECT_ENTRY gPlatformConsoles[] =
 };
 
 EFI_DEVICE_PATH_PROTOCOL *gPlatformConInDeviceList[] = {NULL};
+
+EFI_STATUS
+EFIAPI
+SetupAPSSCpuPerformanceLevels()
+{
+  EFI_STATUS          Status                = EFI_SUCCESS;
+  EFI_CLOCK_PROTOCOL *pClockProtocol        = NULL;
+  UINT32              performanceLevelIndex = 0;
+  UINT32              frequencyHz           = 0;
+
+  Status = gBS->LocateProtocol(
+      &gEfiClockProtocolGuid, NULL, (VOID **)&pClockProtocol);
+
+  if (EFI_ERROR(Status)) {
+    DEBUG(
+        (EFI_D_ERROR,
+         "%a: Failed to locate the Clock EFI protocol, "
+         "Status: %r\n",
+         __FUNCTION__, Status));
+    return Status;
+  }
+
+  // Go one index further because of L3
+  for (UINT32 i = 0; i < FixedPcdGet32(PcdCoreCount) + 1; i++) {
+    Status = pClockProtocol->GetMaxPerformanceLevel(
+        pClockProtocol, i, &performanceLevelIndex);
+
+    if (EFI_ERROR(Status)) {
+      DEBUG(
+          (EFI_D_ERROR,
+           "%a: Failed to get the maximum performance level for CPU %d, "
+           "Status: %r\n",
+           __FUNCTION__, i, Status));
+      return Status;
+    }
+
+    Status = pClockProtocol->SetCPUPerfLevel(
+        pClockProtocol, i, performanceLevelIndex, &frequencyHz);
+
+    if (EFI_ERROR(Status)) {
+      DEBUG(
+          (EFI_D_ERROR,
+           "%a: Failed to set the maximum performance level for CPU %d, "
+           "Status: %r\n",
+           __FUNCTION__, i, Status));
+      return Status;
+    }
+
+    DEBUG(
+        (EFI_D_WARN, "%a: CPU %d Now running at %lu Hz\n", __FUNCTION__, i,
+         frequencyHz));
+  }
+
+  return Status;
+}
 
 EFI_STATUS
 EFIAPI
@@ -273,6 +329,9 @@ EFI_DEVICE_PATH_PROTOCOL **EFIAPI GetPlatformConnectList(VOID)
 {
   // Patch ACPI Tables
   PlatformUpdateAcpiTables();
+
+  // Increase CPU speed for HLOS
+  SetupAPSSCpuPerformanceLevels();
 
   return NULL;
 }
