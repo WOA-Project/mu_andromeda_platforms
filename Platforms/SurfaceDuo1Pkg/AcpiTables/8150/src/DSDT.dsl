@@ -3034,7 +3034,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             {
                 Return (Package (0x01)
                 {
-                    "ACPI\\VEN_QCOM&DEV_0419"
+                    "ACPI\\VEN_QCOM&DEV_0519"
                 })
             }
         }
