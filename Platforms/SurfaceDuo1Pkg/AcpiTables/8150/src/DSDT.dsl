@@ -69,6 +69,12 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
         Name (PRP1, 0xFFFFFFFF)
         Name (PRP2, 0xFFFFFFFF)
         Name (PRP3, 0xFFFFFFFF)
+        Device (AUDS)
+        {
+            Name (_HID, "QCOM04D2")  // _HID: Hardware ID
+            Name (_UID, Zero)  // _UID: Unique ID
+        }
+
         Device (UFS0)
         {
             Method (_STA, 0, NotSerialized)  // _STA: Status
