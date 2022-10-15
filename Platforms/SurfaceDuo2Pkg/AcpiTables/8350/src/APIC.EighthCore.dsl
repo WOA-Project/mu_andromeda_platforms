@@ -169,8 +169,8 @@
 [25Ch 0604   1]                Subtable Type : 0B [Generic Interrupt Controller]
 [25Dh 0605   1]                       Length : 50
 [25Eh 0606   2]                     Reserved : 0000
-[260h 0608   4]         CPU Interface Number : 00000008
-[264h 0612   4]                Processor UID : 00000008
+[260h 0608   4]         CPU Interface Number : 00000007
+[264h 0612   4]                Processor UID : 00000007
 [268h 0616   4]        Flags (decoded below) : 00000001
                            Processor Enabled : 1
           Performance Interrupt Trigger Mode : 0
