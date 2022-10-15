@@ -1,10 +1,10 @@
 [000h 0000   4]                    Signature : "FACP"    [Fixed ACPI Description Table (FADT)]
 [004h 0004   4]                 Table Length : 00000114
 [008h 0008   1]                     Revision : 06
-[009h 0009   1]                     Checksum : 7C
+[009h 0009   1]                     Checksum : AC
 [00Ah 0010   6]                       Oem ID : "QCOM  "
 [010h 0016   8]                 Oem Table ID : "QCOMEDK2"
-[018h 0024   4]                 Oem Revision : 00008180
+[018h 0024   4]                 Oem Revision : 00008150
 [01Ch 0028   4]              Asl Compiler ID : "QCOM"
 [020h 0032   4]        Asl Compiler Revision : 00000001
 

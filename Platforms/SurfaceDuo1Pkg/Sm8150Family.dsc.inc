@@ -26,7 +26,7 @@
   gArmTokenSpaceGuid.PcdGicDistributorBase|0x17a00000
   gArmTokenSpaceGuid.PcdGicRedistributorsBase|0x17a60000
 
-  gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultOemRevision|0x00008180
+  gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultOemRevision|0x00008150
   gEmbeddedTokenSpaceGuid.PcdPrePiStackBase|0x9ffB0000
   gEmbeddedTokenSpaceGuid.PcdPrePiStackSize|0x00020000      # 128K stack
   gEmbeddedTokenSpaceGuid.PcdInterruptBaseAddress|0x09bc0000
