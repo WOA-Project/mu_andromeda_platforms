@@ -78449,6 +78449,38 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
         }
 
         Name (QUFN, Zero)
+        Name (HPDB, Zero)
+        Name (HPDS, Buffer (One)
+        {
+             0x00                                             // .
+        })
+        Name (PINA, Zero)
+        Name (DPPN, 0x0D)
+        Name (CCST, Buffer (One)
+        {
+             0x02                                             // .
+        })
+        Name (CCS2, 0x02)
+        Name (PORT, Buffer (One)
+        {
+             0x02                                             // .
+        })
+        Name (HIRQ, Buffer (One)
+        {
+             0x00                                             // .
+        })
+        Name (USBC, Buffer (One)
+        {
+             0x0B                                             // .
+        })
+        Name (HSFL, Buffer (One)
+        {
+             0x00                                             // .
+        })
+        Name (MUXC, Buffer (One)
+        {
+             0x00                                             // .
+        })
         Name (DPP0, Buffer (One)
         {
              0x00                                             // .
@@ -79485,21 +79517,439 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
             }
         }
 
-        Name (HPDB, Zero)
-        Name (PINA, Zero)
-        Name (CCST, Buffer (One)
+        Device (URS1)
         {
-             0x02                                             // .
-        })
-        Name (CCS2, 0x02)
-        Name (HSFL, Buffer (One)
-        {
-             0x00                                             // .
-        })
-        Name (USBC, Buffer (One)
-        {
-             0x0B                                             // .
-        })
+            Name (_HID, "QCOM0497")  // _HID: Hardware ID
+            Name (_CID, "PNP0CA1")  // _CID: Compatible ID
+            Alias (\_SB.PSUB, _SUB)
+            Name (_UID, One)  // _UID: Unique ID
+            Name (_CCA, Zero)  // _CCA: Cache Coherency Attribute
+            Name (_DEP, Package (One)  // _DEP: Dependencies
+            {
+                \_SB.PEP0
+            })
+            Name (_CRS, ResourceTemplate ()  // _CRS: Current Resource Settings
+            {
+                Memory32Fixed (ReadWrite,
+                    0x0A800000,         // Address Base
+                    0x000FFFFF,         // Address Length
+                    )
+            })
+            Device (USB1)
+            {
+                Name (_S0W, 0x03)  // _S0W: S0 Device Wake State
+                Name (_ADR, Zero)  // _ADR: Address
+                Name (_CRS, ResourceTemplate ()  // _CRS: Current Resource Settings
+                {
+                    Interrupt (ResourceConsumer, Level, ActiveHigh, Shared, ,, )
+                    {
+                        0x000000AA,
+                    }
+                    Interrupt (ResourceConsumer, Level, ActiveHigh, SharedAndWake, ,, )
+                    {
+                        0x000000A7,
+                    }
+                    Interrupt (ResourceConsumer, Level, ActiveHigh, SharedAndWake, ,, )
+                    {
+                        0x00000228,
+                    }
+                    Interrupt (ResourceConsumer, Edge, ActiveHigh, SharedAndWake, ,, )
+                    {
+                        0x0000020A,
+                    }
+                    Interrupt (ResourceConsumer, Edge, ActiveHigh, SharedAndWake, ,, )
+                    {
+                        0x0000020B,
+                    }
+                })
+                Device (RHUB)
+                {
+                    Name (_ADR, Zero)  // _ADR: Address
+                    Device (PRT1)
+                    {
+                        Name (_ADR, One)  // _ADR: Address
+                        Name (_UPC, Package (0x04)  // _UPC: USB Port Capabilities
+                        {
+                            One, 
+                            0x09, 
+                            Zero, 
+                            Zero
+                        })
+                        Name (_PLD, Package (0x01)  // _PLD: Physical Location of Device
+                        {
+                            ToPLD (
+                                PLD_Revision           = 0x2,
+                                PLD_IgnoreColor        = 0x1,
+                                PLD_Red                = 0x0,
+                                PLD_Green              = 0x0,
+                                PLD_Blue               = 0x0,
+                                PLD_Width              = 0x0,
+                                PLD_Height             = 0x0,
+                                PLD_UserVisible        = 0x1,
+                                PLD_Dock               = 0x0,
+                                PLD_Lid                = 0x0,
+                                PLD_Panel              = "BACK",
+                                PLD_VerticalPosition   = "CENTER",
+                                PLD_HorizontalPosition = "LEFT",
+                                PLD_Shape              = "VERTICALRECTANGLE",
+                                PLD_GroupOrientation   = 0x0,
+                                PLD_GroupToken         = 0x0,
+                                PLD_GroupPosition      = 0x1,
+                                PLD_Bay                = 0x0,
+                                PLD_Ejectable          = 0x0,
+                                PLD_EjectRequired      = 0x0,
+                                PLD_CabinetNumber      = 0x0,
+                                PLD_CardCageNumber     = 0x0,
+                                PLD_Reference          = 0x0,
+                                PLD_Rotation           = 0x0,
+                                PLD_Order              = 0x0,
+                                PLD_VerticalOffset     = 0xFFFF,
+                                PLD_HorizontalOffset   = 0xFFFF)
+
+                        })
+                    }
+                }
+
+                Name (STVL, 0x0F)
+                Method (_STA, 0, NotSerialized)  // _STA: Status
+                {
+                    Return (STVL) /* \_SB_.URS1.USB1.STVL */
+                }
+
+                Method (DPM0, 1, NotSerialized)
+                {
+                    \_SB.DPP0 = Arg0
+                    Notify (\_SB.PEP0, 0xA0) // Device-Specific
+                }
+
+                Method (CCVL, 0, NotSerialized)
+                {
+                    Return (\_SB.CCST)
+                }
+
+                Method (HSEN, 0, NotSerialized)
+                {
+                    Return (\_SB.HSFL)
+                }
+
+                Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
+                {
+                    While (One)
+                    {
+                        Name (_T_0, Buffer (0x01)  // _T_x: Emitted by ASL Compiler, x=0-9, A-Z
+                        {
+                             0x00                                             // .
+                        })
+                        CopyObject (ToBuffer (Arg0), _T_0) /* \_SB_.URS1.USB1._DSM._T_0 */
+                        If ((_T_0 == ToUUID ("ce2ee385-00e6-48cb-9f05-2edb927c4899") /* USB Controller */))
+                        {
+                            While (One)
+                            {
+                                Name (_T_1, 0x00)  // _T_x: Emitted by ASL Compiler, x=0-9, A-Z
+                                _T_1 = ToInteger (Arg2)
+                                If ((_T_1 == Zero))
+                                {
+                                    While (One)
+                                    {
+                                        Name (_T_2, 0x00)  // _T_x: Emitted by ASL Compiler, x=0-9, A-Z
+                                        _T_2 = ToInteger (Arg1)
+                                        If ((_T_2 == Zero))
+                                        {
+                                            Return (Buffer (One)
+                                            {
+                                                 0x1D                                             // .
+                                            })
+                                            Break
+                                        }
+                                        Else
+                                        {
+                                            Return (Buffer (One)
+                                            {
+                                                 0x01                                             // .
+                                            })
+                                            Break
+                                        }
+
+                                        Break
+                                    }
+
+                                    Return (Buffer (One)
+                                    {
+                                         0x00                                             // .
+                                    })
+                                    Break
+                                }
+                                ElseIf ((_T_1 == 0x02))
+                                {
+                                    Return (Zero)
+                                    Break
+                                }
+                                ElseIf ((_T_1 == 0x03))
+                                {
+                                    Return (Zero)
+                                    Break
+                                }
+                                ElseIf ((_T_1 == 0x04))
+                                {
+                                    Return (0x02)
+                                    Break
+                                }
+                                Else
+                                {
+                                    Return (Buffer (One)
+                                    {
+                                         0x00                                             // .
+                                    })
+                                    Break
+                                }
+
+                                Break
+                            }
+                        }
+                        Else
+                        {
+                            Return (Buffer (One)
+                            {
+                                 0x00                                             // .
+                            })
+                            Break
+                        }
+
+                        Break
+                    }
+                }
+
+                Method (_DIS, 0, NotSerialized)  // _DIS: Disable Device
+                {
+                }
+
+                Method (REMD, 0, NotSerialized)
+                {
+                    STVL = Zero
+                    Notify (\_SB.URS1.USB1, One) // Device Check
+                }
+
+                Method (ADDD, 0, NotSerialized)
+                {
+                    STVL = 0x0F
+                    Notify (\_SB.URS1.USB1, One) // Device Check
+                }
+
+                Method (PHYC, 0, NotSerialized)
+                {
+                    Name (CFG0, Package (0x00){})
+                    Return (CFG0) /* \_SB_.URS1.USB1.PHYC.CFG0 */
+                }
+            }
+
+            Device (UFN1)
+            {
+                Name (_ADR, One)  // _ADR: Address
+                Name (_S0W, 0x03)  // _S0W: S0 Device Wake State
+                Device (RHUB)
+                {
+                    Name (_ADR, Zero)  // _ADR: Address
+                    Device (PRT1)
+                    {
+                        Name (_ADR, One)  // _ADR: Address
+                        Name (_UPC, Package (0x04)  // _UPC: USB Port Capabilities
+                        {
+                            One, 
+                            0x09, 
+                            Zero, 
+                            Zero
+                        })
+                        Name (_PLD, Package (0x01)  // _PLD: Physical Location of Device
+                        {
+                            ToPLD (
+                                PLD_Revision           = 0x2,
+                                PLD_IgnoreColor        = 0x1,
+                                PLD_Red                = 0x0,
+                                PLD_Green              = 0x0,
+                                PLD_Blue               = 0x0,
+                                PLD_Width              = 0x0,
+                                PLD_Height             = 0x0,
+                                PLD_UserVisible        = 0x1,
+                                PLD_Dock               = 0x0,
+                                PLD_Lid                = 0x0,
+                                PLD_Panel              = "BACK",
+                                PLD_VerticalPosition   = "CENTER",
+                                PLD_HorizontalPosition = "LEFT",
+                                PLD_Shape              = "VERTICALRECTANGLE",
+                                PLD_GroupOrientation   = 0x0,
+                                PLD_GroupToken         = 0x0,
+                                PLD_GroupPosition      = 0x1,
+                                PLD_Bay                = 0x0,
+                                PLD_Ejectable          = 0x0,
+                                PLD_EjectRequired      = 0x0,
+                                PLD_CabinetNumber      = 0x0,
+                                PLD_CardCageNumber     = 0x0,
+                                PLD_Reference          = 0x0,
+                                PLD_Rotation           = 0x0,
+                                PLD_Order              = 0x0,
+                                PLD_VerticalOffset     = 0xFFFF,
+                                PLD_HorizontalOffset   = 0xFFFF)
+
+                        })
+                    }
+                }
+
+                Name (_CRS, ResourceTemplate ()  // _CRS: Current Resource Settings
+                {
+                    Interrupt (ResourceConsumer, Level, ActiveHigh, Shared, ,, )
+                    {
+                        0x000000AA,
+                    }
+                    Interrupt (ResourceConsumer, Level, ActiveHigh, SharedAndWake, ,, )
+                    {
+                        0x000000A7,
+                    }
+                })
+                Method (CCVL, 0, NotSerialized)
+                {
+                    Return (\_SB.CCST)
+                }
+
+                Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
+                {
+                    While (One)
+                    {
+                        Name (_T_0, Buffer (0x01)  // _T_x: Emitted by ASL Compiler, x=0-9, A-Z
+                        {
+                             0x00                                             // .
+                        })
+                        CopyObject (ToBuffer (Arg0), _T_0) /* \_SB_.URS1.UFN1._DSM._T_0 */
+                        If ((_T_0 == ToUUID ("fe56cfeb-49d5-4378-a8a2-2978dbe54ad2") /* Unknown UUID */))
+                        {
+                            While (One)
+                            {
+                                Name (_T_1, 0x00)  // _T_x: Emitted by ASL Compiler, x=0-9, A-Z
+                                _T_1 = ToInteger (Arg2)
+                                If ((_T_1 == Zero))
+                                {
+                                    While (One)
+                                    {
+                                        Name (_T_2, 0x00)  // _T_x: Emitted by ASL Compiler, x=0-9, A-Z
+                                        _T_2 = ToInteger (Arg1)
+                                        If ((_T_2 == Zero))
+                                        {
+                                            Return (Buffer (One)
+                                            {
+                                                 0x03                                             // .
+                                            })
+                                            Break
+                                        }
+                                        Else
+                                        {
+                                            Return (Buffer (One)
+                                            {
+                                                 0x01                                             // .
+                                            })
+                                            Break
+                                        }
+
+                                        Break
+                                    }
+
+                                    Return (Buffer (One)
+                                    {
+                                         0x00                                             // .
+                                    })
+                                    Break
+                                }
+                                ElseIf ((_T_1 == One))
+                                {
+                                    Return (0x20)
+                                    Break
+                                }
+                                Else
+                                {
+                                    Return (Buffer (One)
+                                    {
+                                         0x00                                             // .
+                                    })
+                                    Break
+                                }
+
+                                Break
+                            }
+                        }
+                        ElseIf ((_T_0 == ToUUID ("18de299f-9476-4fc9-b43b-8aeb713ed751") /* Unknown UUID */))
+                        {
+                            While (One)
+                            {
+                                Name (_T_3, 0x00)  // _T_x: Emitted by ASL Compiler, x=0-9, A-Z
+                                _T_3 = ToInteger (Arg2)
+                                If ((_T_3 == Zero))
+                                {
+                                    While (One)
+                                    {
+                                        Name (_T_4, 0x00)  // _T_x: Emitted by ASL Compiler, x=0-9, A-Z
+                                        _T_4 = ToInteger (Arg1)
+                                        If ((_T_4 == Zero))
+                                        {
+                                            Return (Buffer (One)
+                                            {
+                                                 0x03                                             // .
+                                            })
+                                            Break
+                                        }
+                                        Else
+                                        {
+                                            Return (Buffer (One)
+                                            {
+                                                 0x01                                             // .
+                                            })
+                                            Break
+                                        }
+
+                                        Break
+                                    }
+
+                                    Return (Buffer (One)
+                                    {
+                                         0x00                                             // .
+                                    })
+                                    Break
+                                }
+                                ElseIf ((_T_3 == One))
+                                {
+                                    Return (0x39)
+                                    Break
+                                }
+                                Else
+                                {
+                                    Return (Buffer (One)
+                                    {
+                                         0x00                                             // .
+                                    })
+                                    Break
+                                }
+
+                                Break
+                            }
+                        }
+                        Else
+                        {
+                            Return (Buffer (One)
+                            {
+                                 0x00                                             // .
+                            })
+                            Break
+                        }
+
+                        Break
+                    }
+                }
+
+                Method (PHYC, 0, NotSerialized)
+                {
+                    Name (CFG0, Package (0x00){})
+                    Return (CFG0) /* \_SB_.URS1.UFN1.PHYC.CFG0 */
+                }
+            }
+        }
+
         Device (UCP0)
         {
             Name (_HID, "QCOM047D")  // _HID: Hardware ID
@@ -79531,7 +79981,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         PLD_Shape              = "VERTICALRECTANGLE",
                         PLD_GroupOrientation   = 0x0,
                         PLD_GroupToken         = 0x0,
-                        PLD_GroupPosition      = 0x0,
+                        PLD_GroupPosition      = 0x1,
                         PLD_Bay                = 0x0,
                         PLD_Ejectable          = 0x0,
                         PLD_EjectRequired      = 0x0,
@@ -79742,7 +80192,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                 \_SB.CCST = Arg0
                 \_SB.HSFL = Arg1
                 \_SB.CCS2 = Arg0
-                Notify (\_SB.USBA, \_SB.CCS2)
+                Notify (\_SB.CFSA, \_SB.CCS2)
             }
 
             Method (CCVL, 0, NotSerialized)
@@ -79790,6 +80240,16 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
 
         Device (USBA)
         {
+            Name (_DEP, Package (One)  // _DEP: Dependencies
+            {
+                \_SB.IMM0
+            })
+            Name (_HID, "QCOM0490")  // _HID: Hardware ID
+            Alias (\_SB.PSUB, _SUB)
+        }
+
+        Device (CFSA)
+        {
             Name (_HID, "FSA4480")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
@@ -79816,7 +80276,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                             0x0002
                         }
                 })
-                Return (RBUF) /* \_SB_.USBA._CRS.RBUF */
+                Return (RBUF) /* \_SB_.CFSA._CRS.RBUF */
             }
         }
 
