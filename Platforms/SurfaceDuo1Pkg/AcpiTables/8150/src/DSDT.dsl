@@ -79554,7 +79554,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                         PLD_Shape              = "VERTICALRECTANGLE",
                         PLD_GroupOrientation   = 0x0,
                         PLD_GroupToken         = 0x0,
-                        PLD_GroupPosition      = 0x1,
+                        PLD_GroupPosition      = 0x0,
                         PLD_Bay                = 0x0,
                         PLD_Ejectable          = 0x0,
                         PLD_EjectRequired      = 0x0,
