@@ -169,14 +169,14 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
 
                     Package (0x02)
                     {
-                        0x05, 
+                        0x10, 
                         0x10
                     }, 
 
                     Package (0x02)
                     {
-                        0x10, 
-                        0x10
+                        0x06, 
+                        0x07
                     }, 
 
                     Package (0x02)
@@ -1658,6 +1658,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                 }
             }
 
+            Name (_DEP, Package (One)  // _DEP: Dependencies
+            {
+                \_SB.IPCC
+            })
             Method (_SUB, 0, NotSerialized)  // _SUB: Subsystem ID
             {
                 If ((\_SB.PSUB == "MTP08350"))
@@ -19635,13 +19639,25 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                     {
                         0x000000CE,
                     }
+                    GpioIo (Exclusive, PullUp, 0x0000, 0x0000, IoRestrictionNone,
+                        "\\_SB.GIO0", 0x00, ResourceConsumer, ,
+                        )
+                        {   // Pin list
+                            0x0005
+                        }
+                    GpioIo (Exclusive, PullUp, 0x0000, 0x0000, IoRestrictionNone,
+                        "\\_SB.GIO0", 0x00, ResourceConsumer, ,
+                        )
+                        {   // Pin list
+                            0x0006
+                        }
                 })
                 Return (ABUF) /* \_SB_.GPU0._CRS.ABUF */
             }
 
             Method (RESI, 0, NotSerialized)
             {
-                Name (AINF, Package (0x12)
+                Name (AINF, Package (0x14)
                 {
                     0x03, 
                     Zero, 
@@ -19755,6 +19771,20 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                         "RESOURCE", 
                         "VIDC_INTERRUPT", 
                         "VIDEO"
+                    }, 
+
+                    Package (0x03)
+                    {
+                        "RESOURCE", 
+                        "DSI_PANEL_RESET", 
+                        "DISPLAY"
+                    }, 
+
+                    Package (0x03)
+                    {
+                        "RESOURCE", 
+                        "DSI_PANEL2_RESET", 
+                        "DISPLAY"
                     }
                 })
                 Return (AINF) /* \_SB_.GPU0.RESI.AINF */
