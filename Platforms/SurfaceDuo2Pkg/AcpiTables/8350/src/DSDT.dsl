@@ -1891,22 +1891,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                     {
                         0x0000021D,
                     }
-                    Interrupt (ResourceConsumer, Level, ActiveHigh, ExclusiveAndWake, ,, )
-                    {
-                        0x0000025C,
-                    }
-                    Interrupt (ResourceConsumer, Level, ActiveHigh, ExclusiveAndWake, ,, )
-                    {
-                        0x00000281,
-                    }
-                    Interrupt (ResourceConsumer, Level, ActiveHigh, ExclusiveAndWake, ,, )
-                    {
-                        0x0000025D,
-                    }
-                    Interrupt (ResourceConsumer, Level, ActiveHigh, ExclusiveAndWake, ,, )
-                    {
-                        0x00000282,
-                    }
                     Interrupt (ResourceConsumer, Level, ActiveHigh, Exclusive, ,, )
                     {
                         0x00000025,
@@ -2417,81 +2401,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                     "ACPI\\VEN_QCOM&DEV_0617"
                 })
             }
-        }
-
-        Scope (\_SB.PEP0)
-        {
-            Method (APMD, 0, NotSerialized)
-            {
-                Return (APCC) /* \_SB_.PEP0.APCC */
-            }
-
-            Name (APCC, Package (0x01)
-            {
-                Package (0x06)
-                {
-                    "DEVICE", 
-                    "\\_SB.ADSP.ADCM.AUCD.QCRT", 
-                    Package (0x03)
-                    {
-                        "COMPONENT", 
-                        Zero, 
-                        Package (0x02)
-                        {
-                            "FSTATE", 
-                            Zero
-                        }
-                    }, 
-
-                    Package (0x03)
-                    {
-                        "DSTATE", 
-                        Zero, 
-                        Package (0x02)
-                        {
-                            "NPARESOURCE", 
-                            Package (0x03)
-                            {
-                                One, 
-                                "/arc/client/rail_xo", 
-                                0x80
-                            }
-                        }
-                    }, 
-
-                    Package (0x03)
-                    {
-                        "DSTATE", 
-                        One, 
-                        Package (0x02)
-                        {
-                            "NPARESOURCE", 
-                            Package (0x03)
-                            {
-                                One, 
-                                "/arc/client/rail_xo", 
-                                Zero
-                            }
-                        }
-                    }, 
-
-                    Package (0x03)
-                    {
-                        "DSTATE", 
-                        0x02, 
-                        Package (0x02)
-                        {
-                            "NPARESOURCE", 
-                            Package (0x03)
-                            {
-                                One, 
-                                "/arc/client/rail_xo", 
-                                Zero
-                            }
-                        }
-                    }
-                }
-            })
         }
 
         Scope (\_SB.PEP0)
