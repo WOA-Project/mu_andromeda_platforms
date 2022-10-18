@@ -207,25 +207,39 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
             Alias (\_SB.PSUB, _SUB)
             Name (_DEP, Package (One)  // _DEP: Dependencies
             {
-                \_SB.IC12
+                \_SB.IC14
             })
             Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
             {
                 Name (RBUF, ResourceTemplate ()
                 {
+                    I2cSerialBusV2 (0x0008, ControllerInitiated, 0x000186A0,
+                        AddressingMode7Bit, "\\_SB.IC14",
+                        0x00, ResourceConsumer, , Exclusive,
+                        )
+                    I2cSerialBusV2 (0x0009, ControllerInitiated, 0x000186A0,
+                        AddressingMode7Bit, "\\_SB.IC14",
+                        0x00, ResourceConsumer, , Exclusive,
+                        )
                     I2cSerialBusV2 (0x000C, ControllerInitiated, 0x000186A0,
-                        AddressingMode7Bit, "\\_SB.IC12",
+                        AddressingMode7Bit, "\\_SB.IC14",
                         0x00, ResourceConsumer, , Exclusive,
                         )
                     I2cSerialBusV2 (0x000D, ControllerInitiated, 0x000186A0,
-                        AddressingMode7Bit, "\\_SB.IC12",
+                        AddressingMode7Bit, "\\_SB.IC14",
                         0x00, ResourceConsumer, , Exclusive,
                         )
                     GpioIo (Exclusive, PullNone, 0x0000, 0x00C8, IoRestrictionNone,
                         "\\_SB.GIO0", 0x00, ResourceConsumer, ,
                         )
                         {   // Pin list
-                            0x002A
+                            0x0021
+                        }
+                    GpioIo (Exclusive, PullNone, 0x0000, 0x00C8, IoRestrictionNone,
+                        "\\_SB.GIO0", 0x00, ResourceConsumer, ,
+                        )
+                        {   // Pin list
+                            0x0023
                         }
                 })
                 Return (RBUF) /* \_SB_.PML0._CRS.RBUF */
@@ -18509,154 +18523,31 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
             }
         }
 
-        Device (I2C2)
+        Device (IC14)
         {
             Name (_HID, "QCOM0610")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
-            Name (_UID, 0x02)  // _UID: Unique ID
+            Name (_UID, 0x0E)  // _UID: Unique ID
             Name (_DEP, Package (0x01)  // _DEP: Dependencies
             {
                 \_SB.PEP0
             })
             Name (_CCA, Zero)  // _CCA: Cache Coherency Attribute
-            Name (_STR, Unicode ("QUP_0_SE_1"))  // _STR: Description String
+            Name (_STR, Unicode ("QUP_1_SE_5"))  // _STR: Description String
             Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
             {
                 Name (RBUF, ResourceTemplate ()
                 {
                     Memory32Fixed (ReadWrite,
-                        0x00984000,         // Address Base
+                        0x00A94000,         // Address Base
                         0x00004000,         // Address Length
                         )
                     Interrupt (ResourceConsumer, Level, ActiveHigh, Exclusive, ,, )
                     {
-                        0x0000027A,
+                        0x00000186,
                     }
                 })
-                Return (RBUF) /* \_SB_.I2C2._CRS.RBUF */
-            }
-        }
-
-        Device (UAR3)
-        {
-            Name (_HID, "QCOM0616")  // _HID: Hardware ID
-            Alias (\_SB.PSUB, _SUB)
-            Name (_UID, 0x03)  // _UID: Unique ID
-            Name (_DEP, Package (0x01)  // _DEP: Dependencies
-            {
-                \_SB.PEP0
-            })
-            Name (_CCA, Zero)  // _CCA: Cache Coherency Attribute
-            Name (_STR, Unicode ("QUP_0_SE_2,4W,BT"))  // _STR: Description String
-            Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
-            {
-                Name (RBUF, ResourceTemplate ()
-                {
-                    Memory32Fixed (ReadWrite,
-                        0x00988000,         // Address Base
-                        0x00004000,         // Address Length
-                        )
-                    Interrupt (ResourceConsumer, Level, ActiveHigh, Exclusive, ,, )
-                    {
-                        0x0000027B,
-                    }
-                    GpioInt (Edge, ActiveLow, Exclusive, PullDown, 0x0000,
-                        "\\_SB.GIO0", 0x00, ResourceConsumer, ,
-                        )
-                        {   // Pin list
-                            0x007C
-                        }
-                })
-                Return (RBUF) /* \_SB_.UAR3._CRS.RBUF */
-            }
-
-            Method (_STA, 0, NotSerialized)  // _STA: Status
-            {
-                Return (0x0B)
-            }
-        }
-
-        Device (I2C5)
-        {
-            Name (_HID, "QCOM0610")  // _HID: Hardware ID
-            Alias (\_SB.PSUB, _SUB)
-            Name (_UID, 0x05)  // _UID: Unique ID
-            Name (_DEP, Package (0x01)  // _DEP: Dependencies
-            {
-                \_SB.PEP0
-            })
-            Name (_CCA, Zero)  // _CCA: Cache Coherency Attribute
-            Name (_STR, Unicode ("QUP_0_SE_4"))  // _STR: Description String
-            Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
-            {
-                Name (RBUF, ResourceTemplate ()
-                {
-                    Memory32Fixed (ReadWrite,
-                        0x00990000,         // Address Base
-                        0x00004000,         // Address Length
-                        )
-                    Interrupt (ResourceConsumer, Level, ActiveHigh, Exclusive, ,, )
-                    {
-                        0x0000027D,
-                    }
-                })
-                Return (RBUF) /* \_SB_.I2C5._CRS.RBUF */
-            }
-        }
-
-        Device (IC12)
-        {
-            Name (_HID, "QCOM0610")  // _HID: Hardware ID
-            Alias (\_SB.PSUB, _SUB)
-            Name (_UID, 0x0C)  // _UID: Unique ID
-            Name (_DEP, Package (0x01)  // _DEP: Dependencies
-            {
-                \_SB.PEP0
-            })
-            Name (_CCA, Zero)  // _CCA: Cache Coherency Attribute
-            Name (_STR, Unicode ("QUP_1_SE_3"))  // _STR: Description String
-            Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
-            {
-                Name (RBUF, ResourceTemplate ()
-                {
-                    Memory32Fixed (ReadWrite,
-                        0x00A8C000,         // Address Base
-                        0x00004000,         // Address Length
-                        )
-                    Interrupt (ResourceConsumer, Level, ActiveHigh, Exclusive, ,, )
-                    {
-                        0x00000184,
-                    }
-                })
-                Return (RBUF) /* \_SB_.IC12._CRS.RBUF */
-            }
-        }
-
-        Device (IC13)
-        {
-            Name (_HID, "QCOM0610")  // _HID: Hardware ID
-            Alias (\_SB.PSUB, _SUB)
-            Name (_UID, 0x0D)  // _UID: Unique ID
-            Name (_DEP, Package (0x01)  // _DEP: Dependencies
-            {
-                \_SB.PEP0
-            })
-            Name (_CCA, Zero)  // _CCA: Cache Coherency Attribute
-            Name (_STR, Unicode ("QUP_1_SE_4"))  // _STR: Description String
-            Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
-            {
-                Name (RBUF, ResourceTemplate ()
-                {
-                    Memory32Fixed (ReadWrite,
-                        0x00A90000,         // Address Base
-                        0x00004000,         // Address Length
-                        )
-                    Interrupt (ResourceConsumer, Level, ActiveHigh, Exclusive, ,, )
-                    {
-                        0x00000185,
-                    }
-                })
-                Return (RBUF) /* \_SB_.IC13._CRS.RBUF */
+                Return (RBUF) /* \_SB_.IC14._CRS.RBUF */
             }
         }
 
@@ -18664,61 +18555,33 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
         {
             Name (_HID, "QCOM0616")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
-            Name (_UID, 0x12)  // _UID: Unique ID
+            Name (_UID, 0x04)  // _UID: Unique ID
             Name (_DEP, Package (0x01)  // _DEP: Dependencies
             {
                 \_SB.PEP0
             })
             Name (_CCA, Zero)  // _CCA: Cache Coherency Attribute
-            Name (_STR, Unicode ("QUP_2_SE_1,DBG"))  // _STR: Description String
+            Name (_STR, Unicode ("QUP_0_SE_3,DBG"))  // _STR: Description String
             Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
             {
                 Name (RBUF, ResourceTemplate ()
                 {
                     Memory32Fixed (ReadWrite,
-                        0x00884000,         // Address Base
+                        0x0098C000,         // Address Base
                         0x00004000,         // Address Length
                         )
                     Interrupt (ResourceConsumer, Level, ActiveHigh, Exclusive, ,, )
                     {
-                        0x00000267,
+                        0x0000027C,
                     }
                     GpioInt (Edge, ActiveLow, Exclusive, PullDown, 0x0000,
                         "\\_SB.GIO0", 0x00, ResourceConsumer, ,
                         )
                         {   // Pin list
-                            0x0040
+                            0x0013
                         }
                 })
                 Return (RBUF) /* \_SB_.UARD._CRS.RBUF */
-            }
-        }
-
-        Device (IC22)
-        {
-            Name (_HID, "QCOM0610")  // _HID: Hardware ID
-            Alias (\_SB.PSUB, _SUB)
-            Name (_UID, 0x16)  // _UID: Unique ID
-            Name (_DEP, Package (0x01)  // _DEP: Dependencies
-            {
-                \_SB.PEP0
-            })
-            Name (_CCA, Zero)  // _CCA: Cache Coherency Attribute
-            Name (_STR, Unicode ("QUP_2_SE_5"))  // _STR: Description String
-            Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
-            {
-                Name (RBUF, ResourceTemplate ()
-                {
-                    Memory32Fixed (ReadWrite,
-                        0x00894000,         // Address Base
-                        0x00004000,         // Address Length
-                        )
-                    Interrupt (ResourceConsumer, Level, ActiveHigh, Exclusive, ,, )
-                    {
-                        0x0000026B,
-                    }
-                })
-                Return (RBUF) /* \_SB_.IC22._CRS.RBUF */
             }
         }
 
@@ -19639,18 +19502,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                     {
                         0x000000CE,
                     }
-                    GpioIo (Exclusive, PullUp, 0x0000, 0x0000, IoRestrictionNone,
-                        "\\_SB.GIO0", 0x00, ResourceConsumer, ,
-                        )
-                        {   // Pin list
-                            0x0005
-                        }
-                    GpioIo (Exclusive, PullUp, 0x0000, 0x0000, IoRestrictionNone,
-                        "\\_SB.GIO0", 0x00, ResourceConsumer, ,
-                        )
-                        {   // Pin list
-                            0x0006
-                        }
                 })
                 Return (ABUF) /* \_SB_.GPU0._CRS.ABUF */
             }
@@ -21384,6 +21235,11 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
             Name (_HID, "QCOM04DE")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
             Name (_UID, Zero)  // _UID: Unique ID
+            Method (_STA, 0, NotSerialized)  // _STA: Status
+            {
+                Return (Zero)
+            }
+
             Method (_CRS, 0, NotSerialized)  // _CRS: Current Resource Settings
             {
                 Name (RBUF, ResourceTemplate ()
@@ -21452,7 +21308,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                         "\\_SB.GIO0", 0x00, ResourceConsumer, ,
                         )
                         {   // Pin list
-                            0x006B
+                            0x0026
                         }
                 ), 
                 LIDR,   1
@@ -21510,10 +21366,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                     {
                         0x000002DC,
                     }
-                    Interrupt (ResourceConsumer, Level, ActiveHigh, Exclusive, ,, )
-                    {
-                        0x000002A7,
-                    }
                 })
                 Return (RBUF) /* \_SB_.GIO0._CRS.RBUF */
             }
@@ -21522,7 +21374,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
             {
                 Name (RBUF, Buffer (0x02)
                 {
-                     0xE4, 0x00                                       // ..
+                     0xCC, 0x00                                       // ..
                 })
                 Return (RBUF) /* \_SB_.GIO0.OFNI.RBUF */
             }
@@ -21546,7 +21398,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                             "\\_SB.GIO0", 0x00, ResourceConsumer, ,
                             )
                             {   // Pin list
-                                0x02C0
+                                0x0026
                             }
                     })
                     Return (RBFC) /* \_SB_.GIO0._AEI.RBFC */
@@ -21565,7 +21417,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                             "\\_SB.GIO0", 0x00, ResourceConsumer, ,
                             )
                             {   // Pin list
-                                0x02C0
+                                0x0026
                             }
                     })
                     Return (RBUF) /* \_SB_.GIO0._AEI.RBUF */
@@ -21580,20 +21432,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                 }
             }
 
-            Method (_EVT, 1, NotSerialized)  // _EVT: Event
+            Method (_E26, 0, NotSerialized)  // _Exx: Edge-Triggered GPE, xx=0x00-0xFF
             {
-                While (One)
-                {
-                    Name (_T_0, 0x00)  // _T_x: Emitted by ASL Compiler, x=0-9, A-Z
-                    _T_0 = Arg0
-                    If ((_T_0 == 0x02C0))
-                    {
-                        \_SB.LID0.LIDB = \_SB.GIO0.LIDR
-                        Notify (\_SB.LID0, 0x80) // Status Change
-                    }
-
-                    Break
-                }
+                \_SB.LID0.LIDB = \_SB.GIO0.LIDR
+                Notify (\_SB.LID0, 0x80) // Status Change
             }
 
             Method (_DSM, 4, NotSerialized)  // _DSM: Device-Specific Method
@@ -21809,7 +21651,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                     0xFFFF, 
                     Zero, 
                     Zero, 
-                    0x55
+                    0xB5
                 }, 
 
                 Package (0x04)
@@ -21817,7 +21659,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                     0xFFFF, 
                     One, 
                     Zero, 
-                    0x56
+                    0xB6
                 }, 
 
                 Package (0x04)
@@ -21825,7 +21667,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                     0xFFFF, 
                     0x02, 
                     Zero, 
-                    0x57
+                    0xB7
                 }, 
 
                 Package (0x04)
@@ -21833,7 +21675,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                     0xFFFF, 
                     0x03, 
                     Zero, 
-                    0x58
+                    0xB8
                 }
             })
             Method (_CCA, 0, NotSerialized)  // _CCA: Cache Coherency Attribute
@@ -22199,14 +22041,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
             {
                 Name (RBUF, ResourceTemplate ()
                 {
-                    Memory32Fixed (ReadWrite,
-                        0x01FCA044,         // Address Base
-                        0x00000004,         // Address Length
-                        )
-                    Memory32Fixed (ReadWrite,
-                        0x01FCF024,         // Address Base
-                        0x00000004,         // Address Length
-                        )
                     GpioIo (Shared, PullNone, 0x0000, 0x0000, IoRestrictionNone,
                         "\\_SB.GIO0", 0x00, ResourceConsumer, ,
                         RawDataBuffer (0x01)  // Vendor Data
@@ -22214,7 +22048,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                             0x01
                         })
                         {   // Pin list
-                            0x0000
+                            0x005E
                         }
                     GpioIo (Shared, PullNone, 0x0000, 0x0000, IoRestrictionNone,
                         "\\_SB.GIO0", 0x01, ResourceConsumer, ,
@@ -22223,7 +22057,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                             0x01
                         })
                         {   // Pin list
-                            0x0000
+                            0x005E
                         }
                     GpioIo (Shared, PullNone, 0x0000, 0x0000, IoRestrictionNone,
                         "\\_SB.GIO0", 0x00, ResourceConsumer, ,
@@ -22278,13 +22112,13 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
             {
                 Return (Package (0x07)
                 {
+                    One, 
+                    One, 
                     Zero, 
                     Zero, 
-                    One, 
-                    One, 
-                    One, 
-                    One, 
-                    One
+                    Zero, 
+                    Zero, 
+                    Zero
                 })
             }
 
@@ -22294,7 +22128,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                     "\\_SB.GIO0", 0x00, ResourceConsumer, ,
                     )
                     {   // Pin list
-                        0x0086
+                        0x0060
                     }
             })
             Scope (\_SB.GIO0)
@@ -22314,15 +22148,15 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                 {
                     Name (_T_0, 0x00)  // _T_x: Emitted by ASL Compiler, x=0-9, A-Z
                     _T_0 = ToInteger (Arg0)
-                    If ((_T_0 == 0x04))
-                    {
-                        Debug = "SDX not supported yet"
-                    }
-                    ElseIf ((_T_0 == 0x06))
+                    If ((_T_0 == Zero))
                     {
                         \_SB.QPPX.WLEN = Zero
                         Sleep (0x05)
                         \_SB.QPPX.WLEN = One
+                    }
+                    ElseIf ((_T_0 == One))
+                    {
+                        Debug = "SDX not supported yet"
                     }
                     Else
                     {
@@ -26644,7 +26478,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                 Alias (\_SB.PSUB, _SUB)
                 Name (_DEP, Package (0x02)  // _DEP: Dependencies
                 {
-                    \_SB.PCI6, 
+                    \_SB.PCI0, 
                     \_SB.SBTD
                 })
             }
@@ -30160,11 +29994,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
         {
             Name (_HID, "QCOM066B")  // _HID: Hardware ID
             Alias (\_SB.PSUB, _SUB)
-            Name (_DEP, Package (0x03)  // _DEP: Dependencies
+            Name (_DEP, Package (0x02)  // _DEP: Dependencies
             {
                 \_SB.PEP0, 
-                \_SB.PMIC, 
-                \_SB.UAR3
+                \_SB.PMIC
             })
             Name (_PRW, Package (0x02)  // _PRW: Power Resources for Wake
             {
@@ -30177,11 +30010,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
             {
                 Name (PBUF, ResourceTemplate ()
                 {
-                    UartSerialBusV2 (0x0001C200, DataBitsEight, StopBitsOne,
-                        0xC0, LittleEndian, ParityTypeNone, FlowControlHardware,
-                        0x0020, 0x0020, "\\_SB.UAR3",
-                        0x00, ResourceConsumer, , Exclusive,
-                        )
                     GpioIo (Exclusive, PullDown, 0x0000, 0x0000, IoRestrictionNone,
                         "\\_SB.GIO0", 0x00, ResourceConsumer, ,
                         )
@@ -30194,7 +30022,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
 
             Method (_STA, 0, NotSerialized)  // _STA: Status
             {
-                Return (0x0F)
+                Return (Zero)
             }
         }
 
