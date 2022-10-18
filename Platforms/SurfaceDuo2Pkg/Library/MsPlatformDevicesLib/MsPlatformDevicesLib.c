@@ -241,6 +241,9 @@ PlatformUpdateAcpiTables(VOID)
   if (TGCMRegion != NULL) {
     TCMA = TGCMRegion->Address;
     TCML = TGCMRegion->Length;
+  } else {
+    TCMA = 0xDEADBEEF;
+    TCML = 0xBEEFDEAD;
   }
 
   DEBUG((EFI_D_WARN, "Chip Id: %d\n", SOID));
