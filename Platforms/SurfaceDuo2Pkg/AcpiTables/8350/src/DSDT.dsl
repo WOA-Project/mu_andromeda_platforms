@@ -2528,7 +2528,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                             {
                                 "FSTATE", 
                                 Zero, 
-                                Package (0x20)
+                                Package (0x18)
                                 {
                                     "EXIT", 
                                     Package (0x02)
@@ -2774,129 +2774,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                                             "ICBID_SLAVE_DISPLAY_CFG", 
                                             0x023C3460, 
                                             Zero
-                                        }
-                                    }, 
-
-                                    Package (0x02)
-                                    {
-                                        "PMICVREGVOTE", 
-                                        Package (0x08)
-                                        {
-                                            "PPP_RESOURCE_ID_LDO3_B", 
-                                            One, 
-                                            0x00124F80, 
-                                            One, 
-                                            0x07, 
-                                            Zero, 
-                                            "HLOS_DRV", 
-                                            "REQUIRED"
-                                        }
-                                    }, 
-
-                                    Package (0x02)
-                                    {
-                                        "PMICVREGVOTE", 
-                                        Package (0x08)
-                                        {
-                                            "PPP_RESOURCE_ID_LDO6_B", 
-                                            One, 
-                                            0x000D6D80, 
-                                            One, 
-                                            0x07, 
-                                            Zero, 
-                                            "HLOS_DRV", 
-                                            "REQUIRED"
-                                        }
-                                    }, 
-
-                                    Package (0x02)
-                                    {
-                                        "TLMMGPIO", 
-                                        Package (0x06)
-                                        {
-                                            0x19, 
-                                            One, 
-                                            Zero, 
-                                            One, 
-                                            0x03, 
-                                            0x07
-                                        }
-                                    }, 
-
-                                    Package (0x02)
-                                    {
-                                        "TLMMGPIO", 
-                                        Package (0x06)
-                                        {
-                                            0x03, 
-                                            One, 
-                                            One, 
-                                            Zero, 
-                                            Zero, 
-                                            Zero
-                                        }
-                                    }, 
-
-                                    Package (0x03)
-                                    {
-                                        "TLMMGPIO_V2", 
-                                        One, 
-                                        Package (0x06)
-                                        {
-                                            0x27, 
-                                            One, 
-                                            Zero, 
-                                            One, 
-                                            Zero, 
-                                            Zero
-                                        }
-                                    }, 
-
-                                    Package (0x02)
-                                    {
-                                        "PMICGPIO", 
-                                        Package (0x08)
-                                        {
-                                            "IOCTL_PM_GPIO_CONFIG_DIGITAL_OUTPUT", 
-                                            One, 
-                                            0x08, 
-                                            Zero, 
-                                            One, 
-                                            0x0A, 
-                                            One, 
-                                            0x04
-                                        }
-                                    }, 
-
-                                    Package (0x02)
-                                    {
-                                        "PMICGPIO", 
-                                        Package (0x08)
-                                        {
-                                            "IOCTL_PM_GPIO_CONFIG_DIGITAL_OUTPUT", 
-                                            One, 
-                                            0x07, 
-                                            Zero, 
-                                            Zero, 
-                                            0x0A, 
-                                            One, 
-                                            0x04
-                                        }
-                                    }, 
-
-                                    Package (0x02)
-                                    {
-                                        "PMICGPIO", 
-                                        Package (0x08)
-                                        {
-                                            "IOCTL_PM_GPIO_CONFIG_DIGITAL_OUTPUT", 
-                                            0x02, 
-                                            0x07, 
-                                            Zero, 
-                                            Zero, 
-                                            0x02, 
-                                            One, 
-                                            0x04
                                         }
                                     }
                                 }
@@ -3246,7 +3123,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                             {
                                 "FSTATE", 
                                 Zero, 
-                                Package (0x1C)
+                                Package (0x18)
                                 {
                                     "EXIT", 
                                     Package (0x02)
@@ -3492,68 +3369,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                                             "ICBID_SLAVE_DISPLAY_CFG", 
                                             0x023C3460, 
                                             Zero
-                                        }
-                                    }, 
-
-                                    Package (0x03)
-                                    {
-                                        "TLMMGPIO_V2", 
-                                        One, 
-                                        Package (0x06)
-                                        {
-                                            0x27, 
-                                            One, 
-                                            Zero, 
-                                            One, 
-                                            Zero, 
-                                            Zero
-                                        }
-                                    }, 
-
-                                    Package (0x03)
-                                    {
-                                        "TLMMGPIO_V2", 
-                                        One, 
-                                        Package (0x06)
-                                        {
-                                            0x02, 
-                                            Zero, 
-                                            One, 
-                                            Zero, 
-                                            Zero, 
-                                            Zero
-                                        }
-                                    }, 
-
-                                    Package (0x02)
-                                    {
-                                        "PMICVREGVOTE", 
-                                        Package (0x08)
-                                        {
-                                            "PPP_RESOURCE_ID_LDO3_B", 
-                                            One, 
-                                            0x00124F80, 
-                                            One, 
-                                            0x07, 
-                                            Zero, 
-                                            "HLOS_DRV", 
-                                            "REQUIRED"
-                                        }
-                                    }, 
-
-                                    Package (0x02)
-                                    {
-                                        "PMICVREGVOTE", 
-                                        Package (0x08)
-                                        {
-                                            "PPP_RESOURCE_ID_LDO6_B", 
-                                            One, 
-                                            0x000D6D80, 
-                                            One, 
-                                            0x07, 
-                                            Zero, 
-                                            "HLOS_DRV", 
-                                            "REQUIRED"
                                         }
                                     }
                                 }
@@ -3797,7 +3612,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                             {
                                 "FSTATE", 
                                 Zero, 
-                                Package (0x1C)
+                                Package (0x18)
                                 {
                                     "EXIT", 
                                     Package (0x02)
@@ -4044,68 +3859,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                                             0x023C3460, 
                                             Zero
                                         }
-                                    }, 
-
-                                    Package (0x03)
-                                    {
-                                        "TLMMGPIO_V2", 
-                                        One, 
-                                        Package (0x06)
-                                        {
-                                            0x27, 
-                                            One, 
-                                            Zero, 
-                                            One, 
-                                            Zero, 
-                                            Zero
-                                        }
-                                    }, 
-
-                                    Package (0x03)
-                                    {
-                                        "TLMMGPIO_V2", 
-                                        One, 
-                                        Package (0x06)
-                                        {
-                                            0x02, 
-                                            Zero, 
-                                            One, 
-                                            Zero, 
-                                            Zero, 
-                                            Zero
-                                        }
-                                    }, 
-
-                                    Package (0x02)
-                                    {
-                                        "PMICVREGVOTE", 
-                                        Package (0x08)
-                                        {
-                                            "PPP_RESOURCE_ID_LDO3_B", 
-                                            One, 
-                                            0x00124F80, 
-                                            One, 
-                                            0x07, 
-                                            Zero, 
-                                            "HLOS_DRV", 
-                                            "REQUIRED"
-                                        }
-                                    }, 
-
-                                    Package (0x02)
-                                    {
-                                        "PMICVREGVOTE", 
-                                        Package (0x08)
-                                        {
-                                            "PPP_RESOURCE_ID_LDO6_B", 
-                                            One, 
-                                            0x000D6D80, 
-                                            One, 
-                                            0x07, 
-                                            Zero, 
-                                            "HLOS_DRV", 
-                                            "REQUIRED"
-                                        }
                                     }
                                 }
                             }, 
@@ -4348,7 +4101,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                             {
                                 "FSTATE", 
                                 Zero, 
-                                Package (0x25)
+                                Package (0x1E)
                                 {
                                     "EXIT", 
                                     Package (0x02)
@@ -4654,118 +4407,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                                             "ICBID_SLAVE_DISPLAY_CFG", 
                                             0x023C3460, 
                                             Zero
-                                        }
-                                    }, 
-
-                                    Package (0x02)
-                                    {
-                                        "PMICVREGVOTE", 
-                                        Package (0x08)
-                                        {
-                                            "PPP_RESOURCE_ID_LDO4_D", 
-                                            One, 
-                                            0x00124F80, 
-                                            One, 
-                                            0x07, 
-                                            Zero, 
-                                            "HLOS_DRV", 
-                                            "REQUIRED"
-                                        }
-                                    }, 
-
-                                    Package (0x02)
-                                    {
-                                        "PMICVREGVOTE", 
-                                        Package (0x08)
-                                        {
-                                            "PPP_RESOURCE_ID_LDO1_C", 
-                                            One, 
-                                            0x001B7740, 
-                                            One, 
-                                            0x07, 
-                                            Zero, 
-                                            "HLOS_DRV", 
-                                            "REQUIRED"
-                                        }
-                                    }, 
-
-                                    Package (0x02)
-                                    {
-                                        "PMICVREGVOTE", 
-                                        Package (0x08)
-                                        {
-                                            "PPP_RESOURCE_ID_LDO1_B", 
-                                            One, 
-                                            0x000D6D80, 
-                                            One, 
-                                            0x07, 
-                                            Zero, 
-                                            "HLOS_DRV", 
-                                            "REQUIRED"
-                                        }
-                                    }, 
-
-                                    Package (0x02)
-                                    {
-                                        "PMICVREGVOTE", 
-                                        Package (0x08)
-                                        {
-                                            "PPP_RESOURCE_ID_LDO8_D", 
-                                            One, 
-                                            0x000D6D80, 
-                                            One, 
-                                            0x07, 
-                                            Zero, 
-                                            "HLOS_DRV", 
-                                            "REQUIRED"
-                                        }
-                                    }, 
-
-                                    Package (0x02)
-                                    {
-                                        "PMICVREGVOTE", 
-                                        Package (0x08)
-                                        {
-                                            "PPP_RESOURCE_ID_LDO9_D", 
-                                            One, 
-                                            0x000DEA80, 
-                                            One, 
-                                            0x07, 
-                                            Zero, 
-                                            "HLOS_DRV", 
-                                            "REQUIRED"
-                                        }
-                                    }, 
-
-                                    Package (0x02)
-                                    {
-                                        "PMICVREGVOTE", 
-                                        Package (0x08)
-                                        {
-                                            "PPP_RESOURCE_ID_LDO6_D", 
-                                            One, 
-                                            0x000D6D80, 
-                                            One, 
-                                            0x07, 
-                                            Zero, 
-                                            "HLOS_DRV", 
-                                            "REQUIRED"
-                                        }
-                                    }, 
-
-                                    Package (0x02)
-                                    {
-                                        "PMICVREGVOTE", 
-                                        Package (0x08)
-                                        {
-                                            "PPP_RESOURCE_ID_LDO7_D", 
-                                            One, 
-                                            0x002EE000, 
-                                            One, 
-                                            0x07, 
-                                            Zero, 
-                                            "HLOS_DRV", 
-                                            "REQUIRED"
                                         }
                                     }
                                 }
@@ -5035,7 +4676,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                             {
                                 "FSTATE", 
                                 Zero, 
-                                Package (0x25)
+                                Package (0x1E)
                                 {
                                     "EXIT", 
                                     Package (0x02)
@@ -5342,118 +4983,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                                             0x023C3460, 
                                             Zero
                                         }
-                                    }, 
-
-                                    Package (0x02)
-                                    {
-                                        "PMICVREGVOTE", 
-                                        Package (0x08)
-                                        {
-                                            "PPP_RESOURCE_ID_LDO4_D", 
-                                            One, 
-                                            0x00124F80, 
-                                            One, 
-                                            0x07, 
-                                            Zero, 
-                                            "HLOS_DRV", 
-                                            "REQUIRED"
-                                        }
-                                    }, 
-
-                                    Package (0x02)
-                                    {
-                                        "PMICVREGVOTE", 
-                                        Package (0x08)
-                                        {
-                                            "PPP_RESOURCE_ID_LDO1_C", 
-                                            One, 
-                                            0x001B7740, 
-                                            One, 
-                                            0x07, 
-                                            Zero, 
-                                            "HLOS_DRV", 
-                                            "REQUIRED"
-                                        }
-                                    }, 
-
-                                    Package (0x02)
-                                    {
-                                        "PMICVREGVOTE", 
-                                        Package (0x08)
-                                        {
-                                            "PPP_RESOURCE_ID_LDO1_B", 
-                                            One, 
-                                            0x000D6D80, 
-                                            One, 
-                                            0x07, 
-                                            Zero, 
-                                            "HLOS_DRV", 
-                                            "REQUIRED"
-                                        }
-                                    }, 
-
-                                    Package (0x02)
-                                    {
-                                        "PMICVREGVOTE", 
-                                        Package (0x08)
-                                        {
-                                            "PPP_RESOURCE_ID_LDO8_D", 
-                                            One, 
-                                            0x000D6D80, 
-                                            One, 
-                                            0x07, 
-                                            Zero, 
-                                            "HLOS_DRV", 
-                                            "REQUIRED"
-                                        }
-                                    }, 
-
-                                    Package (0x02)
-                                    {
-                                        "PMICVREGVOTE", 
-                                        Package (0x08)
-                                        {
-                                            "PPP_RESOURCE_ID_LDO9_D", 
-                                            One, 
-                                            0x000DEA80, 
-                                            One, 
-                                            0x07, 
-                                            Zero, 
-                                            "HLOS_DRV", 
-                                            "REQUIRED"
-                                        }
-                                    }, 
-
-                                    Package (0x02)
-                                    {
-                                        "PMICVREGVOTE", 
-                                        Package (0x08)
-                                        {
-                                            "PPP_RESOURCE_ID_LDO6_D", 
-                                            One, 
-                                            0x000D6D80, 
-                                            One, 
-                                            0x07, 
-                                            Zero, 
-                                            "HLOS_DRV", 
-                                            "REQUIRED"
-                                        }
-                                    }, 
-
-                                    Package (0x02)
-                                    {
-                                        "PMICVREGVOTE", 
-                                        Package (0x08)
-                                        {
-                                            "PPP_RESOURCE_ID_LDO7_D", 
-                                            One, 
-                                            0x002EE000, 
-                                            One, 
-                                            0x07, 
-                                            Zero, 
-                                            "HLOS_DRV", 
-                                            "REQUIRED"
-                                        }
                                     }
                                 }
                             }, 
@@ -5722,7 +5251,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                             {
                                 "FSTATE", 
                                 Zero, 
-                                Package (0x25)
+                                Package (0x1E)
                                 {
                                     "EXIT", 
                                     Package (0x02)
@@ -6029,118 +5558,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                                             0x023C3460, 
                                             Zero
                                         }
-                                    }, 
-
-                                    Package (0x02)
-                                    {
-                                        "PMICVREGVOTE", 
-                                        Package (0x08)
-                                        {
-                                            "PPP_RESOURCE_ID_LDO1_C", 
-                                            One, 
-                                            0x001B7740, 
-                                            One, 
-                                            0x07, 
-                                            Zero, 
-                                            "HLOS_DRV", 
-                                            "REQUIRED"
-                                        }
-                                    }, 
-
-                                    Package (0x02)
-                                    {
-                                        "PMICVREGVOTE", 
-                                        Package (0x08)
-                                        {
-                                            "PPP_RESOURCE_ID_LDO1_B", 
-                                            One, 
-                                            0x000D6D80, 
-                                            One, 
-                                            0x07, 
-                                            Zero, 
-                                            "HLOS_DRV", 
-                                            "REQUIRED"
-                                        }
-                                    }, 
-
-                                    Package (0x02)
-                                    {
-                                        "PMICVREGVOTE", 
-                                        Package (0x08)
-                                        {
-                                            "PPP_RESOURCE_ID_LDO8_D", 
-                                            One, 
-                                            0x000D6D80, 
-                                            One, 
-                                            0x07, 
-                                            Zero, 
-                                            "HLOS_DRV", 
-                                            "REQUIRED"
-                                        }
-                                    }, 
-
-                                    Package (0x02)
-                                    {
-                                        "PMICVREGVOTE", 
-                                        Package (0x08)
-                                        {
-                                            "PPP_RESOURCE_ID_LDO4_B", 
-                                            One, 
-                                            0x000DEA80, 
-                                            One, 
-                                            0x07, 
-                                            Zero, 
-                                            "HLOS_DRV", 
-                                            "REQUIRED"
-                                        }
-                                    }, 
-
-                                    Package (0x02)
-                                    {
-                                        "PMICVREGVOTE", 
-                                        Package (0x08)
-                                        {
-                                            "PPP_RESOURCE_ID_LDO3_B", 
-                                            One, 
-                                            0x00124F80, 
-                                            One, 
-                                            0x07, 
-                                            Zero, 
-                                            "HLOS_DRV", 
-                                            "REQUIRED"
-                                        }
-                                    }, 
-
-                                    Package (0x02)
-                                    {
-                                        "PMICVREGVOTE", 
-                                        Package (0x08)
-                                        {
-                                            "PPP_RESOURCE_ID_LDO6_B", 
-                                            One, 
-                                            0x000D6D80, 
-                                            One, 
-                                            0x07, 
-                                            Zero, 
-                                            "HLOS_DRV", 
-                                            "REQUIRED"
-                                        }
-                                    }, 
-
-                                    Package (0x02)
-                                    {
-                                        "PMICVREGVOTE", 
-                                        Package (0x08)
-                                        {
-                                            "PPP_RESOURCE_ID_LDO13_C", 
-                                            One, 
-                                            0x002EE000, 
-                                            One, 
-                                            0x07, 
-                                            Zero, 
-                                            "HLOS_DRV", 
-                                            "REQUIRED"
-                                        }
                                     }
                                 }
                             }, 
@@ -6409,7 +5826,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                             {
                                 "FSTATE", 
                                 Zero, 
-                                Package (0x25)
+                                Package (0x1E)
                                 {
                                     "EXIT", 
                                     Package (0x02)
@@ -6715,118 +6132,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                                             "ICBID_SLAVE_DISPLAY_CFG", 
                                             0x023C3460, 
                                             Zero
-                                        }
-                                    }, 
-
-                                    Package (0x02)
-                                    {
-                                        "PMICVREGVOTE", 
-                                        Package (0x08)
-                                        {
-                                            "PPP_RESOURCE_ID_LDO1_C", 
-                                            One, 
-                                            0x001B7740, 
-                                            One, 
-                                            0x07, 
-                                            Zero, 
-                                            "HLOS_DRV", 
-                                            "REQUIRED"
-                                        }
-                                    }, 
-
-                                    Package (0x02)
-                                    {
-                                        "PMICVREGVOTE", 
-                                        Package (0x08)
-                                        {
-                                            "PPP_RESOURCE_ID_LDO1_B", 
-                                            One, 
-                                            0x000D6D80, 
-                                            One, 
-                                            0x07, 
-                                            Zero, 
-                                            "HLOS_DRV", 
-                                            "REQUIRED"
-                                        }
-                                    }, 
-
-                                    Package (0x02)
-                                    {
-                                        "PMICVREGVOTE", 
-                                        Package (0x08)
-                                        {
-                                            "PPP_RESOURCE_ID_LDO8_D", 
-                                            One, 
-                                            0x000D6D80, 
-                                            One, 
-                                            0x07, 
-                                            Zero, 
-                                            "HLOS_DRV", 
-                                            "REQUIRED"
-                                        }
-                                    }, 
-
-                                    Package (0x02)
-                                    {
-                                        "PMICVREGVOTE", 
-                                        Package (0x08)
-                                        {
-                                            "PPP_RESOURCE_ID_LDO4_B", 
-                                            One, 
-                                            0x000DEA80, 
-                                            One, 
-                                            0x07, 
-                                            Zero, 
-                                            "HLOS_DRV", 
-                                            "REQUIRED"
-                                        }
-                                    }, 
-
-                                    Package (0x02)
-                                    {
-                                        "PMICVREGVOTE", 
-                                        Package (0x08)
-                                        {
-                                            "PPP_RESOURCE_ID_LDO3_B", 
-                                            One, 
-                                            0x00124F80, 
-                                            One, 
-                                            0x07, 
-                                            Zero, 
-                                            "HLOS_DRV", 
-                                            "REQUIRED"
-                                        }
-                                    }, 
-
-                                    Package (0x02)
-                                    {
-                                        "PMICVREGVOTE", 
-                                        Package (0x08)
-                                        {
-                                            "PPP_RESOURCE_ID_LDO6_B", 
-                                            One, 
-                                            0x000D6D80, 
-                                            One, 
-                                            0x07, 
-                                            Zero, 
-                                            "HLOS_DRV", 
-                                            "REQUIRED"
-                                        }
-                                    }, 
-
-                                    Package (0x02)
-                                    {
-                                        "PMICVREGVOTE", 
-                                        Package (0x08)
-                                        {
-                                            "PPP_RESOURCE_ID_LDO13_C", 
-                                            One, 
-                                            0x002EE000, 
-                                            One, 
-                                            0x07, 
-                                            Zero, 
-                                            "HLOS_DRV", 
-                                            "REQUIRED"
                                         }
                                     }
                                 }
@@ -7172,80 +6477,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                         }
                     }, 
 
-                    Package (0x19)
+                    Package (0x14)
                     {
                         "DSTATE", 
                         Zero, 
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO1_C", 
-                                One, 
-                                0x001B7740, 
-                                One, 
-                                0x07, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO9_D", 
-                                One, 
-                                0x000DEA80, 
-                                One, 
-                                0x07, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO7_D", 
-                                One, 
-                                0x002EE000, 
-                                One, 
-                                0x07, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO4_D", 
-                                One, 
-                                0x00124F80, 
-                                One, 
-                                0x07, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO6_D", 
-                                One, 
-                                0x000D6D80, 
-                                One, 
-                                0x07, 
-                                Zero
-                            }
-                        }, 
-
                         Package (0x02)
                         {
                             "FOOTSWITCH", 
@@ -7447,7 +6682,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                         }
                     }, 
 
-                    Package (0x19)
+                    Package (0x14)
                     {
                         "DSTATE", 
                         One, 
@@ -7639,80 +6874,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                                 "/arc/client/rail_cx", 
                                 Zero
                             }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO1_C", 
-                                One, 
-                                0x001B7740, 
-                                One, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO9_D", 
-                                One, 
-                                0x000DEA80, 
-                                One, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO7_D", 
-                                One, 
-                                0x002EE000, 
-                                One, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO4_D", 
-                                One, 
-                                0x00124F80, 
-                                One, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO6_D", 
-                                One, 
-                                0x000D6D80, 
-                                One, 
-                                0x04, 
-                                Zero
-                            }
                         }
                     }, 
 
-                    Package (0x19)
+                    Package (0x14)
                     {
                         "DSTATE", 
                         0x02, 
@@ -7904,80 +7069,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                                 "/arc/client/rail_cx", 
                                 Zero
                             }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO1_C", 
-                                One, 
-                                0x001B7740, 
-                                One, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO9_D", 
-                                One, 
-                                0x000DEA80, 
-                                One, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO7_D", 
-                                One, 
-                                0x002EE000, 
-                                One, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO4_D", 
-                                One, 
-                                0x00124F80, 
-                                One, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO6_D", 
-                                One, 
-                                0x000D6D80, 
-                                One, 
-                                0x04, 
-                                Zero
-                            }
                         }
                     }, 
 
-                    Package (0x1A)
+                    Package (0x15)
                     {
                         "DSTATE", 
                         0x03, 
@@ -8179,76 +7274,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                                 "/arc/client/rail_cx", 
                                 Zero
                             }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO7_D", 
-                                One, 
-                                Zero, 
-                                Zero, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO9_D", 
-                                One, 
-                                Zero, 
-                                Zero, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO1_C", 
-                                One, 
-                                Zero, 
-                                Zero, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO4_D", 
-                                One, 
-                                Zero, 
-                                Zero, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO6_D", 
-                                One, 
-                                Zero, 
-                                Zero, 
-                                0x04, 
-                                Zero
-                            }
                         }
                     }, 
 
@@ -8280,80 +7305,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                         }
                     }, 
 
-                    Package (0x19)
+                    Package (0x14)
                     {
                         "DSTATE", 
                         Zero, 
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO1_C", 
-                                One, 
-                                0x001B7740, 
-                                One, 
-                                0x07, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO9_D", 
-                                One, 
-                                0x000DEA80, 
-                                One, 
-                                0x07, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO7_D", 
-                                One, 
-                                0x002EE000, 
-                                One, 
-                                0x07, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO4_D", 
-                                One, 
-                                0x00124F80, 
-                                One, 
-                                0x07, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO6_D", 
-                                One, 
-                                0x000D6D80, 
-                                One, 
-                                0x07, 
-                                Zero
-                            }
-                        }, 
-
                         Package (0x02)
                         {
                             "FOOTSWITCH", 
@@ -8561,7 +7516,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                         One
                     }, 
 
-                    Package (0x19)
+                    Package (0x14)
                     {
                         "DSTATE", 
                         0x02, 
@@ -8753,80 +7708,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                                 "/arc/client/rail_cx", 
                                 Zero
                             }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO1_C", 
-                                One, 
-                                0x001B7740, 
-                                One, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO9_D", 
-                                One, 
-                                0x000DEA80, 
-                                One, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO7_D", 
-                                One, 
-                                0x002EE000, 
-                                One, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO4_D", 
-                                One, 
-                                0x00124F80, 
-                                One, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO6_D", 
-                                One, 
-                                0x000D6D80, 
-                                One, 
-                                0x04, 
-                                Zero
-                            }
                         }
                     }, 
 
-                    Package (0x1A)
+                    Package (0x15)
                     {
                         "DSTATE", 
                         0x03, 
@@ -9026,76 +7911,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                             {
                                 One, 
                                 "/arc/client/rail_cx", 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO7_D", 
-                                One, 
-                                Zero, 
-                                Zero, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO9_D", 
-                                One, 
-                                Zero, 
-                                Zero, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO1_C", 
-                                One, 
-                                Zero, 
-                                Zero, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO4_D", 
-                                One, 
-                                Zero, 
-                                Zero, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO6_D", 
-                                One, 
-                                Zero, 
-                                Zero, 
-                                0x04, 
                                 Zero
                             }
                         }
@@ -9181,80 +7996,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                         }
                     }, 
 
-                    Package (0x19)
+                    Package (0x14)
                     {
                         "DSTATE", 
                         Zero, 
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO1_C", 
-                                One, 
-                                0x001B7740, 
-                                One, 
-                                0x07, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO4_B", 
-                                One, 
-                                0x000DEA80, 
-                                One, 
-                                0x07, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO13_C", 
-                                One, 
-                                0x002EE000, 
-                                One, 
-                                0x07, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO3_B", 
-                                One, 
-                                0x00124F80, 
-                                One, 
-                                0x07, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO6_B", 
-                                One, 
-                                0x000D6D80, 
-                                One, 
-                                0x07, 
-                                Zero
-                            }
-                        }, 
-
                         Package (0x02)
                         {
                             "FOOTSWITCH", 
@@ -9456,7 +8201,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                         }
                     }, 
 
-                    Package (0x19)
+                    Package (0x14)
                     {
                         "DSTATE", 
                         One, 
@@ -9648,80 +8393,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                                 "/arc/client/rail_cx", 
                                 Zero
                             }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO1_C", 
-                                One, 
-                                0x001B7740, 
-                                One, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO4_B", 
-                                One, 
-                                0x000DEA80, 
-                                One, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO13_C", 
-                                One, 
-                                0x002EE000, 
-                                One, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO3_B", 
-                                One, 
-                                0x00124F80, 
-                                One, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO6_B", 
-                                One, 
-                                0x000D6D80, 
-                                One, 
-                                0x04, 
-                                Zero
-                            }
                         }
                     }, 
 
-                    Package (0x19)
+                    Package (0x14)
                     {
                         "DSTATE", 
                         0x02, 
@@ -9913,80 +8588,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                                 "/arc/client/rail_cx", 
                                 Zero
                             }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO1_C", 
-                                One, 
-                                0x001B7740, 
-                                One, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO4_B", 
-                                One, 
-                                0x000DEA80, 
-                                One, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO13_C", 
-                                One, 
-                                0x002EE000, 
-                                One, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO3_B", 
-                                One, 
-                                0x00124F80, 
-                                One, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO6_B", 
-                                One, 
-                                0x000D6D80, 
-                                One, 
-                                0x04, 
-                                Zero
-                            }
                         }
                     }, 
 
-                    Package (0x1A)
+                    Package (0x15)
                     {
                         "DSTATE", 
                         0x03, 
@@ -10188,76 +8793,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                                 "/arc/client/rail_cx", 
                                 Zero
                             }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO13_C", 
-                                One, 
-                                Zero, 
-                                Zero, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO4_B", 
-                                One, 
-                                Zero, 
-                                Zero, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO1_C", 
-                                One, 
-                                Zero, 
-                                Zero, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO3_B", 
-                                One, 
-                                Zero, 
-                                Zero, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO6_B", 
-                                One, 
-                                Zero, 
-                                Zero, 
-                                0x04, 
-                                Zero
-                            }
                         }
                     }, 
 
@@ -10289,80 +8824,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                         }
                     }, 
 
-                    Package (0x19)
+                    Package (0x14)
                     {
                         "DSTATE", 
                         Zero, 
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO1_C", 
-                                One, 
-                                0x001B7740, 
-                                One, 
-                                0x07, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO4_B", 
-                                One, 
-                                0x000DEA80, 
-                                One, 
-                                0x07, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO13_C", 
-                                One, 
-                                0x002EE000, 
-                                One, 
-                                0x07, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO3_B", 
-                                One, 
-                                0x00124F80, 
-                                One, 
-                                0x07, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO6_B", 
-                                One, 
-                                0x000D6D80, 
-                                One, 
-                                0x07, 
-                                Zero
-                            }
-                        }, 
-
                         Package (0x02)
                         {
                             "FOOTSWITCH", 
@@ -10570,7 +9035,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                         One
                     }, 
 
-                    Package (0x19)
+                    Package (0x14)
                     {
                         "DSTATE", 
                         0x02, 
@@ -10762,80 +9227,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                                 "/arc/client/rail_cx", 
                                 Zero
                             }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO1_C", 
-                                One, 
-                                0x001B7740, 
-                                One, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO4_B", 
-                                One, 
-                                0x000DEA80, 
-                                One, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO13_C", 
-                                One, 
-                                0x002EE000, 
-                                One, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO3_B", 
-                                One, 
-                                0x00124F80, 
-                                One, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO6_B", 
-                                One, 
-                                0x000D6D80, 
-                                One, 
-                                0x04, 
-                                Zero
-                            }
                         }
                     }, 
 
-                    Package (0x1A)
+                    Package (0x15)
                     {
                         "DSTATE", 
                         0x03, 
@@ -11037,76 +9432,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                                 "/arc/client/rail_cx", 
                                 Zero
                             }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO13_C", 
-                                One, 
-                                Zero, 
-                                Zero, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO4_B", 
-                                One, 
-                                Zero, 
-                                Zero, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO1_C", 
-                                One, 
-                                Zero, 
-                                Zero, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO3_B", 
-                                One, 
-                                Zero, 
-                                Zero, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO6_B", 
-                                One, 
-                                Zero, 
-                                Zero, 
-                                0x04, 
-                                Zero
-                            }
                         }
                     }, 
 
@@ -11138,150 +9463,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                         }
                     }, 
 
-                    Package (0x24)
+                    Package (0x1A)
                     {
                         "DSTATE", 
                         Zero, 
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO1_C", 
-                                One, 
-                                0x001B7740, 
-                                One, 
-                                0x07, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO8_C", 
-                                One, 
-                                0x001B7740, 
-                                One, 
-                                0x07, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO1_B", 
-                                One, 
-                                0x000DEA80, 
-                                One, 
-                                0x07, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO8_D", 
-                                One, 
-                                0x000DEA80, 
-                                One, 
-                                0x07, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO10_D", 
-                                One, 
-                                0x000DEA80, 
-                                One, 
-                                0x07, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO2_D", 
-                                One, 
-                                0x002EE000, 
-                                One, 
-                                0x07, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO7_D", 
-                                One, 
-                                0x002EE000, 
-                                One, 
-                                0x07, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO4_D", 
-                                One, 
-                                0x00124F80, 
-                                One, 
-                                0x07, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO6_D", 
-                                One, 
-                                0x000D6D80, 
-                                One, 
-                                0x07, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO9_D", 
-                                One, 
-                                0x000DEA80, 
-                                One, 
-                                0x07, 
-                                Zero
-                            }
-                        }, 
-
                         Package (0x02)
                         {
                             "FOOTSWITCH", 
@@ -11543,7 +9728,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                         }
                     }, 
 
-                    Package (0x24)
+                    Package (0x1A)
                     {
                         "DSTATE", 
                         One, 
@@ -11795,150 +9980,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                                 "/arc/client/rail_cx", 
                                 Zero
                             }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO1_C", 
-                                One, 
-                                0x001B7740, 
-                                One, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO8_C", 
-                                One, 
-                                0x001B7740, 
-                                One, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO1_B", 
-                                One, 
-                                0x000DEA80, 
-                                One, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO8_D", 
-                                One, 
-                                0x000DEA80, 
-                                One, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO10_D", 
-                                One, 
-                                0x000DEA80, 
-                                One, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO2_D", 
-                                One, 
-                                0x002EE000, 
-                                One, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO7_D", 
-                                One, 
-                                0x002EE000, 
-                                One, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO4_D", 
-                                One, 
-                                0x00124F80, 
-                                One, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO6_D", 
-                                One, 
-                                0x000D6D80, 
-                                One, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO9_D", 
-                                One, 
-                                0x000DEA80, 
-                                One, 
-                                0x04, 
-                                Zero
-                            }
                         }
                     }, 
 
-                    Package (0x24)
+                    Package (0x1A)
                     {
                         "DSTATE", 
                         0x02, 
@@ -12190,150 +10235,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                                 "/arc/client/rail_cx", 
                                 Zero
                             }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO1_C", 
-                                One, 
-                                0x001B7740, 
-                                One, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO8_C", 
-                                One, 
-                                0x001B7740, 
-                                One, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO1_B", 
-                                One, 
-                                0x000DEA80, 
-                                One, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO8_D", 
-                                One, 
-                                0x000DEA80, 
-                                One, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO10_D", 
-                                One, 
-                                0x000DEA80, 
-                                One, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO2_D", 
-                                One, 
-                                0x002EE000, 
-                                One, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO7_D", 
-                                One, 
-                                0x002EE000, 
-                                One, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO4_D", 
-                                One, 
-                                0x00124F80, 
-                                One, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO6_D", 
-                                One, 
-                                0x000D6D80, 
-                                One, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO9_D", 
-                                One, 
-                                0x000DEA80, 
-                                One, 
-                                0x04, 
-                                Zero
-                            }
                         }
                     }, 
 
-                    Package (0x25)
+                    Package (0x1B)
                     {
                         "DSTATE", 
                         0x03, 
@@ -12593,146 +10498,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                             {
                                 One, 
                                 "/arc/client/rail_cx", 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO1_C", 
-                                One, 
-                                Zero, 
-                                Zero, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO8_C", 
-                                One, 
-                                Zero, 
-                                Zero, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO1_B", 
-                                One, 
-                                Zero, 
-                                Zero, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO8_D", 
-                                One, 
-                                Zero, 
-                                Zero, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO10_D", 
-                                One, 
-                                Zero, 
-                                Zero, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO2_D", 
-                                One, 
-                                Zero, 
-                                Zero, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO7_D", 
-                                One, 
-                                Zero, 
-                                Zero, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO4_D", 
-                                One, 
-                                Zero, 
-                                Zero, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO6_D", 
-                                One, 
-                                Zero, 
-                                Zero, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO9_D", 
-                                One, 
-                                Zero, 
-                                Zero, 
-                                0x04, 
                                 Zero
                             }
                         }
@@ -13191,7 +10956,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                         }
                     }, 
 
-                    Package (0x0B)
+                    Package (0x06)
                     {
                         "DSTATE", 
                         Zero, 
@@ -13217,76 +10982,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
 
                         Package (0x02)
                         {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO1_C", 
-                                One, 
-                                0x001B7740, 
-                                One, 
-                                0x07, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO7_C", 
-                                One, 
-                                0x00263540, 
-                                One, 
-                                0x07, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO3_D", 
-                                One, 
-                                0x00124F80, 
-                                One, 
-                                0x07, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO3_B", 
-                                One, 
-                                0x00124F80, 
-                                One, 
-                                0x07, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO6_B", 
-                                One, 
-                                0x000D6D80, 
-                                One, 
-                                0x07, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
                             "DELAY", 
                             Package (0x01)
                             {
@@ -13305,7 +11000,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                         }
                     }, 
 
-                    Package (0x09)
+                    Package (0x05)
                     {
                         "DSTATE", 
                         0x03, 
@@ -13316,62 +11011,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                             {
                                 One, 
                                 One
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO6_B", 
-                                One, 
-                                0x000D6D80, 
-                                One, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO3_B", 
-                                One, 
-                                Zero, 
-                                Zero, 
-                                Zero, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO3_D", 
-                                One, 
-                                0x00124F80, 
-                                One, 
-                                0x04, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO7_C", 
-                                One, 
-                                Zero, 
-                                Zero, 
-                                Zero, 
-                                Zero
                             }
                         }, 
 
@@ -13438,37 +11077,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                         Zero
                     }, 
 
-                    Package (0x04)
+                    Package (0x02)
                     {
                         "DSTATE", 
-                        0x03, 
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO3_D", 
-                                One, 
-                                Zero, 
-                                Zero, 
-                                Zero, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO7_C", 
-                                One, 
-                                Zero, 
-                                Zero, 
-                                Zero, 
-                                Zero
-                            }
-                        }
+                        0x03
                     }
                 }
             })
@@ -13764,77 +11376,12 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                                 }
                             }, 
 
-                            Package (0x08)
+                            Package (0x03)
                             {
                                 "PSTATE", 
                                 0x14, 
                                 Package (0x02)
                                 {
-                                    "PMICVREGVOTE", 
-                                    Package (0x06)
-                                    {
-                                        "PPP_RESOURCE_ID_LDO9_C", 
-                                        One, 
-                                        Zero, 
-                                        Zero, 
-                                        Zero, 
-                                        Zero
-                                    }
-                                }, 
-
-                                Package (0x02)
-                                {
-                                    "PMICVREGVOTE", 
-                                    Package (0x06)
-                                    {
-                                        "PPP_RESOURCE_ID_LDO6_C", 
-                                        One, 
-                                        Zero, 
-                                        Zero, 
-                                        Zero, 
-                                        Zero
-                                    }
-                                }, 
-
-                                Package (0x02)
-                                {
-                                    "DELAY", 
-                                    Package (0x01)
-                                    {
-                                        0x23
-                                    }
-                                }, 
-
-                                Package (0x02)
-                                {
-                                    "PMICVREGVOTE", 
-                                    Package (0x06)
-                                    {
-                                        "PPP_RESOURCE_ID_LDO9_C", 
-                                        One, 
-                                        0x002D2A80, 
-                                        One, 
-                                        0x07, 
-                                        Zero
-                                    }
-                                }, 
-
-                                Package (0x02)
-                                {
-                                    "PMICVREGVOTE", 
-                                    Package (0x06)
-                                    {
-                                        "PPP_RESOURCE_ID_LDO6_C", 
-                                        One, 
-                                        0x002D0370, 
-                                        One, 
-                                        0x07, 
-                                        Zero
-                                    }
-                                }, 
-
-                                Package (0x02)
-                                {
                                     "DELAY", 
                                     Package (0x01)
                                     {
@@ -13843,26 +11390,12 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                                 }
                             }, 
 
-                            Package (0x04)
+                            Package (0x03)
                             {
                                 "PSTATE", 
                                 0x15, 
                                 Package (0x02)
                                 {
-                                    "PMICVREGVOTE", 
-                                    Package (0x06)
-                                    {
-                                        "PPP_RESOURCE_ID_LDO6_C", 
-                                        One, 
-                                        0x001B7740, 
-                                        One, 
-                                        0x07, 
-                                        Zero
-                                    }
-                                }, 
-
-                                Package (0x02)
-                                {
                                     "DELAY", 
                                     Package (0x01)
                                     {
@@ -13871,40 +11404,12 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                                 }
                             }, 
 
-                            Package (0x05)
+                            Package (0x03)
                             {
                                 "PSTATE", 
                                 0x16, 
                                 Package (0x02)
                                 {
-                                    "PMICVREGVOTE", 
-                                    Package (0x06)
-                                    {
-                                        "PPP_RESOURCE_ID_LDO9_C", 
-                                        One, 
-                                        0x002D2A80, 
-                                        One, 
-                                        0x07, 
-                                        Zero
-                                    }
-                                }, 
-
-                                Package (0x02)
-                                {
-                                    "PMICVREGVOTE", 
-                                    Package (0x06)
-                                    {
-                                        "PPP_RESOURCE_ID_LDO6_C", 
-                                        One, 
-                                        0x002D0370, 
-                                        One, 
-                                        0x07, 
-                                        Zero
-                                    }
-                                }, 
-
-                                Package (0x02)
-                                {
                                     "DELAY", 
                                     Package (0x01)
                                     {
@@ -13913,38 +11418,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                                 }
                             }, 
 
-                            Package (0x05)
+                            Package (0x03)
                             {
                                 "PSTATE", 
                                 0x17, 
-                                Package (0x02)
-                                {
-                                    "PMICVREGVOTE", 
-                                    Package (0x06)
-                                    {
-                                        "PPP_RESOURCE_ID_LDO9_C", 
-                                        One, 
-                                        Zero, 
-                                        Zero, 
-                                        Zero, 
-                                        Zero
-                                    }
-                                }, 
-
-                                Package (0x02)
-                                {
-                                    "PMICVREGVOTE", 
-                                    Package (0x06)
-                                    {
-                                        "PPP_RESOURCE_ID_LDO6_C", 
-                                        One, 
-                                        Zero, 
-                                        Zero, 
-                                        Zero, 
-                                        Zero
-                                    }
-                                }, 
-
                                 Package (0x02)
                                 {
                                     "DELAY", 
@@ -14180,7 +11657,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                         }
                     }, 
 
-                    Package (0x07)
+                    Package (0x06)
                     {
                         "DSTATE", 
                         Zero, 
@@ -14191,17 +11668,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                             {
                                 Zero, 
                                 0x16
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "TLMMPORT", 
-                            Package (0x03)
-                            {
-                                0x001E8000, 
-                                0x7FFF, 
-                                0x1FE4
                             }
                         }, 
 
@@ -14236,7 +11702,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                         }
                     }, 
 
-                    Package (0x07)
+                    Package (0x06)
                     {
                         "DSTATE", 
                         0x03, 
@@ -14267,17 +11733,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                             {
                                 0x02, 
                                 0x02
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "TLMMPORT", 
-                            Package (0x03)
-                            {
-                                0x001E8000, 
-                                0x7FFF, 
-                                0x0A00
                             }
                         }, 
 
@@ -14588,67 +12043,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                         }
                     }, 
 
-                    Package (0x1D)
+                    Package (0x18)
                     {
                         "DSTATE", 
                         Zero, 
-                        Package (0x02)
-                        {
-                            "TLMMGPIO", 
-                            Package (0x07)
-                            {
-                                0x87, 
-                                One, 
-                                Zero, 
-                                One, 
-                                Zero, 
-                                Zero, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO4_D", 
-                                One, 
-                                0x00124F80, 
-                                One, 
-                                0x07, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO6_D", 
-                                One, 
-                                0x000D6D80, 
-                                One, 
-                                0x07, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO9_D", 
-                                One, 
-                                0x000DEA80, 
-                                One, 
-                                0x07, 
-                                Zero
-                            }
-                        }, 
-
                         Package (0x02)
                         {
                             "FOOTSWITCH", 
@@ -14890,21 +12288,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                                 "PCIE_FORCE_WAKE_CMD", 
                                 Zero
                             }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "TLMMGPIO", 
-                            Package (0x07)
-                            {
-                                0x8E, 
-                                Zero, 
-                                One, 
-                                Zero, 
-                                0x03, 
-                                Zero, 
-                                Zero
-                            }
                         }
                     }, 
 
@@ -14920,7 +12303,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                         0x02
                     }, 
 
-                    Package (0x1B)
+                    Package (0x17)
                     {
                         "DSTATE", 
                         0x03, 
@@ -15149,63 +12532,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                                 "gcc_pcie_2a_gdsc", 
                                 0x02
                             }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO9_D", 
-                                One, 
-                                Zero, 
-                                Zero, 
-                                Zero, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO6_D", 
-                                One, 
-                                Zero, 
-                                Zero, 
-                                Zero, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO4_D", 
-                                One, 
-                                Zero, 
-                                Zero, 
-                                Zero, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "TLMMGPIO", 
-                            Package (0x07)
-                            {
-                                0x87, 
-                                Zero, 
-                                Zero, 
-                                One, 
-                                Zero, 
-                                Zero, 
-                                Zero
-                            }
                         }
                     }, 
 
@@ -15356,52 +12682,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                         }
                     }, 
 
-                    Package (0x1C)
+                    Package (0x18)
                     {
                         "DSTATE", 
                         Zero, 
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO4_D", 
-                                One, 
-                                0x00124F80, 
-                                One, 
-                                0x07, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO6_D", 
-                                One, 
-                                0x000D6D80, 
-                                One, 
-                                0x07, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO9_D", 
-                                One, 
-                                0x000DEA80, 
-                                One, 
-                                0x07, 
-                                Zero
-                            }
-                        }, 
-
                         Package (0x02)
                         {
                             "FOOTSWITCH", 
@@ -15643,21 +12927,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                                 "PCIE_FORCE_WAKE_CMD", 
                                 Zero
                             }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "TLMMGPIO", 
-                            Package (0x07)
-                            {
-                                0x90, 
-                                Zero, 
-                                One, 
-                                Zero, 
-                                0x03, 
-                                Zero, 
-                                Zero
-                            }
                         }
                     }, 
 
@@ -15673,7 +12942,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                         0x02
                     }, 
 
-                    Package (0x1A)
+                    Package (0x17)
                     {
                         "DSTATE", 
                         0x03, 
@@ -15902,48 +13171,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                                 "gcc_pcie_2b_gdsc", 
                                 0x02
                             }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO9_D", 
-                                One, 
-                                Zero, 
-                                Zero, 
-                                Zero, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO6_D", 
-                                One, 
-                                Zero, 
-                                Zero, 
-                                Zero, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO4_D", 
-                                One, 
-                                Zero, 
-                                Zero, 
-                                Zero, 
-                                Zero
-                            }
                         }
                     }, 
 
@@ -16094,52 +13321,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                         }
                     }, 
 
-                    Package (0x1C)
+                    Package (0x18)
                     {
                         "DSTATE", 
                         Zero, 
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO4_D", 
-                                One, 
-                                0x00124F80, 
-                                One, 
-                                0x07, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO6_D", 
-                                One, 
-                                0x000D6D80, 
-                                One, 
-                                0x07, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO9_D", 
-                                One, 
-                                0x000DEA80, 
-                                One, 
-                                0x07, 
-                                Zero
-                            }
-                        }, 
-
                         Package (0x02)
                         {
                             "FOOTSWITCH", 
@@ -16381,21 +13566,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                                 "PCIE_FORCE_WAKE_CMD", 
                                 Zero
                             }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "TLMMGPIO", 
-                            Package (0x07)
-                            {
-                                0x96, 
-                                Zero, 
-                                One, 
-                                Zero, 
-                                0x03, 
-                                Zero, 
-                                Zero
-                            }
                         }
                     }, 
 
@@ -16411,7 +13581,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                         0x02
                     }, 
 
-                    Package (0x1A)
+                    Package (0x17)
                     {
                         "DSTATE", 
                         0x03, 
@@ -16640,48 +13810,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                                 "gcc_pcie_3a_gdsc", 
                                 0x02
                             }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO9_D", 
-                                One, 
-                                Zero, 
-                                Zero, 
-                                Zero, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO6_D", 
-                                One, 
-                                Zero, 
-                                Zero, 
-                                Zero, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO4_D", 
-                                One, 
-                                Zero, 
-                                Zero, 
-                                Zero, 
-                                Zero
-                            }
                         }
                     }, 
 
@@ -16832,52 +13960,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                         }
                     }, 
 
-                    Package (0x1C)
+                    Package (0x18)
                     {
                         "DSTATE", 
                         Zero, 
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO4_D", 
-                                One, 
-                                0x00124F80, 
-                                One, 
-                                0x07, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO6_D", 
-                                One, 
-                                0x000D6D80, 
-                                One, 
-                                0x07, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO9_D", 
-                                One, 
-                                0x000DEA80, 
-                                One, 
-                                0x07, 
-                                Zero
-                            }
-                        }, 
-
                         Package (0x02)
                         {
                             "FOOTSWITCH", 
@@ -17119,21 +14205,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                                 "PCIE_FORCE_WAKE_CMD", 
                                 Zero
                             }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "TLMMGPIO", 
-                            Package (0x07)
-                            {
-                                0x98, 
-                                Zero, 
-                                One, 
-                                Zero, 
-                                0x03, 
-                                Zero, 
-                                Zero
-                            }
                         }
                     }, 
 
@@ -17149,7 +14220,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                         0x02
                     }, 
 
-                    Package (0x1A)
+                    Package (0x17)
                     {
                         "DSTATE", 
                         0x03, 
@@ -17378,48 +14449,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                                 "gcc_pcie_3b_gdsc", 
                                 0x02
                             }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO9_D", 
-                                One, 
-                                Zero, 
-                                Zero, 
-                                Zero, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO6_D", 
-                                One, 
-                                Zero, 
-                                Zero, 
-                                Zero, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO4_D", 
-                                One, 
-                                Zero, 
-                                Zero, 
-                                Zero, 
-                                Zero
-                            }
                         }
                     }, 
 
@@ -17570,82 +14599,10 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                         }
                     }, 
 
-                    Package (0x1F)
+                    Package (0x19)
                     {
                         "DSTATE", 
                         Zero, 
-                        Package (0x02)
-                        {
-                            "TLMMGPIO", 
-                            Package (0x06)
-                            {
-                                0x86, 
-                                One, 
-                                Zero, 
-                                One, 
-                                0x03, 
-                                0x04
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICGPIO", 
-                            Package (0x08)
-                            {
-                                "IOCTL_PM_GPIO_CONFIG_DIGITAL_OUTPUT", 
-                                0x04, 
-                                Zero, 
-                                0x02, 
-                                Zero, 
-                                0x0A, 
-                                0x02, 
-                                0x05
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO4_D", 
-                                One, 
-                                0x00124F80, 
-                                One, 
-                                0x07, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO6_D", 
-                                One, 
-                                0x000D6D80, 
-                                One, 
-                                0x07, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO9_D", 
-                                One, 
-                                0x000DEA80, 
-                                One, 
-                                0x07, 
-                                Zero
-                            }
-                        }, 
-
                         Package (0x02)
                         {
                             "FOOTSWITCH", 
@@ -17897,21 +14854,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                                 "PCIE_FORCE_WAKE_CMD", 
                                 Zero
                             }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "TLMMGPIO", 
-                            Package (0x07)
-                            {
-                                0x8C, 
-                                Zero, 
-                                One, 
-                                Zero, 
-                                0x03, 
-                                Zero, 
-                                Zero
-                            }
                         }
                     }, 
 
@@ -17927,7 +14869,7 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                         0x02
                     }, 
 
-                    Package (0x1B)
+                    Package (0x18)
                     {
                         "DSTATE", 
                         0x03, 
@@ -18166,48 +15108,6 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                                 "gcc_pcie_4_gdsc", 
                                 0x02
                             }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO9_D", 
-                                One, 
-                                Zero, 
-                                Zero, 
-                                Zero, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO6_D", 
-                                One, 
-                                Zero, 
-                                Zero, 
-                                Zero, 
-                                Zero
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "PMICVREGVOTE", 
-                            Package (0x06)
-                            {
-                                "PPP_RESOURCE_ID_LDO4_D", 
-                                One, 
-                                Zero, 
-                                Zero, 
-                                Zero, 
-                                Zero
-                            }
                         }
                     }, 
 
@@ -18309,44 +15209,16 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                         }
                     }, 
 
-                    Package (0x05)
+                    Package (0x03)
                     {
                         "DSTATE", 
                         Zero, 
-                        Package (0x02)
-                        {
-                            "TLMMGPIO", 
-                            Package (0x06)
-                            {
-                                One, 
-                                One, 
-                                Zero, 
-                                One, 
-                                0x03, 
-                                0x03
-                            }
-                        }, 
-
                         Package (0x02)
                         {
                             "DELAY", 
                             Package (0x01)
                             {
                                 0x012C
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "TLMMGPIO", 
-                            Package (0x06)
-                            {
-                                Zero, 
-                                One, 
-                                Zero, 
-                                One, 
-                                0x03, 
-                                0x03
                             }
                         }
                     }, 
@@ -18363,44 +15235,16 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8350 ", 0x00000003)
                         0x02
                     }, 
 
-                    Package (0x05)
+                    Package (0x03)
                     {
                         "DSTATE", 
                         0x03, 
-                        Package (0x02)
-                        {
-                            "TLMMGPIO", 
-                            Package (0x06)
-                            {
-                                Zero, 
-                                Zero, 
-                                Zero, 
-                                One, 
-                                One, 
-                                Zero
-                            }
-                        }, 
-
                         Package (0x02)
                         {
                             "DELAY", 
                             Package (0x01)
                             {
                                 0x0A
-                            }
-                        }, 
-
-                        Package (0x02)
-                        {
-                            "TLMMGPIO", 
-                            Package (0x06)
-                            {
-                                One, 
-                                Zero, 
-                                Zero, 
-                                One, 
-                                One, 
-                                Zero
                             }
                         }
                     }
