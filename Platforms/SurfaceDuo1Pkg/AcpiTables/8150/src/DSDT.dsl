@@ -3153,16 +3153,44 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                     {
                         "COMPONENT", 
                         0x04, 
-                        Package (0x02)
+                        Package (0x03)
                         {
                             "FSTATE", 
-                            Zero
+                            Zero, 
+                            Package (0x02)
+                            {
+                                "PMICVREGVOTE", 
+                                Package (0x07)
+                                {
+                                    "PPP_RESOURCE_ID_BUCK_BOOST1_C", 
+                                    0x0C, 
+                                    0x00325AA0, 
+                                    One, 
+                                    0x02, 
+                                    "HLOS_DRV", 
+                                    "SUPPRESSIBLE"
+                                }
+                            }
                         }, 
 
-                        Package (0x02)
+                        Package (0x03)
                         {
                             "FSTATE", 
-                            One
+                            One, 
+                            Package (0x02)
+                            {
+                                "PMICVREGVOTE", 
+                                Package (0x07)
+                                {
+                                    "PPP_RESOURCE_ID_BUCK_BOOST1_C", 
+                                    0x0C, 
+                                    Zero, 
+                                    Zero, 
+                                    0x02, 
+                                    "HLOS_DRV", 
+                                    "SUPPRESSIBLE"
+                                }
+                            }
                         }
                     }, 
 
@@ -60793,6 +60821,12 @@ DefinitionBlock ("", "DSDT", 2, "QCOMM ", "SDM8150 ", 0x00000003)
                                     )
                                     {   // Pin list
                                         0x008F
+                                    }
+                                GpioIo (Exclusive, PullNone, 0x0000, 0x0640, IoRestrictionNone,
+                                    "\\_SB.GIO0", 0x00, ResourceConsumer, ,
+                                    )
+                                    {   // Pin list
+                                        0x008E
                                     }
                                 GpioInt (Edge, ActiveHigh, Exclusive, PullDown, 0x0000,
                                     "\\_SB.GIO0", 0x00, ResourceConsumer, ,
