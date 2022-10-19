@@ -486,7 +486,7 @@ SMBIOS_TABLE_TYPE16 mPhyMemArrayInfoType16 = {
     0xFFFFFFFF,                     // MaximumCapacity;
     0xFFFE,                         // MemoryErrorInformationHandle;
     1,                              // NumberOfMemoryDevices;
-    0x180000000ULL,                 // ExtendedMaximumCapacity;
+    FixedPcdGet64(PcdSystemMemorySize) // ExtendedMaximumCapacity;
 };
 CHAR8 *mPhyMemArrayInfoType16Strings[] = {NULL};
 
@@ -500,7 +500,7 @@ SMBIOS_TABLE_TYPE17 mMemDevInfoType17 = {
     0xFFFE, // MemoryErrorInformationHandle;
     0xFFFF, // TotalWidth;
     0xFFFF, // DataWidth;
-    0x1800, // Size; // When bit 15 is 0: Size in MB
+    0xFFFF, // Size; // When bit 15 is 0: Size in MB
             // When bit 15 is 1: Size in KB, and continues in ExtendedSize
     MemoryFormFactorRowOfChips, // FormFactor;                     ///< The
                                 // enumeration value from MEMORY_FORM_FACTOR.
@@ -769,8 +769,6 @@ VOID PhyMemArrayInfoUpdateSmbiosType16(VOID)
 {
   EFI_SMBIOS_HANDLE MemArraySmbiosHande;
 
-  mPhyMemArrayInfoType16.ExtendedMaximumCapacity = FixedPcdGet64(PcdSystemMemorySize);
-
   LogSmbiosData(
       (EFI_SMBIOS_TABLE_HEADER *)&mPhyMemArrayInfoType16,
       mPhyMemArrayInfoType16Strings, &MemArraySmbiosHande);
@@ -786,6 +784,8 @@ VOID PhyMemArrayInfoUpdateSmbiosType16(VOID)
 ************************************************************************/
 VOID MemDevInfoUpdateSmbiosType17(VOID)
 {
+  mMemDevInfoType17.Size = FixedPcdGet64(PcdSystemMemorySize) / 0x100000;
+
   LogSmbiosData(
       (EFI_SMBIOS_TABLE_HEADER *)&mMemDevInfoType17, mMemDevInfoType17Strings,
       NULL);
