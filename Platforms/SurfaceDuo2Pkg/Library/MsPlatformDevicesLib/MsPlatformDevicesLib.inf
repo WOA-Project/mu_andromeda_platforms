@@ -38,6 +38,7 @@
   UefiBootServicesTableLib
   UefiLib
   AslUpdateLib
+  RFSProtectionLib
 
 [Protocols]
   gEfiChipInfoProtocolGuid                      ## CONSUMES

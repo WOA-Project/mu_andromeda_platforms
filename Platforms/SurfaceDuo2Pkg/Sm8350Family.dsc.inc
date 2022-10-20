@@ -47,6 +47,7 @@
   PlatformPeiLib|SurfaceDuo2Pkg/Library/PlatformPeiLib/PlatformPeiLib.inf
   PlatformPrePiLib|SurfaceDuo2Pkg/Library/PlatformPrePiLib/PlatformPrePiLib.inf
   AslUpdateLib|SurfaceDuoFamilyPkg/Library/DxeAslUpdateLib/DxeAslUpdateLib.inf
+  RFSProtectionLib|SurfaceDuo2Pkg/Library/RFSProtectionLib/RFSProtectionLib.inf
 
   MsPlatformDevicesLib|SurfaceDuo2Pkg/Library/MsPlatformDevicesLib/MsPlatformDevicesLib.inf
   PlatformThemeLib|SurfaceDuo2Pkg/Library/PlatformThemeLib/PlatformThemeLib.inf
