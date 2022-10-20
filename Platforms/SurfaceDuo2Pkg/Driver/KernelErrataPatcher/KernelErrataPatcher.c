@@ -48,8 +48,8 @@ VOID KernelErrataPatcherApplyReadACTLREL1Patches(
     COPY_TO CopyTo, EFI_PHYSICAL_ADDRESS Base, UINTN Size,
     BOOLEAN IsInFirmwareContext)
 {
-  // Fix up #0 (28 10 38 D5 -> E8 7F 40 B2) (ACTRL_EL1 Register Read)
-  UINT8                FixedInstruction0[] = {0xE8, 0x7F, 0x40, 0xB2};
+  // Fix up #0 (28 10 38 D5 -> 08 00 80 D2) (ACTRL_EL1 Register Read)
+  UINT8                FixedInstruction0[] = {0x08, 0x00, 0x80, 0xD2};
   EFI_PHYSICAL_ADDRESS IllegalInstruction0 =
       FindPattern(Base, Size, "28 10 38 D5");
   UINT8 PatchCounter = 0;
