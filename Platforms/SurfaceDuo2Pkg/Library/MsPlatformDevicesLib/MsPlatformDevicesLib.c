@@ -141,9 +141,9 @@ PlatformUpdateAcpiTables(VOID)
   UINT32                              SIDV  = 0;
   UINT16                              SDFE  = 0;
   UINT16                              SIDM  = 0;
-  UINT32                              SUFS  = 0xffffffff;
+  UINT32                              SUFS  = 0xFFFFFFFF;
   UINT32                              PUS3  = 0x1;
-  UINT32                              SUS3  = 0xffffffff;
+  UINT32                              SUS3  = 0xFFFFFFFF;
   UINT32                             *pSIDT = (UINT32 *)0x784178;
   UINT32                              SIDT  = (*pSIDT & 0xFF00000) >> 20;
   UINT32                             *pSJTG = (UINT32 *)0x784178;
@@ -153,15 +153,15 @@ PlatformUpdateAcpiTables(VOID)
   UINT32                              SOSN1 = 0;
   UINT32                              SOSN2 = 0;
   UINT32                              TPMA  = 0x1;
-  UINT32                              TDTV  = 0x6654504d;
+  UINT32                              TDTV  = 0x6654504D;
   UINT64                              SOSI  = 0;
-  UINT32                              PRP0  = 0xffffffff;
-  UINT32                              PRP1  = 0xffffffff;
-  UINT32                              PRP2  = 0xffffffff;
-  UINT32                              PRP3  = 0xffffffff;
-  UINT32                              PRP4  = 0xffffffff;
-  UINT32                              PRP5  = 0xffffffff;
-  UINT32                              PRP6  = 0xffffffff;
+  UINT32                              PRP0  = 0xFFFFFFFF;
+  UINT32                              PRP1  = 0xFFFFFFFF;
+  UINT32                              PRP2  = 0xFFFFFFFF;
+  UINT32                              PRP3  = 0xFFFFFFFF;
+  UINT32                              PRP4  = 0xFFFFFFFF;
+  UINT32                              PRP5  = 0xFFFFFFFF;
+  UINT32                              PRP6  = 0xFFFFFFFF;
   CHAR8                               SIDS[EFICHIPINFO_MAX_ID_LENGTH] = {0};
   EFI_PLATFORMINFO_PLATFORM_INFO_TYPE PlatformInfo;
   UINT32                              RMTB = 0;
@@ -233,10 +233,10 @@ PlatformUpdateAcpiTables(VOID)
   }
 
   if (ADSPEFSRegion != NULL) {
-    RFAB = ADSPEFSRegion->Address;
-    RFAS = ADSPEFSRegion->Length / 2;
     RFMB = ADSPEFSRegion->Address + ADSPEFSRegion->Length / 2;
     RFMS = ADSPEFSRegion->Length / 2;
+    RFAB = ADSPEFSRegion->Address;
+    RFAS = ADSPEFSRegion->Length / 2;
   }
 
   if (TGCMRegion != NULL) {
