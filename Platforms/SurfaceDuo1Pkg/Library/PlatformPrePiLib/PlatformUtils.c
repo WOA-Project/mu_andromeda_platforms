@@ -12,41 +12,24 @@
 #include <IndustryStandard/ArmStdSmc.h>
 #include <Library/ArmSmcLib.h>
 #include <Library/PlatformPrePiLib.h>
+#include <Library/MemoryMapHelperLib.h>
 
 #include "PlatformUtils.h"
-#include <Configuration/DeviceMemoryMap.h>
 
 BOOLEAN IsLinuxBootRequested()
 {
   return (MmioRead32(LID0_GPIO121_STATUS_ADDR) & 1) == 1;
 }
 
-EFI_STATUS
-EFIAPI
-SerialPortLocateArea(PARM_MEMORY_REGION_DESCRIPTOR_EX* MemoryDescriptor)
-{
-  PARM_MEMORY_REGION_DESCRIPTOR_EX MemoryDescriptorEx =
-      gDeviceMemoryDescriptorEx;
-
-  // Run through each memory descriptor
-  while (MemoryDescriptorEx->Length != 0) {
-    if (AsciiStriCmp("PStore", MemoryDescriptorEx->Name) == 0) {
-      *MemoryDescriptor = MemoryDescriptorEx;
-      return EFI_SUCCESS;
-    }
-    MemoryDescriptorEx++;
-  }
-
-  return EFI_NOT_FOUND;
-}
-
 VOID InitializeSharedUartBuffers(VOID)
 {
 #if USE_MEMORY_FOR_SERIAL_OUTPUT == 1
-  PARM_MEMORY_REGION_DESCRIPTOR_EX PStoreMemoryRegion = NULL;
+  ARM_MEMORY_REGION_DESCRIPTOR_EX PStoreMemoryRegion;
 #endif
+  ARM_MEMORY_REGION_DESCRIPTOR_EX DisplayMemoryRegion;
+  LocateMemoryMapAreaByName("Display Reserved", &DisplayMemoryRegion);
 
-  INTN* pFbConPosition = (INTN*)(FixedPcdGet32(PcdMipiFrameBufferAddress) + (FixedPcdGet32(PcdMipiFrameBufferWidth) * 
+  INTN* pFbConPosition = (INTN*)(DisplayMemoryRegion.Address + (FixedPcdGet32(PcdMipiFrameBufferWidth) * 
                                                                               FixedPcdGet32(PcdMipiFrameBufferHeight) * 
                                                                               FixedPcdGet32(PcdMipiFrameBufferPixelBpp) / 8));
 
@@ -55,9 +38,9 @@ VOID InitializeSharedUartBuffers(VOID)
 
 #if USE_MEMORY_FOR_SERIAL_OUTPUT == 1
   // Clear PStore area
-  SerialPortLocateArea(&PStoreMemoryRegion);
-  UINT8 *base = (UINT8 *)PStoreMemoryRegion->Address;
-  for (UINTN i = 0; i < PStoreMemoryRegion->Length; i++) {
+  LocateMemoryMapAreaByName("PStore", &PStoreMemoryRegion);
+  UINT8 *base = (UINT8 *)PStoreMemoryRegion.Address;
+  for (UINTN i = 0; i < PStoreMemoryRegion.Length; i++) {
     base[i] = 0;
   }
 #endif

@@ -39,6 +39,7 @@
   UefiLib
   AslUpdateLib
   RFSProtectionLib
+  MemoryMapHelperLib
 
 [Protocols]
   gEfiChipInfoProtocolGuid                      ## CONSUMES
@@ -47,4 +48,4 @@
   gEfiClockProtocolGuid                         ## CONSUMES
 
 [FixedPcd]
-  gArmPlatformTokenSpaceGuid.PcdCoreCount
+  gArmPlatformTokenSpaceGuid.PcdClusterCount

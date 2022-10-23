@@ -22,10 +22,9 @@ SPDX-License-Identifier: BSD-2-Clause-Patent
 
 #include <Library/AslUpdateLib.h>
 #include <Library/RFSProtectionLib.h>
+#include <Library/MemoryMapHelperLib.h>
 
 #include <Configuration/BootDevices.h>
-
-#include <Configuration/DeviceMemoryMap.h>
 
 #include <Protocol/EFIChipInfo.h>
 #include <Protocol/EFIPlatformInfo.h>
@@ -75,14 +74,14 @@ SetupAPSSCpuPerformanceLevels()
   }
 
   // Go one index further because of L3
-  for (UINT32 i = 0; i < FixedPcdGet32(PcdCoreCount) + 1; i++) {
+  for (UINT32 i = 0; i < FixedPcdGet32(PcdClusterCount) + 1; i++) {
     Status = pClockProtocol->GetMaxPerformanceLevel(
         pClockProtocol, i, &performanceLevelIndex);
 
     if (EFI_ERROR(Status)) {
       DEBUG(
           (EFI_D_ERROR,
-           "%a: Failed to get the maximum performance level for CPU %d, "
+           "%a: Failed to get the maximum performance level for CPU Cluster %d, "
            "Status: %r\n",
            __FUNCTION__, i, Status));
       return Status;
@@ -94,37 +93,18 @@ SetupAPSSCpuPerformanceLevels()
     if (EFI_ERROR(Status)) {
       DEBUG(
           (EFI_D_ERROR,
-           "%a: Failed to set the maximum performance level for CPU %d, "
+           "%a: Failed to set the maximum performance level for CPU Cluster %d, "
            "Status: %r\n",
            __FUNCTION__, i, Status));
       return Status;
     }
 
     DEBUG(
-        (EFI_D_WARN, "%a: CPU %d Now running at %lu Hz\n", __FUNCTION__, i,
+        (EFI_D_WARN, "%a: CPU Cluster %d Now running at %lu Hz\n", __FUNCTION__, i,
          frequencyHz));
   }
 
   return Status;
-}
-
-EFI_STATUS
-EFIAPI
-MemoryMapLocateArea(PARM_MEMORY_REGION_DESCRIPTOR_EX *MemoryDescriptor, CHAR8 *Name)
-{
-  PARM_MEMORY_REGION_DESCRIPTOR_EX MemoryDescriptorEx =
-      gDeviceMemoryDescriptorEx;
-
-  // Run through each memory descriptor
-  while (MemoryDescriptorEx->Length != 0) {
-    if (AsciiStriCmp(Name, MemoryDescriptorEx->Name) == 0) {
-      *MemoryDescriptor = MemoryDescriptorEx;
-      return EFI_SUCCESS;
-    }
-    MemoryDescriptorEx++;
-  }
-
-  return EFI_NOT_FOUND;
 }
 
 VOID
@@ -132,9 +112,9 @@ PlatformUpdateAcpiTables(VOID)
 {
   EFI_STATUS Status;
 
-  PARM_MEMORY_REGION_DESCRIPTOR_EX MPSSEFSRegion = NULL;
-  PARM_MEMORY_REGION_DESCRIPTOR_EX ADSPEFSRegion = NULL;
-  PARM_MEMORY_REGION_DESCRIPTOR_EX TGCMRegion    = NULL;
+  ARM_MEMORY_REGION_DESCRIPTOR_EX MPSSEFSRegion;
+  ARM_MEMORY_REGION_DESCRIPTOR_EX ADSPEFSRegion;
+  ARM_MEMORY_REGION_DESCRIPTOR_EX TGCMRegion;
 
   UINT32                              SOID  = 0;
   UINT32                              STOR  = 0x1;
@@ -206,10 +186,6 @@ PlatformUpdateAcpiTables(VOID)
     return;
   }
 
-  MemoryMapLocateArea(&MPSSEFSRegion, "MPSS_EFS");
-  MemoryMapLocateArea(&ADSPEFSRegion, "ADSP_EFS");
-  MemoryMapLocateArea(&TGCMRegion, "TGCM");
-
   mBoardProtocol->GetChipId(mBoardProtocol, &SOID);
   mBoardProtocol->GetChipVersion(mBoardProtocol, &SIDV);
   mBoardProtocol->GetChipFamily(mBoardProtocol, (EFIChipInfoFamilyType *)&SDFE);
@@ -227,21 +203,21 @@ PlatformUpdateAcpiTables(VOID)
   UINT64 SOSN = ((UINT64)SOSN2 << 32) | SOSN1;
   UINT32 PLST = PlatformInfo.subtype;
 
-  if (MPSSEFSRegion != NULL) {
-    RMTB = MPSSEFSRegion->Address;
-    RMTX = MPSSEFSRegion->Length;
+  if (!EFI_ERROR(LocateMemoryMapAreaByName("MPSS_EFS", &MPSSEFSRegion))) {
+    RMTB = MPSSEFSRegion.Address;
+    RMTX = MPSSEFSRegion.Length;
   }
 
-  if (ADSPEFSRegion != NULL) {
-    RFMB = ADSPEFSRegion->Address + ADSPEFSRegion->Length / 2;
-    RFMS = ADSPEFSRegion->Length / 2;
-    RFAB = ADSPEFSRegion->Address;
-    RFAS = ADSPEFSRegion->Length / 2;
+  if (!EFI_ERROR(LocateMemoryMapAreaByName("ADSP_EFS", &ADSPEFSRegion))) {
+    RFMB = ADSPEFSRegion.Address + ADSPEFSRegion.Length / 2;
+    RFMS = ADSPEFSRegion.Length / 2;
+    RFAB = ADSPEFSRegion.Address;
+    RFAS = ADSPEFSRegion.Length / 2;
   }
 
-  if (TGCMRegion != NULL) {
-    TCMA = TGCMRegion->Address;
-    TCML = TGCMRegion->Length;
+  if (!EFI_ERROR(LocateMemoryMapAreaByName("TGCM", &TGCMRegion))) {
+    TCMA = TGCMRegion.Address;
+    TCML = TGCMRegion.Length;
   } else {
     TCMA = 0xDEADBEEF;
     TCML = 0xBEEFDEAD;

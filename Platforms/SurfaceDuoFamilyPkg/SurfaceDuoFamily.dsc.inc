@@ -88,9 +88,6 @@
   # Boot Manager
   gEfiMdePkgTokenSpaceGuid.PcdPlatformBootTimeOut|2
 
-  # Enable Debug
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdEnableScreenSerial|TRUE
-
   # PCI Express
   gEfiMdeModulePkgTokenSpaceGuid.PcdSrIovSupport|FALSE
   gEfiMdeModulePkgTokenSpaceGuid.PcdAriSupport|FALSE
@@ -241,6 +238,9 @@
   DtPlatformDtbLoaderLib|EmbeddedPkg/Library/DxeDtPlatformDtbLoaderLibDefault/DxeDtPlatformDtbLoaderLibDefault.inf
   VariableFlashInfoLib|MdeModulePkg/Library/BaseVariableFlashInfoLib/BaseVariableFlashInfoLib.inf
   PlatformPKProtectionLib|SecurityPkg/Library/PlatformPKProtectionLibVarPolicy/PlatformPKProtectionLibVarPolicy.inf
+
+  MemoryInitPeiLib|SurfaceDuoFamilyPkg/Library/MemoryInitPeiLib/PeiMemoryAllocationLib.inf
+  MemoryMapHelperLib|SurfaceDuoFamilyPkg/Library/MemoryMapHelperLib/MemoryMapHelperLib.inf
 
   BaseCryptLib|CryptoPkg/Library/BaseCryptLib/BaseCryptLib.inf
   CapsulePersistLib|MdeModulePkg/Library/CapsulePersistLibNull/CapsulePersistLibNull.inf      ## MU_CHANGE

@@ -37,6 +37,7 @@
   PlatformPrePiLib
   PrePiHobListPointerLib
   PrePiLib
+  MemoryMapHelperLib
 
 [Guids]
   gEfiSystemNvDataFvGuid
@@ -58,5 +59,3 @@
   gEmbeddedTokenSpaceGuid.PcdPrePiStackBase
   gEmbeddedTokenSpaceGuid.PcdPrePiStackSize
   gEmbeddedTokenSpaceGuid.PcdPrePiCpuIoSize
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdPreAllocatedMemorySize
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdUefiMemPoolSize

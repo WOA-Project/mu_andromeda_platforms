@@ -32,9 +32,6 @@
   gEmbeddedTokenSpaceGuid.PcdInterruptBaseAddress|0x09BC0000
   gEmbeddedTokenSpaceGuid.PcdPrePiCpuIoSize|44
 
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdUefiMemPoolSize|0x10C00000
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdPreAllocatedMemorySize|0x0E400000  # Start here
-
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosProcessorModel|"Snapdragon (TM) 888 @ 2.84 GHz"
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosProcessorRetailModel|"SM8350"
 
@@ -43,7 +40,7 @@
   gArmPlatformTokenSpaceGuid.PcdClusterCount|3
 
 [LibraryClasses.common]
-  MemoryInitPeiLib|SurfaceDuo2Pkg/Library/MemoryInitPeiLib/PeiMemoryAllocationLib.inf
+  PlatformMemoryMapLib|SurfaceDuo2Pkg/Library/PlatformMemoryMapLib/PlatformMemoryMapLib.inf
   PlatformPeiLib|SurfaceDuo2Pkg/Library/PlatformPeiLib/PlatformPeiLib.inf
   PlatformPrePiLib|SurfaceDuo2Pkg/Library/PlatformPrePiLib/PlatformPrePiLib.inf
   AslUpdateLib|SurfaceDuoFamilyPkg/Library/DxeAslUpdateLib/DxeAslUpdateLib.inf

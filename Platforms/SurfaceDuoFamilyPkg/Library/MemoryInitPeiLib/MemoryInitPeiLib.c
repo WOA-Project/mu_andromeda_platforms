@@ -14,9 +14,7 @@
 #include <Library/HobLib.h>
 #include <Library/MemoryAllocationLib.h>
 #include <Library/PcdLib.h>
-
-// This varies by device
-#include <Configuration/DeviceMemoryMap.h>
+#include <Library/PlatformMemoryMapLib.h>
 
 extern UINT64 mSystemMemoryEnd;
 
@@ -78,7 +76,7 @@ MemoryPeim(IN EFI_PHYSICAL_ADDRESS UefiMemoryBase, IN UINT64 UefiMemorySize)
 {
 
   PARM_MEMORY_REGION_DESCRIPTOR_EX MemoryDescriptorEx =
-      gDeviceMemoryDescriptorEx;
+      GetPlatformMemoryMap();
   ARM_MEMORY_REGION_DESCRIPTOR
         MemoryDescriptor[MAX_ARM_MEMORY_REGION_DESCRIPTOR_COUNT];
   UINTN Index = 0;

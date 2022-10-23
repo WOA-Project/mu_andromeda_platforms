@@ -1,59 +1,5 @@
-#ifndef _DEVICE_MEMORY_MAP_H_
-#define _DEVICE_MEMORY_MAP_H_
-
-#include <Library/ArmLib.h>
-
-#define MAX_ARM_MEMORY_REGION_DESCRIPTOR_COUNT 128
-
-/* Below flag is used for system memory */
-#define SYSTEM_MEMORY_RESOURCE_ATTR_CAPABILITIES                               \
-  EFI_RESOURCE_ATTRIBUTE_PRESENT | EFI_RESOURCE_ATTRIBUTE_INITIALIZED |        \
-      EFI_RESOURCE_ATTRIBUTE_TESTED | EFI_RESOURCE_ATTRIBUTE_UNCACHEABLE |     \
-      EFI_RESOURCE_ATTRIBUTE_WRITE_COMBINEABLE |                               \
-      EFI_RESOURCE_ATTRIBUTE_WRITE_THROUGH_CACHEABLE |                         \
-      EFI_RESOURCE_ATTRIBUTE_WRITE_BACK_CACHEABLE |                            \
-      EFI_RESOURCE_ATTRIBUTE_EXECUTION_PROTECTABLE
-
-typedef enum { NoHob, AddMem, AddDev, HobOnlyNoCacheSetting, MaxMem } DeviceMemoryAddHob;
-
-#define MEMORY_REGION_NAME_MAX_LENGTH 32
-
-typedef struct {
-  CHAR8                        Name[MEMORY_REGION_NAME_MAX_LENGTH];
-  EFI_PHYSICAL_ADDRESS         Address;
-  UINT64                       Length;
-  DeviceMemoryAddHob           HobOption;
-  EFI_RESOURCE_TYPE            ResourceType;
-  EFI_RESOURCE_ATTRIBUTE_TYPE  ResourceAttribute;
-  EFI_MEMORY_TYPE              MemoryType;
-  ARM_MEMORY_REGION_ATTRIBUTES ArmAttributes;
-} ARM_MEMORY_REGION_DESCRIPTOR_EX, *PARM_MEMORY_REGION_DESCRIPTOR_EX;
-
-#define MEM_RES EFI_RESOURCE_MEMORY_RESERVED
-#define MMAP_IO EFI_RESOURCE_MEMORY_MAPPED_IO
-#define SYS_MEM EFI_RESOURCE_SYSTEM_MEMORY
-
-#define SYS_MEM_CAP SYSTEM_MEMORY_RESOURCE_ATTR_CAPABILITIES
-#define INITIALIZED EFI_RESOURCE_ATTRIBUTE_INITIALIZED
-#define WRITE_COMBINEABLE EFI_RESOURCE_ATTRIBUTE_WRITE_COMBINEABLE
-#define UNCACHEABLE EFI_RESOURCE_ATTRIBUTE_UNCACHEABLE
-
-#define Reserv EfiReservedMemoryType
-#define Conv EfiConventionalMemory
-#define BsData EfiBootServicesData
-#define BsCode EfiBootServicesCode
-#define RtData EfiRuntimeServicesData
-#define RtCode EfiRuntimeServicesCode
-#define MmIO EfiMemoryMappedIO
-
-#define NS_DEVICE ARM_MEMORY_REGION_ATTRIBUTE_NONSECURE_DEVICE
-#define DEVICE ARM_MEMORY_REGION_ATTRIBUTE_DEVICE
-#define WRITE_THROUGH ARM_MEMORY_REGION_ATTRIBUTE_WRITE_THROUGH
-#define WRITE_THROUGH_XN ARM_MEMORY_REGION_ATTRIBUTE_WRITE_THROUGH
-#define WRITE_BACK ARM_MEMORY_REGION_ATTRIBUTE_WRITE_BACK
-#define WRITE_BACK_XN ARM_MEMORY_REGION_ATTRIBUTE_WRITE_BACK
-#define UNCACHED_UNBUFFERED ARM_MEMORY_REGION_ATTRIBUTE_UNCACHED_UNBUFFERED
-#define UNCACHED_UNBUFFERED_XN ARM_MEMORY_REGION_ATTRIBUTE_UNCACHED_UNBUFFERED
+#include <Library/BaseLib.h>
+#include <Library/PlatformMemoryMapLib.h>
 
 static ARM_MEMORY_REGION_DESCRIPTOR_EX gDeviceMemoryDescriptorEx[] = {
     /* Name               Address     Length      HobOption        ResourceAttribute    ArmAttributes
@@ -61,7 +7,7 @@ static ARM_MEMORY_REGION_DESCRIPTOR_EX gDeviceMemoryDescriptorEx[] = {
 
     /* DDR Regions */
     /* DDR Bank 0 Start */
-    {"Hypervisor",        0x80000000, 0x00600000, AddMem, SYS_MEM, SYS_MEM_CAP, Reserv, NS_DEVICE},
+    {"HYP",               0x80000000, 0x00600000, AddMem, SYS_MEM, SYS_MEM_CAP, Reserv, WRITE_BACK_XN},
     {"RAM Partition",     0x80600000, 0x00260000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
     {"AOP CMD DB",        0x80860000, 0x00020000, AddMem, MEM_RES, UNCACHEABLE, Reserv, UNCACHED_UNBUFFERED_XN},
     {"GPU PRR",           0x80880000, 0x00010000, AddMem, MEM_RES, WRITE_COMBINEABLE, Reserv, UNCACHED_UNBUFFERED_XN},
@@ -71,7 +17,7 @@ static ARM_MEMORY_REGION_DESCRIPTOR_EX gDeviceMemoryDescriptorEx[] = {
     {"HLOS2",             0x808C0000, 0x00030000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
     {"RAM Partition",     0x808F0000, 0x00010000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
     {"SMEM",              0x80900000, 0x00200000, AddMem, MEM_RES, UNCACHEABLE, Reserv, UNCACHED_UNBUFFERED_XN},
-    {"CPUCP",             0x80B00000, 0x00100000, AddMem, MEM_RES, SYS_MEM_CAP, Reserv, UNCACHED_UNBUFFERED_XN},
+    {"CPUCP",             0x80B00000, 0x00100000, AddMem, SYS_MEM, SYS_MEM_CAP, Reserv, UNCACHED_UNBUFFERED_XN},
     {"HLOS3",             0x80C00000, 0x02F00000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
     {"LPASS_NPU",         0x83B00000, 0x00F00000, AddMem, MEM_RES, UNCACHEABLE, Reserv, UNCACHED_UNBUFFERED_XN},
     {"ADSP RPC",          0x84A00000, 0x00800000, AddMem, MEM_RES, UNCACHEABLE, Reserv, UNCACHED_UNBUFFERED_XN},
@@ -108,7 +54,7 @@ static ARM_MEMORY_REGION_DESCRIPTOR_EX gDeviceMemoryDescriptorEx[] = {
     {"RAM Partition",     0xC0000000, 0x05100000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
     {"DBI Dump",          0xC5100000, 0x01100000, NoHob,  MMAP_IO, INITIALIZED, Conv,   UNCACHED_UNBUFFERED_XN},
     {"RAM Partition",     0xC6200000, 0x12600000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
-    {"TZ",                0xD8800000, 0x01800000, AddMem, SYS_MEM, SYS_MEM_CAP, Reserv, NS_DEVICE},
+    {"QTEE",              0xD8800000, 0x01800000, HobOnlyNoCacheSetting, MEM_RES, UNCACHEABLE, Reserv, UNCACHED_UNBUFFERED_XN},
     {"TZApps",            0xDA000000, 0x03900000, HobOnlyNoCacheSetting, MEM_RES, UNCACHEABLE, Reserv, UNCACHED_UNBUFFERED_XN},
     {"RAM Partition",     0xDD900000, 0x03700000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
     {"Display Reserved",  0xE1000000, 0x02400000, AddMem, MEM_RES, SYS_MEM_CAP, Reserv, WRITE_THROUGH_XN},
@@ -157,4 +103,7 @@ static ARM_MEMORY_REGION_DESCRIPTOR_EX gDeviceMemoryDescriptorEx[] = {
     /* Terminator for MMU */
     {"Terminator", 0, 0, 0, 0, 0, 0, 0}};
 
-#endif
+ARM_MEMORY_REGION_DESCRIPTOR_EX *GetPlatformMemoryMap()
+{
+  return gDeviceMemoryDescriptorEx;
+}
