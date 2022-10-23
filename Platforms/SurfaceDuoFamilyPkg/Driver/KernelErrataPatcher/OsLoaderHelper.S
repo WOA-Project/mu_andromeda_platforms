@@ -1,13 +1,14 @@
 /** @file
 
   Patches NTOSKRNL to not cause a SError when reading/writing ACTLR_EL1
+  Patches NTOSKRNL to not cause a bugcheck when attempting to use
+  PSCI_MEMPROTECT Due to an issue in QHEE
 
   Copyright (c) 2022 DuoWoA authors
 
   SPDX-License-Identifier: MIT
 
 **/
-#include <AsmMacroIoLibV8.h>
 #include "KernelErrataPatcher.h"
 
 GCC_ASM_IMPORT (KernelErrataPatcherExitBootServices)

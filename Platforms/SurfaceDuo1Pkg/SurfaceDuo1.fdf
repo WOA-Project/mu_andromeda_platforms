@@ -135,7 +135,7 @@ READ_LOCK_STATUS   = TRUE
 
   INF SurfaceDuoFamilyPkg/UFP/ufpdevicefw.inf
 
-  INF SurfaceDuo1Pkg/Driver/KernelErrataPatcher/KernelErrataPatcher.inf
+  INF SurfaceDuoFamilyPkg/Driver/KernelErrataPatcher/KernelErrataPatcher.inf
 
 [FV.FVMAIN_COMPACT]
 FvAlignment        = 8

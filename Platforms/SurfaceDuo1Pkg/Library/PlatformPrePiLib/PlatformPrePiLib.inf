@@ -10,12 +10,12 @@
   PlatformUtils.c
 
 [Packages]
+  ArmPkg/ArmPkg.dec
+  EmbeddedPkg/EmbeddedPkg.dec
   MdePkg/MdePkg.dec
   MdeModulePkg/MdeModulePkg.dec
-  EmbeddedPkg/EmbeddedPkg.dec
-  ArmPkg/ArmPkg.dec
-  SurfaceDuoFamilyPkg/SurfaceDuoFamilyPkg.dec
   SurfaceDuo1Pkg/SurfaceDuo1Pkg.dec
+  SurfaceDuoFamilyPkg/SurfaceDuoFamilyPkg.dec
 
 [LibraryClasses]
   ArmLib
@@ -40,7 +40,6 @@
   PlatformPeiLib
   PlatformPrePiLib
   TimerLib
-  # MpPark
   ArmSmcLib
   PrintLib
   MemoryMapHelperLib

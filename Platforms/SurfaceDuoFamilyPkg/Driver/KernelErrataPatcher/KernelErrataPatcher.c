@@ -1,6 +1,9 @@
 /** @file
 
   Patches NTOSKRNL to not cause a SError when reading/writing ACTLR_EL1
+  Patches NTOSKRNL to not cause a bugcheck when attempting to use
+  PSCI_MEMPROTECT Due to an issue in QHEE
+
   Based on https://github.com/SamuelTulach/rainbow
 
   Copyright (c) 2021 Samuel Tulach
@@ -27,26 +30,8 @@ STATIC EFI_EXIT_BOOT_SERVICES EfiExitBootServices  = NULL;
 #define ContextPrint(x, ...)
 #endif
 
-/*VOID QGicCpuLateConfig()
-{
-  for (UINTN i = 0; i < FixedPcdGet32(PcdCoreCount); i++) {
-    UINT32 GICR = FixedPcdGet32(PcdGicRedistributorsBase) + i * 0x20000;
-
-    MmioWrite32(GICR + 0x10280, 0x08000000);
-    MmioWrite32(GICR + 0x10180, 0);
-
-    // Keep the first CPU GIC Distributor awake (unlike the stock firmware)
-    if (i != 0) {
-      MmioWrite32(GICR + 0x0014, 6);
-    }
-  }
-
-  MmioWrite32(FixedPcdGet32(PcdGicDistributorBase), 0x53);
-}*/
-
 VOID KernelErrataPatcherApplyReadACTLREL1Patches(
-    COPY_TO CopyTo, EFI_PHYSICAL_ADDRESS Base, UINTN Size,
-    BOOLEAN IsInFirmwareContext)
+    EFI_PHYSICAL_ADDRESS Base, UINTN Size, BOOLEAN IsInFirmwareContext)
 {
   // Fix up #0 (28 10 38 D5 -> 08 00 80 D2) (ACTRL_EL1 Register Read)
   UINT8                FixedInstruction0[] = {0x08, 0x00, 0x80, 0xD2};
@@ -64,7 +49,7 @@ VOID KernelErrataPatcherApplyReadACTLREL1Patches(
           L"mrs x8, actlr_el1         -> (virt) 0x%p\n", IllegalInstruction0);
     }
 
-    CopyTo(
+    CopyMemory(
         IllegalInstruction0, (EFI_PHYSICAL_ADDRESS)FixedInstruction0,
         sizeof(FixedInstruction0));
 
@@ -88,8 +73,7 @@ VOID KernelErrataPatcherApplyReadACTLREL1Patches(
 }
 
 VOID KernelErrataPatcherApplyWriteACTLREL1Patches(
-    COPY_TO CopyTo, EFI_PHYSICAL_ADDRESS Base, UINTN Size,
-    BOOLEAN IsInFirmwareContext)
+    EFI_PHYSICAL_ADDRESS Base, UINTN Size, BOOLEAN IsInFirmwareContext)
 {
   // Fix up #1 (29 10 18 D5 -> 1F 20 03 D5) (ACTRL_EL1 Register Write)
   UINT8                FixedInstruction1[] = {0x1F, 0x20, 0x03, 0xD5};
@@ -106,7 +90,7 @@ VOID KernelErrataPatcherApplyWriteACTLREL1Patches(
           L"msr actlr_el1, x9         -> (virt) 0x%p\n", IllegalInstruction1);
     }
 
-    CopyTo(
+    CopyMemory(
         IllegalInstruction1, (EFI_PHYSICAL_ADDRESS)FixedInstruction1,
         sizeof(FixedInstruction1));
 
@@ -119,8 +103,7 @@ VOID KernelErrataPatcherApplyWriteACTLREL1Patches(
 }
 
 VOID KernelErrataPatcherApplyIncoherentCacheConfigurationPatches(
-    COPY_TO CopyTo, EFI_PHYSICAL_ADDRESS Base, UINTN Size,
-    BOOLEAN IsInFirmwareContext)
+    EFI_PHYSICAL_ADDRESS Base, UINTN Size, BOOLEAN IsInFirmwareContext)
 {
   // Fix up #3 (KiCacheInitialize (Bugcheck call (first)) -> 1F 20 03 D5)
   // (KiCacheInitialize (Bugcheck call (first)) -> NOP)
@@ -139,9 +122,35 @@ VOID KernelErrataPatcherApplyIncoherentCacheConfigurationPatches(
           L"KiCacheInitialize/BC#1    -> (virt) 0x%p\n", KiCacheInitializeBC1);
     }
 
-    CopyTo(
+    CopyMemory(
         KiCacheInitializeBC1, (EFI_PHYSICAL_ADDRESS)NopInstruction,
         sizeof(NopInstruction));
+  }
+}
+
+VOID KernelErrataPatcherApplyPsciMemoryProtectionPatches(
+    EFI_PHYSICAL_ADDRESS Base, UINTN Size, BOOLEAN IsInFirmwareContext)
+{
+  // Fix up #0 (PsciMemProtect -> C0 03 5F D6) (PsciMemProtect -> RET)
+  UINT8                RetInstruction[] = {0xC0, 0x03, 0x5F, 0xD6};
+  EFI_PHYSICAL_ADDRESS PatternMatch     = FindPattern(
+          Base, Size, "D5 02 00 18 03 00 80 D2 02 00 80 D2 01 00 80 D2");
+  EFI_PHYSICAL_ADDRESS PsciMemProtect =
+      PatternMatch - ARM64_TOTAL_INSTRUCTION_LENGTH(8);
+
+  if (PatternMatch != 0) {
+    if (IsInFirmwareContext) {
+      FirmwarePrint(
+          L"PsciMemProtect            -> (phys) 0x%p\n", PsciMemProtect);
+    }
+    else {
+      ContextPrint(
+          L"PsciMemProtect            -> (virt) 0x%p\n", PsciMemProtect);
+    }
+
+    CopyMemory(
+        PsciMemProtect, (EFI_PHYSICAL_ADDRESS)RetInstruction,
+        sizeof(RetInstruction));
   }
 }
 
@@ -196,8 +205,7 @@ KernelErrataPatcherExitBootServices(
       L"Patching OsLoader         -> (phys) 0x%p (size) 0x%p\n", returnAddress,
       SCAN_MAX);
 
-  KernelErrataPatcherApplyReadACTLREL1Patches(
-      CopyMemory, returnAddress, SCAN_MAX, TRUE);
+  KernelErrataPatcherApplyReadACTLREL1Patches(returnAddress, SCAN_MAX, TRUE);
 
   /*
    * Switch context to (as defined by winload) application context
@@ -248,12 +256,12 @@ KernelErrataPatcherExitBootServices(
         kernelSize);
 
     // Fix up ntoskrnl.exe
-    KernelErrataPatcherApplyReadACTLREL1Patches(
-        CopyToReadOnly, kernelBase, kernelSize, FALSE);
-    KernelErrataPatcherApplyWriteACTLREL1Patches(
-        CopyToReadOnly, kernelBase, kernelSize, FALSE);
+    KernelErrataPatcherApplyReadACTLREL1Patches(kernelBase, kernelSize, FALSE);
+    KernelErrataPatcherApplyWriteACTLREL1Patches(kernelBase, kernelSize, FALSE);
     KernelErrataPatcherApplyIncoherentCacheConfigurationPatches(
-        CopyToReadOnly, kernelBase, kernelSize, FALSE);
+        kernelBase, kernelSize, FALSE);
+    KernelErrataPatcherApplyPsciMemoryProtectionPatches(
+        kernelBase, kernelSize, FALSE);
   }
 
 exitToFirmware:
@@ -261,9 +269,6 @@ exitToFirmware:
   BlpArchSwitchContext(FirmwareContext);
 
 exit:
-  // Reconfigure the GIC as it was before entry of our firmware
-  // QGicCpuLateConfig();
-
   FirmwarePrint(L"OslFwpKernelSetupPhase1   <- (phys) 0x%p\n", returnAddress);
 
   // Call the original

@@ -482,3 +482,5 @@
   SurfaceDuoFamilyPkg/Driver/ColorbarsDxe/ColorbarsDxe.inf
 
   SurfaceDuoFamilyPkg/UFP/ufpdevicefw.inf
+
+  SurfaceDuoFamilyPkg/Driver/KernelErrataPatcher/KernelErrataPatcher.inf

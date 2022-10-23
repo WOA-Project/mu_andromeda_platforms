@@ -1,18 +1,18 @@
-#include <Library/PcdLib.h>
 #include <Library/ArmLib.h>
+#include <Library/BaseLib.h>
 #include <Library/BaseMemoryLib.h>
 #include <Library/DebugLib.h>
+#include <Library/HobLib.h>
 #include <Library/IoLib.h>
 #include <Library/MemoryAllocationLib.h>
-#include <Library/HobLib.h>
-#include <Library/SerialPortLib.h>
+#include <Library/PcdLib.h>
 #include <Library/PrintLib.h>
-#include <Library/BaseLib.h>
+#include <Library/SerialPortLib.h>
 
 #include <IndustryStandard/ArmStdSmc.h>
 #include <Library/ArmSmcLib.h>
-#include <Library/PlatformPrePiLib.h>
 #include <Library/MemoryMapHelperLib.h>
+#include <Library/PlatformPrePiLib.h>
 
 #include "PlatformUtils.h"
 
@@ -29,9 +29,9 @@ VOID InitializeSharedUartBuffers(VOID)
   ARM_MEMORY_REGION_DESCRIPTOR_EX DisplayMemoryRegion;
   LocateMemoryMapAreaByName("Display Reserved", &DisplayMemoryRegion);
 
-  INTN* pFbConPosition = (INTN*)(DisplayMemoryRegion.Address + (FixedPcdGet32(PcdMipiFrameBufferWidth) * 
-                                                                              FixedPcdGet32(PcdMipiFrameBufferHeight) * 
-                                                                              FixedPcdGet32(PcdMipiFrameBufferPixelBpp) / 8));
+  INTN *pFbConPosition =
+      (INTN
+           *)(DisplayMemoryRegion.Address + (FixedPcdGet32(PcdMipiFrameBufferWidth) * FixedPcdGet32(PcdMipiFrameBufferHeight) * FixedPcdGet32(PcdMipiFrameBufferPixelBpp) / 8));
 
   *(pFbConPosition + 0) = 0;
   *(pFbConPosition + 1) = 0;
@@ -57,10 +57,14 @@ VOID UartInit(VOID)
        (CHAR16 *)PcdGetPtr(PcdFirmwareVersionString), __TIME__, __DATE__));
 }
 
-VOID ConfigureIOMMUContextBankCacheSetting(UINT32 ContextBankId, BOOLEAN CacheCoherent)
+VOID ConfigureIOMMUContextBankCacheSetting(
+    UINT32 ContextBankId, BOOLEAN CacheCoherent)
 {
-  UINT32 ContextBankAddr = SMMU_BASE + SMMU_CTX_BANK_0_OFFSET + ContextBankId * SMMU_CTX_BANK_SIZE;
-  MmioWrite32(ContextBankAddr + SMMU_CTX_BANK_SCTLR_OFFSET, CacheCoherent ? SMMU_CCA_SCTLR : SMMU_NON_CCA_SCTLR);
+  UINT32 ContextBankAddr =
+      SMMU_BASE + SMMU_CTX_BANK_0_OFFSET + ContextBankId * SMMU_CTX_BANK_SIZE;
+  MmioWrite32(
+      ContextBankAddr + SMMU_CTX_BANK_SCTLR_OFFSET,
+      CacheCoherent ? SMMU_CCA_SCTLR : SMMU_NON_CCA_SCTLR);
   MmioWrite32(ContextBankAddr + SMMU_CTX_BANK_TTBR0_0_OFFSET, 0);
   MmioWrite32(ContextBankAddr + SMMU_CTX_BANK_TTBR0_1_OFFSET, 0);
   MmioWrite32(ContextBankAddr + SMMU_CTX_BANK_TTBR1_0_OFFSET, 0);
@@ -72,9 +76,11 @@ VOID ConfigureIOMMUContextBankCacheSetting(UINT32 ContextBankId, BOOLEAN CacheCo
 
 VOID DisableMDSSDSIController(UINT32 MdssDsiBase)
 {
-  UINT32 DsiControlAddr = MdssDsiBase + DSI_CTRL;
+  UINT32 DsiControlAddr  = MdssDsiBase + DSI_CTRL;
   UINT32 DsiControlValue = MmioRead32(DsiControlAddr);
-  DsiControlValue &= ~(DSI_CTRL_ENABLE | DSI_CTRL_VIDEO_MODE_ENABLE | DSI_CTRL_COMMAND_MODE_ENABLE);
+  DsiControlValue &=
+      ~(DSI_CTRL_ENABLE | DSI_CTRL_VIDEO_MODE_ENABLE |
+        DSI_CTRL_COMMAND_MODE_ENABLE);
   MmioWrite32(DsiControlAddr, DsiControlValue);
 }
 
