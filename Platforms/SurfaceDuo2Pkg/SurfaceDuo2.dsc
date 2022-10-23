@@ -53,6 +53,6 @@
   gEfiMdeModulePkgTokenSpaceGuid.PcdSetupConOutRow|158
   gEfiMdeModulePkgTokenSpaceGuid.PcdSetupConOutColumn|150
 
-!include SurfaceDuo2Pkg/Sm8350Family.dsc.inc
+!include QcomPkg/QcomPkg.dsc.inc
 !include SurfaceDuoFamilyPkg/SurfaceDuoFamily.dsc.inc
 !include SurfaceDuoFamilyPkg/Frontpage.dsc.inc

@@ -1,0 +1,50 @@
+## @file
+#
+#  Copyright (c) 2011-2015, ARM Limited. All rights reserved.
+#  Copyright (c) 2014, Linaro Limited. All rights reserved.
+#  Copyright (c) 2015 - 2016, Intel Corporation. All rights reserved.
+#  Copyright (c) 2018 - 2019, Bingxing Wang. All rights reserved.
+#
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
+#
+##
+
+################################################################################
+#
+# Defines Section - statements that will be processed to create a Makefile.
+#
+################################################################################
+[Defines]
+  SILICON_PLATFORM = 8150
+
+[PcdsFixedAtBuild.common]
+  gArmTokenSpaceGuid.PcdSystemMemoryBase|0x80000000         # Starting address
+  gArmTokenSpaceGuid.PcdCpuVectorBaseAddress|0x9ff8c000
+  gArmTokenSpaceGuid.PcdArmArchTimerFreqInHz|19200000
+  gArmTokenSpaceGuid.PcdArmArchTimerSecIntrNum|17
+  gArmTokenSpaceGuid.PcdArmArchTimerIntrNum|18
+  gArmTokenSpaceGuid.PcdGicDistributorBase|0x17a00000
+  gArmTokenSpaceGuid.PcdGicRedistributorsBase|0x17a60000
+
+  gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultOemRevision|0x00008150
+  gEmbeddedTokenSpaceGuid.PcdPrePiStackBase|0x9ffB0000
+  gEmbeddedTokenSpaceGuid.PcdPrePiStackSize|0x00020000      # 128K stack
+  gEmbeddedTokenSpaceGuid.PcdInterruptBaseAddress|0x09bc0000
+  gEmbeddedTokenSpaceGuid.PcdPrePiCpuIoSize|44
+
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosProcessorModel|"Snapdragon (TM) 855 @ 2.84 GHz"
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosProcessorRetailModel|"SM8150"
+
+  gArmTokenSpaceGuid.PcdSystemMemoryBase|0x80000000         # 2GB Base
+  gArmPlatformTokenSpaceGuid.PcdCoreCount|8
+  gArmPlatformTokenSpaceGuid.PcdClusterCount|3
+
+[LibraryClasses.common]
+  PlatformMemoryMapLib|QcomPkg/Library/PlatformMemoryMapLib/PlatformMemoryMapLib.inf
+  PlatformPeiLib|QcomPkg/Library/PlatformPeiLib/PlatformPeiLib.inf
+  PlatformPrePiLib|QcomPkg/Library/PlatformPrePiLib/PlatformPrePiLib.inf
+  AslUpdateLib|SurfaceDuoFamilyPkg/Library/DxeAslUpdateLib/DxeAslUpdateLib.inf
+  RFSProtectionLib|QcomPkg/Library/RFSProtectionLib/RFSProtectionLib.inf
+
+  MsPlatformDevicesLib|QcomPkg/Library/MsPlatformDevicesLib/MsPlatformDevicesLib.inf
+  PlatformThemeLib|QcomPkg/Library/PlatformThemeLib/PlatformThemeLib.inf

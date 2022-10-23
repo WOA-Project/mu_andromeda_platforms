@@ -78,12 +78,12 @@ READ_STATUS        = TRUE
 READ_LOCK_CAP      = TRUE
 READ_LOCK_STATUS   = TRUE
 
-  !include SurfaceDuo2Pkg/Include/APRIORI.inc
-  !include SurfaceDuo2Pkg/Include/FvMain.inc
+  !include QcomPkg/Include/APRIORI.inc
+  !include QcomPkg/Include/FvMain.inc
 
   INF MdeModulePkg/Universal/EsrtFmpDxe/EsrtFmpDxe.inf
 
-  !include SurfaceDuo2Pkg/Include/FvSecond.inc
+  !include QcomPkg/Include/FvSecond.inc
 
   # Secure Boot Key Enroll
   !if $(SECURE_BOOT_ENABLE) == TRUE
