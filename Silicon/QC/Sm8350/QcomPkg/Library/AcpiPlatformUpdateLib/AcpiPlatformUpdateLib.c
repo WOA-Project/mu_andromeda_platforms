@@ -1,55 +1,79 @@
-/** @file
- *MsPlatformDevicesLib  - Device specific library.
-
-Copyright (C) Microsoft Corporation. All rights reserved.
-SPDX-License-Identifier: BSD-2-Clause-Patent
-
-**/
-
 #include <Uefi.h>
 
-#include <Protocol/DevicePath.h>
-
+#include <Library/AcpiPlatformUpdateLib.h>
+#include <Library/AslUpdateLib.h>
 #include <Library/BaseMemoryLib.h>
 #include <Library/DebugLib.h>
-#include <Library/DeviceBootManagerLib.h>
 #include <Library/DevicePathLib.h>
+#include <Library/PcdLib.h>
 #include <Library/IoLib.h>
-#include <Library/MsPlatformDevicesLib.h>
+#include <Library/MemoryMapHelperLib.h>
 #include <Library/PcdLib.h>
 #include <Library/UefiBootServicesTableLib.h>
 #include <Library/UefiLib.h>
 
-#include <Library/AslUpdateLib.h>
-#include <Library/RFSProtectionLib.h>
 #include <Library/MemoryMapHelperLib.h>
-
-#include <Configuration/BootDevices.h>
+#include <Library/RFSProtectionLib.h>
 
 #include <Protocol/EFIChipInfo.h>
 #include <Protocol/EFIPlatformInfo.h>
 #include <Protocol/EFISmem.h>
+#include <Protocol/EFIClock.h>
 
-//
-// Predefined platform default console device path
-//
-BDS_CONSOLE_CONNECT_ENTRY gPlatformConsoles[] =
+EFI_STATUS
+EFIAPI
+SetupAPSSCpuPerformanceLevels()
 {
-  {
-    (EFI_DEVICE_PATH_PROTOCOL *)&KeypadDevicePath,
-    CONSOLE_IN
-  },
-  {
-    (EFI_DEVICE_PATH_PROTOCOL *)&DisplayDevicePath,
-    CONSOLE_OUT | STD_ERROR
-  },
-  {
-    NULL,
-    0
-  }
-};
+  EFI_STATUS          Status                = EFI_SUCCESS;
+  EFI_CLOCK_PROTOCOL *pClockProtocol        = NULL;
+  UINT32              performanceLevelIndex = 0;
+  UINT32              frequencyHz           = 0;
 
-EFI_DEVICE_PATH_PROTOCOL *gPlatformConInDeviceList[] = {NULL};
+  Status = gBS->LocateProtocol(
+      &gEfiClockProtocolGuid, NULL, (VOID **)&pClockProtocol);
+
+  if (EFI_ERROR(Status)) {
+    DEBUG(
+        (EFI_D_ERROR,
+         "%a: Failed to locate the Clock EFI protocol, "
+         "Status: %r\n",
+         __FUNCTION__, Status));
+    return Status;
+  }
+
+  // Go one index further because of L3
+  for (UINT32 i = 0; i < FixedPcdGet32(PcdClusterCount) + 1; i++) {
+    Status = pClockProtocol->GetMaxPerformanceLevel(
+        pClockProtocol, i, &performanceLevelIndex);
+
+    if (EFI_ERROR(Status)) {
+      DEBUG(
+          (EFI_D_ERROR,
+           "%a: Failed to get the maximum performance level for CPU Cluster %d, "
+           "Status: %r\n",
+           __FUNCTION__, i, Status));
+      return Status;
+    }
+
+    Status = pClockProtocol->SetCPUPerfLevel(
+        pClockProtocol, i, performanceLevelIndex, &frequencyHz);
+
+    if (EFI_ERROR(Status)) {
+      DEBUG(
+          (EFI_D_ERROR,
+           "%a: Failed to set the maximum performance level for CPU Cluster %d, "
+           "Status: %r\n",
+           __FUNCTION__, i, Status));
+      return Status;
+    }
+
+    DEBUG(
+        (EFI_D_WARN, "%a: CPU Cluster %d Now running at %lu Hz\n", __FUNCTION__, i,
+         frequencyHz));
+  }
+
+  return Status;
+}
 
 VOID
 PlatformUpdateAcpiTables(VOID)
@@ -68,8 +92,12 @@ PlatformUpdateAcpiTables(VOID)
   UINT32                              SUFS  = 0xFFFFFFFF;
   UINT32                              PUS3  = 0x1;
   UINT32                              SUS3  = 0xFFFFFFFF;
-  UINT32                             *pSIDT = (UINT32 *)0x784130;
+  UINT32                             *pSIDT = (UINT32 *)0x784178;
   UINT32                              SIDT  = (*pSIDT & 0xFF00000) >> 20;
+  UINT32                             *pSJTG = (UINT32 *)0x784178;
+  UINT32                              SJTG  = *pSJTG & 0xFFFFF;
+  UINT32                             *pEMUL = (UINT32 *)0x1FC8004;
+  UINT32                              EMUL  = *pEMUL & 0x3;
   UINT32                              SOSN1 = 0;
   UINT32                              SOSN2 = 0;
   UINT32                              TPMA  = 0x1;
@@ -79,6 +107,9 @@ PlatformUpdateAcpiTables(VOID)
   UINT32                              PRP1  = 0xFFFFFFFF;
   UINT32                              PRP2  = 0xFFFFFFFF;
   UINT32                              PRP3  = 0xFFFFFFFF;
+  UINT32                              PRP4  = 0xFFFFFFFF;
+  UINT32                              PRP5  = 0xFFFFFFFF;
+  UINT32                              PRP6  = 0xFFFFFFFF;
   CHAR8                               SIDS[EFICHIPINFO_MAX_ID_LENGTH] = {0};
   EFI_PLATFORMINFO_PLATFORM_INFO_TYPE PlatformInfo;
   UINT32                              RMTB = 0;
@@ -143,6 +174,13 @@ PlatformUpdateAcpiTables(VOID)
   if (!EFI_ERROR(LocateMemoryMapAreaByName("MPSS_EFS", &MPSSEFSRegion))) {
     RMTB = MPSSEFSRegion.Address;
     RMTX = MPSSEFSRegion.Length;
+
+    // Also configure MPSS Permissions!
+
+    // Allow MPSS and HLOS to access the allocated RFS Shared Memory Region
+    // Normally this would be done by a driver in Linux
+    // TODO: Move to a better place!
+    RFSLocateAndProtectSharedArea();
   }
 
   if (!EFI_ERROR(LocateMemoryMapAreaByName("ADSP_EFS", &ADSPEFSRegion))) {
@@ -181,6 +219,8 @@ PlatformUpdateAcpiTables(VOID)
   UpdateNameAslCode(SIGNATURE_32('P', 'U', 'S', '3'), &PUS3, 4);
   UpdateNameAslCode(SIGNATURE_32('S', 'U', 'S', '3'), &SUS3, 4);
   UpdateNameAslCode(SIGNATURE_32('S', 'I', 'D', 'T'), &SIDT, 4);
+  UpdateNameAslCode(SIGNATURE_32('S', 'J', 'T', 'G'), &SJTG, 4);
+  UpdateNameAslCode(SIGNATURE_32('E', 'M', 'U', 'L'), &EMUL, 4);
   UpdateNameAslCode(SIGNATURE_32('S', 'O', 'S', 'N'), &SOSN, 8);
   UpdateNameAslCode(SIGNATURE_32('P', 'L', 'S', 'T'), &PLST, 4);
   UpdateNameAslCode(SIGNATURE_32('R', 'M', 'T', 'B'), &RMTB, 4);
@@ -198,116 +238,11 @@ PlatformUpdateAcpiTables(VOID)
   UpdateNameAslCode(SIGNATURE_32('P', 'R', 'P', '1'), &PRP1, 4);
   UpdateNameAslCode(SIGNATURE_32('P', 'R', 'P', '2'), &PRP2, 4);
   UpdateNameAslCode(SIGNATURE_32('P', 'R', 'P', '3'), &PRP3, 4);
+  UpdateNameAslCode(SIGNATURE_32('P', 'R', 'P', '4'), &PRP4, 4);
+  UpdateNameAslCode(SIGNATURE_32('P', 'R', 'P', '5'), &PRP5, 4);
+  UpdateNameAslCode(SIGNATURE_32('P', 'R', 'P', '6'), &PRP6, 4);
   UpdateNameAslCode(SIGNATURE_32('S', 'I', 'D', 'S'), &SIDS, EFICHIPINFO_MAX_ID_LENGTH);
-}
 
-/**
-Library function used to provide the platform SD Card device path
-**/
-EFI_DEVICE_PATH_PROTOCOL *EFIAPI GetSdCardDevicePath(VOID)
-{
-  return (EFI_DEVICE_PATH_PROTOCOL *)&SdcardDevicePath;
-}
-
-/**
-  Library function used to determine if the DevicePath is a valid bootable 'USB'
-device. USB here indicates the port connection type not the device protocol.
-  With TBT or USB4 support PCIe storage devices are valid 'USB' boot options.
-**/
-BOOLEAN
-EFIAPI
-PlatformIsDevicePathUsb(IN EFI_DEVICE_PATH_PROTOCOL *DevicePath)
-{
-  EFI_DEVICE_PATH_PROTOCOL *Node;
-
-  for (Node = DevicePath; !IsDevicePathEnd(Node);
-       Node = NextDevicePathNode(Node)) {
-    if ((DevicePathType(Node) == MESSAGING_DEVICE_PATH) &&
-        ((DevicePathSubType(Node) == MSG_USB_CLASS_DP) ||
-         (DevicePathSubType(Node) == MSG_USB_WWID_DP) ||
-         (DevicePathSubType(Node) == MSG_USB_DP))) {
-      return TRUE;
-    }
-  }
-
-  return FALSE;
-}
-
-/**
-Library function used to provide the list of platform devices that MUST be
-connected at the beginning of BDS
-**/
-EFI_DEVICE_PATH_PROTOCOL **EFIAPI GetPlatformConnectList(VOID)
-{
-  // Allow MPSS and HLOS to access the allocated RFS Shared Memory Region
-  // Normally this would be done by a driver in Linux
-  // TODO: Move to a better place!
-  RFSLocateAndProtectSharedArea();
-
-  // Patch ACPI Tables
-  PlatformUpdateAcpiTables();
-
-  return NULL;
-}
-
-/**
- * Library function used to provide the list of platform console devices.
- */
-BDS_CONSOLE_CONNECT_ENTRY *EFIAPI GetPlatformConsoleList(VOID)
-{
-  return (BDS_CONSOLE_CONNECT_ENTRY *)&gPlatformConsoles;
-}
-
-/**
-Library function used to provide the list of platform devices that MUST be
-connected to support ConsoleIn activity.  This call occurs on the ConIn connect
-event, and allows platforms to do specific enablement for ConsoleIn support.
-**/
-EFI_DEVICE_PATH_PROTOCOL **EFIAPI GetPlatformConnectOnConInList(VOID)
-{
-  return (EFI_DEVICE_PATH_PROTOCOL **)&gPlatformConInDeviceList;
-}
-
-/**
-Library function used to provide the console type.  For ConType == DisplayPath,
-device path is filled in to the exact controller to use.  For other ConTypes,
-DisplayPath must NULL. The device path must NOT be freed.
-**/
-EFI_HANDLE
-EFIAPI
-GetPlatformPreferredConsole(OUT EFI_DEVICE_PATH_PROTOCOL **DevicePath)
-{
-  EFI_STATUS                Status;
-  EFI_HANDLE                Handle = NULL;
-  EFI_DEVICE_PATH_PROTOCOL *TempDevicePath;
-
-  TempDevicePath = (EFI_DEVICE_PATH_PROTOCOL *)&DisplayDevicePath;
-
-  Status = gBS->LocateDevicePath(
-      &gEfiGraphicsOutputProtocolGuid, &TempDevicePath, &Handle);
-  if (!EFI_ERROR(Status) && IsDevicePathEnd(TempDevicePath)) {
-  }
-  else {
-    DEBUG(
-        (DEBUG_ERROR,
-         "%a - Unable to locate platform preferred console. Code=%r\n",
-         __FUNCTION__, Status));
-    Status = EFI_DEVICE_ERROR;
-  }
-
-  if (Handle != NULL) {
-    //
-    // Connect the GOP driver
-    //
-    gBS->ConnectController(Handle, NULL, NULL, TRUE);
-
-    //
-    // Get the GOP device path
-    // NOTE: We may get a device path that contains Controller node in it.
-    //
-    TempDevicePath = EfiBootManagerGetGopDevicePath(Handle);
-    *DevicePath    = TempDevicePath;
-  }
-
-  return Handle;
+  // Increase CPU speed for HLOS
+  SetupAPSSCpuPerformanceLevels();
 }

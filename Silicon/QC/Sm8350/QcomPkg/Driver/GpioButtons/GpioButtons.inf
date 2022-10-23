@@ -27,6 +27,7 @@
   MdePkg/MdePkg.dec
   OemPkg/OemPkg.dec
   QcomPkg/QcomPkg.dec
+  SurfaceDuoFamilyPkg/SurfaceDuoFamilyPkg.dec
 
 [LibraryClasses]
   UefiDriverEntryPoint

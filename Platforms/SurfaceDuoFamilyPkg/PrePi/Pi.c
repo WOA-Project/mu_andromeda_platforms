@@ -13,6 +13,7 @@
 #include <Ppi/GuidedSectionExtraction.h>
 
 #include "Pi.h"
+#include "InitializationUtils.h"
 
 UINT64  mSystemMemoryEnd = FixedPcdGet64 (PcdSystemMemoryBase) +
                            FixedPcdGet64 (PcdSystemMemorySize) - 1;
@@ -124,6 +125,8 @@ VOID PrePiMain()
 
 VOID CEntryPoint()
 {
+  EarlyInitialization();
+
   // Do platform specific initialization here
   PlatformInitialize();
 

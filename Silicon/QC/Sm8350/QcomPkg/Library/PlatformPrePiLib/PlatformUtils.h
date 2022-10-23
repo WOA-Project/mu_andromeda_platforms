@@ -1,8 +1,6 @@
 #ifndef _PLATFORM_UTILS_H_
 #define _PLATFORM_UTILS_H_
 
-#include <Library/PcdLib.h>
-
 #define TLMM_ADDR 0x0F100000
 
 #define TLMM_ADDR_OFFSET_FOR_PIN(x) (0x1000 * x)
@@ -15,14 +13,5 @@
 
 #define LID0_GPIO38_STATUS_ADDR                                               \
   (TLMM_ADDR + TLMM_ADDR_OFFSET_FOR_PIN(38) + TLMM_PIN_IO_REGISTER)
-
-#define GICR_WAKER 0x0014
-#define GICR_SIZE 0x20000
-#define GICR_WAKER_CURRENT_CPU FixedPcdGet64(PcdGicRedistributorsBase) + GICR_WAKER
-
-#define GIC_WAKER_PROCESSORSLEEP 2
-
-VOID PlatformInitialize(VOID);
-BOOLEAN IsLinuxBootRequested(VOID);
 
 #endif /* _PLATFORM_UTILS_H_ */
