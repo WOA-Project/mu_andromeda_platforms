@@ -53,10 +53,6 @@
   # Graphics Driver
   SurfaceDuoFamilyPkg/Driver/SimpleFbDxe/SimpleFbDxe.inf
 
-  # ACPI and SMBIOS
-  # We use pre-built ACPI tables, so only core components are loaded
-  SurfaceDuo2Pkg/AcpiTables/SurfaceDuo2AcpiTables.inf
-
   MdeModulePkg/Universal/TimestampDxe/TimestampDxe.inf
 
   SurfaceDuo2Pkg/Driver/GpioButtons/GpioButtons.inf

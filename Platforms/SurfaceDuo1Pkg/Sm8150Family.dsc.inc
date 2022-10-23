@@ -48,8 +48,3 @@
 
   MsPlatformDevicesLib|SurfaceDuo1Pkg/Library/MsPlatformDevicesLib/MsPlatformDevicesLib.inf
   PlatformThemeLib|SurfaceDuo1Pkg/Library/PlatformThemeLib/PlatformThemeLib.inf
-
-[Components.common]
-  # ACPI and SMBIOS
-  # We use pre-built ACPI tables, so only core components are loaded
-  SurfaceDuo1Pkg/AcpiTables/SurfaceDuo1AcpiTables.inf
