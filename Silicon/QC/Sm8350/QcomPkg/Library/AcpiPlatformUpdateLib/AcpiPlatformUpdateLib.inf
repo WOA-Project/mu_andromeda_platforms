@@ -15,7 +15,6 @@
 
 [Packages]
   ArmPkg/ArmPkg.dec
-  ArmPlatformPkg/ArmPlatformPkg.dec
   MdePkg/MdePkg.dec
   PcBdsPkg/PcBdsPkg.dec
   MsCorePkg/MsCorePkg.dec
@@ -38,7 +37,3 @@
   gEfiChipInfoProtocolGuid                      ## CONSUMES
   gEfiSMEMProtocolGuid                          ## CONSUMES
   gEfiPlatformInfoProtocolGuid                  ## CONSUMES
-  gEfiClockProtocolGuid                         ## CONSUMES
-
-[FixedPcd]
-  gArmPlatformTokenSpaceGuid.PcdClusterCount

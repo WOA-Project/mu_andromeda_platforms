@@ -5,7 +5,6 @@
 #include <Library/BaseMemoryLib.h>
 #include <Library/DebugLib.h>
 #include <Library/DevicePathLib.h>
-#include <Library/PcdLib.h>
 #include <Library/IoLib.h>
 #include <Library/MemoryMapHelperLib.h>
 #include <Library/PcdLib.h>
@@ -18,62 +17,6 @@
 #include <Protocol/EFIChipInfo.h>
 #include <Protocol/EFIPlatformInfo.h>
 #include <Protocol/EFISmem.h>
-#include <Protocol/EFIClock.h>
-
-EFI_STATUS
-EFIAPI
-SetupAPSSCpuPerformanceLevels()
-{
-  EFI_STATUS          Status                = EFI_SUCCESS;
-  EFI_CLOCK_PROTOCOL *pClockProtocol        = NULL;
-  UINT32              performanceLevelIndex = 0;
-  UINT32              frequencyHz           = 0;
-
-  Status = gBS->LocateProtocol(
-      &gEfiClockProtocolGuid, NULL, (VOID **)&pClockProtocol);
-
-  if (EFI_ERROR(Status)) {
-    DEBUG(
-        (EFI_D_ERROR,
-         "%a: Failed to locate the Clock EFI protocol, "
-         "Status: %r\n",
-         __FUNCTION__, Status));
-    return Status;
-  }
-
-  // Go one index further because of L3
-  for (UINT32 i = 0; i < FixedPcdGet32(PcdClusterCount) + 1; i++) {
-    Status = pClockProtocol->GetMaxPerformanceLevel(
-        pClockProtocol, i, &performanceLevelIndex);
-
-    if (EFI_ERROR(Status)) {
-      DEBUG(
-          (EFI_D_ERROR,
-           "%a: Failed to get the maximum performance level for CPU Cluster %d, "
-           "Status: %r\n",
-           __FUNCTION__, i, Status));
-      return Status;
-    }
-
-    Status = pClockProtocol->SetCPUPerfLevel(
-        pClockProtocol, i, performanceLevelIndex, &frequencyHz);
-
-    if (EFI_ERROR(Status)) {
-      DEBUG(
-          (EFI_D_ERROR,
-           "%a: Failed to set the maximum performance level for CPU Cluster %d, "
-           "Status: %r\n",
-           __FUNCTION__, i, Status));
-      return Status;
-    }
-
-    DEBUG(
-        (EFI_D_WARN, "%a: CPU Cluster %d Now running at %lu Hz\n", __FUNCTION__, i,
-         frequencyHz));
-  }
-
-  return Status;
-}
 
 VOID
 PlatformUpdateAcpiTables(VOID)
@@ -242,7 +185,4 @@ PlatformUpdateAcpiTables(VOID)
   UpdateNameAslCode(SIGNATURE_32('P', 'R', 'P', '5'), &PRP5, 4);
   UpdateNameAslCode(SIGNATURE_32('P', 'R', 'P', '6'), &PRP6, 4);
   UpdateNameAslCode(SIGNATURE_32('S', 'I', 'D', 'S'), &SIDS, EFICHIPINFO_MAX_ID_LENGTH);
-
-  // Increase CPU speed for HLOS
-  SetupAPSSCpuPerformanceLevels();
 }
