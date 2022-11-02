@@ -11,15 +11,15 @@
 
 [PcdsFixedAtBuild.common]
   gArmTokenSpaceGuid.PcdSystemMemoryBase|0x80000000         # Starting address
-  gArmTokenSpaceGuid.PcdCpuVectorBaseAddress|0x9f58c000
+  gArmTokenSpaceGuid.PcdCpuVectorBaseAddress|0x9FF8C000
   gArmTokenSpaceGuid.PcdArmArchTimerFreqInHz|19200000
   gArmTokenSpaceGuid.PcdArmArchTimerSecIntrNum|29
   gArmTokenSpaceGuid.PcdArmArchTimerIntrNum|30
   gArmTokenSpaceGuid.PcdGicDistributorBase|0x17A00000
   gArmTokenSpaceGuid.PcdGicRedistributorsBase|0x17A60000
 
-  gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultOemRevision|0x00008280
-  gEmbeddedTokenSpaceGuid.PcdPrePiStackBase|0x9f590000
+  gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultOemRevision|0x00008350
+  gEmbeddedTokenSpaceGuid.PcdPrePiStackBase|0x9FF90000
   gEmbeddedTokenSpaceGuid.PcdPrePiStackSize|0x00040000      # 256K stack
   gEmbeddedTokenSpaceGuid.PcdInterruptBaseAddress|0x09BC0000
   gEmbeddedTokenSpaceGuid.PcdPrePiCpuIoSize|44
