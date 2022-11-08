@@ -102,32 +102,6 @@ VOID KernelErrataPatcherApplyWriteACTLREL1Patches(
   }
 }
 
-VOID KernelErrataPatcherApplyIncoherentCacheConfigurationPatches(
-    EFI_PHYSICAL_ADDRESS Base, UINTN Size, BOOLEAN IsInFirmwareContext)
-{
-  // Fix up #3 (KiCacheInitialize (Bugcheck call (first)) -> 1F 20 03 D5)
-  // (KiCacheInitialize (Bugcheck call (first)) -> NOP)
-  UINT8 NopInstruction[] = {0x1F, 0x20, 0x03, 0xD5, 0x1F, 0x20, 0x03, 0xD5,
-                            0x1F, 0x20, 0x03, 0xD5, 0x1F, 0x20, 0x03, 0xD5};
-  EFI_PHYSICAL_ADDRESS KiCacheInitializeBC1 =
-      FindPattern(Base, Size, "04 00 80 D2 03 00 80 D2 C0 07 80 52");
-
-  if (KiCacheInitializeBC1 != 0) {
-    if (IsInFirmwareContext) {
-      FirmwarePrint(
-          L"KiCacheInitialize/BC#1    -> (phys) 0x%p\n", KiCacheInitializeBC1);
-    }
-    else {
-      ContextPrint(
-          L"KiCacheInitialize/BC#1    -> (virt) 0x%p\n", KiCacheInitializeBC1);
-    }
-
-    CopyMemory(
-        KiCacheInitializeBC1, (EFI_PHYSICAL_ADDRESS)NopInstruction,
-        sizeof(NopInstruction));
-  }
-}
-
 VOID KernelErrataPatcherApplyPsciMemoryProtectionPatches(
     EFI_PHYSICAL_ADDRESS Base, UINTN Size, BOOLEAN IsInFirmwareContext)
 {
@@ -258,8 +232,6 @@ KernelErrataPatcherExitBootServices(
     // Fix up ntoskrnl.exe
     KernelErrataPatcherApplyReadACTLREL1Patches(kernelBase, kernelSize, FALSE);
     KernelErrataPatcherApplyWriteACTLREL1Patches(kernelBase, kernelSize, FALSE);
-    KernelErrataPatcherApplyIncoherentCacheConfigurationPatches(
-        kernelBase, kernelSize, FALSE);
     KernelErrataPatcherApplyPsciMemoryProtectionPatches(
         kernelBase, kernelSize, FALSE);
   }
