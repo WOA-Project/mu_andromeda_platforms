@@ -486,7 +486,6 @@
 
   AdvLoggerPkg/AdvancedFileLogger/AdvancedFileLogger.inf
   MdeModulePkg/Universal/MemoryTest/NullMemoryTestDxe/NullMemoryTestDxe.inf
-  SecurityPkg/Tcg/Tcg2Dxe/Tcg2Dxe.inf
 
   NetworkPkg/ArpDxe/ArpDxe.inf
   NetworkPkg/Dhcp4Dxe/Dhcp4Dxe.inf

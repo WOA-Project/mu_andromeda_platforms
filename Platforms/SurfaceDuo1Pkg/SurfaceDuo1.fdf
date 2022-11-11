@@ -88,7 +88,7 @@ READ_LOCK_STATUS   = TRUE
 
   # Secure Boot Key Enroll
   !if $(SECURE_BOOT_ENABLE) == TRUE
-  INF SecurityPkg/VariableAuthenticated/SecureBootConfigDxe/SecureBootConfigDxe.inf
+    INF SecurityPkg/VariableAuthenticated/SecureBootConfigDxe/SecureBootConfigDxe.inf
     # INF SurfaceDuoFamilyPkg/Driver/SecureBootProvisioningDxe/SecureBootProvisioningDxe.inf
   !endif
 
@@ -185,7 +185,6 @@ READ_LOCK_STATUS   = TRUE
   INF NetworkPkg/Udp6Dxe/Udp6Dxe.inf
   INF NetworkPkg/UefiPxeBcDxe/UefiPxeBcDxe.inf
   INF NetworkPkg/VlanConfigDxe/VlanConfigDxe.inf
-  INF SecurityPkg/Tcg/Tcg2Dxe/Tcg2Dxe.inf
   INF SurfaceDuoFamilyPkg/Driver/ColorbarsDxe/ColorbarsDxe.inf
 
 [FV.FVMAIN_COMPACT]
