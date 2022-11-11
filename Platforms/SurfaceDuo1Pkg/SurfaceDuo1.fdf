@@ -104,10 +104,7 @@ READ_LOCK_STATUS   = TRUE
   # INF HidPkg/HidMouseAbsolutePointerDxe/HidMouseAbsolutePointerDxe.inf
 
   # Why is this different yet using the same names and GUIDs? (Uses different function signatures for callbacks...)
-  FILE DRIVER = d4e2f6ad-f3ad-40c5-aa14-183e68f4b5bd  {
-    SECTION PE32 = SurfaceDuoBinaries/BOOT.XF.3.0.1-00243-SC8180XWZB-2/volume-0/file-2/section0/section1/volume-0/file-d4e2f6ad-f3ad-40c5-aa14-183e68f4b5bd/section0.pe
-    SECTION UI = "HidMouseAbsolutePointerDxe"
-  }
+  INF Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/MsSurfaceCorePkg/HidMouseAbsolutePointerDxe/HidMouseAbsolutePointerDxe.inf
 
   # Disk IO
   INF MdeModulePkg/Bus/Scsi/ScsiBusDxe/ScsiBusDxe.inf
@@ -159,7 +156,7 @@ READ_LOCK_STATUS   = TRUE
 
   FILE FREEFORM = dde58710-41cd-4306-dbfb-3fa90bb1d2dd {
     SECTION UI = "uefiplat.cfg"
-    SECTION RAW = SurfaceDuoBinaries/BOOT.XF.3.0-00527-SM8150LZB-1/volume-0/file-3/section1.raw
+    SECTION RAW = Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/RawFiles/uefiplat.cfg
   }
 
   FILE FV_IMAGE = 9E21FD93-9C72-4c15-8C4B-E77F1DB2D792 {
