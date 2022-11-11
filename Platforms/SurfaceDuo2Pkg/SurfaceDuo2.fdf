@@ -79,22 +79,18 @@ READ_LOCK_CAP      = TRUE
 READ_LOCK_STATUS   = TRUE
 
   !include QcomPkg/Include/APRIORI.inc
-  !include QcomPkg/Include/FvMain.inc
+  !include QcomPkg/Include/DXE.inc
 
-  INF MdeModulePkg/Universal/EsrtFmpDxe/EsrtFmpDxe.inf
-
-  !include QcomPkg/Include/FvSecond.inc
+  # Debug heartbeat
+!if $(SEND_HEARTBEAT_TO_SERIAL) == 1
+  INF SurfaceDuoFamilyPkg/Driver/HeartbeatDxe/HeartbeatDxe.inf
+!endif
 
   # Secure Boot Key Enroll
   !if $(SECURE_BOOT_ENABLE) == TRUE
     INF SecurityPkg/VariableAuthenticated/SecureBootConfigDxe/SecureBootConfigDxe.inf
     # INF SurfaceDuoFamilyPkg/Driver/SecureBootProvisioningDxe/SecureBootProvisioningDxe.inf
   !endif
-
-  # Debug heartbeat
-!if $(SEND_HEARTBEAT_TO_SERIAL) == 1
-  INF SurfaceDuoFamilyPkg/Driver/HeartbeatDxe/HeartbeatDxe.inf
-!endif
 
   INF EmbeddedPkg/Drivers/VirtualKeyboardDxe/VirtualKeyboardDxe.inf
 
@@ -125,6 +121,8 @@ READ_LOCK_STATUS   = TRUE
   # DT
   INF EmbeddedPkg/Drivers/DtPlatformDxe/DtPlatformDxe.inf
   !include SurfaceDuo2Pkg/Include/FDT.inc
+
+  INF MdeModulePkg/Universal/EsrtFmpDxe/EsrtFmpDxe.inf
 
   !include SurfaceDuoFamilyPkg/Frontpage.fdf.inc
 
