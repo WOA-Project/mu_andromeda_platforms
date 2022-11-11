@@ -148,7 +148,6 @@
   NetworkPkg/MnpDxe/MnpDxe.inf
   NetworkPkg/Mtftp4Dxe/Mtftp4Dxe.inf
   NetworkPkg/Mtftp6Dxe/Mtftp6Dxe.inf
-  NetworkPkg/SharedNetworking/TlsDxe.RELEASE.inf
   NetworkPkg/SnpDxe/SnpDxe.inf
   NetworkPkg/TcpDxe/TcpDxe.inf
   NetworkPkg/TlsDxe/TlsDxe.inf
