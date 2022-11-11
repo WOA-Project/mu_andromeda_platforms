@@ -23,13 +23,7 @@
     INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/ChipInfoDxe/ChipInfoDxe.inf
     INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/PlatformInfoDxe/PlatformInfoDxe.inf
     # INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/HALIOMMUDxe/HALIOMMUDxe.inf
-
-    FILE DRIVER = 9a00771f-36d4-4dd5-8916-c48ed9b16b86 {
-            SECTION DXE_DEPEX = Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/HALIOMMUDxe/HALIOMMUDxe.depex
-            SECTION PE32 = QcomPkg/PatchedBinaries/HALIOMMU.efi
-            SECTION UI = "HALIOMMU"
-    }
-
+    INF QcomPkg/PatchedBinaries/HALIOMMUDxe.inf
     INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/ULogDxe/ULogDxe.inf
     INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/CmdDbDxe/CmdDbDxe.inf
     INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/NpaDxe/NpaDxe.inf
@@ -55,22 +49,13 @@
 
     INF MdeModulePkg/Universal/Disk/UnicodeCollation/EnglishDxe/EnglishDxe.inf
     INF MdeModulePkg/Universal/FvSimpleFileSystemDxe/FvSimpleFileSystemDxe.inf
-
     INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/SdccDxe/SdccDxe.inf
     # INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/UFSDxe/UFSDxe.inf
-
-    FILE DRIVER = 0d35cd8e-97ea-4f9a-96af-0f0d89f76567 {
-            SECTION DXE_DEPEX = Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/UFSDxe/UFSDxe.depex
-            SECTION PE32 = QcomPkg/PatchedBinaries/UFSDxe.efi
-            SECTION UI = "UFSDxe"
-    }
-
+    INF QcomPkg/PatchedBinaries/UFSDxe.inf
     INF FatPkg/EnhancedFatDxe/Fat.inf
-
     INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/TzDxe/TzDxeLA.inf
     # INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/VariableDxe/VariableDxe.inf
     INF MdeModulePkg/Universal/Variable/RuntimeDxe/VariableRuntimeDxe.inf
-
     INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/Sm8150FamilyPkg/Drivers/MsEnvDxe/MsEnvDxe.inf
     INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/QcomWDogDxe/QcomWDogDxe.inf
     INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/TLMMDxe/TLMMDxe.inf
@@ -78,34 +63,22 @@
     INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/DDRInfoDxe/DDRInfoDxe.inf
     INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/PmicDxe/PmicDxeLa.inf
     # INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/DisplayDxe/DisplayDxe.inf
-
-    FILE DRIVER = 4138022f-06c7-4f79-9c94-7e33b511a4e7 {
-            SECTION DXE_DEPEX = Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/DisplayDxe/DisplayDxe.depex
-            SECTION PE32 = QcomPkg/PatchedBinaries/DisplayDxe.efi
-            SECTION UI = "DisplayDxe"
-    }
-
+    INF QcomPkg/PatchedBinaries/DisplayDxe.inf
     INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/PILDxe/PILDxe.inf
     INF MdeModulePkg/Universal/WatchdogTimerDxe/WatchdogTimer.inf
-
     # INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/VerifiedBootDxe/VerifiedBootDxe.inf
     INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/SharedCryptoDriverDxeMu/SharedCryptoDriverDxeMu.inf
-
     INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/EmbeddedMonotonicCounter/EmbeddedMonotonicCounter.inf
     INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/ResetRuntimeDxe/ResetRuntimeDxe.inf
     INF EmbeddedPkg/RealTimeClockRuntimeDxe/RealTimeClockRuntimeDxe.inf
-
     INF MdeModulePkg/Universal/PrintDxe/PrintDxe.inf
     INF MdeModulePkg/Universal/DevicePathDxe/DevicePathDxe.inf
-
     INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/Sm8150FamilyPkg/Drivers/TouchControllerInitDxe/TouchControllerInitDxe.inf
     INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/Sm8150FamilyPkg/Drivers/SfpdUtils/SfpdUtils.inf
     INF MdeModulePkg/Universal/HiiDatabaseDxe/HiiDatabaseDxe.inf
-
     INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/FontDxe/FontDxe.inf
     # INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/QcomBds/QcomBds.inf
     INF MdeModulePkg/Universal/BdsDxe/BdsDxe.inf
-
     INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/I2CDxe/I2CDxe.inf
     INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/Sm8150FamilyPkg/Drivers/ExtFgDxe/ExtFgDxe.inf
     INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/AdcDxe/AdcDxe.inf
@@ -115,21 +88,9 @@
     INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/ChargerExDxe/ChargerExDxe.inf
     INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/UsbfnDwc3Dxe/UsbfnDwc3Dxe.inf
     # INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/UsbConfigDxe/UsbConfigDxe.inf
-
-    FILE DRIVER = cd823a4d-7dec-4531-ae5d-4134fa4127b8 {
-            SECTION DXE_DEPEX = Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/UsbConfigDxe/UsbConfigDxe.depex
-            SECTION PE32 = QcomPkg/PatchedBinaries/UsbConfigDxe.efi
-            SECTION UI = "UsbConfigDxe"
-    }
-
+    INF QcomPkg/PatchedBinaries/UsbConfigDxe.inf
     # INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/ButtonsDxe/ButtonsDxe.inf
-
-    FILE DRIVER = 5bd181db-0487-4f1a-ae73-820e165611b3 {
-            SECTION DXE_DEPEX = Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/ButtonsDxe/ButtonsDxe.depex
-            SECTION PE32 = QcomPkg/PatchedBinaries/ButtonsDxe.efi
-            SECTION UI = "ButtonsDxe"
-    }
-
+    INF QcomPkg/PatchedBinaries/ButtonsDxe.inf
     INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/TsensDxe/TsensDxe.inf
     # INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/LimitsDxe/LimitsDxe.inf
 
@@ -141,13 +102,8 @@
 
     INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/GpiDxe/GpiDxe.inf
     INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/MpPowerDxe/MpPowerDxe.inf
-
-    FILE DRIVER = c62f4b20-681e-11df-8f0d-0002a5d5c51b {
-            SECTION DXE_DEPEX = Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/PciHostBridgeDxe/PciHostBridgeDxe.depex
-            SECTION PE32 = QcomPkg/PatchedBinaries/PciHostBridgeDxe.efi
-            SECTION UI = "PciHostBridge"
-    }
-
+    # INF Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/PciHostBridgeDxe/PciHostBridgeDxe.inf
+    INF QcomPkg/PatchedBinaries/PciHostBridgeDxe.inf
     # INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/HashDxe/HashDxe.inf
 
     FILE DRIVER = 3adf8dda-1850-44c5-8c63-bb991849bc6f {
@@ -174,19 +130,15 @@
 
     INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/Sm8150FamilyPkg/Drivers/VarLockNullDxe/VarLockNullDxe.inf
     INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/Sm8150FamilyPkg/Override/MdeModulePkg/Universal/Variable/UefiVariablePolicy/Dxe/VariablePolicyNullDxe.inf
-
     INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/Sm8150FamilyPkg/Drivers/MsManufacturingModeDxe/MsManufacturingMode.inf
-
     INF Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/AdapterInformationDxe/AdapterInformationDxe.inf
     INF Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/CPRDxe/CPRDxe.inf
     INF Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/OSConfigDxe/OSConfigDxe.inf
     INF Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/GLinkDxe/GLinkDxe.inf
     INF Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/PmicGlinkDxe/PmicGlinkDxe.inf
-
     INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/SimpleTextInOutSerialDxe/SimpleTextInOutSerial.inf
     INF MdeModulePkg/Universal/Console/ConPlatformDxe/ConPlatformDxe.inf
     INF MdeModulePkg/Universal/Console/ConSplitterDxe/ConSplitterDxe.inf
-
     # INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/Sm8150FamilyPkg/Override/MdeModulePkg/Universal/Console/GraphicsConsoleDxe/GraphicsConsoleDxe.inf
 
     FILE DRIVER = cccb0c28-4b24-11d5-9a5a-0090273fc14d {
@@ -197,7 +149,6 @@
     INF MdeModulePkg/Universal/CapsuleRuntimeDxe/CapsuleRuntimeDxe.inf
     INF MdeModulePkg/Universal/SecurityStubDxe/SecurityStubDxe.inf
     INF MdeModulePkg/Universal/Acpi/BootGraphicsResourceTableDxe/BootGraphicsResourceTableDxe.inf
-
     INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/QcomMpmTimerDxe/QcomMpmTimerDxe.inf
     INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/SPIDxe/SPIDxe.inf
     # INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/UsbMsdDxe/UsbMsdDxe.inf
@@ -235,39 +186,22 @@
     }
 
     INF Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/UsbInitDxe/UsbInitDxe.inf
-
     INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/MsSurfaceCorePkg/SurfaceTouchHidDxe/SurfaceTouchHidDxe.inf
     # INF SharedCryptoPkg/Driver/SharedCryptoDxe.inf
     INF CryptoPkg/Driver/CryptoDxe.inf
     # INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/FmpDevicePkg/FmpDxe/05472C14-ACB9-4458-A354-A68357AC3BF0.inf
-
-    FILE DRIVER = 05472c14-acb9-4458-a354-a68357ac3bf0 {
-            SECTION DXE_DEPEX = Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/FmpDevicePkg/FmpDxe/05472C14-ACB9-4458-A354-A68357AC3BF0.depex
-            SECTION PE32 = QcomPkg/PatchedBinaries/FmpDxe.efi
-            SECTION UI = "FmpDxe"
-    }
-
+    INF QcomPkg/PatchedBinaries/05472C14-ACB9-4458-A354-A68357AC3BF0.inf
     # INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/Sm8150FamilyPkg/Drivers/ColorbarsDxe/ColorbarsDxe.inf
-
-    # FILE DRIVER = 7a26d1bd-0557-4b78-8ca1-1e40c7ad9f4d {
-    #         SECTION DXE_DEPEX = Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/Sm8150FamilyPkg/Drivers/ColorbarsDxe/ColorbarsDxe.depex
-    #         SECTION PE32 = QcomPkg/PatchedBinaries/ColorbarsDxe.efi
-    #         SECTION UI = "ColorbarsDxe"
-    # }
-
+    # INF QcomPkg/PatchedBinaries/ColorbarsDxe.inf
     INF SurfaceDuoFamilyPkg/Driver/ColorbarsDxe/ColorbarsDxe.inf
-
     INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Application/QcomChargerApp/QcomChargerApp.inf
-
     INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/EpsilonPkg/GpioButtonsDxe/GpioButtons.inf
-
     INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/MsGraphicsPkg/MsEarlyGraphics/Dxe/MsEarlyGraphics.inf
     # INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/MsGraphicsPkg/RenderingEngineDxe/RenderingEngineDxe.inf
     # INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/MsGraphicsPkg/SimpleWindowManagerDxe/SimpleWindowManagerDxe.inf
     # INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/MsGraphicsPkg/OnScreenKeyboardDxe/OnScreenKeyboardDxe.inf
     # INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/MsGraphicsPkg/MsUiTheme/Dxe/MsUiThemeProtocol.inf
     # INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/MsGraphicsPkg/DisplayEngineDxe/DisplayEngineDxe.inf
-
     # INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/Sm8150FamilyPkg/Drivers/UfsSecurityDxe/UfsSecurityDxe.inf
 
     FILE FREEFORM = A91D838E-A5FA-4138-825D-455E2303079E {
