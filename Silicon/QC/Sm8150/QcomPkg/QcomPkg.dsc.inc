@@ -149,6 +149,7 @@
   NetworkPkg/SharedNetworking/TlsDxe.RELEASE.inf
   NetworkPkg/SnpDxe/SnpDxe.inf
   NetworkPkg/TcpDxe/TcpDxe.inf
+  NetworkPkg/TlsDxe/TlsDxe.inf
   NetworkPkg/Udp4Dxe/Udp4Dxe.inf
   NetworkPkg/Udp6Dxe/Udp6Dxe.inf
   NetworkPkg/UefiPxeBcDxe/UefiPxeBcDxe.inf

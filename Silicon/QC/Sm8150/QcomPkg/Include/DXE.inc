@@ -412,7 +412,7 @@
     INF NetworkPkg/Udp6Dxe/Udp6Dxe.inf
     INF NetworkPkg/UefiPxeBcDxe/UefiPxeBcDxe.inf
     INF NetworkPkg/VlanConfigDxe/VlanConfigDxe.inf
-    INF NetworkPkg/SharedNetworking/TlsDxe.RELEASE.inf
+    INF NetworkPkg/TlsDxe/TlsDxe.inf
 
     FILE DRIVER = d3d3f029-8c5e-411d-9a62-672138097ec3 {
             SECTION PE32 = Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/Ms_Network/Ms_Network.efi
