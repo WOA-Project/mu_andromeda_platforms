@@ -108,7 +108,6 @@
             SECTION UI = "PartitionDxe"
     }
 
-
     FILE DRIVER = f09ad92e-4e91-490f-ab99-e69939b840b2 {
             SECTION UI = "LimitsDxe"
             SECTION RAW = Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/LimitsDxe/LimitsDxe.raw
