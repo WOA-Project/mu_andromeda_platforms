@@ -44,7 +44,6 @@
     INF Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/UsbMsdDxe/UsbMsdDxe.inf
     INF Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/UsbPwrCtrlDxe/UsbPwrCtrlDxe.inf
     INF Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/XhciPciEmulationDxe/XhciPciEmulationDxe.inf
-    INF CryptoPkg/Driver/CryptoDxe.inf
     INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/EpsilonPkg/GpioButtonsDxe/GpioButtons.inf
     INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/MsGraphicsPkg/MsEarlyGraphics/Dxe/MsEarlyGraphics.inf
     INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/MsSurfaceCorePkg/SurfaceTouchHidDxe/SurfaceTouchHidDxe.inf
