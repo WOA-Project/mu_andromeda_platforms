@@ -145,7 +145,7 @@ READ_LOCK_STATUS   = TRUE
   INF MdeModulePkg/Bus/Pci/NvmExpressDxe/NvmExpressDxe.inf
   INF MdeModulePkg/Bus/Pci/PciBusDxe/PciBusDxe.inf
   INF MdeModulePkg/Bus/Usb/UsbMouseAbsolutePointerDxe/UsbMouseAbsolutePointerDxe.inf
-  INF MdeModulePkg/Core/Dxe/DxeMain.inf
+  INF SurfaceDuoFamilyPkg/Core/Dxe/DxeMain.inf
   INF MdeModulePkg/Core/RuntimeDxe/RuntimeDxe.inf
   INF MdeModulePkg/Universal/Acpi/BootGraphicsResourceTableDxe/BootGraphicsResourceTableDxe.inf
   INF MdeModulePkg/Universal/Acpi/FirmwarePerformanceDataTableDxe/FirmwarePerformanceDxe.inf

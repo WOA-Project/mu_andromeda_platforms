@@ -380,7 +380,7 @@
   }
 
   # DXE
-  MdeModulePkg/Core/Dxe/DxeMain.inf {
+  SurfaceDuoFamilyPkg/Core/Dxe/DxeMain.inf {
     <LibraryClasses>
     NULL|MdeModulePkg/Library/DxeCrc32GuidedSectionExtractLib/DxeCrc32GuidedSectionExtractLib.inf
     NULL|MdeModulePkg/Library/DxeCrc32GuidedSectionExtractLib/DxeCrc32GuidedSectionExtractLib.inf
