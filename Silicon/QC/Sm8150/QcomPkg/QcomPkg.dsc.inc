@@ -44,6 +44,16 @@
   TlsLib|CryptoPkg/Library/TlsLib/TlsLib.inf
 
 [Components.common]
+  CryptoPkg/Driver/CryptoDxe.inf
+  Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/EpsilonPkg/GpioButtonsDxe/GpioButtons.inf
+# Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/FmpDevicePkg/FmpDxe/05472C14-ACB9-4458-A354-A68357AC3BF0.inf
+  Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/MsGraphicsPkg/MsEarlyGraphics/Dxe/MsEarlyGraphics.inf
+# Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/MsGraphicsPkg/DisplayEngineDxe/DisplayEngineDxe.inf
+# Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/MsGraphicsPkg/MsUiTheme/Dxe/MsUiThemeProtocol.inf
+# Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/MsGraphicsPkg/OnScreenKeyboardDxe/OnScreenKeyboardDxe.inf
+# Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/MsGraphicsPkg/RenderingEngineDxe/RenderingEngineDxe.inf
+# Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/MsGraphicsPkg/SimpleWindowManagerDxe/SimpleWindowManagerDxe.inf
+  Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/MsSurfaceCorePkg/SurfaceTouchHidDxe/SurfaceTouchHidDxe.inf
   Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/AdapterInformationDxe/AdapterInformationDxe.inf
   Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/CPRDxe/CPRDxe.inf
   Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/GLinkDxe/GLinkDxe.inf
@@ -60,15 +70,6 @@
 # Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/UsbKbDxe/UsbKbDxe.inf
 # Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/UsbMassStorageDxe/UsbMassStorageDxe.inf
 # Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/XhciDxe/XhciDxe.inf
-  CryptoPkg/Driver/CryptoDxe.inf
-  Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/EpsilonPkg/GpioButtonsDxe/GpioButtons.inf
-  Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/MsGraphicsPkg/MsEarlyGraphics/Dxe/MsEarlyGraphics.inf
-# Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/MsGraphicsPkg/DisplayEngineDxe/DisplayEngineDxe.inf
-# Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/MsGraphicsPkg/MsUiTheme/Dxe/MsUiThemeProtocol.inf
-# Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/MsGraphicsPkg/OnScreenKeyboardDxe/OnScreenKeyboardDxe.inf
-# Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/MsGraphicsPkg/RenderingEngineDxe/RenderingEngineDxe.inf
-# Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/MsGraphicsPkg/SimpleWindowManagerDxe/SimpleWindowManagerDxe.inf
-  Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/MsSurfaceCorePkg/SurfaceTouchHidDxe/SurfaceTouchHidDxe.inf
   Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Application/QcomChargerApp/QcomChargerApp.inf
   Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/AdcDxe/AdcDxe.inf
   Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/ChargerExDxe/ChargerExDxe.inf
@@ -122,6 +123,7 @@
 # Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/VariableDxe/VariableDxe.inf
 # Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/VerifiedBootDxe/VerifiedBootDxe.inf
   Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/SharedCryptoDriverDxeMu/SharedCryptoDriverDxeMu.inf
+# SharedCryptoPkg/Driver/SharedCryptoDxe.inf
   Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/Sm8150FamilyPkg/Drivers/ExtFgDxe/ExtFgDxe.inf
   Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/Sm8150FamilyPkg/Drivers/MsEnvDxe/MsEnvDxe.inf
   Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/Sm8150FamilyPkg/Drivers/MsManufacturingModeDxe/MsManufacturingMode.inf
@@ -162,5 +164,3 @@
   QcomPkg/PatchedBinaries/UFSDxe.inf
   QcomPkg/PatchedBinaries/UsbConfigDxe.inf
 # QcomPkg/PatchedBinaries/ColorbarsDxe.inf
-# Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/FmpDevicePkg/FmpDxe/05472C14-ACB9-4458-A354-A68357AC3BF0.inf
-# SharedCryptoPkg/Driver/SharedCryptoDxe.inf
