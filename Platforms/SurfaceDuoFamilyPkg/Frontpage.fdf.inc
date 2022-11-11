@@ -23,6 +23,8 @@
 
   INF MsCorePkg/AcpiRGRT/AcpiRgrt.inf
 
+  INF DfciPkg/Application/DfciMenu/DfciMenu.inf
+
   # Change AARCH64 to the appropriate architecture for your platform.
   FILE APPLICATION=PCD(gPcBdsPkgTokenSpaceGuid.PcdShellFile) {
     SECTION PE32=$(OUTPUT_DIRECTORY)/$(TARGET)_$(TOOL_CHAIN_TAG)/AARCH64/Shell.efi

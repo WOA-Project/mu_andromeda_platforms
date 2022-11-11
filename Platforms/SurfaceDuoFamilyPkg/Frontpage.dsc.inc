@@ -285,6 +285,8 @@
 
   MsCorePkg/AcpiRGRT/AcpiRgrt.inf
 
+  DfciPkg/Application/DfciMenu/DfciMenu.inf
+
 #######################################
 #  Shell
 #######################################

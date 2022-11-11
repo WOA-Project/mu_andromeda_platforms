@@ -428,8 +428,6 @@
 
   MsCorePkg/MuVarPolicyFoundationDxe/MuVarPolicyFoundationDxe.inf
 
-  DfciPkg/Application/DfciMenu/DfciMenu.inf
-
   # BDS
   MdeModulePkg/Universal/PrintDxe/PrintDxe.inf
   MdeModulePkg/Universal/Console/ConPlatformDxe/ConPlatformDxe.inf
@@ -468,9 +466,12 @@
   MdeModulePkg/Universal/Acpi/AcpiTableDxe/AcpiTableDxe.inf
   MdeModulePkg/Universal/Acpi/AcpiPlatformDxe/AcpiPlatformDxe.inf
   MdeModulePkg/Universal/Acpi/BootGraphicsResourceTableDxe/BootGraphicsResourceTableDxe.inf
+  MdeModulePkg/Universal/Acpi/FirmwarePerformanceDataTableDxe/FirmwarePerformanceDxe.inf
 
   # Pci
   MdeModulePkg/Bus/Pci/PciBusDxe/PciBusDxe.inf
+
+  MdeModulePkg/Bus/Pci/NvmExpressDxe/NvmExpressDxe.inf
 
   MdeModulePkg/Universal/ReportStatusCodeRouter/RuntimeDxe/ReportStatusCodeRouterRuntimeDxe.inf
   MdeModulePkg/Universal/StatusCodeHandler/RuntimeDxe/StatusCodeHandlerRuntimeDxe.inf
@@ -484,3 +485,7 @@
   SurfaceDuoFamilyPkg/UFP/ufpdevicefw.inf
 
   SurfaceDuoFamilyPkg/Driver/KernelErrataPatcher/KernelErrataPatcher.inf
+
+  AdvLoggerPkg/AdvancedFileLogger/AdvancedFileLogger.inf
+  MdeModulePkg/Universal/MemoryTest/NullMemoryTestDxe/NullMemoryTestDxe.inf
+  SecurityPkg/Tcg/Tcg2Dxe/Tcg2Dxe.inf

@@ -149,6 +149,7 @@
     INF MdeModulePkg/Universal/CapsuleRuntimeDxe/CapsuleRuntimeDxe.inf
     INF MdeModulePkg/Universal/SecurityStubDxe/SecurityStubDxe.inf
     INF MdeModulePkg/Universal/Acpi/BootGraphicsResourceTableDxe/BootGraphicsResourceTableDxe.inf
+    INF MdeModulePkg/Universal/Acpi/FirmwarePerformanceDataTableDxe/FirmwarePerformanceDxe.inf
     INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/QcomMpmTimerDxe/QcomMpmTimerDxe.inf
     INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/SPIDxe/SPIDxe.inf
     # INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/UsbMsdDxe/UsbMsdDxe.inf
@@ -418,3 +419,10 @@
             SECTION PE32 = Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/Ms_Network/Ms_Network.efi
             SECTION UI = "Ms Network"
     }
+
+    INF AdvLoggerPkg/AdvancedFileLogger/AdvancedFileLogger.inf
+    INF MdeModulePkg/Bus/Pci/NvmExpressDxe/NvmExpressDxe.inf
+    INF MdeModulePkg/Bus/Pci/PciBusDxe/PciBusDxe.inf
+    INF MdeModulePkg/Universal/MemoryTest/NullMemoryTestDxe/NullMemoryTestDxe.inf
+    INF MsCorePkg/MuVarPolicyFoundationDxe/MuVarPolicyFoundationDxe.inf
+    INF SecurityPkg/Tcg/Tcg2Dxe/Tcg2Dxe.inf
