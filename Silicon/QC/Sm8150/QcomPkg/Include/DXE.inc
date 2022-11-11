@@ -241,7 +241,7 @@
     INF CryptoPkg/Driver/CryptoDxe.inf
     # INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/FmpDevicePkg/FmpDxe/05472C14-ACB9-4458-A354-A68357AC3BF0.inf
 
-    FILE DRIVER = 05472c14-acb9-4458-a354-a68357ac3bf0  {
+    FILE DRIVER = 05472c14-acb9-4458-a354-a68357ac3bf0 {
             SECTION DXE_DEPEX = Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/FmpDevicePkg/FmpDxe/05472C14-ACB9-4458-A354-A68357AC3BF0.depex
             SECTION PE32 = QcomPkg/PatchedBinaries/FmpDxe.efi
             SECTION UI = "FmpDxe"
@@ -249,7 +249,7 @@
 
     # INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/Sm8150FamilyPkg/Drivers/ColorbarsDxe/ColorbarsDxe.inf
 
-    # FILE DRIVER = 7a26d1bd-0557-4b78-8ca1-1e40c7ad9f4d  {
+    # FILE DRIVER = 7a26d1bd-0557-4b78-8ca1-1e40c7ad9f4d {
     #         SECTION DXE_DEPEX = Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/Sm8150FamilyPkg/Drivers/ColorbarsDxe/ColorbarsDxe.depex
     #         SECTION PE32 = QcomPkg/PatchedBinaries/ColorbarsDxe.efi
     #         SECTION UI = "ColorbarsDxe"
@@ -459,3 +459,28 @@
     #     SECTION RAW = Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/RawFiles/VolumeUpIndicator
     #     SECTION UI = "VolumeUpIndicator"
     # }
+
+    INF NetworkPkg/ArpDxe/ArpDxe.inf
+    INF NetworkPkg/Dhcp4Dxe/Dhcp4Dxe.inf
+    INF NetworkPkg/Dhcp6Dxe/Dhcp6Dxe.inf
+    INF NetworkPkg/DnsDxe/DnsDxe.inf
+    INF NetworkPkg/DpcDxe/DpcDxe.inf
+    INF NetworkPkg/HttpDxe/HttpDxe.inf
+    INF NetworkPkg/HttpUtilitiesDxe/HttpUtilitiesDxe.inf
+    INF NetworkPkg/Ip4Dxe/Ip4Dxe.inf
+    INF NetworkPkg/Ip6Dxe/Ip6Dxe.inf
+    INF NetworkPkg/MnpDxe/MnpDxe.inf
+    INF NetworkPkg/Mtftp4Dxe/Mtftp4Dxe.inf
+    INF NetworkPkg/Mtftp6Dxe/Mtftp6Dxe.inf
+    INF NetworkPkg/SnpDxe/SnpDxe.inf
+    INF NetworkPkg/TcpDxe/TcpDxe.inf
+    INF NetworkPkg/Udp4Dxe/Udp4Dxe.inf
+    INF NetworkPkg/Udp6Dxe/Udp6Dxe.inf
+    INF NetworkPkg/UefiPxeBcDxe/UefiPxeBcDxe.inf
+    INF NetworkPkg/VlanConfigDxe/VlanConfigDxe.inf
+    INF NetworkPkg/SharedNetworking/TlsDxe.RELEASE.inf
+
+    FILE DRIVER = d3d3f029-8c5e-411d-9a62-672138097ec3 {
+            SECTION PE32 = Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/Ms_Network/Ms_Network.efi
+            SECTION UI = "Ms Network"
+    }
