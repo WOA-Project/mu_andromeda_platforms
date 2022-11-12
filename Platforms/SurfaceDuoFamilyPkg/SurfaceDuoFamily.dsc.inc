@@ -150,7 +150,19 @@
   DefaultExceptionHandlerLib|ArmPkg/Library/DefaultExceptionHandlerLib/DefaultExceptionHandlerLib.inf
   DebugAgentLib|MdeModulePkg/Library/DebugAgentLibNull/DebugAgentLibNull.inf
   DevicePathLib|MdePkg/Library/UefiDevicePathLib/UefiDevicePathLib.inf
+!if $(USE_SCREEN_FOR_SERIAL_OUTPUT) == 1
+!if $(USE_MEMORY_FOR_SERIAL_OUTPUT) == 1
+  DebugLib|SurfaceDuoFamilyPkg/Library/BaseDebugLibInMemory/BaseDebugLibInMemory.inf
+!else
+  DebugLib|SurfaceDuoFamilyPkg/Library/BaseDebugLibFrameBuffer/BaseDebugLibFrameBuffer.inf
+!endif
+!else
+!if $(USE_MEMORY_FOR_SERIAL_OUTPUT) == 1
+  DebugLib|SurfaceDuoFamilyPkg/Library/BaseDebugLibInMemory/BaseDebugLibInMemory.inf
+!else
   DebugLib|MdePkg/Library/BaseDebugLibSerialPort/BaseDebugLibSerialPort.inf
+!endif
+!endif
   DebugPrintErrorLevelLib|MdePkg/Library/BaseDebugPrintErrorLevelLib/BaseDebugPrintErrorLevelLib.inf
   DxeServicesLib|MdePkg/Library/DxeServicesLib/DxeServicesLib.inf
   DxeServicesTableLib|MdePkg/Library/DxeServicesTableLib/DxeServicesTableLib.inf
@@ -208,19 +220,7 @@
 !endif
 
   # Platform Drivers
-!if $(USE_SCREEN_FOR_SERIAL_OUTPUT) == 1
-!if $(USE_MEMORY_FOR_SERIAL_OUTPUT) == 1
-  SerialPortLib|SurfaceDuoFamilyPkg/Library/FrameBufferInMemorySerialPortLib/FrameBufferInMemorySerialPortLib.inf
-!else
-  SerialPortLib|SurfaceDuoFamilyPkg/Library/FrameBufferSerialPortLib/FrameBufferSerialPortLib.inf
-!endif
-!else
-!if $(USE_MEMORY_FOR_SERIAL_OUTPUT) == 1
-  SerialPortLib|SurfaceDuoFamilyPkg/Library/InMemorySerialPortLib/InMemorySerialPortLib.inf
-!else
   SerialPortLib|SurfaceDuoFamilyPkg/Library/UartSerialPortLib/UartSerialPortLib.inf
-!endif
-!endif
 
   # System Reset
   HwResetSystemLib|ArmPkg/Library/ArmSmcPsciResetSystemLib/ArmSmcPsciResetSystemLib.inf
@@ -366,15 +366,15 @@
     <LibraryClasses>
     !if $(USE_SCREEN_FOR_SERIAL_OUTPUT) == 1
     !if $(USE_MEMORY_FOR_SERIAL_OUTPUT) == 1
-      SerialPortLib|SurfaceDuoFamilyPkg/Library/FrameBufferInMemorySerialPortLib/FrameBufferInMemorySerialPortLib.inf
+      DebugLib|SurfaceDuoFamilyPkg/Library/BaseDebugLibInMemory/BaseDebugLibInMemory.inf
     !else
-      SerialPortLib|SurfaceDuoFamilyPkg/Library/FrameBufferSerialPortLib/FrameBufferSerialPortLib.inf
+      DebugLib|SurfaceDuoFamilyPkg/Library/BaseDebugLibFrameBuffer/BaseDebugLibFrameBuffer.inf
     !endif
     !else
     !if $(USE_MEMORY_FOR_SERIAL_OUTPUT) == 1
-      SerialPortLib|SurfaceDuoFamilyPkg/Library/InMemorySerialPortLib/InMemorySerialPortLib.inf
+      DebugLib|SurfaceDuoFamilyPkg/Library/BaseDebugLibInMemory/BaseDebugLibInMemory.inf
     !else
-      SerialPortLib|SurfaceDuoFamilyPkg/Library/UartSerialPortLib/UartSerialPortLib.inf
+      DebugLib|MdePkg/Library/BaseDebugLibSerialPort/BaseDebugLibSerialPort.inf
     !endif
     !endif
   }

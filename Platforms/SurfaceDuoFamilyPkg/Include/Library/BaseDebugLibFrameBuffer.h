@@ -32,6 +32,6 @@ void ResetFb(void);
 
 UINTN
 EFIAPI
-SerialPortWriteCritical(IN UINT8 *Buffer, IN UINTN NumberOfBytes);
+FrameBufferWriteCritical(IN UINT8 *Buffer, IN UINTN NumberOfBytes);
 
 #endif
