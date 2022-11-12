@@ -32,7 +32,6 @@
     INF Arcata/BOOT.MXF.1.1.c1-00018-MAKENA-1.11859.2/MsGraphicsPkg/MsEarlyGraphics/Dxe/MsEarlyGraphics.inf
     INF Arcata/BOOT.MXF.1.1.c1-00018-MAKENA-1.11859.2/MsSurfaceCorePkg/SurfaceTouchHidDxe/SurfaceTouchHidDxeV2.inf
     INF MdeModulePkg/Universal/Disk/PartitionDxe/PartitionDxe.inf
-    INF QcomPkg/Driver/GpioButtons/GpioButtons.inf
     INF QcomPkg/PatchedBinaries/ButtonsDxe.inf
     INF QcomPkg/PatchedBinaries/ClockDxe.inf
     INF QcomPkg/PatchedBinaries/MinidumpTADxe.inf
@@ -42,6 +41,7 @@
     INF QcomPkg/PatchedBinaries/QcomWDogDxe.inf
     INF QcomPkg/PatchedBinaries/UFSDxe.inf
     INF QcomPkg/PatchedBinaries/UsbConfigDxe.inf
+    INF SurfaceDuoFamilyPkg/Driver/GpioButtons/GpioButtons.inf
     INF SurfaceDuoFamilyPkg/Driver/SimpleFbDxe/SimpleFbDxe.inf
     INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1/MsCommonPkg/Drivers/MsEnvDxe/MsEnvDxe.inf
     INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1/MsCommonPkg/Drivers/MsTouchPointDxe/MsTouchPoint.inf
