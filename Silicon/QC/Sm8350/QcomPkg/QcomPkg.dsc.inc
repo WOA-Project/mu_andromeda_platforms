@@ -31,6 +31,9 @@
   gArmPlatformTokenSpaceGuid.PcdCoreCount|8
   gArmPlatformTokenSpaceGuid.PcdClusterCount|3
 
+  # UART
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdUartSerialBase|0x0098C000
+
 [LibraryClasses.common]
   PlatformMemoryMapLib|QcomPkg/Library/PlatformMemoryMapLib/PlatformMemoryMapLib.inf
   PlatformPeiLib|QcomPkg/Library/PlatformPeiLib/PlatformPeiLib.inf

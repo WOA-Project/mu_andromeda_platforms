@@ -218,7 +218,7 @@
 !if $(USE_MEMORY_FOR_SERIAL_OUTPUT) == 1
   SerialPortLib|SurfaceDuoFamilyPkg/Library/InMemorySerialPortLib/InMemorySerialPortLib.inf
 !else
-  SerialPortLib|MdePkg/Library/BaseSerialPortLibNull/BaseSerialPortLibNull.inf
+  SerialPortLib|SurfaceDuoFamilyPkg/Library/UartSerialPortLib/UartSerialPortLib.inf
 !endif
 !endif
 
@@ -374,7 +374,7 @@
     !if $(USE_MEMORY_FOR_SERIAL_OUTPUT) == 1
       SerialPortLib|SurfaceDuoFamilyPkg/Library/InMemorySerialPortLib/InMemorySerialPortLib.inf
     !else
-      SerialPortLib|MdePkg/Library/BaseSerialPortLibNull/BaseSerialPortLibNull.inf
+      SerialPortLib|SurfaceDuoFamilyPkg/Library/UartSerialPortLib/UartSerialPortLib.inf
     !endif
     !endif
   }

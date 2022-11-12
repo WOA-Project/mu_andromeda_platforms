@@ -125,6 +125,9 @@
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferHeight|1800|UINT32|0x0000a402
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferPixelBpp|32|UINT32|0x0000a403
 
+  # UART
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdUartSerialBase|0x0098C000|UINT32|0x0000a501
+
   ## This PCD points to the file name GUID of the UFPMenuApp
   #  Platform can customize the PCD to point to different application for UFP Menu
   # @Prompt UFP Menu File
