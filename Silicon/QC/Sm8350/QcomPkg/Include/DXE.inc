@@ -29,10 +29,10 @@
     # INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1/QcomPkg/Drivers/VerifiedBootDxe/VerifiedBootDxe.inf
     # INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1/QcomPkg/Drivers/XhciDxe/XhciDxe.inf
     # INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1/Sm8350FamilyPkg/Drivers/UfsSecurityDxe/UfsSecurityDxe.inf
-    INF Arcata/BOOT.MXF.1.1.c1-00018-MAKENA-1.11859.2/ArcataPkg/GpioButtonsDxe/GpioButtons.inf
     INF Arcata/BOOT.MXF.1.1.c1-00018-MAKENA-1.11859.2/MsGraphicsPkg/MsEarlyGraphics/Dxe/MsEarlyGraphics.inf
     INF Arcata/BOOT.MXF.1.1.c1-00018-MAKENA-1.11859.2/MsSurfaceCorePkg/SurfaceTouchHidDxe/SurfaceTouchHidDxeV2.inf
     INF MdeModulePkg/Universal/Disk/PartitionDxe/PartitionDxe.inf
+    INF QcomPkg/Driver/GpioButtons/GpioButtons.inf
     INF QcomPkg/PatchedBinaries/ButtonsDxe.inf
     INF QcomPkg/PatchedBinaries/ClockDxe.inf
     INF QcomPkg/PatchedBinaries/MinidumpTADxe.inf
