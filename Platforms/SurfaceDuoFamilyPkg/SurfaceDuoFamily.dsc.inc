@@ -489,24 +489,24 @@
   AdvLoggerPkg/AdvancedFileLogger/AdvancedFileLogger.inf
   MdeModulePkg/Universal/MemoryTest/NullMemoryTestDxe/NullMemoryTestDxe.inf
 
-  NetworkPkg/ArpDxe/ArpDxe.inf
-  NetworkPkg/Dhcp4Dxe/Dhcp4Dxe.inf
-  NetworkPkg/Dhcp6Dxe/Dhcp6Dxe.inf
-  NetworkPkg/DnsDxe/DnsDxe.inf
-  NetworkPkg/DpcDxe/DpcDxe.inf
-  NetworkPkg/HttpDxe/HttpDxe.inf
-  NetworkPkg/HttpUtilitiesDxe/HttpUtilitiesDxe.inf
-  NetworkPkg/Ip4Dxe/Ip4Dxe.inf
-  NetworkPkg/Ip6Dxe/Ip6Dxe.inf
-  NetworkPkg/MnpDxe/MnpDxe.inf
-  NetworkPkg/Mtftp4Dxe/Mtftp4Dxe.inf
-  NetworkPkg/Mtftp6Dxe/Mtftp6Dxe.inf
-  NetworkPkg/SnpDxe/SnpDxe.inf
-  NetworkPkg/TcpDxe/TcpDxe.inf
-  NetworkPkg/TlsDxe/TlsDxe.inf
-  NetworkPkg/Udp4Dxe/Udp4Dxe.inf
-  NetworkPkg/Udp6Dxe/Udp6Dxe.inf
-  NetworkPkg/UefiPxeBcDxe/UefiPxeBcDxe.inf
-  NetworkPkg/VlanConfigDxe/VlanConfigDxe.inf
+  # NetworkPkg/ArpDxe/ArpDxe.inf
+  # NetworkPkg/Dhcp4Dxe/Dhcp4Dxe.inf
+  # NetworkPkg/Dhcp6Dxe/Dhcp6Dxe.inf
+  # NetworkPkg/DnsDxe/DnsDxe.inf
+  # NetworkPkg/DpcDxe/DpcDxe.inf
+  # NetworkPkg/HttpDxe/HttpDxe.inf
+  # NetworkPkg/HttpUtilitiesDxe/HttpUtilitiesDxe.inf
+  # NetworkPkg/Ip4Dxe/Ip4Dxe.inf
+  # NetworkPkg/Ip6Dxe/Ip6Dxe.inf
+  # NetworkPkg/MnpDxe/MnpDxe.inf
+  # NetworkPkg/Mtftp4Dxe/Mtftp4Dxe.inf
+  # NetworkPkg/Mtftp6Dxe/Mtftp6Dxe.inf
+  # NetworkPkg/SnpDxe/SnpDxe.inf
+  # NetworkPkg/TcpDxe/TcpDxe.inf
+  # NetworkPkg/TlsDxe/TlsDxe.inf
+  # NetworkPkg/Udp4Dxe/Udp4Dxe.inf
+  # NetworkPkg/Udp6Dxe/Udp6Dxe.inf
+  # NetworkPkg/UefiPxeBcDxe/UefiPxeBcDxe.inf
+  # NetworkPkg/VlanConfigDxe/VlanConfigDxe.inf
 
   CryptoPkg/Driver/CryptoDxe.inf

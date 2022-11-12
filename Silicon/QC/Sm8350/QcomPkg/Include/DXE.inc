@@ -62,7 +62,7 @@
     INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1/QcomPkg/Drivers/IPCCDxe/IPCCDxe.inf
     INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1/QcomPkg/Drivers/NpaDxe/NpaDxe.inf
     INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1/QcomPkg/Drivers/ParserDxe/ParserDxe.inf
-    INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1/QcomPkg/Drivers/PILDxe/PILDxe.inf
+    # INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1/QcomPkg/Drivers/PILDxe/PILDxe.inf
     INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1/QcomPkg/Drivers/PILProxyDxe/PILProxyDxe.inf
     INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1/QcomPkg/Drivers/PlatformInfoDxe/PlatformInfoDxe.inf
     INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1/QcomPkg/Drivers/PmicGlinkDxe/PmicGlinkDxe.inf
