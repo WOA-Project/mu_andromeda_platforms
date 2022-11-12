@@ -46,6 +46,7 @@
   # Zeta/BOOT.MXF.1.0-00893-LAHAINA-1/MsAbstractPkg/Drivers/MsAbstractLayerDxe/MsAbstractLayer.inf
   # Zeta/BOOT.MXF.1.0-00893-LAHAINA-1/MsCommonPkg/Drivers/ColorbarsDxe/ColorbarsDxe.inf
   # Zeta/BOOT.MXF.1.0-00893-LAHAINA-1/MsCommonPkg/Drivers/MsManufacturingModeDxe/MsManufacturingMode.inf
+  # Zeta/BOOT.MXF.1.0-00893-LAHAINA-1/MsCommonPkg/Drivers/SurfaceTouchHidDxe/SurfaceTouchHidDxeV2.inf
   # Zeta/BOOT.MXF.1.0-00893-LAHAINA-1/QcomPkg/Application/QcomChargerApp/QcomChargerApp.inf
   # Zeta/BOOT.MXF.1.0-00893-LAHAINA-1/QcomPkg/Drivers/ASN1X509Dxe/ASN1X509Dxe.inf
   # Zeta/BOOT.MXF.1.0-00893-LAHAINA-1/QcomPkg/Drivers/ButtonsDxe/ButtonsDxe.inf
@@ -73,7 +74,9 @@
   # Zeta/BOOT.MXF.1.0-00893-LAHAINA-1/QcomPkg/Drivers/XhciDxe/XhciDxe.inf
   # Zeta/BOOT.MXF.1.0-00893-LAHAINA-1/Sm8350FamilyPkg/Drivers/UfsSecurityDxe/UfsSecurityDxe.inf
   Arcata/BOOT.MXF.1.1.c1-00018-MAKENA-1.11859.2/ArcataPkg/GpioButtonsDxe/GpioButtons.inf
-  Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/MsGraphicsPkg/MsEarlyGraphics/Dxe/MsEarlyGraphics.inf
+  Arcata/BOOT.MXF.1.1.c1-00018-MAKENA-1.11859.2/MsGraphicsPkg/MsEarlyGraphics/Dxe/MsEarlyGraphics.inf
+  Arcata/BOOT.MXF.1.1.c1-00018-MAKENA-1.11859.2/MsSurfaceCorePkg/SurfaceTouchHidDxe/SurfaceTouchHidDxeV2.inf
+  MdeModulePkg/Universal/Disk/PartitionDxe/PartitionDxe.inf
   QcomPkg/PatchedBinaries/ButtonsDxe.inf
   QcomPkg/PatchedBinaries/ClockDxe.inf
   QcomPkg/PatchedBinaries/MinidumpTADxe.inf
@@ -86,7 +89,6 @@
   SurfaceDuoFamilyPkg/Driver/SimpleFbDxe/SimpleFbDxe.inf
   Zeta/BOOT.MXF.1.0-00893-LAHAINA-1/MsCommonPkg/Drivers/MsEnvDxe/MsEnvDxe.inf
   Zeta/BOOT.MXF.1.0-00893-LAHAINA-1/MsCommonPkg/Drivers/MsTouchPointDxe/MsTouchPoint.inf
-  Zeta/BOOT.MXF.1.0-00893-LAHAINA-1/MsCommonPkg/Drivers/SurfaceTouchHidDxe/SurfaceTouchHidDxeV2.inf
   Zeta/BOOT.MXF.1.0-00893-LAHAINA-1/MsCommonPkg/Drivers/TouchControllerInitDxe/TouchControllerInitDxe.inf
   Zeta/BOOT.MXF.1.0-00893-LAHAINA-1/MsCommonPkg/Drivers/TouchUtilsDxe/TouchUtilsDxe.inf
   Zeta/BOOT.MXF.1.0-00893-LAHAINA-1/QcomPkg/Drivers/ChargerExDxe/ChargerExDxe.inf
