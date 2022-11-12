@@ -90,7 +90,7 @@
   #
   # Null Power Services Library class to support Platforms that dont have battery
   #
-  PowerServicesLib|PcBdsPkg/Library/PowerServicesLibNull/PowerServicesLibNull.inf
+  PowerServicesLib|SurfaceDuoFamilyPkg/Library/PowerServicesLib/PowerServicesLib.inf
   #
   # Empty Platform Library of power check.
   #
@@ -178,7 +178,7 @@
   BaseBinSecurityLib|MdePkg/Library/BaseBinSecurityLibNull/BaseBinSecurityLibNull.inf
   SecurityLockAuditLib|MdeModulePkg/Library/SecurityLockAuditDebugMessageLib/SecurityLockAuditDebugMessageLib.inf
 
-  MsWheaEarlyStorageLib|MsWheaPkg/Library/MsWheaEarlyStorageLibNull/MsWheaEarlyStorageLibNull.inf
+  MsWheaEarlyStorageLib|SurfaceDuoFamilyPkg/Library/MsWheaEarlyStorageLib/MsWheaEarlyStorageLib.inf
   CheckHwErrRecHeaderLib|MsWheaPkg/Library/CheckHwErrRecHeaderLib/CheckHwErrRecHeaderLib.inf
   MuTelemetryHelperLib|MsWheaPkg/Library/MuTelemetryHelperLib/MuTelemetryHelperLib.inf
   ParserRegistryLib|MsWheaPkg/Library/ParserRegistryLib/ParserRegistryLib.inf
