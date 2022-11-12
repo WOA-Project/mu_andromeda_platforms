@@ -40,9 +40,6 @@ It is not going to work on any other device even if they use the same SoC as is.
 - Run the following commands in order, with 0 typo, and without copy pasting all of them blindly all at once:
 
 ```
-# Setup environment
-sudo ./setup_env.sh
-
 # Stamp
 ./build_releaseinfo.ps1
 
@@ -58,14 +55,12 @@ pip install --upgrade -r pip-requirements.txt
 
 ## Acknowledgements
 
-- [EFIDroid Project](http://efidroid.org)
 - Andrei Warkentin and his [RaspberryPiPkg](https://github.com/andreiw/RaspberryPiPkg)
 - Sarah Purohit
 - [Googulator](https://github.com/Googulator/)
 - [Ben (Bingxing) Wang](https://github.com/imbushuo/)
-- [Renegade Project](https://github.com/edk2-porting/)
+- Samuel Tulach and his [Rainbow Patcher](https://github.com/SamuelTulach/rainbow)
 
 ## License
 
-All code except drivers in `GPLDriver` directory are licensed under BSD 2-Clause. 
-GPL Drivers are licensed under GPLv2 license.
+All code is licensed under BSD 2-Clause.
