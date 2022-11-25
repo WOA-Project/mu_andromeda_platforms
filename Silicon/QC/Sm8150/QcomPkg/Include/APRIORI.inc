@@ -1,7 +1,7 @@
 APRIORI DXE {
 
     # First, install the PCD driver and call DxeInit
-    INF SurfaceDuoFamilyPkg/Core/Dxe/DxeMain.inf
+    INF MdeModulePkg/Core/Dxe/DxeMain.inf
     INF MdeModulePkg/Universal/PCD/Dxe/Pcd.inf
 
     # INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/EnvDxe/EnvDxe.inf
