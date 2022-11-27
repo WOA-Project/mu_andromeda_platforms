@@ -1,5 +1,5 @@
-#ifndef _DEVICE_CONFIGURATION_MAP_H_
-#define _DEVICE_CONFIGURATION_MAP_H_
+#ifndef _XBL_HLOS_HOB_H_
+#define _XBL_HLOS_HOB_H_
 
 typedef enum {
   PLATFORM_SUBTYPE_UNKNOWN                = 0x0,
@@ -84,4 +84,4 @@ typedef struct XBL_HLOS_HOB
 
 #pragma pack()
 
-#endif
+#endif /* _XBL_HLOS_HOB_H_ */
