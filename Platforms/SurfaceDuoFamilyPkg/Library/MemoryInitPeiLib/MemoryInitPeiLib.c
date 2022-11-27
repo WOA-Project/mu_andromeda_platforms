@@ -44,8 +44,10 @@ VOID InitMmu(IN ARM_MEMORY_REGION_DESCRIPTOR *MemoryTable)
 STATIC
 VOID AddHob(PARM_MEMORY_REGION_DESCRIPTOR_EX Desc)
 {
-  BuildResourceDescriptorHob(
-      Desc->ResourceType, Desc->ResourceAttribute, Desc->Address, Desc->Length);
+  if (Desc->HobOption != AllocOnly) {
+    BuildResourceDescriptorHob(
+        Desc->ResourceType, Desc->ResourceAttribute, Desc->Address, Desc->Length);
+  }
 
   if (Desc->ResourceType == EFI_RESOURCE_SYSTEM_MEMORY ||
       Desc->MemoryType == EfiRuntimeServicesData)
@@ -88,11 +90,12 @@ MemoryPeim(IN EFI_PHYSICAL_ADDRESS UefiMemoryBase, IN UINT64 UefiMemorySize)
   while (MemoryDescriptorEx->Length != 0) {
     switch (MemoryDescriptorEx->HobOption) {
     case AddMem:
-    case AddDev:
     case HobOnlyNoCacheSetting:
+    case AllocOnly:
       AddHob(MemoryDescriptorEx);
       break;
     case NoHob:
+    case AddDev:
     default:
       goto update;
     }
