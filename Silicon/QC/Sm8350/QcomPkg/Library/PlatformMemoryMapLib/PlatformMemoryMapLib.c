@@ -104,7 +104,7 @@ static ARM_MEMORY_REGION_DESCRIPTOR_EX gDeviceMemoryDescriptorEVEx[] = {
     /* Terminator for MMU */
     {"Terminator", 0, 0, 0, 0, 0, 0, 0}};
 
-// Platform Memory Map for Device Validation devices
+// Platform Memory Map for Design Validation devices
 static ARM_MEMORY_REGION_DESCRIPTOR_EX gDeviceMemoryDescriptorDVEx[] = {
     /* Name               Address     Length      HobOption        ResourceAttribute    ArmAttributes
                                                           ResourceType          MemoryType */
