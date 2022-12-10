@@ -56,7 +56,6 @@
   # Zeta/BOOT.MXF.1.0-00893-LAHAINA-1/QcomPkg/Drivers/ClockDxe/ClockDxe.inf
   # Zeta/BOOT.MXF.1.0-00893-LAHAINA-1/QcomPkg/Drivers/CPRDxe/CPRDxe.inf
   # Zeta/BOOT.MXF.1.0-00893-LAHAINA-1/QcomPkg/Drivers/DisplayDxe/DisplayDxe.inf
-  # Zeta/BOOT.MXF.1.0-00893-LAHAINA-1/QcomPkg/Drivers/EnvDxe/EnvDxe.inf
   # Zeta/BOOT.MXF.1.0-00893-LAHAINA-1/QcomPkg/Drivers/FeatureEnablerDxe/FeatureEnablerDxe.inf
   # Zeta/BOOT.MXF.1.0-00893-LAHAINA-1/QcomPkg/Drivers/MinidumpTADxe/MinidumpTADxe.inf
   # Zeta/BOOT.MXF.1.0-00893-LAHAINA-1/QcomPkg/Drivers/PmicDxe/PmicDxeLa.inf
@@ -101,6 +100,7 @@
   Zeta/BOOT.MXF.1.0-00893-LAHAINA-1/QcomPkg/Drivers/DALSYSDxe/DALSYSDxe.inf
   Zeta/BOOT.MXF.1.0-00893-LAHAINA-1/QcomPkg/Drivers/DDRInfoDxe/DDRInfoDxe.inf
   Zeta/BOOT.MXF.1.0-00893-LAHAINA-1/QcomPkg/Drivers/EmbeddedMonotonicCounter/EmbeddedMonotonicCounter.inf
+  Zeta/BOOT.MXF.1.0-00893-LAHAINA-1/QcomPkg/Drivers/EnvDxe/EnvDxe.inf
   Zeta/BOOT.MXF.1.0-00893-LAHAINA-1/QcomPkg/Drivers/FontDxe/FontDxe.inf
   Zeta/BOOT.MXF.1.0-00893-LAHAINA-1/QcomPkg/Drivers/FvUtilsDxe/FvUtilsDxe.inf
   Zeta/BOOT.MXF.1.0-00893-LAHAINA-1/QcomPkg/Drivers/GLinkDxe/GLinkDxe.inf
