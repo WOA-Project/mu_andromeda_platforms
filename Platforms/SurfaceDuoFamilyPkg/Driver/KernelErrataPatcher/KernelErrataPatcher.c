@@ -143,6 +143,8 @@ KernelErrataPatcherExitBootServices(
 
   if (loaderBlock == NULL ||
       ((EFI_PHYSICAL_ADDRESS)loaderBlock & 0xFFFFFFF000000000) == 0) {
+    FirmwarePrint(
+        L"Failed to find OslLoaderBlock! loaderBlock -> 0x%p\n", loaderBlock);
     loaderBlock = loaderBlockX20;
   }
 
@@ -151,6 +153,7 @@ KernelErrataPatcherExitBootServices(
     FirmwarePrint(
         L"Failed to find OslLoaderBlock! loaderBlock -> 0x%p\n", loaderBlock);
     goto exit;
+    loaderBlock = loaderBlockX19;
   }
 
   EFI_PHYSICAL_ADDRESS PatternMatch = FindPattern(
