@@ -1,48 +1,57 @@
+#/** @file
+#
+#  (C) Copyright 2015 Hewlett-Packard Development Company, L.P.<BR>
+#  Copyright (c) 2011-2017, ARM Ltd. All rights reserved.<BR>
+#  Copyright (c) 2020, Arm Limited. All rights reserved.<BR>
+#
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
+#
+#**/
+
 [Defines]
   INF_VERSION                    = 0x00010005
-  BASE_NAME                      = Sec
-  FILE_GUID                      = 8AF09F13-44C5-96EC-1437-DD899CB5EE5D
+  BASE_NAME                      = ArmPlatformPrePiUniCore
+  FILE_GUID                      = 3e401783-cc94-4fcd-97bc-bd35ac369d2f
   MODULE_TYPE                    = SEC
   VERSION_STRING                 = 1.0
 
-[Sources.common]
+[Sources]
+  PrePi.h
   PrePi.c
   InitializationUtils.c
   LinuxUtils.c
 
-[Sources.AARCH64]
+[Sources.AArch64]
   AArch64/ModuleEntryPoint.S    | GCC
 
 [BuildOptions.AARCH64]
   GCC:*_*_*_CC_FLAGS = -Werror -Wno-error=unused-function
 
 [Packages]
-  ArmPkg/ArmPkg.dec
   MdePkg/MdePkg.dec
   MdeModulePkg/MdeModulePkg.dec
   EmbeddedPkg/EmbeddedPkg.dec
+  ArmPkg/ArmPkg.dec
   SurfaceDuoFamilyPkg/SurfaceDuoFamilyPkg.dec
 
 [LibraryClasses]
-  ArmLib
   BaseLib
   CacheMaintenanceLib
   DebugLib
-  ExtractGuidedSectionLib
-  HobLib
+  ArmLib
   IoLib
+  ExtractGuidedSectionLib
   LzmaDecompressLib
-  MemoryAllocationLib
-  MemoryInitPeiLib
-  PlatformPeiLib
-  PlatformPrePiLib
-  PrePiHobListPointerLib
   PrePiLib
+  MemoryAllocationLib
+  HobLib
+  PrePiHobListPointerLib
+  PlatformPeiLib
+  MemoryInitPeiLib
+  PlatformPrePiLib
   MemoryMapHelperLib
 
 [Guids]
-  gEfiSystemNvDataFvGuid
-  gEfiVariableGuid
   gEfiFirmwarePerformanceGuid
 
 [FeaturePcd]
@@ -52,15 +61,19 @@
   gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVersionString
 
 [FixedPcd]
-  gArmTokenSpaceGuid.PcdCpuVectorBaseAddress
   gArmTokenSpaceGuid.PcdFdBaseAddress
   gArmTokenSpaceGuid.PcdFdSize
+
+  gEmbeddedTokenSpaceGuid.PcdPrePiCpuIoSize
+
+  gArmTokenSpaceGuid.PcdCpuVectorBaseAddress
   gArmTokenSpaceGuid.PcdGicRedistributorsBase
-  gArmTokenSpaceGuid.PcdSystemMemoryBase
-  gArmTokenSpaceGuid.PcdSystemMemorySize
   gEmbeddedTokenSpaceGuid.PcdPrePiStackBase
   gEmbeddedTokenSpaceGuid.PcdPrePiStackSize
-  gEmbeddedTokenSpaceGuid.PcdPrePiCpuIoSize
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferWidth
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferHeight
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferPixelBpp
+
+[Pcd]
+  gArmTokenSpaceGuid.PcdSystemMemoryBase
+  gArmTokenSpaceGuid.PcdSystemMemorySize
