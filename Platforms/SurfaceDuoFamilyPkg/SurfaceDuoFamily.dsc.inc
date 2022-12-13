@@ -364,7 +364,7 @@
 
 [Components.common]
   # PrePI
-  SurfaceDuoFamilyPkg/PrePi/PrePi.inf {
+  SurfaceDuoFamilyPkg/PrePi/PeiUniCore.inf {
     <LibraryClasses>
     !if $(USE_SCREEN_FOR_SERIAL_OUTPUT) == 1
     !if $(USE_MEMORY_FOR_SERIAL_OUTPUT) == 1

@@ -205,7 +205,7 @@ READ_STATUS        = TRUE
 READ_LOCK_CAP      = TRUE
 READ_LOCK_STATUS   = TRUE
 
-  INF SurfaceDuoFamilyPkg/PrePi/PrePi.inf
+  INF SurfaceDuoFamilyPkg/PrePi/PeiUniCore.inf
 
   FILE FREEFORM = dde58710-41cd-4306-dbfb-3fa90bb1d2dd {
     SECTION UI = "uefiplat.cfg"
