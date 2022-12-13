@@ -240,7 +240,7 @@
   VariableFlashInfoLib|MdeModulePkg/Library/BaseVariableFlashInfoLib/BaseVariableFlashInfoLib.inf
   PlatformPKProtectionLib|SecurityPkg/Library/PlatformPKProtectionLibVarPolicy/PlatformPKProtectionLibVarPolicy.inf
 
-  MemoryInitPeiLib|SurfaceDuoFamilyPkg/Library/MemoryInitPeiLib/PeiMemoryAllocationLib.inf
+  MemoryInitPeiLib|SurfaceDuoFamilyPkg/MemoryInitPei/MemoryInitPeiLib.inf
   MemoryMapHelperLib|SurfaceDuoFamilyPkg/Library/MemoryMapHelperLib/MemoryMapHelperLib.inf
 
   BaseCryptLib|CryptoPkg/Library/BaseCryptLib/BaseCryptLib.inf

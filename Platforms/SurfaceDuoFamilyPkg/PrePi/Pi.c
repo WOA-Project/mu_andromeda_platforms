@@ -8,7 +8,6 @@
 #include <Library/PrePiHobListPointerLib.h>
 #include <Library/CacheMaintenanceLib.h>
 #include <Library/MemoryMapHelperLib.h>
-#include <Library/PlatformPrePiLib.h>
 
 #include <Ppi/GuidedSectionExtraction.h>
 
@@ -126,9 +125,6 @@ VOID PrePiMain()
 VOID CEntryPoint()
 {
   EarlyInitialization();
-
-  // Do platform specific initialization here
-  PlatformInitialize();
 
   // Goto primary Main.
   PrePiMain();

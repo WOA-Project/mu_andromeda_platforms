@@ -16,28 +16,26 @@
 #include <Library/PcdLib.h>
 #include <Library/PlatformMemoryMapLib.h>
 
-extern UINT64 mSystemMemoryEnd;
-
-VOID BuildMemoryTypeInformationHob(VOID);
-
+VOID
+BuildMemoryTypeInformationHob (
+  VOID
+  );
 
 STATIC
-VOID InitMmu(IN ARM_MEMORY_REGION_DESCRIPTOR *MemoryTable)
+VOID
+InitMmu (
+  IN ARM_MEMORY_REGION_DESCRIPTOR  *MemoryTable
+  )
 {
+  VOID           *TranslationTableBase;
+  UINTN          TranslationTableSize;
+  RETURN_STATUS  Status;
 
-  VOID *        TranslationTableBase;
-  UINTN         TranslationTableSize;
-  RETURN_STATUS Status;
-
-  // Note: Because we called PeiServicesInstallPeiMemory() before
-  // to call InitMmu() the MMU Page Table resides in
-  // RAM (even at the top of DRAM as it is the first permanent memory
-  // allocation)
-  Status = ArmConfigureMmu(
-      MemoryTable, &TranslationTableBase, &TranslationTableSize);
-
-  if (EFI_ERROR(Status)) {
-    DEBUG((EFI_D_ERROR, "Error: Failed to enable MMU: %r\n", Status));
+  // Note: Because we called PeiServicesInstallPeiMemory() before to call InitMmu() the MMU Page Table resides in
+  //      DRAM (even at the top of DRAM as it is the first permanent memory allocation)
+  Status = ArmConfigureMmu (MemoryTable, &TranslationTableBase, &TranslationTableSize);
+  if (EFI_ERROR (Status)) {
+    DEBUG ((DEBUG_ERROR, "Error: Failed to enable MMU\n"));
   }
 }
 
@@ -74,7 +72,10 @@ Returns:
 --*/
 EFI_STATUS
 EFIAPI
-MemoryPeim(IN EFI_PHYSICAL_ADDRESS UefiMemoryBase, IN UINT64 UefiMemorySize)
+MemoryPeim (
+  IN EFI_PHYSICAL_ADDRESS  UefiMemoryBase,
+  IN UINT64                UefiMemorySize
+  )
 {
 
   PARM_MEMORY_REGION_DESCRIPTOR_EX MemoryDescriptorEx =
@@ -84,7 +85,7 @@ MemoryPeim(IN EFI_PHYSICAL_ADDRESS UefiMemoryBase, IN UINT64 UefiMemorySize)
   UINTN Index = 0;
 
   // Ensure PcdSystemMemorySize has been set
-  ASSERT(PcdGet64(PcdSystemMemorySize) != 0);
+  ASSERT (PcdGet64 (PcdSystemMemorySize) != 0);
 
   // Run through each memory descriptor
   while (MemoryDescriptorEx->Length != 0) {
@@ -125,13 +126,11 @@ MemoryPeim(IN EFI_PHYSICAL_ADDRESS UefiMemoryBase, IN UINT64 UefiMemorySize)
   MemoryDescriptor[Index].Attributes   = 0;
 
   // Build Memory Allocation Hob
-  DEBUG((EFI_D_INFO, "Configure MMU In \n"));
-  InitMmu(MemoryDescriptor);
-  DEBUG((EFI_D_INFO, "Configure MMU Out \n"));
+  InitMmu (MemoryTable);
 
-  if (FeaturePcdGet(PcdPrePiProduceMemoryTypeInformationHob)) {
+  if (FeaturePcdGet (PcdPrePiProduceMemoryTypeInformationHob)) {
     // Optional feature that helps prevent EFI memory map fragmentation.
-    BuildMemoryTypeInformationHob();
+    BuildMemoryTypeInformationHob ();
   }
 
   return EFI_SUCCESS;

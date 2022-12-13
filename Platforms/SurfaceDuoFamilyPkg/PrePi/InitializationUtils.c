@@ -61,4 +61,7 @@ VOID EarlyInitialization(VOID)
   MmioWrite32(
       GICR_WAKER_CURRENT_CPU,
       (MmioRead32(GICR_WAKER_CURRENT_CPU) & ~GIC_WAKER_PROCESSORSLEEP));
+
+  // Do platform specific initialization here
+  PlatformInitialize();
 }
