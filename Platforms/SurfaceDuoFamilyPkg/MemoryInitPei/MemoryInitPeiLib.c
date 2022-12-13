@@ -81,7 +81,7 @@ MemoryPeim (
   PARM_MEMORY_REGION_DESCRIPTOR_EX MemoryDescriptorEx =
       GetPlatformMemoryMap();
   ARM_MEMORY_REGION_DESCRIPTOR
-        MemoryDescriptor[MAX_ARM_MEMORY_REGION_DESCRIPTOR_COUNT];
+        MemoryTable[MAX_ARM_MEMORY_REGION_DESCRIPTOR_COUNT];
   UINTN Index = 0;
 
   // Ensure PcdSystemMemorySize has been set
@@ -109,10 +109,10 @@ MemoryPeim (
   update:
     ASSERT(Index < MAX_ARM_MEMORY_REGION_DESCRIPTOR_COUNT);
 
-    MemoryDescriptor[Index].PhysicalBase = MemoryDescriptorEx->Address;
-    MemoryDescriptor[Index].VirtualBase  = MemoryDescriptorEx->Address;
-    MemoryDescriptor[Index].Length       = MemoryDescriptorEx->Length;
-    MemoryDescriptor[Index].Attributes   = MemoryDescriptorEx->ArmAttributes;
+    MemoryTable[Index].PhysicalBase = MemoryDescriptorEx->Address;
+    MemoryTable[Index].VirtualBase  = MemoryDescriptorEx->Address;
+    MemoryTable[Index].Length       = MemoryDescriptorEx->Length;
+    MemoryTable[Index].Attributes   = MemoryDescriptorEx->ArmAttributes;
 
     Index++;
     MemoryDescriptorEx++;
@@ -120,10 +120,10 @@ MemoryPeim (
 
   // Last one (terminator)
   ASSERT(Index < MAX_ARM_MEMORY_REGION_DESCRIPTOR_COUNT);
-  MemoryDescriptor[Index].PhysicalBase = 0;
-  MemoryDescriptor[Index].VirtualBase  = 0;
-  MemoryDescriptor[Index].Length       = 0;
-  MemoryDescriptor[Index].Attributes   = 0;
+  MemoryTable[Index].PhysicalBase = 0;
+  MemoryTable[Index].VirtualBase  = 0;
+  MemoryTable[Index].Length       = 0;
+  MemoryTable[Index].Attributes   = 0;
 
   // Build Memory Allocation Hob
   InitMmu (MemoryTable);
