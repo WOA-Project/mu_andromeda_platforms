@@ -1,4 +1,4 @@
-// Pi.c: Entry point for SEC(Security).
+// PrePi.c: Entry point for SEC(Security).
 
 #include <PiPei.h>
 #include <Pi/PiBootMode.h>
@@ -11,7 +11,7 @@
 
 #include <Ppi/GuidedSectionExtraction.h>
 
-#include "Pi.h"
+#include "PrePi.h"
 #include "InitializationUtils.h"
 
 UINT64  mSystemMemoryEnd = FixedPcdGet64 (PcdSystemMemoryBase) +

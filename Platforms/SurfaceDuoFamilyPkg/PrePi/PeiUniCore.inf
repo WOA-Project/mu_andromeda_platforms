@@ -6,12 +6,12 @@
   VERSION_STRING                 = 1.0
 
 [Sources.common]
-  Pi.c
+  PrePi.c
   InitializationUtils.c
   LinuxUtils.c
 
 [Sources.AARCH64]
-  ModuleEntryPoint.S | GCC
+  AArch64/ModuleEntryPoint.S    | GCC
 
 [BuildOptions.AARCH64]
   GCC:*_*_*_CC_FLAGS = -Werror -Wno-error=unused-function
