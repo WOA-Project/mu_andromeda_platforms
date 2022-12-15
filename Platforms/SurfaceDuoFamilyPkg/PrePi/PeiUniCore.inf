@@ -18,31 +18,34 @@
 [Sources]
   PrePi.h
   PrePi.c
-  InitializationUtils.c
-  LinuxUtils.c
 
 [Sources.AArch64]
+  AArch64/ArchPrePi.c
   AArch64/ModuleEntryPoint.S    | GCC
-
-[BuildOptions.AARCH64]
-  GCC:*_*_*_CC_FLAGS = -Werror -Wno-error=unused-function
 
 [Packages]
   MdePkg/MdePkg.dec
   MdeModulePkg/MdeModulePkg.dec
   EmbeddedPkg/EmbeddedPkg.dec
   ArmPkg/ArmPkg.dec
+  ArmPlatformPkg/ArmPlatformPkg.dec
   SurfaceDuoFamilyPkg/SurfaceDuoFamilyPkg.dec
 
 [LibraryClasses]
   BaseLib
   CacheMaintenanceLib
   DebugLib
+  DebugAgentLib
   ArmLib
   IoLib
+  TimerLib
+  SerialPortLib
   ExtractGuidedSectionLib
   LzmaDecompressLib
+  DebugAgentLib
   PrePiLib
+  ArmPlatformLib
+  ArmPlatformStackLib
   MemoryAllocationLib
   HobLib
   PrePiHobListPointerLib
@@ -51,28 +54,52 @@
   PlatformPrePiLib
   MemoryMapHelperLib
 
+[Ppis]
+  gArmMpCoreInfoPpiGuid
+
 [Guids]
+  gArmMpCoreInfoGuid
   gEfiFirmwarePerformanceGuid
 
 [FeaturePcd]
   gEmbeddedTokenSpaceGuid.PcdPrePiProduceMemoryTypeInformationHob
+  gArmPlatformTokenSpaceGuid.PcdSendSgiToBringUpSecondaryCores
 
 [Pcd]
   gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVersionString
 
 [FixedPcd]
+  gArmTokenSpaceGuid.PcdVFPEnabled
+
   gArmTokenSpaceGuid.PcdFdBaseAddress
   gArmTokenSpaceGuid.PcdFdSize
 
+  gArmTokenSpaceGuid.PcdFvBaseAddress
+  gArmTokenSpaceGuid.PcdFvSize
+
+  gArmPlatformTokenSpaceGuid.PcdCPUCorePrimaryStackSize
+  gArmPlatformTokenSpaceGuid.PcdCPUCoreSecondaryStackSize
+
+  gArmPlatformTokenSpaceGuid.PcdSystemMemoryUefiRegionSize
+
+  gArmPlatformTokenSpaceGuid.PcdCoreCount
+
   gEmbeddedTokenSpaceGuid.PcdPrePiCpuIoSize
 
+  gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiACPIReclaimMemory
+  gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiACPIMemoryNVS
+  gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiReservedMemoryType
+  gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiRuntimeServicesData
+  gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiRuntimeServicesCode
+  gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiBootServicesCode
+  gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiBootServicesData
+  gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiLoaderCode
+  gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiLoaderData
+
   gArmTokenSpaceGuid.PcdCpuVectorBaseAddress
-  gArmTokenSpaceGuid.PcdGicRedistributorsBase
+
   gEmbeddedTokenSpaceGuid.PcdPrePiStackBase
   gEmbeddedTokenSpaceGuid.PcdPrePiStackSize
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferWidth
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferHeight
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferPixelBpp
 
 [Pcd]
   gArmTokenSpaceGuid.PcdSystemMemoryBase
