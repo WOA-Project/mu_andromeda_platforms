@@ -7,6 +7,9 @@
 
 #include <AsmMacroIoLibV8.h>
 
+.text
+.align 3
+
 .set CTRL_SPAN_BIT, (1 << 23)
 
 .global _StackBase
@@ -112,5 +115,6 @@ _PrepareArguments:
   //    x2 = StacksBase
   blr   x4
 
+.align 3
 _NeverReturn:
   b _NeverReturn

@@ -190,10 +190,7 @@ CEntryPoint ()
 {
   UINT64  StartTimeStamp;
   EFI_STATUS Status;
-  ARM_MEMORY_REGION_DESCRIPTOR_EX DxeHeap;
-
-  Status = LocateMemoryMapAreaByName("DXE Heap", &DxeHeap);
-  ASSERT_EFI_ERROR (Status);
+  ARM_MEMORY_REGION_DESCRIPTOR_EX UefiFd;
 
   // Initialize the platform specific controllers
   ArmPlatformInitialize (0);
@@ -222,9 +219,12 @@ CEntryPoint ()
     }
   }
 
+  Status = LocateMemoryMapAreaByName("UEFI FD", &UefiFd);
+  ASSERT_EFI_ERROR (Status);
+
   InvalidateDataCacheRange (
-    (VOID *)DxeHeap.Address,
-    DxeHeap.Length
+    (VOID *)UefiFd.Address,
+    UefiFd.Length
     );
 
   // Goto primary Main.

@@ -8,11 +8,6 @@
 #include <AsmMacroIoLibV8.h>
 #include <Library/ArmLib.h>
 
-ASM_FUNC(ArmPlatformPeiBootAction)
-  /* Continue to linux if allowed */
-  bl ASM_PFX(ContinueToLinuxIfAllowed)
-  ret
-
 //UINTN
 //ArmPlatformGetCorePosition (
 //  IN UINTN MpId
