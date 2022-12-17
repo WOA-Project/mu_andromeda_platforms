@@ -96,16 +96,6 @@ ARM_CORE_INFO  mArmPlatformMpCoreInfoTable[] = {
   }
 };
 
-// This function should be better located into TimerLib implementation
-RETURN_STATUS
-EFIAPI
-TimerConstructor (
-  VOID
-  )
-{
-  return EFI_SUCCESS;
-}
-
 /**
   Return the current Boot Mode
 

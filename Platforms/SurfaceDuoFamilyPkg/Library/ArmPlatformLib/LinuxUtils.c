@@ -1,13 +1,6 @@
-#include <Library/ArmLib.h>
 #include <Library/BaseLib.h>
-#include <Library/BaseMemoryLib.h>
 #include <Library/DebugLib.h>
-#include <Library/HobLib.h>
-#include <Library/IoLib.h>
-#include <Library/MemoryAllocationLib.h>
 #include <Library/PcdLib.h>
-#include <Library/PrintLib.h>
-#include <Library/SerialPortLib.h>
 
 #include <Library/MemoryMapHelperLib.h>
 #include <Library/PlatformPrePiLib.h>
@@ -16,14 +9,14 @@
 
 BOOLEAN IsLinuxAvailable(IN VOID *KernelLoadAddress)
 {
-  VOID *LinuxKernelAddr = KernelLoadAddress + PcdGet32(PcdFdSize);
+  VOID *LinuxKernelAddr = KernelLoadAddress + FixedPcdGet32(PcdFdSize);
   UINT32 *LinuxKernelMagic = (UINT32*)(LinuxKernelAddr + LINUX_KERNEL_ARCH_MAGIC_OFFSET);
   return *LinuxKernelMagic == LINUX_KERNEL_AARCH64_MAGIC;
 }
 
 VOID BootLinux(IN VOID *DeviceTreeLoadAddress, IN VOID *KernelLoadAddress)
 {
-  VOID *LinuxKernelAddr = KernelLoadAddress + PcdGet32(PcdFdSize);
+  VOID *LinuxKernelAddr = KernelLoadAddress + FixedPcdGet32(PcdFdSize);
   LINUX_KERNEL LinuxKernel = (LINUX_KERNEL) LinuxKernelAddr;
 
   DEBUG(
@@ -58,4 +51,9 @@ VOID ContinueToLinuxIfAllowed(IN VOID *DeviceTreeLoadAddress, IN VOID *KernelLoa
       BootLinux(DeviceTreeLoadAddress, KernelLoadAddress);
     }
   }
+}
+
+VOID ArmPlatformPeiBootAction(IN VOID *DeviceTreeLoadAddress, IN VOID *KernelLoadAddress)
+{
+  ContinueToLinuxIfAllowed(DeviceTreeLoadAddress, KernelLoadAddress);
 }
