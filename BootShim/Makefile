@@ -10,6 +10,6 @@ BootShim.bin: BootShim.elf
 	$(OBJCOPY) -O binary $< $@
 
 BootShim.elf: BootShim.S
-	$(CC) -c $< -o $@
+	$(CC) -c $< -o $@ -DUEFI_BASE=$(UEFI_BASE) -DUEFI_SIZE=$(UEFI_SIZE)
 
 BootShim.S:
