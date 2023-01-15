@@ -21,8 +21,8 @@ SecureBootProvisioningDxeInitialize(
 {
   EFI_STATUS Status;
 
-  // Microsoft Plus 3rd Party
-  Status  = SetSecureBootConfig(1);
+  // Microsoft Plus 3rd Party Plus Windows On Andromeda
+  Status  = SetSecureBootConfig(0);
 
   if (EFI_ERROR (Status)) {
     DEBUG ((DEBUG_ERROR, "%a - Failed to enroll SecureBoot config %r!\n", __FUNCTION__, Status));
