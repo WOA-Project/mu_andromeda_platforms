@@ -192,8 +192,8 @@ EFI_STATUS
 EFIAPI
 LibRtcInitialize(IN EFI_HANDLE ImageHandle, IN EFI_SYSTEM_TABLE *SystemTable)
 {
-  BaseTime.Year  = 2019;
-  BaseTime.Month = 1;
+  BaseTime.Year  = 2023;
+  BaseTime.Month = 2;
 
   return EFI_SUCCESS;
 }
