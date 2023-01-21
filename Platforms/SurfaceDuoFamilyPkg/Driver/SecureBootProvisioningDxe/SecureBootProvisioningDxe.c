@@ -1,5 +1,11 @@
 /** @file SecureBootProvisioningDxe.c
-  SPDX-License-Identifier: BSD-2-Clause-Patent
+
+    This file contains functions for provisioning Secure Boot.
+
+    Copyright (C) DuoWoA authors. All rights reserved.
+    Copyright (C) Microsoft Corporation. All rights reserved.
+    SPDX-License-Identifier: BSD-2-Clause-Patent
+
 **/
 
 #include <Base.h>
@@ -17,85 +23,191 @@
 
 #include "SystemIntegrityPolicyDefaultVars.h"
 
-STATIC EFI_IMAGE_LOAD EfiImageLoad = NULL;
+//
+// Global variables.
+//
+VOID                 *mFileSystemRegistration = NULL;
+STATIC EFI_IMAGE_LOAD EfiImageLoad            = NULL;
 
 EFI_STATUS
 EFIAPI
-TryWritePlatformSiPolicy()
+TryWritePlatformSiPolicy(EFI_HANDLE SfsHandle)
 {
   EFI_STATUS Status = EFI_SUCCESS;
-
-  UINTN       NumHandles = 0;
-  EFI_HANDLE *SfsHandles;
 
   EFI_SIMPLE_FILE_SYSTEM_PROTOCOL *EfiSfsProtocol;
   EFI_FILE_PROTOCOL               *FileProtocol;
   EFI_FILE_PROTOCOL               *PayloadFileProtocol;
 
-  Status = gBS->LocateHandleBuffer(
-      ByProtocol, &gEfiSimpleFileSystemProtocolGuid, NULL, &NumHandles,
-      &SfsHandles);
+  Status = gBS->HandleProtocol(
+      SfsHandle, &gEfiSimpleFileSystemProtocolGuid,
+      (VOID **)&EfiSfsProtocol);
 
   if (EFI_ERROR(Status)) {
-    DEBUG((DEBUG_ERROR, "Fail to locate Simple File System Handles\n"));
+    DEBUG((DEBUG_ERROR, "Failed to invoke HandleProtocol.\n"));
     goto exit;
   }
 
-  for (UINTN index = 0; index < NumHandles; index++) {
-    Status = gBS->HandleProtocol(
-        SfsHandles[index], &gEfiSimpleFileSystemProtocolGuid,
-        (VOID **)&EfiSfsProtocol);
+  Status = EfiSfsProtocol->OpenVolume(EfiSfsProtocol, &FileProtocol);
 
-    if (EFI_ERROR(Status)) {
-      DEBUG((DEBUG_ERROR, "Failed to invoke HandleProtocol.\n"));
-      continue;
-    }
+  if (EFI_ERROR(Status)) {
+    DEBUG((DEBUG_ERROR, "Fail to get file protocol handle\n"));
+    goto exit;
+  }
 
-    Status = EfiSfsProtocol->OpenVolume(EfiSfsProtocol, &FileProtocol);
+  Status = FileProtocol->Open(
+      FileProtocol, &PayloadFileProtocol,
+      L"\\EFI\\Microsoft\\Boot\\bootmgfw.efi", EFI_FILE_MODE_READ,
+      EFI_FILE_READ_ONLY | EFI_FILE_HIDDEN | EFI_FILE_SYSTEM);
 
-    if (EFI_ERROR(Status)) {
-      DEBUG((DEBUG_ERROR, "Fail to get file protocol handle\n"));
-      continue;
-    }
+  if (EFI_ERROR(Status)) {
+    DEBUG((DEBUG_ERROR, "Failed to open bootmgfw.efi: %r\n", Status));
+    goto exit;
+  }
 
-    Status = FileProtocol->Open(
-        FileProtocol, &PayloadFileProtocol,
-        L"\\EFI\\Microsoft\\Boot\\bootmgfw.efi", EFI_FILE_MODE_READ,
-        EFI_FILE_READ_ONLY | EFI_FILE_HIDDEN | EFI_FILE_SYSTEM);
+  Status = PayloadFileProtocol->Close(PayloadFileProtocol);
+  if (EFI_ERROR(Status)) {
+    DEBUG((DEBUG_ERROR, "Failed to close bootmgfw.efi: %r\n", Status));
+  }
 
-    if (EFI_ERROR(Status)) {
-      DEBUG((DEBUG_ERROR, "Failed to open bootmgfw.efi: %r\n", Status));
-      continue;
-    }
+  Status = FileProtocol->Open(
+      FileProtocol, &PayloadFileProtocol,
+      L"\\EFI\\Microsoft\\Boot\\SiPolicy.p7b",
+      EFI_FILE_MODE_READ | EFI_FILE_MODE_WRITE | EFI_FILE_MODE_CREATE, 0);
 
-    Status = PayloadFileProtocol->Close(PayloadFileProtocol);
-    if (EFI_ERROR(Status)) {
-      DEBUG((DEBUG_ERROR, "Failed to close bootmgfw.efi: %r\n", Status));
-    }
+  if (EFI_ERROR(Status)) {
+    DEBUG((DEBUG_ERROR, "Failed to open SiPolicy.p7b: %r\n", Status));
+    goto exit;
+  }
 
-    Status = FileProtocol->Open(
-        FileProtocol, &PayloadFileProtocol,
-        L"\\EFI\\Microsoft\\Boot\\SiPolicy.p7b",
-        EFI_FILE_MODE_READ | EFI_FILE_MODE_WRITE | EFI_FILE_MODE_CREATE, 0);
+  Status = PayloadFileProtocol->Write(
+      PayloadFileProtocol, sizeof(mSiPolicyDefault), mSiPolicyDefault);
+  if (EFI_ERROR(Status)) {
+    DEBUG((DEBUG_ERROR, "Failed to write SiPolicy.p7b: %r\n", Status));
+  }
 
-    if (EFI_ERROR(Status)) {
-      DEBUG((DEBUG_ERROR, "Failed to open SiPolicy.p7b: %r\n", Status));
-      continue;
-    }
-
-    Status = PayloadFileProtocol->Write(
-        PayloadFileProtocol, sizeof(mSiPolicyDefault), mSiPolicyDefault);
-    if (EFI_ERROR(Status)) {
-      DEBUG((DEBUG_ERROR, "Failed to write SiPolicy.p7b: %r\n", Status));
-    }
-
-    Status = PayloadFileProtocol->Close(PayloadFileProtocol);
-    if (EFI_ERROR(Status)) {
-      DEBUG((DEBUG_ERROR, "Failed to close SiPolicy.p7b: %r\n", Status));
-    }
+  Status = PayloadFileProtocol->Close(PayloadFileProtocol);
+  if (EFI_ERROR(Status)) {
+    DEBUG((DEBUG_ERROR, "Failed to close SiPolicy.p7b: %r\n", Status));
   }
 
 exit:
+  return Status;
+}
+
+/**
+  New File System Discovered.
+
+  Register this device as a possible UEFI Log device.
+
+  @param    Event           Not Used.
+  @param    Context         Not Used.
+
+  @retval   none
+
+  This may be called for multiple device arrivals, so the Event is not closed.
+
+**/
+VOID
+EFIAPI
+OnFileSystemNotification (
+  IN  EFI_EVENT  Event,
+  IN  VOID       *Context
+  )
+{
+  UINTN       HandleCount;
+  EFI_HANDLE  *HandleBuffer;
+  EFI_STATUS  Status;
+
+  DEBUG ((DEBUG_INFO, "%a: Entry...\n", __FUNCTION__));
+
+  for ( ; ;) {
+    //
+    // Get the next handle
+    //
+    Status = gBS->LocateHandleBuffer (
+                    ByRegisterNotify,
+                    NULL,
+                    mFileSystemRegistration,
+                    &HandleCount,
+                    &HandleBuffer
+                    );
+    //
+    // If not found, or any other error, we're done
+    //
+    if (EFI_ERROR (Status)) {
+      break;
+    }
+
+    // Spec says we only get one at a time using ByRegisterNotify
+    ASSERT (HandleCount == 1);
+
+    DEBUG ((DEBUG_INFO, "%a: processing a potential efiesp device on handle %p\n", __FUNCTION__, HandleBuffer[0]));
+
+    TryWritePlatformSiPolicy (HandleBuffer[0]);
+
+    FreePool (HandleBuffer);
+  }
+
+  WriteLogFiles ();
+}
+
+/**
+    ProcessFileSystemRegistration
+
+    This function registers for FileSystemProtocols, and then
+    checks for any existing FileSystemProtocols, and adds them
+    to the LOG_DEVICE list.
+
+    @param       VOID
+
+    @retval      EFI_SUCCESS     FileSystem protocol registration successful
+    @retval      error code      Something went wrong.
+
+ **/
+EFI_STATUS
+ProcessFileSystemRegistration (
+  VOID
+  )
+{
+  EFI_EVENT   FileSystemCallBackEvent;
+  EFI_STATUS  Status;
+
+  //
+  // Always register for file system notifications.  They may arrive at any time.
+  //
+  DEBUG ((DEBUG_INFO, "Registering for file systems notifications\n"));
+  Status = gBS->CreateEvent (
+                  EVT_NOTIFY_SIGNAL,
+                  TPL_CALLBACK,
+                  OnFileSystemNotification,
+                  NULL,
+                  &FileSystemCallBackEvent
+                  );
+
+  if (EFI_ERROR (Status)) {
+    DEBUG ((DEBUG_ERROR, "%a: failed to create callback event (%r)\n", __FUNCTION__, Status));
+    goto Cleanup;
+  }
+
+  Status = gBS->RegisterProtocolNotify (
+                  &gEfiSimpleFileSystemProtocolGuid,
+                  FileSystemCallBackEvent,
+                  &mFileSystemRegistration
+                  );
+
+  if (EFI_ERROR (Status)) {
+    DEBUG ((DEBUG_ERROR, "%a: failed to register for file system notifications (%r)\n", __FUNCTION__, Status));
+    gBS->CloseEvent (FileSystemCallBackEvent);
+    goto Cleanup;
+  }
+
+  //
+  // Process any existing File System that were present before the registration.
+  //
+  OnFileSystemNotification (FileSystemCallBackEvent, NULL);
+
+Cleanup:
   return Status;
 }
 
@@ -114,10 +226,10 @@ SecureBootProvisioningDxeInitialize(
     goto exit;
   }
 
-  Status =  TryWritePlatformSiPolicy();
+  Status =  ProcessFileSystemRegistration();
 
   if (EFI_ERROR (Status)) {
-    DEBUG ((DEBUG_ERROR, "%a - Failed to write System Integrity Policy %r!\n", __FUNCTION__, Status));
+    DEBUG ((DEBUG_ERROR, "%a - Failed to process file system registration %r!\n", __FUNCTION__, Status));
     goto exit;
   }
 
