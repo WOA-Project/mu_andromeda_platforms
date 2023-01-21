@@ -62,7 +62,7 @@ steps:
 
 # Publish FD (1 target)
 - task: PublishBuildArtifacts@1
-  displayName: 'Publish SM8150 Boot build (Surface Duo 1)'
+  displayName: 'Publish SM8150 FD build (Surface Duo 1)'
   inputs:
     pathtoPublish: ./Build/SurfaceDuo1-AARCH64/DEBUG_CLANG38/FV/SM8150_EFI.fd
     artifactName: SM8150 FD (Surface Duo 1)
@@ -83,7 +83,7 @@ steps:
 
 # Publish FD (1 target)
 - task: PublishBuildArtifacts@1
-  displayName: 'Publish SM8350 Boot build (Surface Duo 2)'
+  displayName: 'Publish SM8350 FD build (Surface Duo 2)'
   inputs:
     pathtoPublish: ./Build/SurfaceDuo2-AARCH64/DEBUG_CLANG38/FV/SM8350_EFI.fd
     artifactName: SM8350 FD (Surface Duo 2)
