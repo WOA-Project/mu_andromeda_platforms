@@ -35,11 +35,14 @@ EFI_STATUS
 EFIAPI
 TryWritePlatformSiPolicy(EFI_HANDLE SfsHandle)
 {
-  EFI_STATUS Status = EFI_SUCCESS;
+  EFI_STATUS Status           = EFI_SUCCESS;
+  UINT64 mSiPolicyDefaultSize = sizeof(mSiPolicyDefault);
 
   EFI_SIMPLE_FILE_SYSTEM_PROTOCOL *EfiSfsProtocol;
   EFI_FILE_PROTOCOL               *FileProtocol;
   EFI_FILE_PROTOCOL               *PayloadFileProtocol;
+
+  DEBUG((DEBUG_ERROR, "%a: HandleProtocol gEfiSimpleFileSystemProtocolGuid\n", __FUNCTION__));
 
   Status = gBS->HandleProtocol(
       SfsHandle, &gEfiSimpleFileSystemProtocolGuid,
@@ -50,12 +53,16 @@ TryWritePlatformSiPolicy(EFI_HANDLE SfsHandle)
     goto exit;
   }
 
+  DEBUG((DEBUG_ERROR, "%a: OpenVolume EfiSfsProtocol\n", __FUNCTION__));
+
   Status = EfiSfsProtocol->OpenVolume(EfiSfsProtocol, &FileProtocol);
 
   if (EFI_ERROR(Status)) {
     DEBUG((DEBUG_ERROR, "Fail to get file protocol handle\n"));
     goto exit;
   }
+
+  DEBUG((DEBUG_ERROR, "%a: FileProtocol \\EFI\\Microsoft\\Boot\\bootmgfw.efi\n", __FUNCTION__));
 
   Status = FileProtocol->Open(
       FileProtocol, &PayloadFileProtocol,
@@ -67,10 +74,14 @@ TryWritePlatformSiPolicy(EFI_HANDLE SfsHandle)
     goto exit;
   }
 
+  DEBUG((DEBUG_ERROR, "%a: Close \\EFI\\Microsoft\\Boot\\bootmgfw.efi\n", __FUNCTION__));
+
   Status = PayloadFileProtocol->Close(PayloadFileProtocol);
   if (EFI_ERROR(Status)) {
     DEBUG((DEBUG_ERROR, "Failed to close bootmgfw.efi: %r\n", Status));
   }
+
+  DEBUG((DEBUG_ERROR, "%a: Open \\EFI\\Microsoft\\Boot\\SiPolicy.p7b\n", __FUNCTION__));
 
   Status = FileProtocol->Open(
       FileProtocol, &PayloadFileProtocol,
@@ -82,11 +93,15 @@ TryWritePlatformSiPolicy(EFI_HANDLE SfsHandle)
     goto exit;
   }
 
+  DEBUG((DEBUG_ERROR, "%a: Write \\EFI\\Microsoft\\Boot\\SiPolicy.p7b\n", __FUNCTION__));
+
   Status = PayloadFileProtocol->Write(
-      PayloadFileProtocol, sizeof(mSiPolicyDefault), mSiPolicyDefault);
+      PayloadFileProtocol, &mSiPolicyDefaultSize, mSiPolicyDefault);
   if (EFI_ERROR(Status)) {
     DEBUG((DEBUG_ERROR, "Failed to write SiPolicy.p7b: %r\n", Status));
   }
+
+  DEBUG((DEBUG_ERROR, "%a: Close \\EFI\\Microsoft\\Boot\\SiPolicy.p7b\n", __FUNCTION__));
 
   Status = PayloadFileProtocol->Close(PayloadFileProtocol);
   if (EFI_ERROR(Status)) {
