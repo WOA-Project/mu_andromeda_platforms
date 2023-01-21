@@ -86,6 +86,20 @@ TryWritePlatformSiPolicy(EFI_HANDLE SfsHandle)
   Status = FileProtocol->Open(
       FileProtocol, &PayloadFileProtocol,
       L"\\EFI\\Microsoft\\Boot\\SiPolicy.p7b",
+      EFI_FILE_MODE_READ | EFI_FILE_MODE_WRITE, 0);
+
+  if (EFI_ERROR(Status) && Status != EFI_NOT_FOUND) {
+    DEBUG((DEBUG_ERROR, "Failed to open SiPolicy.p7b: %r\n", Status));
+    goto exit;
+  }
+
+  if (Status != EFI_NOT_FOUND) {
+    PayloadFileProtocol->Delete(PayloadFileProtocol);
+  }
+
+  Status = FileProtocol->Open(
+      FileProtocol, &PayloadFileProtocol,
+      L"\\EFI\\Microsoft\\Boot\\SiPolicy.p7b",
       EFI_FILE_MODE_READ | EFI_FILE_MODE_WRITE | EFI_FILE_MODE_CREATE, 0);
 
   if (EFI_ERROR(Status)) {
