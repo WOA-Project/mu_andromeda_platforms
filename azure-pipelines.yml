@@ -60,6 +60,13 @@ steps:
     pathtoPublish: ./ImageResources/Epsilon/boot.img
     artifactName: SM8150 Boot (Surface Duo 1)
 
+# Publish FD (1 target)
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish SM8150 Boot build (Surface Duo 1)'
+  inputs:
+    pathtoPublish: ./Build/SurfaceDuo1-AARCH64/DEBUG_CLANG38/FV/SM8150_EFI.fd
+    artifactName: SM8150 FD (Surface Duo 1)
+
 # Publish UEFI (1 target)
 - task: PublishBuildArtifacts@1
   displayName: 'Publish SM8350 UEFI build (Surface Duo 2)'
@@ -73,3 +80,10 @@ steps:
   inputs:
     pathtoPublish: ./ImageResources/Zeta/boot.img
     artifactName: SM8350 Boot (Surface Duo 2)
+
+# Publish FD (1 target)
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish SM8350 Boot build (Surface Duo 2)'
+  inputs:
+    pathtoPublish: ./Build/SurfaceDuo2-AARCH64/DEBUG_CLANG38/FV/SM8350_EFI.fd
+    artifactName: SM8350 FD (Surface Duo 2)
