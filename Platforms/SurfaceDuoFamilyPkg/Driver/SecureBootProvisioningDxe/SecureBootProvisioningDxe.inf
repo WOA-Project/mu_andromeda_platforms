@@ -29,6 +29,7 @@
   CompilerIntrinsicsLib
   MuSecureBootKeySelectorLib
   UefiRuntimeServicesTableLib
+  MemoryAllocationLib
 
 [Protocols]
   gEfiSimpleFileSystemProtocolGuid ## CONSUMES

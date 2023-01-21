@@ -18,6 +18,8 @@
 #include <Library/UefiDriverEntryPoint.h>
 #include <Library/UefiLib.h>
 #include <Library/UefiRuntimeServicesTableLib.h>
+#include <Library/BaseMemoryLib.h>
+#include <Library/MemoryAllocationLib.h>
 
 #include <Library/MuSecureBootKeySelectorLib.h>
 
@@ -148,8 +150,6 @@ OnFileSystemNotification (
 
     FreePool (HandleBuffer);
   }
-
-  WriteLogFiles ();
 }
 
 /**
