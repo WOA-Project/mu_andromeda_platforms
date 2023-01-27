@@ -165,7 +165,7 @@ class Settings(CiSetupSettingsManager, CiBuildSettingsManager, UpdateSettingsMan
 
     def GetPackagesPath(self):
         ''' Return a list of workspace relative paths that should be mapped as edk2 PackagesPath '''
-        result = ["Binaries", "Platforms", "MU_BASECORE", "Common/MU", "Common/MU_TIANO", "Common/MU_OEM_SAMPLE", "Silicon/ARM/TIANO", "Silicon/QC/Sm8150", "Silicon/QC/Sm8350"]
+        result = ["Binaries", "Platforms", "MU_BASECORE", "Common/MU", "Common/MU_TIANO", "Common/MU_OEM_SAMPLE", "Common/MU_FEATURE_DFCI", "Silicon/Arm/MU_TIANO", "Silicon/QC/Sm8150", "Silicon/QC/Sm8350"]
         return result
 
     def GetWorkspaceRoot(self):

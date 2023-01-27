@@ -34,7 +34,7 @@ class CommonPlatform():
     TargetsSupported = ("DEBUG", "RELEASE", "NOOPT")
     Scopes = ('SurfaceDuo1', 'edk2-build', 'cibuild')
     WorkspaceRoot = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-    PackagesPath = ("Binaries", "Platforms", "MU_BASECORE", "Common/MU", "Common/MU_TIANO", "Common/MU_OEM_SAMPLE", "Silicon/ARM/TIANO", "Silicon/QC/Sm8150")
+    PackagesPath = ("Binaries", "Platforms", "MU_BASECORE", "Common/MU", "Common/MU_TIANO", "Common/MU_OEM_SAMPLE", "Common/MU_FEATURE_DFCI", "Silicon/Arm/MU_TIANO", "Silicon/QC/Sm8150")
 
 
     # ####################################################################################### #
