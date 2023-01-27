@@ -16,5 +16,6 @@ FILE FREEFORM = 7E374E25-8E01-4FEE-87F2-390C23C606CD {
 	SECTION RAW = SurfaceDuoACPI/8350/builtin/SPCR.aml
 	SECTION RAW = SurfaceDuoACPI/8350/builtin/TPM2.aml
 # 	SECTION RAW = SurfaceDuoACPI/8350/builtin/XSDT.aml
+ 	SECTION RAW = SurfaceDuoACPI/common/builtin/SSDT.aml
 	SECTION UI = "AcpiTables"
 }
