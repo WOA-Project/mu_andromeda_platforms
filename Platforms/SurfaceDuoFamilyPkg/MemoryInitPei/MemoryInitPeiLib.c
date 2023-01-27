@@ -91,12 +91,12 @@ MemoryPeim (
   while (MemoryDescriptorEx->Length != 0) {
     switch (MemoryDescriptorEx->HobOption) {
     case AddMem:
-    case AddDev:
     case HobOnlyNoCacheSetting:
     case AllocOnly:
       AddHob(MemoryDescriptorEx);
       break;
     case NoHob:
+    case AddDev:
     default:
       goto update;
     }
