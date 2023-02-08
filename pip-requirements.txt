@@ -17,4 +17,4 @@ edk2-pytool-extensions~=0.21.2
 edk2-basetools==0.1.39 # MU_CHANGE
 antlr4-python3-runtime==4.11.1
 regex
-pefile~=2022.5.30
+pefile~=2023.2.7
