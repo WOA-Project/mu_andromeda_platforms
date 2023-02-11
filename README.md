@@ -30,7 +30,7 @@ It is not going to work on any other device even if they use the same SoC as is.
   - git-core, git
   - build-essential
   - PowerShell Core 7
-  - clang38 (or higher), llvm, ggc-aarch64-linux-gnu
+  - clang38 (or higher), llvm, gcc-aarch64-linux-gnu
 - Exported CLANG38_BIN environment variable pointing to LLVM 10 binary folder
 - Exported CLANG38_AARCH64_PREFIX variable equalling to aarch64-linux-gnu-
 
