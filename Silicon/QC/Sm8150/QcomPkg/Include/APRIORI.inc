@@ -175,12 +175,6 @@ APRIORI DXE {
     INF MdeModulePkg/Universal/Console/ConPlatformDxe/ConPlatformDxe.inf
     INF MdeModulePkg/Universal/Console/ConSplitterDxe/ConSplitterDxe.inf
 
-    # INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/Sm8150FamilyPkg/Override/MdeModulePkg/Universal/Console/GraphicsConsoleDxe/GraphicsConsoleDxe.inf
-
-    FILE DRIVER = cccb0c28-4b24-11d5-9a5a-0090273fc14d {
-            SECTION PE32 = Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/Sm8150FamilyPkg/Override/MdeModulePkg/Universal/Console/GraphicsConsoleDxe/GraphicsConsoleDxe.efi
-            SECTION UI = "GraphicsConsoleDxe"
-    }
-
+    INF MdeModulePkg/Universal/Console/GraphicsConsoleDxe/GraphicsConsoleDxe.inf
     INF MdeModulePkg/Universal/CapsuleRuntimeDxe/CapsuleRuntimeDxe.inf
 }

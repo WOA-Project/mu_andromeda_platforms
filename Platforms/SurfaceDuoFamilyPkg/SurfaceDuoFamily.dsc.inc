@@ -42,7 +42,7 @@
 [PcdsFixedAtBuild.common]
   gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVendor|L"DuoWoA authors"
   gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVersionString|L"2302.35"
-  gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareRevision|0x00170A02
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareRevision|0x01230235
   gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultOemId|"QCOM  "
   gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultOemTableId|0x324B44454D4F4351
   gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultCreatorId|0x4D4F4351
@@ -115,8 +115,8 @@
   # 4042708A-0F2D-4823-AC60-0D77B3111889
   gEfiMdeModulePkgTokenSpaceGuid.PcdBootManagerMenuFile|{ 0x8A, 0x70, 0x42, 0x40, 0x2D, 0x0F, 0x23, 0x48, 0xAC, 0x60, 0x0D, 0x77, 0xB3, 0x11, 0x18, 0x89 }
 
-  gOemPkgTokenSpaceGuid.PcdUefiVersionNumber|0x1170223 # 1.23.02.35
-  gOemPkgTokenSpaceGuid.PcdUefiBuildDate|0x170A02 # 02/10/2023
+  gOemPkgTokenSpaceGuid.PcdUefiVersionNumber|0x1230235 # 1.23.02.35
+  gOemPkgTokenSpaceGuid.PcdUefiBuildDate|0x20231002 # 02/10/2023
 
   gEfiMdeModulePkgTokenSpaceGuid.PcdMaxVariableSize|0x2000
 
@@ -284,6 +284,9 @@
 
   TlsLib|CryptoPkg/Library/TlsLib/TlsLib.inf
 
+  MallocLib|SurfaceDuoFamilyPkg/Library/MallocLib/MallocLib.inf
+  LodePngLib|SurfaceDuoFamilyPkg/Library/LodePngLib/LodePngLib.inf
+
 [LibraryClasses.common.SEC]
   ArmGicArchLib|ArmPkg/Library/ArmGicArchSecLib/ArmGicArchSecLib.inf
   HobLib|EmbeddedPkg/Library/PrePiHobLib/PrePiHobLib.inf
@@ -441,6 +444,7 @@
   MdeModulePkg/Universal/PrintDxe/PrintDxe.inf
   MdeModulePkg/Universal/Console/ConPlatformDxe/ConPlatformDxe.inf
   MdeModulePkg/Universal/Console/ConSplitterDxe/ConSplitterDxe.inf
+  MdeModulePkg/Universal/Console/GraphicsConsoleDxe/GraphicsConsoleDxe.inf
   MdeModulePkg/Universal/SerialDxe/SerialDxe.inf
   MdeModulePkg/Universal/DevicePathDxe/DevicePathDxe.inf
   MdeModulePkg/Universal/HiiDatabaseDxe/HiiDatabaseDxe.inf

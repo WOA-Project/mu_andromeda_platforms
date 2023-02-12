@@ -166,10 +166,5 @@ APRIORI DXE {
     INF MdeModulePkg/Universal/Console/ConPlatformDxe/ConPlatformDxe.inf
     INF MdeModulePkg/Universal/Console/ConSplitterDxe/ConSplitterDxe.inf
 
-    # INF MdeModulePkg/Universal/Console/GraphicsConsoleDxe/GraphicsConsoleDxe.inf
-
-    FILE DRIVER = cccb0c28-4b24-11d5-9a5a-0090273fc14d {
-            SECTION PE32 = Zeta/BOOT.MXF.1.0-00893-LAHAINA-1/MdeModulePkg/Universal/Console/GraphicsConsoleDxe/GraphicsConsoleDxe.efi
-            SECTION UI = "GraphicsConsoleDxe"
-    }
+    INF MdeModulePkg/Universal/Console/GraphicsConsoleDxe/GraphicsConsoleDxe.inf
 }

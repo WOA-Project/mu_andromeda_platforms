@@ -44,6 +44,9 @@
   AcpiPlatformUpdateLib|QcomPkg/Library/AcpiPlatformUpdateLib/AcpiPlatformUpdateLib.inf
   PlatformThemeLib|QcomPkg/Library/PlatformThemeLib/PlatformThemeLib.inf
 
+  PlatformHobLib|QcomPkg/Library/PlatformHobLib/PlatformHobLib.inf
+  ConsoleMsgLib|QcomPkg/Library/ConsoleMsgLib/ConsoleMsgLib.inf
+
 [Components.common]
   # Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/PciHostBridgeDxe/PciHostBridgeDxe.inf
   # Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/UsbBusDxe/UsbBusDxe.inf
@@ -74,7 +77,6 @@
   # Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/VerifiedBootDxe/VerifiedBootDxe.inf
   # Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/Sm8150FamilyPkg/Drivers/ColorbarsDxe/ColorbarsDxe.inf
   # Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/Sm8150FamilyPkg/Drivers/UfsSecurityDxe/UfsSecurityDxe.inf
-  # Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/Sm8150FamilyPkg/Override/MdeModulePkg/Universal/Console/GraphicsConsoleDxe/GraphicsConsoleDxe.inf
   # Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/Sm8150FamilyPkg/Override/MdeModulePkg/Universal/Disk/DiskIoDxe/DiskIoDxe.inf
   # Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/Sm8150FamilyPkg/Override/MdeModulePkg/Universal/Disk/PartitionDxe/PartitionDxe.inf
   # QcomPkg/PatchedBinaries/ColorbarsDxe.inf
@@ -91,7 +93,6 @@
   Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/UsbPwrCtrlDxe/UsbPwrCtrlDxe.inf
   Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/XhciPciEmulationDxe/XhciPciEmulationDxe.inf
   Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/EpsilonPkg/GpioButtonsDxe/GpioButtons.inf
-  Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/MsGraphicsPkg/MsEarlyGraphics/Dxe/MsEarlyGraphics.inf
   Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/MsSurfaceCorePkg/SurfaceTouchHidDxe/SurfaceTouchHidDxe.inf
   Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Application/QcomChargerApp/QcomChargerApp.inf
   Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/AdcDxe/AdcDxe.inf

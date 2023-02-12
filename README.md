@@ -29,7 +29,6 @@ It is not going to work on any other device even if they use the same SoC as is.
   - mono-devel
   - git-core, git
   - build-essential
-  - PowerShell Core 7
   - clang38 (or higher), llvm, gcc-aarch64-linux-gnu
 - Exported CLANG38_BIN environment variable pointing to LLVM 10 binary folder
 - Exported CLANG38_AARCH64_PREFIX variable equalling to aarch64-linux-gnu-
@@ -40,9 +39,6 @@ It is not going to work on any other device even if they use the same SoC as is.
 - Run the following commands in order, with 0 typo, and without copy pasting all of them blindly all at once:
 
 ```
-# Stamp
-./build_releaseinfo.ps1
-
 # Build UEFI
 pip install --upgrade -r pip-requirements.txt
 ./build_uefi_epsilon.sh

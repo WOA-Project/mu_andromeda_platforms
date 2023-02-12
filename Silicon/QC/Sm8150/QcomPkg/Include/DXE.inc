@@ -27,7 +27,6 @@
     # INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/VerifiedBootDxe/VerifiedBootDxe.inf
     # INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/Sm8150FamilyPkg/Drivers/ColorbarsDxe/ColorbarsDxe.inf
     # INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/Sm8150FamilyPkg/Drivers/UfsSecurityDxe/UfsSecurityDxe.inf
-    # INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/Sm8150FamilyPkg/Override/MdeModulePkg/Universal/Console/GraphicsConsoleDxe/GraphicsConsoleDxe.inf
     # INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/Sm8150FamilyPkg/Override/MdeModulePkg/Universal/Disk/DiskIoDxe/DiskIoDxe.inf
     # INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/Sm8150FamilyPkg/Override/MdeModulePkg/Universal/Disk/PartitionDxe/PartitionDxe.inf
     # INF QcomPkg/PatchedBinaries/ColorbarsDxe.inf
@@ -44,7 +43,6 @@
     INF Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/UsbPwrCtrlDxe/UsbPwrCtrlDxe.inf
     INF Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/XhciPciEmulationDxe/XhciPciEmulationDxe.inf
     INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/EpsilonPkg/GpioButtonsDxe/GpioButtons.inf
-    INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/MsGraphicsPkg/MsEarlyGraphics/Dxe/MsEarlyGraphics.inf
     INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/MsSurfaceCorePkg/SurfaceTouchHidDxe/SurfaceTouchHidDxe.inf
     INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Application/QcomChargerApp/QcomChargerApp.inf
     INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/AdcDxe/AdcDxe.inf
@@ -130,11 +128,6 @@
             SECTION UI = "RngDxe"
             SECTION RAW = Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/RNGDxe/RngDxe.raw
             SECTION PE32 = Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/RNGDxe/RngDxe.efi
-    }
-
-    FILE DRIVER = cccb0c28-4b24-11d5-9a5a-0090273fc14d {
-            SECTION PE32 = Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/Sm8150FamilyPkg/Override/MdeModulePkg/Universal/Console/GraphicsConsoleDxe/GraphicsConsoleDxe.efi
-            SECTION UI = "GraphicsConsoleDxe"
     }
 
     FILE DRIVER = B7F50E91-A759-412C-ADE4-DCD03E7F7C28 {

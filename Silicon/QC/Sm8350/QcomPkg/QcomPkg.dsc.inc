@@ -44,6 +44,9 @@
   AcpiPlatformUpdateLib|QcomPkg/Library/AcpiPlatformUpdateLib/AcpiPlatformUpdateLib.inf
   PlatformThemeLib|QcomPkg/Library/PlatformThemeLib/PlatformThemeLib.inf
 
+  PlatformHobLib|QcomPkg/Library/PlatformHobLib/PlatformHobLib.inf
+  ConsoleMsgLib|QcomPkg/Library/ConsoleMsgLib/ConsoleMsgLib.inf
+
 [Components.common]
   # QcomPkg/PatchedBinaries/DisplayDxe.inf
   # Zeta/BOOT.MXF.1.0-00893-LAHAINA-1/MsAbstractPkg/Drivers/MsAbstractLayerDxe/MsAbstractLayer.inf
@@ -77,7 +80,6 @@
   # Zeta/BOOT.MXF.1.0-00893-LAHAINA-1/QcomPkg/Drivers/XhciDxe/XhciDxe.inf
   # Zeta/BOOT.MXF.1.0-00893-LAHAINA-1/Sm8350FamilyPkg/Drivers/UfsSecurityDxe/UfsSecurityDxe.inf
   Arcata/BOOT.MXF.1.1.c1-00018-MAKENA-1.11859.2/ArcataPkg/GpioButtonsDxe/GpioButtons.inf
-  Arcata/BOOT.MXF.1.1.c1-00018-MAKENA-1.11859.2/MsGraphicsPkg/MsEarlyGraphics/Dxe/MsEarlyGraphics.inf
   Arcata/BOOT.MXF.1.1.c1-00018-MAKENA-1.11859.2/MsSurfaceCorePkg/SurfaceTouchHidDxe/SurfaceTouchHidDxeV2.inf
   MdeModulePkg/Universal/Disk/PartitionDxe/PartitionDxe.inf
   QcomPkg/PatchedBinaries/ButtonsDxe.inf

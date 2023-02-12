@@ -59,10 +59,8 @@ be found at http://opensource.org/licenses/bsd-license.php
 /* Used to read chip serial number */
 #include <Protocol/EFIChipInfo.h>
 
-/* Build-time generated ReleaseInfo.h will override the default one */
-#include <Resources/ReleaseStampStub.h>
-// Must come in order
-#include <Resources/ReleaseInfo.h>
+/* Used to read UEFI release information */
+#include <Library/MuUefiVersionLib.h>
 
 /***********************************************************************
         SMBIOS data definition  TYPE0  BIOS Information
@@ -137,9 +135,8 @@ SMBIOS_TABLE_TYPE0 mBIOSInfoType0 = {
 
 CHAR8 *mBIOSInfoType0Strings[] = {
     "DuoWoA authors", // Vendor String
-    __IMPL_COMMIT_ID__ " (EDK2 "__EDK2_RELEASE__
-                       ")", // BiosVersion String
-    __RELEASE_DATE__,       // BiosReleaseDate String
+    "UnknownVersion", // BiosVersion String
+    "UnknownRel", // BiosReleaseDate String
     NULL};
 
 /***********************************************************************
@@ -684,6 +681,12 @@ LogSmbiosData(
 ************************************************************************/
 VOID BIOSInfoUpdateSmbiosType0(VOID)
 {
+  UINTN VersionBufferLength  = 15;
+  UINTN DateBufferLength     = 11;
+
+  GetUefiVersionStringAscii(mBIOSInfoType0Strings[1], &VersionBufferLength);
+  GetBuildDateStringAscii(mBIOSInfoType0Strings[2], &VersionBufferLength);
+
   LogSmbiosData(
       (EFI_SMBIOS_TABLE_HEADER *)&mBIOSInfoType0, mBIOSInfoType0Strings, NULL);
 }

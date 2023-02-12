@@ -29,7 +29,6 @@
     # INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1/QcomPkg/Drivers/VerifiedBootDxe/VerifiedBootDxe.inf
     # INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1/QcomPkg/Drivers/XhciDxe/XhciDxe.inf
     # INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1/Sm8350FamilyPkg/Drivers/UfsSecurityDxe/UfsSecurityDxe.inf
-    INF Arcata/BOOT.MXF.1.1.c1-00018-MAKENA-1.11859.2/MsGraphicsPkg/MsEarlyGraphics/Dxe/MsEarlyGraphics.inf
     INF Arcata/BOOT.MXF.1.1.c1-00018-MAKENA-1.11859.2/MsSurfaceCorePkg/SurfaceTouchHidDxe/SurfaceTouchHidDxeV2.inf
     INF MdeModulePkg/Universal/Disk/PartitionDxe/PartitionDxe.inf
     INF QcomPkg/PatchedBinaries/ButtonsDxe.inf
@@ -111,11 +110,6 @@
     FILE DRIVER = 6b38f7b4-ad98-40e9-9093-aca2b5a253c4 {
             SECTION PE32 = Zeta/BOOT.MXF.1.0-00893-LAHAINA-1/MdeModulePkg/Universal/Disk/DiskIoDxe/DiskIoDxe.efi
             SECTION UI = "DiskIoDxe"
-    }
-
-    FILE DRIVER = cccb0c28-4b24-11d5-9a5a-0090273fc14d {
-            SECTION PE32 = Zeta/BOOT.MXF.1.0-00893-LAHAINA-1/MdeModulePkg/Universal/Console/GraphicsConsoleDxe/GraphicsConsoleDxe.efi
-            SECTION UI = "GraphicsConsoleDxe"
     }
 
     FILE DRIVER = 1c04f529-0612-4319-9315-b2e75c16810a {
