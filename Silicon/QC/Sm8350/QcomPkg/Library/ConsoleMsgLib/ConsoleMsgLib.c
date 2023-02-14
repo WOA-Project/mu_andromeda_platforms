@@ -32,11 +32,11 @@ CHAR8 *PlatformSubTypeSkuString[] = {
     [PLATFORM_SUBTYPE_EV2_2]      = "5G",
     [PLATFORM_SUBTYPE_EV2_wifi]   = "Wifi",
     [PLATFORM_SUBTYPE_SKIP]       = "Unknown",
-    [PLATFORM_SUBTYPE_EV3_Retail] = "Retai",
+    [PLATFORM_SUBTYPE_EV3_Retail] = "Retail",
     [PLATFORM_SUBTYPE_EV3_Debug]  = "Debug",
-    [PLATFORM_SUBTYPE_DV_Retail]  = "Retai",
+    [PLATFORM_SUBTYPE_DV_Retail]  = "Retail",
     [PLATFORM_SUBTYPE_DV_Debug]   = "Debug",
-    [PLATFORM_SUBTYPE_MP_Retail]  = "Retai",
+    [PLATFORM_SUBTYPE_MP_Retail]  = "Retail",
     [PLATFORM_SUBTYPE_INVALID]    = "Unknown",
 };
 
