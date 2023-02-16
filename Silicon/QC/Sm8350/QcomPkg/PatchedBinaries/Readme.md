@@ -58,16 +58,18 @@ PcdTokenNumber:
 ('PcdSKUEnableDfci', 'gDfciPkgTokenSpaceGuid') : 1
 ('PcdSetupUiReducedFunction', 'gDfciPkgTokenSpaceGuid') : 2
 ('PcdDeviceStateBitmask', 'gEfiMdeModulePkgTokenSpaceGuid') : 3
-('PcdNvStoreDefaultValueBuffer', 'gEfiMdeModulePkgTokenSpaceGuid') : 9
-('PcdSetNvStoreDefaultId', 'gEfiMdeModulePkgTokenSpaceGuid') : 10
-('PcdTestKeyUsed', 'gEfiMdeModulePkgTokenSpaceGuid') : 4
-('PcdVideoHorizontalResolution', 'gEfiMdeModulePkgTokenSpaceGuid') : 5
-('PcdVideoVerticalResolution', 'gEfiMdeModulePkgTokenSpaceGuid') : 6
-('PcdVpdBaseAddress64', 'gEfiMdeModulePkgTokenSpaceGuid') : 11
-('PcdCurrentPointerState', 'gMsGraphicsPkgTokenSpaceGuid') : 12
-('PcdPostBackgroundColoringSkipCount', 'gMsGraphicsPkgTokenSpaceGuid') : 13
-('PcdStr3', 'gQcomPkgTokenSpaceGuid') : 7
-('PcdStr4', 'gQcomPkgTokenSpaceGuid') : 8
+('PcdConOutRow', 'gEfiMdeModulePkgTokenSpaceGuid') : 4
+('PcdConOutColumn', 'gEfiMdeModulePkgTokenSpaceGuid') : 5
+('PcdTestKeyUsed', 'gEfiMdeModulePkgTokenSpaceGuid') : 6
+('PcdVideoHorizontalResolution', 'gEfiMdeModulePkgTokenSpaceGuid') : 7
+('PcdVideoVerticalResolution', 'gEfiMdeModulePkgTokenSpaceGuid') : 8
+('PcdStr3', 'gQcomPkgTokenSpaceGuid') : 9
+('PcdStr4', 'gQcomPkgTokenSpaceGuid') : 10
+('PcdNvStoreDefaultValueBuffer', 'gEfiMdeModulePkgTokenSpaceGuid') : 11
+('PcdSetNvStoreDefaultId', 'gEfiMdeModulePkgTokenSpaceGuid') : 12
+('PcdVpdBaseAddress64', 'gEfiMdeModulePkgTokenSpaceGuid') : 13
+('PcdCurrentPointerState', 'gMsGraphicsPkgTokenSpaceGuid') : 14
+('PcdPostBackgroundColoringSkipCount', 'gMsGraphicsPkgTokenSpaceGuid') : 15
 ```
 
 MsAbstractLayerDxe depends on the following Dynamic Pcds:
@@ -82,4 +84,4 @@ ManufacturingModeDxe depends on the following Dynamic Pcds:
 ('PcdStr4', 'gQcomPkgTokenSpaceGuid') : 4
 ```
 
-The DXEs were patched to check for 7 and 8 instead of 3 and 4 respectively.
+The DXEs were patched to check for 9 and 10 instead of 3 and 4 respectively.
