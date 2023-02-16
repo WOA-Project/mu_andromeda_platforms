@@ -52,6 +52,8 @@
   gEfiMdeModulePkgTokenSpaceGuid.PcdSetupVideoVerticalResolution|1892
   gEfiMdeModulePkgTokenSpaceGuid.PcdSetupConOutRow|99 # 99.57
   gEfiMdeModulePkgTokenSpaceGuid.PcdSetupConOutColumn|168
+  gEfiMdeModulePkgTokenSpaceGuid.PcdConOutRow|99 # 99.57
+  gEfiMdeModulePkgTokenSpaceGuid.PcdConOutColumn|168
 
 !include QcomPkg/QcomPkg.dsc.inc
 !include SurfaceDuoFamilyPkg/SurfaceDuoFamily.dsc.inc
