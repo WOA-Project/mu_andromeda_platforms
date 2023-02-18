@@ -26,8 +26,6 @@ updates:
     schedule:
       interval: "weekly"
       day: "monday"
-    commit-message:
-      prefix: "Dependency Update to 1 Github Action:"
     labels:
       - "type:dependencies"
 
@@ -35,8 +33,6 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
-    commit-message:
-      prefix: "Dependency Update to 1 Submodule:"
     labels:
       - "type:submodules"
       - "type:dependencies"
@@ -45,8 +41,6 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
-    commit-message:
-      prefix: "Dependency Update to 1 PIP:"
     labels:
       - "language:python"
       - "type:dependencies"
