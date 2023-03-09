@@ -79,7 +79,6 @@ class SettingsManager(UpdateSettingsManager, SetupSettingsManager, PrEvalSetting
             RequiredSubmodule("Common/MU_TIANO", True),
             RequiredSubmodule("Common/MU_OEM_SAMPLE", True),
             RequiredSubmodule("Silicon/Arm/MU_TIANO", True),
-            RequiredSubmodule("Silicon/QC/Sm8350", True),
             RequiredSubmodule("Features/DFCI", True),
         ]
 
