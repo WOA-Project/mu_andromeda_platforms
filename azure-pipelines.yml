@@ -37,9 +37,6 @@ steps:
 - script: chmod +x ./build_uefi_zeta.sh && ./build_uefi_zeta.sh
   displayName: 'UEFI build (Zeta)'
 
-- script: chmod +x ./build_boot_shim.sh && ./build_boot_shim.sh
-  displayName: 'BootShim build'
-
 - script: chmod +x ./build_boot_images.sh && ./build_boot_images.sh
   displayName: 'UEFI boot image build'
 

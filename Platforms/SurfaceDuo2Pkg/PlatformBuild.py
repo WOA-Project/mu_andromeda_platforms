@@ -78,6 +78,7 @@ class SettingsManager(UpdateSettingsManager, SetupSettingsManager, PrEvalSetting
             RequiredSubmodule("Common/MU", True),
             RequiredSubmodule("Common/MU_TIANO", True),
             RequiredSubmodule("Common/MU_OEM_SAMPLE", True),
+            RequiredSubmodule("Platforms/SurfaceDuoACPI", True),
             RequiredSubmodule("Silicon/Arm/MU_TIANO", True),
             RequiredSubmodule("Features/DFCI", True),
         ]

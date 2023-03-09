@@ -2,9 +2,29 @@
 
 ![Surface Duo Dual Screen Windows](https://user-images.githubusercontent.com/3755345/197420866-d3bb0534-c848-4cc2-a242-04dae48b0f6e.png)
 
-## Description
+## For users
 
-This repository hosts the code and underlying work behind the Surface Duo Windows UEFI firmware "bootstrapper" for Surface Duo 1 and Surface Duo 2 devices.
+You can download the latest UEFI build by clicking [here](https://github.com/WOA-Project/SurfaceDuoPkg/releases).
+
+[![Build Status (Visual Studio Team Services)](https://gus33000.visualstudio.com/SurfaceDuoPkg/_apis/build/status/SurfaceDuoPkg%20CI?branchName=main)](https://gus33000.visualstudio.com/SurfaceDuoPkg/_build/latest?definitionId=1&branchName=main)
+
+## What's this?
+
+This package demonstrates an AArch64 UEFI implementation for hacked Surface Duo 1 and Surface Duo 2 devices. Currently it is able to boot Windows 10 ARM64 as well as Windows 11 ARM64. Please be aware that SM8350 devices have limited support.
+
+## Support Status
+
+Applicable to all supported targets unless noted.
+
+- Low-speed I/O: I2C, SPI, GPIO, SPMI and Pinmux (TLMM).
+- Power Management: PMIC and Resource Power Manager (RPM).
+- High-speed I/O for firmware and HLOS: UFS 3.1
+- Peripherals: Touchscreen (HID SPI), side-band buttons (TLMM GPIO and PMIC GPIO)
+- Display FrameBuffer
+
+## What can you do?
+
+Please see https://github.com/WOA-Project/SurfaceDuo-Guides for some tutorials.
 
 ## Compatibility
 
@@ -51,6 +71,7 @@ pip install --upgrade -r pip-requirements.txt
 
 ## Acknowledgements
 
+- [EFIDroid Project](http://efidroid.org)
 - Andrei Warkentin and his [RaspberryPiPkg](https://github.com/andreiw/RaspberryPiPkg)
 - Sarah Purohit
 - [Googulator](https://github.com/Googulator/)
