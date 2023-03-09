@@ -25,5 +25,5 @@
 	path = Platforms/SurfaceDuoACPI
 	url = https://github.com/WOA-Project/SurfaceDuo-ACPI
 [submodule "Common/MU_FEATURE_DFCI"]
-	path = Common/MU_FEATURE_DFCI
+	path = Features/DFCI
 	url = https://github.com/microsoft/mu_feature_dfci
