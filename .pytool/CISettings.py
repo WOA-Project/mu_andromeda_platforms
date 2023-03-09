@@ -41,7 +41,7 @@ class Settings(CiSetupSettingsManager, CiBuildSettingsManager, UpdateSettingsMan
         ''' return iterable of edk2 packages supported by this build.
         These should be edk2 workspace relative paths '''
 
-        return ("SurfaceDuoPkg",)
+        return ("SurfaceDuo1Pkg","SurfaceDuo2Pkg")
 
     def GetArchitecturesSupported(self):
         ''' return iterable of edk2 architectures supported by this build '''
@@ -146,7 +146,7 @@ class Settings(CiSetupSettingsManager, CiBuildSettingsManager, UpdateSettingsMan
         return rs
 
     def GetName(self):
-        return "MuPlatformsSurfaceDuoPkg"
+        return "SurfaceDuoPkg"
 
     def GetDependencies(self):
         ''' Return Git Repository Dependencies

@@ -1,5 +1,5 @@
 # @file
-# Script to Build SurfaceDuo2 Mu UEFI firmware
+# Script to Build Surface Duo 2 UEFI firmware
 #
 # Copyright (c) Microsoft Corporation.
 # SPDX-License-Identifier: BSD-2-Clause-Patent
@@ -12,6 +12,7 @@ import glob
 import time
 import xml.etree.ElementTree
 import tempfile
+import uuid
 
 from edk2toolext.environment import shell_environment
 from edk2toolext.environment.uefi_build import UefiBuilder
@@ -30,11 +31,21 @@ class CommonPlatform():
         for the different parts of stuart
     '''
     PackagesSupported = ("SurfaceDuo2Pkg",)
-    ArchSupported = ("AARCH64")
+    ArchSupported = ("AARCH64",)
     TargetsSupported = ("DEBUG", "RELEASE", "NOOPT")
-    Scopes = ('SurfaceDuo2', 'edk2-build', 'cibuild')
+    Scopes = ('SurfaceDuo2', 'gcc_aarch64_linux', 'edk2-build', 'cibuild')
     WorkspaceRoot = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-    PackagesPath = ("Binaries", "Platforms", "MU_BASECORE", "Common/MU", "Common/MU_TIANO", "Common/MU_OEM_SAMPLE", "Features/DFCI", "Silicon/Arm/MU_TIANO", "Silicon/QC/Sm8350")
+    PackagesPath = (
+        "Binaries",
+        "Platforms",
+        "MU_BASECORE",
+        "Common/MU",
+        "Common/MU_TIANO",
+        "Common/MU_OEM_SAMPLE",
+        "Silicon/Arm/MU_TIANO",
+        "Silicon/QC/Sm8350",
+        "Features/DFCI"
+    )
 
 
     # ####################################################################################### #
@@ -56,29 +67,21 @@ class SettingsManager(UpdateSettingsManager, SetupSettingsManager, PrEvalSetting
         return CommonPlatform.TargetsSupported
 
     def GetRequiredSubmodules(self):
-        ''' return iterable containing RequiredSubmodule objects.
-        If no RequiredSubmodules return an empty iterable
-        '''
-        rs = []
-
-        # To avoid maintenance of this file for every new submodule
-        # lets just parse the .gitmodules and add each if not already in list.
-        # The GetRequiredSubmodules is designed to allow a build to optimize
-        # the desired submodules but it isn't necessary for this repository.
-        result = io.StringIO()
-        ret = RunCmd("git", "config --file .gitmodules --get-regexp path",
-                     workingdir=self.GetWorkspaceRoot(), outstream=result)
-        # Cmd output is expected to look like:
-        # submodule.CryptoPkg/Library/OpensslLib/openssl.path CryptoPkg/Library/OpensslLib/openssl
-        # submodule.SoftFloat.path ArmPkg/Library/ArmSoftFloatLib/berkeley-softfloat-3
-        if ret == 0:
-            for line in result.getvalue().splitlines():
-                _, _, path = line.partition(" ")
-                if path is not None:
-                    if path not in [x.path for x in rs]:
-                        # add it with recursive since we don't know
-                        rs.append(RequiredSubmodule(path, True))
-        return rs
+        """Return iterable containing RequiredSubmodule objects.
+        
+        !!! note
+            If no RequiredSubmodules return an empty iterable
+        """
+        return [
+            RequiredSubmodule("Binaries", True),
+            RequiredSubmodule("MU_BASECORE", True),
+            RequiredSubmodule("Common/MU", True),
+            RequiredSubmodule("Common/MU_TIANO", True),
+            RequiredSubmodule("Common/MU_OEM_SAMPLE", True),
+            RequiredSubmodule("Silicon/Arm/MU_TIANO", True),
+            RequiredSubmodule("Silicon/QC/Sm8350", True),
+            RequiredSubmodule("Features/DFCI", True),
+        ]
 
     def SetArchitectures(self, list_of_requested_architectures):
         ''' Confirm the requests architecture list is valid and configure SettingsManager
@@ -152,13 +155,19 @@ class PlatformBuilder( UefiBuilder, BuildSettingsManager):
         # checked for correctness but is never uses as this platform only supports a single set of
         # architectures.
         parserObj.add_argument('-a', "--arch", dest="build_arch", type=str, default="AARCH64",
-            help="Optional - CSV of architecture to build. AARCH64 will use AARCH64 for PEI and "
-            "AARCH64 for DXE and is the only valid option for this platform.")
+            help="Optional - CSV of architecture to build.  AARCH64 is used for PEI and "
+            "DXE and is the only valid option for this platform.")
 
     def RetrieveCommandLineOptions(self, args):
         '''  Retrieve command line options from the argparser '''
         if args.build_arch.upper() != "AARCH64":
             raise Exception("Invalid Arch Specified.  Please see comments in PlatformBuild.py::PlatformBuilder::AddCommandLineOptions")
+
+        shell_environment.GetBuildVars().SetValue(
+            "TARGET_ARCH", args.build_arch.upper(), "From CmdLine")
+
+        shell_environment.GetBuildVars().SetValue(
+            "ACTIVE_PLATFORM", "SurfaceDuo2Pkg/SurfaceDuo2.dsc", "From CmdLine")
 
 
     def GetWorkspaceRoot(self):
@@ -166,8 +175,13 @@ class PlatformBuilder( UefiBuilder, BuildSettingsManager):
         return CommonPlatform.WorkspaceRoot
 
     def GetPackagesPath(self):
-        ''' Return a list of workspace relative paths that should be mapped as edk2 PackagesPath '''
-        return CommonPlatform.PackagesPath
+        ''' Return a list of paths that should be mapped as edk2 PackagesPath '''
+        result = [
+            shell_environment.GetBuildVars().GetValue("FEATURE_CONFIG_PATH", "")
+        ]
+        for a in CommonPlatform.PackagesPath:
+            result.append(a)
+        return result
 
     def GetActiveScopes(self):
         ''' return tuple containing scopes that should be active for this process '''
@@ -185,7 +199,7 @@ class PlatformBuilder( UefiBuilder, BuildSettingsManager):
         txt  == plain text file logging
         md   == markdown file logging
         '''
-        return logging.INFO
+        return logging.DEBUG
         return super().GetLoggingLevel(loggerType)
 
     def SetPlatformEnv(self):
@@ -193,13 +207,13 @@ class PlatformBuilder( UefiBuilder, BuildSettingsManager):
         self.env.SetValue("PRODUCT_NAME", "SurfaceDuo2", "Platform Hardcoded")
         self.env.SetValue("ACTIVE_PLATFORM", "SurfaceDuo2Pkg/SurfaceDuo2.dsc", "Platform Hardcoded")
         self.env.SetValue("TARGET_ARCH", "AARCH64", "Platform Hardcoded")
-        self.env.SetValue("EMPTY_DRIVE", "FALSE", "Default to false")
-        self.env.SetValue("RUN_TESTS", "FALSE", "Default to false")
-        self.env.SetValue("QEMU_HEADLESS", "FALSE", "Default to false")
-        self.env.SetValue("SHUTDOWN_AFTER_RUN", "FALSE", "Default to false")
+        self.env.SetValue("TOOL_CHAIN_TAG", "CLANG38", "set default to clang38")
+        # self.env.SetValue("EMPTY_DRIVE", "FALSE", "Default to false")
+        # self.env.SetValue("RUN_TESTS", "FALSE", "Default to false")
+        # self.env.SetValue("SHUTDOWN_AFTER_RUN", "FALSE", "Default to false")
         # needed to make FV size build report happy
-        self.env.SetValue("BLD_*_BUILDID_STRING", "Unknown", "Default")
-        # Default turn on build reporting.
+        # self.env.SetValue("BLD_*_BUILDID_STRING", "Unknown", "Default")
+        # # Default turn on build reporting.
         self.env.SetValue("BUILDREPORTING", "TRUE", "Enabling build report")
         self.env.SetValue("BUILDREPORT_TYPES", "PCD DEPEX FLASH BUILD_FLAGS LIBRARY FIXED_ADDRESS HASH", "Setting build report types")
         # Include the MFCI test cert by default, override on the commandline with "BLD_*_SHIP_MODE=TRUE" if you want the retail MFCI cert
@@ -215,8 +229,6 @@ class PlatformBuilder( UefiBuilder, BuildSettingsManager):
 
     def FlashRomImage(self):
         return 0
-
-
 
 if __name__ == "__main__":
     import argparse
