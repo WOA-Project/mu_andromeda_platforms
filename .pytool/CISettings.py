@@ -49,7 +49,7 @@ class Settings(CiSetupSettingsManager, CiBuildSettingsManager, UpdateSettingsMan
 
     def GetTargetsSupported(self):
         ''' return iterable of edk2 target tags supported by this build '''
-        return ("NO-TARGET", "NOOPT")
+        return ("DEBUG", "RELEASE", "NO-TARGET", "NOOPT")
 
     # ####################################################################################### #
     #                     Verify and Save requested Ci Build Config                           #
@@ -165,7 +165,12 @@ class Settings(CiSetupSettingsManager, CiBuildSettingsManager, UpdateSettingsMan
 
     def GetPackagesPath(self):
         ''' Return a list of workspace relative paths that should be mapped as edk2 PackagesPath '''
-        result = ["Binaries", "Platforms", "MU_BASECORE", "Common/MU", "Common/MU_TIANO", "Common/MU_OEM_SAMPLE", "Features/DFCI", "Silicon/Arm/MU_TIANO", "Silicon/QC/Sm8150", "Silicon/QC/Sm8350"]
+
+        # Include all submodule paths
+        result = ["Platforms"]
+        for submodule in self.GetRequiredSubmodules():
+            result.append(submodule.path)
+
         return result
 
     def GetWorkspaceRoot(self):

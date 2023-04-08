@@ -13,6 +13,8 @@ import time
 import xml.etree.ElementTree
 import tempfile
 import uuid
+import string
+import datetime
 
 from edk2toolext.environment import shell_environment
 from edk2toolext.environment.uefi_build import UefiBuilder
@@ -21,7 +23,6 @@ from edk2toolext.invocables.edk2_setup import SetupSettingsManager, RequiredSubm
 from edk2toolext.invocables.edk2_update import UpdateSettingsManager
 from edk2toolext.invocables.edk2_pr_eval import PrEvalSettingsManager
 from edk2toollib.utility_functions import RunCmd
-
 
     # ####################################################################################### #
     #                                Common Configuration                                     #
@@ -33,18 +34,19 @@ class CommonPlatform():
     PackagesSupported = ("SurfaceDuo2Pkg",)
     ArchSupported = ("AARCH64",)
     TargetsSupported = ("DEBUG", "RELEASE", "NOOPT")
-    Scopes = ('SurfaceDuo2', 'gcc_aarch64_linux', 'edk2-build', 'cibuild')
+    Scopes = ('SurfaceDuo2', 'gcc_aarch64_linux', 'edk2-build', 'cibuild', 'configdata')
     WorkspaceRoot = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
     PackagesPath = (
-        "Binaries",
         "Platforms",
         "MU_BASECORE",
         "Common/MU",
         "Common/MU_TIANO",
         "Common/MU_OEM_SAMPLE",
         "Silicon/Arm/MU_TIANO",
-        "Silicon/QC/Sm8350",
-        "Features/DFCI"
+        "Features/DFCI",
+        "Features/CONFIG",
+        "Binaries",
+        "Silicon/QC/Sm8350"
     )
 
 
@@ -73,14 +75,15 @@ class SettingsManager(UpdateSettingsManager, SetupSettingsManager, PrEvalSetting
             If no RequiredSubmodules return an empty iterable
         """
         return [
-            RequiredSubmodule("Binaries", True),
             RequiredSubmodule("MU_BASECORE", True),
             RequiredSubmodule("Common/MU", True),
             RequiredSubmodule("Common/MU_TIANO", True),
             RequiredSubmodule("Common/MU_OEM_SAMPLE", True),
-            RequiredSubmodule("Platforms/SurfaceDuoACPI", True),
             RequiredSubmodule("Silicon/Arm/MU_TIANO", True),
             RequiredSubmodule("Features/DFCI", True),
+            RequiredSubmodule("Features/CONFIG", True),
+            RequiredSubmodule("Binaries", True),
+            RequiredSubmodule("Platforms/SurfaceDuoACPI", True),
         ]
 
     def SetArchitectures(self, list_of_requested_architectures):
@@ -218,6 +221,14 @@ class PlatformBuilder( UefiBuilder, BuildSettingsManager):
         self.env.SetValue("BUILDREPORT_TYPES", "PCD DEPEX FLASH BUILD_FLAGS LIBRARY FIXED_ADDRESS HASH", "Setting build report types")
         # Include the MFCI test cert by default, override on the commandline with "BLD_*_SHIP_MODE=TRUE" if you want the retail MFCI cert
         self.env.SetValue("BLD_*_SHIP_MODE", "FALSE", "Default")
+
+        self.env.SetValue("CONF_AUTOGEN_INCLUDE_PATH", self.mws.join(self.ws, "Platforms", "SurfaceDuoFamilyPkg", "Include"), "Platform Hardcoded")
+        self.env.SetValue("MU_SCHEMA_DIR", self.mws.join(self.ws, "Platforms", "SurfaceDuoFamilyPkg", "CfgData"), "Platform Defined")
+        self.env.SetValue("MU_SCHEMA_FILE_NAME", "SurfaceDuoFamilyPkgCfgData.xml", "Platform Hardcoded")
+
+        self.env.SetValue("YAML_POLICY_FILE", self.mws.join(self.ws, "SurfaceDuoFamilyPkg", "PolicyData", "PolicyDataUsb.yaml"), "Platform Hardcoded")
+        self.env.SetValue("POLICY_DATA_STRUCT_FOLDER", self.mws.join(self.ws, "SurfaceDuoFamilyPkg", "Include"), "Platform Defined")
+        self.env.SetValue('POLICY_REPORT_FOLDER', self.mws.join(self.ws, "SurfaceDuoFamilyPkg", "PolicyData"), "Platform Defined")
 
         return 0
 

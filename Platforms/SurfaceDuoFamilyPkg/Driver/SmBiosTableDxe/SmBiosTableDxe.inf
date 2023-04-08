@@ -35,7 +35,6 @@
 [LibraryClasses]
   BaseLib
   BaseMemoryLib
-  CompilerIntrinsicsLib
   DebugLib
   MuUefiVersionLib
   ReportStatusCodeLib
