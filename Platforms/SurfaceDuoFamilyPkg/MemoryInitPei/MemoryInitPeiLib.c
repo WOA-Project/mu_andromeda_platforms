@@ -78,30 +78,17 @@ MemoryPeim (
   )
 {
 
-  DEBUG((EFI_D_INFO, "MemoryPeim Entry!\n"));
-
-  DEBUG((EFI_D_INFO, "GetPlatformMemoryMap!\n"));
-
   PARM_MEMORY_REGION_DESCRIPTOR_EX MemoryDescriptorEx =
       GetPlatformMemoryMap();
-
-  DEBUG((EFI_D_INFO, "GetPlatformMemoryMap Done!\n"));
-
   ARM_MEMORY_REGION_DESCRIPTOR
         MemoryTable[MAX_ARM_MEMORY_REGION_DESCRIPTOR_COUNT];
   UINTN Index = 0;
 
-  DEBUG((EFI_D_INFO, "Ensure PcdSystemMemorySize has been set\n"));
-
   // Ensure PcdSystemMemorySize has been set
   ASSERT (PcdGet64 (PcdSystemMemorySize) != 0);
 
-  DEBUG((EFI_D_INFO, "Ensure PcdSystemMemorySize has been set.. Done!\n"));
-
   // Run through each memory descriptor
   while (MemoryDescriptorEx->Length != 0) {
-    DEBUG((EFI_D_INFO, "Looping!\n"));
-
     switch (MemoryDescriptorEx->HobOption) {
     case AddMem:
     case AddDev:
@@ -131,8 +118,6 @@ MemoryPeim (
     MemoryDescriptorEx++;
   }
 
-  DEBUG((EFI_D_INFO, "Looping Done!\n"));
-
   // Last one (terminator)
   ASSERT(Index < MAX_ARM_MEMORY_REGION_DESCRIPTOR_COUNT);
   MemoryTable[Index].PhysicalBase = 0;
@@ -140,19 +125,13 @@ MemoryPeim (
   MemoryTable[Index].Length       = 0;
   MemoryTable[Index].Attributes   = 0;
 
-  DEBUG((EFI_D_INFO, "InitMmu!\n"));
-
   // Build Memory Allocation Hob
   InitMmu (MemoryTable);
-
-  DEBUG((EFI_D_INFO, "InitMmu Done!\n"));
 
   if (FeaturePcdGet (PcdPrePiProduceMemoryTypeInformationHob)) {
     // Optional feature that helps prevent EFI memory map fragmentation.
     BuildMemoryTypeInformationHob ();
   }
-
-  DEBUG((EFI_D_INFO, "MemoryPeim Done!\n"));
 
   return EFI_SUCCESS;
 }
