@@ -119,16 +119,9 @@ PrePiMain (
                 );
   SerialPortWrite ((UINT8 *)Buffer, CharCount);
 
-  DEBUG((EFI_D_INFO, "InitializeDebugAgent\n"));
-
   // Initialize the Debug Agent for Source Level Debugging
   InitializeDebugAgent (DEBUG_AGENT_INIT_POSTMEM_SEC, NULL, NULL);
-
-  DEBUG((EFI_D_INFO, "SaveAndSetDebugTimerInterrupt\n"));
-
   SaveAndSetDebugTimerInterrupt (TRUE);
-
-  DEBUG((EFI_D_INFO, "HobConstructor\n"));
 
   // Declare the PI/UEFI memory region
   HobList = HobConstructor (
@@ -137,24 +130,13 @@ PrePiMain (
               (VOID *)UefiMemoryBase,
               (VOID *)StacksBase // The top of the UEFI Memory is reserved for the stacks
               );
-
-  DEBUG((EFI_D_INFO, "PrePeiSetHobList\n"));
-
   PrePeiSetHobList (HobList);
-
-  DEBUG((EFI_D_INFO, "MemoryPeim\n"));
 
   // Initialize MMU and Memory HOBs (Resource Descriptor HOBs)
   Status = MemoryPeim (UefiMemoryBase, UefiMemorySize);
-  DEBUG((EFI_D_INFO, "MemoryPeim out, assert check\n"));
-
   ASSERT_EFI_ERROR (Status);
 
-  DEBUG((EFI_D_INFO, "BuildStackHob\n"));
-
   BuildStackHob (StacksBase, StacksSize);
-
-  DEBUG((EFI_D_INFO, "BuildCpuHob\n"));
 
   // TODO: Call CpuPei as a library
   BuildCpuHob (ArmGetPhysicalAddressBits (), PcdGet8 (PcdPrePiCpuIoSize));
@@ -175,44 +157,28 @@ PrePiMain (
     }
   }
 
-  DEBUG((EFI_D_INFO, "GetTimeInNanoSecond\n"));
-
   // Store timer value logged at the beginning of firmware image execution
   Performance.ResetEnd = GetTimeInNanoSecond (StartTimeStamp);
-
-  DEBUG((EFI_D_INFO, "BuildGuidDataHob\n"));
 
   // Build SEC Performance Data Hob
   BuildGuidDataHob (&gEfiFirmwarePerformanceGuid, &Performance, sizeof (Performance));
 
-  DEBUG((EFI_D_INFO, "SetBootMode\n"));
-
   // Set the Boot Mode
   SetBootMode (ArmPlatformGetBootMode ());
-
-  DEBUG((EFI_D_INFO, "PlatformPeim\n"));
 
   // Initialize Platform HOBs (CpuHob and FvHob)
   Status = PlatformPeim ();
   ASSERT_EFI_ERROR (Status);
 
-  DEBUG((EFI_D_INFO, "PERF_START\n"));
-
   // Now, the HOB List has been initialized, we can register performance information
   PERF_START (NULL, "PEI", NULL, StartTimeStamp);
-
-  DEBUG((EFI_D_INFO, "ProcessLibraryConstructorList\n"));
 
   // SEC phase needs to run library constructors by hand.
   ProcessLibraryConstructorList ();
 
-  DEBUG((EFI_D_INFO, "DecompressFirstFv\n"));
-
   // Assume the FV that contains the SEC (our code) also contains a compressed FV.
   Status = DecompressFirstFv ();
   ASSERT_EFI_ERROR (Status);
-
-  DEBUG((EFI_D_INFO, "LoadDxeCoreFromFv\n"));
 
   // Load the DXE Core and transfer control to it
   Status = LoadDxeCoreFromFv (NULL, 0);
