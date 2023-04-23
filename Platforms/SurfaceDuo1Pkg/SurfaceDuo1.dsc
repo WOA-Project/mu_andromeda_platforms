@@ -27,19 +27,8 @@
   SECURE_BOOT_ENABLE             = 1
   USE_PHYSICAL_TIMER             = 1
   USE_SCREEN_FOR_SERIAL_OUTPUT   = 0
-  USE_MEMORY_FOR_SERIAL_OUTPUT   = 1
+  USE_MEMORY_FOR_SERIAL_OUTPUT   = 0
   SEND_HEARTBEAT_TO_SERIAL       = 0
-
-  #
-  # Defines for default states.  These can be changed on the command line.
-  # -D FLAG=VALUE
-  #
-  TPM2_ENABLE             = FALSE
-
-  #
-  # Network definition
-  #
-  NETWORK_TLS_ENABLE              = TRUE
 
 [PcdsFixedAtBuild.common]
   # Platform-specific
