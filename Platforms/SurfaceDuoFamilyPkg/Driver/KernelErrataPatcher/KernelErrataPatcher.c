@@ -14,7 +14,7 @@
 **/
 #include "KernelErrataPatcher.h"
 
-#define SILENT 0
+#define SILENT 1
 
 STATIC BL_ARCH_SWITCH_CONTEXT BlpArchSwitchContext = NULL;
 STATIC EFI_EXIT_BOOT_SERVICES EfiExitBootServices  = NULL;
@@ -148,7 +148,7 @@ KernelErrataPatcherExitBootServices(
       L"Patching OsLoader         -> (phys) 0x%p (size) 0x%p\n", fwpKernelSetupPhase1,
       SCAN_MAX);
 
-  KernelErrataPatcherApplyReadACTLREL1Patches(fwpKernelSetupPhase1, SCAN_MAX, TRUE);
+  //KernelErrataPatcherApplyReadACTLREL1Patches(fwpKernelSetupPhase1, SCAN_MAX, TRUE);
 
   PLOADER_PARAMETER_BLOCK loaderBlock = loaderBlockX19;
 
