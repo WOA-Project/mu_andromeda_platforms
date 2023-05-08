@@ -49,7 +49,7 @@ VOID KernelErrataPatcherApplyReadACTLREL1Patches(
           L"mrs x8, actlr_el1         -> (virt) 0x%p\n", IllegalInstruction0);
     }
 
-    CopyToReadOnly(
+    CopyMemory(
         IllegalInstruction0, (EFI_PHYSICAL_ADDRESS)FixedInstruction0,
         sizeof(FixedInstruction0));
 
@@ -144,11 +144,11 @@ KernelErrataPatcherExitBootServices(
 
   // Fix up winload.efi
   // This fixes Boot Debugger
-  /*FirmwarePrint(
+  FirmwarePrint(
       L"Patching OsLoader         -> (phys) 0x%p (size) 0x%p\n", fwpKernelSetupPhase1,
       SCAN_MAX);
 
-  KernelErrataPatcherApplyReadACTLREL1Patches(fwpKernelSetupPhase1, SCAN_MAX, TRUE);*/
+  KernelErrataPatcherApplyReadACTLREL1Patches(fwpKernelSetupPhase1, SCAN_MAX, TRUE);
 
   PLOADER_PARAMETER_BLOCK loaderBlock = loaderBlockX19;
 
