@@ -135,10 +135,20 @@ KernelErrataPatcherExitBootServices(
     IN PLOADER_PARAMETER_BLOCK loaderBlockX19,
     IN PLOADER_PARAMETER_BLOCK loaderBlockX20,
     IN PLOADER_PARAMETER_BLOCK loaderBlockX24,
-    IN EFI_PHYSICAL_ADDRESS    returnAddress)
+    IN EFI_PHYSICAL_ADDRESS    fwpKernelSetupPhase1)
 {
   // Might be called multiple times by winload in a loop failing few times
   gBS->ExitBootServices = EfiExitBootServices;
+
+  FirmwarePrint(L"OslFwpKernelSetupPhase1   -> (phys) 0x%p\n", fwpKernelSetupPhase1);
+
+  // Fix up winload.efi
+  // This fixes Boot Debugger
+  FirmwarePrint(
+      L"Patching OsLoader         -> (phys) 0x%p (size) 0x%p\n", fwpKernelSetupPhase1,
+      SCAN_MAX);
+
+  KernelErrataPatcherApplyReadACTLREL1Patches(fwpKernelSetupPhase1, SCAN_MAX, TRUE);
 
   PLOADER_PARAMETER_BLOCK loaderBlock = loaderBlockX19;
 
@@ -163,11 +173,10 @@ KernelErrataPatcherExitBootServices(
     goto exit;
   }
 
-  FirmwarePrint(
-      L"Found OslLoaderBlock! loaderBlock -> 0x%p\n", loaderBlock);
+  FirmwarePrint(L"OslLoaderBlock            -> (virt) 0x%p\n", loaderBlock);
 
   EFI_PHYSICAL_ADDRESS PatternMatch = FindPattern(
-      returnAddress, SCAN_MAX,
+      fwpKernelSetupPhase1, SCAN_MAX,
       "1F 04 00 71 33 11 88 9A 28 00 40 B9 1F 01 00 6B");
 
   // BlpArchSwitchContext
@@ -184,7 +193,7 @@ KernelErrataPatcherExitBootServices(
 
     // Okay, we maybe have the new Memory Management? Try again.
     PatternMatch =
-        FindPattern(returnAddress, SCAN_MAX, "9F 06 00 71 33 11 88 9A");
+        FindPattern(fwpKernelSetupPhase1, SCAN_MAX, "9F 06 00 71 33 11 88 9A");
 
     // BlpArchSwitchContext
     BlpArchSwitchContext =
@@ -195,25 +204,27 @@ KernelErrataPatcherExitBootServices(
           L"Failed to find BlpArchSwitchContext (v2)! BlpArchSwitchContext -> "
           L"0x%p\n",
           BlpArchSwitchContext);
-      goto exit;
+
+      // Okay, we maybe have the new new Memory Management? Try again.
+      PatternMatch =
+          FindPattern(fwpKernelSetupPhase1, SCAN_MAX, "7F 06 00 71 37 11 88 9A");
+
+      // BlpArchSwitchContext
+      BlpArchSwitchContext =
+          (BL_ARCH_SWITCH_CONTEXT)(PatternMatch - ARM64_TOTAL_INSTRUCTION_LENGTH(24));
+
+      if (PatternMatch == 0 || (PatternMatch & 0xFFFFFFF000000000) != 0) {
+        FirmwarePrint(
+            L"Failed to find BlpArchSwitchContext (v3)! BlpArchSwitchContext -> "
+            L"0x%p\n",
+            BlpArchSwitchContext);
+        goto exit;
+      }
     }
   }
 
   FirmwarePrint(
-      L"Found BlpArchSwitchContext! BlpArchSwitchContext -> 0x%p\n", BlpArchSwitchContext);
-
-  FirmwarePrint(L"OslFwpKernelSetupPhase1   -> (phys) 0x%p\n", returnAddress);
-  FirmwarePrint(L"OslLoaderBlock            -> (virt) 0x%p\n", loaderBlock);
-  FirmwarePrint(
       L"BlpArchSwitchContext      -> (phys) 0x%p\n", BlpArchSwitchContext);
-
-  // Fix up winload.efi
-  // This fixes Boot Debugger
-  FirmwarePrint(
-      L"Patching OsLoader         -> (phys) 0x%p (size) 0x%p\n", returnAddress,
-      SCAN_MAX);
-
-  KernelErrataPatcherApplyReadACTLREL1Patches(returnAddress, SCAN_MAX, TRUE);
 
   /*
    * Switch context to (as defined by winload) application context
@@ -275,7 +286,7 @@ exitToFirmware:
   BlpArchSwitchContext(FirmwareContext);
 
 exit:
-  FirmwarePrint(L"OslFwpKernelSetupPhase1   <- (phys) 0x%p\n", returnAddress);
+  FirmwarePrint(L"OslFwpKernelSetupPhase1   <- (phys) 0x%p\n", fwpKernelSetupPhase1);
 
   // Call the original
   return gBS->ExitBootServices(ImageHandle, MapKey);
