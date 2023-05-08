@@ -14,7 +14,7 @@
 **/
 #include "KernelErrataPatcher.h"
 
-#define SILENT 1
+#define SILENT 0
 
 STATIC BL_ARCH_SWITCH_CONTEXT BlpArchSwitchContext = NULL;
 STATIC EFI_EXIT_BOOT_SERVICES EfiExitBootServices  = NULL;
