@@ -20,6 +20,8 @@
 #include <Library/UefiLib.h>
 #include <Uefi.h>
 
+#include <Library/ArmLib.h>
+#include <Library/ArmMmuLib.h>
 #include <Library/BaseLib.h>
 #include <Library/BaseMemoryLib.h>
 #include <Library/DebugLib.h>
@@ -58,6 +60,8 @@ EFIAPI
 ExitBootServicesWrapper(IN EFI_HANDLE ImageHandle, IN UINTN MapKey);
 
 VOID CopyMemory(
+    EFI_PHYSICAL_ADDRESS destination, EFI_PHYSICAL_ADDRESS source, UINTN size);
+VOID CopyToReadOnly(
     EFI_PHYSICAL_ADDRESS destination, EFI_PHYSICAL_ADDRESS source, UINTN size);
 UINT64 FindPattern(
     EFI_PHYSICAL_ADDRESS baseAddress, UINT64 size, const CHAR8 *pattern);

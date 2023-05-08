@@ -49,7 +49,7 @@ VOID KernelErrataPatcherApplyReadACTLREL1Patches(
           L"mrs x8, actlr_el1         -> (virt) 0x%p\n", IllegalInstruction0);
     }
 
-    CopyMemory(
+    CopyToReadOnly(
         IllegalInstruction0, (EFI_PHYSICAL_ADDRESS)FixedInstruction0,
         sizeof(FixedInstruction0));
 
@@ -90,7 +90,7 @@ VOID KernelErrataPatcherApplyWriteACTLREL1Patches(
           L"msr actlr_el1, x9         -> (virt) 0x%p\n", IllegalInstruction1);
     }
 
-    CopyMemory(
+    CopyToReadOnly(
         IllegalInstruction1, (EFI_PHYSICAL_ADDRESS)FixedInstruction1,
         sizeof(FixedInstruction1));
 
@@ -122,7 +122,7 @@ VOID KernelErrataPatcherApplyPsciMemoryProtectionPatches(
           L"PsciMemProtect            -> (virt) 0x%p\n", PsciMemProtect);
     }
 
-    CopyMemory(
+    CopyToReadOnly(
         PsciMemProtect, (EFI_PHYSICAL_ADDRESS)RetInstruction,
         sizeof(RetInstruction));
   }
