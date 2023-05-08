@@ -145,23 +145,26 @@ KernelErrataPatcherExitBootServices(
   if (loaderBlock == NULL ||
       ((EFI_PHYSICAL_ADDRESS)loaderBlock & 0xFFFFFFF000000000) == 0) {
     FirmwarePrint(
-        L"Failed to find OslLoaderBlock! loaderBlock -> 0x%p\n", loaderBlock);
+        L"Failed to find OslLoaderBlock (X19)! loaderBlock -> 0x%p\n", loaderBlock);
     loaderBlock = loaderBlockX20;
   }
 
   if (loaderBlock == NULL ||
       ((EFI_PHYSICAL_ADDRESS)loaderBlock & 0xFFFFFFF000000000) == 0) {
     FirmwarePrint(
-        L"Failed to find OslLoaderBlock! loaderBlock -> 0x%p\n", loaderBlock);
+        L"Failed to find OslLoaderBlock (X20)! loaderBlock -> 0x%p\n", loaderBlock);
     loaderBlock = loaderBlockX24;
   }
 
   if (loaderBlock == NULL ||
       ((EFI_PHYSICAL_ADDRESS)loaderBlock & 0xFFFFFFF000000000) == 0) {
     FirmwarePrint(
-        L"Failed to find OslLoaderBlock! loaderBlock -> 0x%p\n", loaderBlock);
+        L"Failed to find OslLoaderBlock (X24)! loaderBlock -> 0x%p\n", loaderBlock);
     goto exit;
   }
+
+  FirmwarePrint(
+      L"Found OslLoaderBlock! loaderBlock -> 0x%p\n", loaderBlock);
 
   EFI_PHYSICAL_ADDRESS PatternMatch = FindPattern(
       returnAddress, SCAN_MAX,
@@ -174,6 +177,11 @@ KernelErrataPatcherExitBootServices(
   // First check if the version of BlpArchSwitchContext before Memory Management
   // v2 is found
   if (PatternMatch == 0 || (PatternMatch & 0xFFFFFFF000000000) != 0) {
+    FirmwarePrint(
+        L"Failed to find BlpArchSwitchContext (v1)! BlpArchSwitchContext -> "
+        L"0x%p\n",
+        BlpArchSwitchContext);
+
     // Okay, we maybe have the new Memory Management? Try again.
     PatternMatch =
         FindPattern(returnAddress, SCAN_MAX, "9F 06 00 71 33 11 88 9A");
@@ -184,12 +192,15 @@ KernelErrataPatcherExitBootServices(
 
     if (PatternMatch == 0 || (PatternMatch & 0xFFFFFFF000000000) != 0) {
       FirmwarePrint(
-          L"Failed to find BlpArchSwitchContext! BlpArchSwitchContext -> "
+          L"Failed to find BlpArchSwitchContext (v2)! BlpArchSwitchContext -> "
           L"0x%p\n",
           BlpArchSwitchContext);
       goto exit;
     }
   }
+
+  FirmwarePrint(
+      L"Found BlpArchSwitchContext! BlpArchSwitchContext -> 0x%p\n", BlpArchSwitchContext);
 
   FirmwarePrint(L"OslFwpKernelSetupPhase1   -> (phys) 0x%p\n", returnAddress);
   FirmwarePrint(L"OslLoaderBlock            -> (virt) 0x%p\n", loaderBlock);
