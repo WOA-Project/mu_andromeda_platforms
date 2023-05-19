@@ -14,13 +14,15 @@
 **/
 #include "KernelErrataPatcher.h"
 
-#define SILENT 1
+#define SILENT 0
 
 STATIC BL_ARCH_SWITCH_CONTEXT BlpArchSwitchContext = NULL;
 STATIC EFI_EXIT_BOOT_SERVICES EfiExitBootServices  = NULL;
 
 #if SILENT == 0
-#define FirmwarePrint(x, ...) Print(x, __VA_ARGS__);
+#define FirmwarePrint(x, ...)                                                  \
+  Print(x, __VA_ARGS__);                                                       \
+  DEBUG((EFI_D_ERROR, x, __VA_ARGS__));
 #define ContextPrint(x, ...)                                                   \
   BlpArchSwitchContext(FirmwareContext);                                       \
   FirmwarePrint(x, __VA_ARGS__);                                               \
@@ -140,36 +142,41 @@ KernelErrataPatcherExitBootServices(
   // Might be called multiple times by winload in a loop failing few times
   gBS->ExitBootServices = EfiExitBootServices;
 
-  FirmwarePrint(L"OslFwpKernelSetupPhase1   -> (phys) 0x%p\n", fwpKernelSetupPhase1);
+  FirmwarePrint(
+      L"OslFwpKernelSetupPhase1   -> (phys) 0x%p\n", fwpKernelSetupPhase1);
 
   // Fix up winload.efi
   // This fixes Boot Debugger
   FirmwarePrint(
-      L"Patching OsLoader         -> (phys) 0x%p (size) 0x%p\n", fwpKernelSetupPhase1,
-      SCAN_MAX);
+      L"Patching OsLoader         -> (phys) 0x%p (size) 0x%p\n",
+      fwpKernelSetupPhase1, SCAN_MAX);
 
-  //KernelErrataPatcherApplyReadACTLREL1Patches(fwpKernelSetupPhase1, SCAN_MAX, TRUE);
+  // KernelErrataPatcherApplyReadACTLREL1Patches(fwpKernelSetupPhase1, SCAN_MAX,
+  // TRUE);
 
   PLOADER_PARAMETER_BLOCK loaderBlock = loaderBlockX19;
 
   if (loaderBlock == NULL ||
       ((EFI_PHYSICAL_ADDRESS)loaderBlock & 0xFFFFFFF000000000) == 0) {
     FirmwarePrint(
-        L"Failed to find OslLoaderBlock (X19)! loaderBlock -> 0x%p\n", loaderBlock);
+        L"Failed to find OslLoaderBlock (X19)! loaderBlock -> 0x%p\n",
+        loaderBlock);
     loaderBlock = loaderBlockX20;
   }
 
   if (loaderBlock == NULL ||
       ((EFI_PHYSICAL_ADDRESS)loaderBlock & 0xFFFFFFF000000000) == 0) {
     FirmwarePrint(
-        L"Failed to find OslLoaderBlock (X20)! loaderBlock -> 0x%p\n", loaderBlock);
+        L"Failed to find OslLoaderBlock (X20)! loaderBlock -> 0x%p\n",
+        loaderBlock);
     loaderBlock = loaderBlockX24;
   }
 
   if (loaderBlock == NULL ||
       ((EFI_PHYSICAL_ADDRESS)loaderBlock & 0xFFFFFFF000000000) == 0) {
     FirmwarePrint(
-        L"Failed to find OslLoaderBlock (X24)! loaderBlock -> 0x%p\n", loaderBlock);
+        L"Failed to find OslLoaderBlock (X24)! loaderBlock -> 0x%p\n",
+        loaderBlock);
     goto exit;
   }
 
@@ -181,7 +188,8 @@ KernelErrataPatcherExitBootServices(
 
   // BlpArchSwitchContext
   BlpArchSwitchContext =
-      (BL_ARCH_SWITCH_CONTEXT)(PatternMatch - ARM64_TOTAL_INSTRUCTION_LENGTH(9));
+      (BL_ARCH_SWITCH_CONTEXT)(PatternMatch -
+                               ARM64_TOTAL_INSTRUCTION_LENGTH(9));
 
   // First check if the version of BlpArchSwitchContext before Memory Management
   // v2 is found
@@ -197,7 +205,8 @@ KernelErrataPatcherExitBootServices(
 
     // BlpArchSwitchContext
     BlpArchSwitchContext =
-        (BL_ARCH_SWITCH_CONTEXT)(PatternMatch - ARM64_TOTAL_INSTRUCTION_LENGTH(24));
+        (BL_ARCH_SWITCH_CONTEXT)(PatternMatch -
+                                 ARM64_TOTAL_INSTRUCTION_LENGTH(24));
 
     if (PatternMatch == 0 || (PatternMatch & 0xFFFFFFF000000000) != 0) {
       FirmwarePrint(
@@ -206,16 +215,18 @@ KernelErrataPatcherExitBootServices(
           BlpArchSwitchContext);
 
       // Okay, we maybe have the new new Memory Management? Try again.
-      PatternMatch =
-          FindPattern(fwpKernelSetupPhase1, SCAN_MAX, "7F 06 00 71 37 11 88 9A");
+      PatternMatch = FindPattern(
+          fwpKernelSetupPhase1, SCAN_MAX, "7F 06 00 71 37 11 88 9A");
 
       // BlpArchSwitchContext
       BlpArchSwitchContext =
-          (BL_ARCH_SWITCH_CONTEXT)(PatternMatch - ARM64_TOTAL_INSTRUCTION_LENGTH(24));
+          (BL_ARCH_SWITCH_CONTEXT)(PatternMatch -
+                                   ARM64_TOTAL_INSTRUCTION_LENGTH(24));
 
       if (PatternMatch == 0 || (PatternMatch & 0xFFFFFFF000000000) != 0) {
         FirmwarePrint(
-            L"Failed to find BlpArchSwitchContext (v3)! BlpArchSwitchContext -> "
+            L"Failed to find BlpArchSwitchContext (v3)! BlpArchSwitchContext "
+            L"-> "
             L"0x%p\n",
             BlpArchSwitchContext);
         goto exit;
@@ -286,7 +297,8 @@ exitToFirmware:
   BlpArchSwitchContext(FirmwareContext);
 
 exit:
-  FirmwarePrint(L"OslFwpKernelSetupPhase1   <- (phys) 0x%p\n", fwpKernelSetupPhase1);
+  FirmwarePrint(
+      L"OslFwpKernelSetupPhase1   <- (phys) 0x%p\n", fwpKernelSetupPhase1);
 
   // Call the original
   return gBS->ExitBootServices(ImageHandle, MapKey);
