@@ -246,7 +246,7 @@
   #
   # Secure Boot dependencies
   #
-  AuthVariableLib|SecurityPkg/Library/AuthVariableLib/AuthVariableLib.inf
+  AuthVariableLib|SurfaceDuoFamilyPkg/Library/AuthVariableLib/AuthVariableLib.inf
   SecureBootVariableLib|SecurityPkg/Library/SecureBootVariableLib/SecureBootVariableLib.inf
   SecureBootVariableProvisionLib|SecurityPkg/Library/SecureBootVariableProvisionLib/SecureBootVariableProvisionLib.inf
   # re-use the UserPhysicalPresent() dummy implementation from the ovmf tree
