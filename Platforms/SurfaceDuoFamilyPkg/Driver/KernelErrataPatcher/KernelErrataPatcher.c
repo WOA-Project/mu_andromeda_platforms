@@ -20,17 +20,28 @@ STATIC BL_ARCH_SWITCH_CONTEXT BlpArchSwitchContext = NULL;
 STATIC EFI_EXIT_BOOT_SERVICES EfiExitBootServices  = NULL;
 
 #if SILENT == 0
+
 #define FirmwarePrint(x, ...)                                                  \
   AsciiPrint(x, __VA_ARGS__);                                                  \
   DEBUG((EFI_D_ERROR, x, __VA_ARGS__));
+
 #define ContextPrint(x, ...)                                                   \
   BlpArchSwitchContext(FirmwareContext);                                       \
   FirmwarePrint(x, __VA_ARGS__);                                               \
   BlpArchSwitchContext(ApplicationContext);
+
 #else
 #define FirmwarePrint(x, ...)
 #define ContextPrint(x, ...)
 #endif
+
+#define ApplicationPrint(IsInFirmwareContext, x, ...)                          \
+  if (IsInFirmwareContext) {                                                   \
+    FirmwarePrint(x, __VA_ARGS__);                                             \
+  }                                                                            \
+  else {                                                                       \
+    ContextPrint(x, __VA_ARGS__);                                              \
+  }
 
 VOID KernelErrataPatcherApplyReadACTLREL1Patches(
     EFI_PHYSICAL_ADDRESS Base, UINTN Size, BOOLEAN IsInFirmwareContext)
@@ -42,14 +53,9 @@ VOID KernelErrataPatcherApplyReadACTLREL1Patches(
   UINT8 PatchCounter = 0;
 
   while (IllegalInstruction0 != 0) {
-    if (IsInFirmwareContext) {
-      FirmwarePrint(
-          "mrs x8, actlr_el1         -> (phys) 0x%p\n", IllegalInstruction0);
-    }
-    else {
-      ContextPrint(
-          "mrs x8, actlr_el1         -> (virt) 0x%p\n", IllegalInstruction0);
-    }
+    ApplicationPrint(
+        IsInFirmwareContext, "mrs x8, actlr_el1         -> 0x%p\n",
+        IllegalInstruction0);
 
     CopyMemory(
         IllegalInstruction0, (EFI_PHYSICAL_ADDRESS)FixedInstruction0,
@@ -83,14 +89,9 @@ VOID KernelErrataPatcherApplyWriteACTLREL1Patches(
       FindPattern(Base, Size, "29 10 18 D5");
 
   while (IllegalInstruction1 != 0) {
-    if (IsInFirmwareContext) {
-      FirmwarePrint(
-          "msr actlr_el1, x9         -> (phys) 0x%p\n", IllegalInstruction1);
-    }
-    else {
-      ContextPrint(
-          "msr actlr_el1, x9         -> (virt) 0x%p\n", IllegalInstruction1);
-    }
+    ApplicationPrint(
+        IsInFirmwareContext, "msr actlr_el1, x9         -> 0x%p\n",
+        IllegalInstruction1);
 
     CopyMemory(
         IllegalInstruction1, (EFI_PHYSICAL_ADDRESS)FixedInstruction1,
@@ -115,18 +116,34 @@ VOID KernelErrataPatcherApplyPsciMemoryProtectionPatches(
       PatternMatch - ARM64_TOTAL_INSTRUCTION_LENGTH(8);
 
   if (PatternMatch != 0) {
-    if (IsInFirmwareContext) {
-      FirmwarePrint(
-          "PsciMemProtect            -> (phys) 0x%p\n", PsciMemProtect);
-    }
-    else {
-      ContextPrint(
-          "PsciMemProtect            -> (virt) 0x%p\n", PsciMemProtect);
-    }
+    ApplicationPrint(
+        IsInFirmwareContext, "PsciMemProtect            -> 0x%p\n",
+        PsciMemProtect);
 
     CopyMemory(
         PsciMemProtect, (EFI_PHYSICAL_ADDRESS)RetInstruction,
         sizeof(RetInstruction));
+  }
+  else {
+    PatternMatch = FindPattern(
+        Base, Size, "03 00 80 D2 02 00 80 D2 01 00 80 D2 40 02 00 18");
+    PsciMemProtect = PatternMatch - ARM64_TOTAL_INSTRUCTION_LENGTH(7);
+
+    if (PatternMatch != 0) {
+      ApplicationPrint(
+          IsInFirmwareContext, "PsciMemProtect            -> 0x%p\n",
+          PsciMemProtect);
+
+      CopyMemory(
+          PsciMemProtect, (EFI_PHYSICAL_ADDRESS)RetInstruction,
+          sizeof(RetInstruction));
+    }
+    else {
+      ApplicationPrint(
+          IsInFirmwareContext,
+          "PsciMemProtect            -> Not Found! Base: 0x%p, Size: 0x%p\n",
+          Base, Size);
+    }
   }
 }
 
