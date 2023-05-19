@@ -48,7 +48,7 @@
     INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/GpiDxe/GpiDxe.inf
     INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/HWIODxe/HWIODxe.inf
     INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/I2CDxe/I2CDxe.inf
-    INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/MpPowerDxe/MpPowerDxe.inf
+    # INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/MpPowerDxe/MpPowerDxe.inf
     INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/NpaDxe/NpaDxe.inf
     INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/PdcDxe/PdcDxe.inf
     INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/PILDxe/PILDxe.inf
@@ -85,7 +85,7 @@
     INF QcomPkg/PatchedBinaries/ButtonsDxe.inf
     INF QcomPkg/PatchedBinaries/DisplayDxe.inf
     INF QcomPkg/PatchedBinaries/HALIOMMUDxe.inf
-    INF QcomPkg/PatchedBinaries/PciHostBridgeDxe.inf
+    # INF QcomPkg/PatchedBinaries/PciHostBridgeDxe.inf
     INF QcomPkg/PatchedBinaries/UFSDxe.inf
     INF QcomPkg/PatchedBinaries/UsbConfigDxe.inf
 
