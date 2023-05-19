@@ -21,7 +21,7 @@ STATIC EFI_EXIT_BOOT_SERVICES EfiExitBootServices  = NULL;
 
 #if SILENT == 0
 #define FirmwarePrint(x, ...)                                                  \
-  Print(x, __VA_ARGS__);                                                       \
+  AsciiPrint(x, __VA_ARGS__);                                                  \
   DEBUG((EFI_D_ERROR, x, __VA_ARGS__));
 #define ContextPrint(x, ...)                                                   \
   BlpArchSwitchContext(FirmwareContext);                                       \
@@ -44,11 +44,11 @@ VOID KernelErrataPatcherApplyReadACTLREL1Patches(
   while (IllegalInstruction0 != 0) {
     if (IsInFirmwareContext) {
       FirmwarePrint(
-          L"mrs x8, actlr_el1         -> (phys) 0x%p\n", IllegalInstruction0);
+          "mrs x8, actlr_el1         -> (phys) 0x%p\n", IllegalInstruction0);
     }
     else {
       ContextPrint(
-          L"mrs x8, actlr_el1         -> (virt) 0x%p\n", IllegalInstruction0);
+          "mrs x8, actlr_el1         -> (virt) 0x%p\n", IllegalInstruction0);
     }
 
     CopyMemory(
@@ -85,11 +85,11 @@ VOID KernelErrataPatcherApplyWriteACTLREL1Patches(
   while (IllegalInstruction1 != 0) {
     if (IsInFirmwareContext) {
       FirmwarePrint(
-          L"msr actlr_el1, x9         -> (phys) 0x%p\n", IllegalInstruction1);
+          "msr actlr_el1, x9         -> (phys) 0x%p\n", IllegalInstruction1);
     }
     else {
       ContextPrint(
-          L"msr actlr_el1, x9         -> (virt) 0x%p\n", IllegalInstruction1);
+          "msr actlr_el1, x9         -> (virt) 0x%p\n", IllegalInstruction1);
     }
 
     CopyMemory(
@@ -117,11 +117,11 @@ VOID KernelErrataPatcherApplyPsciMemoryProtectionPatches(
   if (PatternMatch != 0) {
     if (IsInFirmwareContext) {
       FirmwarePrint(
-          L"PsciMemProtect            -> (phys) 0x%p\n", PsciMemProtect);
+          "PsciMemProtect            -> (phys) 0x%p\n", PsciMemProtect);
     }
     else {
       ContextPrint(
-          L"PsciMemProtect            -> (virt) 0x%p\n", PsciMemProtect);
+          "PsciMemProtect            -> (virt) 0x%p\n", PsciMemProtect);
     }
 
     CopyMemory(
@@ -143,12 +143,12 @@ KernelErrataPatcherExitBootServices(
   gBS->ExitBootServices = EfiExitBootServices;
 
   FirmwarePrint(
-      L"OslFwpKernelSetupPhase1   -> (phys) 0x%p\n", fwpKernelSetupPhase1);
+      "OslFwpKernelSetupPhase1   -> (phys) 0x%p\n", fwpKernelSetupPhase1);
 
   // Fix up winload.efi
   // This fixes Boot Debugger
   FirmwarePrint(
-      L"Patching OsLoader         -> (phys) 0x%p (size) 0x%p\n",
+      "Patching OsLoader         -> (phys) 0x%p (size) 0x%p\n",
       fwpKernelSetupPhase1, SCAN_MAX);
 
   // KernelErrataPatcherApplyReadACTLREL1Patches(fwpKernelSetupPhase1, SCAN_MAX,
@@ -159,7 +159,7 @@ KernelErrataPatcherExitBootServices(
   if (loaderBlock == NULL ||
       ((EFI_PHYSICAL_ADDRESS)loaderBlock & 0xFFFFFFF000000000) == 0) {
     FirmwarePrint(
-        L"Failed to find OslLoaderBlock (X19)! loaderBlock -> 0x%p\n",
+        "Failed to find OslLoaderBlock (X19)! loaderBlock -> 0x%p\n",
         loaderBlock);
     loaderBlock = loaderBlockX20;
   }
@@ -167,7 +167,7 @@ KernelErrataPatcherExitBootServices(
   if (loaderBlock == NULL ||
       ((EFI_PHYSICAL_ADDRESS)loaderBlock & 0xFFFFFFF000000000) == 0) {
     FirmwarePrint(
-        L"Failed to find OslLoaderBlock (X20)! loaderBlock -> 0x%p\n",
+        "Failed to find OslLoaderBlock (X20)! loaderBlock -> 0x%p\n",
         loaderBlock);
     loaderBlock = loaderBlockX24;
   }
@@ -175,12 +175,12 @@ KernelErrataPatcherExitBootServices(
   if (loaderBlock == NULL ||
       ((EFI_PHYSICAL_ADDRESS)loaderBlock & 0xFFFFFFF000000000) == 0) {
     FirmwarePrint(
-        L"Failed to find OslLoaderBlock (X24)! loaderBlock -> 0x%p\n",
+        "Failed to find OslLoaderBlock (X24)! loaderBlock -> 0x%p\n",
         loaderBlock);
     goto exit;
   }
 
-  FirmwarePrint(L"OslLoaderBlock            -> (virt) 0x%p\n", loaderBlock);
+  FirmwarePrint("OslLoaderBlock            -> (virt) 0x%p\n", loaderBlock);
 
   EFI_PHYSICAL_ADDRESS PatternMatch = FindPattern(
       fwpKernelSetupPhase1, SCAN_MAX,
@@ -195,8 +195,8 @@ KernelErrataPatcherExitBootServices(
   // v2 is found
   if (PatternMatch == 0 || (PatternMatch & 0xFFFFFFF000000000) != 0) {
     FirmwarePrint(
-        L"Failed to find BlpArchSwitchContext (v1)! BlpArchSwitchContext -> "
-        L"0x%p\n",
+        "Failed to find BlpArchSwitchContext (v1)! BlpArchSwitchContext -> "
+        "0x%p\n",
         BlpArchSwitchContext);
 
     // Okay, we maybe have the new Memory Management? Try again.
@@ -210,8 +210,8 @@ KernelErrataPatcherExitBootServices(
 
     if (PatternMatch == 0 || (PatternMatch & 0xFFFFFFF000000000) != 0) {
       FirmwarePrint(
-          L"Failed to find BlpArchSwitchContext (v2)! BlpArchSwitchContext -> "
-          L"0x%p\n",
+          "Failed to find BlpArchSwitchContext (v2)! BlpArchSwitchContext -> "
+          "0x%p\n",
           BlpArchSwitchContext);
 
       // Okay, we maybe have the new new Memory Management? Try again.
@@ -225,9 +225,8 @@ KernelErrataPatcherExitBootServices(
 
       if (PatternMatch == 0 || (PatternMatch & 0xFFFFFFF000000000) != 0) {
         FirmwarePrint(
-            L"Failed to find BlpArchSwitchContext (v3)! BlpArchSwitchContext "
-            L"-> "
-            L"0x%p\n",
+            "Failed to find BlpArchSwitchContext (v3)! BlpArchSwitchContext -> "
+            "0x%p\n",
             BlpArchSwitchContext);
         goto exit;
       }
@@ -235,7 +234,7 @@ KernelErrataPatcherExitBootServices(
   }
 
   FirmwarePrint(
-      L"BlpArchSwitchContext      -> (phys) 0x%p\n", BlpArchSwitchContext);
+      "BlpArchSwitchContext      -> (phys) 0x%p\n", BlpArchSwitchContext);
 
   /*
    * Switch context to (as defined by winload) application context
@@ -251,14 +250,14 @@ KernelErrataPatcherExitBootServices(
   UINT32 Size           = loaderBlock->Size;
 
   ContextPrint(
-      L"LOADER_PARAMETER_BLOCK    -> OsMajorVersion: %d OsMinorVersion: %d "
-      L"Size: %d\n",
+      "LOADER_PARAMETER_BLOCK    -> OsMajorVersion: %d OsMinorVersion: %d "
+      "Size: %d\n",
       OsMajorVersion, OsMinorVersion, Size);
 
   if (OsMajorVersion != 10 || OsMinorVersion != 0 || Size == 0) {
     ContextPrint(
-        L"Incompatible!           -> OsMajorVersion: %d OsMinorVersion: %d "
-        L"Size: %d\n",
+        "Incompatible!           -> OsMajorVersion: %d OsMinorVersion: %d "
+        "Size: %d\n",
         OsMajorVersion, OsMinorVersion, Size);
 
     goto exitToFirmware;
@@ -269,7 +268,7 @@ KernelErrataPatcherExitBootServices(
 
   if (kernelModule.DllBase == NULL) {
     ContextPrint(
-        L"Failed to find ntoskrnl.exe in OslLoaderBlock(0x%p)!\n",
+        "Failed to find ntoskrnl.exe in OslLoaderBlock(0x%p)!\n",
         kernelModule.DllBase);
 
     goto exitToFirmware;
@@ -278,11 +277,11 @@ KernelErrataPatcherExitBootServices(
   EFI_PHYSICAL_ADDRESS kernelBase = (EFI_PHYSICAL_ADDRESS)kernelModule.DllBase;
   UINTN                kernelSize = kernelModule.SizeOfImage;
 
-  ContextPrint(L"OsKernel                  -> (virt) 0x%p\n", kernelBase);
+  ContextPrint("OsKernel                  -> (virt) 0x%p\n", kernelBase);
 
   if (kernelBase != 0 && kernelSize != 0) {
     ContextPrint(
-        L"Patching OsKernel         -> (virt) 0x%p (size) 0x%p\n", kernelBase,
+        "Patching OsKernel         -> (virt) 0x%p (size) 0x%p\n", kernelBase,
         kernelSize);
 
     // Fix up ntoskrnl.exe
@@ -298,7 +297,7 @@ exitToFirmware:
 
 exit:
   FirmwarePrint(
-      L"OslFwpKernelSetupPhase1   <- (phys) 0x%p\n", fwpKernelSetupPhase1);
+      "OslFwpKernelSetupPhase1   <- (phys) 0x%p\n", fwpKernelSetupPhase1);
 
   // Call the original
   return gBS->ExitBootServices(ImageHandle, MapKey);
