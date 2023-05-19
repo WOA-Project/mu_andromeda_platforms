@@ -17,13 +17,30 @@
 
 [Sources]
   FACP.aslc
+  #SoftwareTpm2Table.aslc
+  SoftwareTpm2Device.asl
+  #SelfSignedDriverEnabler.asl
+
+[Binaries.AARCH64]
+   ASL|SurfaceDuoACPI/8150/builtin/APIC.aml
+   ASL|SurfaceDuoACPI/8150/builtin/CSRT.aml
+   ASL|SurfaceDuoACPI/8150/builtin/DBG2.aml
+   ASL|SurfaceDuoACPI/8150/builtin/DSDT.aml
+   ASL|SurfaceDuoACPI/8150/builtin/GTDT.aml
+   ASL|SurfaceDuoACPI/8150/builtin/IORT.aml
+   ASL|SurfaceDuoACPI/8150/builtin/MCFG.aml
+   ASL|SurfaceDuoACPI/8150/builtin/PPTT.aml
+   ASL|SurfaceDuoACPI/common/builtin/SSDT.aml
+   ASL|SurfaceDuoACPI/common/builtin/SoftwareTpm2Table.aml
 
 [Packages]
-  ArmPlatformPkg/ArmPlatformPkg.dec
   ArmPkg/ArmPkg.dec
+  ArmPlatformPkg/ArmPlatformPkg.dec
   EmbeddedPkg/EmbeddedPkg.dec
-  MdePkg/MdePkg.dec
   MdeModulePkg/MdeModulePkg.dec
+  MdePkg/MdePkg.dec
+  SurfaceDuo1Pkg/SurfaceDuo1Pkg.dec
+  SurfaceDuoFamilyPkg/SurfaceDuoFamilyPkg.dec
 
 [FixedPcd]
   gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultCreatorId

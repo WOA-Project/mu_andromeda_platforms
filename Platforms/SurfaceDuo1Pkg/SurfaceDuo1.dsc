@@ -58,3 +58,6 @@
 !include QcomPkg/QcomPkg.dsc.inc
 !include SurfaceDuoFamilyPkg/SurfaceDuoFamily.dsc.inc
 !include SurfaceDuoFamilyPkg/Frontpage.dsc.inc
+
+[Components.common]
+  SurfaceDuo1Pkg/AcpiTables/AcpiTables.inf
