@@ -364,6 +364,9 @@
   # ARM Architectural Libraries
   ArmGicArchLib|ArmPkg/Library/ArmGicArchLib/ArmGicArchLib.inf
 
+  MallocLib|SurfaceDuoFamilyPkg/Library/MallocLib/MallocLib.inf
+  LodePngLib|SurfaceDuoFamilyPkg/Library/LodePngLib/LodePngLib.inf
+
 [LibraryClasses.common.SEC]
   ArmGicArchLib|ArmPkg/Library/ArmGicArchSecLib/ArmGicArchSecLib.inf
   HobLib|EmbeddedPkg/Library/PrePiHobLib/PrePiHobLib.inf
