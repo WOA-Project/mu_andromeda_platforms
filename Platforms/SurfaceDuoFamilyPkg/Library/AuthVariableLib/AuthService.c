@@ -486,13 +486,13 @@ CheckSignatureListFormat (
 
       CertData = (EFI_SIGNATURE_DATA *)((UINT8 *)SigList + sizeof (EFI_SIGNATURE_LIST) + SigList->SignatureHeaderSize);
       CertLen  = SigList->SignatureSize - sizeof (EFI_GUID);
-      if (!RsaGetPublicKeyFromX509 (CertData->SignatureData, CertLen, &RsaContext)) {
+      /*if (!RsaGetPublicKeyFromX509 (CertData->SignatureData, CertLen, &RsaContext)) {
         RsaFree (RsaContext);
         DEBUG((DEBUG_ERROR, "%a EFI_INVALID_PARAMETER 4 \n", __FUNCTION__));
         return EFI_INVALID_PARAMETER;
       }
 
-      RsaFree (RsaContext);
+      RsaFree (RsaContext);*/
     }
 
     if ((SigList->SignatureListSize - sizeof (EFI_SIGNATURE_LIST) - SigList->SignatureHeaderSize) % SigList->SignatureSize != 0) {
