@@ -127,7 +127,6 @@ AuthVariableLibInitialize (
   UINT32      ListSize;
 
   if ((AuthVarLibContextIn == NULL) || (AuthVarLibContextOut == NULL)) {
-    DEBUG((DEBUG_ERROR, "%a EFI_INVALID_PARAMETER \n", __FUNCTION__));
     return EFI_INVALID_PARAMETER;
   }
 

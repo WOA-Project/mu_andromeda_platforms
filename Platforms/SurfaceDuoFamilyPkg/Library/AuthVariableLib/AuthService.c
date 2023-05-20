@@ -451,7 +451,6 @@ CheckSignatureListFormat (
         if ((mSupportSigItem[Index].SigDataSize != ((UINT32) ~0)) &&
             ((SigList->SignatureSize - sizeof (EFI_GUID)) != mSupportSigItem[Index].SigDataSize))
         {
-          DEBUG((DEBUG_ERROR, "%a EFI_INVALID_PARAMETER 1 \n", __FUNCTION__));
           return EFI_INVALID_PARAMETER;
         }
 
@@ -469,7 +468,6 @@ CheckSignatureListFormat (
       //
       // Undefined signature type.
       //
-      DEBUG((DEBUG_ERROR, "%a EFI_INVALID_PARAMETER 2 \n", __FUNCTION__));
       return EFI_INVALID_PARAMETER;
     }
 
@@ -480,7 +478,6 @@ CheckSignatureListFormat (
       //
       RsaContext = RsaNew ();
       if (RsaContext == NULL) {
-        DEBUG((DEBUG_ERROR, "%a EFI_INVALID_PARAMETER 3 \n", __FUNCTION__));
         return EFI_INVALID_PARAMETER;
       }
 
@@ -488,7 +485,6 @@ CheckSignatureListFormat (
       CertLen  = SigList->SignatureSize - sizeof (EFI_GUID);
       /*if (!RsaGetPublicKeyFromX509 (CertData->SignatureData, CertLen, &RsaContext)) {
         RsaFree (RsaContext);
-        DEBUG((DEBUG_ERROR, "%a EFI_INVALID_PARAMETER 4 \n", __FUNCTION__));
         return EFI_INVALID_PARAMETER;
       }
 
@@ -496,7 +492,6 @@ CheckSignatureListFormat (
     }
 
     if ((SigList->SignatureListSize - sizeof (EFI_SIGNATURE_LIST) - SigList->SignatureHeaderSize) % SigList->SignatureSize != 0) {
-      DEBUG((DEBUG_ERROR, "%a EFI_INVALID_PARAMETER 5 \n", __FUNCTION__));
       return EFI_INVALID_PARAMETER;
     }
 
@@ -507,12 +502,10 @@ CheckSignatureListFormat (
   }
 
   if (((UINTN)SigList - (UINTN)Data) != DataSize) {
-    DEBUG((DEBUG_ERROR, "%a EFI_INVALID_PARAMETER 6 \n", __FUNCTION__));
     return EFI_INVALID_PARAMETER;
   }
 
   if (IsPk && (SigCount > 1)) {
-    DEBUG((DEBUG_ERROR, "%a EFI_INVALID_PARAMETER 7 \n", __FUNCTION__));
     return EFI_INVALID_PARAMETER;
   }
 
@@ -605,7 +598,6 @@ ProcessVarWithPk (
     // PK, KEK and db/dbx/dbt should set EFI_VARIABLE_NON_VOLATILE attribute and should be a time-based
     // authenticated variable.
     //
-    DEBUG((DEBUG_ERROR, "%a EFI_INVALID_PARAMETER \n", __FUNCTION__));
     return EFI_INVALID_PARAMETER;
   }
 
@@ -755,7 +747,6 @@ ProcessVarWithKek (
     // DB, DBX and DBT should set EFI_VARIABLE_NON_VOLATILE attribute and should be a time-based
     // authenticated variable.
     //
-    DEBUG((DEBUG_ERROR, "%a EFI_INVALID_PARAMETER \n", __FUNCTION__));
     return EFI_INVALID_PARAMETER;
   }
 
@@ -1257,7 +1248,6 @@ FindCertsFromDb (
   UINT32             CertDbListSize;
 
   if ((VariableName == NULL) || (VendorGuid == NULL) || (Data == NULL)) {
-    DEBUG((DEBUG_ERROR, "%a EFI_INVALID_PARAMETER \n", __FUNCTION__));
     return EFI_INVALID_PARAMETER;
   }
 
@@ -1265,14 +1255,12 @@ FindCertsFromDb (
   // Check whether DataSize matches recorded CertDbListSize.
   //
   if (DataSize < sizeof (UINT32)) {
-    DEBUG((DEBUG_ERROR, "%a EFI_INVALID_PARAMETER \n", __FUNCTION__));
     return EFI_INVALID_PARAMETER;
   }
 
   CertDbListSize = ReadUnaligned32 ((UINT32 *)Data);
 
   if (CertDbListSize != (UINT32)DataSize) {
-    DEBUG((DEBUG_ERROR, "%a EFI_INVALID_PARAMETER \n", __FUNCTION__));
     return EFI_INVALID_PARAMETER;
   }
 
@@ -1294,7 +1282,6 @@ FindCertsFromDb (
       if (NodeSize != sizeof (EFI_GUID) + sizeof (UINT32) * 3 + CertSize +
           sizeof (CHAR16) * NameSize)
       {
-        DEBUG((DEBUG_ERROR, "%a EFI_INVALID_PARAMETER \n", __FUNCTION__));
         return EFI_INVALID_PARAMETER;
       }
 
@@ -1368,7 +1355,6 @@ GetCertsFromDb (
   CHAR16      *DbName;
 
   if ((VariableName == NULL) || (VendorGuid == NULL) || (CertData == NULL) || (CertDataSize == NULL)) {
-    DEBUG((DEBUG_ERROR, "%a EFI_INVALID_PARAMETER \n", __FUNCTION__));
     return EFI_INVALID_PARAMETER;
   }
 
@@ -1454,7 +1440,6 @@ DeleteCertsFromDb (
   CHAR16      *DbName;
 
   if ((VariableName == NULL) || (VendorGuid == NULL)) {
-    DEBUG((DEBUG_ERROR, "%a EFI_INVALID_PARAMETER \n", __FUNCTION__));
     return EFI_INVALID_PARAMETER;
   }
 
@@ -1602,7 +1587,6 @@ InsertCertsToDb (
   UINT8              Sha256Digest[SHA256_DIGEST_SIZE];
 
   if ((VariableName == NULL) || (VendorGuid == NULL) || (SignerCert == NULL) || (TopLevelCert == NULL)) {
-    DEBUG((DEBUG_ERROR, "%a EFI_INVALID_PARAMETER \n", __FUNCTION__));
     return EFI_INVALID_PARAMETER;
   }
 
