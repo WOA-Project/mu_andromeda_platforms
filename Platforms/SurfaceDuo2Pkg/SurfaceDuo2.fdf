@@ -113,7 +113,7 @@ READ_LOCK_STATUS   = TRUE
   INF SurfaceDuoFamilyPkg/Driver/SmBiosTableDxe/SmBiosTableDxe.inf
 
   # ACPI Tables
-  !include SurfaceDuo2Pkg/Include/ACPI.inc
+  INF RuleOverride=ACPITABLE SurfaceDuo2Pkg/AcpiTables/AcpiTables.inf
 
   # DT
   INF EmbeddedPkg/Drivers/DtPlatformDxe/DtPlatformDxe.inf
