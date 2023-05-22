@@ -26,10 +26,6 @@
 
   INF DfciPkg/Application/DfciMenu/DfciMenu.inf
 
-  FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdLogoFile) {
-    SECTION RAW = SurfaceDuoFamilyPkg/Include/Resources/logo1.png
-    SECTION UI = "logo1.png"
-  }
   FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdFrontPageLogoFile) {
     SECTION RAW = OemPkg/FrontPage/Resources/FrontpageLogo.bmp
   }

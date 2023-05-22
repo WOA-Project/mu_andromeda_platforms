@@ -50,10 +50,10 @@
   gEfiMdeModulePkgTokenSpaceGuid.PcdVideoVerticalResolution|1800
   gEfiMdeModulePkgTokenSpaceGuid.PcdSetupVideoHorizontalResolution|1350
   gEfiMdeModulePkgTokenSpaceGuid.PcdSetupVideoVerticalResolution|1800
-  gEfiMdeModulePkgTokenSpaceGuid.PcdSetupConOutRow|94 # 94.73
-  gEfiMdeModulePkgTokenSpaceGuid.PcdSetupConOutColumn|168 # 168.75
-  gEfiMdeModulePkgTokenSpaceGuid.PcdConOutRow|94 # 94.73
-  gEfiMdeModulePkgTokenSpaceGuid.PcdConOutColumn|168 # 168.75
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSetupConOutColumn|168 # 168.75 = 1350 / EFI_GLYPH_WIDTH(8)
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSetupConOutRow|94 # 94.73 = 1800 / EFI_GLYPH_HEIGHT(19)
+  gEfiMdeModulePkgTokenSpaceGuid.PcdConOutColumn|168 # 168.75 = 1350 / EFI_GLYPH_WIDTH(8)
+  gEfiMdeModulePkgTokenSpaceGuid.PcdConOutRow|94 # 94.73 = 1800 / EFI_GLYPH_HEIGHT(19)
 
 !include QcomPkg/QcomPkg.dsc.inc
 !include SurfaceDuoFamilyPkg/SurfaceDuoFamily.dsc.inc
