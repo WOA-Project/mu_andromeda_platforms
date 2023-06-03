@@ -79,8 +79,8 @@
   # Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/VerifiedBootDxe/VerifiedBootDxe.inf
   # Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/XhciDxe/XhciDxe.inf
   # Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/Sm8350FamilyPkg/Drivers/UfsSecurityDxe/UfsSecurityDxe.inf
-  Arcata/BOOT.MXF.1.1.c1-00018-MAKENA-1.11859.2/ArcataPkg/GpioButtonsDxe/GpioButtons.inf
-  Arcata/BOOT.MXF.1.1.c1-00018-MAKENA-1.11859.2/MsSurfaceCorePkg/SurfaceTouchHidDxe/SurfaceTouchHidDxeV2.inf
+  Arcata/BOOT.MXF.1.1.c1-00089-MAKENA-2/ArcataPkg/GpioButtonsDxe/GpioButtons.inf
+  Arcata/BOOT.MXF.1.1.c1-00089-MAKENA-2/MsSurfaceCorePkg/SurfaceHidSpiDeviceDxe/SurfaceHidSpiDeviceDxe.inf
   MdeModulePkg/Universal/Disk/PartitionDxe/PartitionDxe.inf
   QcomPkg/PatchedBinaries/ButtonsDxe.inf
   QcomPkg/PatchedBinaries/ClockDxe.inf
