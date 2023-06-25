@@ -211,7 +211,7 @@
   #
   # Application that presents and manages FrontPage.
   #
-  OemPkg/FrontPage/FrontPage.inf
+  SurfaceDuoFamilyPkg/FrontPage/FrontPage.inf
   # Surface Boot Manager (Menu) application
   #
   # Application that presents & manages the Boot Menu Setup on Front Page.
