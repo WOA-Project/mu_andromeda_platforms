@@ -277,7 +277,7 @@ UpdateDisplayStrings (
       FreePool (NewString);
     }
 
-    Status      = GetOptionalStringByIndex ((CHAR8 *)((UINT8 *)Type1Record + Type1Record->Hdr.Length), Type1Record->ProductName, &NewString);
+    Status = GetOptionalStringByIndex ((CHAR8 *)((UINT8 *)Type1Record + Type1Record->Hdr.Length), Type1Record->ProductName, &NewString);
     if (!EFI_ERROR (Status)) {
       HiiSetString (HiiHandle, STRING_TOKEN (STR_INF_VIEW_PC_MODEL_VALUE), NewString, NULL);
       FreePool (NewString);
