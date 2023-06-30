@@ -7,7 +7,7 @@
   INF MsGraphicsPkg/RenderingEngineDxe/RenderingEngineDxe.inf
   INF MsGraphicsPkg/DisplayEngineDxe/DisplayEngineDxe.inf
   INF OemPkg/BootMenu/BootMenu.inf
-  INF OemPkg/FrontPage/FrontPage.inf
+  INF SurfaceDuoFamilyPkg/FrontPage/FrontPage.inf
   INF PcBdsPkg/MsBootPolicy/MsBootPolicy.inf
   INF MdeModulePkg/Universal/BootManagerPolicyDxe/BootManagerPolicyDxe.inf
   INF MdeModulePkg/Universal/RegularExpressionDxe/RegularExpressionDxe.inf
@@ -27,20 +27,20 @@
   INF DfciPkg/Application/DfciMenu/DfciMenu.inf
 
   FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdFrontPageLogoFile) {
-    SECTION RAW = OemPkg/FrontPage/Resources/FrontpageLogo.bmp
+    SECTION RAW = SurfaceDuoFamilyPkg/FrontPage/Resources/FrontpageLogo.bmp
   }
   FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdLowBatteryFile) {
-    SECTION RAW = OemPkg/FrontPage/Resources/LBAT.bmp
+    SECTION RAW = SurfaceDuoFamilyPkg/FrontPage/Resources/LBAT.bmp
   }
   FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdThermalFile) {
-    SECTION RAW = OemPkg/FrontPage/Resources/THOT.bmp
+    SECTION RAW = SurfaceDuoFamilyPkg/FrontPage/Resources/THOT.bmp
   }
   FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdVolumeUpIndicatorFile) {
-    SECTION RAW = OemPkg/FrontPage/Resources/VolumeUp.bmp
+    SECTION RAW = SurfaceDuoFamilyPkg/FrontPage/Resources/VolumeUp.bmp
   }
   FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdFirmwareSettingsIndicatorFile) {
-    SECTION RAW = OemPkg/FrontPage/Resources/FirmwareSettings.bmp
+    SECTION RAW = SurfaceDuoFamilyPkg/FrontPage/Resources/FirmwareSettings.bmp
   }
   FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdBootFailIndicatorFile) {
-    SECTION RAW = OemPkg/FrontPage/Resources/NoBoot.bmp
+    SECTION RAW = SurfaceDuoFamilyPkg/FrontPage/Resources/NoBoot.bmp
   }

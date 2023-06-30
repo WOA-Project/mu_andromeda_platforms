@@ -55,7 +55,6 @@
   # Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/MsCommonPkg/Drivers/SurfaceTouchHidDxe/SurfaceTouchHidDxeV2.inf
   # Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Application/QcomChargerApp/QcomChargerApp.inf
   # Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/ASN1X509Dxe/ASN1X509Dxe.inf
-  # Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/ButtonsDxe/ButtonsDxe.inf
   # Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/ClockDxe/ClockDxe.inf
   # Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/CPRDxe/CPRDxe.inf
   # Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/DisplayDxe/DisplayDxe.inf
@@ -80,15 +79,14 @@
   # Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/XhciDxe/XhciDxe.inf
   # Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/Sm8350FamilyPkg/Drivers/UfsSecurityDxe/UfsSecurityDxe.inf
   Arcata/BOOT.MXF.1.1.c1-00089-MAKENA-2/ArcataPkg/GpioButtonsDxe/GpioButtons.inf
-  Arcata/BOOT.MXF.1.1.c1-00089-MAKENA-2/MsSurfaceCorePkg/SurfaceHidSpiDeviceDxe/SurfaceHidSpiDeviceDxe.inf
   MdeModulePkg/Universal/Disk/PartitionDxe/PartitionDxe.inf
-  QcomPkg/PatchedBinaries/ButtonsDxe.inf
   QcomPkg/PatchedBinaries/ClockDxe.inf
   QcomPkg/PatchedBinaries/MinidumpTADxe.inf
   QcomPkg/PatchedBinaries/MsAbstractLayer.inf
   QcomPkg/PatchedBinaries/MsManufacturingMode.inf
   QcomPkg/PatchedBinaries/PmicDxeLa.inf
   QcomPkg/PatchedBinaries/QcomWDogDxe.inf
+  QcomPkg/PatchedBinaries/SurfaceTouchHidDxeV2.inf
   QcomPkg/PatchedBinaries/UFSDxe.inf
   QcomPkg/PatchedBinaries/UsbConfigDxe.inf
   SurfaceDuoFamilyPkg/Driver/GpioButtons/GpioButtons.inf
@@ -97,6 +95,7 @@
   Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/MsCommonPkg/Drivers/MsTouchPointDxe/MsTouchPoint.inf
   Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/MsCommonPkg/Drivers/TouchControllerInitDxe/TouchControllerInitDxe.inf
   Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/MsCommonPkg/Drivers/TouchUtilsDxe/TouchUtilsDxe.inf
+  Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/ButtonsDxe/ButtonsDxe.inf
   Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/ChargerExDxe/ChargerExDxe.inf
   Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/ChipInfoDxe/ChipInfoDxe.inf
   Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/CmdDbDxe/CmdDbDxe.inf
