@@ -531,8 +531,9 @@ MsBootOptionsLibGetDefaultOptions (
   if (EFI_ERROR (Status)) {
     DEBUG ((DEBUG_ERROR, "%a Error creating defatult boot options\n", __FUNCTION__));
     FreePool (Option);
-    Option           = NULL;
-    LocalOptionCount = 0;
+    Option                = NULL;
+    LocalOptionCount      = 0;
+    AdditionalOptionCount = 0;
   }
 
   *OptionCount = LocalOptionCount + AdditionalOptionCount;
