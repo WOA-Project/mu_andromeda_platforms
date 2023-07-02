@@ -170,6 +170,9 @@ GetButtonState()
   // Prevent Key persistence when chainloaded
   SimpleEx->Reset(SimpleEx, TRUE);
 
+  KeyData.KeyState.KeyToggleState = 0;
+  KeyData.KeyState.KeyShiftState  = 0;
+
   KeyData.Key.UnicodeChar = 0;
   KeyData.Key.ScanCode    = SCAN_UP;
 
