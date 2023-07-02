@@ -498,12 +498,13 @@ MsBootOptionsLibGetDefaultOptions (
   OUT UINTN  *OptionCount
   )
 {
-  UINTN                         LocalOptionCount = 5;
+  UINTN                         LocalOptionCount      = 3;
   EFI_BOOT_MANAGER_LOAD_OPTION  *Option;
   EFI_STATUS                    Status;
   EFI_STATUS                    Status2;
+  UINTN                         AdditionalOptionCount = 2;
 
-  Option = (EFI_BOOT_MANAGER_LOAD_OPTION *)AllocateZeroPool (sizeof (EFI_BOOT_MANAGER_LOAD_OPTION) * LocalOptionCount);
+  Option = (EFI_BOOT_MANAGER_LOAD_OPTION *)AllocateZeroPool (sizeof (EFI_BOOT_MANAGER_LOAD_OPTION) * (LocalOptionCount + AdditionalOptionCount));
   ASSERT (Option != NULL);
   if (Option == NULL) {
     *OptionCount = 0;
@@ -514,16 +515,17 @@ MsBootOptionsLibGetDefaultOptions (
   Status |= CreateFvBootOption (&gMsBootPolicyFileGuid, MS_USB_BOOT, &Option[1], LOAD_OPTION_ACTIVE, (UINT8 *)MS_USB_BOOT_PARM, sizeof (MS_USB_BOOT_PARM));
   Status |= CreateFvBootOption (&gMsBootPolicyFileGuid, MS_PXE_BOOT, &Option[2], LOAD_OPTION_ACTIVE, (UINT8 *)MS_PXE_BOOT_PARM, sizeof (MS_PXE_BOOT_PARM));
 
-  Status2 = CreateFvBootOption (PcdGetPtr (PcdUFPMenuFile), INTERNAL_FFU_LOADER_NAME, &Option[3], LOAD_OPTION_ACTIVE, NULL, 0);
-  if (EFI_ERROR (Status2)) {
+  AdditionalOptionCount = 0;
+  Status2 = CreateFvBootOption (PcdGetPtr (PcdUFPMenuFile), INTERNAL_FFU_LOADER_NAME, &Option[LocalOptionCount + AdditionalOptionCount], LOAD_OPTION_ACTIVE, NULL, 0);
+  if (!EFI_ERROR (Status2)) {
     // The ffu loader is optional.  So, ignore that we cannot create it.
-    LocalOptionCount--;
+    AdditionalOptionCount++;
   }
 
-  Status2 = CreateFvBootOption (PcdGetPtr (PcdShellFile), INTERNAL_UEFI_SHELL_NAME, &Option[4], LOAD_OPTION_ACTIVE, NULL, 0);
-  if (EFI_ERROR (Status2)) {
+  Status2 = CreateFvBootOption (PcdGetPtr (PcdShellFile), INTERNAL_UEFI_SHELL_NAME, &Option[LocalOptionCount + AdditionalOptionCount], LOAD_OPTION_ACTIVE, NULL, 0);
+  if (!EFI_ERROR (Status2)) {
     // The shell is optional.  So, ignore that we cannot create it.
-    LocalOptionCount--;
+    AdditionalOptionCount++;
   }
 
   if (EFI_ERROR (Status)) {
@@ -533,7 +535,7 @@ MsBootOptionsLibGetDefaultOptions (
     LocalOptionCount = 0;
   }
 
-  *OptionCount = LocalOptionCount;
+  *OptionCount = LocalOptionCount + AdditionalOptionCount;
 
   return Option;
 }
