@@ -36,7 +36,6 @@ GetBootGraphic(
   unsigned int   Width;
   unsigned int   Height;
   UINT32         DecoderError;
-  BOOLEAN        IsPng  = FALSE;
   EFI_STATUS     Status = EFI_SUCCESS;
 
   switch (Graphic) {
@@ -60,14 +59,11 @@ GetBootGraphic(
   Status =
       GetSectionFromAnyFv(g, EFI_SECTION_RAW, 0, (VOID **)ImageData, ImageSize);
   
-  // Identify Picture Format.
-  if ((*ImageSize > 4) &&
+  if (!EFI_ERROR(Status) &&
+    (*ImageSize > 4) &&
     ((unsigned char *)*ImageData)[1] == 'P' &&
     ((unsigned char *)*ImageData)[2] == 'N' &&
-    ((unsigned char *)*ImageData)[3] == 'G')
-    IsPng  = TRUE;
-  
-  if (!EFI_ERROR(Status) && IsPng) {
+    ((unsigned char *)*ImageData)[3] == 'G') {
     // Decode PNG
     DecoderError = lodepng_decode32(
         &DecodedData, &Width, &Height, (unsigned char *)*ImageData,
