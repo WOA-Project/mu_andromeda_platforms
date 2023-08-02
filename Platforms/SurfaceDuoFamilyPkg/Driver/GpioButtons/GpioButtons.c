@@ -107,18 +107,13 @@ KeyNotify(IN EFI_KEY_DATA *KeyData)
     return EFI_OUT_OF_RESOURCES;
   }
 
-  if (KeyData->KeyState.KeyToggleState && KeyData->Key.ScanCode == SCAN_UP) {
+  if (KeyData->Key.ScanCode == SCAN_UP) {
     gBsp->ButtonState = VolUpButton;
     DEBUG((DEBUG_INFO, "%a: Vol+ Button Detected\n", __FUNCTION__));
   }
-  else if (
-      KeyData->KeyState.KeyToggleState && KeyData->Key.ScanCode == SCAN_DOWN) {
+  else if (KeyData->Key.ScanCode == SCAN_DOWN) {
     gBsp->ButtonState = VolDownButton;
     DEBUG((DEBUG_INFO, "%a: Vol- Button Detected\n", __FUNCTION__));
-  }
-  else {
-    gBsp->ButtonState = NoButtons;
-    DEBUG((DEBUG_INFO, "%a: Neither Vol+ nor Vol- detected\n", __FUNCTION__));
   }
   return EFI_SUCCESS;
 }
@@ -172,14 +167,14 @@ GetButtonState()
     goto Exit;
   }
 
-  KeyData.KeyState.KeyToggleState = 0;
-  KeyData.KeyState.KeyShiftState  = 0;
-  KeyData.Key.UnicodeChar         = 0;
-
-  KeyData.Key.ScanCode = SCAN_UP;
-
   // Prevent Key persistence when chainloaded
   SimpleEx->Reset(SimpleEx, TRUE);
+
+  KeyData.KeyState.KeyToggleState = 0;
+  KeyData.KeyState.KeyShiftState  = 0;
+
+  KeyData.Key.UnicodeChar = 0;
+  KeyData.Key.ScanCode    = SCAN_UP;
 
   Status = SimpleEx->RegisterKeyNotify(
       SimpleEx, &KeyData, &KeyNotify, &NotifyHandle);

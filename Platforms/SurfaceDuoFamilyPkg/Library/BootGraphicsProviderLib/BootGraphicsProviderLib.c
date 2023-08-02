@@ -36,13 +36,11 @@ GetBootGraphic(
   unsigned int   Width;
   unsigned int   Height;
   UINT32         DecoderError;
-  BOOLEAN        IsPng  = FALSE;
   EFI_STATUS     Status = EFI_SUCCESS;
 
   switch (Graphic) {
   case BG_SYSTEM_LOGO:
-    g     = PcdGetPtr(PcdLogoFile);
-    IsPng = TRUE;
+    g = PcdGetPtr(PcdLogoFile);
     break;
   case BG_CRITICAL_OVER_TEMP:
     g = PcdGetPtr(PcdThermalFile);
@@ -60,8 +58,12 @@ GetBootGraphic(
   //
   Status =
       GetSectionFromAnyFv(g, EFI_SECTION_RAW, 0, (VOID **)ImageData, ImageSize);
-
-  if (!EFI_ERROR(Status) && IsPng) {
+  
+  if (!EFI_ERROR(Status) &&
+    (*ImageSize > 4) &&
+    ((unsigned char *)*ImageData)[1] == 'P' &&
+    ((unsigned char *)*ImageData)[2] == 'N' &&
+    ((unsigned char *)*ImageData)[3] == 'G') {
     // Decode PNG
     DecoderError = lodepng_decode32(
         &DecodedData, &Width, &Height, (unsigned char *)*ImageData,
