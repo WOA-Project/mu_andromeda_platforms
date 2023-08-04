@@ -44,3 +44,11 @@
   FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdBootFailIndicatorFile) {
     SECTION RAW = SurfaceDuoFamilyPkg/FrontPage/Resources/NoBoot.bmp
   }
+
+!if $(TARGET) == DEBUG
+  INF CryptoPkg/Driver/Bin/CryptoDriverBin_STANDARD_Dxe_DEBUG_AARCH64.inf
+!endif
+
+!if $(TARGET) == RELEASE
+  INF CryptoPkg/Driver/Bin/CryptoDriverBin_STANDARD_Dxe_RELEASE_AARCH64.inf
+!endif

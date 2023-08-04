@@ -421,6 +421,10 @@ AuthVariableLibProcessVariable (
 {
   EFI_STATUS  Status;
 
+  if (EfiAtRuntime()) {
+    return EFI_UNSUPPORTED;
+  }
+
   if (CompareGuid (VendorGuid, &gEfiGlobalVariableGuid) && (StrCmp (VariableName, EFI_PLATFORM_KEY_NAME) == 0)) {
     Status = ProcessVarWithPk (VariableName, VendorGuid, Data, DataSize, Attributes, TRUE);
   } else if (CompareGuid (VendorGuid, &gEfiGlobalVariableGuid) && (StrCmp (VariableName, EFI_KEY_EXCHANGE_KEY_NAME) == 0)) {

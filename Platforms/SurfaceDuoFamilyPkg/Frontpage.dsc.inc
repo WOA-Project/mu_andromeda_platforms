@@ -1,4 +1,3 @@
-
 [LibraryClasses.common]
   #
   # Libraries to support Shell
@@ -10,10 +9,6 @@
   BcfgCommandLib|ShellPkg/Library/UefiShellBcfgCommandLib/UefiShellBcfgCommandLib.inf
   NetLib|NetworkPkg/Library/DxeNetLib/DxeNetLib.inf
   #
-  # Contains intrinsics for crypto operations
-  #
-  IntrinsicLib|CryptoPkg/Library/IntrinsicLib/IntrinsicLib.inf
-  #
   # contains NULL routines to support UI operations associated with DFCI.
   #
   DfciUiSupportLib|OemPkg/Library/DfciUiSupportLib/DfciUiSupportLib.inf
@@ -22,14 +17,9 @@
   #
   DfciRecoveryLib|DfciPkg/Library/DfciRecoveryLib/DfciRecoveryLib.inf
   #
-  # Contains openSSL library used by BaseCryptoLib
-  #
-  OpensslLib|CryptoPkg/Library/OpensslLib/OpensslLib.inf
-  #
   # Functions that should contain base logic for querying, setting, and verifying user passwords.
   #
   PasswordStoreLib|OemPkg/Library/PasswordStoreLib/PasswordStoreLib.inf
-  BaseCryptLib|CryptoPkg/Library/BaseCryptLib/BaseCryptLib.inf
   #
   # Supports DFCI Groups.
   #
@@ -201,6 +191,10 @@
 
   gOemPkgTokenSpaceGuid.PcdPostBackgroundColor|0x0
 
+[LibraryClasses.AARCH64.DXE_DRIVER, LibraryClasses.AARCH64.UEFI_DRIVER, LibraryClasses.AARCH64.UEFI_APPLICATION, LibraryClasses.AARCH64.DXE_CORE]
+  BaseCryptLib|CryptoPkg/Library/BaseCryptLibOnProtocolPpi/DxeCryptLib.inf
+  TlsLib|CryptoPkg/Library/BaseCryptLibOnProtocolPpi/DxeCryptLib.inf
+
 [Components.AARCH64]
 
   #
@@ -288,3 +282,10 @@
   MsCorePkg/AcpiRGRT/AcpiRgrt.inf
 
   DfciPkg/Application/DfciMenu/DfciMenu.inf
+
+  CryptoPkg/Driver/Bin/CryptoDriverBin_STANDARD_Dxe_$(TARGET)_AARCH64.inf
+
+  CryptoPkg/Library/BaseCryptLibOnProtocolPpi/DxeCryptLib.inf {
+    <PcdsFixedAtBuild>
+      !include CryptoPkg/Driver/Bin/Crypto.pcd.STANDARD.inc.dsc
+  }

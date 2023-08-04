@@ -68,7 +68,7 @@ APRIORI DXE {
     INF Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/CPRDxe/CPRDxe.inf
     INF MdeModulePkg/Universal/WatchdogTimerDxe/WatchdogTimer.inf
     # INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/VerifiedBootDxe/VerifiedBootDxe.inf
-    INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/SharedCryptoDriverDxeMu/SharedCryptoDriverDxeMu.inf
+    # INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/SharedCryptoDriverDxeMu/SharedCryptoDriverDxeMu.inf
 
     INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/EmbeddedMonotonicCounter/EmbeddedMonotonicCounter.inf
     INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/ResetRuntimeDxe/ResetRuntimeDxe.inf
