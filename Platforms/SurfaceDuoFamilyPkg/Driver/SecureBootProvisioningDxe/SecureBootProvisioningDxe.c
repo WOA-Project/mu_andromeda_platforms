@@ -13,13 +13,9 @@
 
 #include <Library/BaseLib.h>
 #include <Library/DebugLib.h>
-#include <Library/PrintLib.h>
 #include <Library/UefiBootServicesTableLib.h>
 #include <Library/UefiDriverEntryPoint.h>
 #include <Library/UefiLib.h>
-#include <Library/UefiRuntimeServicesTableLib.h>
-#include <Library/BaseMemoryLib.h>
-#include <Library/MemoryAllocationLib.h>
 
 #include <Library/MuSecureBootKeySelectorLib.h>
 
@@ -35,18 +31,19 @@ EFI_STATUS
 EFIAPI
 TryWritePlatformSiPolicy(EFI_HANDLE SfsHandle)
 {
-  EFI_STATUS Status           = EFI_SUCCESS;
-  UINT64 mSiPolicyDefaultSize = sizeof(mSiPolicyDefault);
+  EFI_STATUS Status               = EFI_SUCCESS;
+  UINT64     mSiPolicyDefaultSize = sizeof(mSiPolicyDefault);
 
   EFI_SIMPLE_FILE_SYSTEM_PROTOCOL *EfiSfsProtocol;
   EFI_FILE_PROTOCOL               *FileProtocol;
   EFI_FILE_PROTOCOL               *PayloadFileProtocol;
 
-  DEBUG((DEBUG_ERROR, "%a: HandleProtocol gEfiSimpleFileSystemProtocolGuid\n", __FUNCTION__));
+  DEBUG(
+      (DEBUG_ERROR, "%a: HandleProtocol gEfiSimpleFileSystemProtocolGuid\n",
+       __FUNCTION__));
 
   Status = gBS->HandleProtocol(
-      SfsHandle, &gEfiSimpleFileSystemProtocolGuid,
-      (VOID **)&EfiSfsProtocol);
+      SfsHandle, &gEfiSimpleFileSystemProtocolGuid, (VOID **)&EfiSfsProtocol);
 
   if (EFI_ERROR(Status)) {
     DEBUG((DEBUG_ERROR, "Failed to invoke HandleProtocol.\n"));
@@ -62,7 +59,9 @@ TryWritePlatformSiPolicy(EFI_HANDLE SfsHandle)
     goto exit;
   }
 
-  DEBUG((DEBUG_ERROR, "%a: FileProtocol \\EFI\\Microsoft\\Boot\\bootmgfw.efi\n", __FUNCTION__));
+  DEBUG(
+      (DEBUG_ERROR, "%a: FileProtocol \\EFI\\Microsoft\\Boot\\bootmgfw.efi\n",
+       __FUNCTION__));
 
   Status = FileProtocol->Open(
       FileProtocol, &PayloadFileProtocol,
@@ -74,14 +73,18 @@ TryWritePlatformSiPolicy(EFI_HANDLE SfsHandle)
     goto exit;
   }
 
-  DEBUG((DEBUG_ERROR, "%a: Close \\EFI\\Microsoft\\Boot\\bootmgfw.efi\n", __FUNCTION__));
+  DEBUG(
+      (DEBUG_ERROR, "%a: Close \\EFI\\Microsoft\\Boot\\bootmgfw.efi\n",
+       __FUNCTION__));
 
   Status = PayloadFileProtocol->Close(PayloadFileProtocol);
   if (EFI_ERROR(Status)) {
     DEBUG((DEBUG_ERROR, "Failed to close bootmgfw.efi: %r\n", Status));
   }
 
-  DEBUG((DEBUG_ERROR, "%a: Open \\EFI\\Microsoft\\Boot\\SiPolicy.p7b\n", __FUNCTION__));
+  DEBUG(
+      (DEBUG_ERROR, "%a: Open \\EFI\\Microsoft\\Boot\\SiPolicy.p7b\n",
+       __FUNCTION__));
 
   Status = FileProtocol->Open(
       FileProtocol, &PayloadFileProtocol,
@@ -107,7 +110,9 @@ TryWritePlatformSiPolicy(EFI_HANDLE SfsHandle)
     goto exit;
   }
 
-  DEBUG((DEBUG_ERROR, "%a: Write \\EFI\\Microsoft\\Boot\\SiPolicy.p7b\n", __FUNCTION__));
+  DEBUG(
+      (DEBUG_ERROR, "%a: Write \\EFI\\Microsoft\\Boot\\SiPolicy.p7b\n",
+       __FUNCTION__));
 
   Status = PayloadFileProtocol->Write(
       PayloadFileProtocol, &mSiPolicyDefaultSize, mSiPolicyDefault);
@@ -115,7 +120,9 @@ TryWritePlatformSiPolicy(EFI_HANDLE SfsHandle)
     DEBUG((DEBUG_ERROR, "Failed to write SiPolicy.p7b: %r\n", Status));
   }
 
-  DEBUG((DEBUG_ERROR, "%a: Close \\EFI\\Microsoft\\Boot\\SiPolicy.p7b\n", __FUNCTION__));
+  DEBUG(
+      (DEBUG_ERROR, "%a: Close \\EFI\\Microsoft\\Boot\\SiPolicy.p7b\n",
+       __FUNCTION__));
 
   Status = PayloadFileProtocol->Close(PayloadFileProtocol);
   if (EFI_ERROR(Status)) {
@@ -139,45 +146,38 @@ exit:
   This may be called for multiple device arrivals, so the Event is not closed.
 
 **/
-VOID
-EFIAPI
-OnFileSystemNotification (
-  IN  EFI_EVENT  Event,
-  IN  VOID       *Context
-  )
+VOID EFIAPI OnFileSystemNotification(IN EFI_EVENT Event, IN VOID *Context)
 {
   UINTN       HandleCount;
-  EFI_HANDLE  *HandleBuffer;
+  EFI_HANDLE *HandleBuffer;
   EFI_STATUS  Status;
 
-  DEBUG ((DEBUG_INFO, "%a: Entry...\n", __FUNCTION__));
+  DEBUG((DEBUG_INFO, "%a: Entry...\n", __FUNCTION__));
 
-  for ( ; ;) {
+  for (;;) {
     //
     // Get the next handle
     //
-    Status = gBS->LocateHandleBuffer (
-                    ByRegisterNotify,
-                    NULL,
-                    mFileSystemRegistration,
-                    &HandleCount,
-                    &HandleBuffer
-                    );
+    Status = gBS->LocateHandleBuffer(
+        ByRegisterNotify, NULL, mFileSystemRegistration, &HandleCount,
+        &HandleBuffer);
     //
     // If not found, or any other error, we're done
     //
-    if (EFI_ERROR (Status)) {
+    if (EFI_ERROR(Status)) {
       break;
     }
 
     // Spec says we only get one at a time using ByRegisterNotify
-    ASSERT (HandleCount == 1);
+    ASSERT(HandleCount == 1);
 
-    DEBUG ((DEBUG_INFO, "%a: processing a potential efiesp device on handle %p\n", __FUNCTION__, HandleBuffer[0]));
+    DEBUG(
+        (DEBUG_INFO, "%a: processing a potential efiesp device on handle %p\n",
+         __FUNCTION__, HandleBuffer[0]));
 
-    TryWritePlatformSiPolicy (HandleBuffer[0]);
+    TryWritePlatformSiPolicy(HandleBuffer[0]);
 
-    FreePool (HandleBuffer);
+    FreePool(HandleBuffer);
   }
 }
 
@@ -195,46 +195,44 @@ OnFileSystemNotification (
 
  **/
 EFI_STATUS
-ProcessFileSystemRegistration (
-  VOID
-  )
+ProcessFileSystemRegistration(VOID)
 {
-  EFI_EVENT   FileSystemCallBackEvent;
-  EFI_STATUS  Status;
+  EFI_EVENT  FileSystemCallBackEvent;
+  EFI_STATUS Status;
 
   //
-  // Always register for file system notifications.  They may arrive at any time.
+  // Always register for file system notifications.  They may arrive at any
+  // time.
   //
-  DEBUG ((DEBUG_INFO, "Registering for file systems notifications\n"));
-  Status = gBS->CreateEvent (
-                  EVT_NOTIFY_SIGNAL,
-                  TPL_CALLBACK,
-                  OnFileSystemNotification,
-                  NULL,
-                  &FileSystemCallBackEvent
-                  );
+  DEBUG((DEBUG_INFO, "Registering for file systems notifications\n"));
+  Status = gBS->CreateEvent(
+      EVT_NOTIFY_SIGNAL, TPL_CALLBACK, OnFileSystemNotification, NULL,
+      &FileSystemCallBackEvent);
 
-  if (EFI_ERROR (Status)) {
-    DEBUG ((DEBUG_ERROR, "%a: failed to create callback event (%r)\n", __FUNCTION__, Status));
+  if (EFI_ERROR(Status)) {
+    DEBUG(
+        (DEBUG_ERROR, "%a: failed to create callback event (%r)\n",
+         __FUNCTION__, Status));
     goto Cleanup;
   }
 
-  Status = gBS->RegisterProtocolNotify (
-                  &gEfiSimpleFileSystemProtocolGuid,
-                  FileSystemCallBackEvent,
-                  &mFileSystemRegistration
-                  );
+  Status = gBS->RegisterProtocolNotify(
+      &gEfiSimpleFileSystemProtocolGuid, FileSystemCallBackEvent,
+      &mFileSystemRegistration);
 
-  if (EFI_ERROR (Status)) {
-    DEBUG ((DEBUG_ERROR, "%a: failed to register for file system notifications (%r)\n", __FUNCTION__, Status));
-    gBS->CloseEvent (FileSystemCallBackEvent);
+  if (EFI_ERROR(Status)) {
+    DEBUG(
+        (DEBUG_ERROR,
+         "%a: failed to register for file system notifications (%r)\n",
+         __FUNCTION__, Status));
+    gBS->CloseEvent(FileSystemCallBackEvent);
     goto Cleanup;
   }
 
   //
   // Process any existing File System that were present before the registration.
   //
-  OnFileSystemNotification (FileSystemCallBackEvent, NULL);
+  OnFileSystemNotification(FileSystemCallBackEvent, NULL);
 
 Cleanup:
   return Status;
@@ -248,17 +246,21 @@ SecureBootProvisioningDxeInitialize(
   EFI_STATUS Status;
 
   // Microsoft Plus 3rd Party Plus Windows On Andromeda
-  Status  = SetSecureBootConfig(0);
+  Status = SetSecureBootConfig(0);
 
-  if (EFI_ERROR (Status)) {
-    DEBUG ((DEBUG_ERROR, "%a - Failed to enroll SecureBoot config %r!\n", __FUNCTION__, Status));
+  if (EFI_ERROR(Status)) {
+    DEBUG(
+        (DEBUG_ERROR, "%a - Failed to enroll SecureBoot config %r!\n",
+         __FUNCTION__, Status));
     goto exit;
   }
 
-  Status =  ProcessFileSystemRegistration();
+  Status = ProcessFileSystemRegistration();
 
-  if (EFI_ERROR (Status)) {
-    DEBUG ((DEBUG_ERROR, "%a - Failed to process file system registration %r!\n", __FUNCTION__, Status));
+  if (EFI_ERROR(Status)) {
+    DEBUG(
+        (DEBUG_ERROR, "%a - Failed to process file system registration %r!\n",
+         __FUNCTION__, Status));
     goto exit;
   }
 
