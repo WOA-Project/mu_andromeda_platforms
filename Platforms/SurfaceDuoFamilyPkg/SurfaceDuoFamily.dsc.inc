@@ -563,6 +563,8 @@
   AdvLoggerPkg/AdvancedFileLogger/AdvancedFileLogger.inf
   MdeModulePkg/Universal/MemoryTest/NullMemoryTestDxe/NullMemoryTestDxe.inf
 
+  SurfaceDuoFamilyPkg/Driver/SurfaceFirmwareProvisioningDataDxe/SurfaceFirmwareProvisioningDataDxe.inf
+
   # NetworkPkg/ArpDxe/ArpDxe.inf
   # NetworkPkg/Dhcp4Dxe/Dhcp4Dxe.inf
   # NetworkPkg/Dhcp6Dxe/Dhcp6Dxe.inf
