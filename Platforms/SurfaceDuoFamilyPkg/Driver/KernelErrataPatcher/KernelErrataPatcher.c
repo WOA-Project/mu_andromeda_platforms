@@ -15,7 +15,7 @@
 **/
 #include "KernelErrataPatcher.h"
 
-#define SILENT 1
+#define SILENT 0
 
 STATIC BL_ARCH_SWITCH_CONTEXT BlpArchSwitchContext = NULL;
 STATIC EFI_EXIT_BOOT_SERVICES EfiExitBootServices  = NULL;
@@ -112,7 +112,7 @@ VOID KernelErrataPatcherApplyWriteAMCNTENSET0EL0Patches(
 
   while (IllegalInstruction1 != 0) {
     ApplicationPrint(
-        IsInFirmwareContext, "msr amcntenset0_el0, x9         -> 0x%p\n",
+        IsInFirmwareContext, "msr amcntenset0_el0, x9   -> 0x%p\n",
         IllegalInstruction1);
 
     CopyMemory(
@@ -347,8 +347,10 @@ KernelErrataPatcherExitBootServices(
     // Fix up ntoskrnl.exe
     KernelErrataPatcherApplyReadACTLREL1Patches(kernelBase, kernelSize, FALSE);
     KernelErrataPatcherApplyWriteACTLREL1Patches(kernelBase, kernelSize, FALSE);
-    KernelErrataPatcherApplyReadAMCNTENSET0EL0Patches(kernelBase, kernelSize, FALSE);
-    KernelErrataPatcherApplyWriteAMCNTENSET0EL0Patches(kernelBase, kernelSize, FALSE);
+    KernelErrataPatcherApplyReadAMCNTENSET0EL0Patches(
+        kernelBase, kernelSize, FALSE);
+    KernelErrataPatcherApplyWriteAMCNTENSET0EL0Patches(
+        kernelBase, kernelSize, FALSE);
     KernelErrataPatcherApplyPsciMemoryProtectionPatches(
         kernelBase, kernelSize, FALSE);
   }

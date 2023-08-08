@@ -24,8 +24,7 @@
 //
 // Global variables.
 //
-VOID                 *mFileSystemRegistration = NULL;
-STATIC EFI_IMAGE_LOAD EfiImageLoad            = NULL;
+VOID *mFileSystemRegistration = NULL;
 
 EFI_STATUS
 EFIAPI
