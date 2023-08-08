@@ -15,6 +15,69 @@
 **/
 #include "KernelErrataPatcher.h"
 
+UINT64 GetExport(EFI_PHYSICAL_ADDRESS base, const CHAR8 *functionName)
+{
+  PIMAGE_DOS_HEADER dosHeader = (PIMAGE_DOS_HEADER)(base);
+  if (dosHeader->e_magic != IMAGE_DOS_SIGNATURE) {
+    return 0;
+  }
+
+  PIMAGE_NT_HEADERS64 ntHeaders =
+      (PIMAGE_NT_HEADERS64)(base + dosHeader->e_lfanew);
+
+  UINT32 exportsRva =
+      ntHeaders->OptionalHeader.DataDirectory[IMAGE_DIRECTORY_ENTRY_EXPORT]
+          .VirtualAddress;
+  if (!exportsRva) {
+    return 0;
+  }
+
+  PIMAGE_EXPORT_DIRECTORY exports =
+      (PIMAGE_EXPORT_DIRECTORY)(base + exportsRva);
+  UINT32 *nameRva = (UINT32 *)(base + exports->AddressOfNames);
+
+  for (UINT32 i = 0; i < exports->NumberOfNames; ++i) {
+    CHAR8 *func = (CHAR8 *)(base + nameRva[i]);
+    if (AsciiStrCmp(func, functionName) == 0) {
+      UINT32 *funcRva    = (UINT32 *)(base + exports->AddressOfFunctions);
+      UINT16 *ordinalRva = (UINT16 *)(base + exports->AddressOfNameOrdinals);
+
+      return base + funcRva[ordinalRva[i]];
+    }
+  }
+
+  return 0;
+}
+
+#define SEEK_SIZE 0x100
+
+EFI_PHYSICAL_ADDRESS LocateWinloadBase(EFI_PHYSICAL_ADDRESS base)
+{
+  base &= ~(SEEK_SIZE - 1);
+
+  PIMAGE_DOS_HEADER imageDosHeader = NULL;
+  PIMAGE_NT_HEADERS imageNtHeaders = NULL;
+
+  do {
+    imageDosHeader = (PIMAGE_DOS_HEADER)base;
+    imageNtHeaders = NULL;
+
+    if (imageDosHeader->e_magic == IMAGE_DOS_SIGNATURE) {
+      if (imageDosHeader->e_lfanew < 0x100) {
+        imageNtHeaders = (PIMAGE_NT_HEADERS)(base + imageDosHeader->e_lfanew);
+
+        if (imageNtHeaders->Signature == IMAGE_NT_SIGNATURE) {
+          break;
+        }
+      }
+    }
+
+    base -= (SEEK_SIZE / 0x10);
+  } while (TRUE);
+
+  return base;
+}
+
 VOID CopyMemory(
     EFI_PHYSICAL_ADDRESS destination, EFI_PHYSICAL_ADDRESS source, UINTN size)
 {
@@ -23,25 +86,6 @@ VOID CopyMemory(
   for (UINTN i = 0; i < size; i++) {
     dst[i] = src[i];
   }
-}
-
-VOID CopyToReadOnly(
-    EFI_PHYSICAL_ADDRESS destination, EFI_PHYSICAL_ADDRESS source, UINTN size)
-{
-  BOOLEAN intstate = ArmGetInterruptState();
-  if (!intstate)
-    ArmDisableInterrupts();
-
-  ArmClearMemoryRegionReadOnly((EFI_PHYSICAL_ADDRESS)destination, size);
-  ArmClearMemoryRegionNoExec((EFI_PHYSICAL_ADDRESS)destination, size);
-
-  CopyMemory(destination, source, size);
-
-  ArmSetMemoryRegionReadOnly((EFI_PHYSICAL_ADDRESS)destination, size);
-  ArmSetMemoryRegionNoExec((EFI_PHYSICAL_ADDRESS)destination, size);
-
-  if (intstate)
-    ArmEnableInterrupts();
 }
 
 EFI_PHYSICAL_ADDRESS
@@ -70,21 +114,4 @@ FindPattern(EFI_PHYSICAL_ADDRESS baseAddress, UINTN size, const CHAR8 *pattern)
   }
 
   return 0;
-}
-
-KLDR_DATA_TABLE_ENTRY *GetModule(LIST_ENTRY *list, const CHAR16 *name)
-{
-  for (LIST_ENTRY *entry = list->ForwardLink; entry != list;
-       entry             = entry->ForwardLink) {
-
-    PKLDR_DATA_TABLE_ENTRY module =
-        CONTAINING_RECORD(entry, KLDR_DATA_TABLE_ENTRY, InLoadOrderLinks);
-
-    if (module &&
-        StrnCmp(name, module->BaseDllName.Buffer, module->BaseDllName.Length) ==
-            0)
-      return module;
-  }
-
-  return NULL;
 }
