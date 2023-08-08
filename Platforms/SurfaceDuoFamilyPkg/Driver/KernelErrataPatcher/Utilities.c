@@ -49,30 +49,29 @@ UINT64 GetExport(EFI_PHYSICAL_ADDRESS base, const CHAR8 *functionName)
   return 0;
 }
 
-#define SEEK_SIZE 0x100
-
-EFI_PHYSICAL_ADDRESS LocateWinloadBase(EFI_PHYSICAL_ADDRESS base)
+EFI_PHYSICAL_ADDRESS LocateWinloadBase(EFI_PHYSICAL_ADDRESS base, UINTN *size)
 {
-  base &= ~(SEEK_SIZE - 1);
-
-  PIMAGE_DOS_HEADER imageDosHeader = NULL;
-  PIMAGE_NT_HEADERS imageNtHeaders = NULL;
+  if (base & (EFI_PAGE_SIZE - 1)) {
+    base &= ~(EFI_PAGE_SIZE - 1);
+    base += EFI_PAGE_SIZE;
+  }
 
   do {
-    imageDosHeader = (PIMAGE_DOS_HEADER)base;
-    imageNtHeaders = NULL;
+    if (*(UINT16 *)base == IMAGE_DOS_SIGNATURE) {
+      UINT32               newBaseOffset = *(UINT32 *)(base + 0x3C);
+      EFI_PHYSICAL_ADDRESS newBase       = base + newBaseOffset;
 
-    if (imageDosHeader->e_magic == IMAGE_DOS_SIGNATURE) {
-      if (imageDosHeader->e_lfanew < 0x100) {
-        imageNtHeaders = (PIMAGE_NT_HEADERS)(base + imageDosHeader->e_lfanew);
-
-        if (imageNtHeaders->Signature == IMAGE_NT_SIGNATURE) {
-          break;
+      if (*(UINT16 *)newBase == IMAGE_NT_SIGNATURE) {
+        *size = *(UINT32 *)(newBase + 0x110);
+        if (*size & (EFI_PAGE_SIZE - 1)) {
+          *size &= ~(EFI_PAGE_SIZE - 1);
+          *size += EFI_PAGE_SIZE;
         }
+        break;
       }
     }
 
-    base -= (SEEK_SIZE / 0x10);
+    base -= EFI_PAGE_SIZE;
   } while (TRUE);
 
   return base;

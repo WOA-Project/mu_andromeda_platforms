@@ -273,45 +273,36 @@ VOID OslArm64TransferToKernel(VOID *OsLoaderBlock, VOID *KernelAddress)
     PKLDR_DATA_TABLE_ENTRY kernelModule =
         CONTAINING_RECORD(entry, KLDR_DATA_TABLE_ENTRY, InLoadOrderLinks);
 
-    EFI_PHYSICAL_ADDRESS kernelBase =
-        (EFI_PHYSICAL_ADDRESS)kernelModule->DllBase;
-    UINTN kernelSize = kernelModule->SizeOfImage;
+    EFI_PHYSICAL_ADDRESS base = (EFI_PHYSICAL_ADDRESS)kernelModule->DllBase;
+    UINTN                size = kernelModule->SizeOfImage;
 
-    for (EFI_PHYSICAL_ADDRESS PatternMatch0 = kernelBase;
-         PatternMatch0 < kernelBase + kernelSize;
-         PatternMatch0 += sizeof(UINT32)) {
-      if (*(UINT32 *)(PatternMatch0) == 0x281038D5) { // mrs x8, actlr_el1
-        *(UINT32 *)PatternMatch0 = 0x080080D2;        // movz x8, #0
-      }
-      else if (*(UINT32 *)(PatternMatch0) == 0x291018D5) { // msr actlr_el1, x9
-        *(UINT32 *)PatternMatch0 = 0x1F2003D5;             // nop
-      }
-      else if (*(UINT32 *)(PatternMatch0) == 0xA8D23BD5) { // mrs x8,
-                                                           // amcntenset0_el0
-        *(UINT32 *)PatternMatch0 = 0x080080D2;             // movz x8, #0
-      }
-      else if (*(UINT32 *)(PatternMatch0) == 0xA9D21BD5) { // msr
-                                                           // amcntenset0_el0,
-                                                           // x9
-        *(UINT32 *)PatternMatch0 = 0x1F2003D5;             // nop
+    for (EFI_PHYSICAL_ADDRESS current = base; current < base + size;
+         current += sizeof(UINT32)) {
+      if (*(UINT32 *)current == 0xD5381028 || // mrs x8, actlr_el1
+          *(UINT32 *)current == 0xD53BD2A8) { // mrs x8,
+                                              // amcntenset0_el0
+        *(UINT32 *)current = 0xD2800008;      // movz x8, #0
       }
       else if (
-          *(UINT64 *)(PatternMatch0) == 0xD5020018030080D2 &&
-          *(UINT64 *)(PatternMatch0 + ARM64_TOTAL_INSTRUCTION_LENGTH(2)) ==
-              0x020080D2010080D2) { // ldr w21, #0x58 - movz x3, #0 - movz x2,
+          *(UINT32 *)current == 0xD5181028 || // msr actlr_el1, x8
+          *(UINT32 *)current == 0xD5181029) { // msr actlr_el1, x9
+        *(UINT32 *)current = 0xD503201F;      // nop
+      }
+      else if (
+          *(UINT64 *)current == 0xD2800003180002D5 &&
+          *(UINT64 *)(current + ARM64_TOTAL_INSTRUCTION_LENGTH(2)) ==
+              0xD2800001D2800002) { // ldr w21, #0x58 - movz x3, #0 - movz x2,
                                     // #0 - movz x1, #0
-        EFI_PHYSICAL_ADDRESS PsciMemProtect =
-            PatternMatch0 - ARM64_TOTAL_INSTRUCTION_LENGTH(8);
-        *(UINT32 *)PsciMemProtect = 0xC0035FD6; // ret
+        *(UINT32 *)(current - ARM64_TOTAL_INSTRUCTION_LENGTH(8)) =
+            0xD65F03C0; // ret
       }
       else if (
-          *(UINT64 *)(PatternMatch0) == 0x030080D2020080D2 &&
-          *(UINT64 *)(PatternMatch0 + ARM64_TOTAL_INSTRUCTION_LENGTH(2)) ==
-              0x010080D240020018) { // movz x3, #0 - movz x2, #0 - movz x1, #0 -
+          *(UINT64 *)current == 0xD2800002D2800003 &&
+          *(UINT64 *)(current + ARM64_TOTAL_INSTRUCTION_LENGTH(2)) ==
+              0x18000240D2800001) { // movz x3, #0 - movz x2, #0 - movz x1, #0 -
                                     // ldr w0, #0x54
-        EFI_PHYSICAL_ADDRESS PsciMemProtect =
-            PatternMatch0 - ARM64_TOTAL_INSTRUCTION_LENGTH(7);
-        *(UINT32 *)PsciMemProtect = 0xC0035FD6; // ret
+        *(UINT32 *)(current - ARM64_TOTAL_INSTRUCTION_LENGTH(7)) =
+            0xD65F03C0; // ret
       }
     }
   }

@@ -30,21 +30,29 @@
 #include <Library/PcdLib.h>
 #include <Library/UefiBootServicesTableLib.h>
 
+#include <Protocol/MemoryAttribute.h>
+
 #include "ntdef.h"
 
-#define SWAP_ENDIANNESS(x)                                                     \
-  ((((x)&0xFF000000ull) >> 0x18) | (((x)&0xFF0000ull) >> 0x08) |               \
-   (((x)&0xFF00ull) << 0x08) | (((x)&0xFFull) << 0x18))
+#define SILENT 0
+
+#if SILENT == 0
+
+#define FirmwarePrint(x, ...)                                                  \
+  AsciiPrint(x, __VA_ARGS__);                                                  \
+  DEBUG((EFI_D_ERROR, x, __VA_ARGS__));
+#else
+#define FirmwarePrint(x, ...)
+#endif
 
 #define NT_OS_LOADER_ARM64_TRANSFER_TO_KERNEL_FUNCTION_OFFSET 0x400
 
 #define ARM64_INSTRUCTION_LENGTH 4
 #define ARM64_TOTAL_INSTRUCTION_LENGTH(x) (ARM64_INSTRUCTION_LENGTH * x)
 #define ARM64_BRANCH_LOCATION_INSTRUCTION(CurrentOffset, TargetOffset)         \
-  SWAP_ENDIANNESS(                                                             \
-      0x94000000ull |                                                          \
-      (((TargetOffset - CurrentOffset) / ARM64_INSTRUCTION_LENGTH) &           \
-       0x7FFFFFFull))
+  (0x94000000u |                                                               \
+   ((UINT32)((TargetOffset - CurrentOffset) / ARM64_INSTRUCTION_LENGTH) &      \
+    0x7FFFFFFu))
 
 #define SCAN_MAX 0x300000
 
@@ -54,22 +62,39 @@
                                      : (IN_RANGE(x, '0', '9') ? x - '0' : 0))
 #define GET_BYTE(a, b) (GET_BITS(a) << 4 | GET_BITS(b))
 
+typedef VOID (*BL_ARCH_SWITCH_CONTEXT)(UINT32 target);
+
 EFI_STATUS
 EFIAPI
 KernelErrataPatcherExitBootServices(
     IN EFI_HANDLE ImageHandle, IN UINTN MapKey,
-    IN EFI_PHYSICAL_ADDRESS fwpKernelSetupPhase1);
+    IN PLOADER_PARAMETER_BLOCK loaderBlockX19,
+    IN PLOADER_PARAMETER_BLOCK loaderBlockX20,
+    IN PLOADER_PARAMETER_BLOCK loaderBlockX24,
+    IN EFI_PHYSICAL_ADDRESS    fwpKernelSetupPhase1);
 
 EFI_STATUS
 EFIAPI
 ExitBootServicesWrapper(IN EFI_HANDLE ImageHandle, IN UINTN MapKey);
 
 UINT64 GetExport(EFI_PHYSICAL_ADDRESS base, const CHAR8 *functionName);
-EFI_PHYSICAL_ADDRESS LocateWinloadBase(EFI_PHYSICAL_ADDRESS base);
+EFI_PHYSICAL_ADDRESS LocateWinloadBase(EFI_PHYSICAL_ADDRESS base, UINTN *size);
 
 VOID CopyMemory(
     EFI_PHYSICAL_ADDRESS destination, EFI_PHYSICAL_ADDRESS source, UINTN size);
 UINT64 FindPattern(
     EFI_PHYSICAL_ADDRESS baseAddress, UINT64 size, const CHAR8 *pattern);
+
+EFI_STATUS
+EFIAPI
+UnprotectWinload(EFI_PHYSICAL_ADDRESS WinloadBase, UINTN WinloadLength);
+
+EFI_STATUS
+EFIAPI
+ReProtectWinload(EFI_PHYSICAL_ADDRESS WinloadBase, UINTN WinloadLength);
+
+EFI_STATUS
+EFIAPI
+InitMemoryAttributeProtocol();
 
 #endif /* _KERNEL_ERRATA_PATCHER_H_ */
