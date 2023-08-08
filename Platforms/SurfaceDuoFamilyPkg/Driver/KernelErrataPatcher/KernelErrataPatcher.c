@@ -94,9 +94,7 @@ KernelErrataPatcherExitBootServices(
   UINT64 OslMain = GetExport(winloadBase, "OslMain");
   FirmwarePrint("OslMain   -> (phys) 0x%p\n", OslMain);
 
-  EFI_PHYSICAL_ADDRESS current =
-      fwpKernelSetupPhase1 +
-      NT_OS_LOADER_ARM64_TRANSFER_TO_KERNEL_FUNCTION_OFFSET;
+  /*EFI_PHYSICAL_ADDRESS current = fwpKernelSetupPhase1;
 
   do {
     if (ARM64_BRANCH_LOCATION_INSTRUCTION(
@@ -132,7 +130,7 @@ KernelErrataPatcherExitBootServices(
       "Patching OsLoader         -> (phys) 0x%p (size) 0x%p\n",
       fwpKernelSetupPhase1, SCAN_MAX);
 
-  KernelErrataPatcherApplyReadACTLREL1Patches(fwpKernelSetupPhase1, SCAN_MAX);
+  KernelErrataPatcherApplyReadACTLREL1Patches(fwpKernelSetupPhase1, SCAN_MAX);*/
 
   FirmwarePrint(
       "OslFwpKernelSetupPhase1   <- (phys) 0x%p\n", fwpKernelSetupPhase1);
