@@ -23,6 +23,9 @@
   UefiDriverEntryPoint
   UefiLib
 
+[Guids]
+  gEfiPartTypeSystemPartGuid       ## CONSUMES ## GUID
+
 [Protocols]
   gEfiSimpleFileSystemProtocolGuid ## CONSUMES
 
