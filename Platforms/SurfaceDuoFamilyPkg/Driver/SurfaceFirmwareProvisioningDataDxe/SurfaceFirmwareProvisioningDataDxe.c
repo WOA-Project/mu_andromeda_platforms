@@ -20,21 +20,31 @@
 #include <Protocol/BlockIo.h>
 #include <Protocol/PartitionInfo.h>
 
+STATIC EFI_SIMPLE_FILE_SYSTEM_PROTOCOL *sfpdSfsProtocol = NULL;
+
 EFI_STATUS
-TestCode()
+OnSfpdPartitionFound()
+{
+  EFI_STATUS Status = EFI_SUCCESS;
+
+  DEBUG((EFI_D_ERROR, "SFPD Partition Found.\n"));
+
+  // TODO: Build/Publish Protocol to read SFPD here.
+
+  return Status;
+}
+
+EFI_STATUS
+TryLocateSfpdOnAllHandles()
 {
   EFI_STATUS                       Status;
   EFI_HANDLE                      *HandleBuffer;
   UINTN                            HandleCount;
   UINTN                            Index;
   EFI_PARTITION_INFO_PROTOCOL     *PartitionInfo;
-  EFI_SIMPLE_FILE_SYSTEM_PROTOCOL *SimpleFileSystem;
-  EFI_FILE_PROTOCOL               *FileProtocol;
-  CHAR8                            PartitionName[36];
+  EFI_SIMPLE_FILE_SYSTEM_PROTOCOL *EfiSfsProtocol;
 
   HandleBuffer = NULL;
-
-  DEBUG((EFI_D_ERROR, "Test Code Entry\n"));
 
   Status = gBS->LocateHandleBuffer(
       ByProtocol, &gEfiPartitionInfoProtocolGuid, NULL, &HandleCount,
@@ -52,35 +62,23 @@ TestCode()
     }
 
     if (PartitionInfo->Type == PARTITION_TYPE_GPT) {
-      for (int i = 0; i < 36; i++) {
-        PartitionName[i] = (CHAR8)PartitionInfo->Info.Gpt.PartitionName[i];
+      if (StrCmp(PartitionInfo->Info.Gpt.PartitionName, L"sfpd") == 0) {
+        Status = gBS->HandleProtocol(
+            HandleBuffer[Index], &gEfiSimpleFileSystemProtocolGuid,
+            (VOID **)&EfiSfsProtocol);
+
+        if (EFI_ERROR(Status)) {
+          continue;
+        }
+
+        sfpdSfsProtocol = EfiSfsProtocol;
+        OnSfpdPartitionFound();
       }
-      DEBUG(
-          (EFI_D_ERROR, "Found GPT Partition With Name: %a\n", PartitionName));
     }
     else {
-      DEBUG((EFI_D_ERROR, "Found Unknown Partition\n"));
       continue;
     }
-
-    Status = gBS->HandleProtocol(
-        HandleBuffer[Index], &gEfiSimpleFileSystemProtocolGuid,
-        (VOID **)&SimpleFileSystem);
-    if (EFI_ERROR(Status)) {
-      DEBUG((EFI_D_ERROR, "Unable to open SFS on partition found\n"));
-      continue;
-    }
-
-    Status = SimpleFileSystem->OpenVolume(SimpleFileSystem, &FileProtocol);
-    if (EFI_ERROR(Status)) {
-      DEBUG((EFI_D_ERROR, "Unable to open FileProtocol on SFS\n"));
-      continue;
-    }
-
-    FileProtocol->Close(FileProtocol);
   }
-
-  DEBUG((EFI_D_ERROR, "Test Code Exit\n"));
 
   FreePool(HandleBuffer);
   return EFI_SUCCESS;
@@ -97,52 +95,26 @@ TryOpenSfpd(EFI_HANDLE SfsHandle)
 {
   EFI_STATUS                       Status = EFI_SUCCESS;
   EFI_SIMPLE_FILE_SYSTEM_PROTOCOL *EfiSfsProtocol;
-  EFI_FILE_PROTOCOL               *FileProtocol;
   EFI_PARTITION_INFO_PROTOCOL     *PartitionInfo;
-  CHAR8                            PartitionName[36];
-
-  DEBUG(
-      (DEBUG_ERROR, "%a: HandleProtocol gEfiSimpleFileSystemProtocolGuid\n",
-       __FUNCTION__));
 
   Status = gBS->HandleProtocol(
       SfsHandle, &gEfiPartitionInfoProtocolGuid, (VOID **)&PartitionInfo);
   if (!EFI_ERROR(Status)) {
     if (PartitionInfo->Type == PARTITION_TYPE_GPT) {
-      for (int i = 0; i < 36; i++) {
-        PartitionName[i] = (CHAR8)PartitionInfo->Info.Gpt.PartitionName[i];
+      if (StrCmp(PartitionInfo->Info.Gpt.PartitionName, L"sfpd") == 0) {
+        Status = gBS->HandleProtocol(
+            SfsHandle, &gEfiSimpleFileSystemProtocolGuid,
+            (VOID **)&EfiSfsProtocol);
+
+        if (EFI_ERROR(Status)) {
+          goto exit;
+        }
+
+        sfpdSfsProtocol = EfiSfsProtocol;
+        OnSfpdPartitionFound();
       }
-      DEBUG(
-          (EFI_D_ERROR, "Found GPT Partition With Name: %a\n", PartitionName));
-    }
-    else {
-      DEBUG((EFI_D_ERROR, "Found Unknown Partition\n"));
     }
   }
-  else {
-    DEBUG(
-        (EFI_D_ERROR, "Found Unknown Partition with no attached "
-                      "gEfiPartitionInfoProtocolGuid\n"));
-  }
-
-  Status = gBS->HandleProtocol(
-      SfsHandle, &gEfiSimpleFileSystemProtocolGuid, (VOID **)&EfiSfsProtocol);
-
-  if (EFI_ERROR(Status)) {
-    DEBUG((DEBUG_ERROR, "Failed to invoke HandleProtocol.\n"));
-    goto exit;
-  }
-
-  DEBUG((DEBUG_ERROR, "%a: OpenVolume EfiSfsProtocol\n", __FUNCTION__));
-
-  Status = EfiSfsProtocol->OpenVolume(EfiSfsProtocol, &FileProtocol);
-
-  if (EFI_ERROR(Status)) {
-    DEBUG((DEBUG_ERROR, "Fail to get file protocol handle\n"));
-    goto exit;
-  }
-
-  FileProtocol->Close(FileProtocol);
 
 exit:
   return Status;
@@ -166,8 +138,6 @@ VOID EFIAPI OnFileSystemNotification(IN EFI_EVENT Event, IN VOID *Context)
   UINTN       HandleCount;
   EFI_HANDLE *HandleBuffer;
   EFI_STATUS  Status;
-
-  DEBUG((DEBUG_INFO, "%a: Entry...\n", __FUNCTION__));
 
   for (;;) {
     //
@@ -254,12 +224,14 @@ EFIAPI
 SurfaceFirmwareProvisioningDataDxeInitialize(
     IN EFI_HANDLE ImageHandle, IN EFI_SYSTEM_TABLE *SystemTable)
 {
-  EFI_STATUS Status;
+  EFI_STATUS Status = EFI_SUCCESS;
 
-  TestCode();
+  TryLocateSfpdOnAllHandles();
+  if (sfpdSfsProtocol) {
+    return EFI_SUCCESS;
+  }
 
   Status = ProcessFileSystemRegistration();
-
   if (EFI_ERROR(Status)) {
     DEBUG(
         (DEBUG_ERROR, "%a - Failed to process file system registration %r!\n",
