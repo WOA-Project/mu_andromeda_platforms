@@ -155,7 +155,8 @@ KernelErrataPatcherExitBootServices(
   KernelErrataPatcherApplyReadACTLREL1Patches(fwpKernelSetupPhase1, SCAN_MAX);
 
   EFI_PHYSICAL_ADDRESS OslArm64TransferToKernelAddr =
-      winloadBase + NT_OS_LOADER_ARM64_TRANSFER_TO_KERNEL_FUNCTION_OFFSET;
+      winloadBase + 0xC00 +
+      NT_OS_LOADER_ARM64_TRANSFER_TO_KERNEL_FUNCTION_OFFSET;
   /*EFI_PHYSICAL_ADDRESS NewOslArm64TransferToKernelAddr =
       OslArm64TransferToKernelAddr -
      sizeof(OslArm64TransferToKernelShellCode);*/
