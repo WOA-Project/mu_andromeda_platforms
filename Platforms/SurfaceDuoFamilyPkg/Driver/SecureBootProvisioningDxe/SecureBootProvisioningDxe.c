@@ -297,13 +297,13 @@ SecureBootProvisioningDxeInitialize(
     goto exit;
   }
 
-  Status = ProcessFileSystemRegistration();
+  /*Status = ProcessFileSystemRegistration();
   if (EFI_ERROR(Status)) {
     DEBUG(
         (DEBUG_ERROR, "%a - Failed to process file system registration %r!\n",
          __FUNCTION__, Status));
     goto exit;
-  }
+  }*/
 
 exit:
   return Status;
