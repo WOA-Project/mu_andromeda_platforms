@@ -25,9 +25,47 @@ STATIC EFI_SIMPLE_FILE_SYSTEM_PROTOCOL *sfpdSfsProtocol = NULL;
 EFI_STATUS
 OnSfpdPartitionFound()
 {
-  EFI_STATUS Status = EFI_SUCCESS;
+  EFI_STATUS         Status              = EFI_SUCCESS;
+  EFI_FILE_PROTOCOL *sfpdFileProtocol    = NULL;
+  EFI_FILE_PROTOCOL *payloadFileProtocol = NULL;
+  CHAR8              SerialNumber[0xC]   = {0};
+  UINTN              SerialNumberSize    = 0xC;
+
+  if (sfpdSfsProtocol == NULL) {
+    return EFI_NOT_FOUND;
+  }
 
   DEBUG((EFI_D_ERROR, "SFPD Partition Found.\n"));
+
+  Status = sfpdSfsProtocol->OpenVolume(sfpdSfsProtocol, &sfpdFileProtocol);
+  if (EFI_ERROR(Status)) {
+    return Status;
+  }
+
+  sfpdFileProtocol->Open(
+      sfpdFileProtocol, &payloadFileProtocol, L"\\device\\SerialNumber.txt",
+      EFI_FILE_MODE_READ, 0);
+  if (EFI_ERROR(Status)) {
+    return Status;
+  }
+
+  Status = payloadFileProtocol->Read(
+      payloadFileProtocol, &SerialNumberSize, SerialNumber);
+  if (EFI_ERROR(Status) && Status != EFI_BUFFER_TOO_SMALL) {
+    payloadFileProtocol->Close(payloadFileProtocol);
+    sfpdFileProtocol->Close(sfpdFileProtocol);
+    return Status;
+  }
+
+  payloadFileProtocol->Close(payloadFileProtocol);
+  sfpdFileProtocol->Close(sfpdFileProtocol);
+
+  UINTN DeviceSerialNumber = 0;
+  for (UINTN i = 0; i < SerialNumberSize; i++) {
+    DeviceSerialNumber = DeviceSerialNumber * 10 + SerialNumber[i] - '0';
+  }
+
+  DEBUG((EFI_D_ERROR, "Surface Device Serial Number: %d\n", DeviceSerialNumber));
 
   // TODO: Build/Publish Protocol to read SFPD here.
 
