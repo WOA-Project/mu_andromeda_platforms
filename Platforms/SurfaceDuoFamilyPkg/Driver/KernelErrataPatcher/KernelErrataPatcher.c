@@ -83,20 +83,6 @@ VOID PatchKernelComponents(PLOADER_PARAMETER_BLOCK loaderBlock)
         *(UINT32 *)(current - ARM64_TOTAL_INSTRUCTION_LENGTH(7)) =
             0xD65F03C0; // ret
       }
-      /*else if (*(UINT64 *)current == 0x7180) // SC7180 ACPI Data Check
-      {
-        *(UINT32 *)current = 0x7125; // 7125
-      }
-      else if (*(UINT64 *)current == 0x8180) // SC8180 ACPI Data Check
-      {
-        *(UINT32 *)current = 0x8150; // 8150
-      }
-      else if (
-          *(UINT32 *)current == 0x8 &&
-          *(UINT64 *)(current + 4) == 0x8280) // SC8280 ACPI Data Check
-      {
-        *(UINT32 *)(current + 4) = 0x8350; // 8350
-      }*/
     }
   }
 }
@@ -157,9 +143,8 @@ KernelErrataPatcherExitBootServices(
   EFI_PHYSICAL_ADDRESS OslArm64TransferToKernelAddr =
       winloadBase + 0xC00 +
       NT_OS_LOADER_ARM64_TRANSFER_TO_KERNEL_FUNCTION_OFFSET;
-  /*EFI_PHYSICAL_ADDRESS NewOslArm64TransferToKernelAddr =
-      OslArm64TransferToKernelAddr -
-     sizeof(OslArm64TransferToKernelShellCode);*/
+  EFI_PHYSICAL_ADDRESS NewOslArm64TransferToKernelAddr =
+      OslArm64TransferToKernelAddr - sizeof(OslArm64TransferToKernelShellCode);
 
   for (EFI_PHYSICAL_ADDRESS current = OslArm64TransferToKernelAddr;
        current < OslArm64TransferToKernelAddr + SCAN_MAX;
@@ -171,18 +156,18 @@ KernelErrataPatcherExitBootServices(
           "Patching bl OsLoaderArm64TransferToKernel -> (phys) 0x%p\n",
           current);
 
-      /**(UINT32 *)current = ARM64_BRANCH_LOCATION_INSTRUCTION(
-          current, NewOslArm64TransferToKernelAddr);*/
+      *(UINT32 *)current = ARM64_BRANCH_LOCATION_INSTRUCTION(
+          current, NewOslArm64TransferToKernelAddr);
 
       FirmwarePrint(
           "Patching OsLoaderArm64TransferToKernel -> (phys) 0x%p\n",
           OslArm64TransferToKernelAddr);
 
       // Copy shell code right before the OsLoaderArm64TransferToKernelFunction
-      /*CopyMemory(
+      CopyMemory(
           NewOslArm64TransferToKernelAddr,
           (EFI_PHYSICAL_ADDRESS)OslArm64TransferToKernelShellCode,
-          sizeof(OslArm64TransferToKernelShellCode));*/
+          sizeof(OslArm64TransferToKernelShellCode));
 
       break;
     }
