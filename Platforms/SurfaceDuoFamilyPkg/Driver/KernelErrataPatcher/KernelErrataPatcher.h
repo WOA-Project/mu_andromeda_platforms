@@ -62,22 +62,16 @@
                                      : (IN_RANGE(x, '0', '9') ? x - '0' : 0))
 #define GET_BYTE(a, b) (GET_BITS(a) << 4 | GET_BITS(b))
 
-typedef VOID (*BL_ARCH_SWITCH_CONTEXT)(UINT32 target);
-
 EFI_STATUS
 EFIAPI
 KernelErrataPatcherExitBootServices(
     IN EFI_HANDLE ImageHandle, IN UINTN MapKey,
-    IN PLOADER_PARAMETER_BLOCK loaderBlockX19,
-    IN PLOADER_PARAMETER_BLOCK loaderBlockX20,
-    IN PLOADER_PARAMETER_BLOCK loaderBlockX24,
-    IN EFI_PHYSICAL_ADDRESS    fwpKernelSetupPhase1);
+    IN EFI_PHYSICAL_ADDRESS fwpKernelSetupPhase1);
 
 EFI_STATUS
 EFIAPI
 ExitBootServicesWrapper(IN EFI_HANDLE ImageHandle, IN UINTN MapKey);
 
-UINT64 GetExport(EFI_PHYSICAL_ADDRESS base, const CHAR8 *functionName);
 EFI_PHYSICAL_ADDRESS LocateWinloadBase(EFI_PHYSICAL_ADDRESS base, UINTN *size);
 
 VOID CopyMemory(

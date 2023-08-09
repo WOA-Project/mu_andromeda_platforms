@@ -15,40 +15,6 @@
 **/
 #include "KernelErrataPatcher.h"
 
-UINT64 GetExport(EFI_PHYSICAL_ADDRESS base, const CHAR8 *functionName)
-{
-  PIMAGE_DOS_HEADER dosHeader = (PIMAGE_DOS_HEADER)(base);
-  if (dosHeader->e_magic != IMAGE_DOS_SIGNATURE) {
-    return 0;
-  }
-
-  PIMAGE_NT_HEADERS64 ntHeaders =
-      (PIMAGE_NT_HEADERS64)(base + dosHeader->e_lfanew);
-
-  UINT32 exportsRva =
-      ntHeaders->OptionalHeader.DataDirectory[IMAGE_DIRECTORY_ENTRY_EXPORT]
-          .VirtualAddress;
-  if (!exportsRva) {
-    return 0;
-  }
-
-  PIMAGE_EXPORT_DIRECTORY exports =
-      (PIMAGE_EXPORT_DIRECTORY)(base + exportsRva);
-  UINT32 *nameRva = (UINT32 *)(base + exports->AddressOfNames);
-
-  for (UINT32 i = 0; i < exports->NumberOfNames; ++i) {
-    CHAR8 *func = (CHAR8 *)(base + nameRva[i]);
-    if (AsciiStrCmp(func, functionName) == 0) {
-      UINT32 *funcRva    = (UINT32 *)(base + exports->AddressOfFunctions);
-      UINT16 *ordinalRva = (UINT16 *)(base + exports->AddressOfNameOrdinals);
-
-      return base + funcRva[ordinalRva[i]];
-    }
-  }
-
-  return 0;
-}
-
 EFI_PHYSICAL_ADDRESS LocateWinloadBase(EFI_PHYSICAL_ADDRESS base, UINTN *size)
 {
   if (base & (EFI_PAGE_SIZE - 1)) {

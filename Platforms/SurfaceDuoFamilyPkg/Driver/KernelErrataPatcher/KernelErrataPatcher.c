@@ -108,10 +108,7 @@ EFI_STATUS
 EFIAPI
 KernelErrataPatcherExitBootServices(
     IN EFI_HANDLE ImageHandle, IN UINTN MapKey,
-    IN PLOADER_PARAMETER_BLOCK loaderBlockX19,
-    IN PLOADER_PARAMETER_BLOCK loaderBlockX20,
-    IN PLOADER_PARAMETER_BLOCK loaderBlockX24,
-    IN EFI_PHYSICAL_ADDRESS    fwpKernelSetupPhase1)
+    IN EFI_PHYSICAL_ADDRESS fwpKernelSetupPhase1)
 {
   // Might be called multiple times by winload in a loop failing few times
   gBS->ExitBootServices = EfiExitBootServices;
@@ -181,80 +178,6 @@ KernelErrataPatcherExitBootServices(
 
     goto exit;
   }
-
-  PLOADER_PARAMETER_BLOCK loaderBlock = loaderBlockX19;
-
-  if (loaderBlock == NULL ||
-      ((EFI_PHYSICAL_ADDRESS)loaderBlock & 0xFFFFFFF000000000) == 0) {
-    loaderBlock = loaderBlockX20;
-  }
-
-  if (loaderBlock == NULL ||
-      ((EFI_PHYSICAL_ADDRESS)loaderBlock & 0xFFFFFFF000000000) == 0) {
-    loaderBlock = loaderBlockX24;
-  }
-
-  if (loaderBlock == NULL ||
-      ((EFI_PHYSICAL_ADDRESS)loaderBlock & 0xFFFFFFF000000000) == 0) {
-    goto exit;
-  }
-
-  EFI_PHYSICAL_ADDRESS PatternMatch = FindPattern(
-      fwpKernelSetupPhase1, SCAN_MAX,
-      "1F 04 00 71 33 11 88 9A 28 00 40 B9 1F 01 00 6B");
-
-  BL_ARCH_SWITCH_CONTEXT BlpArchSwitchContext =
-      (BL_ARCH_SWITCH_CONTEXT)(PatternMatch -
-                               ARM64_TOTAL_INSTRUCTION_LENGTH(9));
-
-  // First check if the version of BlpArchSwitchContext before Memory Management
-  // v2 is found
-  if (PatternMatch == 0 || (PatternMatch & 0xFFFFFFF000000000) != 0) {
-    // Okay, we maybe have the new Memory Management? Try again.
-    PatternMatch =
-        FindPattern(fwpKernelSetupPhase1, SCAN_MAX, "9F 06 00 71 33 11 88 9A");
-
-    BlpArchSwitchContext =
-        (BL_ARCH_SWITCH_CONTEXT)(PatternMatch -
-                                 ARM64_TOTAL_INSTRUCTION_LENGTH(24));
-
-    if (PatternMatch == 0 || (PatternMatch & 0xFFFFFFF000000000) != 0) {
-      // Okay, we maybe have the new new Memory Management? Try again.
-      PatternMatch = FindPattern(
-          fwpKernelSetupPhase1, SCAN_MAX, "7F 06 00 71 37 11 88 9A");
-
-      BlpArchSwitchContext =
-          (BL_ARCH_SWITCH_CONTEXT)(PatternMatch -
-                                   ARM64_TOTAL_INSTRUCTION_LENGTH(24));
-
-      if (PatternMatch == 0 || (PatternMatch & 0xFFFFFFF000000000) != 0) {
-        goto exit;
-      }
-    }
-  }
-
-  /*
-   * Switch context to (as defined by winload) application context
-   * Within this context only the virtual addresses are valid
-   * Real/physical addressing is not used
-   * We can not use any EFI services unless we switch back!
-   * To print on screen use ContextPrint define
-   */
-  BlpArchSwitchContext(ApplicationContext);
-
-  UINT32 OsMajorVersion = loaderBlock->OsMajorVersion;
-  UINT32 OsMinorVersion = loaderBlock->OsMinorVersion;
-  UINT32 Size           = loaderBlock->Size;
-
-  if (OsMajorVersion != 10 || OsMinorVersion != 0 || Size == 0) {
-    goto exitToFirmware;
-  }
-
-  PatchKernelComponents(loaderBlock);
-
-exitToFirmware:
-  // Switch back to firmware context before calling real ExitBootServices
-  BlpArchSwitchContext(FirmwareContext);
 
 exit:
   FirmwarePrint(
