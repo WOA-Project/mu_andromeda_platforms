@@ -62,10 +62,10 @@ OnSfpdPartitionFound()
 
   UINTN DeviceSerialNumber = 0;
   for (UINTN i = 0; i < SerialNumberSize; i++) {
-    DeviceSerialNumber = DeviceSerialNumber * 10 + SerialNumber[i] - '0';
+    DeviceSerialNumber = DeviceSerialNumber * 10 + (SerialNumber[i] - '0');
   }
 
-  DEBUG((EFI_D_ERROR, "Surface Device Serial Number: %d\n", DeviceSerialNumber));
+  DEBUG((EFI_D_ERROR, "Surface Device Serial Number: %lu\n", DeviceSerialNumber));
 
   // TODO: Build/Publish Protocol to read SFPD here.
 
