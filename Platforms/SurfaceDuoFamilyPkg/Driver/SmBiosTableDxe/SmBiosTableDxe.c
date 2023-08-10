@@ -59,6 +59,9 @@ be found at http://opensource.org/licenses/bsd-license.php
 /* Used to read chip serial number */
 #include <Protocol/EFIChipInfo.h>
 
+/* Used to read device serial number */
+#include <Protocol/SurfaceFirmwareProvisioningDataProtocol.h>
+
 /* Used to read UEFI release information */
 #include <Library/MuUefiVersionLib.h>
 
@@ -136,7 +139,7 @@ SMBIOS_TABLE_TYPE0 mBIOSInfoType0 = {
 CHAR8 *mBIOSInfoType0Strings[] = {
     "DuoWoA authors", // Vendor String
     "UnknownVersion", // BiosVersion String
-    "UnknownRel", // BiosReleaseDate String
+    "UnknownRel",     // BiosReleaseDate String
     NULL};
 
 /***********************************************************************
@@ -215,21 +218,21 @@ CHAR8 *mBoardInfoType2Strings[] = {
 ************************************************************************/
 SMBIOS_TABLE_TYPE3 mEnclosureInfoType3 = {
     {EFI_SMBIOS_TYPE_SYSTEM_ENCLOSURE, sizeof(SMBIOS_TABLE_TYPE3), 0},
-    1,                       // Manufacturer String
-    MiscChassisTypeUnknown,  // Type;
-    2,                       // Version String
-    3,                       // SerialNumber String
-    4,                       // AssetTag String
-    ChassisStateUnknown,     // BootupState;
-    ChassisStateUnknown,     // PowerSupplyState;
-    ChassisStateUnknown,     // ThermalState;
-    ChassisStateUnknown,     // SecurityStatus;
-    {0, 0, 0, 0},            // OemDefined[4];
-    0,                       // Height;
-    0,                       // NumberofPowerCords;
-    0,                       // ContainedElementCount;
-    0,                       // ContainedElementRecordLength;
-    {{0}},                   // ContainedElements[1];
+    1,                      // Manufacturer String
+    MiscChassisTypeUnknown, // Type;
+    2,                      // Version String
+    3,                      // SerialNumber String
+    4,                      // AssetTag String
+    ChassisStateUnknown,    // BootupState;
+    ChassisStateUnknown,    // PowerSupplyState;
+    ChassisStateUnknown,    // ThermalState;
+    ChassisStateUnknown,    // SecurityStatus;
+    {0, 0, 0, 0},           // OemDefined[4];
+    0,                      // Height;
+    0,                      // NumberofPowerCords;
+    0,                      // ContainedElementCount;
+    0,                      // ContainedElementRecordLength;
+    {{0}},                  // ContainedElements[1];
 };
 CHAR8 *mEnclosureInfoType3Strings[] = {
     "Microsoft Corporation", "Not Specified", "Not Specified", "Not Specified",
@@ -681,8 +684,8 @@ LogSmbiosData(
 ************************************************************************/
 VOID BIOSInfoUpdateSmbiosType0(VOID)
 {
-  UINTN VersionBufferLength  = 15;
-  UINTN DateBufferLength     = 11;
+  UINTN VersionBufferLength = 15;
+  UINTN DateBufferLength    = 11;
 
   GetUefiVersionStringAscii(mBIOSInfoType0Strings[1], &VersionBufferLength);
   GetBuildDateStringAscii(mBIOSInfoType0Strings[2], &VersionBufferLength);
@@ -837,7 +840,8 @@ SmBiosTableDxeInitialize(
   EFI_STATUS               Status;
   CHAR8                    serialNo[EFICHIPINFO_MAX_ID_LENGTH];
   EFIChipInfoSerialNumType serial;
-  EFI_CHIPINFO_PROTOCOL   *mBoardProtocol = NULL;
+  EFI_CHIPINFO_PROTOCOL   *mBoardProtocol  = NULL;
+  SFPD_PROTOCOL           *mDeviceProtocol = NULL;
 
   // Locate Qualcomm Board Protocol
   Status = gBS->LocateProtocol(
@@ -846,6 +850,17 @@ SmBiosTableDxeInitialize(
   if (mBoardProtocol != NULL) {
     mBoardProtocol->GetSerialNumber(mBoardProtocol, &serial);
     AsciiSPrint(serialNo, sizeof(serialNo), "%lld", serial);
+  }
+
+  // Locate Sfpd Protocol
+  Status =
+      gBS->LocateProtocol(&gSfpdProtocolGuid, NULL, (VOID *)&mDeviceProtocol);
+
+  if (mDeviceProtocol != NULL) {
+    CHAR8 *DeviceSerialNumber = mDeviceProtocol->GetSurfaceSerialNumber();
+    if (DeviceSerialNumber != NULL) {
+      AsciiSPrint(serialNo, sizeof(serialNo), "%a", DeviceSerialNumber);
+    }
   }
 
   BIOSInfoUpdateSmbiosType0();
