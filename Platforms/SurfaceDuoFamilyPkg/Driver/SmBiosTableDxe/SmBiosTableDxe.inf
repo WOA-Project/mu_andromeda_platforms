@@ -48,9 +48,7 @@
   gSfpdProtocolGuid
   
 [Depex]
-  gEfiSmbiosProtocolGuid AND 
-  gEfiChipInfoProtocolGuid AND 
-  gSfpdProtocolGuid
+  gEfiSmbiosProtocolGuid
 
 [BuildOptions.AARCH64]
   GCC:*_*_*_CC_FLAGS = -Wno-missing-brace -Wno-error
