@@ -22,6 +22,7 @@
   UefiLib
 
 [Protocols]
+  gSfpdProtocolGuid ## PRODUCES
   gEfiSimpleFileSystemProtocolGuid ## CONSUMES
   gEfiPartitionInfoProtocolGuid    ## CONSUMES
 

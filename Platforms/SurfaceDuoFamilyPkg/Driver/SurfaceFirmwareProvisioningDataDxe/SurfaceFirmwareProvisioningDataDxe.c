@@ -19,34 +19,33 @@
 
 #include <Protocol/BlockIo.h>
 #include <Protocol/PartitionInfo.h>
+#include <Protocol/SurfaceFirmwareProvisioningDataProtocol.h>
 
 STATIC EFI_SIMPLE_FILE_SYSTEM_PROTOCOL *sfpdSfsProtocol = NULL;
 
-EFI_STATUS
-OnSfpdPartitionFound()
+CHAR8*
+GeturfaceSerialNumber()
 {
   EFI_STATUS         Status              = EFI_SUCCESS;
   EFI_FILE_PROTOCOL *sfpdFileProtocol    = NULL;
   EFI_FILE_PROTOCOL *payloadFileProtocol = NULL;
-  CHAR8              SerialNumber[0xC]   = {0};
-  UINTN              SerialNumberSize    = 0xC;
+  CHAR8              SerialNumber[0x10]  = {0};
+  UINT64             SerialNumberSize    = 0x10;
 
   if (sfpdSfsProtocol == NULL) {
-    return EFI_NOT_FOUND;
+    return NULL;
   }
-
-  DEBUG((EFI_D_ERROR, "SFPD Partition Found.\n"));
 
   Status = sfpdSfsProtocol->OpenVolume(sfpdSfsProtocol, &sfpdFileProtocol);
   if (EFI_ERROR(Status)) {
-    return Status;
+    return NULL;
   }
 
   sfpdFileProtocol->Open(
       sfpdFileProtocol, &payloadFileProtocol, L"\\device\\SerialNumber.txt",
       EFI_FILE_MODE_READ, 0);
   if (EFI_ERROR(Status)) {
-    return Status;
+    return NULL;
   }
 
   Status = payloadFileProtocol->Read(
@@ -54,20 +53,32 @@ OnSfpdPartitionFound()
   if (EFI_ERROR(Status) && Status != EFI_BUFFER_TOO_SMALL) {
     payloadFileProtocol->Close(payloadFileProtocol);
     sfpdFileProtocol->Close(sfpdFileProtocol);
-    return Status;
+    return NULL;
   }
 
   payloadFileProtocol->Close(payloadFileProtocol);
   sfpdFileProtocol->Close(sfpdFileProtocol);
 
-  UINTN DeviceSerialNumber = 0;
-  for (UINTN i = 0; i < SerialNumberSize; i++) {
-    DeviceSerialNumber = DeviceSerialNumber * 10 + (SerialNumber[i] - '0');
+  return SerialNumber;
+}
+
+STATIC SFPD_PROTOCOL gSfpd = {GeturfaceSerialNumber};
+
+EFI_STATUS
+OnSfpdPartitionFound()
+{
+  EFI_STATUS Status = EFI_SUCCESS;
+  EFI_HANDLE Handle = NULL;
+
+  if (sfpdSfsProtocol == NULL) {
+    return EFI_NOT_FOUND;
   }
 
-  DEBUG((EFI_D_ERROR, "Surface Device Serial Number: %lu\n", DeviceSerialNumber));
+  DEBUG((EFI_D_INFO, "Sfpd Partition Found.\n"));
 
-  // TODO: Build/Publish Protocol to read SFPD here.
+  Status = gBS->InstallMultipleProtocolInterfaces(
+      &Handle, &gSfpdProtocolGuid, &gSfpd, NULL);
+  ASSERT_EFI_ERROR(Status);
 
   return Status;
 }
