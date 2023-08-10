@@ -44,6 +44,51 @@ UINT8 OslArm64TransferToKernelShellCode[] = {
     0xA5, 0x00, 0x02, 0x8B, 0x5F, 0x00, 0x05, 0xEB, 0xC3, 0xFD, 0xFF, 0x54,
     0xF8, 0xFF, 0xFF, 0x17, 0x00, 0x00, 0x00, 0x14, 0x1F, 0x20, 0x03, 0xD5};
 
+#if LEGACY == 1
+VOID PatchKernelComponents(PLOADER_PARAMETER_BLOCK loaderBlock)
+{
+  for (LIST_ENTRY *entry = (&loaderBlock->LoadOrderListHead)->ForwardLink;
+       entry != (&loaderBlock->LoadOrderListHead); entry = entry->ForwardLink) {
+
+    PKLDR_DATA_TABLE_ENTRY kernelModule =
+        CONTAINING_RECORD(entry, KLDR_DATA_TABLE_ENTRY, InLoadOrderLinks);
+
+    EFI_PHYSICAL_ADDRESS base = (EFI_PHYSICAL_ADDRESS)kernelModule->DllBase;
+    UINTN                size = kernelModule->SizeOfImage;
+
+    for (EFI_PHYSICAL_ADDRESS current = base; current < base + size;
+         current += sizeof(UINT32)) {
+      if (*(UINT32 *)current == 0xD5381028 || // mrs x8, actlr_el1
+          *(UINT32 *)current == 0xD53BD2A8) { // mrs x8,
+                                              // amcntenset0_el0
+        *(UINT32 *)current = 0xD2800008;      // movz x8, #0
+      }
+      else if (
+          *(UINT32 *)current == 0xD5181028 || // msr actlr_el1, x8
+          *(UINT32 *)current == 0xD5181029) { // msr actlr_el1, x9
+        *(UINT32 *)current = 0xD503201F;      // nop
+      }
+      else if (
+          *(UINT64 *)current == 0xD2800003180002D5 &&
+          *(UINT64 *)(current + ARM64_TOTAL_INSTRUCTION_LENGTH(2)) ==
+              0xD2800001D2800002) { // ldr w21, #0x58 - movz x3, #0 - movz x2,
+                                    // #0 - movz x1, #0
+        *(UINT32 *)(current - ARM64_TOTAL_INSTRUCTION_LENGTH(8)) =
+            0xD65F03C0; // ret
+      }
+      else if (
+          *(UINT64 *)current == 0xD2800002D2800003 &&
+          *(UINT64 *)(current + ARM64_TOTAL_INSTRUCTION_LENGTH(2)) ==
+              0x18000240D2800001) { // movz x3, #0 - movz x2, #0 - movz x1, #0 -
+                                    // ldr w0, #0x54
+        *(UINT32 *)(current - ARM64_TOTAL_INSTRUCTION_LENGTH(7)) =
+            0xD65F03C0; // ret
+      }
+    }
+  }
+}
+#endif
+
 VOID KernelErrataPatcherApplyReadACTLREL1Patches(
     EFI_PHYSICAL_ADDRESS Base, UINTN Size)
 {
@@ -65,6 +110,11 @@ EFI_STATUS
 EFIAPI
 KernelErrataPatcherExitBootServices(
     IN EFI_HANDLE ImageHandle, IN UINTN MapKey,
+#if LEGACY == 1
+    IN PLOADER_PARAMETER_BLOCK loaderBlockX19,
+    IN PLOADER_PARAMETER_BLOCK loaderBlockX20,
+    IN PLOADER_PARAMETER_BLOCK loaderBlockX24,
+#endif
     IN EFI_PHYSICAL_ADDRESS fwpKernelSetupPhase1)
 {
   // Might be called multiple times by winload in a loop failing few times
@@ -135,6 +185,82 @@ KernelErrataPatcherExitBootServices(
 
     goto exit;
   }
+
+#if LEGACY == 1
+  PLOADER_PARAMETER_BLOCK loaderBlock = loaderBlockX19;
+
+  if (loaderBlock == NULL ||
+      ((EFI_PHYSICAL_ADDRESS)loaderBlock & 0xFFFFFFF000000000) == 0) {
+    loaderBlock = loaderBlockX20;
+  }
+
+  if (loaderBlock == NULL ||
+      ((EFI_PHYSICAL_ADDRESS)loaderBlock & 0xFFFFFFF000000000) == 0) {
+    loaderBlock = loaderBlockX24;
+  }
+
+  if (loaderBlock == NULL ||
+      ((EFI_PHYSICAL_ADDRESS)loaderBlock & 0xFFFFFFF000000000) == 0) {
+    goto exit;
+  }
+
+  EFI_PHYSICAL_ADDRESS PatternMatch = FindPattern(
+      fwpKernelSetupPhase1, SCAN_MAX,
+      "1F 04 00 71 33 11 88 9A 28 00 40 B9 1F 01 00 6B");
+
+  BL_ARCH_SWITCH_CONTEXT BlpArchSwitchContext =
+      (BL_ARCH_SWITCH_CONTEXT)(PatternMatch -
+                               ARM64_TOTAL_INSTRUCTION_LENGTH(9));
+
+  // First check if the version of BlpArchSwitchContext before Memory Management
+  // v2 is found
+  if (PatternMatch == 0 || (PatternMatch & 0xFFFFFFF000000000) != 0) {
+    // Okay, we maybe have the new Memory Management? Try again.
+    PatternMatch =
+        FindPattern(fwpKernelSetupPhase1, SCAN_MAX, "9F 06 00 71 33 11 88 9A");
+
+    BlpArchSwitchContext =
+        (BL_ARCH_SWITCH_CONTEXT)(PatternMatch -
+                                 ARM64_TOTAL_INSTRUCTION_LENGTH(24));
+
+    if (PatternMatch == 0 || (PatternMatch & 0xFFFFFFF000000000) != 0) {
+      // Okay, we maybe have the new new Memory Management? Try again.
+      PatternMatch = FindPattern(
+          fwpKernelSetupPhase1, SCAN_MAX, "7F 06 00 71 37 11 88 9A");
+
+      BlpArchSwitchContext =
+          (BL_ARCH_SWITCH_CONTEXT)(PatternMatch -
+                                   ARM64_TOTAL_INSTRUCTION_LENGTH(24));
+
+      if (PatternMatch == 0 || (PatternMatch & 0xFFFFFFF000000000) != 0) {
+        goto exit;
+      }
+    }
+  }
+
+  /*
+   * Switch context to (as defined by winload) application context
+   * Within this context only the virtual addresses are valid
+   * Real/physical addressing is not used
+   * We can not use any EFI services unless we switch back!
+   * To print on screen use ContextPrint define
+   */
+  BlpArchSwitchContext(ApplicationContext);
+
+  UINT32 OsMajorVersion = loaderBlock->OsMajorVersion;
+  UINT32 OsMinorVersion = loaderBlock->OsMinorVersion;
+  UINT32 Size           = loaderBlock->Size;
+
+  if (OsMajorVersion != 10 || OsMinorVersion != 0 || Size == 0) {
+    goto exitToFirmware;
+  }
+
+  PatchKernelComponents(loaderBlock);
+
+exitToFirmware:
+  // Switch back to firmware context before calling real ExitBootServices
+  BlpArchSwitchContext(FirmwareContext);
+#endif
 
 exit:
   FirmwarePrint(

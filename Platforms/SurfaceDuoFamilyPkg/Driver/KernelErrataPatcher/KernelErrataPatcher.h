@@ -34,6 +34,7 @@
 
 #include "ntdef.h"
 
+#define LEGACY 1
 #define SILENT 0
 
 #if SILENT == 0
@@ -43,6 +44,11 @@
   DEBUG((EFI_D_ERROR, x, __VA_ARGS__));
 #else
 #define FirmwarePrint(x, ...)
+#endif
+
+#if LEGACY == 1
+#define NT_OS_KERNEL_IMAGE_NAME L"ntoskrnl.exe"
+typedef VOID (*BL_ARCH_SWITCH_CONTEXT)(UINT32 target);
 #endif
 
 #define NT_OS_LOADER_ARM64_TRANSFER_TO_KERNEL_FUNCTION_OFFSET 0x400
@@ -66,6 +72,11 @@ EFI_STATUS
 EFIAPI
 KernelErrataPatcherExitBootServices(
     IN EFI_HANDLE ImageHandle, IN UINTN MapKey,
+#if LEGACY == 1
+    IN PLOADER_PARAMETER_BLOCK loaderBlockX19,
+    IN PLOADER_PARAMETER_BLOCK loaderBlockX20,
+    IN PLOADER_PARAMETER_BLOCK loaderBlockX24,
+#endif
     IN EFI_PHYSICAL_ADDRESS fwpKernelSetupPhase1);
 
 EFI_STATUS

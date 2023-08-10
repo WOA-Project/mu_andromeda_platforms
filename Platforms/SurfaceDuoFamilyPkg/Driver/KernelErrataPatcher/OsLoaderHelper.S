@@ -23,8 +23,24 @@ GCC_ASM_EXPORT (ExitBootServicesWrapper)
 //  IN EFI_HANDLE ImageHandle, IN UINTN MapKey
 //  );
 ExitBootServicesWrapper:
+#if LEGACY == 1
+        // winload's OslFwpKernelSetupPhase1 seems to
+        // always save the OsLoaderBlock parameter into
+        // the x19 register right after stack frame setup
+        mov x2, x19
+
+        // some older implementations may also use x20
+        mov x3, x20
+
+        // some newer implementations may also use x24
+        mov x4, x24
+
+        // the x30 register contains the last return addr
+        mov x5, x30
+#else
         // the x30 register contains the last return addr
         mov x2, x30
+#endif
 
         // Go for it
         b KernelErrataPatcherExitBootServices
