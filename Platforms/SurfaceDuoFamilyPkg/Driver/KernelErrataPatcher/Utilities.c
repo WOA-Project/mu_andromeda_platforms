@@ -15,6 +15,9 @@
 **/
 #include "KernelErrataPatcher.h"
 
+#define IMAGE_DOS_SIGNATURE 0x5A4D
+#define IMAGE_NT_SIGNATURE 0x00004550
+
 EFI_PHYSICAL_ADDRESS LocateWinloadBase(EFI_PHYSICAL_ADDRESS base, UINTN *size)
 {
   if (base & (EFI_PAGE_SIZE - 1)) {

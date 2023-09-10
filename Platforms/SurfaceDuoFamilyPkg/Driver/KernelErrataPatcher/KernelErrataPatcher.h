@@ -32,9 +32,7 @@
 
 #include <Protocol/MemoryAttribute.h>
 
-#include "ntdef.h"
-
-#define SILENT 0
+#define SILENT 1
 
 #if SILENT == 0
 
