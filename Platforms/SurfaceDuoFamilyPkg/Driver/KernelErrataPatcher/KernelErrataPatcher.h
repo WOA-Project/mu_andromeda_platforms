@@ -81,6 +81,7 @@ KernelErrataPatcherExitBootServices(
     IN PLOADER_PARAMETER_BLOCK loaderBlockX19,
     IN PLOADER_PARAMETER_BLOCK loaderBlockX20,
     IN PLOADER_PARAMETER_BLOCK loaderBlockX24,
+    IN PLOADER_PARAMETER_BLOCK loaderBlockX21,
 #endif
     IN EFI_PHYSICAL_ADDRESS fwpKernelSetupPhase1);
 

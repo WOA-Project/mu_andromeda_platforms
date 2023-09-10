@@ -136,6 +136,7 @@ KernelErrataPatcherExitBootServices(
     IN PLOADER_PARAMETER_BLOCK loaderBlockX19,
     IN PLOADER_PARAMETER_BLOCK loaderBlockX20,
     IN PLOADER_PARAMETER_BLOCK loaderBlockX24,
+    IN PLOADER_PARAMETER_BLOCK loaderBlockX21,
 #endif
     IN EFI_PHYSICAL_ADDRESS fwpKernelSetupPhase1)
 {
@@ -237,6 +238,14 @@ KernelErrataPatcherExitBootServices(
       ((EFI_PHYSICAL_ADDRESS)loaderBlock & 0xFFFFFFF000000000) == 0) {
     FirmwarePrint(
         "Failed to find OslLoaderBlock (X24)! loaderBlock -> 0x%p\n",
+        loaderBlock);
+    loaderBlock = loaderBlockX21;
+  }
+
+  if (loaderBlock == NULL ||
+      ((EFI_PHYSICAL_ADDRESS)loaderBlock & 0xFFFFFFF000000000) == 0) {
+    FirmwarePrint(
+        "Failed to find OslLoaderBlock (X21)! loaderBlock -> 0x%p\n",
         loaderBlock);
     goto exit;
   }

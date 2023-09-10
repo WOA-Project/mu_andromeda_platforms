@@ -35,8 +35,11 @@ ExitBootServicesWrapper:
         // some newer implementations may also use x24
         mov x4, x24
 
+        // some newer implementations may also use x21
+        mov x5, x21
+
         // the x30 register contains the last return addr
-        mov x5, x30
+        mov x6, x30
 #else
         // the x30 register contains the last return addr
         mov x2, x30
