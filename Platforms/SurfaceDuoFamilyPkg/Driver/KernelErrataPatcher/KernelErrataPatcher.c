@@ -275,30 +275,47 @@ KernelErrataPatcherExitBootServices(
     BlpArchSwitchContext =
         (BL_ARCH_SWITCH_CONTEXT)(PatternMatch -
                                  ARM64_TOTAL_INSTRUCTION_LENGTH(24));
+  }
 
-    if (PatternMatch == 0 || (PatternMatch & 0xFFFFFFF000000000) != 0) {
-      FirmwarePrint(
-          "Failed to find BlpArchSwitchContext (v2)! BlpArchSwitchContext -> "
-          "0x%p\n",
-          BlpArchSwitchContext);
+  if (PatternMatch == 0 || (PatternMatch & 0xFFFFFFF000000000) != 0) {
+    FirmwarePrint(
+        "Failed to find BlpArchSwitchContext (v2)! BlpArchSwitchContext -> "
+        "0x%p\n",
+        BlpArchSwitchContext);
 
-      // Okay, we maybe have the new new Memory Management? Try again.
-      PatternMatch = FindPattern(
-          fwpKernelSetupPhase1, SCAN_MAX, "7F 06 00 71 37 11 88 9A");
+    // Okay, we maybe have the new new Memory Management? Try again.
+    PatternMatch =
+        FindPattern(fwpKernelSetupPhase1, SCAN_MAX, "7F 06 00 71 37 11 88 9A");
 
-      // BlpArchSwitchContext
-      BlpArchSwitchContext =
-          (BL_ARCH_SWITCH_CONTEXT)(PatternMatch -
-                                   ARM64_TOTAL_INSTRUCTION_LENGTH(24));
+    // BlpArchSwitchContext
+    BlpArchSwitchContext =
+        (BL_ARCH_SWITCH_CONTEXT)(PatternMatch -
+                                 ARM64_TOTAL_INSTRUCTION_LENGTH(24));
+  }
 
-      if (PatternMatch == 0 || (PatternMatch & 0xFFFFFFF000000000) != 0) {
-        FirmwarePrint(
-            "Failed to find BlpArchSwitchContext (v3)! BlpArchSwitchContext -> "
-            "0x%p\n",
-            BlpArchSwitchContext);
-        goto exit;
-      }
-    }
+  if (PatternMatch == 0 || (PatternMatch & 0xFFFFFFF000000000) != 0) {
+    FirmwarePrint(
+        "Failed to find BlpArchSwitchContext (v3)! BlpArchSwitchContext -> "
+        "0x%p\n",
+        BlpArchSwitchContext);
+
+    // Try again.
+    PatternMatch = FindPattern(
+        fwpKernelSetupPhase1, SCAN_MAX, "33 11 88 9A 28 00 40 B9 1F 01 00 6B");
+
+    // BlpArchSwitchContext
+    BlpArchSwitchContext =
+        (BL_ARCH_SWITCH_CONTEXT)(PatternMatch -
+                                 ARM64_TOTAL_INSTRUCTION_LENGTH(10));
+  }
+
+  if (PatternMatch == 0 || (PatternMatch & 0xFFFFFFF000000000) != 0) {
+    FirmwarePrint(
+        "Failed to find BlpArchSwitchContext (v4)! BlpArchSwitchContext "
+        "-> "
+        "0x%p\n",
+        BlpArchSwitchContext);
+    goto exit;
   }
 
   FirmwarePrint(
