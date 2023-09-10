@@ -15,7 +15,8 @@
 **/
 #include "KernelErrataPatcher.h"
 
-STATIC EFI_EXIT_BOOT_SERVICES EfiExitBootServices = NULL;
+STATIC BL_ARCH_SWITCH_CONTEXT BlpArchSwitchContext = NULL;
+STATIC EFI_EXIT_BOOT_SERVICES EfiExitBootServices  = NULL;
 
 // Please see ./ShellCode/Reference/ShellCode.c for what this does
 UINT8 OslArm64TransferToKernelShellCode[] = {
@@ -56,23 +57,35 @@ VOID PatchKernelComponents(PLOADER_PARAMETER_BLOCK loaderBlock)
     EFI_PHYSICAL_ADDRESS base = (EFI_PHYSICAL_ADDRESS)kernelModule->DllBase;
     UINTN                size = kernelModule->SizeOfImage;
 
+    ContextPrint(
+        "PatchKernelComponents, about to go into the loop! loaderBlock=0x%p "
+        "(phys) 0x%p (size) 0x%p\n",
+        loaderBlock, base, size);
+
     for (EFI_PHYSICAL_ADDRESS current = base; current < base + size;
          current += sizeof(UINT32)) {
       if (*(UINT32 *)current == 0xD5381028 || // mrs x8, actlr_el1
           *(UINT32 *)current == 0xD53BD2A8) { // mrs x8,
                                               // amcntenset0_el0
-        *(UINT32 *)current = 0xD2800008;      // movz x8, #0
+        ContextPrint(
+            "mrs x8, actlr_el1/amcntenset0_el0         -> 0x%p\n", current);
+        *(UINT32 *)current = 0xD2800008; // movz x8, #0
       }
       else if (
           *(UINT32 *)current == 0xD5181028 || // msr actlr_el1, x8
           *(UINT32 *)current == 0xD5181029) { // msr actlr_el1, x9
-        *(UINT32 *)current = 0xD503201F;      // nop
+        ContextPrint("msr actlr_el1, x8/x9         -> 0x%p\n", current);
+        *(UINT32 *)current = 0xD503201F; // nop
       }
       else if (
           *(UINT64 *)current == 0xD2800003180002D5 &&
           *(UINT64 *)(current + ARM64_TOTAL_INSTRUCTION_LENGTH(2)) ==
               0xD2800001D2800002) { // ldr w21, #0x58 - movz x3, #0 - movz x2,
                                     // #0 - movz x1, #0
+        ContextPrint(
+            "ldr w21, #0x58 - movz x3, #0 - movz x2, #0 - movz x1, #0        "
+            "-> 0x%p\n",
+            current);
         *(UINT32 *)(current - ARM64_TOTAL_INSTRUCTION_LENGTH(8)) =
             0xD65F03C0; // ret
       }
@@ -81,10 +94,19 @@ VOID PatchKernelComponents(PLOADER_PARAMETER_BLOCK loaderBlock)
           *(UINT64 *)(current + ARM64_TOTAL_INSTRUCTION_LENGTH(2)) ==
               0x18000240D2800001) { // movz x3, #0 - movz x2, #0 - movz x1, #0 -
                                     // ldr w0, #0x54
+        ContextPrint(
+            "movz x3, #0 - movz x2, #0 - movz x1, #0 - ldr w0, #0x54       -> "
+            "0x%p\n",
+            current);
         *(UINT32 *)(current - ARM64_TOTAL_INSTRUCTION_LENGTH(7)) =
             0xD65F03C0; // ret
       }
     }
+
+    ContextPrint(
+        "PatchKernelComponents, finished the loop! loaderBlock=0x%p "
+        "(phys) 0x%p (size) 0x%p\n",
+        loaderBlock, base, size);
   }
 }
 #endif
@@ -144,6 +166,7 @@ KernelErrataPatcherExitBootServices(
 
   KernelErrataPatcherApplyReadACTLREL1Patches(fwpKernelSetupPhase1, SCAN_MAX);
 
+#if LEGACY == 0
   EFI_PHYSICAL_ADDRESS OslArm64TransferToKernelAddr =
       winloadBase + 0xC00 +
       NT_OS_LOADER_ARM64_TRANSFER_TO_KERNEL_FUNCTION_OFFSET;
@@ -176,6 +199,11 @@ KernelErrataPatcherExitBootServices(
       break;
     }
   }
+#endif
+
+  FirmwarePrint(
+      "Protecting winload again -> (phys) 0x%p (size) 0x%p\n", winloadBase,
+      tempSize);
 
   Status = ReProtectWinload(winloadBase + EFI_PAGE_SIZE, tempSize);
   if (EFI_ERROR(Status)) {
@@ -191,16 +219,25 @@ KernelErrataPatcherExitBootServices(
 
   if (loaderBlock == NULL ||
       ((EFI_PHYSICAL_ADDRESS)loaderBlock & 0xFFFFFFF000000000) == 0) {
+    FirmwarePrint(
+        "Failed to find OslLoaderBlock (X19)! loaderBlock -> 0x%p\n",
+        loaderBlock);
     loaderBlock = loaderBlockX20;
   }
 
   if (loaderBlock == NULL ||
       ((EFI_PHYSICAL_ADDRESS)loaderBlock & 0xFFFFFFF000000000) == 0) {
+    FirmwarePrint(
+        "Failed to find OslLoaderBlock (X20)! loaderBlock -> 0x%p\n",
+        loaderBlock);
     loaderBlock = loaderBlockX24;
   }
 
   if (loaderBlock == NULL ||
       ((EFI_PHYSICAL_ADDRESS)loaderBlock & 0xFFFFFFF000000000) == 0) {
+    FirmwarePrint(
+        "Failed to find OslLoaderBlock (X24)! loaderBlock -> 0x%p\n",
+        loaderBlock);
     goto exit;
   }
 
@@ -208,35 +245,55 @@ KernelErrataPatcherExitBootServices(
       fwpKernelSetupPhase1, SCAN_MAX,
       "1F 04 00 71 33 11 88 9A 28 00 40 B9 1F 01 00 6B");
 
-  BL_ARCH_SWITCH_CONTEXT BlpArchSwitchContext =
+  // BlpArchSwitchContext
+  BlpArchSwitchContext =
       (BL_ARCH_SWITCH_CONTEXT)(PatternMatch -
                                ARM64_TOTAL_INSTRUCTION_LENGTH(9));
 
   // First check if the version of BlpArchSwitchContext before Memory Management
   // v2 is found
   if (PatternMatch == 0 || (PatternMatch & 0xFFFFFFF000000000) != 0) {
+    FirmwarePrint(
+        "Failed to find BlpArchSwitchContext (v1)! BlpArchSwitchContext -> "
+        "0x%p\n",
+        BlpArchSwitchContext);
+
     // Okay, we maybe have the new Memory Management? Try again.
     PatternMatch =
         FindPattern(fwpKernelSetupPhase1, SCAN_MAX, "9F 06 00 71 33 11 88 9A");
 
+    // BlpArchSwitchContext
     BlpArchSwitchContext =
         (BL_ARCH_SWITCH_CONTEXT)(PatternMatch -
                                  ARM64_TOTAL_INSTRUCTION_LENGTH(24));
 
     if (PatternMatch == 0 || (PatternMatch & 0xFFFFFFF000000000) != 0) {
+      FirmwarePrint(
+          "Failed to find BlpArchSwitchContext (v2)! BlpArchSwitchContext -> "
+          "0x%p\n",
+          BlpArchSwitchContext);
+
       // Okay, we maybe have the new new Memory Management? Try again.
       PatternMatch = FindPattern(
           fwpKernelSetupPhase1, SCAN_MAX, "7F 06 00 71 37 11 88 9A");
 
+      // BlpArchSwitchContext
       BlpArchSwitchContext =
           (BL_ARCH_SWITCH_CONTEXT)(PatternMatch -
                                    ARM64_TOTAL_INSTRUCTION_LENGTH(24));
 
       if (PatternMatch == 0 || (PatternMatch & 0xFFFFFFF000000000) != 0) {
+        FirmwarePrint(
+            "Failed to find BlpArchSwitchContext (v3)! BlpArchSwitchContext -> "
+            "0x%p\n",
+            BlpArchSwitchContext);
         goto exit;
       }
     }
   }
+
+  FirmwarePrint(
+      "BlpArchSwitchContext      -> (phys) 0x%p\n", BlpArchSwitchContext);
 
   /*
    * Switch context to (as defined by winload) application context
@@ -251,7 +308,16 @@ KernelErrataPatcherExitBootServices(
   UINT32 OsMinorVersion = loaderBlock->OsMinorVersion;
   UINT32 Size           = loaderBlock->Size;
 
+  ContextPrint(
+      "LOADER_PARAMETER_BLOCK    -> OsMajorVersion: %d OsMinorVersion: %d "
+      "Size: %d\n",
+      OsMajorVersion, OsMinorVersion, Size);
+
   if (OsMajorVersion != 10 || OsMinorVersion != 0 || Size == 0) {
+    ContextPrint(
+        "Incompatible!           -> OsMajorVersion: %d OsMinorVersion: %d "
+        "Size: %d\n",
+        OsMajorVersion, OsMinorVersion, Size);
     goto exitToFirmware;
   }
 

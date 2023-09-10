@@ -42,8 +42,13 @@
 #define FirmwarePrint(x, ...)                                                  \
   AsciiPrint(x, __VA_ARGS__);                                                  \
   DEBUG((EFI_D_ERROR, x, __VA_ARGS__));
+#define ContextPrint(x, ...)                                                   \
+  BlpArchSwitchContext(FirmwareContext);                                       \
+  FirmwarePrint(x, __VA_ARGS__);                                               \
+  BlpArchSwitchContext(ApplicationContext);
 #else
 #define FirmwarePrint(x, ...)
+#define ContextPrint(x, ...)
 #endif
 
 #if LEGACY == 1
