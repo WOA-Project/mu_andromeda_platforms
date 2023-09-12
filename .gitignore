@@ -15,3 +15,10 @@ BuildConfig.conf
 
 /Conf/
 /SurfaceDuo/
+Platforms/SurfaceDuoFamilyPkg/Include/Generated/ConfigServiceGenerated.h
+Platforms/SurfaceDuoFamilyPkg/Include/Generated/ConfigDataGenerated.h
+Platforms/SurfaceDuoFamilyPkg/Include/Generated/ConfigClientGenerated.h
+ImageResources/Zeta/uefi.img
+ImageResources/Zeta/bootpayload.bin
+ImageResources/Epsilon/uefi.img
+ImageResources/Epsilon/bootpayload.bin
