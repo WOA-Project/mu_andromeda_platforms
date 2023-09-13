@@ -35,7 +35,7 @@
 #include "ntdef.h"
 
 #define LEGACY 1
-#define SILENT 1
+#define SILENT 0
 
 #if SILENT == 0
 
