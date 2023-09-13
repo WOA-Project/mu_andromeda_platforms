@@ -60,11 +60,11 @@
   #
   # This library is for showing the main system boot graphics.
   #
-  BootGraphicsLib|SurfaceDuoFamilyPkg/Library/BootGraphicsLib/BootGraphicsLib.inf
+  BootGraphicsLib|MsGraphicsPkg/Library/BootGraphicsLib/BootGraphicsLib.inf
   #
   # BootGraphicsProviderLib that uses PCDs and raw files in the firmware volumes
   #
-  BootGraphicsProviderLib|SurfaceDuoFamilyPkg/Library/BootGraphicsProviderLib/BootGraphicsProviderLib.inf
+  BootGraphicsProviderLib|OemPkg/Library/BootGraphicsProviderLib/BootGraphicsProviderLib.inf
   #
   # This library contains access functions for dealing with the copying of an MS_UI_THEME
   #
@@ -129,10 +129,6 @@
   #
   MathLib|MsCorePkg/Library/MathLib/MathLib.inf
   #
-  # This library is for showing the main system boot graphics.
-  #
-  BootGraphicsLib|SurfaceDuoFamilyPkg/Library/BootGraphicsLib/BootGraphicsLib.inf
-  #
   # Library to support Device disable Settings  (get/set)
   #
   MsBootManagerSettingsLib|OemPkg/Library/MsBootManagerSettingsDxeLib/MsBootManagerSettingsDxeLib.inf
@@ -141,19 +137,13 @@
   #
   SwmDialogsLib|MsGraphicsPkg/Library/SwmDialogsLib/SwmDialogs.inf
   #
-  # BootGraphicsProviderLib that uses PCDs and raw files in the firmware volumes
-  #
-  BootGraphicsProviderLib|SurfaceDuoFamilyPkg/Library/BootGraphicsProviderLib/BootGraphicsProviderLib.inf
-  #
   # Library that platform implemented to determine boot type
   #
   MsBootPolicyLib|SurfaceDuoFamilyPkg/Library/MsBootPolicyLib/MsBootPolicyLib.inf
-  BmpSupportLib|MdeModulePkg/Library/BaseBmpSupportLib/BaseBmpSupportLib.inf
   #
   # Supplies the theme for this platform to the UEFI settings UI
   #
   MsUiThemeLib|MsGraphicsPkg/Library/MsUiThemeLib/Dxe/MsUiThemeLib.inf
-  SafeIntLib|MdePkg/Library/BaseSafeIntLib/BaseSafeIntLib.inf
   #
   # Library for determining if Manufacturing mode should be enabled on this boot. 
   # This libray is what everyone should use to determine which mode we are in.
