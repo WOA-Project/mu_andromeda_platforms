@@ -550,7 +550,7 @@
   # Fake Variable Services
   MdeModulePkg/Universal/Variable/RuntimeDxe/VariableRuntimeDxe.inf {
     <LibraryClasses>
-      AuthVariableLib|SurfaceDuoFamilyPkg/Library/AuthVariableLib/AuthVariableLib.inf
+      AuthVariableLib|SecurityPkg/Library/AuthVariableLib/AuthVariableLib.inf
       BaseCryptLib|CryptoPkg/Library/BaseCryptLib/RuntimeCryptLib.inf
       TlsLib|CryptoPkg/Library/TlsLib/TlsLib.inf
       IntrinsicLib|CryptoPkg/Library/IntrinsicLib/IntrinsicLib.inf

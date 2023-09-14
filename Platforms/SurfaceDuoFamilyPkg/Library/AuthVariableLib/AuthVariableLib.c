@@ -421,7 +421,7 @@ AuthVariableLibProcessVariable (
 {
   EFI_STATUS  Status;
 
-  if (EfiAtRuntime()) {
+  if (EfiAtRuntime() && StrCmp (VariableName, L"MsVariablesSupportedTest")) {
     return EFI_UNSUPPORTED;
   }
 
