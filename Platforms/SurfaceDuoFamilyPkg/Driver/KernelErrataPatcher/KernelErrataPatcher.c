@@ -15,7 +15,9 @@
 **/
 #include "KernelErrataPatcher.h"
 
+#if LEGACY == 1
 STATIC BL_ARCH_SWITCH_CONTEXT BlpArchSwitchContext = NULL;
+#endif
 STATIC EFI_EXIT_BOOT_SERVICES EfiExitBootServices = NULL;
 
 // Please see ./ShellCode/Reference/ShellCode.c for what this does
