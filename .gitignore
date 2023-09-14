@@ -4,7 +4,6 @@
 .vscode
 
 /Build/
-.DS_Store
 *_extdep/
 *.pyc
 __pycache__/
@@ -22,3 +21,7 @@ ImageResources/Zeta/uefi.img
 ImageResources/Zeta/bootpayload.bin
 ImageResources/Epsilon/uefi.img
 ImageResources/Epsilon/bootpayload.bin
+ImageResources/Zeta/uefi_dualboot.img
+ImageResources/Zeta/dualbootbootpayload.bin
+ImageResources/Epsilon/uefi_dualboot.img
+ImageResources/Epsilon/dualbootbootpayload.bin
