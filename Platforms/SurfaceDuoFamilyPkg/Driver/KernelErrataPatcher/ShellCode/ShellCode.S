@@ -87,7 +87,7 @@ _Start:
 .L5:
 	ldr	x8, [x8]
 	cmp	x8, x14
-	beq	_Payload
+	b	_Payload
 .L11:
 	ldr	x2, [x8, 48]
 	ldr	w5, [x8, 64]
