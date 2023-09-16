@@ -2348,6 +2348,10 @@ VerifyTimeBasedPayloadAndUpdate (
   AUTH_VARIABLE_INFO             OrgVariableInfo;
   BOOLEAN                        IsDel;
 
+  if (EfiAtRuntime()) {
+    return EFI_WRITE_PROTECTED;
+  }
+
   ZeroMem (&OrgVariableInfo, sizeof (OrgVariableInfo));
   FindStatus = mAuthVarLibContextIn->FindVariable (
                                        VariableName,
