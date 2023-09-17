@@ -8,7 +8,7 @@ cat ./BootShim/BootShim.bin ./Build/SurfaceDuo1-AARCH64/DEBUG_CLANG38/FV/SM8150_
 cat ./BootShim/BootShim.bin ./Build/SurfaceDuo2-AARCH64/DEBUG_CLANG38/FV/SM8350_EFI.fd > ./ImageResources/Zeta/bootpayload.bin
 
 cat ./ImageResources/Epsilon/patchedkernel ./Build/SurfaceDuo1-AARCH64/DEBUG_CLANG38/FV/SM8150_EFI.fd > ./ImageResources/Epsilon/dualbootbootpayload.bin
-cat ../ImageResources/Zeta/patchedkernel ./Build/SurfaceDuo2-AARCH64/DEBUG_CLANG38/FV/SM8350_EFI.fd > ./ImageResources/Zeta/dualbootbootpayload.bin
+cat ./ImageResources/Zeta/patchedkernel ./Build/SurfaceDuo2-AARCH64/DEBUG_CLANG38/FV/SM8350_EFI.fd > ./ImageResources/Zeta/dualbootbootpayload.bin
 
 python3 ./ImageResources/mkbootimg.py \
   --kernel ./ImageResources/Epsilon/bootpayload.bin \
