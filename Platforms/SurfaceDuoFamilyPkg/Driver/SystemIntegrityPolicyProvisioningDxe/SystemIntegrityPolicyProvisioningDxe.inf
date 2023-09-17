@@ -28,9 +28,11 @@
 
 [Protocols]
   gEfiSimpleFileSystemProtocolGuid ## CONSUMES
+  gEfiPartitionInfoProtocolGuid    ## CONSUMES
 
 [Depex]
-  gEfiSimpleFileSystemProtocolGuid
+  gEfiSimpleFileSystemProtocolGuid AND
+  gEfiPartitionInfoProtocolGuid
 
 [BuildOptions.AARCH64]
   GCC:*_*_*_CC_FLAGS = -Wno-missing-brace -Wno-error
