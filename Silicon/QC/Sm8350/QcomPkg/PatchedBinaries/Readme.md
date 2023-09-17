@@ -57,9 +57,9 @@ The current PCD Token Store in our UEFI is as follows:
 PcdTokenNumber: 
 ('PcdSKUEnableDfci', 'gDfciPkgTokenSpaceGuid') : 1
 ('PcdSetupUiReducedFunction', 'gDfciPkgTokenSpaceGuid') : 2
-('PcdDeviceStateBitmask', 'gEfiMdeModulePkgTokenSpaceGuid') : 3
+('PcdConOutColumn', 'gEfiMdeModulePkgTokenSpaceGuid') : 3
 ('PcdConOutRow', 'gEfiMdeModulePkgTokenSpaceGuid') : 4
-('PcdConOutColumn', 'gEfiMdeModulePkgTokenSpaceGuid') : 5
+('PcdDeviceStateBitmask', 'gEfiMdeModulePkgTokenSpaceGuid') : 5
 ('PcdTestKeyUsed', 'gEfiMdeModulePkgTokenSpaceGuid') : 6
 ('PcdVideoHorizontalResolution', 'gEfiMdeModulePkgTokenSpaceGuid') : 7
 ('PcdVideoVerticalResolution', 'gEfiMdeModulePkgTokenSpaceGuid') : 8
