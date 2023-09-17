@@ -12,9 +12,14 @@
 [Packages]
   MdePkg/MdePkg.dec
   MsCorePkg/MsCorePkg.dec
+  SurfaceDuoFamilyPkg/SurfaceDuoFamilyPkg.dec
 
 [LibraryClasses]
+  BaseLib
+  DebugLib
   MuSecureBootKeySelectorLib
+  PrintLib
+  UefiDriverEntryPoint
 
 [Depex]
   gEfiVariableWriteArchProtocolGuid AND
