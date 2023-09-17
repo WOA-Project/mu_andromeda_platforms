@@ -14,174 +14,121 @@
 #include <Library/BaseLib.h>
 #include <Library/BaseMemoryLib.h>
 #include <Library/DebugLib.h>
+#include <Library/MemoryAllocationLib.h>
+#include <Library/PrintLib.h>
 #include <Library/UefiBootServicesTableLib.h>
 #include <Library/UefiDriverEntryPoint.h>
 #include <Library/UefiLib.h>
-
-#include <Protocol/BlockIo.h>
-#include <Protocol/PartitionInfo.h>
+#include <Library/UefiRuntimeServicesTableLib.h>
 
 #include "SystemIntegrityPolicyDefaultVars.h"
 
-STATIC EFI_SIMPLE_FILE_SYSTEM_PROTOCOL *efiespSfsProtocol = NULL;
+//
+// Global variables.
+//
+VOID                 *mFileSystemRegistration = NULL;
+STATIC EFI_IMAGE_LOAD EfiImageLoad            = NULL;
 
 EFI_STATUS
-TryWritePlatformSiPolicy()
+EFIAPI
+TryWritePlatformSiPolicy(EFI_HANDLE SfsHandle)
 {
-  EFI_STATUS         Status               = EFI_SUCCESS;
-  EFI_FILE_PROTOCOL *efiespFileProtocol   = NULL;
-  EFI_FILE_PROTOCOL *payloadFileProtocol  = NULL;
-  UINT64             mSiPolicyDefaultSize = sizeof(mSiPolicyDefault);
+  EFI_STATUS Status               = EFI_SUCCESS;
+  UINT64     mSiPolicyDefaultSize = sizeof(mSiPolicyDefault);
 
-  if (efiespSfsProtocol == NULL) {
-    return EFI_NOT_FOUND;
-  }
+  EFI_SIMPLE_FILE_SYSTEM_PROTOCOL *EfiSfsProtocol;
+  EFI_FILE_PROTOCOL               *FileProtocol;
+  EFI_FILE_PROTOCOL               *PayloadFileProtocol;
 
-  DEBUG((EFI_D_INFO, "EFIESP Partition Found.\n"));
+  DEBUG(
+      (DEBUG_ERROR, "%a: HandleProtocol gEfiSimpleFileSystemProtocolGuid\n",
+       __FUNCTION__));
 
-  Status =
-      efiespSfsProtocol->OpenVolume(efiespSfsProtocol, &efiespFileProtocol);
+  Status = gBS->HandleProtocol(
+      SfsHandle, &gEfiSimpleFileSystemProtocolGuid, (VOID **)&EfiSfsProtocol);
+
   if (EFI_ERROR(Status)) {
-    return NULL;
+    DEBUG((DEBUG_ERROR, "Failed to invoke HandleProtocol.\n"));
+    goto exit;
   }
 
-  //
-  // Check if this is a Windows ESP partition first
-  //
-  Status = efiespFileProtocol->Open(
-      efiespFileProtocol, &payloadFileProtocol,
+  DEBUG((DEBUG_ERROR, "%a: OpenVolume EfiSfsProtocol\n", __FUNCTION__));
+
+  Status = EfiSfsProtocol->OpenVolume(EfiSfsProtocol, &FileProtocol);
+
+  if (EFI_ERROR(Status)) {
+    DEBUG((DEBUG_ERROR, "Fail to get file protocol handle\n"));
+    goto exit;
+  }
+
+  DEBUG(
+      (DEBUG_ERROR, "%a: FileProtocol \\EFI\\Microsoft\\Boot\\bootmgfw.efi\n",
+       __FUNCTION__));
+
+  Status = FileProtocol->Open(
+      FileProtocol, &PayloadFileProtocol,
       L"\\EFI\\Microsoft\\Boot\\bootmgfw.efi", EFI_FILE_MODE_READ,
       EFI_FILE_READ_ONLY | EFI_FILE_HIDDEN | EFI_FILE_SYSTEM);
+
   if (EFI_ERROR(Status)) {
     DEBUG((DEBUG_ERROR, "Failed to open bootmgfw.efi: %r\n", Status));
     goto exit;
   }
 
-  payloadFileProtocol->Close(payloadFileProtocol);
+  DEBUG(
+      (DEBUG_ERROR, "%a: Close \\EFI\\Microsoft\\Boot\\bootmgfw.efi\n",
+       __FUNCTION__));
 
-  Status = efiespFileProtocol->Open(
-      efiespFileProtocol, &payloadFileProtocol,
+  Status = PayloadFileProtocol->Close(PayloadFileProtocol);
+  if (EFI_ERROR(Status)) {
+    DEBUG((DEBUG_ERROR, "Failed to close bootmgfw.efi: %r\n", Status));
+  }
+
+  DEBUG(
+      (DEBUG_ERROR, "%a: Open \\EFI\\Microsoft\\Boot\\SiPolicy.p7b\n",
+       __FUNCTION__));
+
+  Status = FileProtocol->Open(
+      FileProtocol, &PayloadFileProtocol,
       L"\\EFI\\Microsoft\\Boot\\SiPolicy.p7b",
       EFI_FILE_MODE_READ | EFI_FILE_MODE_WRITE, 0);
 
-  //
-  // If the file already exists, do not touch it
-  //
-  if (!EFI_ERROR(Status)) {
-    DEBUG(
-        (DEBUG_ERROR, "SiPolicy.p7b already exists, do not update: %r\n",
-         Status));
-    payloadFileProtocol->Close(payloadFileProtocol);
+  if (EFI_ERROR(Status) && Status != EFI_NOT_FOUND) {
+    DEBUG((DEBUG_ERROR, "Failed to open SiPolicy.p7b: %r\n", Status));
     goto exit;
   }
 
-  Status = efiespFileProtocol->Open(
-      efiespFileProtocol, &payloadFileProtocol,
+  if (Status != EFI_NOT_FOUND) {
+    PayloadFileProtocol->Delete(PayloadFileProtocol);
+  }
+
+  Status = FileProtocol->Open(
+      FileProtocol, &PayloadFileProtocol,
       L"\\EFI\\Microsoft\\Boot\\SiPolicy.p7b",
       EFI_FILE_MODE_READ | EFI_FILE_MODE_WRITE | EFI_FILE_MODE_CREATE, 0);
+
   if (EFI_ERROR(Status)) {
     DEBUG((DEBUG_ERROR, "Failed to open SiPolicy.p7b: %r\n", Status));
     goto exit;
   }
 
-  Status = payloadFileProtocol->Write(
-      payloadFileProtocol, &mSiPolicyDefaultSize, mSiPolicyDefault);
+  DEBUG(
+      (DEBUG_ERROR, "%a: Write \\EFI\\Microsoft\\Boot\\SiPolicy.p7b\n",
+       __FUNCTION__));
+
+  Status = PayloadFileProtocol->Write(
+      PayloadFileProtocol, &mSiPolicyDefaultSize, mSiPolicyDefault);
   if (EFI_ERROR(Status)) {
     DEBUG((DEBUG_ERROR, "Failed to write SiPolicy.p7b: %r\n", Status));
-    goto exit;
   }
 
-  payloadFileProtocol->Close(payloadFileProtocol);
-  efiespFileProtocol->Close(efiespFileProtocol);
+  DEBUG(
+      (DEBUG_ERROR, "%a: Close \\EFI\\Microsoft\\Boot\\SiPolicy.p7b\n",
+       __FUNCTION__));
 
-exit:
-  return Status;
-}
-
-EFI_STATUS
-TryLocateEfiespOnAllHandles()
-{
-  EFI_STATUS                       Status;
-  EFI_HANDLE                      *HandleBuffer;
-  UINTN                            HandleCount;
-  UINTN                            Index;
-  EFI_PARTITION_INFO_PROTOCOL     *PartitionInfo;
-  EFI_SIMPLE_FILE_SYSTEM_PROTOCOL *EfiSfsProtocol;
-
-  HandleBuffer = NULL;
-
-  Status = gBS->LocateHandleBuffer(
-      ByProtocol, &gEfiPartitionInfoProtocolGuid, NULL, &HandleCount,
-      &HandleBuffer);
+  Status = PayloadFileProtocol->Close(PayloadFileProtocol);
   if (EFI_ERROR(Status)) {
-    return EFI_ABORTED;
-  }
-
-  for (Index = 0; Index < HandleCount; Index++) {
-    Status = gBS->HandleProtocol(
-        HandleBuffer[Index], &gEfiPartitionInfoProtocolGuid,
-        (VOID **)&PartitionInfo);
-    if (EFI_ERROR(Status)) {
-      continue;
-    }
-
-    if (PartitionInfo->Type == PARTITION_TYPE_GPT) {
-      if (CompareGuid(
-              &PartitionInfo->Info.Gpt.PartitionTypeGUID,
-              &gEfiPartTypeSystemPartGuid) == 0) {
-        Status = gBS->HandleProtocol(
-            HandleBuffer[Index], &gEfiSimpleFileSystemProtocolGuid,
-            (VOID **)&EfiSfsProtocol);
-
-        if (EFI_ERROR(Status)) {
-          continue;
-        }
-
-        efiespSfsProtocol = EfiSfsProtocol;
-        TryWritePlatformSiPolicy();
-      }
-    }
-    else {
-      continue;
-    }
-  }
-
-  FreePool(HandleBuffer);
-  return EFI_SUCCESS;
-}
-
-//
-// Global variables.
-//
-VOID *mFileSystemRegistration = NULL;
-
-EFI_STATUS
-EFIAPI
-TryOpenEfiesp(EFI_HANDLE SfsHandle)
-{
-  EFI_STATUS                       Status = EFI_SUCCESS;
-  EFI_SIMPLE_FILE_SYSTEM_PROTOCOL *EfiSfsProtocol;
-  EFI_PARTITION_INFO_PROTOCOL     *PartitionInfo;
-
-  Status = gBS->HandleProtocol(
-      SfsHandle, &gEfiPartitionInfoProtocolGuid, (VOID **)&PartitionInfo);
-  if (!EFI_ERROR(Status)) {
-    if (PartitionInfo->Type == PARTITION_TYPE_GPT) {
-      if (CompareGuid(
-              &PartitionInfo->Info.Gpt.PartitionTypeGUID,
-              &gEfiPartTypeSystemPartGuid) == 0) {
-        Status = gBS->HandleProtocol(
-            SfsHandle, &gEfiSimpleFileSystemProtocolGuid,
-            (VOID **)&EfiSfsProtocol);
-
-        if (EFI_ERROR(Status)) {
-          goto exit;
-        }
-
-        efiespSfsProtocol = EfiSfsProtocol;
-        TryWritePlatformSiPolicy();
-      }
-    }
+    DEBUG((DEBUG_ERROR, "Failed to close SiPolicy.p7b: %r\n", Status));
   }
 
 exit:
@@ -207,6 +154,8 @@ VOID EFIAPI OnFileSystemNotification(IN EFI_EVENT Event, IN VOID *Context)
   EFI_HANDLE *HandleBuffer;
   EFI_STATUS  Status;
 
+  DEBUG((DEBUG_INFO, "%a: Entry...\n", __FUNCTION__));
+
   for (;;) {
     //
     // Get the next handle
@@ -224,7 +173,11 @@ VOID EFIAPI OnFileSystemNotification(IN EFI_EVENT Event, IN VOID *Context)
     // Spec says we only get one at a time using ByRegisterNotify
     ASSERT(HandleCount == 1);
 
-    TryOpenEfiesp(HandleBuffer[0]);
+    DEBUG(
+        (DEBUG_INFO, "%a: processing a potential efiesp device on handle %p\n",
+         __FUNCTION__, HandleBuffer[0]));
+
+    TryWritePlatformSiPolicy(HandleBuffer[0]);
 
     FreePool(HandleBuffer);
   }
@@ -292,21 +245,5 @@ EFIAPI
 SystemIntegrityPolicyProvisioningDxeInitialize(
     IN EFI_HANDLE ImageHandle, IN EFI_SYSTEM_TABLE *SystemTable)
 {
-  EFI_STATUS Status = EFI_SUCCESS;
-
-  TryLocateEfiespOnAllHandles();
-  if (efiespSfsProtocol) {
-    return EFI_SUCCESS;
-  }
-
-  Status = ProcessFileSystemRegistration();
-  if (EFI_ERROR(Status)) {
-    DEBUG(
-        (DEBUG_ERROR, "%a - Failed to process file system registration %r!\n",
-         __FUNCTION__, Status));
-    goto exit;
-  }
-
-exit:
-  return Status;
+  return ProcessFileSystemRegistration();
 }
