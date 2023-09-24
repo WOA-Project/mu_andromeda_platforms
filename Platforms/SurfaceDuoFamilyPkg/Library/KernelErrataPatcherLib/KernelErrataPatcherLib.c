@@ -13,7 +13,7 @@
   SPDX-License-Identifier: MIT
 
 **/
-#include "KernelErrataPatcher.h"
+#include "KernelErrataPatcherLib.h"
 
 STATIC EFI_EXIT_BOOT_SERVICES mOriginalEfiExitBootServices = NULL;
 EFI_EVENT                     mReadyToBootEvent;
@@ -167,7 +167,7 @@ VOID EFIAPI ReadyToBootHandler(IN EFI_EVENT Event, IN VOID *Context)
 
 EFI_STATUS
 EFIAPI
-KernelErrataPatcherConstructor(
+KernelErrataPatcherLibConstructor(
     IN EFI_HANDLE ImageHandle, IN EFI_SYSTEM_TABLE *SystemTable)
 {
   EFI_STATUS Status;
@@ -178,7 +178,7 @@ KernelErrataPatcherConstructor(
   if (EFI_ERROR(Status)) {
     DEBUG((
         DEBUG_ERROR,
-        "KernelErrataPatcherConstructor: Failed to create event %r\n", Status));
+        "KernelErrataPatcherLibConstructor: Failed to create event %r\n", Status));
     ASSERT(FALSE);
   }
 

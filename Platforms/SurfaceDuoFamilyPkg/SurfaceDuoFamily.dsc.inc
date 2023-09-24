@@ -499,7 +499,7 @@
 
   MdeModulePkg/Universal/BdsDxe/BdsDxe.inf {
     <LibraryClasses>
-    NULL|SurfaceDuoFamilyPkg/Library/KernelErrataPatcher/KernelErrataPatcher.inf
+    NULL|SurfaceDuoFamilyPkg/Library/KernelErrataPatcherLib/KernelErrataPatcherLib.inf
   }
 
   MdeModulePkg/Universal/CapsuleRuntimeDxe/CapsuleRuntimeDxe.inf
