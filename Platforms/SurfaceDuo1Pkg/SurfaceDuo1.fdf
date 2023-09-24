@@ -139,8 +139,6 @@ READ_LOCK_STATUS   = TRUE
 
   INF SurfaceDuoFamilyPkg/UFP/ufpdevicefw.inf
 
-  INF SurfaceDuoFamilyPkg/Driver/KernelErrataPatcher/KernelErrataPatcher.inf
-
   INF AdvLoggerPkg/AdvancedFileLogger/AdvancedFileLogger.inf
   INF ArmPkg/Drivers/ArmGic/ArmGicDxe.inf
   INF ArmPkg/Drivers/CpuDxe/CpuDxe.inf

@@ -497,7 +497,11 @@
   MdeModulePkg/Universal/Acpi/BootGraphicsResourceTableDxe/BootGraphicsResourceTableDxe.inf
   MdeModulePkg/Universal/Acpi/FirmwarePerformanceDataTableDxe/FirmwarePerformanceDxe.inf
 
-  MdeModulePkg/Universal/BdsDxe/BdsDxe.inf
+  MdeModulePkg/Universal/BdsDxe/BdsDxe.inf {
+    <LibraryClasses>
+    NULL|SurfaceDuoFamilyPkg/Library/KernelErrataPatcher/KernelErrataPatcher.inf
+  }
+
   MdeModulePkg/Universal/CapsuleRuntimeDxe/CapsuleRuntimeDxe.inf
 
   MdeModulePkg/Universal/Console/ConPlatformDxe/ConPlatformDxe.inf
@@ -605,8 +609,6 @@
 !if $(SEND_HEARTBEAT_TO_SERIAL) == 1
   SurfaceDuoFamilyPkg/Driver/HeartbeatDxe/HeartbeatDxe.inf
 !endif
-
-  SurfaceDuoFamilyPkg/Driver/KernelErrataPatcher/KernelErrataPatcher.inf
 
 !if $(SECURE_BOOT_ENABLE) == 1
   SurfaceDuoFamilyPkg/Driver/SecureBootProvisioningDxe/SecureBootProvisioningDxe.inf
