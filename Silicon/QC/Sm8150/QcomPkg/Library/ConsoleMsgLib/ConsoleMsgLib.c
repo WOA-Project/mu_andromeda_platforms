@@ -103,7 +103,7 @@ VOID ConsoleInternalPrintGraphic(
       sizeof(EFI_GRAPHICS_OUTPUT_BLT_PIXEL));
 
   FontInfo.FontInfoMask       = EFI_FONT_INFO_ANY_FONT;
-  FontInfo.FontInfo.FontSize  = MsUiGetStandardFontHeight();
+  FontInfo.FontInfo.FontSize  = MsUiGetFixedFontHeight();
   FontInfo.FontInfo.FontStyle = EFI_HII_FONT_STYLE_NORMAL;
 
   if (GraphicsOutput != NULL) {
@@ -160,7 +160,7 @@ VOID EFIAPI ConsolePrint(IN CONST CHAR16 *Format, ...)
   VA_END(Marker);
 
   ConsoleInternalPrintGraphic(0, LineCounter, Buffer);
-  LineCounter += MsUiGetStandardFontHeight();
+  LineCounter += MsUiGetFixedFontHeight();
 
   FreePool(Buffer);
 
