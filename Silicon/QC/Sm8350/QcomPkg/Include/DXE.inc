@@ -1,33 +1,3 @@
-    # INF QcomPkg/PatchedBinaries/DisplayDxe.inf
-    # INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/MsAbstractPkg/Drivers/MsAbstractLayerDxe/MsAbstractLayer.inf
-    # INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/MsCommonPkg/Drivers/ColorbarsDxe/ColorbarsDxe.inf
-    # INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/MsCommonPkg/Drivers/MsManufacturingModeDxe/MsManufacturingMode.inf
-    # INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/MsCommonPkg/Drivers/SurfaceTouchHidDxe/SurfaceTouchHidDxeV2.inf
-    # INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Application/QcomChargerApp/QcomChargerApp.inf
-    # INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/ASN1X509Dxe/ASN1X509Dxe.inf
-    # INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/ClockDxe/ClockDxe.inf
-    # INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/CPRDxe/CPRDxe.inf
-    # INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/DisplayDxe/DisplayDxe.inf
-    # INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/EnvDxe/EnvDxe.inf
-    # INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/FeatureEnablerDxe/FeatureEnablerDxe.inf
-    # INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/MinidumpTADxe/MinidumpTADxe.inf
-    # INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/PmicDxe/PmicDxeLa.inf
-    # INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/QcomBds/QcomBds.inf
-    # INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/QcomWDogDxe/QcomWDogDxe.inf
-    # INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/RNGDxe/RngDxe.inf
-    # INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/SecRSADxe/SecRSADxe.inf
-    # INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/TzDxe/ScmDxeLA.inf
-    # INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/TzDxe/TzDxeLA.inf
-    # INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/UCDxe/UCDxe.inf
-    # INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/UFSDxe/UFSDxe.inf
-    # INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/UsbBusDxe/UsbBusDxe.inf
-    # INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/UsbConfigDxe/UsbConfigDxe.inf
-    # INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/UsbKbDxe/UsbKbDxe.inf
-    # INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/UsbMassStorageDxe/UsbMassStorageDxe.inf
-    # INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/VariableDxe/VariableDxe.inf
-    # INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/VerifiedBootDxe/VerifiedBootDxe.inf
-    # INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/XhciDxe/XhciDxe.inf
-    # INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/Sm8350FamilyPkg/Drivers/UfsSecurityDxe/UfsSecurityDxe.inf
     INF MdeModulePkg/Universal/Disk/PartitionDxe/PartitionDxe.inf
     INF QcomPkg/PatchedBinaries/ClockDxe.inf
     INF QcomPkg/PatchedBinaries/MinidumpTADxe.inf
