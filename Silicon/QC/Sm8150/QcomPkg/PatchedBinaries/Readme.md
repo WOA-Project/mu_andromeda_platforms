@@ -14,7 +14,7 @@ This file aims to provide further information about the different patches applie
 
 - ColorbarsDxe: so the driver loads and provides accurate device state.
 
-- FmpDxe: so the driver loads and provides firmware manegement interfaces to FrontPage.
+- FmpDxe: so the driver loads and provides firmware management interfaces to FrontPage.
 
 ## UFSDxe & DisplayDxe
 
@@ -41,9 +41,9 @@ The current PCD Token Store in our UEFI is as follows:
 PcdTokenNumber: 
 ('PcdSKUEnableDfci', 'gDfciPkgTokenSpaceGuid') : 1
 ('PcdSetupUiReducedFunction', 'gDfciPkgTokenSpaceGuid') : 2
-('PcdDeviceStateBitmask', 'gEfiMdeModulePkgTokenSpaceGuid') : 3
+('PcdConOutColumn', 'gEfiMdeModulePkgTokenSpaceGuid') : 3
 ('PcdConOutRow', 'gEfiMdeModulePkgTokenSpaceGuid') : 4
-('PcdConOutColumn', 'gEfiMdeModulePkgTokenSpaceGuid') : 5
+('PcdDeviceStateBitmask', 'gEfiMdeModulePkgTokenSpaceGuid') : 5
 ('PcdTestKeyUsed', 'gEfiMdeModulePkgTokenSpaceGuid') : 6
 ('PcdVideoHorizontalResolution', 'gEfiMdeModulePkgTokenSpaceGuid') : 7
 ('PcdVideoVerticalResolution', 'gEfiMdeModulePkgTokenSpaceGuid') : 8
