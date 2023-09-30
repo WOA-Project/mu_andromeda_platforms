@@ -38,7 +38,7 @@ PMIC AUX (LEICA) init sequence was patched to not fail due to the PMIC AUX chip 
 
 DCD Dependency enablement path was patched to not cause MDSS to reinitialize and thus lose framebuffer.
 
-## GpiButtons
+## GpioButtons
 
 DXE Taken from Surface Duo 1, patched to sort of run on Surface Duo 2, vol up is broken. DXE is still unused currently
 
