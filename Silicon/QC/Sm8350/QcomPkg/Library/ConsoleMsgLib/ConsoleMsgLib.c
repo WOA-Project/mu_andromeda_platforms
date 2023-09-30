@@ -221,8 +221,6 @@ VOID EFIAPI ConsoleMsgLibDisplaySystemInfoOnConsole(VOID)
 
   EFI_CHIPINFO_PROTOCOL *mBoardProtocol = NULL;
 
-  UINTN LineCounter = 0;
-
   ConsolePrint(L"Firmware information:");
 
   Status = GetBuildDateStringAscii(NULL, &DateBufferLength);
