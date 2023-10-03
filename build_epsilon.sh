@@ -2,7 +2,7 @@
 
 export CLANG38_BIN=/usr/lib/llvm-14/bin/ && export CLANG38_AARCH64_PREFIX=aarch64-linux-gnu-
 
-python3 ./Platforms/SurfaceDuo1Pkg/PlatformBuild.py --build TOOL_CHAIN_TAG=CLANG38
+python3 ./Platforms/SurfaceDuo1Pkg/PlatformBuild.py
 
 cd BootShim
 make UEFI_BASE=0x9FC00000 UEFI_SIZE=0x00300000
