@@ -2,14 +2,14 @@
 
 export CLANG38_BIN=/usr/lib/llvm-14/bin/ && export CLANG38_AARCH64_PREFIX=aarch64-linux-gnu-
 
-python3 ./Platforms/SurfaceDuo2Pkg/PlatformBuild.py
+python3 ./Platforms/SurfaceDuo2Pkg/PlatformBuild.py TARGET=RELEASE
 
 cd BootShim
 make UEFI_BASE=0x9FC00000 UEFI_SIZE=0x00300000
 cd ..
 
-cat ./BootShim/BootShim.bin ./Build/SurfaceDuo2-AARCH64/DEBUG_CLANG38/FV/SM8350_EFI.fd > ./ImageResources/Zeta/bootpayload.bin
-cat ./ImageResources/Zeta/patchedkernel ./Build/SurfaceDuo2-AARCH64/DEBUG_CLANG38/FV/SM8350_EFI.fd > ./ImageResources/Zeta/dualbootbootpayload.bin
+cat ./BootShim/BootShim.bin ./Build/SurfaceDuo2-AARCH64/RELEASE_CLANG38/FV/SM8350_EFI.fd > ./ImageResources/Zeta/bootpayload.bin
+cat ./ImageResources/Zeta/patchedkernel ./Build/SurfaceDuo2-AARCH64/RELEASE_CLANG38/FV/SM8350_EFI.fd > ./ImageResources/Zeta/dualbootbootpayload.bin
 
 python3 ./ImageResources/mkbootimg.py \
   --kernel ./ImageResources/Zeta/bootpayload.bin \
