@@ -21,11 +21,11 @@
 ################################################################################
 
 [FD.SM8350_EFI]
-BaseAddress   = 0x9FC00000|gArmTokenSpaceGuid.PcdFdBaseAddress #The base address of the FLASH Device.
-Size          = 0x00300000|gArmTokenSpaceGuid.PcdFdSize        #The size in bytes of the FLASH Device
+BaseAddress   = 0x9FC41000|gArmTokenSpaceGuid.PcdFdBaseAddress #The base address of the FLASH Device.
+Size          = 0x002BF000|gArmTokenSpaceGuid.PcdFdSize        #The size in bytes of the FLASH Device
 ErasePolarity = 1
 BlockSize     = 0x1000
-NumBlocks     = 0x300
+NumBlocks     = 0x2BF
 
 ################################################################################
 #
@@ -42,7 +42,7 @@ NumBlocks     = 0x300
 # RegionType <FV, DATA, or FILE>
 #
 ################################################################################
-0x00000000|0x00300000
+0x00000000|0x002BF000
 gArmTokenSpaceGuid.PcdFvBaseAddress|gArmTokenSpaceGuid.PcdFvSize
 FV = FVMAIN_COMPACT
 

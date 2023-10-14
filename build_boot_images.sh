@@ -2,12 +2,18 @@
 
 cd BootShim
 make UEFI_BASE=0x9FC00000 UEFI_SIZE=0x00300000
+mv ./BootShim.bin ./BootShim.Epsilon.bin
+mv ./BootShim.elf ./BootShim.Epsilon.elf
+
+make UEFI_BASE=0x9FC41000 UEFI_SIZE=0x002BF000
+mv ./BootShim.bin ./BootShim.Zeta.bin
+mv ./BootShim.elf ./BootShim.Zeta.elf
 cd ..
 
-cat ./BootShim/BootShim.bin ./Build/SurfaceDuo1Pkg/RELEASE_CLANG38/FV/SM8150_EFI.fd > ./ImageResources/Epsilon/bootpayload.bin
-cat ./BootShim/BootShim.bin ./Build/SurfaceDuo2Pkg/RELEASE_CLANG38/FV/SM8350_EFI.fd > ./ImageResources/Zeta/bootpayload.bin
-
+cat ./BootShim/BootShim.Epsilon.bin ./Build/SurfaceDuo1Pkg/RELEASE_CLANG38/FV/SM8150_EFI.fd > ./ImageResources/Epsilon/bootpayload.bin
 cat ./ImageResources/Epsilon/patchedkernel ./Build/SurfaceDuo1Pkg/RELEASE_CLANG38/FV/SM8150_EFI.fd > ./ImageResources/Epsilon/dualbootbootpayload.bin
+
+cat ./BootShim/BootShim.Zeta.bin ./Build/SurfaceDuo2Pkg/RELEASE_CLANG38/FV/SM8350_EFI.fd > ./ImageResources/Zeta/bootpayload.bin
 cat ./ImageResources/Zeta/patchedkernel ./Build/SurfaceDuo2Pkg/RELEASE_CLANG38/FV/SM8350_EFI.fd > ./ImageResources/Zeta/dualbootbootpayload.bin
 
 python3 ./ImageResources/mkbootimg.py \
