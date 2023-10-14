@@ -52,3 +52,10 @@
 !if $(TARGET) == RELEASE
   INF CryptoPkg/Driver/Bin/CryptoDriverBin_STANDARD_Dxe_RELEASE_AARCH64.inf
 !endif
+
+  INF X86EmulatorPkg/X86Emulator.inf
+
+  FILE DRIVER = 2BE7CFE5-4DFC-4F21-992A-CA1B71B2EF14 {
+    SECTION PE32 = SurfaceDuoFamilyPkg/HyperSpace/HyperSpace.efi
+    SECTION UI = "HyperSpace"
+  }

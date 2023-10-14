@@ -279,3 +279,5 @@
     <PcdsFixedAtBuild>
       !include CryptoPkg/Driver/Bin/Crypto.pcd.STANDARD.inc.dsc
   }
+
+  X86EmulatorPkg/X86Emulator.inf
