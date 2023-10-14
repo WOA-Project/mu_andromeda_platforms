@@ -53,6 +53,7 @@
   INF CryptoPkg/Driver/Bin/CryptoDriverBin_STANDARD_Dxe_RELEASE_AARCH64.inf
 !endif
 
+  INF ArmPkg/Drivers/ArmPciCpuIo2Dxe/ArmPciCpuIo2Dxe.inf
   INF X86EmulatorPkg/X86Emulator.inf
 
   FILE DRIVER = 2BE7CFE5-4DFC-4F21-992A-CA1B71B2EF14 {

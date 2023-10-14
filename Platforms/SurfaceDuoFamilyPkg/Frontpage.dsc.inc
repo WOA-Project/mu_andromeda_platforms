@@ -280,4 +280,5 @@
       !include CryptoPkg/Driver/Bin/Crypto.pcd.STANDARD.inc.dsc
   }
 
+  ArmPkg/Drivers/ArmPciCpuIo2Dxe/ArmPciCpuIo2Dxe.inf
   X86EmulatorPkg/X86Emulator.inf
