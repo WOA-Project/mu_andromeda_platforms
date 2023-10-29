@@ -64,3 +64,5 @@
   FILE FREEFORM = PCD(gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSystemIntegrityPolicyFile) {
     SECTION RAW = SurfaceDuoFamilyPkg/Include/Resources/SiPolicy.p7b
   }
+
+  !include ArmPlatformPkg/SecureBootDefaultKeys.fdf.inc

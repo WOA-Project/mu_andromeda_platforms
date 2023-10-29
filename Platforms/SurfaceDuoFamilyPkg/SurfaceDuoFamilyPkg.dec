@@ -4,6 +4,12 @@
   PACKAGE_GUID                   = 5fd522a5-b671-429f-957f-75113dd02434
   PACKAGE_VERSION                = 0.1
 
+  DEFINE DEFAULT_KEYS            = TRUE
+  DEFINE PK_DEFAULT_FILE         = SurfaceDuoFamilyPkg/Include/Resources/pk.bin.p7
+  DEFINE KEK_DEFAULT_FILE1       = SurfaceDuoFamilyPkg/Include/Resources/kek.bin.p7
+  DEFINE DB_DEFAULT_FILE1        = SurfaceDuoFamilyPkg/Include/Resources/db.bin.p7
+  DEFINE DBX_DEFAULT_FILE1       = SurfaceDuoFamilyPkg/Include/Resources/dbx.bin
+
 [Includes.common]
   Include                        # Root include for the package
 
