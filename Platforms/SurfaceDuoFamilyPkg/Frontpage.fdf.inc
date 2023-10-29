@@ -60,3 +60,7 @@
     SECTION PE32 = SurfaceDuoFamilyPkg/HyperSpace/HyperSpace.efi
     SECTION UI = "HyperSpace"
   }
+
+  FILE FREEFORM = PCD(gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSystemIntegrityPolicyFile) {
+    SECTION RAW = SurfaceDuoFamilyPkg/Include/Resources/SiPolicy.p7b
+  }
