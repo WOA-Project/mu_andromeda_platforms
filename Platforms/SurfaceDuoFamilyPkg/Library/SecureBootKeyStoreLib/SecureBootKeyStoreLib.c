@@ -23,6 +23,19 @@ SECURE_BOOT_PAYLOAD_INFO *gSecureBootPayload      = NULL;
 UINT8                     gSecureBootPayloadCount = 0;
 
 UINT8 mSecureBootPayloadCount = PLATFORM_SECURE_BOOT_KEY_COUNT;
+SECURE_BOOT_PAYLOAD_INFO mSecureBootPayload[PLATFORM_SECURE_BOOT_KEY_COUNT] = {{
+    .SecureBootKeyName = L"Microsoft Plus 3rd Party Plus Windows On Andromeda",
+    .PkPtr             = NULL,
+    .PkSize            = 0,
+    .KekPtr            = NULL,
+    .KekSize           = 0,
+    .DbPtr             = NULL,
+    .DbSize            = 0,
+    .DbxPtr            = NULL,
+    .DbxSize           = 0,
+    .DbtPtr            = NULL,
+    .DbtSize           = 0,
+}};
 
 /**
   Interface to fetch platform Secure Boot Certificates, each payload
@@ -81,6 +94,38 @@ SecureBootKeyStoreLibConstructor(VOID)
       (VOID **)&mDevelopmentPlatformKeyCertificate,
       &mDevelopmentPlatformKeyCertificateSize);
 
+  if (EFI_ERROR(Status)) {
+    DEBUG((DEBUG_ERROR, "%a - Failed to get PK payload!\n", __FUNCTION__));
+    ASSERT(FALSE);
+  }
+
+  Status = GetSectionFromAnyFv(
+      &gDefaultKEKFileGuid, EFI_SECTION_RAW, 0, (VOID **)&mKekDefault,
+      &mKekDefaultSize);
+
+  if (EFI_ERROR(Status)) {
+    DEBUG((DEBUG_ERROR, "%a - Failed to get KEK payload!\n", __FUNCTION__));
+    ASSERT(FALSE);
+  }
+
+  Status = GetSectionFromAnyFv(
+      &gDefaultdbFileGuid, EFI_SECTION_RAW, 0, (VOID **)&mDbDefault,
+      &mDbDefaultSize);
+
+  if (EFI_ERROR(Status)) {
+    DEBUG((DEBUG_ERROR, "%a - Failed to get DB payload!\n", __FUNCTION__));
+    ASSERT(FALSE);
+  }
+
+  Status = GetSectionFromAnyFv(
+      &gDefaultdbxFileGuid, EFI_SECTION_RAW, 0, (VOID **)&mDbxDefault,
+      &mDbxDefaultSize);
+
+  if (EFI_ERROR(Status)) {
+    DEBUG((DEBUG_ERROR, "%a - Failed to get DBX payload!\n", __FUNCTION__));
+    ASSERT(FALSE);
+  }
+
   SECURE_BOOT_CERTIFICATE_INFO TempInfo = {
       .Data     = mDevelopmentPlatformKeyCertificate,
       .DataSize = sizeof(mDevelopmentPlatformKeyCertificate)};
@@ -96,31 +141,14 @@ SecureBootKeyStoreLibConstructor(VOID)
     ASSERT(FALSE);
   }
 
-  Status = GetSectionFromAnyFv(
-      &gDefaultKEKFileGuid, EFI_SECTION_RAW, 0, (VOID **)&mKekDefault,
-      &mKekDefaultSize);
-
-  Status = GetSectionFromAnyFv(
-      &gDefaultdbFileGuid, EFI_SECTION_RAW, 0, (VOID **)&mDbDefault,
-      &mDbDefaultSize);
-
-  Status = GetSectionFromAnyFv(
-      &gDefaultdbxFileGuid, EFI_SECTION_RAW, 0, (VOID **)&mDbxDefault,
-      &mDbxDefaultSize);
-
-  SECURE_BOOT_PAYLOAD_INFO mSecureBootPayload[PLATFORM_SECURE_BOOT_KEY_COUNT] =
-      {{
-          .SecureBootKeyName =
-              L"Microsoft Plus 3rd Party Plus Windows On Andromeda",
-          .KekPtr  = mKekDefault,
-          .KekSize = mKekDefaultSize,
-          .DbPtr   = mDbDefault,
-          .DbSize  = mDbDefaultSize,
-          .DbxPtr  = mDbxDefault,
-          .DbxSize = mDbxDefaultSize,
-          .DbtPtr  = NULL,
-          .DbtSize = 0,
-      }};
+  mSecureBootPayload[0].KekPtr  = mKekDefault;
+  mSecureBootPayload[0].KekSize = mKekDefaultSize;
+  mSecureBootPayload[0].DbPtr   = mDbDefault;
+  mSecureBootPayload[0].DbSize  = mDbDefaultSize;
+  mSecureBootPayload[0].DbxPtr  = mDbxDefault;
+  mSecureBootPayload[0].DbxSize = mDbxDefaultSize;
+  mSecureBootPayload[0].DbtPtr  = NULL;
+  mSecureBootPayload[0].DbtSize = 0;
 
   mSecureBootPayload[0].PkPtr  = SigListBuffer;
   mSecureBootPayload[0].PkSize = DataSize;
@@ -145,7 +173,7 @@ SecureBootKeyStoreLibDestructor(VOID)
   VOID *SigListBuffer;
 
   // This should be initialized from constructor, so casting here is fine
-  SigListBuffer = (VOID *)gSecureBootPayload[0].PkPtr;
+  SigListBuffer = (VOID *)mSecureBootPayload[0].PkPtr;
   if (SigListBuffer != NULL) {
     FreePool(SigListBuffer);
   }
