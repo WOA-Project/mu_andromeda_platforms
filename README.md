@@ -50,6 +50,7 @@ It is not going to work on any other device even if they use the same SoC as is.
   - git-core, git
   - build-essential
   - clang38 (or higher), llvm, gcc-aarch64-linux-gnu
+  - cargo
 - Exported CLANG38_BIN environment variable pointing to LLVM 10 binary folder
 - Exported CLANG38_AARCH64_PREFIX variable equalling to aarch64-linux-gnu-
 
