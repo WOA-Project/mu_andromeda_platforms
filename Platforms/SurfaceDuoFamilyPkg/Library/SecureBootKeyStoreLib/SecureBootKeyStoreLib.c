@@ -35,7 +35,8 @@ SECURE_BOOT_PAYLOAD_INFO mSecureBootPayload[PLATFORM_SECURE_BOOT_KEY_COUNT] = {{
     .DbxSize           = 0,
     .DbtPtr            = NULL,
     .DbtSize           = 0,
-}};
+  }
+};
 
 /**
   Interface to fetch platform Secure Boot Certificates, each payload
@@ -53,7 +54,10 @@ SECURE_BOOT_PAYLOAD_INFO mSecureBootPayload[PLATFORM_SECURE_BOOT_KEY_COUNT] = {{
 **/
 EFI_STATUS
 EFIAPI
-GetPlatformKeyStore(OUT SECURE_BOOT_PAYLOAD_INFO **Keys, OUT UINT8 *KeyCount)
+GetPlatformKeyStore (
+  OUT SECURE_BOOT_PAYLOAD_INFO  **Keys,
+  OUT UINT8                     *KeyCount
+  )
 {
   if ((Keys == NULL) || (KeyCount == NULL)) {
     return EFI_INVALID_PARAMETER;
@@ -73,7 +77,9 @@ GetPlatformKeyStore(OUT SECURE_BOOT_PAYLOAD_INFO **Keys, OUT UINT8 *KeyCount)
 **/
 EFI_STATUS
 EFIAPI
-SecureBootKeyStoreLibConstructor(VOID)
+SecureBootKeyStoreLibConstructor (
+  VOID
+  )
 {
   EFI_STATUS          Status;
   UINTN               DataSize;
@@ -98,6 +104,11 @@ SecureBootKeyStoreLibConstructor(VOID)
     DEBUG((DEBUG_ERROR, "%a - Failed to get PK payload!\n", __FUNCTION__));
     ASSERT(FALSE);
   }
+
+  SECURE_BOOT_CERTIFICATE_INFO  TempInfo       = {
+    .Data     = mDevelopmentPlatformKeyCertificate,
+    .DataSize = mDevelopmentPlatformKeyCertificateSize
+  };
 
   Status = GetSectionFromAnyFv(
       &gDefaultKEKFileGuid, EFI_SECTION_RAW, 0, (VOID **)&mKekDefault,
@@ -126,19 +137,14 @@ SecureBootKeyStoreLibConstructor(VOID)
     ASSERT(FALSE);
   }
 
-  SECURE_BOOT_CERTIFICATE_INFO TempInfo = {
-      .Data     = mDevelopmentPlatformKeyCertificate,
-      .DataSize = sizeof(mDevelopmentPlatformKeyCertificate)};
-
   //
   // First, we must build the PK buffer with the correct data.
   //
-  Status =
-      SecureBootCreateDataFromInput(&DataSize, &SigListBuffer, 1, &TempInfo);
+  Status = SecureBootCreateDataFromInput (&DataSize, &SigListBuffer, 1, &TempInfo);
 
-  if (EFI_ERROR(Status)) {
-    DEBUG((DEBUG_ERROR, "%a - Failed to build PK payload!\n", __FUNCTION__));
-    ASSERT(FALSE);
+  if (EFI_ERROR (Status)) {
+    DEBUG ((DEBUG_ERROR, "%a - Failed to build PK payload!\n", __FUNCTION__));
+    ASSERT (FALSE);
   }
 
   mSecureBootPayload[0].KekPtr  = mKekDefault;
@@ -168,14 +174,16 @@ SecureBootKeyStoreLibConstructor(VOID)
 **/
 EFI_STATUS
 EFIAPI
-SecureBootKeyStoreLibDestructor(VOID)
+SecureBootKeyStoreLibDestructor (
+  VOID
+  )
 {
-  VOID *SigListBuffer;
+  VOID  *SigListBuffer;
 
   // This should be initialized from constructor, so casting here is fine
   SigListBuffer = (VOID *)mSecureBootPayload[0].PkPtr;
   if (SigListBuffer != NULL) {
-    FreePool(SigListBuffer);
+    FreePool (SigListBuffer);
   }
 
   return EFI_SUCCESS;
