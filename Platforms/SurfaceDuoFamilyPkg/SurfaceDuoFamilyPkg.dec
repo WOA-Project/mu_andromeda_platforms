@@ -10,6 +10,9 @@
   DB_DEFAULT_FILE1               = SurfaceDuoFamilyPkg/Include/Resources/db.bin.p7
   DBX_DEFAULT_FILE1              = SurfaceDuoFamilyPkg/Include/Resources/dbx.bin
 
+  DXE_CRYPTO_SERVICES = STANDARD
+  DXE_CRYPTO_ARCH = AARCH64
+
 [Includes.common]
   Include                        # Root include for the package
 

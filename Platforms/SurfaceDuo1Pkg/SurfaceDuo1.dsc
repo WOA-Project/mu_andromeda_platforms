@@ -36,6 +36,9 @@
   DB_DEFAULT_FILE1               = SurfaceDuoFamilyPkg/Include/Resources/db.bin.p7
   DBX_DEFAULT_FILE1              = SurfaceDuoFamilyPkg/Include/Resources/dbx.bin
 
+  DXE_CRYPTO_SERVICES = STANDARD
+  DXE_CRYPTO_ARCH = AARCH64
+
 [PcdsFixedAtBuild.common]
   # Platform-specific
   gArmTokenSpaceGuid.PcdSystemMemorySize|0x180000000        # 6GB Size

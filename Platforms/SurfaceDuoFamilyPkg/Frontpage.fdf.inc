@@ -45,14 +45,6 @@
     SECTION RAW = SurfaceDuoFamilyPkg/FrontPage/Resources/NoBoot.bmp
   }
 
-!if $(TARGET) == DEBUG
-  INF CryptoPkg/Driver/Bin/CryptoDriverBin_STANDARD_Dxe_DEBUG_AARCH64.inf
-!endif
-
-!if $(TARGET) == RELEASE
-  INF CryptoPkg/Driver/Bin/CryptoDriverBin_STANDARD_Dxe_RELEASE_AARCH64.inf
-!endif
-
   INF ArmPkg/Drivers/ArmPciCpuIo2Dxe/ArmPciCpuIo2Dxe.inf
   INF X86EmulatorPkg/X86Emulator.inf
 
@@ -63,6 +55,8 @@
 
   FILE FREEFORM = PCD(gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSystemIntegrityPolicyFile) {
     SECTION RAW = SurfaceDuoFamilyPkg/Include/Resources/SiPolicy.p7b
+    SECTION UI = "System Integrity Policy Default"
   }
 
   !include ArmPlatformPkg/SecureBootDefaultKeys.fdf.inc
+  !include SurfaceDuoFamilyPkg/Crypto/CryptoDriver.DXE.inc.fdf
