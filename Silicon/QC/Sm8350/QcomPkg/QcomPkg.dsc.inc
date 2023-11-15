@@ -24,7 +24,7 @@
   gEmbeddedTokenSpaceGuid.PcdInterruptBaseAddress|0x09BC0000
   gEmbeddedTokenSpaceGuid.PcdPrePiCpuIoSize|44
 
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosProcessorModel|"Snapdragon (TM) 888 @ 2.84 GHz"
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosProcessorModel|"Qualcomm(R) Snapdragon(TM) 888 5G Mobile Platform"
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosProcessorRetailModel|"SM8350"
 
   gArmTokenSpaceGuid.PcdSystemMemoryBase|0x80000000         # 2GB Base
