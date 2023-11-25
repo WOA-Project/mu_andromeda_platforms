@@ -267,7 +267,9 @@
   MuSecureBootKeySelectorLib|MsCorePkg/Library/MuSecureBootKeySelectorLib/MuSecureBootKeySelectorLib.inf
 !else
   AuthVariableLib|MdeModulePkg/Library/AuthVariableLibNull/AuthVariableLibNull.inf
+
   LockBoxLib            |MdeModulePkg/Library/LockBoxNullLib/LockBoxNullLib.inf
+  PasswordPolicyLib     |OemPkg/Library/PasswordPolicyLibNull/PasswordPolicyLibNull.inf
 !endif
 
   # Variable Libraries
