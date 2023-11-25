@@ -11,7 +11,7 @@
 
 [BuildOptions.common]
   *_CLANG38_AARCH64_CC_FLAGS = -Wno-unused-const-variable -Wno-sometimes-uninitialized -Wno-unaligned-access -D CLANG
-  *_*_*_CC_FLAGS = -march=armv8.2-a+crypto+rcpc -DUSE_MEMORY_FOR_SERIAL_OUTPUT=$(USE_MEMORY_FOR_SERIAL_OUTPUT) -DUSE_SCREEN_FOR_SERIAL_OUTPUT=$(USE_SCREEN_FOR_SERIAL_OUTPUT) -DSECURE_BOOT_ENABLE=$(SECURE_BOOT_ENABLE)
+  *_*_*_CC_FLAGS = -march=armv8.2-a+crypto+rcpc -DUSE_MEMORY_FOR_SERIAL_OUTPUT=$(USE_MEMORY_FOR_SERIAL_OUTPUT) -DUSE_SCREEN_FOR_SERIAL_OUTPUT=$(USE_SCREEN_FOR_SERIAL_OUTPUT)
 
 [BuildOptions.common.EDKII.DXE_CORE,BuildOptions.common.EDKII.DXE_DRIVER,BuildOptions.common.EDKII.UEFI_DRIVER,BuildOptions.common.EDKII.UEFI_APPLICATION]
   *_*_*_DLINK_FLAGS = -z common-page-size=0x1000
@@ -79,7 +79,7 @@
   gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiACPIReclaimMemory|0
   gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiACPIMemoryNVS|0
   gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiReservedMemoryType|0
-!if $(SECURE_BOOT_ENABLE) == 1
+!if $(SECURE_BOOT_ENABLE) == TRUE
   gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiRuntimeServicesData|600
   gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiRuntimeServicesCode|400
   gEmbeddedTokenSpaceGuid.PcdMemoryTypeEfiBootServicesCode|1500
@@ -106,7 +106,7 @@
   gArmTokenSpaceGuid.PcdPciBusMin|0x0
   gArmTokenSpaceGuid.PcdPciBusMax|0xff
 
-!if $(SECURE_BOOT_ENABLE) == 1
+!if $(SECURE_BOOT_ENABLE) == TRUE
   gEfiMdeModulePkgTokenSpaceGuid.PcdMaxAuthVariableSize|0x2800
   gEfiSecurityPkgTokenSpaceGuid.PcdUserPhysicalPresence|TRUE
 !endif
@@ -243,7 +243,7 @@
   # USB Libraries
   UefiUsbLib|MdePkg/Library/UefiUsbLib/UefiUsbLib.inf
 
-!if $(SECURE_BOOT_ENABLE) == 1
+!if $(SECURE_BOOT_ENABLE) == TRUE
   #
   # CryptoPkg libraries needed by multiple firmware features
   #
@@ -558,7 +558,7 @@
   # Security Stub
   MdeModulePkg/Universal/SecurityStubDxe/SecurityStubDxe.inf {
     <LibraryClasses>
-!if $(SECURE_BOOT_ENABLE) == 1
+!if $(SECURE_BOOT_ENABLE) == TRUE
       NULL|SecurityPkg/Library/DxeImageVerificationLib/DxeImageVerificationLib.inf
 !endif
   }
@@ -572,7 +572,7 @@
   # Fake Variable Services
   MdeModulePkg/Universal/Variable/RuntimeDxe/VariableRuntimeDxe.inf {
     <LibraryClasses>
-!if $(SECURE_BOOT_ENABLE) == 1
+!if $(SECURE_BOOT_ENABLE) == TRUE
       AuthVariableLib|SurfaceDuoFamilyPkg/Library/AuthVariableLib/AuthVariableLib.inf
       BaseCryptLib|CryptoPkg/Library/BaseCryptLib/RuntimeCryptLib.inf
       TlsLib|CryptoPkg/Library/TlsLib/TlsLib.inf
@@ -621,7 +621,7 @@
       NULL|SecurityPkg/Library/OemTpm2InitLibNull/OemTpm2InitLibVendorNull.inf
   }
 
-!if $(SECURE_BOOT_ENABLE) == 1
+!if $(SECURE_BOOT_ENABLE) == TRUE
   SecurityPkg/VariableAuthenticated/SecureBootConfigDxe/SecureBootConfigDxe.inf
 !endif
 
@@ -632,7 +632,7 @@
   SurfaceDuoFamilyPkg/Driver/HeartbeatDxe/HeartbeatDxe.inf
 !endif
 
-!if $(SECURE_BOOT_ENABLE) == 1
+!if $(SECURE_BOOT_ENABLE) == TRUE
   SurfaceDuoFamilyPkg/Driver/SecureBootProvisioningDxe/SecureBootProvisioningDxe.inf
 !endif
 
