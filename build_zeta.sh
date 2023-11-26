@@ -2,7 +2,7 @@
 
 export CLANG38_BIN=/usr/lib/llvm-14/bin/ && export CLANG38_AARCH64_PREFIX=aarch64-linux-gnu-
 
-python3 ./Platforms/SurfaceDuo2Pkg/PlatformBuild.py TARGET=RELEASE
+python3 ./Platforms/SurfaceDuo2Pkg/PlatformBuild.py TARGET=RELEASE SECURE_BOOT_ENABLE=FALSE
 
 cd BootShim
 make UEFI_BASE=0x9FC41000 UEFI_SIZE=0x002BF000
