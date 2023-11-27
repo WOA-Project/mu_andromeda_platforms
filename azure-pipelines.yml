@@ -45,10 +45,10 @@ steps:
 
 # Publish FD (Secure Boot Disabled)
 - task: PublishBuildArtifacts@1
-  displayName: 'Publish Surface Duo (1st Gen) UEFI (FD for making your own Dual Boot Image) (Secure Boot Disabled)'
+  displayName: 'Publish Surface Duo (1st Gen) UEFI (Secure Boot Disabled) (FD for making your own Dual Boot Image)'
   inputs:
     pathtoPublish: ./ImageResources/Epsilon/SM8150_EFI_NOSB.fd
-    artifactName: Surface Duo (1st Gen) UEFI (FD for making your own Dual Boot Image) (Secure Boot Disabled)
+    artifactName: Surface Duo (1st Gen) UEFI (Secure Boot Disabled) (FD for making your own Dual Boot Image)
 
 ###################################################################################################################
 
@@ -69,10 +69,10 @@ steps:
 
 # Publish UEFI (Secure Boot Disabled)
 - task: PublishBuildArtifacts@1
-  displayName: 'Publish Surface Duo (1st Gen) UEFI (Fast Boot) (Secure Boot Disabled)'
+  displayName: 'Publish Surface Duo (1st Gen) UEFI (Secure Boot Disabled) (Fast Boot)'
   inputs:
     pathtoPublish: ./ImageResources/Epsilon/uefi_nosb.img
-    artifactName: Surface Duo (1st Gen) UEFI (Fast Boot) (Secure Boot Disabled)
+    artifactName: Surface Duo (1st Gen) UEFI (Secure Boot Disabled) (Fast Boot)
 
 ###################################################################################################################
 
@@ -88,10 +88,10 @@ steps:
 
 # Publish Boot (Secure Boot Disabled)
 - task: PublishBuildArtifacts@1
-  displayName: 'Publish Surface Duo (1st Gen) UEFI (Dual Boot) (Secure Boot Disabled)'
+  displayName: 'Publish Surface Duo (1st Gen) UEFI (Secure Boot Disabled) (Dual Boot)'
   inputs:
     pathtoPublish: ./ImageResources/Epsilon/boot_nosb.img
-    artifactName: Surface Duo (1st Gen) UEFI (Dual Boot) (Secure Boot Disabled)
+    artifactName: Surface Duo (1st Gen) UEFI (Secure Boot Disabled) (Dual Boot)
 
 ###################################################################################################################
 
@@ -107,10 +107,10 @@ steps:
 
 # Publish FD (Secure Boot Disabled)
 - task: PublishBuildArtifacts@1
-  displayName: 'Publish Surface Duo 2 UEFI (FD for making your own Dual Boot Image) (Secure Boot Disabled)'
+  displayName: 'Publish Surface Duo 2 UEFI (Secure Boot Disabled) (FD for making your own Dual Boot Image)'
   inputs:
     pathtoPublish: ./ImageResources/Zeta/SM8350_EFI_NOSB.fd
-    artifactName: Surface Duo 2 UEFI (FD for making your own Dual Boot Image) (Secure Boot Disabled)
+    artifactName: Surface Duo 2 UEFI (Secure Boot Disabled) (FD for making your own Dual Boot Image)
 
 ###################################################################################################################
 
@@ -131,10 +131,10 @@ steps:
 
 # Publish UEFI (Secure Boot Disabled)
 - task: PublishBuildArtifacts@1
-  displayName: 'Publish Surface Duo 2 UEFI (Fast Boot) (Secure Boot Disabled)'
+  displayName: 'Publish Surface Duo 2 UEFI (Secure Boot Disabled) (Fast Boot)'
   inputs:
     pathtoPublish: ./ImageResources/Zeta/uefi_nosb.img
-    artifactName: Surface Duo 2 UEFI (Fast Boot) (Secure Boot Disabled)
+    artifactName: Surface Duo 2 UEFI (Secure Boot Disabled) (Fast Boot)
 
 ###################################################################################################################
 
@@ -151,9 +151,9 @@ steps:
 
 # Publish Boot (Secure Boot Disabled)
 - task: PublishBuildArtifacts@1
-  displayName: 'Publish Surface Duo 2 UEFI (Dual Boot) (Secure Boot Disabled)'
+  displayName: 'Publish Surface Duo 2 UEFI (Secure Boot Disabled) (Dual Boot)'
   inputs:
     pathtoPublish: ./ImageResources/Zeta/boot_nosb.img
-    artifactName: Surface Duo 2 UEFI (Dual Boot) (Secure Boot Disabled)
+    artifactName: Surface Duo 2 UEFI (Secure Boot Disabled) (Dual Boot)
 
 ###################################################################################################################
