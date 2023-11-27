@@ -26,11 +26,11 @@ steps:
   displayName: 'Setup UEFI build environment'
 
 
-- script: chmod +x ./build_bootshim_epsilon.sh && ./build_bootshim_epsilon.sh
-  displayName: 'Build Surface Duo (1st Gen) BootShim'
-
 - script: chmod +x ./build_fd_epsilon.sh && ./build_fd_epsilon.sh
   displayName: 'Build Surface Duo (1st Gen) FD'
+
+- script: chmod +x ./build_bootshim_epsilon.sh && ./build_bootshim_epsilon.sh
+  displayName: 'Build Surface Duo (1st Gen) BootShim'
 
 - script: chmod +x ./build_uefi_epsilon.sh && ./build_uefi_epsilon.sh
   displayName: 'Build Surface Duo (1st Gen) UEFI'
@@ -39,11 +39,11 @@ steps:
   displayName: 'Build Surface Duo (1st Gen) Boot'
 
 
-- script: chmod +x ./build_bootshim_zeta.sh && ./build_bootshim_zeta.sh
-  displayName: 'Build Surface Duo 2 BootShim'
-
 - script: chmod +x ./build_fd_zeta.sh && ./build_fd_zeta.sh
   displayName: 'Build Surface Duo 2 FD'
+
+- script: chmod +x ./build_bootshim_zeta.sh && ./build_bootshim_zeta.sh
+  displayName: 'Build Surface Duo 2 BootShim'
 
 - script: chmod +x ./build_uefi_zeta.sh && ./build_uefi_zeta.sh
   displayName: 'Build Surface Duo 2 UEFI'
