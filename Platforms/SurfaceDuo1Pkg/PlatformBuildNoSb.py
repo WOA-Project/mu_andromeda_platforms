@@ -1,5 +1,5 @@
 # @file
-# Script to Build Surface Duo 2 UEFI firmware
+# Script to Build Surface Duo 1 UEFI firmware
 #
 # Copyright (c) Microsoft Corporation.
 # SPDX-License-Identifier: BSD-2-Clause-Patent
@@ -28,10 +28,10 @@ class CommonPlatform():
     ''' Common settings for this platform.  Define static data here and use
         for the different parts of stuart
     '''
-    PackagesSupported = ("SurfaceDuo2Pkg",)
+    PackagesSupported = ("SurfaceDuo1Pkg",)
     ArchSupported = ("AARCH64",)
     TargetsSupported = ("DEBUG", "RELEASE", "NOOPT")
-    Scopes = ('SurfaceDuo2', 'gcc_aarch64_linux', 'edk2-build', 'cibuild', 'configdata', 'rust-ci')
+    Scopes = ('SurfaceDuo1', 'gcc_aarch64_linux', 'edk2-build', 'cibuild', 'configdata', 'rust-ci')
     WorkspaceRoot = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
     PackagesPath = (
         "Platforms",
@@ -43,7 +43,7 @@ class CommonPlatform():
         "Features/DFCI",
         "Features/CONFIG",
         "Binaries",
-        "Silicon/QC/Sm8350"
+        "Silicon/QC/Sm8150"
     )
 
 
@@ -133,10 +133,10 @@ class SettingsManager(UpdateSettingsManager, SetupSettingsManager, PrEvalSetting
 
         The tuple should be (<workspace relative path to dsc file>, <input dictionary of dsc key value pairs>)
         '''
-        return ("SurfaceDuo2Pkg/SurfaceDuo2.dsc", {})
+        return ("SurfaceDuo1Pkg/SurfaceDuo1NoSb.dsc", {})
 
     def GetName(self):
-        return "SurfaceDuo2"
+        return "SurfaceDuo1"
 
     def GetPackagesPath(self):
         ''' Return a list of paths that should be mapped as edk2 PackagesPath '''
@@ -184,7 +184,7 @@ class PlatformBuilder(UefiBuilder, BuildSettingsManager):
     def GetName(self):
         ''' Get the name of the repo, platform, or product being build '''
         ''' Used for naming the log file, among others '''
-        return "SurfaceDuo2Pkg"
+        return "SurfaceDuo1Pkg"
 
     def GetLoggingLevel(self, loggerType):
         """Get the logging level depending on logger type.
@@ -207,8 +207,8 @@ class PlatformBuilder(UefiBuilder, BuildSettingsManager):
 
     def SetPlatformEnv(self):
         logging.debug("PlatformBuilder SetPlatformEnv")
-        self.env.SetValue("PRODUCT_NAME", "SurfaceDuo2", "Platform Hardcoded")
-        self.env.SetValue("ACTIVE_PLATFORM", "SurfaceDuo2Pkg/SurfaceDuo2.dsc", "Platform Hardcoded")
+        self.env.SetValue("PRODUCT_NAME", "SurfaceDuo1", "Platform Hardcoded")
+        self.env.SetValue("ACTIVE_PLATFORM", "SurfaceDuo1Pkg/SurfaceDuo1NoSb.dsc", "Platform Hardcoded")
         self.env.SetValue("TARGET_ARCH", "AARCH64", "Platform Hardcoded")
         self.env.SetValue("TOOL_CHAIN_TAG", "CLANG38", "set default to clang38")
         self.env.SetValue("EMPTY_DRIVE", "FALSE", "Default to false")
