@@ -27,22 +27,33 @@
   INF DfciPkg/Application/DfciMenu/DfciMenu.inf
 
   FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdFrontPageLogoFile) {
-    SECTION RAW = SurfaceDuoFamilyPkg/FrontPage/Resources/FrontpageLogo.bmp
+    SECTION RAW = Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/RawFiles/Logo
+    SECTION UI = "Logo"
   }
+
   FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdLowBatteryFile) {
-    SECTION RAW = SurfaceDuoFamilyPkg/FrontPage/Resources/LBAT.bmp
+    SECTION RAW = Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/RawFiles/Low_Battery
+    SECTION UI = "Low Battery"
   }
+
   FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdThermalFile) {
-    SECTION RAW = SurfaceDuoFamilyPkg/FrontPage/Resources/THOT.bmp
+    SECTION RAW = Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/RawFiles/Too_Hot
+    SECTION UI = "Too Hot"
   }
+
   FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdVolumeUpIndicatorFile) {
-    SECTION RAW = SurfaceDuoFamilyPkg/FrontPage/Resources/VolumeUp.bmp
+    SECTION RAW = Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/RawFiles/VolumeUpIndicator
+    SECTION UI = "VolumeUpIndicator"
   }
+
   FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdFirmwareSettingsIndicatorFile) {
-    SECTION RAW = SurfaceDuoFamilyPkg/FrontPage/Resources/FirmwareSettings.bmp
+    SECTION RAW = Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/RawFiles/FirmwareSettingsIndicator
+    SECTION UI = "FirmwareSettingsIndicator"
   }
+
   FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdBootFailIndicatorFile) {
-    SECTION RAW = SurfaceDuoFamilyPkg/FrontPage/Resources/NoBoot.bmp
+    SECTION RAW = Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/RawFiles/BootFailIndicator
+    SECTION UI = "BootFailIndicator"
   }
 
   INF ArmPkg/Drivers/ArmPciCpuIo2Dxe/ArmPciCpuIo2Dxe.inf
@@ -53,10 +64,13 @@
     SECTION UI = "HyperSpace"
   }
 
-  FILE FREEFORM = PCD(gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSystemIntegrityPolicyFile) {
-    SECTION RAW = SurfaceDuoFamilyPkg/Include/Resources/SiPolicy.p7b
-    SECTION UI = "System Integrity Policy Default"
-  }
+  !if $(SECURE_BOOT_ENABLE) == TRUE
+    FILE FREEFORM = PCD(gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSystemIntegrityPolicyFile) {
+      SECTION RAW = SurfaceDuoFamilyPkg/Include/Resources/SiPolicy.p7b
+      SECTION UI = "System Integrity Policy Default"
+    }
 
-  !include ArmPlatformPkg/SecureBootDefaultKeys.fdf.inc
+    !include ArmPlatformPkg/SecureBootDefaultKeys.fdf.inc
+  !endif
+
   !include SurfaceDuoFamilyPkg/Crypto/CryptoDriver.DXE.inc.fdf
