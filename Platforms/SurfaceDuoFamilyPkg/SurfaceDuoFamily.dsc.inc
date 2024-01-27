@@ -463,10 +463,10 @@
   ArmPkg/Drivers/ArmPsciMpServicesDxe/ArmPsciMpServicesDxe.inf
 
   # Processor Core Services
-  ArmPkg/Drivers/CpuDxe/CpuDxe.inf {
-    <LibraryClasses>
-    NULL|MsCorePkg/Library/MemoryProtectionExceptionHandlerLib/MemoryProtectionExceptionHandlerLib.inf
-  }
+  ArmPkg/Drivers/CpuDxe/CpuDxe.inf # {
+  #   <LibraryClasses>
+  #   NULL|MsCorePkg/Library/MemoryProtectionExceptionHandlerLib/MemoryProtectionExceptionHandlerLib.inf
+  # }
 
   ArmPkg/Drivers/TimerDxe/TimerDxe.inf
 
