@@ -210,7 +210,7 @@ class PlatformBuilder(UefiBuilder, BuildSettingsManager):
         self.env.SetValue("PRODUCT_NAME", "SurfaceDuo2", "Platform Hardcoded")
         self.env.SetValue("ACTIVE_PLATFORM", "SurfaceDuo2Pkg/SurfaceDuo2NoSb.dsc", "Platform Hardcoded")
         self.env.SetValue("TARGET_ARCH", "AARCH64", "Platform Hardcoded")
-        self.env.SetValue("TOOL_CHAIN_TAG", "CLANG38", "set default to clang38")
+        self.env.SetValue("TOOL_CHAIN_TAG", "CLANGDWARF", "set default to clangdwarf")
         self.env.SetValue("EMPTY_DRIVE", "FALSE", "Default to false")
         self.env.SetValue("RUN_TESTS", "FALSE", "Default to false")
         self.env.SetValue("SHUTDOWN_AFTER_RUN", "FALSE", "Default to false")
