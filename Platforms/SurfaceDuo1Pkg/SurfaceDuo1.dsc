@@ -38,6 +38,8 @@
 
   DXE_CRYPTO_SERVICES = STANDARD
   DXE_CRYPTO_ARCH = AARCH64
+  PEI_CRYPTO_SERVICES = NONE 
+  SMM_CRYPTO_SERVICES = NONE
 
 [PcdsFixedAtBuild.common]
   # Platform-specific

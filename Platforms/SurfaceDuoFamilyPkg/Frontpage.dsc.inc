@@ -268,4 +268,4 @@
 
   DfciPkg/Application/DfciMenu/DfciMenu.inf
 
-  !include SurfaceDuoFamilyPkg/Crypto/CryptoDriver.inc.dsc
+  !include CryptoPkg/Driver/Bin/CryptoDriver.inc.dsc

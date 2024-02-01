@@ -65,4 +65,4 @@
     !include ArmPlatformPkg/SecureBootDefaultKeys.fdf.inc
   !endif
 
-  !include SurfaceDuoFamilyPkg/Crypto/CryptoDriver.DXE.inc.fdf
+  !include CryptoPkg/Driver/Bin/CryptoDriver.DXE.inc.fdf
