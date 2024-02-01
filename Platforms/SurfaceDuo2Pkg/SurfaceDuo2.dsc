@@ -1,13 +1,13 @@
-## @file
 #
-#  Copyright (c) 2011-2015, ARM Limited. All rights reserved.
+#  Copyright (c) 2011 - 2022, ARM Limited. All rights reserved.
 #  Copyright (c) 2014, Linaro Limited. All rights reserved.
-#  Copyright (c) 2015 - 2016, Intel Corporation. All rights reserved.
+#  Copyright (c) 2015 - 2020, Intel Corporation. All rights reserved.
 #  Copyright (c) 2018, Bingxing Wang. All rights reserved.
+#  Copyright (c) Microsoft Corporation.
 #
 #  SPDX-License-Identifier: BSD-2-Clause-Patent
 #
-##
+#
 
 ################################################################################
 #
@@ -36,10 +36,11 @@
   DB_DEFAULT_FILE1               = SurfaceDuoFamilyPkg/Include/Resources/db.bin.p7
   DBX_DEFAULT_FILE1              = SurfaceDuoFamilyPkg/Include/Resources/dbx.bin
 
-  DXE_CRYPTO_SERVICES = STANDARD
-  DXE_CRYPTO_ARCH = AARCH64
-  PEI_CRYPTO_SERVICES = NONE 
-  SMM_CRYPTO_SERVICES = NONE
+  DXE_CRYPTO_SERVICES           = STANDARD
+  PEI_CRYPTO_SERVICES           = NONE
+  STANDALONEMM_CRYPTO_SERVICES  = NONE
+  SMM_CRYPTO_SERVICES           = NONE
+  DXE_CRYPTO_ARCH               = AARCH64
 
 [PcdsFixedAtBuild.common]
   # Platform-specific
