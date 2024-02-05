@@ -11,7 +11,7 @@ python3 ./ImageResources/mkbootimg.py \
   --cmdline "" \
   --base 0x0 \
   --os_version 11.0.0 \
-  --os_patch_level 2023-08-01
+  --os_patch_level 2024-02-01
 
 # Andromeda888 UEFI as Boot (Dual Boot) (SecureBoot Disabled)
 cat ./ImageResources/Zeta/patchedkernel ./ImageResources/Zeta/SM8350_EFI_NOSB.fd > ./ImageResources/Zeta/boot_nosb.payload.bin
@@ -24,4 +24,4 @@ python3 ./ImageResources/mkbootimg.py \
   --cmdline "" \
   --base 0x0 \
   --os_version 11.0.0 \
-  --os_patch_level 2023-08-01
+  --os_patch_level 2024-02-01
