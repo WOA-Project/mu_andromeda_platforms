@@ -8,12 +8,13 @@
 #
 ##
 
-
+## MU_CHANGE - [TCBZ3050] Update MinPlat AslUpdateLib with superior code from IntelSiliconPkg
+##              This should now be the One True Library.
 
 [Defines]
 INF_VERSION = 0x00010017
 BASE_NAME = DxeAslUpdateLib
-FILE_GUID = 8621697D-4E3A-4bf2-ADB0-3E2FF06559CA
+FILE_GUID = 1BC79513-CDD5-4993-A161-618015C6C66F
 VERSION_STRING = 1.0
 MODULE_TYPE = DXE_DRIVER
 LIBRARY_CLASS = AslUpdateLib

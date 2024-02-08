@@ -1,16 +1,13 @@
 /** @file
   ASL dynamic update library definitions.
-
-  This library provides dynamic update to various ASL structures.
+  This library provides dymanic update to various ASL structures.
   There may be different libraries for different environments (PEI, BS, RT, SMM).
   Make sure you meet the requirements for the library (protocol dependencies, use
   restrictions, etc).
 
-  Note that the current version of the library updates AML.
+Copyright (c) 2017 - 2020, Intel Corporation. All rights reserved.<BR>
+SPDX-License-Identifier: BSD-2-Clause-Patent
 
-  Copyright (c) 2020 Intel Corporation. All rights reserved. <BR>
-
-  SPDX-License-Identifier: BSD-2-Clause-Patent
 **/
 
 #ifndef _ASL_UPDATE_LIB_H_
@@ -31,17 +28,17 @@
   @param[in] Buffer                     source of data to be written over original aml
   @param[in] Length                     length of data to be overwritten
 
-   @retval EFI_SUCCESS                  The function completed successfully.
-   @retval EFI_NOT_FOUND                Failed to locate AcpiTable.
-   @retval EFI_NOT_READY                Not ready to locate AcpiTable.
-   @retval EFI_UNSUPPORTED              The function is not supported in this library.
+  @retval EFI_SUCCESS                   The function completed successfully.
+  @retval EFI_NOT_FOUND                 Failed to locate AcpiTable.
+  @retval EFI_NOT_READY                 Not ready to locate AcpiTable.
+  @retval EFI_UNSUPPORTED               The function is not supported in this library
 **/
 EFI_STATUS
 EFIAPI
-UpdateNameAslCode (
-  IN     UINT32  AslSignature,
-  IN     VOID    *Buffer,
-  IN     UINTN   Length
+UpdateNameAslCode(
+  IN     UINT32                        AslSignature,
+  IN     VOID                          *Buffer,
+  IN     UINTN                         Length
   );
 
 /**
@@ -56,16 +53,16 @@ UpdateNameAslCode (
   @retval EFI_SUCCESS          - The function completed successfully.
   @retval EFI_NOT_FOUND        - Failed to locate AcpiTable.
   @retval EFI_NOT_READY        - Not ready to locate AcpiTable.
-  @retval EFI_UNSUPPORTED      - The function is not supported in this library.
+  @retval EFI_UNSUPPORTED      - The function is not supported in this library
 **/
 EFI_STATUS
 EFIAPI
 UpdateSsdtNameAslCode (
-  IN     UINT8   *TableId,
-  IN     UINT8   TableIdSize,
-  IN     UINT32  AslSignature,
-  IN     VOID    *Buffer,
-  IN     UINTN   Length
+  IN     UINT8                         *TableId,
+  IN     UINT8                         TableIdSize,
+  IN     UINT32                        AslSignature,
+  IN     VOID                          *Buffer,
+  IN     UINTN                         Length
   );
 
 /**
@@ -78,14 +75,14 @@ UpdateSsdtNameAslCode (
   @retval EFI_SUCCESS          - The function completed successfully.
   @retval EFI_NOT_FOUND        - Failed to locate AcpiTable.
   @retval EFI_NOT_READY        - Not ready to locate AcpiTable.
-  @retval EFI_UNSUPPORTED      - The function is not supported in this library.
+  @retval EFI_UNSUPPORTED      - The function is not supported in this library
 **/
 EFI_STATUS
 EFIAPI
 UpdateMethodAslCode (
-  IN     UINT32  AslSignature,
-  IN     VOID    *Buffer,
-  IN     UINTN   Length
+  IN     UINT32                        AslSignature,
+  IN     VOID                          *Buffer,
+  IN     UINTN                         Length
   );
 
 /**
@@ -103,14 +100,14 @@ UpdateMethodAslCode (
   @retval EFI_SUCCESS                   The function completed successfully.
   @retval EFI_NOT_FOUND                 Failed to locate AcpiTable.
   @retval EFI_NOT_READY                 Not ready to locate AcpiTable.
-  @retval EFI_UNSUPPORTED               The function is not supported in this library.
+  @retval EFI_UNSUPPORTED               The function is not supported in this library
 **/
 EFI_STATUS
 EFIAPI
 LocateAcpiTableBySignature (
-  IN      UINT32                       Signature,
-  IN OUT  EFI_ACPI_DESCRIPTION_HEADER  **Table,
-  IN OUT  UINTN                        *Handle
+  IN      UINT32                        Signature,
+  IN OUT  EFI_ACPI_DESCRIPTION_HEADER   **Table,
+  IN OUT  UINTN                         *Handle
   );
 
 #endif
