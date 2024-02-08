@@ -8,6 +8,7 @@
   PK_DEFAULT_FILE                = SurfaceDuoFamilyPkg/Include/Resources/pk.bin.p7
   KEK_DEFAULT_FILE1              = SurfaceDuoFamilyPkg/Include/Resources/kek.bin.p7
   DB_DEFAULT_FILE1               = SurfaceDuoFamilyPkg/Include/Resources/db.bin.p7
+  DBT_DEFAULT_FILE1              = SurfaceDuoFamilyPkg/Include/Resources/db.bin.p7
   DBX_DEFAULT_FILE1              = SurfaceDuoFamilyPkg/Include/Resources/dbx.bin
 
   DXE_CRYPTO_SERVICES = STANDARD
