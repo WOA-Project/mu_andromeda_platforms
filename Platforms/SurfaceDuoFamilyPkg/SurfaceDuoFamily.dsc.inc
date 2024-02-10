@@ -460,8 +460,6 @@
 
   ArmPkg/Drivers/TimerDxe/TimerDxe.inf
 
-  # DT
-  EmbeddedPkg/Drivers/DtPlatformDxe/DtPlatformDxe.inf
   EmbeddedPkg/Drivers/VirtualKeyboardDxe/VirtualKeyboardDxe.inf
 
   EmbeddedPkg/EmbeddedMonotonicCounter/EmbeddedMonotonicCounter.inf
