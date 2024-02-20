@@ -110,7 +110,8 @@ KernelErrataPatcherExitBootServices(
        current += sizeof(UINT32)) {
 
     if (ARM64_BRANCH_LOCATION_INSTRUCTION(
-            current, OslArm64TransferToKernelAddr) == *(UINT32 *)current) {
+            current, OslArm64TransferToKernelAddr) == *(UINT32 *)current &&
+        *(UINT32 *)(current + sizeof(UINT32)) == 0xD2800002) {
       FirmwarePrint(
           "Patching bl OsLoaderArm64TransferToKernel -> (phys) 0x%p\n",
           current);
@@ -146,7 +147,8 @@ KernelErrataPatcherExitBootServices(
          current += sizeof(UINT32)) {
 
       if (ARM64_BRANCH_LOCATION_INSTRUCTION(
-              current, OslArm64TransferToKernelAddr) == *(UINT32 *)current) {
+              current, OslArm64TransferToKernelAddr) == *(UINT32 *)current &&
+          *(UINT32 *)(current + sizeof(UINT32)) == 0xD2800002) {
         FirmwarePrint(
             "Patching bl OsLoaderArm64TransferToKernel -> (phys) 0x%p\n",
             current);
