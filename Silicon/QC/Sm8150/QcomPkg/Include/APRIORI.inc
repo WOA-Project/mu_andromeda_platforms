@@ -48,7 +48,6 @@ APRIORI DXE {
     INF FatPkg/EnhancedFatDxe/Fat.inf
     INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/TzDxe/TzDxeLA.inf
 
-    INF CryptoBinPkg/Driver/Bin/CryptoDriverBin_STANDARD_RuntimeDxe_RELEASE_AARCH64.inf
     INF MdeModulePkg/Universal/Variable/RuntimeDxe/VariableRuntimeDxe.inf
 
     INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/Sm8150FamilyPkg/Drivers/MsEnvDxe/MsEnvDxe.inf

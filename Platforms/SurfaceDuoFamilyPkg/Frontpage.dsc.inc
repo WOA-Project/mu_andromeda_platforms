@@ -272,5 +272,4 @@
 
   DfciPkg/Application/DfciMenu/DfciMenu.inf
 
-  !include $(SHARED_CRYPTO_PATH)/Driver/Bin/CryptoDriver.inc.dsc
-  CryptoBinPkg/Driver/Bin/CryptoDriverBin_STANDARD_RuntimeDxe_RELEASE_AARCH64.inf
+  !include CryptoPkg/Driver/Bin/CryptoDriver.inc.dsc
