@@ -237,7 +237,7 @@
   #
   # OpensslPkg libraries needed by multiple firmware features
   #
-  RngLib|MdePkg/Library/BaseRngLibTimerLib/BaseRngLibTimerLib.inf
+  RngLib|MdeModulePkg/Library/BaseRngLibTimerLib/BaseRngLibTimerLib.inf
   Hash2CryptoLib|SecurityPkg/Library/BaseHash2CryptoLibNull/BaseHash2CryptoLibNull.inf
 
   #
@@ -563,10 +563,6 @@
     <LibraryClasses>
 !if $(SECURE_BOOT_ENABLE) == TRUE
       AuthVariableLib|SurfaceDuoFamilyPkg/Library/AuthVariableLib/AuthVariableLib.inf
-      BaseCryptLib|OpensslPkg/Library/BaseCryptLib/RuntimeCryptLib.inf
-      TlsLib|OpensslPkg/Library/TlsLib/TlsLib.inf
-      IntrinsicLib|OpensslPkg/Library/IntrinsicLib/IntrinsicLib.inf
-      OpensslLib|OpensslPkg/Library/OpensslLib/OpensslLibFull.inf # Contains openSSL library used by BaseCryptoLib
 !else
       AuthVariableLib|MdeModulePkg/Library/AuthVariableLibNull/AuthVariableLibNull.inf
 !endif
