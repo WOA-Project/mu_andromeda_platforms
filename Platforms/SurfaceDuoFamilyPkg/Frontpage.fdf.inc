@@ -65,4 +65,5 @@
     !include ArmPlatformPkg/SecureBootDefaultKeys.fdf.inc
   !endif
 
-  !include CryptoPkg/Driver/Bin/CryptoDriver.DXE.inc.fdf
+  # !include $(SHARED_CRYPTO_PATH)/Driver/Bin/CryptoDriver.RUNTIMEDXE.inc.fdf
+  INF CryptoBinPkg/Driver/Bin/CryptoDriverBin_STANDARD_RuntimeDxe_RELEASE_AARCH64.inf

@@ -563,10 +563,6 @@
     <LibraryClasses>
 !if $(SECURE_BOOT_ENABLE) == TRUE
       AuthVariableLib|SurfaceDuoFamilyPkg/Library/AuthVariableLib/AuthVariableLib.inf
-      BaseCryptLib|OpensslPkg/Library/BaseCryptLib/RuntimeCryptLib.inf
-      TlsLib|OpensslPkg/Library/TlsLib/TlsLib.inf
-      IntrinsicLib|OpensslPkg/Library/IntrinsicLib/IntrinsicLib.inf
-      OpensslLib|OpensslPkg/Library/OpensslLib/OpensslLibFull.inf # Contains openSSL library used by BaseCryptoLib
 !else
       AuthVariableLib|MdeModulePkg/Library/AuthVariableLibNull/AuthVariableLibNull.inf
 !endif
