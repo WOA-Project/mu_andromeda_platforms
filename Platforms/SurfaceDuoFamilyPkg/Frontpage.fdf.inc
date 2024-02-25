@@ -65,4 +65,4 @@
     !include ArmPlatformPkg/SecureBootDefaultKeys.fdf.inc
   !endif
 
-  !include CryptoPkg/Driver/Bin/CryptoDriver.DXE.inc.fdf
+  !include $(SHARED_CRYPTO_PATH)/Driver/Bin/CryptoDriver.DXE.inc.fdf
