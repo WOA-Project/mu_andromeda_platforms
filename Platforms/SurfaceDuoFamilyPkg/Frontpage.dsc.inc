@@ -190,7 +190,7 @@
   #
   # Application that presents and manages FrontPage.
   #
-  SurfaceDuoFamilyPkg/FrontPage/FrontPage.inf
+  SurfaceDuoFamilyPkg/PreloaderMenu/PreloaderMenu.inf
   # Surface Boot Manager (Menu) application
   #
   # Application that presents & manages the Boot Menu Setup on Front Page.

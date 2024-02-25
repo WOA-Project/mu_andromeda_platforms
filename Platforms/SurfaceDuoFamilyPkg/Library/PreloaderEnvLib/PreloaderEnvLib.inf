@@ -1,0 +1,21 @@
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = PreloaderEnvLib
+  FILE_GUID                      = 2588774F-AAFB-4AE9-B249-EE0740822B42
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = PreloaderEnvLib
+  CONSTRUCTOR                    = PreloaderEnvLibConstructor
+
+[Sources]
+  PreloaderEnvLb.c
+
+[Packages]
+  ArmPkg/ArmPkg.dec
+  MdePkg/MdePkg.dec
+  SurfaceDuoFamilyPkg/SurfaceDuoFamilyPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  BaseMemoryLib
+  MemoryMapHelperLib

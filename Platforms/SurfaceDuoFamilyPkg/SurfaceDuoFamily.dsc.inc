@@ -386,6 +386,8 @@
 
   PolicyLib|PolicyServicePkg/Library/DxePolicyLib/DxePolicyLib.inf
 
+  PreloaderEnvLib|SurfaceDuoFamilyPkg/Library/PreloaderEnvLib/PreloaderEnvLib.inf
+
 [LibraryClasses.common.SEC]
   ArmGicArchLib|ArmPkg/Library/ArmGicArchSecLib/ArmGicArchSecLib.inf
   HobLib|EmbeddedPkg/Library/PrePiHobLib/PrePiHobLib.inf

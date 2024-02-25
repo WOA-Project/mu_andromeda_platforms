@@ -1,0 +1,11 @@
+#ifndef __LOCAL_HOB_H__
+#define __LOCAL_HOB_H__
+
+#define PRELOADER_ENV_NAME "Preloader Block"
+#define SKIP_BOOT_FLAG 0x5350494B // "SKIP"
+
+typedef struct _PRELOADER_ENVIRONMENT {
+  UINT32 SkipBoot;
+} PRELOADER_ENVIRONMENT, *PPRELOADER_ENVIRONMENT;
+
+#endif

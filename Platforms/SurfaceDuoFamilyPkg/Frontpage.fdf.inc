@@ -24,7 +24,7 @@
   INF MsWheaPkg/MsWheaReport/Dxe/MsWheaReportDxe.inf
   INF OemPkg/BootMenu/BootMenu.inf
   INF PcBdsPkg/MsBootPolicy/MsBootPolicy.inf
-  INF SurfaceDuoFamilyPkg/FrontPage/FrontPage.inf
+  INF SurfaceDuoFamilyPkg/PreloaderMenu/PreloaderMenu.inf
 
   FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdFrontPageLogoFile) {
     SECTION RAW = Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/RawFiles/Logo

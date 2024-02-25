@@ -1,6 +1,7 @@
 #include <Library/BaseLib.h>
 #include <Library/PlatformMemoryMapLib.h>
 #include <Configuration/XblHlosHob.h>
+#include <Configuration/Hob.h>
 
 // Platform Memory Map for Engineering Validation devices
 static ARM_MEMORY_REGION_DESCRIPTOR_EX gDeviceMemoryDescriptorEVEx[] = {
@@ -11,7 +12,7 @@ static ARM_MEMORY_REGION_DESCRIPTOR_EX gDeviceMemoryDescriptorEVEx[] = {
     /* DDR Bank 0 Start */
     {"HYP",               0x80000000, 0x00600000, AddMem, SYS_MEM, SYS_MEM_CAP, Reserv, WRITE_BACK_XN},
     {"HLOS1",             0x80600000, 0x00100000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
-    {"RAM Partition",     0x80600000, 0x00160000, AddMem, SYS_MEM, SYS_MEM_CAP, Conv,   WRITE_BACK_XN},
+    {PRELOADER_ENV_NAME,  0x80600000, 0x00160000, AddMem, SYS_MEM, SYS_MEM_CAP, BsData, WRITE_BACK_XN},
     {"AOP CMD DB",        0x80860000, 0x00020000, AddMem, MEM_RES, UNCACHEABLE, Reserv, UNCACHED_UNBUFFERED_XN},
     {"GPU PRR",           0x80880000, 0x00010000, AddMem, MEM_RES, WRITE_COMBINEABLE, Reserv, UNCACHED_UNBUFFERED_XN},
     {"TPMControl",        0x80890000, 0x00010000, AddMem, MEM_RES, WRITE_COMBINEABLE, RtData, UNCACHED_UNBUFFERED_XN},
