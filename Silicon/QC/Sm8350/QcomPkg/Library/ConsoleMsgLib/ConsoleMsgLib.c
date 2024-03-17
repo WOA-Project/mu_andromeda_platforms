@@ -20,7 +20,7 @@ SPDX-License-Identifier: BSD-2-Clause-Patent
 #include <Protocol/GraphicsOutput.h>
 #include <Protocol/HiiFont.h>
 
-GLOBAL_REMOVE_IF_UNREFERENCED EFI_GRAPHICS_OUTPUT_BLT_PIXEL
+/*GLOBAL_REMOVE_IF_UNREFERENCED EFI_GRAPHICS_OUTPUT_BLT_PIXEL
     mConsoleEfiColors[16] = {
         {0x00, 0x00, 0x00, 0x00}, {0x98, 0x00, 0x00, 0x00},
         {0x00, 0x98, 0x00, 0x00}, {0x98, 0x98, 0x00, 0x00},
@@ -199,14 +199,14 @@ CHAR8 *PlatformSubTypeBuildString[] = {
     [PLATFORM_SUBTYPE_DV_Debug]   = "Zeta DV",
     [PLATFORM_SUBTYPE_MP_Retail]  = "Zeta MP",
     [PLATFORM_SUBTYPE_INVALID]    = "Unknown",
-};
+};*/
 
 /**
 Display the platform specific debug messages
 **/
 VOID EFIAPI ConsoleMsgLibDisplaySystemInfoOnConsole(VOID)
 {
-  EFI_STATUS             Status;
+  /*EFI_STATUS             Status;
   CHAR8                 *uefiDate             = NULL;
   CHAR8                 *uefiVersion          = NULL;
   EFIChipInfoVersionType SoCID                = 0;
@@ -281,5 +281,5 @@ VOID EFIAPI ConsoleMsgLibDisplaySystemInfoOnConsole(VOID)
     ConsolePrint(L"  SKU ID:    %d (%a)", BoardID, SKUID);
     ConsolePrint(L"  Memory ID: 0 (Hynix 8GB)");
     ConsolePrint(L"  Build ID:  %d (%a)", BoardID, BuildID);
-  }
+  }*/
 }
