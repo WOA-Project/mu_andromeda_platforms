@@ -138,6 +138,9 @@
   # Clock Protocol guid
   gEfiClockProtocolGuid =              { 0x241afae6, 0x885f, 0x4f6c, { 0xa7, 0xea, 0xc2, 0x8e, 0xab, 0x79, 0xc3, 0xe5 } }
 
+  ## Include/Protocol/MpManagement.h
+  gMpManagementProtocolGuid = { 0x2b0a3788, 0xe602, 0x424f, { 0xa8, 0x32, 0xa1, 0x13, 0x77, 0xa7, 0x6d, 0x73 } }
+
 [PcdsFixedAtBuild.common]
   # SMBIOS
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosProcessorModel|"Snapdragon (TM) 855 @ 2.84 GHz"|VOID*|0x0000a301
@@ -163,3 +166,9 @@
   ## FFS filename to find the SiPolicy p7b file.
   # {daf98d6a-6be4-4b60-97b8-4f16e4586258}
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSystemIntegrityPolicyFile |{ 0x6a, 0x8d, 0xf9, 0xda, 0xe4, 0x6b, 0x60, 0x4b, 0xb8, 0x97, 0x4f, 0x16, 0xe4, 0x58, 0x62, 0x58 }|VOID*|0x00000a603
+  
+  ## Power state used for suspending a secondary core to C2 state
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdPlatformC2PowerState|1|UINT64|0x00000002
+  
+  ## Power state used for suspending a secondary core to C3 state
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdPlatformC3PowerState|0x1010022|UINT64|0x00000003

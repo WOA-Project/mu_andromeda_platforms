@@ -83,3 +83,21 @@
 
 [Components.common]
   SurfaceDuo2Pkg/AcpiTables/AcpiTables.inf
+  SurfaceDuoFamilyPkg/MpManagement/Driver/MpManagement.inf {
+    <PcdsFixedAtBuild>
+      gEfiMdePkgTokenSpaceGuid.PcdDebugClearMemoryValue|0xAF
+      gEfiMdePkgTokenSpaceGuid.PcdDebugPropertyMask|0x2f
+      gEfiMdePkgTokenSpaceGuid.PcdDebugPrintErrorLevel|0xFFFFFFFF
+      gEfiMdePkgTokenSpaceGuid.PcdPerformanceLibraryPropertyMask|1
+      gEfiMdePkgTokenSpaceGuid.PcdPostCodePropertyMask|0
+      gEfiMdePkgTokenSpaceGuid.PcdReportStatusCodePropertyMask|0x07
+  }
+  SurfaceDuoFamilyPkg/MpManagement/App/MpManagementTestApp.inf {
+  <PcdsFixedAtBuild>
+      gEfiMdePkgTokenSpaceGuid.PcdDebugClearMemoryValue|0xAF
+      gEfiMdePkgTokenSpaceGuid.PcdDebugPropertyMask|0x2f
+      gEfiMdePkgTokenSpaceGuid.PcdDebugPrintErrorLevel|0xFFFFFFFF
+      gEfiMdePkgTokenSpaceGuid.PcdPerformanceLibraryPropertyMask|1
+      gEfiMdePkgTokenSpaceGuid.PcdPostCodePropertyMask|0
+      gEfiMdePkgTokenSpaceGuid.PcdReportStatusCodePropertyMask|0x07
+  }

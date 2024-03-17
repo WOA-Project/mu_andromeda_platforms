@@ -42,12 +42,12 @@
   gEfiMdePkgTokenSpaceGuid.PcdUefiLibMaxPrintBufferSize|320
 
 !if $(TARGET) == DEBUG
-  gEfiMdePkgTokenSpaceGuid.PcdDebugClearMemoryValue|0xAF
-  gEfiMdePkgTokenSpaceGuid.PcdDebugPropertyMask|0x2f
-  gEfiMdePkgTokenSpaceGuid.PcdDebugPrintErrorLevel|0x800fee0f
-  gEfiMdePkgTokenSpaceGuid.PcdPerformanceLibraryPropertyMask|1
+  gEfiMdePkgTokenSpaceGuid.PcdDebugClearMemoryValue|0x00
+  gEfiMdePkgTokenSpaceGuid.PcdDebugPropertyMask|0x00
+  gEfiMdePkgTokenSpaceGuid.PcdDebugPrintErrorLevel|0x00000000
+  gEfiMdePkgTokenSpaceGuid.PcdPerformanceLibraryPropertyMask|0
   gEfiMdePkgTokenSpaceGuid.PcdPostCodePropertyMask|0
-  gEfiMdePkgTokenSpaceGuid.PcdReportStatusCodePropertyMask|0x07
+  gEfiMdePkgTokenSpaceGuid.PcdReportStatusCodePropertyMask|0x00
 !else
   gEfiMdePkgTokenSpaceGuid.PcdDebugClearMemoryValue|0x00
   gEfiMdePkgTokenSpaceGuid.PcdDebugPropertyMask|0x00
@@ -110,9 +110,9 @@
   gMsGraphicsPkgTokenSpaceGuid.PcdUiThemeInDxe|TRUE
   gEfiMdeModulePkgTokenSpaceGuid.PcdBootManagerInBootOrder|TRUE
 
-  # The GUID of Frontpage.inf from MU_OEM_SAMPLE
-  # 4042708A-0F2D-4823-AC60-0D77B3111889
-  gEfiMdeModulePkgTokenSpaceGuid.PcdBootManagerMenuFile|{ 0x8A, 0x70, 0x42, 0x40, 0x2D, 0x0F, 0x23, 0x48, 0xAC, 0x60, 0x0D, 0x77, 0xB3, 0x11, 0x18, 0x89 }
+  # The GUID of MpManagementTestApp.inf from MU_ANDROMEDA_PLATFORMS
+  # B6ED4248-1EEE-4E70-BCB2-E167E42B1230
+  gEfiMdeModulePkgTokenSpaceGuid.PcdBootManagerMenuFile|{ 0x48, 0x42, 0xED, 0xB6, 0xEE, 0x1E, 0x70, 0x4E, 0xBC, 0xB2, 0xE1, 0x67, 0xE4, 0x2B, 0x12, 0x30 }
 
   gOemPkgTokenSpaceGuid.PcdUefiVersionNumber|0x1240341 # 1.24.03.41
   gOemPkgTokenSpaceGuid.PcdUefiBuildDate|0x20240313 # 2024-03-13
@@ -632,9 +632,6 @@
   SurfaceDuoFamilyPkg/PrePi/PeiUniCore.inf
 
   SurfaceDuoFamilyPkg/UFP/ufpdevicefw.inf
-
-  UefiTestingPkg/FunctionalSystemTests/MpManagement/App/MpManagementTestApp.inf
-  UefiTestingPkg/FunctionalSystemTests/MpManagement/Driver/MpManagement.inf
 
 ###################################################################################################
 #
