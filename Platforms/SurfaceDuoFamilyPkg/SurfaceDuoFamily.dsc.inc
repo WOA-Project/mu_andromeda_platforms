@@ -610,7 +610,7 @@
   SecurityPkg/VariableAuthenticated/SecureBootConfigDxe/SecureBootConfigDxe.inf
 !endif
 
-  SurfaceDuoFamilyPkg/Driver/ColorbarsDxe/ColorbarsDxe.inf
+  # SurfaceDuoFamilyPkg/Driver/ColorbarsDxe/ColorbarsDxe.inf
 
   # Debug heartbeat
 !if $(SEND_HEARTBEAT_TO_SERIAL) == 1
