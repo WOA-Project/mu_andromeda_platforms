@@ -48,7 +48,7 @@
   ConsoleMsgLib|QcomPkg/Library/ConsoleMsgLib/ConsoleMsgLib.inf
 
 [Components.common]
-  Arcata/BOOT.MXF.1.1.c1-00097-MAKENA-1/ArcataPkg/GpioButtonsDxe/GpioButtons.inf
+  Arcata/BOOT.MXF.1.1.c1-00127-MAKENA-2/ArcataPkg/GpioButtonsDxe/GpioButtons.inf
   MdeModulePkg/Universal/Disk/PartitionDxe/PartitionDxe.inf
   QcomPkg/PatchedBinaries/ClockDxe.inf
   QcomPkg/PatchedBinaries/MinidumpTADxe.inf
