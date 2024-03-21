@@ -42,8 +42,8 @@
   DBX_DEFAULT_FILE1              = SurfaceDuoFamilyPkg/Include/Resources/SecureBoot/Artifacts/Aarch64/DefaultDbx.bin
 
   DXE_CRYPTO_SERVICES            = STANDARD
+  RUNTIMEDXE_CRYPTO_SERVICES     = STANDARD
   PEI_CRYPTO_SERVICES            = NONE
-  RUNTIMEDXE_CRYPTO_SERVICES     = NONE
   SMM_CRYPTO_SERVICES            = NONE
   STANDALONEMM_CRYPTO_SERVICES   = NONE
   DXE_CRYPTO_ARCH                = AARCH64
