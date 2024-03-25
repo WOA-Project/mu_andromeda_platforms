@@ -106,7 +106,7 @@ typedef struct _UNICODE_STRING {
 } UNICODE_STRING, *PUNICODE_STRING;
 
 typedef struct _KLDR_DATA_TABLE_ENTRY {
-  struct _LIST_ENTRY            InLoadOrderLinks;
+  LIST_ENTRY                    InLoadOrderLinks;
   VOID                         *ExceptionTable;
   UINT32                        ExceptionTableSize;
   VOID                         *GpValue;
@@ -114,8 +114,8 @@ typedef struct _KLDR_DATA_TABLE_ENTRY {
   VOID                         *DllBase;
   VOID                         *EntryPoint;
   UINT32                        SizeOfImage;
-  struct _UNICODE_STRING        FullDllName;
-  struct _UNICODE_STRING        BaseDllName;
+  UNICODE_STRING                FullDllName;
+  UNICODE_STRING                BaseDllName;
   UINT32                        Flags;
   UINT16                        LoadCount;
   union {
@@ -135,135 +135,26 @@ typedef struct _KLDR_DATA_TABLE_ENTRY {
 } KLDR_DATA_TABLE_ENTRY, *PKLDR_DATA_TABLE_ENTRY;
 
 typedef struct _LOADER_PARAMETER_BLOCK {
-  UINT32             OsMajorVersion;
-  UINT32             OsMinorVersion;
-  UINT32             Size;
-  UINT32             OsLoaderSecurityVersion;
-  struct _LIST_ENTRY LoadOrderListHead;
-  struct _LIST_ENTRY MemoryDescriptorListHead;
-  struct _LIST_ENTRY BootDriverListHead;
-  struct _LIST_ENTRY EarlyLaunchListHead;
-  struct _LIST_ENTRY CoreDriverListHead;
-  struct _LIST_ENTRY CoreExtensionsDriverListHead;
-  struct _LIST_ENTRY TpmCoreDriverListHead;
+  UINT32     OsMajorVersion;
+  UINT32     OsMinorVersion;
+  UINT32     Size;
+  UINT32     OsLoaderSecurityVersion;
+  LIST_ENTRY LoadOrderListHead;
+  LIST_ENTRY MemoryDescriptorListHead;
+  LIST_ENTRY BootDriverListHead;
+  LIST_ENTRY EarlyLaunchListHead;
+  LIST_ENTRY CoreDriverListHead;
+  LIST_ENTRY CoreExtensionsDriverListHead;
+  LIST_ENTRY TpmCoreDriverListHead;
 } LOADER_PARAMETER_BLOCK, *PLOADER_PARAMETER_BLOCK;
 
 #define CONTAINING_RECORD(address, type, field)                                \
-  ((type *)((char *)(address) - (UINT64)(&((type *)0)->field)))
-
-typedef struct _IMAGE_FILE_HEADER {
-  UINT16 Machine;
-  UINT16 NumberOfSections;
-  UINT32 TimeDateStamp;
-  UINT32 PointerToSymbolTable;
-  UINT32 NumberOfSymbols;
-  UINT16 SizeOfOptionalHeader;
-  UINT16 Characteristics;
-} IMAGE_FILE_HEADER, *PIMAGE_FILE_HEADER;
-
-typedef struct _IMAGE_DATA_DIRECTORY {
-  UINT32 VirtualAddress;
-  UINT32 Size;
-} IMAGE_DATA_DIRECTORY, *PIMAGE_DATA_DIRECTORY;
-
-#define IMAGE_NUMBEROF_DIRECTORY_ENTRIES 16
-
-typedef struct _IMAGE_OPTIONAL_HEADER64 {
-  UINT16               Magic;
-  UINT8                MajorLinkerVersion;
-  UINT8                MinorLinkerVersion;
-  UINT32               SizeOfCode;
-  UINT32               SizeOfInitializedData;
-  UINT32               SizeOfUninitializedData;
-  UINT32               AddressOfEntryPoint;
-  UINT32               BaseOfCode;
-  UINT64               ImageBase;
-  UINT32               SectionAlignment;
-  UINT32               FileAlignment;
-  UINT16               MajorOperatingSystemVersion;
-  UINT16               MinorOperatingSystemVersion;
-  UINT16               MajorImageVersion;
-  UINT16               MinorImageVersion;
-  UINT16               MajorSubsystemVersion;
-  UINT16               MinorSubsystemVersion;
-  UINT32               Win32VersionValue;
-  UINT32               SizeOfImage;
-  UINT32               SizeOfHeaders;
-  UINT32               CheckSum;
-  UINT16               Subsystem;
-  UINT16               DllCharacteristics;
-  UINT64               SizeOfStackReserve;
-  UINT64               SizeOfStackCommit;
-  UINT64               SizeOfHeapReserve;
-  UINT64               SizeOfHeapCommit;
-  UINT32               LoaderFlags;
-  UINT32               NumberOfRvaAndSizes;
-  IMAGE_DATA_DIRECTORY DataDirectory[IMAGE_NUMBEROF_DIRECTORY_ENTRIES];
-} IMAGE_OPTIONAL_HEADER64, *PIMAGE_OPTIONAL_HEADER64;
-
-typedef struct _IMAGE_NT_HEADERS64 {
-  UINT32                  Signature;
-  IMAGE_FILE_HEADER       FileHeader;
-  IMAGE_OPTIONAL_HEADER64 OptionalHeader;
-} IMAGE_NT_HEADERS64, *PIMAGE_NT_HEADERS64, IMAGE_NT_HEADERS,
-    *PIMAGE_NT_HEADERS;
-
-typedef struct _IMAGE_DOS_HEADER {
-  UINT16 e_magic;    // Magic number
-  UINT16 e_cblp;     // Bytes on last page of file
-  UINT16 e_cp;       // Pages in file
-  UINT16 e_crlc;     // Relocations
-  UINT16 e_cparhdr;  // Size of header in paragraphs
-  UINT16 e_minalloc; // Minimum extra paragraphs needed
-  UINT16 e_maxalloc; // Maximum extra paragraphs needed
-  UINT16 e_ss;       // Initial (relative) SS value
-  UINT16 e_sp;       // Initial SP value
-  UINT16 e_csum;     // Checksum
-  UINT16 e_ip;       // Initial IP value
-  UINT16 e_cs;       // Initial (relative) CS value
-  UINT16 e_lfarlc;   // File address of relocation table
-  UINT16 e_ovno;     // Overlay number
-  UINT16 e_res[4];   // Reserved words
-  UINT16 e_oemid;    // OEM identifier (for e_oeminfo)
-  UINT16 e_oeminfo;  // OEM information; e_oemid specific
-  UINT16 e_res2[10]; // Reserved words
-  INT32  e_lfanew;   // File address of new exe header
-} IMAGE_DOS_HEADER, *PIMAGE_DOS_HEADER;
-
-enum WinloadContext { ApplicationContext, FirmwareContext };
-
-#define IMAGE_DOS_SIGNATURE 0x5A4D
-#define IMAGE_NT_SIGNATURE 0x00004550
-
-#define IMAGE_DIRECTORY_ENTRY_EXPORT 0
-
-typedef struct _IMAGE_EXPORT_DIRECTORY {
-  UINT32 Characteristics;
-  UINT32 TimeDateStamp;
-  UINT16 MajorVersion;
-  UINT16 MinorVersion;
-  UINT32 Name;
-  UINT32 Base;
-  UINT32 NumberOfFunctions;
-  UINT32 NumberOfNames;
-  UINT32 AddressOfFunctions;
-  UINT32 AddressOfNames;
-  UINT32 AddressOfNameOrdinals;
-} IMAGE_EXPORT_DIRECTORY, *PIMAGE_EXPORT_DIRECTORY;
+  ((type *)((char *)(address) - (unsigned long long)(&((type *)0)->field)))
 
 #define ARM64_INSTRUCTION_LENGTH 4
 #define ARM64_TOTAL_INSTRUCTION_LENGTH(x) (ARM64_INSTRUCTION_LENGTH * x)
 
-typedef void (*NT_OS_LOADER_ARM64_TRANSFER_TO_KERNEL)(
-    VOID *OsLoaderBlock, VOID *KernelAddress);
-
-VOID DoSomething(VOID *OsLoaderBlock, VOID *KernelAddress)
-{
-  ((NT_OS_LOADER_ARM64_TRANSFER_TO_KERNEL)KernelAddress)(
-      OsLoaderBlock, KernelAddress);
-}
-
-VOID OslArm64TransferToKernel(VOID *OsLoaderBlock, VOID *KernelAddress)
+VOID PreOslArm64TransferToKernel(VOID *OsLoaderBlock, VOID *KernelAddress)
 {
   PLOADER_PARAMETER_BLOCK loaderBlock = (PLOADER_PARAMETER_BLOCK)OsLoaderBlock;
   LIST_ENTRY            *entry = (&loaderBlock->LoadOrderListHead)->ForwardLink;
@@ -303,7 +194,62 @@ VOID OslArm64TransferToKernel(VOID *OsLoaderBlock, VOID *KernelAddress)
       *(UINT32 *)(current - ARM64_TOTAL_INSTRUCTION_LENGTH(7)) =
           0xD65F03C0; // ret
     }
-  }
+    else if (*(UINT32 *)current == 0xD518CBAA) { // msr icc_sgi1r_el1, x10
+      // The offending code starts 2 instructions above us
+      // ie:
+      // 
+      // AND             X8, X0, #0xF            // <--------- this is the IRQ being AND with 0xF
+      //                                         // (honestly, this doesn't look needed as we check prior if it's > 0xF...)
+      // We want to patch starting from here:
+      //
+      // ORR             X8, X8, #0x10000        // <--------- this is the IRM bit being ORR with the IRQ (but shifted by 0x18 to the left)
+      // LSL             X10, X8, #0x18          // <--------- this is the SGI value being shifted by 0x18 to the right
+      // 
+      // MSR             MPIDR_EL1, X10          // <--------- we are here
+      //
+      // we have to inject code into unused routines to fix this
+      //
+      // x8 contains part of the sgir register value for the requested irq already
+      // it was setup before us with:
+      // and   x8, x0, #0xf
+      //
+      // we have to shift it now, without the irm bit
+      // lsl x10, x8, #0x18
+      // then we have to add in the aff1 bits
+      // aff1 is by spec, specified in bits 16 to 23
+      // cpu0 has aff1=0, cpu1 has aff1=1, etc. up to 7
+      // we can get the aff1 bit of the current cpu from the mpidr_el1 register
+      // and then shift it into the correct position by 8 bits
+      // then we iterate through all the cpus and send the sgi to them
+      // to do this, we iterate from 0 to 7, skip the current cpu, and for each iteration,
+      // we can skip the current cpu by comparing the aff1 bit of the current cpu with the aff1 bit of the cpu we're sending the sgi to
+      // if they match, we skip the current cpu
+      // if they don't match, we add the aff1 bit to the sgir register value and send the sgi
 
-  DoSomething(OsLoaderBlock, KernelAddress);
+      // The actual code we need to inject into unused routines:
+      //
+      // START OF CODE (12 instructions)
+      //
+      //  lsl   x10, x8, #0x18    // shift the irq number into the correct position
+      //  mrs   x8, mpidr_el1     // get the mpidr_el1 register of the current cpu
+      //  mov   x11, #0x0         // setup a counter
+      //
+      //  .loop:
+      //  cmp   x11, x8           // compare the aff1 bit of the current cpu with the aff1 bit of the cpu we're sending the sgi to
+      //  b.eq  .skip             // if they match, skip the current cpu
+      //
+      //  lsl   x9, x11, #0x8     // shift the aff1 bit into the correct position
+      //  orr   x9, x9, x10       // add the aff1 bit to the sgir register value
+      //
+      //  msr   icc_sgi1r_el1, x9 // send the sgi
+      //  dsb   sy                // ensure the sgi is sent
+      //  
+      //  .skip:
+      //  add   x11, x11, #0x100  // increment the counter
+      //  cmp   x11, #0x800       // check if we've iterated through all cpus (max: 8)
+      //  b.ne  .loop             // if we have not, loop
+      //
+      // END OF CODE
+    }
+  }
 }
