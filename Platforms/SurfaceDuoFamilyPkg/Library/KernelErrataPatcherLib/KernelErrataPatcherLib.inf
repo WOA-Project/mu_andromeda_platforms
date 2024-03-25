@@ -20,6 +20,7 @@
   CONSTRUCTOR                    = KernelErrataPatcherLibConstructor
 
 [Sources]
+  KernelErrataHandler.c
   KernelErrataPatcherLib.c
   Mmu.c
   Utilities.c
