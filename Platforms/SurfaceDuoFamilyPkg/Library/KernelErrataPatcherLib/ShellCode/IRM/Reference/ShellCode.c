@@ -163,7 +163,7 @@ VOID DoSomething(VOID *OsLoaderBlock, VOID *KernelAddress)
       OsLoaderBlock, KernelAddress);
 }
 
-VOID PreOslArm64TransferToKernel(VOID *OsLoaderBlock, VOID *KernelAddress)
+VOID OslArm64TransferToKernel(VOID *OsLoaderBlock, VOID *KernelAddress)
 {
   PLOADER_PARAMETER_BLOCK loaderBlock = (PLOADER_PARAMETER_BLOCK)OsLoaderBlock;
 
@@ -240,23 +240,14 @@ VOID PreOslArm64TransferToKernel(VOID *OsLoaderBlock, VOID *KernelAddress)
 
         *(UINT32 *)(current - ARM64_TOTAL_INSTRUCTION_LENGTH(2)) = 0x1400001A; //(0x14000000 | (26 & 0x7FFFFFF));
 
-        EFI_PHYSICAL_ADDRESS patch = current + ARM64_TOTAL_INSTRUCTION_LENGTH(24);
-
-        *(UINT32 *)(patch + ARM64_TOTAL_INSTRUCTION_LENGTH(0)) = 0xD3689D0A;  // lsl x10, x8, #0x18
-        *(UINT32 *)(patch + ARM64_TOTAL_INSTRUCTION_LENGTH(1)) = 0xD53800A8;  // mrs x8, mpidr_el1
-        *(UINT32 *)(patch + ARM64_TOTAL_INSTRUCTION_LENGTH(2)) = 0xD280000B;  // movz x11, #0
-        *(UINT32 *)(patch + ARM64_TOTAL_INSTRUCTION_LENGTH(3)) = 0xEB08017F;  // cmp x11, x8
-        *(UINT32 *)(patch + ARM64_TOTAL_INSTRUCTION_LENGTH(4)) = 0x540000A0;  // b.eq #0x24
-        *(UINT32 *)(patch + ARM64_TOTAL_INSTRUCTION_LENGTH(5)) = 0xD378DD69;  // lsl x9, x11, #8
-        *(UINT32 *)(patch + ARM64_TOTAL_INSTRUCTION_LENGTH(6)) = 0xAA0A0129;  // orr x9, x9, x10
-        *(UINT32 *)(patch + ARM64_TOTAL_INSTRUCTION_LENGTH(7)) = 0xD518CBA9;  // msr icc_sgi1r_el1, x9
-        *(UINT32 *)(patch + ARM64_TOTAL_INSTRUCTION_LENGTH(8)) = 0xD5033F9F;  // dsb sy
-        *(UINT32 *)(patch + ARM64_TOTAL_INSTRUCTION_LENGTH(9)) = 0x9104016B;  // add x11, x11, #0x100
-        *(UINT32 *)(patch + ARM64_TOTAL_INSTRUCTION_LENGTH(10)) = 0xF120017F; // cmp x11, #0x800
-        *(UINT32 *)(patch + ARM64_TOTAL_INSTRUCTION_LENGTH(11)) = 0x54FFFF01; // b.ne #0xc
-
-        *(UINT32 *)(patch + ARM64_TOTAL_INSTRUCTION_LENGTH(12)) = 0xD503201F; // nop
-        *(UINT32 *)(patch + ARM64_TOTAL_INSTRUCTION_LENGTH(13)) = 0xD503201F; // nop
+        *(UINT64 *)(current + ARM64_TOTAL_INSTRUCTION_LENGTH(24)) = 0xD53800A8D3689D0A;  // lsl x10, x8, #0x18 - mrs x8, mpidr_el1
+        *(UINT64 *)(current + ARM64_TOTAL_INSTRUCTION_LENGTH(26)) = 0xEB08017FD280000B;  // movz x11, #0 - cmp x11, x8
+        *(UINT64 *)(current + ARM64_TOTAL_INSTRUCTION_LENGTH(28)) = 0xD378DD69540000A0;  // b.eq #0x24 - lsl x9, x11, #8
+        *(UINT64 *)(current + ARM64_TOTAL_INSTRUCTION_LENGTH(30)) = 0xD518CBA9AA0A0129;  // orr x9, x9, x10 - msr icc_sgi1r_el1, x9
+        *(UINT64 *)(current + ARM64_TOTAL_INSTRUCTION_LENGTH(32)) = 0x9104016BD5033F9F;  // dsb sy - add x11, x11, #0x100
+        *(UINT64 *)(current + ARM64_TOTAL_INSTRUCTION_LENGTH(34)) = 0x54FFFF01F120017F;  // cmp x11, #0x800 - b.ne #0xc
+        
+        *(UINT64 *)(current + ARM64_TOTAL_INSTRUCTION_LENGTH(36)) = 0xD503201FD503201F;  // nop - nop
       }
     }
   }
