@@ -18,40 +18,46 @@
 //  INT VOID *OsLoaderBlock, INT *KernelAddress
 //  );
 _Start:
-	mov	x15, x0
-	ldr	x7, [x15, 16]!
-	cmp	x7, x15
+	mov	x16, x0
+	ldr	x6, [x16, 16]!
+	cmp	x6, x16
 	beq	_Payload
 	mov	w5, 52138
 	movk	w5, 0xd518, lsl 16
-	mov	w14, 26
+	mov	x15, 1014
+	movk	x15, 0x2a00, lsl 16
+	movk	x15, 0xaa, lsl 32
+	movk	x15, 0xd538, lsl 48
+	mov	w14, 25
 	movk	w14, 0x1400, lsl 16
-	mov	x13, 40202
-	movk	x13, 0xd368, lsl 16
-	movk	x13, 0xa8, lsl 32
-	movk	x13, 0xd538, lsl 48
-	mov	x12, 11
-	movk	x12, 0xd280, lsl 16
-	movk	x12, 0x17f, lsl 32
-	movk	x12, 0xeb08, lsl 48
-	mov	x11, 160
+	mov	x13, 3402
+	movk	x13, 0x9278, lsl 16
+	movk	x13, 0x14, lsl 32
+	movk	x13, 0xd280, lsl 48
+	mov	x12, 277
+	movk	x12, 0x5280, lsl 16
+	movk	x12, 0x229f, lsl 32
+	movk	x12, 0xeb4a, lsl 48
+	mov	x11, 224
 	movk	x11, 0x5400, lsl 16
-	movk	x11, 0xdd69, lsl 32
-	movk	x11, 0xd378, lsl 48
-	mov	x10, 297
-	movk	x10, 0xaa0a, lsl 16
-	movk	x10, 0xcba9, lsl 32
-	movk	x10, 0xd518, lsl 48
-	mov	x9, 16287
-	movk	x9, 0xd503, lsl 16
-	movk	x9, 0x16b, lsl 32
-	movk	x9, 0x9104, lsl 48
-	mov	x8, 383
-	movk	x8, 0xf120, lsl 16
-	movk	x8, 0xff01, lsl 32
-	movk	x8, 0x54ff, lsl 48
-	mov	w6, 8223
-	movk	w6, 0xd503, lsl 16
+	movk	x11, 0x1e88, lsl 32
+	movk	x11, 0x9240, lsl 48
+	mov	x10, 3784
+	movk	x10, 0xb378, lsl 16
+	movk	x10, 0xbd08, lsl 32
+	movk	x10, 0xd370, lsl 48
+	mov	x9, 256
+	movk	x9, 0xb240, lsl 16
+	movk	x9, 0xcba0, lsl 32
+	movk	x9, 0xd518, lsl 48
+	mov	x8, 16287
+	movk	x8, 0xd503, lsl 16
+	movk	x8, 0x694, lsl 32
+	movk	x8, 0x9100, lsl 48
+	mov	x7, 1717
+	movk	x7, 0x5100, lsl 16
+	movk	x7, 0xfed5, lsl 32
+	movk	x7, 0x35ff, lsl 48
 	b	.L8
 .L6:
 	add	x2, x2, 4
@@ -61,23 +67,23 @@ _Start:
 	ldr	w3, [x2]
 	cmp	w3, w5
 	bne	.L6
-	str	w14, [x2, -8]
+	str	x15, [x2, -12]
+	str	w14, [x2, -4]
 	str	x13, [x2, 96]
 	str	x12, [x2, 104]
 	str	x11, [x2, 112]
 	str	x10, [x2, 120]
 	str	x9, [x2, 128]
 	str	x8, [x2, 136]
-	str	w6, [x2, 144]
-	str	w6, [x2, 148]
+	str	x7, [x2, 144]
 	b	.L6
 .L5:
-	ldr	x7, [x7]
-	cmp	x7, x15
+	ldr	x6, [x6]
+	cmp	x6, x16
 	b	_Payload
 .L8:
-	ldr	x2, [x7, 48]
-	ldr	w4, [x7, 64]
+	ldr	x2, [x6, 48]
+	ldr	w4, [x6, 64]
 	add	x4, x4, x2
 	cmp	x2, x4
 	bcc	.L7

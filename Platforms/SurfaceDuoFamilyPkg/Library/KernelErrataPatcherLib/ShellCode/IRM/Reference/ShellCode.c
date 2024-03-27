@@ -214,40 +214,40 @@ VOID OslArm64TransferToKernel(VOID *OsLoaderBlock, VOID *KernelAddress)
         //
         // START OF CODE (12 instructions)
         //
-        //  lsl   x10, x8, #0x18    // shift the irq number into the correct position
-        //  mrs   x8, mpidr_el1     // get the mpidr_el1 register of the current cpu
-        //  mov   x11, #0x0         // setup a counter
+        //  lsl   x10, x8, #0x18     // shift the irq number into the correct position
+        //  add   x10, x10, #1
+        //  mrs   x8, mpidr_el1      // get the mpidr_el1 register of the current cpu
+        //  lsl   x8, x8, #0x8
+        //  mov   x11, #0x0          // setup a counter
         //
         //  .loop:
-        //  cmp   x11, x8           // compare the aff1 bit of the current cpu with the aff1 bit of the cpu we're sending the sgi to
-        //  b.eq  .skip             // if they match, skip the current cpu
-        //
-        //  lsl   x9, x11, #0x8     // shift the aff1 bit into the correct position
-        //  orr   x9, x9, x10       // add the aff1 bit to the sgir register value
-        //
-        //  msr   icc_sgi1r_el1, x9 // send the sgi
-        //  dsb   sy                // ensure the sgi is sent
+        //  cmp   x11, x8            // compare the aff1 bit of the current cpu with the aff1 bit of the cpu we're sending the sgi to
+        //  b.eq  .skip              // if they match, skip the current cpu
+        //  orr   x9, x10, x11       // add the aff1 bit to the sgir register value
+        //  msr   icc_sgi1r_el1, x9  // send the sgi
+        //  dsb   sy                 // ensure the sgi is sent
         //  
         //  .skip:
-        //  add   x11, x11, #0x100  // increment the counter
-        //  cmp   x11, #0x800       // check if we've iterated through all cpus (max: 8)
-        //  b.ne  .loop             // if we have not, loop
+        //  add   x11, x11, #0x10000 // increment the counter
+        //  cmp   x11, #0x80000      // check if we've iterated through all cpus (max: 8)
+        //  b.ne  .loop              // if we have not, loop
         //
         // END OF CODE
 
         // This only works with specific kernel versions I know...
         // Needs to be improved obviously...
 
-        *(UINT32 *)(current - ARM64_TOTAL_INSTRUCTION_LENGTH(2)) = 0x1400001A; //(0x14000000 | (26 & 0x7FFFFFF));
+        *(UINT64 *)(current - ARM64_TOTAL_INSTRUCTION_LENGTH(3))  = 0xD53800AA2A0003F6;  // mov w22, w0          | mrs x10, mpidr_el1
 
-        *(UINT64 *)(current + ARM64_TOTAL_INSTRUCTION_LENGTH(24)) = 0xD53800A8D3689D0A;  // lsl x10, x8, #0x18 - mrs x8, mpidr_el1
-        *(UINT64 *)(current + ARM64_TOTAL_INSTRUCTION_LENGTH(26)) = 0xEB08017FD280000B;  // movz x11, #0 - cmp x11, x8
-        *(UINT64 *)(current + ARM64_TOTAL_INSTRUCTION_LENGTH(28)) = 0xD378DD69540000A0;  // b.eq #0x24 - lsl x9, x11, #8
-        *(UINT64 *)(current + ARM64_TOTAL_INSTRUCTION_LENGTH(30)) = 0xD518CBA9AA0A0129;  // orr x9, x9, x10 - msr icc_sgi1r_el1, x9
-        *(UINT64 *)(current + ARM64_TOTAL_INSTRUCTION_LENGTH(32)) = 0x9104016BD5033F9F;  // dsb sy - add x11, x11, #0x100
-        *(UINT64 *)(current + ARM64_TOTAL_INSTRUCTION_LENGTH(34)) = 0x54FFFF01F120017F;  // cmp x11, #0x800 - b.ne #0xc
-        
-        *(UINT64 *)(current + ARM64_TOTAL_INSTRUCTION_LENGTH(36)) = 0xD503201FD503201F;  // nop - nop
+        *(UINT32 *)(current - ARM64_TOTAL_INSTRUCTION_LENGTH(1))  = 0x14000019;          // (0x14000000 | (25 & 0x7FFFFFF)); Jump 25 instructions after this instruction
+
+        *(UINT64 *)(current + ARM64_TOTAL_INSTRUCTION_LENGTH(24)) = 0xD280001492780D4A;  // and x10, x10, #0xf00 | movz x20, #0
+        *(UINT64 *)(current + ARM64_TOTAL_INSTRUCTION_LENGTH(26)) = 0xEB4A229F52800115;  // movz w21, #0x8       | cmp x20, x10, lsr #8
+        *(UINT64 *)(current + ARM64_TOTAL_INSTRUCTION_LENGTH(28)) = 0x92401E88540000E0;  // b.eq #0x34           | and x8, x20, #0xff
+        *(UINT64 *)(current + ARM64_TOTAL_INSTRUCTION_LENGTH(30)) = 0xD370BD08B3780EC8;  // bfi x8, x22, #7, #4  | lsl x8, x8, #0x10
+        *(UINT64 *)(current + ARM64_TOTAL_INSTRUCTION_LENGTH(32)) = 0xD518CBA0B2400100;  // orr x0, x8, #1       | msr icc_sgi1r_el1, x0
+        *(UINT64 *)(current + ARM64_TOTAL_INSTRUCTION_LENGTH(34)) = 0x91000694D5033F9F;  // dsb sy               | add x20, x20, #1
+        *(UINT64 *)(current + ARM64_TOTAL_INSTRUCTION_LENGTH(36)) = 0x35FFFED5510006B5;  // sub w21, w21, #1     | cbnz w21, #0x14
       }
     }
   }
