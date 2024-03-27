@@ -102,6 +102,9 @@ KernelErrataPatcherExitBootServices(
   FirmwarePrint(
       "OslFwpKernelSetupPhase1   -> (phys) 0x%p\n", fwpKernelSetupPhase1);
 
+  UINTN MPIDR = ArmReadMpidr();
+  FirmwarePrint("MPIDR: 0x%lx\n", MPIDR);
+
   UINTN                tempSize = SCAN_MAX;
   EFI_PHYSICAL_ADDRESS winloadBase =
       LocateWinloadBase(fwpKernelSetupPhase1, &tempSize);
