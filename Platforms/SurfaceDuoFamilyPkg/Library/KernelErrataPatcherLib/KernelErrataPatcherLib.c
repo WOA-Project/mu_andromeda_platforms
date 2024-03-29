@@ -110,6 +110,7 @@ UINT8 OslArm64TransferToKernelShellCode[] = {
 #endif
 };
 
+#if PLATFORM_HAS_ACTLR_EL1_UNIMPLEMENTED_ERRATA == 1
 VOID KernelErrataPatcherApplyReadACTLREL1Patches(
     EFI_PHYSICAL_ADDRESS Base, UINTN Size)
 {
@@ -126,6 +127,7 @@ VOID KernelErrataPatcherApplyReadACTLREL1Patches(
         sizeof(FixedInstruction0));
   }
 }
+#endif
 
 EFI_STATUS
 EFIAPI
@@ -163,7 +165,9 @@ KernelErrataPatcherExitBootServices(
       "Patching OsLoader         -> (phys) 0x%p (size) 0x%p\n",
       fwpKernelSetupPhase1, SCAN_MAX);
 
+#if PLATFORM_HAS_ACTLR_EL1_UNIMPLEMENTED_ERRATA == 1
   KernelErrataPatcherApplyReadACTLREL1Patches(fwpKernelSetupPhase1, SCAN_MAX);
+#endif
 
   BOOLEAN InjectedShellCode = FALSE;
 
