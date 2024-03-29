@@ -36,7 +36,6 @@
 
 [Protocols]
   gEfiChipInfoProtocolGuid                      ## CONSUMES
-  gEfiClockProtocolGuid                         ## CONSUMES
   gEfiPlatformInfoProtocolGuid                  ## CONSUMES
   gEfiSMEMProtocolGuid                          ## CONSUMES
 
