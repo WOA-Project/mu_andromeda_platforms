@@ -27,5 +27,5 @@ VOID PlatformInitialize(VOID)
   // Wake up redistributor for CPU 1
   MmioWrite32(
       GICR_WAKER_CPU(1),
-      (MmioRead32(GICR_WAKER_CURRENT_CPU) & ~GIC_WAKER_PROCESSORSLEEP));
+      (MmioRead32(GICR_WAKER_CPU(1)) & ~GIC_WAKER_PROCESSORSLEEP));
 }
