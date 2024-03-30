@@ -7,23 +7,24 @@
 PreOslArm64TransferToKernel:
 	.cfi_startproc
 
-				ubfiz		x8, x0, #0x18, #4       // 
-				orr			x10, x8, #1             // 
-				mrs			x20, mpidr_el1          // 
-				and			x8, x20, #0xf00         // 
-				add			x20, x10, #0x80,lsl#12  // 
-				orr			x21, x10, x8,lsl#8      // 
-				b			.loop_entry             // 
+				mov			w22, w0                 // 
+				mrs			x10, mpidr_el1          // 
+				and			x10, x10, #0xF00        // 
+				mov			x20, #0                 // 
+				mov			w21, #8                 // 
 .loop:
-				cmp			x10, x21                // 
+				cmp			x20, x10,lsr#8          // 
 				b.eq		.skip                   // 
-				msr			icc_sgi1r_el1, x10      // 
+				and			x8, x20, #0xff          // 
+				bfi			x8, x22, #8, #4         // 
+				lsl			x8, x8, #0x10           // 
+				orr			x0, x8, #1              // 
+				msr			icc_sgi1r_el1, x0       // 
 				dsb			sy                      // 
 .skip:
-				add			x10, x10, #0x10,lsl#12  // 
-.loop_entry:
-				cmp			x10, x20                // 
-				b.cc		.loop                   // 
+				add			x20, x20, #1            // 
+				sub			w21, w21, #1            // 
+				cbnz		w21, .loop              // 
 
 	.cfi_endproc
 .LFE0:

@@ -211,41 +211,26 @@ VOID OslArm64TransferToKernel(VOID *OsLoaderBlock, VOID *KernelAddress)
 
         // The actual code we need to inject into unused routines:
         //
-        // START OF CODE (14 instructions)
+        // START OF CODE (16 instructions)
         //
-        //  ubfiz x8, x0, #0x18, #4
-        //  orr x10, x8, #1
-        //  mrs x20, mpidr_el1
-        //  and x8, x20, #0xf00
-        //  add x20, x10, #0x80, lsl #12
-        //  orr x21, x10, x8, lsl #8
-        //  b #0x30
-        //  cmp x10, x21
-        //  b.eq #0x2c
-        //  msr icc_sgi1r_el1, x10
-        //  dsb sy
-        //  add x10, x10, #0x10, lsl #12
-        //  cmp x10, x20
-        //  b.lo #0x1c
+        //  TODO: Add code here
         //
         // END OF CODE
 
-        // This only works with specific kernel versions I know... (GE_RELEASE) (Vibranium is not supported, Cobalt is not supported)
+        // This only works with specific kernel versions I know... (GE_RELEASE) (Vibranium is not supported, Cobalt, Nickel is not supported)
         // Needs to be improved obviously...
 
-        *(UINT64 *)(current - ARM64_TOTAL_INSTRUCTION_LENGTH(3))  = 0xB240010AD3680C08; // ubfiz x8, x0, #0x18, #4 - orr x10, x8, #1
+        *(UINT64 *)(current - ARM64_TOTAL_INSTRUCTION_LENGTH(3))  = 0xD53800AA2A0003F6;  // mov w22, w0          | mrs x10, mpidr_el1
 
         *(UINT32 *)(current - ARM64_TOTAL_INSTRUCTION_LENGTH(1))  = 0x14000019;          // (0x14000000 | (25 & 0x7FFFFFF)); Jump 25 instructions after this instruction
 
-        *(UINT64 *)(current + ARM64_TOTAL_INSTRUCTION_LENGTH(24)) = 0x92780E88D53800B4; // mrs x20, mpidr_el1 - and x8, x20, #0xf00
-        *(UINT64 *)(current + ARM64_TOTAL_INSTRUCTION_LENGTH(26)) = 0xAA08215591420154; // add x20, x10, #0x80, lsl #12 - orr x21, x10, x8, lsl #8
-        *(UINT64 *)(current + ARM64_TOTAL_INSTRUCTION_LENGTH(28)) = 0xEB15015F14000006; // b #0x30 - cmp x10, x21
-        *(UINT64 *)(current + ARM64_TOTAL_INSTRUCTION_LENGTH(30)) = 0xD518CBAA54000060; // b.eq #0x2c - msr icc_sgi1r_el1, x10
-        *(UINT64 *)(current + ARM64_TOTAL_INSTRUCTION_LENGTH(32)) = 0x9140414AD5033F9F; // dsb sy - add x10, x10, #0x10, lsl #12
-        *(UINT64 *)(current + ARM64_TOTAL_INSTRUCTION_LENGTH(34)) = 0x54FFFF43EB14015F; // cmp x10, x20 - b.lo #0x1c
-
-        // Two instructions free
-        *(UINT64 *)(current + ARM64_TOTAL_INSTRUCTION_LENGTH(36)) = 0xD503201FD503201F; // nop - nop
+        *(UINT64 *)(current + ARM64_TOTAL_INSTRUCTION_LENGTH(24)) = 0xD280001492780D4A;  // and x10, x10, #0xf00 | movz x20, #0
+        *(UINT64 *)(current + ARM64_TOTAL_INSTRUCTION_LENGTH(26)) = 0xEB4A229F52800115;  // movz w21, #0x8       | cmp x20, x10, lsr #8
+        *(UINT64 *)(current + ARM64_TOTAL_INSTRUCTION_LENGTH(28)) = 0x92401E88540000E0;  // b.eq #0x34           | and x8, x20, #0xff
+        *(UINT64 *)(current + ARM64_TOTAL_INSTRUCTION_LENGTH(30)) = 0xD370BD08B3780EC8;  // bfi x8, x22, #7, #4  | lsl x8, x8, #0x10
+        *(UINT64 *)(current + ARM64_TOTAL_INSTRUCTION_LENGTH(32)) = 0xD518CBA0B2400100;  // orr x0, x8, #1       | msr icc_sgi1r_el1, x0
+        *(UINT64 *)(current + ARM64_TOTAL_INSTRUCTION_LENGTH(34)) = 0x91000694D5033F9F;  // dsb sy               | add x20, x20, #1
+        *(UINT64 *)(current + ARM64_TOTAL_INSTRUCTION_LENGTH(36)) = 0x35FFFED5510006B5;  // sub w21, w21, #1     | cbnz w21, #0x14
       }
     }
   }

@@ -7,26 +7,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test", "test\test.vcxproj",
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|ARM64 = Debug|ARM64
-		Debug|x64 = Debug|x64
-		Debug|x86 = Debug|x86
 		Release|ARM64 = Release|ARM64
-		Release|x64 = Release|x64
-		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F66D92D4-4270-43F6-AAFD-FB6ED4B26498}.Debug|ARM64.ActiveCfg = Debug|ARM64
-		{F66D92D4-4270-43F6-AAFD-FB6ED4B26498}.Debug|ARM64.Build.0 = Debug|ARM64
-		{F66D92D4-4270-43F6-AAFD-FB6ED4B26498}.Debug|x64.ActiveCfg = Debug|x64
-		{F66D92D4-4270-43F6-AAFD-FB6ED4B26498}.Debug|x64.Build.0 = Debug|x64
-		{F66D92D4-4270-43F6-AAFD-FB6ED4B26498}.Debug|x86.ActiveCfg = Debug|Win32
-		{F66D92D4-4270-43F6-AAFD-FB6ED4B26498}.Debug|x86.Build.0 = Debug|Win32
 		{F66D92D4-4270-43F6-AAFD-FB6ED4B26498}.Release|ARM64.ActiveCfg = Release|ARM64
 		{F66D92D4-4270-43F6-AAFD-FB6ED4B26498}.Release|ARM64.Build.0 = Release|ARM64
-		{F66D92D4-4270-43F6-AAFD-FB6ED4B26498}.Release|x64.ActiveCfg = Release|x64
-		{F66D92D4-4270-43F6-AAFD-FB6ED4B26498}.Release|x64.Build.0 = Release|x64
-		{F66D92D4-4270-43F6-AAFD-FB6ED4B26498}.Release|x86.ActiveCfg = Release|Win32
-		{F66D92D4-4270-43F6-AAFD-FB6ED4B26498}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
