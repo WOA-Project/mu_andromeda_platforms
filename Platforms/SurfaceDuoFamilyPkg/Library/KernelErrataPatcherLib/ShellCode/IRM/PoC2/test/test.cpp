@@ -29,18 +29,70 @@ void ArmGicV3SendNsG1Sgi(UINT64 SgiVal)
 
 void Send(UINT8  SgiId, UINT64 CurrentMpidr)
 {
-    for (UINT32 i = 0; i < 8; i++)
+    /*for (UINT32 i = 0; i < 8; i++)
     {
         if (i == CurrentMpidr >> 8) {
             continue;
         }
 
+        // 0x000000000F000001
+        // 0x000000000F010001
+        // 0x000000000F020001
         ArmGicV3SendNsG1Sgi(GICV3_SGIR_VALUE(0, 0, i, SgiId, 0, 1));
+    }*/
+
+    /*UINT64 SGI = (SgiId & 0xF) << 24 | 1;
+    for (UINT64 i = SGI; i < SGI + 0x80000; i += 0x10000)
+    {
+      ArmGicV3SendNsG1Sgi(i);
+    }*/
+
+    /*
+    
+    UINT64 SGI = (SgiId & 0xF) << 24 | 1;
+    UINT8 CurrentI = CurrentMpidr >> 8;
+
+    UINT8 i = 0;
+
+    do {
+      if (i == CurrentI) {
+        i++;
+        continue;
+      }
+
+      ArmGicV3SendNsG1Sgi(SGI | (i << 16));
+      i++;
+    } while (i != 8);
+    
+    */
+
+    /*UINT64 SGI = (SgiId & 0xF) << 24 | 1;
+    UINT8 CurrentI = CurrentMpidr >> 8;
+
+    UINT8 i = 0;
+
+    do {
+      if (i == CurrentI) {
+        i++;
+        SGI += 0x10000;
+        continue;
+      }
+
+      ArmGicV3SendNsG1Sgi(SGI);
+      i++;
+      SGI += 0x10000;
+    } while (i != 8);*/
+
+    UINT64 SGI      = (SgiId & 0xF) << 24 | 1;
+    UINT64 CurrentSGI = SGI | (CurrentMpidr & 0xF00) << 8;
+    for (UINT64 i = SGI; i < SGI + 0x80000; i += 0x10000) {
+      if (i != CurrentSGI)
+        ArmGicV3SendNsG1Sgi(i);
     }
 }
 
 int main()
 {
-    UINT8 SgiId = 0xFF;
-    Send(SgiId, 0x500);
+    UINT8 SgiId = 15;
+    Send(SgiId, 0x81000500);
 }

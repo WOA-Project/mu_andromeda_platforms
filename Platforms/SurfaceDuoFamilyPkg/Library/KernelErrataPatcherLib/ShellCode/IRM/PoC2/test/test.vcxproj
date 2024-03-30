@@ -179,7 +179,7 @@
       <OmitFramePointers>true</OmitFramePointers>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <ControlFlowGuard>false</ControlFlowGuard>
-      <EnableEnhancedInstructionSet>CPUExtensionRequirementsARMv81</EnableEnhancedInstructionSet>
+      <EnableEnhancedInstructionSet>CPUExtensionRequirementsARMv82</EnableEnhancedInstructionSet>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
