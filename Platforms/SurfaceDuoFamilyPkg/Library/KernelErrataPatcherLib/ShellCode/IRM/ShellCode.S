@@ -25,7 +25,7 @@ _Start:
 	mov	w5, 52138
 	movk	w5, 0xd518, lsl 16
 	mov	x15, 1014
-	movk	x15, 0x2a00, lsl 16
+	movk	x15, 0x2a09, lsl 16
 	movk	x15, 0xaa, lsl 32
 	movk	x15, 0xd538, lsl 48
 	mov	w14, 25
@@ -46,9 +46,9 @@ _Start:
 	movk	x10, 0xb378, lsl 16
 	movk	x10, 0xbd08, lsl 32
 	movk	x10, 0xd370, lsl 48
-	mov	x9, 256
+	mov	x9, 265
 	movk	x9, 0xb240, lsl 16
-	movk	x9, 0xcba0, lsl 32
+	movk	x9, 0xcba9, lsl 32
 	movk	x9, 0xd518, lsl 48
 	mov	x8, 16287
 	movk	x8, 0xd503, lsl 16

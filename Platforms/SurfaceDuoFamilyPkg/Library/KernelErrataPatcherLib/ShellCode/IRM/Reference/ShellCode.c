@@ -184,7 +184,7 @@ VOID OslArm64TransferToKernel(VOID *OsLoaderBlock, VOID *KernelAddress)
         // 
         // We want to patch starting from here:
         //
-        // AND             X8, X0, #0xF            // <--------- this is the IRQ being AND with 0xF
+        // AND             X8, X9, #0xF            // <--------- this is the IRQ being AND with 0xF
         //                                         // (honestly, this doesn't look needed as we check prior if it's > 0xF...)
         // ORR             X8, X8, #0x10000        // <--------- this is the IRM bit being ORR with the IRQ (but shifted by 0x18 to the left)
         // LSL             X10, X8, #0x18          // <--------- this is the SGI value being shifted by 0x18 to the right
@@ -194,7 +194,7 @@ VOID OslArm64TransferToKernel(VOID *OsLoaderBlock, VOID *KernelAddress)
         //
         // x8 contains part of the sgir register value for the requested irq already
         // it was setup before us with:
-        // and   x8, x0, #0xf
+        // and   x8, x9, #0xf
         //
         // we have to shift it now, without the irm bit
         // lsl x10, x8, #0x18
@@ -220,7 +220,7 @@ VOID OslArm64TransferToKernel(VOID *OsLoaderBlock, VOID *KernelAddress)
         // This only works with specific kernel versions I know... (GE_RELEASE) (Vibranium is not supported, Cobalt, Nickel is not supported)
         // Needs to be improved obviously...
 
-        *(UINT64 *)(current - ARM64_TOTAL_INSTRUCTION_LENGTH(3))  = 0xD53800AA2A0003F6;  // mov w22, w0          | mrs x10, mpidr_el1
+        *(UINT64 *)(current - ARM64_TOTAL_INSTRUCTION_LENGTH(3))  = 0xD53800AA2A0903F6;  // mov w22, w9          | mrs x10, mpidr_el1
 
         *(UINT32 *)(current - ARM64_TOTAL_INSTRUCTION_LENGTH(1))  = 0x14000019;          // (0x14000000 | (25 & 0x7FFFFFF)); Jump 25 instructions after this instruction
 
@@ -228,7 +228,7 @@ VOID OslArm64TransferToKernel(VOID *OsLoaderBlock, VOID *KernelAddress)
         *(UINT64 *)(current + ARM64_TOTAL_INSTRUCTION_LENGTH(26)) = 0xEB4A229F52800115;  // movz w21, #0x8       | cmp x20, x10, lsr #8
         *(UINT64 *)(current + ARM64_TOTAL_INSTRUCTION_LENGTH(28)) = 0x92401E88540000E0;  // b.eq #0x34           | and x8, x20, #0xff
         *(UINT64 *)(current + ARM64_TOTAL_INSTRUCTION_LENGTH(30)) = 0xD370BD08B3780EC8;  // bfi x8, x22, #7, #4  | lsl x8, x8, #0x10
-        *(UINT64 *)(current + ARM64_TOTAL_INSTRUCTION_LENGTH(32)) = 0xD518CBA0B2400100;  // orr x0, x8, #1       | msr icc_sgi1r_el1, x0
+        *(UINT64 *)(current + ARM64_TOTAL_INSTRUCTION_LENGTH(32)) = 0xD518CBA9B2400109;  // orr x9, x8, #1       | msr icc_sgi1r_el1, x9
         *(UINT64 *)(current + ARM64_TOTAL_INSTRUCTION_LENGTH(34)) = 0x91000694D5033F9F;  // dsb sy               | add x20, x20, #1
         *(UINT64 *)(current + ARM64_TOTAL_INSTRUCTION_LENGTH(36)) = 0x35FFFED5510006B5;  // sub w21, w21, #1     | cbnz w21, #0x14
       }
