@@ -153,6 +153,10 @@ typedef struct _LOADER_PARAMETER_BLOCK {
 
 #define ARM64_INSTRUCTION_LENGTH 4
 #define ARM64_TOTAL_INSTRUCTION_LENGTH(x) (ARM64_INSTRUCTION_LENGTH * x)
+#define ARM64_BRANCH_LOCATION_INSTRUCTION(CurrentOffset, TargetOffset)         \
+  (0x94000000u |                                                               \
+   ((UINT32)((TargetOffset - CurrentOffset) / ARM64_INSTRUCTION_LENGTH) &      \
+    0x7FFFFFFu))
 
 typedef void (*NT_OS_LOADER_ARM64_TRANSFER_TO_KERNEL)(
     VOID *OsLoaderBlock, VOID *KernelAddress);
@@ -176,61 +180,37 @@ VOID OslArm64TransferToKernel(VOID *OsLoaderBlock, VOID *KernelAddress)
     EFI_PHYSICAL_ADDRESS base = (EFI_PHYSICAL_ADDRESS)kernelModule->DllBase;
     UINTN                size = kernelModule->SizeOfImage;
 
+    EFI_PHYSICAL_ADDRESS GICINSTR = 0;
+    EFI_PHYSICAL_ADDRESS REALESTATEFUNC = 0;
+
     for (EFI_PHYSICAL_ADDRESS current = base; current < base + size;
          current += sizeof(UINT32)) {
       if (*(UINT32 *)current == 0xD518CBAA) { // msr icc_sgi1r_el1, x10
-        // The offending code starts 2 instructions above us
-        // ie:
-        // 
-        // We want to patch starting from here:
-        //
-        // AND             X8, X9, #0xF            // <--------- this is the IRQ being AND with 0xF
-        //                                         // (honestly, this doesn't look needed as we check prior if it's > 0xF...)
-        // ORR             X8, X8, #0x10000        // <--------- this is the IRM bit being ORR with the IRQ (but shifted by 0x18 to the left)
-        // LSL             X10, X8, #0x18          // <--------- this is the SGI value being shifted by 0x18 to the right
-        // MSR             ICC_SGI1R_EL1, X10      // <--------- we are here
-        //
-        // we have to inject code into unused routines to fix this
-        //
-        // x8 contains part of the sgir register value for the requested irq already
-        // it was setup before us with:
-        // and   x8, x9, #0xf
-        //
-        // we have to shift it now, without the irm bit
-        // lsl x10, x8, #0x18
-        // then we have to add in the aff1 bits
-        // aff1 is by spec, specified in bits 16 to 23
-        // cpu0 has aff1=0, cpu1 has aff1=1, etc. up to 7
-        // we can get the aff1 bit of the current cpu from the mpidr_el1 register
-        // and then shift it into the correct position by 8 bits
-        // then we iterate through all the cpus and send the sgi to them
-        // to do this, we iterate from 0 to 7, skip the current cpu, and for each iteration,
-        // we can skip the current cpu by comparing the aff1 bit of the current cpu with the aff1 bit of the cpu we're sending the sgi to
-        // if they match, we skip the current cpu
-        // if they don't match, we add the aff1 bit to the sgir register value and send the sgi
+        GICINSTR = current;
+      }
 
-        // The actual code we need to inject into unused routines:
-        //
-        // START OF CODE (16 instructions)
-        //
-        //  TODO: Add code here
-        //
-        // END OF CODE
+      if (*(UINT64 *)current == 0x0009001600090003) {
+        REALESTATEFUNC = current;
+      }
 
-        // This only works with specific kernel versions I know... (GE_RELEASE) (Vibranium is not supported, Cobalt, Nickel is not supported)
-        // Needs to be improved obviously...
+      if (GICINSTR != 0 && REALESTATEFUNC != 0) {
+            UINT64 CodeLocation = REALESTATEFUNC - ARM64_TOTAL_INSTRUCTION_LENGTH(42); // Arbitrary, function is huge
+            *(UINT32 *)GICINSTR = ARM64_BRANCH_LOCATION_INSTRUCTION(GICINSTR, CodeLocation);
 
-        *(UINT64 *)(current - ARM64_TOTAL_INSTRUCTION_LENGTH(3))  = 0xD53800AA2A0903F6;  // mov w22, w9          | mrs x10, mpidr_el1
-
-        *(UINT32 *)(current - ARM64_TOTAL_INSTRUCTION_LENGTH(1))  = 0x14000019;          // (0x14000000 | (25 & 0x7FFFFFF)); Jump 25 instructions after this instruction
-
-        *(UINT64 *)(current + ARM64_TOTAL_INSTRUCTION_LENGTH(24)) = 0xD280001492780D4A;  // and x10, x10, #0xf00 | movz x20, #0
-        *(UINT64 *)(current + ARM64_TOTAL_INSTRUCTION_LENGTH(26)) = 0xEB4A229F52800115;  // movz w21, #0x8       | cmp x20, x10, lsr #8
-        *(UINT64 *)(current + ARM64_TOTAL_INSTRUCTION_LENGTH(28)) = 0x92401E88540000E0;  // b.eq #0x34           | and x8, x20, #0xff
-        *(UINT64 *)(current + ARM64_TOTAL_INSTRUCTION_LENGTH(30)) = 0xD370BD08B3780EC8;  // bfi x8, x22, #7, #4  | lsl x8, x8, #0x10
-        *(UINT64 *)(current + ARM64_TOTAL_INSTRUCTION_LENGTH(32)) = 0xD518CBA9B2400109;  // orr x9, x8, #1       | msr icc_sgi1r_el1, x9
-        *(UINT64 *)(current + ARM64_TOTAL_INSTRUCTION_LENGTH(34)) = 0x91000694D5033F9F;  // dsb sy               | add x20, x20, #1
-        *(UINT64 *)(current + ARM64_TOTAL_INSTRUCTION_LENGTH(36)) = 0x35FFFED5510006B5;  // sub w21, w21, #1     | cbnz w21, #0x14
+            *(UINT64 *)(CodeLocation)                                      = 0xA9015BF5A9BD53F3; // stp x19, x20, [sp, #-0x30]! - stp x21, x22, [sp, #0x10]
+            *(UINT64 *)(CodeLocation + ARM64_TOTAL_INSTRUCTION_LENGTH(2))  = 0xB640024AF90013FE; // str x30, [sp, #0x20] - tbz x10, #0x28, #0x54
+            *(UINT64 *)(CodeLocation + ARM64_TOTAL_INSTRUCTION_LENGTH(4))  = 0x528000139257F956; // and x22, x10, #0xfffffeffffffffff - movz w19, #0
+            *(UINT64 *)(CodeLocation + ARM64_TOTAL_INSTRUCTION_LENGTH(6))  = 0xD3482C35D53800A1; // mrs x1, mpidr_el1 - ubfx x21, x1, #8, #4
+            *(UINT64 *)(CodeLocation + ARM64_TOTAL_INSTRUCTION_LENGTH(8))  = 0xEB15029FD2800014; // movz x20, #0 - cmp x20, x21
+            *(UINT64 *)(CodeLocation + ARM64_TOTAL_INSTRUCTION_LENGTH(10)) = 0xD3785E68540000C0; // b.eq #0x40 - ubfiz x8, x19, #8, #0x18
+            *(UINT64 *)(CodeLocation + ARM64_TOTAL_INSTRUCTION_LENGTH(12)) = 0xB240010AAA160108; // orr x8, x8, x22 - orr x10, x8, #1
+            *(UINT64 *)(CodeLocation + ARM64_TOTAL_INSTRUCTION_LENGTH(14)) = 0xD5033F9FD518CBAA; // msr icc_sgi1r_el1, x10 - dsb sy
+            *(UINT64 *)(CodeLocation + ARM64_TOTAL_INSTRUCTION_LENGTH(16)) = 0x7100227F11000673; // add w19, w19, #1 - cmp w19, #8
+            *(UINT64 *)(CodeLocation + ARM64_TOTAL_INSTRUCTION_LENGTH(18)) = 0x54FFFEC391000694; // add x20, x20, #1 - b.lo #0x24
+            *(UINT64 *)(CodeLocation + ARM64_TOTAL_INSTRUCTION_LENGTH(20)) = 0xD518CBAA14000003; // b #0x5c - msr icc_sgi1r_el1, x10
+            *(UINT64 *)(CodeLocation + ARM64_TOTAL_INSTRUCTION_LENGTH(22)) = 0xF94013FED5033F9F; // dsb sy - ldr x30, [sp, #0x20]
+            *(UINT64 *)(CodeLocation + ARM64_TOTAL_INSTRUCTION_LENGTH(24)) = 0xA8C353F3A9415BF5; // ldp x21, x22, [sp, #0x10] - ldp x19, x20, [sp], #0x30
+            *(UINT32 *)(CodeLocation + ARM64_TOTAL_INSTRUCTION_LENGTH(26)) = 0xD65F03C0;         // ret
       }
     }
   }

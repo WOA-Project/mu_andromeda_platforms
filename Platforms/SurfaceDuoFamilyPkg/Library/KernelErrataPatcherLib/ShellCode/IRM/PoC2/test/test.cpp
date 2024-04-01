@@ -27,20 +27,29 @@ void ArmGicV3SendNsG1Sgi(UINT64 SgiVal)
     printf_s("SGIValue=0x%p\n", SgiVal);
 }
 
-void Send(UINT8  SgiId, UINT64 CurrentMpidr)
+void Send(UINT64 SGI, UINT64 CurrentMpidr)
 {
-    for (UINT32 i = 0; i < 8; i++)
+    if (SGI & 0x0000010000000000)
     {
-        if (i == CurrentMpidr >> 8) {
-            continue;
-        }
+        SGI = (SGI & 0xFFFFFEFFFFFFFFFF) | 1;
 
-        ArmGicV3SendNsG1Sgi(GICV3_SGIR_VALUE(0, 0, i, SgiId, 0, 1));
+        for (UINT32 i = 0; i < 8; i++)
+        {
+            if (i == (CurrentMpidr & 0xF00) >> 8) {
+                continue;
+            }
+
+            UINT64 NSGI = SGI | 0x100 * i;
+            ArmGicV3SendNsG1Sgi(NSGI);
+        }
+    }
+    else
+    {
+        ArmGicV3SendNsG1Sgi(SGI);
     }
 }
 
 int main()
 {
-    UINT8 SgiId = 0xFF;
-    Send(SgiId, 0x500);
+    Send(0x1000F000000, 0x81000200);
 }
