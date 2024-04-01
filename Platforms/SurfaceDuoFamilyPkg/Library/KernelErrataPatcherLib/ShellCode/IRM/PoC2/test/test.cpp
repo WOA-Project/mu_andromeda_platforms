@@ -29,24 +29,21 @@ void ArmGicV3SendNsG1Sgi(UINT64 SgiVal)
 
 void Send(UINT64 SGI, UINT64 CurrentMpidr)
 {
-    if (SGI & 0x0000010000000000)
-    {
-        SGI = (SGI & 0xFFFFFEFFFFFFFFFF) | 1;
-
-        for (UINT32 i = 0; i < 8; i++)
-        {
-            if (i == (CurrentMpidr & 0xF00) >> 8) {
-                continue;
-            }
-
-            UINT64 NSGI = SGI | 0x100 * i;
-            ArmGicV3SendNsG1Sgi(NSGI);
-        }
-    }
-    else
-    {
-        ArmGicV3SendNsG1Sgi(SGI);
-    }
+  if ((SGI & 0x10000000000LL) != 0) {
+    UINT64 v1 = CurrentMpidr & 0xF00;
+    UINT64 v2 = 0LL;
+    UINT32 v3 = 8;
+    do {
+      if (v2 != (v1 >> 8)) {
+        ArmGicV3SendNsG1Sgi((SGI & 0xFFFFFEFFFFFFFFFELL | 1) | (v2 << 16));
+      }
+      ++v2;
+      --v3;
+    } while (v3);
+  }
+  else {
+    ArmGicV3SendNsG1Sgi(SGI);
+  }
 }
 
 int main()

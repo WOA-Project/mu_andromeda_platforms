@@ -12,25 +12,34 @@ PreOslArm64TransferToKernel:
                 .cfi_offset 30, -8
 	            mov	x29, sp
 
-				mov			w22, w0                 // 
-				mrs			x10, mpidr_el1          // 
-				and			x10, x10, #0xF00        // 
-				mov			x20, #0                 // 
-				mov			w21, #8                 // 
+				tbz         x10, #0x28, .no_irm		// Check if IRM bit is set (bit 40)
+				and         x10, x10, #0xfffffeffffffffff // Remove IRM bit (bit 40)
+				orr			x10, x10, #1            // Add bit for target list = 1
+
+				mov			x22, x10                // Move current SGI value into X22
+				mrs			x9,  mpidr_el1          // Current CPU MPIDR
+				and			x9, x9, #0xF00          // AND with 0xF00 to only have Affinity 1
+
+				mov			x20, #0                 // Current CPU Index
+				mov			w21, #8                 // Max CPU Index
 .loop:
-				cmp			x20, x10,lsr#8          // 
-				b.eq		.skip                   // 
-				and			x8, x20, #0xff          // 
-				bfi			x8, x22, #8, #4         // 
-				lsl			x8, x8, #0x10           // 
-				orr			x0, x8, #1              // 
-				msr			icc_sgi1r_el1, x0       // 
-				dsb			sy                      // 
+				cmp			x20, x9,lsr#8           // Compare current CPU index with (Affinity 1) >> 8
+				b.eq		.skip                   // If equal, move on to the next one
+				lsl			x8, x20, #0x10          // Shift current CPU index by 16
+				orr         x10, x22, x8            // Add affinity to the SGI register value
+				msr			icc_sgi1r_el1, x10      // Write SGI1R register
+				dsb			sy                      // Synchronization barrier
 .skip:
 				add			x20, x20, #1            // 
 				sub			w21, w21, #1            // 
 				cbnz		w21, .loop              // 
 
+				b			.exit       			//
+
+.no_irm:
+				msr			icc_sgi1r_el1, x10      //
+
+.exit:
 	            ldp	x29, x30, [sp], 16
                 .cfi_restore 30
                 .cfi_restore 29
