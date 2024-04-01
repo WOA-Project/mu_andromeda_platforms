@@ -10,4 +10,4 @@ PoC.bin: PoC.elf
 	$(OBJCOPY) -O binary $< $@
 
 PoC.elf: PoC.S
-	$(CC) -c $< -o $@ -DUEFI_BASE=$(UEFI_BASE) -DUEFI_SIZE=$(UEFI_SIZE)
+	$(CC) -c $< -o $@
