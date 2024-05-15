@@ -29,8 +29,7 @@
 //
 // Global variables.
 //
-VOID                 *mFileSystemRegistration = NULL;
-STATIC EFI_IMAGE_LOAD EfiImageLoad            = NULL;
+VOID *mFileSystemRegistration = NULL;
 
 /**
   Helper function to query whether the secure boot variable is in place.

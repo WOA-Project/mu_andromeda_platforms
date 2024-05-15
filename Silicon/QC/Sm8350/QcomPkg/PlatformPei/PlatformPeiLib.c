@@ -143,10 +143,12 @@ VOID InstallPlatformHob()
     ARM_MEMORY_REGION_DESCRIPTOR_EX InfoBlk;
     LocateMemoryMapAreaByName("Info Blk", &InfoBlk);
 
+    UINTN XBL_UEFI_FD = 0x9FC00000;
+
     UINTN InfoBlkAddress      = InfoBlk.Address;
-    UINTN SchedIntfAddress    = 0x9FC37980;
+    UINTN SchedIntfAddress    = XBL_UEFI_FD + 0x37980;
     UINTN ShLibAddress        = (UINTN)&ShLib;
-    UINTN FvDecompressAddress = 0x9FC403D0;
+    UINTN FvDecompressAddress = XBL_UEFI_FD + 0x403D0;
 
     BuildMemHobForFv(EFI_HOB_TYPE_FV2);
     BuildGuidDataHob(
