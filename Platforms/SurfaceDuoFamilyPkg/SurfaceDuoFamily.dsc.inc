@@ -361,6 +361,10 @@
   FmpAuthenticationLib|SecurityPkg/Library/FmpAuthenticationLibPkcs7/FmpAuthenticationLibPkcs7.inf
 
   MemoryMapHelperLib|SurfaceDuoFamilyPkg/Library/MemoryMapHelperSecLib/MemoryMapHelperSecLib.inf
+  ConfigurationMapHelperLib|SurfaceDuoFamilyPkg/Library/ConfigurationMapHelperSecLib/ConfigurationMapHelperSecLib.inf
+
+  ShLib|SurfaceDuoFamilyPkg/Library/ShLib/ShLib.inf
+  UefiCfgLib|SurfaceDuoFamilyPkg/Library/UefiCfgLib/UefiCfgLib.inf
 
   MsSecureBootModeSettingLib|OemPkg/Library/MsSecureBootModeSettingLib/MsSecureBootModeSettingLib.inf
   UpdateFacsHardwareSignatureLib|OemPkg/Library/UpdateFacsHardwareSignatureLib/UpdateFacsHardwareSignatureLib.inf
