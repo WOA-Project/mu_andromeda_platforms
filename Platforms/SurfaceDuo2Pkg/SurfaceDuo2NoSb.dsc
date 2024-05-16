@@ -41,14 +41,14 @@
   DB_DEFAULT_FILE4               = SurfaceDuoFamilyPkg/Include/Resources/SecureBoot/keystore/Db/microsoft_uefi_ca_2023.der
   DBX_DEFAULT_FILE1              = SurfaceDuoFamilyPkg/Include/Resources/SecureBoot/Artifacts/Aarch64/DefaultDbx.bin
 
+  PEI_CRYPTO_SERVICES            = NONE
   DXE_CRYPTO_SERVICES            = STANDARD
   RUNTIMEDXE_CRYPTO_SERVICES     = STANDARD
-  PEI_CRYPTO_SERVICES            = NONE
   SMM_CRYPTO_SERVICES            = NONE
   STANDALONEMM_CRYPTO_SERVICES   = NONE
+  PEI_CRYPTO_ARCH                = NONE
   DXE_CRYPTO_ARCH                = AARCH64
   RUNTIMEDXE_CRYPTO_ARCH         = AARCH64
-  PEI_CRYPTO_ARCH                = NONE
   SMM_CRYPTO_ARCH                = NONE
   STANDALONEMM_CRYPTO_ARCH       = NONE
 
