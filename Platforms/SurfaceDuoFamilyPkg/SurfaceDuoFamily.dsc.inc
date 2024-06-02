@@ -29,8 +29,8 @@
 
 [PcdsFixedAtBuild.common]
   gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVendor|L"DuoWoA authors"
-  gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVersionString|L"2405.64"
-  gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareRevision|0x01240564
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVersionString|L"2406.06"
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareRevision|0x01240606
   gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultOemId|"QCOM  "
   gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultOemTableId|0x324B44454D4F4351
   gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultCreatorId|0x4D4F4351
@@ -116,8 +116,8 @@
   # 4042708A-0F2D-4823-AC60-0D77B3111889
   gEfiMdeModulePkgTokenSpaceGuid.PcdBootManagerMenuFile|{ 0x8A, 0x70, 0x42, 0x40, 0x2D, 0x0F, 0x23, 0x48, 0xAC, 0x60, 0x0D, 0x77, 0xB3, 0x11, 0x18, 0x89 }
 
-  gOemPkgTokenSpaceGuid.PcdUefiVersionNumber|0x1240564 # 1.24.05.64
-  gOemPkgTokenSpaceGuid.PcdUefiBuildDate|0x20240520 # 2024-05-20
+  gOemPkgTokenSpaceGuid.PcdUefiVersionNumber|0x1240606 # 1.24.06.06
+  gOemPkgTokenSpaceGuid.PcdUefiBuildDate|0x20240602 # 2024-06-02
 
   gEfiMdeModulePkgTokenSpaceGuid.PcdMaxVariableSize|0x2000
 
