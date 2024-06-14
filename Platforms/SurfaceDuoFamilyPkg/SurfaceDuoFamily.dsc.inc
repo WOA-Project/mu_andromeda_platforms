@@ -647,9 +647,6 @@
 
   SurfaceDuoFamilyPkg/UFP/ufpdevicefw.inf
 
-  UefiTestingPkg/FunctionalSystemTests/MpManagement/App/MpManagementTestApp.inf
-  UefiTestingPkg/FunctionalSystemTests/MpManagement/Driver/MpManagement.inf
-
 ###################################################################################################
 #
 # BuildOptions Section - Define the module specific tool chain flags that should be used as
