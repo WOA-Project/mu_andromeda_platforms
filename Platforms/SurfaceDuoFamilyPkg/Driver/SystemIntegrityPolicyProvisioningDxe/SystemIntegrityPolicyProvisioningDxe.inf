@@ -20,12 +20,9 @@
 
 [LibraryClasses]
   BaseLib
-  BaseMemoryLib
   DebugLib
   DxeServicesLib
-  MemoryAllocationLib
   PcdLib
-  ReportStatusCodeLib
   UefiBootServicesTableLib
   UefiDriverEntryPoint
   UefiLib

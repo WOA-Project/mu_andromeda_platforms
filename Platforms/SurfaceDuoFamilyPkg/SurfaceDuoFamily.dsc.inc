@@ -464,7 +464,6 @@
   AdvLoggerPkg/AdvancedFileLogger/AdvancedFileLogger.inf
 
   ArmPkg/Drivers/ArmGic/ArmGicDxe.inf
-  ArmPkg/Drivers/ArmPsciMpServicesDxe/ArmPsciMpServicesDxe.inf
 
   # Processor Core Services
   ArmPkg/Drivers/CpuDxe/CpuDxe.inf # {
