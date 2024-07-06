@@ -58,7 +58,6 @@ APRIORI DXE {
     }
 
     INF QcomPkg/PatchedBinaries/MsAbstractLayer.inf
-    !include $(SHARED_CRYPTO_PATH)/Driver/Bin/CryptoDriver.RUNTIMEDXE.inc.fdf
     INF MdeModulePkg/Universal/Variable/RuntimeDxe/VariableRuntimeDxe.inf
     INF QcomPkg/PatchedBinaries/QcomWDogDxe.inf
     INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/DDRInfoDxe/DDRInfoDxe.inf
