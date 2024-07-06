@@ -9,9 +9,6 @@
 #
 ##
 
-[Components]
-  !include $(SHARED_CRYPTO_PATH)/Driver/Bin/CryptoDriver.inc.dsc
-
 [PcdsFeatureFlag.common]
   gArmTokenSpaceGuid.PcdCpuDxeProduceDebugSupport|FALSE
 
@@ -575,7 +572,18 @@
   MdeModulePkg/Universal/StatusCodeHandler/RuntimeDxe/StatusCodeHandlerRuntimeDxe.inf
 
   # Fake Variable Services
-  MdeModulePkg/Universal/Variable/RuntimeDxe/VariableRuntimeDxe.inf
+  MdeModulePkg/Universal/Variable/RuntimeDxe/VariableRuntimeDxe.inf {
+    <LibraryClasses>
+!if $(SECURE_BOOT_ENABLE) == TRUE
+      AuthVariableLib|SurfaceDuoFamilyPkg/Library/AuthVariableLib/AuthVariableLib.inf
+      BaseCryptLib|OpensslPkg/Library/BaseCryptLib/RuntimeCryptLib.inf
+      TlsLib|OpensslPkg/Library/TlsLib/TlsLib.inf
+      IntrinsicLib|OpensslPkg/Library/IntrinsicLib/IntrinsicLib.inf
+      OpensslLib|OpensslPkg/Library/OpensslLib/OpensslLibFull.inf # Contains openSSL library used by BaseCryptoLib
+!else
+      AuthVariableLib|MdeModulePkg/Library/AuthVariableLibNull/AuthVariableLibNull.inf
+!endif
+  }
 
   MdeModulePkg/Universal/WatchdogTimerDxe/WatchdogTimer.inf
 

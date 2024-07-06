@@ -271,3 +271,5 @@
   MsCorePkg/AcpiRGRT/AcpiRgrt.inf
 
   DfciPkg/Application/DfciMenu/DfciMenu.inf
+  
+  !include $(SHARED_CRYPTO_PATH)/Driver/Bin/CryptoDriver.inc.dsc
