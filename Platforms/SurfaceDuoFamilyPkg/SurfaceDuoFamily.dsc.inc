@@ -242,7 +242,7 @@
   #
   # OpensslPkg libraries needed by multiple firmware features
   #
-  RngLib|MdeModulePkg/Library/BaseRngLibTimerLib/BaseRngLibTimerLib.inf
+  RngLib|MdePkg/Library/DxeRngLib/DxeRngLib.inf
   Hash2CryptoLib|SecurityPkg/Library/BaseHash2CryptoLibNull/BaseHash2CryptoLibNull.inf
 
   #

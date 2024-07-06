@@ -58,6 +58,12 @@ APRIORI DXE {
     }
 
     INF QcomPkg/PatchedBinaries/MsAbstractLayer.inf
+
+    FILE DRIVER = b0d3689e-11f8-43c6-8ece-023a29cec35b {
+            SECTION PE32 = Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/RNGDxe/RngDxe.efi
+            SECTION UI = "RngDxe"
+    }
+
     INF MdeModulePkg/Universal/Variable/RuntimeDxe/VariableRuntimeDxe.inf
     INF QcomPkg/PatchedBinaries/QcomWDogDxe.inf
     INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/DDRInfoDxe/DDRInfoDxe.inf
@@ -117,11 +123,6 @@ APRIORI DXE {
     FILE DRIVER = 5f0937cd-73f9-445e-b320-bb6fd5d3cbde {
             SECTION PE32 = Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/UCDxe/UCDxe.efi
             SECTION UI = "UCDxe"
-    }
-
-    FILE DRIVER = b0d3689e-11f8-43c6-8ece-023a29cec35b {
-            SECTION PE32 = Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/RNGDxe/RngDxe.efi
-            SECTION UI = "RngDxe"
     }
 
     INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/SimpleTextInOutSerialDxe/SimpleTextInOutSerial.inf
