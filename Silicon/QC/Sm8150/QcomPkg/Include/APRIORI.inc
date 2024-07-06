@@ -139,10 +139,4 @@ APRIORI DXE {
     INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/Sm8150FamilyPkg/Drivers/MsManufacturingModeDxe/MsManufacturingMode.inf
 
     INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/SimpleTextInOutSerialDxe/SimpleTextInOutSerial.inf
-
-    INF MdeModulePkg/Universal/Console/ConPlatformDxe/ConPlatformDxe.inf
-    INF MdeModulePkg/Universal/Console/ConSplitterDxe/ConSplitterDxe.inf
-
-    INF MdeModulePkg/Universal/Console/GraphicsConsoleDxe/GraphicsConsoleDxe.inf
-    INF MdeModulePkg/Universal/CapsuleRuntimeDxe/CapsuleRuntimeDxe.inf
 }

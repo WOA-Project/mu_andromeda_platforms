@@ -126,10 +126,4 @@ APRIORI DXE {
     }
 
     INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/SimpleTextInOutSerialDxe/SimpleTextInOutSerial.inf
-
-    INF MdeModulePkg/Universal/Console/ConPlatformDxe/ConPlatformDxe.inf
-    INF MdeModulePkg/Universal/Console/ConSplitterDxe/ConSplitterDxe.inf
-
-    INF MdeModulePkg/Universal/Console/GraphicsConsoleDxe/GraphicsConsoleDxe.inf
-    INF MdeModulePkg/Universal/CapsuleRuntimeDxe/CapsuleRuntimeDxe.inf
 }
