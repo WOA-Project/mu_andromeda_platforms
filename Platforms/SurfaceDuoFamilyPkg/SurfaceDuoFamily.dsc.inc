@@ -301,7 +301,7 @@
   MemoryTypeInformationChangeLib|MsCorePkg/Library/MemoryTypeInformationChangeLib/MemoryTypeInformationChangeLib.inf
   DxeMemoryProtectionHobLib|MdeModulePkg/Library/MemoryProtectionHobLib/DxeMemoryProtectionHobLib.inf
   VariableFlashInfoLib|MdeModulePkg/Library/BaseVariableFlashInfoLib/BaseVariableFlashInfoLib.inf
-  MemoryTypeInfoSecVarCheckLib|MdeModulePkg/Library/MemoryTypeInfoSecVarCheckLib/MemoryTypeInfoSecVarCheckLib.inf
+  MemoryTypeInfoSecVarCheckLib|SurfaceDuoFamilyPkg/Library/MemoryTypeInfoSecVarCheckLib/MemoryTypeInfoSecVarCheckLib.inf
   SecurityLockAuditLib|MdeModulePkg/Library/SecurityLockAuditDebugMessageLib/SecurityLockAuditDebugMessageLib.inf
   ResetUtilityLib|MdeModulePkg/Library/ResetUtilityLib/ResetUtilityLib.inf
   HwResetSystemLib|ArmPkg/Library/ArmSmcPsciResetSystemLib/ArmSmcPsciResetSystemLib.inf
@@ -363,8 +363,8 @@
 
   FmpAuthenticationLib|SecurityPkg/Library/FmpAuthenticationLibPkcs7/FmpAuthenticationLibPkcs7.inf
 
-  MemoryMapHelperLib|SurfaceDuoFamilyPkg/Library/MemoryMapHelperLib/MemoryMapHelperLib.inf
-  ConfigurationMapHelperLib|SurfaceDuoFamilyPkg/Library/ConfigurationMapHelperLib/ConfigurationMapHelperLib.inf
+  MemoryMapHelperLib|SurfaceDuoFamilyPkg/Library/MemoryMapHelperSecLib/MemoryMapHelperSecLib.inf
+  ConfigurationMapHelperLib|SurfaceDuoFamilyPkg/Library/ConfigurationMapHelperSecLib/ConfigurationMapHelperSecLib.inf
 
   ShLib|SurfaceDuoFamilyPkg/Library/ShLib/ShLib.inf
   UefiCfgLib|SurfaceDuoFamilyPkg/Library/UefiCfgLib/UefiCfgLib.inf

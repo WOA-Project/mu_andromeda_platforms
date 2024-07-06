@@ -42,7 +42,11 @@ SerialPortInitialize(VOID)
   if (m_Initialized)
     return RETURN_SUCCESS;
 
-  LocateMemoryMapAreaByName("Display Reserved", &DisplayMemoryRegion);
+  EFI_STATUS Status = LocateMemoryMapAreaByName("Display Reserved", &DisplayMemoryRegion);
+  if (EFI_ERROR(Status)) {
+    return Status;
+  }
+  
   p_Position = (FBCON_POSITION*)(DisplayMemoryRegion.Address + (FixedPcdGet32(PcdMipiFrameBufferWidth) * FixedPcdGet32(PcdMipiFrameBufferHeight) * FixedPcdGet32(PcdMipiFrameBufferPixelBpp) / 8));
 
   // Reset console
