@@ -30,6 +30,7 @@
   PcBdsPkg/PcBdsPkg.dec
   QcomPkg/QcomPkg.dec
   SurfaceDuoFamilyPkg/SurfaceDuoFamilyPkg.dec
+  QcomModulePkg/QcomModulePkg.dec
 
 [LibraryClasses]
   MemoryAllocationLib

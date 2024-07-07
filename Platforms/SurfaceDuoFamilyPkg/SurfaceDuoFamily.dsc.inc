@@ -32,8 +32,8 @@
 
 [PcdsFixedAtBuild.common]
   gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVendor|L"DuoWoA authors"
-  gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVersionString|L"2406.06"
-  gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareRevision|0x01240606
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVersionString|L"2407.22"
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareRevision|0x01240722
   gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultOemId|"QCOM  "
   gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultOemTableId|0x324B44454D4F4351
   gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultCreatorId|0x4D4F4351
@@ -111,8 +111,8 @@
   # 4042708A-0F2D-4823-AC60-0D77B3111889
   gEfiMdeModulePkgTokenSpaceGuid.PcdBootManagerMenuFile|{ 0x8A, 0x70, 0x42, 0x40, 0x2D, 0x0F, 0x23, 0x48, 0xAC, 0x60, 0x0D, 0x77, 0xB3, 0x11, 0x18, 0x89 }
 
-  gOemPkgTokenSpaceGuid.PcdUefiVersionNumber|0x1240606 # 1.24.06.06
-  gOemPkgTokenSpaceGuid.PcdUefiBuildDate|0x20240602 # 2024-06-02
+  gOemPkgTokenSpaceGuid.PcdUefiVersionNumber|0x1240722 # 1.24.07.22
+  gOemPkgTokenSpaceGuid.PcdUefiBuildDate|0x20240707 # 2024-07-07
 
   gEfiMdeModulePkgTokenSpaceGuid.PcdMaxVariableSize|0x2000
 
@@ -616,6 +616,31 @@
 
   SurfaceDuoFamilyPkg/UFP/ufpdevicefw.inf
 
+	QcomModulePkg/Application/LinuxLoader/LinuxLoader.inf {
+		<LibraryClasses>
+			DxeServicesTableLib|MdePkg/Library/DxeServicesTableLib/DxeServicesTableLib.inf
+			UefiLib|MdePkg/Library/UefiLib/UefiLib.inf
+			UefiApplicationEntryPoint|MdePkg/Library/UefiApplicationEntryPoint/UefiApplicationEntryPoint.inf
+			CacheMaintenanceLib|ArmPkg/Library/ArmCacheMaintenanceLib/ArmCacheMaintenanceLib.inf
+			Zlib|QcomModulePkg/Library/zlib/zlib.inf
+			ArmLib|ArmPkg/Library/ArmLib/ArmBaseLib.inf
+			BaseLib|MdePkg/Library/BaseLib/BaseLib.inf
+			DebugLib|MdePkg/Library/UefiDebugLibConOut/UefiDebugLibConOut.inf
+			DevicePathLib|MdePkg/Library/UefiDevicePathLib/UefiDevicePathLib.inf
+			HobLib|MdePkg/Library/DxeHobLib/DxeHobLib.inf
+			PerformanceLib|MdeModulePkg/Library/DxePerformanceLib/DxePerformanceLib.inf
+			DebugPrintErrorLevelLib|MdePkg/Library/BaseDebugPrintErrorLevelLib/BaseDebugPrintErrorLevelLib.inf
+
+			FdtLib|EmbeddedPkg/Library/FdtLib/FdtLib.inf
+			LibUfdt|QcomModulePkg/Library/LibUfdt/LibUfdt.inf
+			ArmSmcLib|ArmPkg/Library/ArmSmcLib/ArmSmcLib.inf
+			BootLib|QcomModulePkg/Library/BootLib/BootLib.inf
+			StackCanary|QcomModulePkg/Library/StackCanary/StackCanary.inf
+			FastbootLib|QcomModulePkg/Library/FastbootLib/FastbootLib.inf
+			AvbLib|QcomModulePkg/Library/avb/AvbLib.inf
+			UbsanLib|QcomModulePkg/Library/UbsanLib/UbsanLib.inf
+	}
+
 ###################################################################################################
 #
 # BuildOptions Section - Define the module specific tool chain flags that should be used as
@@ -628,6 +653,7 @@
 [BuildOptions]
   *_CLANGPDB_AARCH64_CC_FLAGS = -Wno-unused-const-variable -Wno-sometimes-uninitialized -Wno-unaligned-access -D CLANG
   *_*_*_CC_FLAGS = -march=armv8.2-a+crypto+rcpc -DSECURE_BOOT=$(SECURE_BOOT) -DUSE_MEMORY_FOR_SERIAL_OUTPUT=$(USE_MEMORY_FOR_SERIAL_OUTPUT) -DUSE_SCREEN_FOR_SERIAL_OUTPUT=$(USE_SCREEN_FOR_SERIAL_OUTPUT) -DPLATFORM_HAS_ACTLR_EL1_UNIMPLEMENTED_ERRATA=$(PLATFORM_HAS_ACTLR_EL1_UNIMPLEMENTED_ERRATA) -DPLATFORM_HAS_AMCNTENSET0_EL0_UNIMPLEMENTED_ERRATA=$(PLATFORM_HAS_AMCNTENSET0_EL0_UNIMPLEMENTED_ERRATA) -DPLATFORM_HAS_GIC_V3_WITHOUT_IRM_FLAG_SUPPORT_ERRATA=$(PLATFORM_HAS_GIC_V3_WITHOUT_IRM_FLAG_SUPPORT_ERRATA) -DPLATFORM_HAS_PSCI_MEMPROTECT_FAILING_ERRATA=$(PLATFORM_HAS_PSCI_MEMPROTECT_FAILING_ERRATA) -D __DEPRECATED_AARCH64_4K_RUNTIME_GRANULARITY
+  *_*_*_CC_FLAGS = -DZ_SOLO -DPRODUCT_NAME=\"Andromeda\" -DINIT_BIN=\"/init\" -DENABLE_UPDATE_PARTITIONS_CMDS -DENABLE_BOOT_CMD -DENABLE_DEVICE_CRITICAL_LOCK_UNLOCK_CMDS -DUSERDATA_FS_TYPE=\"ext4\"
 
 [BuildOptions.common.EDKII.SEC,BuildOptions.common.EDKII.MM_CORE_STANDALONE]
   GCC:*_GCC*_*_DLINK_FLAGS = -z common-page-size=0x1000

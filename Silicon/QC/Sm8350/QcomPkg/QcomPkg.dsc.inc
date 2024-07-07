@@ -50,7 +50,6 @@
 
 [Components.common]
   Arcata/BOOT.MXF.1.1.c1-00127-MAKENA-2/ArcataPkg/GpioButtonsDxe/GpioButtons.inf
-  MdeModulePkg/Universal/Disk/PartitionDxe/PartitionDxe.inf
   QcomPkg/PatchedBinaries/ClockDxe.inf
   QcomPkg/PatchedBinaries/MinidumpTADxe.inf
   QcomPkg/PatchedBinaries/MsAbstractLayer.inf
@@ -109,6 +108,7 @@
   Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/UsbMsdDxe/UsbMsdDxe.inf
   Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/UsbPwrCtrlDxe/UsbPwrCtrlDxe.inf
   Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/VcsDxe/VcsDxe.inf
+  Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/VerifiedBootDxe/VerifiedBootDxe.inf
   Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/XhciPciEmulationDxe/XhciPciEmulationDxe.inf
   Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/Sm8350FamilyPkg/Drivers/ExtFgDxe/ExtFgDxe.inf
   Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/Sm8350FamilyPkg/Drivers/MsDebugDxe/MsDebugDxe.inf

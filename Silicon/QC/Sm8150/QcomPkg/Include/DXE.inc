@@ -43,6 +43,7 @@
     INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/UsbfnDwc3Dxe/UsbfnDwc3Dxe.inf
     INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/UsbMsdDxe/UsbMsdDxe.inf
     INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/UsbPwrCtrlDxe/UsbPwrCtrlDxe.inf
+    INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/QcomPkg/Drivers/VerifiedBootDxe/VerifiedBootDxe.inf
     INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/Sm8150FamilyPkg/Drivers/ExtFgDxe/ExtFgDxe.inf
     INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/Sm8150FamilyPkg/Drivers/MsEnvDxe/MsEnvDxe.inf
     INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/Sm8150FamilyPkg/Drivers/MsManufacturingModeDxe/MsManufacturingMode.inf
