@@ -29,6 +29,37 @@
 //
 VOID *mFileSystemRegistration = NULL;
 
+/**
+  Helper function to query whether the secure boot variable is in place.
+  For Project Mu Code if the PK is set then Secure Boot is enforced (there is no
+  SetupMode)
+
+  @retval     TRUE if secure boot is enabled, FALSE otherwise.
+**/
+BOOLEAN
+IsSecureBootOn()
+{
+#if SECURE_BOOT == 1
+  return TRUE;
+#else
+  EFI_STATUS Status;
+  UINTN      PkSize = 0;
+
+  Status = gRT->GetVariable(
+      EFI_PLATFORM_KEY_NAME, &gEfiGlobalVariableGuid, NULL, &PkSize, NULL);
+  if ((Status == EFI_BUFFER_TOO_SMALL) && (PkSize > 0)) {
+    DEBUG(
+        (DEBUG_INFO, "%a - PK exists.  Secure boot on.  Pk Size is 0x%X\n",
+         __FUNCTION__, PkSize));
+    return TRUE;
+  }
+
+  DEBUG(
+      (DEBUG_INFO, "%a - PK doesn't exist.  Secure boot off\n", __FUNCTION__));
+  return FALSE;
+#endif
+}
+
 EFI_STATUS
 EFIAPI
 TryWritePlatformSiPolicy(EFI_HANDLE SfsHandle)
@@ -110,8 +141,18 @@ TryWritePlatformSiPolicy(EFI_HANDLE SfsHandle)
 
   // File already exists. No need to write it again.
   if (Status != EFI_NOT_FOUND) {
-    Status = SetSecureBootConfig(0);
+    // SecureBoot is off. Delete it.
+    if (!IsSecureBootOn()) {
+      PayloadFileProtocol->Delete(PayloadFileProtocol);
+      Status = EFI_SUCCESS;
+    } else {
+      Status = SetSecureBootConfig(0);
+    }
     goto exit;
+  // File does not exist, if SB is off, do not add the file.
+  } else if (!IsSecureBootOn()) {
+      Status = EFI_SUCCESS;
+      goto exit;
   }
 
   Status = FileProtocol->Open(

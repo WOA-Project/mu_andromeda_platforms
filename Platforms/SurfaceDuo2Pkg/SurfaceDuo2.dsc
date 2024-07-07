@@ -24,7 +24,7 @@
   BUILD_TARGETS                  = DEBUG|RELEASE
   SKUID_IDENTIFIER               = DEFAULT
   FLASH_DEFINITION               = SurfaceDuo2Pkg/SurfaceDuo2.fdf
-  SECURE_BOOT_ENABLE             = TRUE
+  SECURE_BOOT                    = 1
   USE_PHYSICAL_TIMER             = 0
   USE_SCREEN_FOR_SERIAL_OUTPUT   = 0
   USE_MEMORY_FOR_SERIAL_OUTPUT   = 0
