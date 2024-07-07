@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-/* Copyright (c) 2017-2021, The Linux Foundation. All rights reserved.
+/* Copyright (c) 2017-2020, The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -59,7 +59,6 @@
 #include "avb_util.h"
 #include "avb_vbmeta_image.h"
 #include "avb_version.h"
-#include "BootStats.h"
 
 /* Maximum allow length (in bytes) of a partition name, including
  * ab_suffix.
@@ -120,8 +119,6 @@ static AvbSlotVerifyResult load_and_verify_hash_partition(
   size_t digest_len;
   const char* found;
   uint64_t image_size;
-  static bool bootImgLoaded = FALSE;
-  static bool vendorBootImgLoaded = FALSE;
 
   if (!avb_hash_descriptor_validate_and_byteswap(
           (const AvbHashDescriptor*)descriptor, &hash_desc)) {
@@ -190,13 +187,6 @@ static AvbSlotVerifyResult load_and_verify_hash_partition(
     goto out;
   }
 
-  if ((Avb_StrnCmp ("boot", part_name, 4) == 0 &&
-      !bootImgLoaded) ||
-      (Avb_StrnCmp ("vendor_boot", part_name, 11) == 0 &&
-      !vendorBootImgLoaded)) {
-    BootStatsSetTimeStamp (BS_KERNEL_LOAD_START);
-  }
-
   io_ret = ops->read_from_partition(
       ops, part_name, 0 /* offset */, image_size, image_buf, &part_num_read);
   if (io_ret == AVB_IO_RESULT_ERROR_OOM) {
@@ -211,16 +201,6 @@ static AvbSlotVerifyResult load_and_verify_hash_partition(
     avb_errorv(part_name, ": Read fewer than requested bytes.\n", NULL);
     ret = AVB_SLOT_VERIFY_RESULT_ERROR_IO;
     goto out;
-  }
-
-  if (Avb_StrnCmp ("boot", part_name, 4) == 0 &&
-      !bootImgLoaded) {
-    bootImgLoaded = TRUE;
-    BootStatsSetTimeStamp (BS_KERNEL_LOAD_DONE);
-  } else if (Avb_StrnCmp ("vendor_boot", part_name, 11) == 0 &&
-            !vendorBootImgLoaded) {
-    vendorBootImgLoaded = TRUE;
-    BootStatsSetTimeStamp (BS_KERNEL_LOAD_DONE);
   }
 
   if (Avb_StrnCmp ( (CONST CHAR8*)hash_desc.hash_algorithm, "sha256",
@@ -1197,6 +1177,14 @@ static AvbSlotVerifyResult append_options(
   const char* verity_mode;
   bool is_device_unlocked;
   AvbIOResult io_ret;
+
+  /* Add androidboot.vbmeta.device option. */
+  if (!cmdline_append_option(slot_data,
+                             "androidboot.vbmeta.device",
+                             "PARTUUID=$(ANDROID_VBMETA_PARTUUID)")) {
+    ret = AVB_SLOT_VERIFY_RESULT_ERROR_OOM;
+    goto out;
+  }
 
   /* Add androidboot.vbmeta.device option... except if not using a vbmeta
    * partition since it doesn't make sense in that case.

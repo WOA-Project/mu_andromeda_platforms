@@ -3,7 +3,7 @@
  * Copyright (c) 2009, Google Inc.
  * All rights reserved.
  *
- * Copyright (c) 2009-2021, The Linux Foundation. All rights reserved.
+ * Copyright (c) 2009-2020, The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
@@ -57,7 +57,6 @@ STATIC CONST CHAR8 *LogLevel = " quite";
 STATIC CONST CHAR8 *BatteryChgPause = " androidboot.mode=charger";
 STATIC CONST CHAR8 *MdtpActiveFlag = " mdtp";
 STATIC CONST CHAR8 *AlarmBootCmdLine = " androidboot.alarmboot=true";
-STATIC CHAR8 SystemdSlotEnv[] = " systemd.setenv=\"SLOT_SUFFIX=_a\"";
 
 /*Send slot suffix in cmdline with which we have booted*/
 STATIC CHAR8 *AndroidSlotSuffix = " androidboot.slot_suffix=";
@@ -66,7 +65,7 @@ STATIC CHAR8 *InitCmdline = INIT_BIN;
 STATIC CHAR8 *SkipRamFs = " skip_initramfs";
 
 /* Display command line related structures */
-#define MAX_DISPLAY_CMD_LINE (256 + MAX_DISPLAY_CMDLINE_LEN)
+#define MAX_DISPLAY_CMD_LINE 256
 STATIC CHAR8 DisplayCmdLine[MAX_DISPLAY_CMD_LINE];
 STATIC UINTN DisplayCmdLineLen = sizeof (DisplayCmdLine);
 
@@ -80,8 +79,6 @@ STATIC CONST CHAR8 *AndroidBootFstabSuffix =
                                       " androidboot.fstab_suffix=";
 STATIC CHAR8 *FstabSuffixEmmc = "emmc";
 STATIC CHAR8 *FstabSuffixDefault = "default";
-#define MAX_SOFTSKU_IDX_STR 23
-STATIC CHAR8 *SoftSkuIdxStr = " socinfo.softsku_idx=";
 
 EFI_STATUS
 TargetPauseForBatteryCharge (BOOLEAN *BatteryStatus)
@@ -279,8 +276,6 @@ TargetBatterySocOk (UINT32 *BatteryVoltage)
 STATIC VOID GetDisplayCmdline (VOID)
 {
   EFI_STATUS Status;
-  CHAR8 *Src = NULL;
-  UINT32 SrcLen = 0;
 
   Status = gRT->GetVariable ((CHAR16 *)L"DisplayPanelConfiguration",
                              &gQcomTokenSpaceGuid, NULL, &DisplayCmdLineLen,
@@ -288,12 +283,6 @@ STATIC VOID GetDisplayCmdline (VOID)
   if (Status != EFI_SUCCESS) {
     DEBUG ((EFI_D_ERROR, "Unable to get Panel Config, %r\n", Status));
   }
-
-  Status = ReadDisplayCmdLine (&Src, &SrcLen);
-  if (Status == EFI_SUCCESS) {
-    AsciiStrCatS (DisplayCmdLine, MAX_DISPLAY_CMD_LINE, Src);
-  }
-
 }
 
 /*
@@ -325,8 +314,7 @@ GetSystemPath (CHAR8 **SysPath, BootInfo *Info)
   }
 
   /* Append slot info for A/B Variant */
-  if (Info->MultiSlotBoot &&
-      NAND != CheckRootDeviceType ()) {
+  if (Info->MultiSlotBoot) {
      StrnCatS (PartitionName, MAX_GPT_NAME_SIZE, CurSlot.Suffix,
             StrLen (CurSlot.Suffix));
   }
@@ -357,17 +345,10 @@ GetSystemPath (CHAR8 **SysPath, BootInfo *Info)
       // The gluebi device that is to be passed to "root=" will be the first one
       // after all "regular" mtd devices have been populated.
       UINT32 PartitionCount = 0;
-      UINT32 MtdBlkIndex = 0;
       GetPartitionCount (&PartitionCount);
-      if (Info->MultiSlotBoot &&
-         (StrnCmp ((CONST CHAR16 *)L"_b", CurSlot.Suffix,
-          StrLen (CurSlot.Suffix)) == 0))
-         MtdBlkIndex = PartitionCount;
-      else
-         MtdBlkIndex = PartitionCount - 1;
       AsciiSPrint (*SysPath, MAX_PATH_SIZE,
                    " rootfstype=squashfs root=/dev/mtdblock%d ubi.mtd=%d",
-                   MtdBlkIndex, (Index - 1));
+                   (PartitionCount - 1), (Index - 1));
     } else {
       AsciiSPrint (*SysPath, MAX_PATH_SIZE,
           " rootfstype=ubifs rootflags=bulk_read root=ubi0:rootfs ubi.mtd=%d",
@@ -487,20 +468,13 @@ UpdateCmdLineParams (UpdateCmdLineParamList *Param,
   if (Param->MultiSlotBoot &&
      !IsBootDevImage ()) {
      /* Slot suffix */
-    UnicodeStrToAsciiStr (GetCurrentSlotSuffix ().Suffix,
-                          Param->SlotSuffixAscii);
-    if (IsSystemdBootslotEnabled ()) {
-      INT32 StrLen = 0;
-      StrLen = AsciiStrLen (SystemdSlotEnv);
-      SystemdSlotEnv[StrLen - 2] = Param->SlotSuffixAscii[1];
-      Src = Param->SystemdSlotEnv;
-      AsciiStrCatS (Dst, MaxCmdLineLen, Src);
-    } else {
-      Src = Param->AndroidSlotSuffix;
-      AsciiStrCatS (Dst, MaxCmdLineLen, Src);
-      Src = Param->SlotSuffixAscii;
-      AsciiStrCatS (Dst, MaxCmdLineLen, Src);
-    }
+    Src = Param->AndroidSlotSuffix;
+    AsciiStrCatS (Dst, MaxCmdLineLen, Src);
+
+    UnicodeStrToAsciiStrS (GetCurrentSlotSuffix ().Suffix,
+                          Param->SlotSuffixAscii, MAX_GPT_NAME_SIZE);
+    Src = Param->SlotSuffixAscii;
+    AsciiStrCatS (Dst, MaxCmdLineLen, Src);
   }
 
   if ((IsBuildAsSystemRootImage () &&
@@ -551,10 +525,6 @@ UpdateCmdLineParams (UpdateCmdLineParamList *Param,
     Param->LEVerityCmdLine = NULL;
   }
 
-  if (Param->SoftSkuStr != NULL) {
-    Src = Param->SoftSkuStr;
-    AsciiStrCatS (Dst, MaxCmdLineLen, Src);
-  }
   return EFI_SUCCESS;
 }
 
@@ -588,8 +558,6 @@ UpdateCmdLine (CONST CHAR8 *CmdLine,
   CHAR8 *LEVerityCmdLine = NULL;
   UINT32 LEVerityCmdLineLen = 0;
   CHAR8 RootDevStr[BOOT_DEV_NAME_SIZE_MAX];
-  CHAR8 SoftSkuStr[MAX_SOFTSKU_IDX_STR] = "\0";
-  INT32 SkuIdx = 0;
 
   Status = BoardSerialNum (StrSerialNum, sizeof (StrSerialNum));
   if (Status != EFI_SUCCESS) {
@@ -688,12 +656,8 @@ UpdateCmdLine (CONST CHAR8 *CmdLine,
   MultiSlotBoot = PartitionHasMultiSlot ((CONST CHAR16 *)L"boot");
   if (MultiSlotBoot &&
      !IsBootDevImage ()) {
-    if (IsSystemdBootslotEnabled ()) {
-      CmdLineLen += AsciiStrLen (SystemdSlotEnv);
-    } else {
     /* Add additional length for slot suffix */
-      CmdLineLen += AsciiStrLen (AndroidSlotSuffix) + MAX_SLOT_SUFFIX_SZ;
-    }
+    CmdLineLen += AsciiStrLen (AndroidSlotSuffix) + MAX_SLOT_SUFFIX_SZ;
   }
 
   if ((IsBuildAsSystemRootImage () &&
@@ -746,12 +710,6 @@ UpdateCmdLine (CONST CHAR8 *CmdLine,
   CmdLineLen += AsciiStrLen (Param.FstabSuffix);
   Param.AndroidBootFstabSuffix = AndroidBootFstabSuffix;
 
-  SkuIdx = BoardSoftSkuId ();
-  if (SkuIdx) {
-      AsciiSPrint (SoftSkuStr, sizeof (SoftSkuStr),
-                   "%a%d", SoftSkuIdxStr , SkuIdx);
-      CmdLineLen += AsciiStrLen (SoftSkuStr);
-  }
   /* 1 extra byte for NULL */
   CmdLineLen += 1;
 
@@ -785,8 +743,6 @@ UpdateCmdLine (CONST CHAR8 *CmdLine,
   Param.DtbIdxStr = DtbIdxStr;
   Param.LEVerityCmdLine = LEVerityCmdLine;
   Param.HeaderVersion = HeaderVersion;
-  Param.SystemdSlotEnv = SystemdSlotEnv;
-  Param.SoftSkuStr = SoftSkuStr;
 
   Status = UpdateCmdLineParams (&Param, FinalCmdLine);
   if (Status != EFI_SUCCESS) {

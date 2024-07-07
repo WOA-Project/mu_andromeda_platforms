@@ -30,49 +30,12 @@
  *
  */
 
-/*
- * Changes from Qualcomm Innovation Center are provided under the following license:
- *
- * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
- *
- *  Redistribution and use in source and binary forms, with or without
- *  modification, are permitted (subject to the limitations in the
- *  disclaimer below) provided that the following conditions are met:
- *
- *      * Redistributions of source code must retain the above copyright
- *        notice, this list of conditions and the following disclaimer.
- *
- *      * Redistributions in binary form must reproduce the above
- *        copyright notice, this list of conditions and the following
- *        disclaimer in the documentation and/or other materials provided
- *        with the distribution.
- *
- *      * Neither the name of Qualcomm Innovation Center, Inc. nor the names of its
- *        contributors may be used to endorse or promote products derived
- *        from this software without specific prior written permission.
- *
- *  NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE
- *  GRANTED BY THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT
- *  HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
- *   WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
- *  MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
- *  IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
- *  ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
- *  DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
- *  GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
- *  INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
- *  IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
- *  OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
- *  IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- */
-
 #include <Library/DeviceInfo.h>
 #include <Library/DrawUI.h>
 #include <Library/PartitionTableUpdate.h>
 #include <Library/ShutdownServices.h>
 #include <Library/VerifiedBootMenu.h>
 #include <Library/HypervisorMvCalls.h>
-#include <Library/Rtic.h>
 #include <Protocol/EFIMdtp.h>
 #include <Protocol/EFIScmModeSwitch.h>
 #include <libufdt_sysdeps.h>
@@ -305,7 +268,7 @@ CheckMDTPStatus (CHAR16 *PartitionName, BootInfo *Info)
     }
   }
 
-  UnicodeStrToAsciiStr (PartitionName, PartitionNameAscii);
+  UnicodeStrToAsciiStrS (PartitionName, PartitionNameAscii, MAX_GPT_NAME_SIZE);
   PartitionNameLen = AsciiStrLen (PartitionNameAscii);
   if (Info->MultiSlotBoot)
     PartitionNameLen -= (MAX_SLOT_SUFFIX_SZ - 1);
@@ -508,6 +471,7 @@ DTBImgCheckAndAppendDT (BootInfo *Info, BootParamlist *BootParamlistPtr)
         return EFI_BAD_BUFFER_SIZE;
       }
       SingleDtHdr = (BootParamlistPtr->ImageBuffer +
+                     BootParamlistPtr->PageSize +
                      BootParamlistPtr->DtbOffset);
 
       if (!fdt_check_header (SingleDtHdr)) {
@@ -687,6 +651,8 @@ GZipPkgCheck (BootParamlist *BootParamlistPtr)
       BootParamlistPtr->PatchedKernelHdrSize = PATCHED_KERNEL_HEADER_SIZE;
       Kptr = (struct kernel64_hdr *)((VOID *)Kptr +
                  BootParamlistPtr->PatchedKernelHdrSize);
+      gBS->CopyMem ((VOID *)BootParamlistPtr->KernelLoadAddr, (VOID *)Kptr,
+                 BootParamlistPtr->KernelSize);
     }
 
     if (Kptr->magic_64 != KERNEL64_HDR_MAGIC) {
@@ -1024,11 +990,6 @@ BootLinux (BootInfo *Info)
     return Status;
   }
 
-  /* Updating Kernel start Physical address to KP which will be used
-   * by QRKS service later.
-   */
-  GetQrksKernelStartAddress ();
-
   /* Updates the command line from boot image, appends device serial no.,
    * baseband information, etc.
    * Called before ShutdownUefiBootServices as it uses some boot service
@@ -1047,7 +1008,9 @@ BootLinux (BootInfo *Info)
        return Status;
   }
 
+#ifdef VERFIEID_BOOT_LE
   FreeVerifiedBootResource (Info);
+#endif
 
   /* Free the boot logo blt buffer before starting kernel */
   FreeBootLogoBltBuffer ();
@@ -1072,10 +1035,6 @@ BootLinux (BootInfo *Info)
   PreparePlatformHardware ();
 
   BootStatsSetTimeStamp (BS_KERNEL_ENTRY);
-
-  if (IsVmEnabled ()) {
-    DisableHypUartUsageForLogging ();
-  }
 
   //
   // Start the Linux Kernel
@@ -1294,12 +1253,31 @@ CheckImageHeader (VOID *ImageHdrBuffer,
         }
     }
     else {
+        UINT32 DtbActual = 0;
+        struct boot_img_hdr_v2 *Hdr2 = (struct boot_img_hdr_v2 *)
+            (ImageHdrBuffer +
+            BOOT_IMAGE_HEADER_V1_RECOVERY_DTBO_SIZE_OFFSET +
+            BOOT_IMAGE_HEADER_V2_OFFSET);
+        DtbActual = ROUND_TO_PAGE (Hdr2->dtb_size,
+                                        *PageSize - 1);
         if ((Hdr1->header_size !=
                         BOOT_IMAGE_HEADER_V1_RECOVERY_DTBO_SIZE_OFFSET +
                         BOOT_IMAGE_HEADER_V2_OFFSET +
                         sizeof (struct boot_img_hdr_v2))) {
            DEBUG ((EFI_D_ERROR,
               "Invalid boot image header: %d\n", Hdr1->header_size));
+           return EFI_BAD_BUFFER_SIZE;
+        }
+        if (Hdr2->dtb_size && !DtbActual) {
+           DEBUG ((EFI_D_ERROR,
+               "DTB Image not present: DTB Size = %u\n", Hdr2->dtb_size));
+           return EFI_BAD_BUFFER_SIZE;
+        }
+        tempImgSize = *ImageSizeActual;
+        *ImageSizeActual = ADD_OF (*ImageSizeActual, DtbActual);
+        if (!*ImageSizeActual) {
+           DEBUG ((EFI_D_ERROR, "Integer Overflow: ImgSizeActual=%u,"
+              " DtbActual=%u\n", tempImgSize, DtbActual));
            return EFI_BAD_BUFFER_SIZE;
         }
     }
@@ -1575,17 +1553,5 @@ BOOLEAN IsEnableDisplayMenuFlagSupported (VOID)
 BOOLEAN IsEnableDisplayMenuFlagSupported (VOID)
 {
   return TRUE;
-}
-#endif
-
-#ifdef ENABLE_SYSTEMD_BOOTSLOT
-BOOLEAN IsSystemdBootslotEnabled (VOID)
-{
-  return TRUE;
-}
-#else
-BOOLEAN IsSystemdBootslotEnabled (VOID)
-{
-  return FALSE;
 }
 #endif

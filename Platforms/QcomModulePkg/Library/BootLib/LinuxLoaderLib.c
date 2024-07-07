@@ -426,103 +426,6 @@ LoadImageFromPartition (VOID *ImageBuffer, UINT32 *ImageSize, CHAR16 *Pname)
   return Status;
 }
 
-/**
-  Start an EFI image (PE32+ with EFI defined entry point).
-
-  Argv[0] - device name and path
-  Argv[1] - "" string to pass into image being started
-
-  fs1:\Temp\Fv.Fv "arg to pass" ; load an FV from the disk and pass the
-                                ; ascii string arg to pass to the image
-  fv0:\FV                       ; load an FV from an FV (not common)
-  LoadFile0:                    ; load an FV via a PXE boot
-
-  @param  Argc   Number of command arguments in Argv
-  @param  Argv   Array of strings that represent the parsed command line.
-                 Argv[0] is the App to launch
-
-  @return EFI_SUCCESS
-
-**/
-EFI_STATUS
-LaunchApp (IN UINT32 Argc, IN CHAR8 **Argv)
-{
-  EFI_STATUS Status;
-  EFI_OPEN_FILE *File;
-  EFI_DEVICE_PATH_PROTOCOL *DevicePath;
-  EFI_HANDLE ImageHandle;
-  UINTN ExitDataSize;
-  CHAR16 *ExitData;
-  VOID *Buffer;
-  UINTN BufferSize;
-  EFI_LOADED_IMAGE_PROTOCOL *ImageInfo;
-
-  ImageHandle = NULL;
-
-  if (Argc < 1)
-    return EFI_INVALID_PARAMETER;
-
-  File = EfiOpen (Argv[0], EFI_FILE_MODE_READ, 0);
-  if (File == NULL)
-    return EFI_INVALID_PARAMETER;
-
-  DevicePath = File->DevicePath;
-  if (DevicePath != NULL) {
-    // check for device path form: blk, fv, fs, and loadfile
-    Status =
-        gBS->LoadImage (FALSE, gImageHandle, DevicePath, NULL, 0, &ImageHandle);
-  } else {
-    // Check for buffer form: A0x12345678:0x1234 syntax.
-    // Means load using buffer starting at 0x12345678 of size 0x1234.
-
-    Status = EfiReadAllocatePool (File, &Buffer, &BufferSize);
-    if (EFI_ERROR (Status)) {
-      EfiClose (File);
-      return Status;
-    }
-
-    if (Buffer == NULL)
-      return EFI_OUT_OF_RESOURCES;
-
-    Status = gBS->LoadImage (FALSE, gImageHandle, DevicePath, Buffer,
-                             BufferSize, &ImageHandle);
-
-    FreePool (Buffer);
-    Buffer = NULL;
-  }
-
-  EfiClose (File);
-
-  if (!EFI_ERROR (Status)) {
-    if (Argc >= 2) {
-      // Argv[1] onwards are strings that we pass directly to the EFI
-      // application
-      // We don't pass Argv[0] to the EFI Application, just the args
-      Status = gBS->HandleProtocol (ImageHandle, &gEfiLoadedImageProtocolGuid,
-                                    (VOID **)&ImageInfo);
-      if (Status != EFI_SUCCESS) {
-        DEBUG ((EFI_D_ERROR, "Image Handle Failed %r\n", Status));
-        return Status;
-      }
-
-      if (ImageInfo == NULL)
-        return EFI_NOT_FOUND;
-
-      /* Need WideChar string as CmdLineArgs */
-      ImageInfo->LoadOptionsSize = 2 * (UINT32)AsciiStrSize (Argv[1]);
-      ImageInfo->LoadOptions = AllocateZeroPool (ImageInfo->LoadOptionsSize);
-      if (ImageInfo->LoadOptions == NULL)
-        return EFI_OUT_OF_RESOURCES;
-      AsciiStrToUnicodeStr (Argv[1], ImageInfo->LoadOptions);
-    }
-
-    // Transfer control to the EFI image we loaded with LoadImage()
-    Status = gBS->StartImage (ImageHandle, &ExitDataSize, &ExitData);
-  }
-
-  return Status;
-}
-
 UINT64 GetTimerCountms (VOID)
 {
   UINT64 TempFreq, StartVal, EndVal;
@@ -826,10 +729,7 @@ ErasePartition (EFI_BLOCK_IO_PROTOCOL *BlockIo, EFI_HANDLE *Handle)
   UINTN PartitionSize;
   UINTN TokenIndex;
 
-  PartitionSize = GetPartitionSize (BlockIo);
-  if (!PartitionSize) {
-    return EFI_BAD_BUFFER_SIZE;
-  }
+  PartitionSize = (BlockIo->Media->LastBlock + 1) * BlockIo->Media->BlockSize;
 
   Status = gBS->HandleProtocol (Handle, &gEfiEraseBlockProtocolGuid,
                                 (VOID **)&EraseProt);

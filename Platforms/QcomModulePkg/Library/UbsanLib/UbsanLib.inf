@@ -24,13 +24,12 @@
   UbsanLib.c
 
 [BuildOptions]
-  GCC:*_*_*_CC_FLAGS = $(LLVM_ENABLE_SAFESTACK) $(LLVM_SAFESTACK_USE_PTR) $(LLVM_SAFESTACK_COLORING)
+  *_*_*_CC_FLAGS = $(LLVM_ENABLE_SAFESTACK) $(LLVM_SAFESTACK_USE_PTR) $(LLVM_SAFESTACK_COLORING)
 
 [Packages]
   QcomModulePkg/QcomModulePkg.dec
   ArmPkg/ArmPkg.dec
   MdePkg/MdePkg.dec
-  StdLib/StdLib.dec
   EmbeddedPkg/EmbeddedPkg.dec
   ArmPlatformPkg/ArmPlatformPkg.dec
   MdeModulePkg/MdeModulePkg.dec

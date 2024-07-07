@@ -90,6 +90,4 @@ VirtualAbMergeStatus
 GetSnapshotMergeStatus (VOID);
 EFI_STATUS
 SetSnapshotMergeStatus (VirtualAbMergeStatus MergeStatus);
-EFI_STATUS
-ReadFromPartition (EFI_GUID *Ptype, VOID **Msg, UINT32 Size);
 #endif

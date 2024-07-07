@@ -1,4 +1,4 @@
-/* Copyright (c) 2015-2018, 2020-2021, The Linux Foundation. All rights reserved.
+/* Copyright (c) 2015-2018, 2020, The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -24,12 +24,7 @@
  * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
  * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
  * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- *
- * Changes from Qualcomm Innovation Center are provided under the following
- * license:
- * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
 */
-/* SPDX-License-Identifier: BSD-3-Clause-Clear */
 
 #ifndef __BOARD_H__
 #define __BOARD_H__
@@ -43,7 +38,6 @@
 #include <Protocol/EFIPlatformInfo.h>
 #include <Protocol/EFIPmicVersion.h>
 #include <Protocol/EFIRamPartition.h>
-#include <Protocol/EFISoftSkuInfo.h>
 
 #define HANDLE_MAX_INFO_LIST 128
 #define CHIP_BASE_BAND_LEN 4
@@ -51,7 +45,7 @@
 #define CHIP_BASE_BAND_APQ "apq"
 #define CHIP_BASE_BAND_MDM "mdm"
 
-#define BIT(x) (1ULL << x)
+#define BIT(x) (1UL << x)
 
 extern RamPartitionEntry *RamPartitionEntries;
 
@@ -84,7 +78,6 @@ struct BoardInfo {
   EFIChipInfoVersionType ChipVersion;
   EFIChipInfoFoundryIdType FoundryId;
   UINT32 HlosSubType;
-  UINT32 SoftSkuId;
 };
 
 EFI_STATUS
@@ -124,6 +117,4 @@ EFI_STATUS GetGranuleSize (UINT32 *MinPasrGranuleSize);
 VOID GetPageSize (UINT32 *PageSize);
 EFI_STATUS BoardDdrType (UINT32 *Type);
 UINT32 BoardPlatformHlosSubType (VOID);
-VOID BoardSoftSku (EFI_SOFT_SKU_ID *SkuId);
-UINT32 BoardSoftSkuId (VOID);
 #endif

@@ -22,7 +22,6 @@
 #include <Guid/FileInfo.h>
 #include <Guid/GlobalVariable.h>
 #include <Library/ArmLib.h>
-#include <Library/BdsLib.h>
 #include <Library/DxeServicesTableLib.h>
 #include <Library/HobLib.h>
 #include <Library/LinuxLoaderLib.h>
@@ -89,8 +88,9 @@ EFI_STATUS PreparePlatformHardware (VOID)
   ArmDisableAsynchronousAbort ();
 
   // Clean, invalidate, disable data cache
-  WriteBackInvalidateDataCache ();
-  InvalidateInstructionCache ();
+  ArmCleanInvalidateDataCache ();
+  ArmCleanDataCache ();
+  ArmInvalidateInstructionCache ();
 
   ArmDisableDataCache ();
   ArmDisableInstructionCache ();

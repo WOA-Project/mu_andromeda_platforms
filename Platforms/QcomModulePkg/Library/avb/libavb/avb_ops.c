@@ -77,7 +77,7 @@ STATIC AvbIOResult GetHandleInfo(const char *Partition, HandleInfo *HandleInfo)
 		return AVB_IO_RESULT_ERROR_IO;
 	}
 
-	AsciiStrToUnicodeStr(Partition, UnicodePartition);
+	AsciiStrToUnicodeStrS(Partition, UnicodePartition, MAX_GPT_NAME_SIZE);
 
 	HandleFilter.RootDeviceType = NULL;
 	HandleFilter.PartitionLabel = NULL;
@@ -149,11 +149,7 @@ AvbIOResult AvbReadFromPartition(AvbOps *Ops, const char *Partition, int64_t Rea
         }
 
 	BlockIo = InfoList[0].BlkIo;
-    PartitionSize = GetPartitionSize (BlockIo);
-    if (!PartitionSize) {
-      Result = AVB_IO_RESULT_ERROR_RANGE_OUTSIDE_PARTITION;
-      goto out;
-    }
+	PartitionSize = (BlockIo->Media->LastBlock + 1) * BlockIo->Media->BlockSize;
 
 	if (ReadOffset < 0) {
 		if ((-ReadOffset) > PartitionSize) {
@@ -561,7 +557,7 @@ AvbIOResult AvbGetUniqueGuidForPartition(AvbOps *Ops, const char *PartitionName,
 		return AVB_IO_RESULT_ERROR_IO;
 	}
 
-	AsciiStrToUnicodeStr(PartitionName, UnicodePartition);
+	AsciiStrToUnicodeStrS(PartitionName, UnicodePartition, MAX_GPT_NAME_SIZE);
 
 	if (!(StrnCmp(UnicodePartition, PartEntry->PartitionName,
 	              StrLen(UnicodePartition)))) {
@@ -593,10 +589,7 @@ AvbIOResult AvbGetSizeOfPartition(AvbOps *Ops, const char *Partition, uint64_t *
 	}
 
 	BlockIo = HandleInfoList[0].BlkIo;
-    *OutSizeNumBytes = GetPartitionSize (BlockIo);
-    if (*OutSizeNumBytes == 0) {
-      return AVB_IO_RESULT_ERROR_RANGE_OUTSIDE_PARTITION;
-    }
+	*OutSizeNumBytes = (BlockIo->Media->LastBlock + 1) * BlockIo->Media->BlockSize;
 
 	return AVB_IO_RESULT_OK;
 }

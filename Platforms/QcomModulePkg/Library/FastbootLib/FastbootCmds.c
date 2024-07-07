@@ -18,7 +18,7 @@ found at
  * Copyright (c) 2009, Google Inc.
  * All rights reserved.
  *
- * Copyright (c) 2015 - 2021, The Linux Foundation. All rights reserved.
+ * Copyright (c) 2015 - 2020, The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -44,38 +44,6 @@ found at
  * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
  * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
  * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- *
- * Changes from Qualcomm Innovation Center are provided under the following
- * license:
- * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted (subject to the limitations in the
- * disclaimer below) provided that the following conditions are met:
- * * Redistributions of source code must retain the above copyright
- *   notice, this list of conditions and the following disclaimer.
- * * Redistributions in binary form must reproduce the above
- * copyright notice, this list of conditions and the following
- * disclaimer in the documentation and/or other materials provided
- * with the distribution.
- * * Neither the name of Qualcomm Innovation Center, Inc. nor the names of its
- * contributors may be used to endorse or promote products derived
- * from this software without specific prior written permission.
- *
- * NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE
- * GRANTED BY THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT
- * HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
- * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
- * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
- * IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
- * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
- * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
- * GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
- * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
- * IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
- * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
- * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- *
 */
 #include <Library/BaseLib.h>
 #include <Library/BaseMemoryLib.h>
@@ -120,9 +88,8 @@ found at
 
 STATIC struct GetVarPartitionInfo part_info[] = {
     {"system", "partition-size:", "partition-type:", "", "ext4"},
-    {"userdata", "partition-size:", "partition-type:", "", USERDATA_FS_TYPE},
+    {"userdata", "partition-size:", "partition-type:", "", "ext4"},
     {"cache", "partition-size:", "partition-type:", "", "ext4"},
-    {"metadata", "partition-size:", "partition-type:", "", "ext4"},
 };
 
 STATIC struct GetVarPartitionInfo PublishedPartInfo[MAX_NUM_PARTITIONS];
@@ -459,8 +426,8 @@ STATIC VOID FastbootPublishSlotVars (VOID)
   GetPartitionCount (&PartitionCount);
   /*Scan through partition entries, populate the attributes*/
   for (i = 0, j = 0; i < PartitionCount && j < SlotCount; i++) {
-    UnicodeStrToAsciiStr (PtnEntries[i].PartEntry.PartitionName,
-                          PartitionNameAscii);
+    UnicodeStrToAsciiStrS (PtnEntries[i].PartEntry.PartitionName,
+                          PartitionNameAscii, MAX_GPT_NAME_SIZE);
 
     if (!(AsciiStrnCmp (PartitionNameAscii, "boot", AsciiStrLen ("boot")))) {
       Suffix = PartitionNameAscii + AsciiStrLen ("boot_");
@@ -508,7 +475,7 @@ STATIC VOID FastbootPublishSlotVars (VOID)
     }
   }
   FastbootPublishVar ("has-slot:boot", "yes");
-  UnicodeStrToAsciiStr (GetCurrentSlotSuffix ().Suffix, CurrentSlotFB);
+  UnicodeStrToAsciiStrS (GetCurrentSlotSuffix ().Suffix, CurrentSlotFB, MAX_GPT_NAME_SIZE);
 
   /* Here CurrentSlotFB will only have value of "_a" or "_b".*/
   SKIP_FIRSTCHAR_IN_SLOT_SUFFIX (CurrentSlotFB);
@@ -540,8 +507,8 @@ STATIC VOID PopulateMultislotMetadata (VOID)
   if (!InitialPopulate) {
     /*Traverse through partition entries,count matching slots with boot */
     for (i = 0; i < PartitionCount; i++) {
-      UnicodeStrToAsciiStr (PtnEntries[i].PartEntry.PartitionName,
-                            PartitionNameAscii);
+      UnicodeStrToAsciiStrS (PtnEntries[i].PartEntry.PartitionName,
+                            PartitionNameAscii, MAX_GPT_NAME_SIZE);
       if (!(AsciiStrnCmp (PartitionNameAscii, "boot", AsciiStrLen ("boot")))) {
         SlotCount++;
         Suffix = PartitionNameAscii + AsciiStrLen ("boot");
@@ -899,10 +866,9 @@ HandleSparseImgFlash (IN CHAR16 *PartitionName,
     return EFI_VOLUME_CORRUPTED;
   }
   // Check image will fit on device
-  SparseImgData.PartitionSize = GetPartitionSize (SparseImgData.BlockIo);
-  if (!SparseImgData.PartitionSize) {
-    return EFI_BAD_BUFFER_SIZE;
-  }
+  SparseImgData.PartitionSize =
+                              (SparseImgData.BlockIo->Media->LastBlock + 1)
+                               * SparseImgData.BlockIo->Media->BlockSize;
 
   if (sz < sizeof (sparse_header_t)) {
     DEBUG ((EFI_D_ERROR, "Input image is invalid\n"));
@@ -1028,7 +994,7 @@ FastbootUpdateAttr (CONST CHAR16 *SlotSuffix)
   INT32 Index;
   CHAR16 PartName[MAX_GPT_NAME_SIZE];
   CHAR8 SlotSuffixAscii[MAX_SLOT_SUFFIX_SZ];
-  UnicodeStrToAsciiStr (SlotSuffix, SlotSuffixAscii);
+  UnicodeStrToAsciiStrS (SlotSuffix, SlotSuffixAscii, MAX_GPT_NAME_SIZE);
 
   StrnCpyS (PartName, StrLen ((CONST CHAR16 *)L"boot") + 1,
             (CONST CHAR16 *)L"boot", StrLen ((CONST CHAR16 *)L"boot"));
@@ -1097,10 +1063,21 @@ HandleRawImgFlash (IN CHAR16 *PartitionName,
     return EFI_VOLUME_CORRUPTED;
   }
 
+  if (CHECK_ADD64 (BlockIo->Media->LastBlock, 1)) {
+    DEBUG ((EFI_D_ERROR, "Integer overflow while adding LastBlock and 1\n"));
+    return EFI_INVALID_PARAMETER;
+  }
+
+  if ((MAX_UINT64 / (BlockIo->Media->LastBlock + 1)) <
+      (UINT64)BlockIo->Media->BlockSize) {
+    DEBUG ((EFI_D_ERROR,
+            "Integer overflow while multiplying LastBlock and BlockSize\n"));
+    return EFI_BAD_BUFFER_SIZE;
+  }
+
   /* Check image will fit on device */
-  PartitionSize = GetPartitionSize (BlockIo);
-  if (PartitionSize < Size ||
-      !PartitionSize) {
+  PartitionSize = (BlockIo->Media->LastBlock + 1) * BlockIo->Media->BlockSize;
+  if (PartitionSize < Size) {
     DEBUG ((EFI_D_ERROR, "Partition not big enough.\n"));
     DEBUG ((EFI_D_ERROR, "Partition Size:\t%d\nImage Size:\t%d\n",
             PartitionSize, Size));
@@ -1160,9 +1137,10 @@ HandleUbiImgFlash (
   }
 
   /* Check if Image fits into partition */
-  PartitionSize = GetPartitionSize (BlockIo);
-  if (Size > PartitionSize ||
-    !PartitionSize) {
+  PartitionSize =
+        ((BlockIo->Media->LastBlock + 1) * (UINT64)BlockIo->Media->BlockSize);
+
+  if (Size > PartitionSize) {
     DEBUG ((EFI_D_ERROR, "Input Size is invalid\n"));
     return EFI_INVALID_PARAMETER;
   }
@@ -1175,7 +1153,7 @@ HandleUbiImgFlash (
     return Status;
   }
 
-  UnicodeStrToAsciiStr (PartitionName, PartitionNameAscii);
+  UnicodeStrToAsciiStrS (PartitionName, PartitionNameAscii, MAX_GPT_NAME_SIZE);
   Status = Ubi->UbiFlasherOpen (PartitionNameAscii,
                                 &UbiFlasherHandle,
                                 &UbiPageSize,
@@ -1284,7 +1262,7 @@ HandleMetaImgFlash (IN CHAR16 *PartitionName,
       DEBUG ((EFI_D_ERROR, "ptn_name string not terminated properly\n"));
       return EFI_INVALID_PARAMETER;
     }
-    AsciiStrToUnicodeStr (img_header_entry[i].ptn_name, PartitionNameFromMeta);
+    AsciiStrToUnicodeStrS (img_header_entry[i].ptn_name, PartitionNameFromMeta, MAX_GPT_NAME_SIZE);
 
     if (!IsUnlockCritical () &&
         IsCriticalPartition (PartitionNameFromMeta)) {
@@ -1732,7 +1710,7 @@ CmdFlash (IN CONST CHAR8 *arg, IN VOID *data, IN UINT32 sz)
     FastbootFail ("Invalid partition name");
     return;
   }
-  AsciiStrToUnicodeStr (arg, PartitionName);
+  AsciiStrToUnicodeStrS (arg, PartitionName, MAX_GPT_NAME_SIZE);
 
   if ((GetAVBVersion () == AVB_LE) ||
       ((GetAVBVersion () != AVB_LE) &&
@@ -1873,11 +1851,8 @@ CmdFlash (IN CONST CHAR8 *arg, IN VOID *data, IN UINT32 sz)
       goto out;
     }
 
-    PartitionSize = GetPartitionSize (BlockIo);
-    if (!PartitionSize) {
-      FastbootFail ("Partition error size");
-      goto out;
-    }
+    PartitionSize = (BlockIo->Media->LastBlock + 1)
+                        * (BlockIo->Media->BlockSize);
 
     if ((PartitionSize > MaxDownLoadSize) &&
          !IsDisableParallelDownloadFlash ()) {
@@ -2004,7 +1979,7 @@ CmdErase (IN CONST CHAR8 *arg, IN VOID *data, IN UINT32 sz)
     FastbootFail ("Invalid partition name");
     return;
   }
-  AsciiStrToUnicodeStr (arg, PartitionName);
+  AsciiStrToUnicodeStrS (arg, PartitionName, MAX_GPT_NAME_SIZE);
 
 
   if ((GetAVBVersion () == AVB_LE) ||
@@ -2137,12 +2112,12 @@ CmdSetActive (CONST CHAR8 *Arg, VOID *Data, UINT32 Size)
       return;
     }
     if (!AsciiStrStr (InputSlot, "_")) {
-      AsciiStrToUnicodeStr (InputSlot, InputSlotInUnicodetemp);
+      AsciiStrToUnicodeStrS (InputSlot, InputSlotInUnicodetemp, MAX_SLOT_SUFFIX_SZ);
       StrnCpyS (InputSlotInUnicode, MAX_SLOT_SUFFIX_SZ, L"_", StrLen (L"_"));
       StrnCatS (InputSlotInUnicode, MAX_SLOT_SUFFIX_SZ, InputSlotInUnicodetemp,
                 StrLen (InputSlotInUnicodetemp));
     } else {
-      AsciiStrToUnicodeStr (InputSlot, InputSlotInUnicode);
+      AsciiStrToUnicodeStrS (InputSlot, InputSlotInUnicode, MAX_SLOT_SUFFIX_SZ);
     }
 
     if ((AsciiStrLen (InputSlot) == MAX_SLOT_SUFFIX_SZ - 2) ||
@@ -2172,7 +2147,7 @@ CmdSetActive (CONST CHAR8 *Arg, VOID *Data, UINT32 Size)
   }
 
   // Updating fbvar `current-slot'
-  UnicodeStrToAsciiStr (GetCurrentSlotSuffix ().Suffix, CurrentSlotFB);
+  UnicodeStrToAsciiStrS (GetCurrentSlotSuffix ().Suffix, CurrentSlotFB, MAX_GPT_NAME_SIZE);
 
   /* Here CurrentSlotFB will only have value of "_a" or "_b".*/
   SKIP_FIRSTCHAR_IN_SLOT_SUFFIX (CurrentSlotFB);
@@ -2780,13 +2755,13 @@ CmdGetVar (CONST CHAR8 *Arg, VOID *Data, UINT32 Size)
         return;
       }
 
-      AsciiStrToUnicodeStr (Token, PartNameUniStr);
+      AsciiStrToUnicodeStrS (Token, PartNameUniStr, MAX_SLOT_SUFFIX_SZ);
 
       if (PartitionHasMultiSlot (PartNameUniStr)) {
         CurrentSlot = GetCurrentSlotSuffix ();
-        UnicodeStrToAsciiStr (CurrentSlot.Suffix, CurrentSlotAsc);
-        AsciiStrnCat ((CHAR8 *)Arg, CurrentSlotAsc,
-                      AsciiStrLen (CurrentSlotAsc));
+        UnicodeStrToAsciiStrS (CurrentSlot.Suffix, CurrentSlotAsc, MAX_GPT_NAME_SIZE);
+        AsciiStrnCatS ((CHAR8 *)Arg, AsciiStrLen (CurrentSlotAsc),
+                      CurrentSlotAsc, AsciiStrLen (CurrentSlotAsc));
       }
     }
   }
@@ -2854,7 +2829,6 @@ CmdBoot (CONST CHAR8 *Arg, VOID *Data, UINT32 Size)
   Info.Images[0].Name = "boot";
   Info.NumLoadedImages = 1;
   Info.MultiSlotBoot = PartitionHasMultiSlot (L"boot");
-  Info.HeaderVersion = hdr->header_version;
 
   if (Info.MultiSlotBoot) {
     Status = ClearUnbootable ();
@@ -3176,19 +3150,6 @@ DisplayGetVariable (CHAR16 *VariableName, VOID *VariableValue, UINTN *DataSize)
 }
 
 STATIC VOID
-CmdOemDisplayCommandLine (CONST CHAR8 *Arg, VOID *Data, UINT32 Size)
-{
-  EFI_STATUS Status;
-
-  Status = StoreDisplayCmdLine (Arg, AsciiStrLen (Arg));
-  if (Status != EFI_SUCCESS) {
-    FastbootFail ("Failed to store display command line");
-  } else {
-    FastbootOkay ("");
-  }
-}
-
-STATIC VOID
 CmdOemSelectDisplayPanel (CONST CHAR8 *arg, VOID *data, UINT32 sz)
 {
   EFI_STATUS Status;
@@ -3490,7 +3451,7 @@ GetPartitionType (IN CHAR16 *PartName, OUT CHAR8 * PartType)
   /* By default copy raw to response */
   AsciiStrnCpyS (PartType, MAX_GET_VAR_NAME_SIZE,
                   RAW_FS_STR, AsciiStrLen (RAW_FS_STR));
-  UnicodeStrToAsciiStr (PartName, AsciiPartName);
+  UnicodeStrToAsciiStrS (PartName, AsciiPartName, MAX_GPT_NAME_SIZE);
 
   /* Mark partition type for hard-coded partitions only */
   for (LoopCounter = 0; LoopCounter < ARRAY_SIZE (part_info); LoopCounter++) {
@@ -3502,10 +3463,12 @@ GetPartitionType (IN CHAR16 *PartName, OUT CHAR8 * PartType)
       CheckPartitionFsSignature (PartName, &FsSignature);
       switch (FsSignature) {
         case EXT_FS_SIGNATURE:
-          AsciiStrnCpy (PartType, EXT_FS_STR, AsciiStrLen (EXT_FS_STR));
+          AsciiStrnCpyS (PartType, MAX_GET_VAR_NAME_SIZE, EXT_FS_STR,
+                          AsciiStrLen (EXT_FS_STR));
           break;
         case F2FS_FS_SIGNATURE:
-          AsciiStrnCpy (PartType, F2FS_FS_STR, AsciiStrLen (F2FS_FS_STR));
+          AsciiStrnCpyS (PartType, MAX_GET_VAR_NAME_SIZE, F2FS_FS_STR,
+                          AsciiStrLen (F2FS_FS_STR));
           break;
         case UNKNOWN_FS_SIGNATURE:
           /* Copy default hardcoded type in case unknown partition type */
@@ -3519,12 +3482,11 @@ GetPartitionType (IN CHAR16 *PartName, OUT CHAR8 * PartType)
 }
 
 STATIC EFI_STATUS
-GetPartitionSizeViaName (IN CHAR16 *PartName, OUT CHAR8 * PartSize)
+GetPartitionSize (IN CHAR16 *PartName, OUT CHAR8 * PartSize)
 {
   EFI_BLOCK_IO_PROTOCOL *BlockIo = NULL;
   EFI_HANDLE *Handle = NULL;
   EFI_STATUS Status = EFI_INVALID_PARAMETER;
-  UINT64 PartitionSize;
 
   Status = PartitionGetInfo (PartName, &BlockIo, &Handle);
   if (Status != EFI_SUCCESS) {
@@ -3536,12 +3498,9 @@ GetPartitionSizeViaName (IN CHAR16 *PartName, OUT CHAR8 * PartSize)
     return EFI_VOLUME_CORRUPTED;
   }
 
-  PartitionSize = GetPartitionSize (BlockIo);
-  if (!PartitionSize) {
-    return EFI_BAD_BUFFER_SIZE;
-  }
-
-  AsciiSPrint (PartSize, MAX_RSP_SIZE, " 0x%llx", PartitionSize);
+  AsciiSPrint (PartSize, MAX_RSP_SIZE, " 0x%llx",
+               (UINT64) (BlockIo->Media->LastBlock + 1) *
+                   BlockIo->Media->BlockSize);
   return EFI_SUCCESS;
 
 }
@@ -3572,8 +3531,8 @@ PublishGetVarPartitionInfo (
     if (PartitionNameUniCode[0] == '\0') {
       continue;
     }
-    UnicodeStrToAsciiStr (PtnEntries[PtnLoopCount].PartEntry.PartitionName,
-                          (CHAR8 *)PublishedPartInfo[PtnLoopCount].part_name);
+    UnicodeStrToAsciiStrS (PtnEntries[PtnLoopCount].PartEntry.PartitionName,
+                          (CHAR8 *)PublishedPartInfo[PtnLoopCount].part_name, MAX_GPT_NAME_SIZE);
 
     /* Fill partition size variable and response string */
     AsciiStrnCpyS (PublishedPartInfo[PtnLoopCount].getvar_size_str,
@@ -3585,7 +3544,7 @@ PublishGetVarPartitionInfo (
                             AsciiStrLen (
                               PublishedPartInfo[PtnLoopCount].part_name));
     if (!EFI_ERROR (Status)) {
-      Status = GetPartitionSizeViaName (
+      Status = GetPartitionSize (
                             PartitionNameUniCode,
                             PublishedPartInfo[PtnLoopCount].size_response);
       if (Status == EFI_SUCCESS) {
@@ -3742,7 +3701,6 @@ FastbootCommandSetup (IN VOID *Base, IN UINT64 Size)
       {"reboot-bootloader", CmdRebootBootloader},
       {"getvar:", CmdGetVar},
       {"download:", CmdDownload},
-      {"oem display-cmdline", CmdOemDisplayCommandLine},
   };
 
   /* Register the commands only for non-user builds */

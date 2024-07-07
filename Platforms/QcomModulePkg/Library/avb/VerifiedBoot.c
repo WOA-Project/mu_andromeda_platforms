@@ -1,4 +1,4 @@
-/* Copyright (c) 2017-2021, The Linux Foundation. All rights reserved.
+/* Copyright (c) 2017-2020, The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -24,38 +24,6 @@
  * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
  * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
  * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- *
- * Changes from Qualcomm Innovation Center are provided under the following
- * license:
- * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted (subject to the limitations in the
- * disclaimer below) provided that the following conditions are met:
- * * Redistributions of source code must retain the above copyright
- *   notice, this list of conditions and the following disclaimer.
- * * Redistributions in binary form must reproduce the above
- * copyright notice, this list of conditions and the following
- * disclaimer in the documentation and/or other materials provided
- * with the distribution.
- * * Neither the name of Qualcomm Innovation Center, Inc. nor the names of its
- * contributors may be used to endorse or promote products derived
- * from this software without specific prior written permission.
- *
- * NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE
- * GRANTED BY THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT
- * HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
- * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
- * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
- * IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
- * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
- * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
- * GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
- * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
- * IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
- * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
- * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- *
 */
 
 #include "VerifiedBoot.h"
@@ -210,7 +178,7 @@ NoAVBLoadReqImage (BootInfo *Info, VOID **DtboImage,
     Status = EFI_OUT_OF_RESOURCES;
     goto out;
   }
-  UnicodeStrToAsciiStr (Pname, AsciiPname);
+  UnicodeStrToAsciiStrS (Pname, AsciiPname, MAX_GPT_NAME_SIZE);
 
   AvbStatus = Ops->get_size_of_partition (Ops,
                                           AsciiPname,
@@ -348,7 +316,7 @@ NoAVBLoadVendorBootImage (BootInfo *Info)
     goto Err;
   }
 
-  UnicodeStrToAsciiStr (Pname, Info->Images[ImgIdx].Name);
+  UnicodeStrToAsciiStrS (Pname, Info->Images[ImgIdx].Name, MAX_GPT_NAME_SIZE);
   Info-> NumLoadedImages++;
 
   return EFI_SUCCESS;
@@ -377,27 +345,6 @@ LoadVendorBootImageHeader (BootInfo *Info,
 
   return LoadImageHeader (Pname, VendorImageHdrBuffer, VendorImageHdrSize);
 }
-
-STATIC EFI_STATUS
-LoadBootImageHeader (BootInfo *Info,
-                          VOID **BootImageHdrBuffer,
-                          UINT32 *BootImageHdrSize)
-{
-  EFI_STATUS Status = EFI_SUCCESS;
-  CHAR16 Pname[MAX_GPT_NAME_SIZE] = {0};
-
-  StrnCpyS (Pname, ARRAY_SIZE (Pname),
-            (CHAR16 *)L"boot", StrLen ((CHAR16 *)L"boot"));
-
-  if (Info->MultiSlotBoot) {
-    GUARD (StrnCatS (Pname, ARRAY_SIZE (Pname),
-                     GetCurrentSlotSuffix ().Suffix,
-                     StrLen (GetCurrentSlotSuffix ().Suffix)));
-  }
-
-  return LoadImageHeader (Pname, BootImageHdrBuffer, BootImageHdrSize);
-}
-
 
 STATIC EFI_STATUS
 LoadBootImageNoAuth (BootInfo *Info, UINT32 *PageSize, BOOLEAN *FastbootPath)
@@ -477,7 +424,7 @@ LoadBootImageNoAuth (BootInfo *Info, UINT32 *PageSize, BOOLEAN *FastbootPath)
       Status = EFI_OUT_OF_RESOURCES;
       goto ErrImg;
     }
-    UnicodeStrToAsciiStr (Info->Pname, Info->Images[0].Name);
+    UnicodeStrToAsciiStrS (Info->Pname, Info->Images[0].Name, MAX_GPT_NAME_SIZE);
     Info->NumLoadedImages = 1;
   }
 
@@ -559,7 +506,7 @@ LoadImageNoAuth (BootInfo *Info)
       goto Err;
     }
 
-    UnicodeStrToAsciiStr (Pname, Info->Images[*ImgIdx].Name);
+    UnicodeStrToAsciiStrS (Pname, Info->Images[*ImgIdx].Name, MAX_GPT_NAME_SIZE);
     ++(*ImgIdx);
   }
 
@@ -650,7 +597,7 @@ LoadImageAndAuthVB1 (BootInfo *Info)
 
   AsciiStrnCpyS (StrPnameAscii, ARRAY_SIZE (StrPnameAscii), "/",
                  AsciiStrLen ("/"));
-  UnicodeStrToAsciiStr (Info->Pname, PnameAscii);
+  UnicodeStrToAsciiStrS (Info->Pname, PnameAscii, MAX_GPT_NAME_SIZE);
   if (Info->MultiSlotBoot) {
     AsciiStrnCatS (StrPnameAscii, ARRAY_SIZE (StrPnameAscii), PnameAscii,
                    AsciiStrLen (PnameAscii) - (MAX_SLOT_SUFFIX_SZ - 1));
@@ -991,14 +938,14 @@ exit:
     return Status;
 }
 
-static BOOLEAN GetHeaderVersion (AvbSlotVerifyData *SlotData, CHAR8 *ImageName)
+static BOOLEAN GetHeaderVersion (AvbSlotVerifyData *SlotData)
 {
   BOOLEAN HeaderVersion = 0;
   UINTN LoadedIndex = 0;
   for (LoadedIndex = 0; LoadedIndex < SlotData->num_loaded_partitions;
          LoadedIndex++) {
     if (avb_strcmp (SlotData->loaded_partitions[LoadedIndex].partition_name,
-      ImageName) == 0 )
+      "recovery") == 0 )
       return ( (boot_img_hdr *)
         (SlotData->loaded_partitions[LoadedIndex].data))->header_version;
   }
@@ -1145,7 +1092,7 @@ LoadImageAndAuthVB2 (BootInfo *Info)
   UserData->IsMultiSlot = Info->MultiSlotBoot;
 
   if (Info->MultiSlotBoot) {
-    UnicodeStrToAsciiStr (Info->Pname, PnameAscii);
+    UnicodeStrToAsciiStrS (Info->Pname, PnameAscii, MAX_GPT_NAME_SIZE);
     if ((MAX_SLOT_SUFFIX_SZ + 1) > AsciiStrLen (PnameAscii)) {
       DEBUG ((EFI_D_ERROR, "ERROR: Can not determine slot suffix\n"));
       Status = EFI_INVALID_PARAMETER;
@@ -1211,7 +1158,7 @@ LoadImageAndAuthVB2 (BootInfo *Info)
       Info->BootState = RED;
       goto out;
     }
-    BOOLEAN HeaderVersion = GetHeaderVersion (SlotData, "recovery");
+    BOOLEAN HeaderVersion = GetHeaderVersion (SlotData);
     DEBUG ( (EFI_D_VERBOSE, "Recovery HeaderVersion %d \n", HeaderVersion));
 
     if (HeaderVersion == BOOT_HEADER_VERSION_ZERO ||
@@ -1226,27 +1173,8 @@ LoadImageAndAuthVB2 (BootInfo *Info)
     }
   } else {
     Slot CurrentSlot;
-    VOID *ImageHdrBuffer = NULL;
-    UINT32 ImageHdrSize = 0;
-
-    Status = LoadBootImageHeader (Info, &ImageHdrBuffer, &ImageHdrSize);
-
-    if (Status != EFI_SUCCESS ||
-        ImageHdrBuffer ==  NULL) {
-      DEBUG ((EFI_D_ERROR, "ERROR: Failed to load image header: %r\n", Status));
-      Info->BootState = RED;
-      goto out;
-    } else if (ImageHdrSize < sizeof (boot_img_hdr)) {
-      DEBUG ((EFI_D_ERROR,
-              "ERROR: Invalid image header size: %u\n", ImageHdrSize));
-      Info->BootState = RED;
-      Status = EFI_BAD_BUFFER_SIZE;
-      goto out;
-    }
 
     if (!Info->NumLoadedImages) {
-      Info->HeaderVersion = ((boot_img_hdr *)(ImageHdrBuffer))->header_version;
-      DEBUG ((EFI_D_VERBOSE, "Header version  %d\n", Info->HeaderVersion));
       AddRequestedPartition (RequestedPartitionAll, IMG_BOOT);
       NumRequestedPartition += 1;
     }
@@ -1258,20 +1186,15 @@ LoadImageAndAuthVB2 (BootInfo *Info)
         CurrentSlot = GetCurrentSlotSuffix ();
     }
 
-    /* Load vendor boot in following conditions
-     * 1. In Case of header version 3
-     * 2. valid partititon.
-     */
-
-    if (IsValidPartition (&CurrentSlot, L"vendor_boot") &&
-       (Info->HeaderVersion >= BOOT_HEADER_VERSION_THREE)) {
+    if (IsValidPartition (&CurrentSlot, L"vendor_boot")) {
       AddRequestedPartition (RequestedPartitionAll, IMG_VENDOR_BOOT);
       NumRequestedPartition += 1;
     } else {
-      DEBUG ((EFI_D_ERROR, "Invalid vendor_boot partition. Skipping\n"));
+      DEBUG ((EFI_D_VERBOSE, "Invalid vendor_boot partition. Skipping\n"));
     }
+
     Result = avb_slot_verify (Ops, (CONST CHAR8 *CONST *)RequestedPartition,
-                  SlotSuffix, VerifyFlags, VerityFlags, &SlotData);
+                SlotSuffix, VerifyFlags, VerityFlags, &SlotData);
   }
 
   if (SlotData == NULL) {

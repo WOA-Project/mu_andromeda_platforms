@@ -58,6 +58,8 @@
 
 #include <Library/FdtRw.h>
 
+#include <Library/MemoryAllocationLib.h>
+
 STATIC FDT_FIRST_LEVEL_NODE *NodeList;
 
 STATIC VOID FdtDeleteNodeList (VOID)

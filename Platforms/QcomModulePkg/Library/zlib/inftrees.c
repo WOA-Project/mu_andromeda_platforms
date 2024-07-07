@@ -54,7 +54,7 @@ unsigned short FAR *work;
     code FAR *next;             /* next available space in table */
     const unsigned short FAR *base;     /* base value table to use */
     const unsigned short FAR *extra;    /* extra bits table to use */
-    unsigned match;             /* use base and extra for symbol >= match */
+    int end;                    /* use base and extra for symbol > end */
     unsigned short count[MAXBITS+1];    /* number of codes of each length */
     unsigned short offs[MAXBITS+1];     /* offsets in table for each length */
     static const unsigned short lbase[31] = { /* Length codes 257..285 base */
@@ -181,17 +181,19 @@ unsigned short FAR *work;
     switch (type) {
     case CODES:
         base = extra = work;    /* dummy value--not used */
-        match = 20;
+        end = 19;
         break;
     case LENS:
         base = lbase;
+        base -= 257;
         extra = lext;
-        match = 257;
+        extra -= 257;
+        end = 256;
         break;
     default:            /* DISTS */
         base = dbase;
         extra = dext;
-        match = 0;
+        end = -1;
     }
 
     /* initialize state for loop */
@@ -214,13 +216,13 @@ unsigned short FAR *work;
     for (;;) {
         /* create table entry */
         here.bits = (unsigned char)(len - drop);
-        if (work[sym] + 1 < match) {
+        if ((int)(work[sym]) < end) {
             here.op = (unsigned char)0;
             here.val = work[sym];
         }
-        else if (work[sym] >= match) {
-            here.op = (unsigned char)(extra[work[sym] - match]);
-            here.val = base[work[sym] - match];
+        else if ((int)(work[sym]) > end) {
+            here.op = (unsigned char)(extra[work[sym]]);
+            here.val = base[work[sym]];
         }
         else {
             here.op = (unsigned char)(32 + 64);         /* end of block */

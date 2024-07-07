@@ -1,4 +1,4 @@
-/* Copyright (c) 2016-2018, 2021 The Linux Foundation. All rights reserved.
+/* Copyright (c) 2016-2018, The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -88,47 +88,6 @@ EnableChargingScreen (BOOLEAN IsEnabled)
       return Status;
     }
   }
-
-  return Status;
-}
-
-EFI_STATUS
-StoreDisplayCmdLine (CONST CHAR8 *CmdLine, UINT32 CmdLineLen)
-{
-  EFI_STATUS Status = EFI_SUCCESS;
-
-  if (CmdLineLen > ARRAY_SIZE (DevInfo.Display_Cmdline))
-  {
-    DEBUG ((EFI_D_ERROR, "DisplayCmdLine, too large!\n"));
-    return EFI_OUT_OF_RESOURCES;
-  }
-
-  gBS->SetMem (DevInfo.Display_Cmdline, sizeof (DevInfo.Display_Cmdline), 0);
-  gBS->CopyMem (DevInfo.Display_Cmdline, (CHAR8 *) CmdLine, CmdLineLen);
-
-  Status =
-      ReadWriteDeviceInfo (WRITE_CONFIG, (VOID *)&DevInfo, sizeof (DevInfo));
-  if (Status != EFI_SUCCESS) {
-    DEBUG ((EFI_D_ERROR, "Unable to store display cmdline: %r\n", Status));
-    return Status;
-  }
-  return Status;
-}
-
-EFI_STATUS
-ReadDisplayCmdLine (CHAR8 **CmdLine, UINT32 *CmdLineLen)
-{
-  EFI_STATUS Status = EFI_SUCCESS;
-
-  Status =
-      ReadWriteDeviceInfo (READ_CONFIG, (VOID *)&DevInfo, sizeof (DevInfo));
-  if (Status != EFI_SUCCESS) {
-    DEBUG ((EFI_D_ERROR, "Unable to read display cmdline: %r\n", Status));
-    return Status;
-  }
-
-  *CmdLine = DevInfo.Display_Cmdline;
-  *CmdLineLen = ARRAY_SIZE (DevInfo.Display_Cmdline);
 
   return Status;
 }

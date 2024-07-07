@@ -40,14 +40,14 @@
 	StackCanary.c
 
 [BuildOptions]
-	GCC:*_*_*_CC_FLAGS = $(LLVM_ENABLE_SAFESTACK) $(LLVM_SAFESTACK_USE_PTR) $(LLVM_SAFESTACK_COLORING)
+	*_*_*_CC_FLAGS = $(LLVM_ENABLE_SAFESTACK) $(LLVM_SAFESTACK_USE_PTR) $(LLVM_SAFESTACK_COLORING)
 
 [BuildOptions.AARCH64]
-	GCC:*_*_*_CC_FLAGS = -fno-stack-protector
-	GCC:*_*_*_CC_FLAGS = $(SDLLVM_COMPILE_ANALYZE) $(SDLLVM_ANALYZE_REPORT)
+	*_*_*_CC_FLAGS = -fno-stack-protector
+	*_*_*_CC_FLAGS = $(SDLLVM_COMPILE_ANALYZE) $(SDLLVM_ANALYZE_REPORT)
 
 [BuildOptions.ARM]
-	GCC:*_*_*_CC_FLAGS = -fno-stack-protector
+	*_*_*_CC_FLAGS = -fno-stack-protector
 
 [Packages]
 	MdePkg/MdePkg.dec

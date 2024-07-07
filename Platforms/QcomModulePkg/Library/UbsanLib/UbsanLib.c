@@ -229,7 +229,7 @@ STATIC VOID
 HandleOutOfBounds (struct OutOfBounds *data, UINT32 Index)
 {
   CHAR8 index_str[STR_LENGTH];
-  AsciiValueToString (index_str, LEFT_JUSTIFY, Index, sizeof (index_str) - 1);
+  AsciiValueToStringS (index_str, LEFT_JUSTIFY, Index, sizeof (index_str) - 1, STR_LENGTH);
   DEBUG ((EFI_D_INFO, "index %a out of bounds for type %a\n", index_str,
           data->ArrayType->TypeName));
 }
@@ -253,8 +253,8 @@ OverFlowHandler (struct TypeDescriptor *type,
 
   BOOLEAN IsSigned = IsSignedInteger (type);
 
-  AsciiValueToString (lhs_val_str, LEFT_JUSTIFY, lhs, sizeof (lhs_val_str) - 1);
-  AsciiValueToString (rhs_val_str, LEFT_JUSTIFY, rhs, sizeof (rhs_val_str) - 1);
+  AsciiValueToStringS (lhs_val_str, LEFT_JUSTIFY, lhs, sizeof (lhs_val_str) - 1, STR_LENGTH);
+  AsciiValueToStringS (rhs_val_str, LEFT_JUSTIFY, rhs, sizeof (rhs_val_str) - 1, STR_LENGTH);
 
   DEBUG ((EFI_D_ERROR,
           "%a integer overflow, %a %a %a can't be represented by type %a\n",
@@ -300,8 +300,8 @@ STATIC VOID
 HandleNegateOverflow (struct OverflowData *data, UINT32 oldval)
 {
   CHAR8 old_val_str[STR_LENGTH];
-  AsciiValueToString (old_val_str, LEFT_JUSTIFY, oldval,
-                      sizeof (old_val_str) - 1);
+  AsciiValueToStringS (old_val_str, LEFT_JUSTIFY, oldval,
+                      sizeof (old_val_str) - 1, STR_LENGTH);
 
   if (IsSignedInteger (data->Type)) {
     DEBUG ((EFI_D_INFO, "negation of %a can't be represented in type %a,"
@@ -357,8 +357,8 @@ HandleFloatCastOverflow (VOID *data, UINT32 From)
     UbsanBegin (&Data->Loc);
   }
 
-  AsciiValueToString (from_type_str, LEFT_JUSTIFY, From,
-                      sizeof (from_type_str) - 1);
+  AsciiValueToStringS (from_type_str, LEFT_JUSTIFY, From,
+                      sizeof (from_type_str) - 1, STR_LENGTH);
 
   DEBUG ((EFI_D_INFO, "value %a '%a' is outside the range of representable "
                       "values of type '%a'\n",
@@ -407,7 +407,7 @@ STATIC VOID
 HandleVlaBoundNotPositive (struct VLABoundData *data, UINT32 Bound)
 {
   CHAR8 bound_str[STR_LENGTH];
-  AsciiValueToString (bound_str, LEFT_JUSTIFY, Bound, sizeof (bound_str) - 1);
+  AsciiValueToStringS (bound_str, LEFT_JUSTIFY, Bound, sizeof (bound_str) - 1, STR_LENGTH);
   DEBUG ((EFI_D_INFO, "variable length array bound evaluates to"
                       "non-positive value %a\n",
           bound_str));
@@ -425,7 +425,7 @@ STATIC VOID
 HandleLoadInvalidValue (struct InvalidValueData *data, UINT32 val)
 {
   CHAR8 val_str[STR_LENGTH];
-  AsciiValueToString (val_str, LEFT_JUSTIFY, val, sizeof (val_str) - 1);
+  AsciiValueToStringS (val_str, LEFT_JUSTIFY, val, sizeof (val_str) - 1, STR_LENGTH);
   DEBUG ((EFI_D_INFO,
           "load of value %a, which is not a valid value for type %a\n", val_str,
           data->Type->TypeName));

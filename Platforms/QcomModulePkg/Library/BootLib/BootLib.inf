@@ -1,5 +1,5 @@
 #/*
-# * Copyright (c) 2015-2021, The Linux Foundation. All rights reserved.
+# * Copyright (c) 2015-2020, The Linux Foundation. All rights reserved.
 # *
 # * Redistribution and use in source and binary forms, with or without
 # * modification, are permitted provided that the following conditions are
@@ -25,11 +25,6 @@
 # * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
 # * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 # * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-# *
-# * Changes from Qualcomm Innovation Center are provided under the following
-# * license:
-# * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
-# * SPDX-License-Identifier: BSD-3-Clause-Clear
 #*/
 
 
@@ -42,12 +37,12 @@
 	LIBRARY_CLASS                  = BootLib
 
 [BuildOptions]
-	GCC:*_*_*_CC_FLAGS = $(LLVM_ENABLE_SAFESTACK) $(LLVM_SAFESTACK_USE_PTR) $(LLVM_SAFESTACK_COLORING)
+	*_*_*_CC_FLAGS = $(LLVM_ENABLE_SAFESTACK) $(LLVM_SAFESTACK_USE_PTR) $(LLVM_SAFESTACK_COLORING) -O0
 
 [BuildOptions.AARCH64]
-	GCC:*_*_*_CC_FLAGS = -O2 $(SDLLVM_COMPILE_ANALYZE) $(SDLLVM_ANALYZE_REPORT)
-	GCC:*_*_*_CC_FLAGS = $(UBSAN_UEFI_GCC_FLAG_UNDEFINED)
-	GCC:*_*_*_CC_FLAGS = $(UBSAN_UEFI_GCC_FLAG_ALIGNMENT)
+	*_*_*_CC_FLAGS = -O0 $(SDLLVM_COMPILE_ANALYZE) $(SDLLVM_ANALYZE_REPORT)
+	*_*_*_CC_FLAGS = $(UBSAN_UEFI_GCC_FLAG_UNDEFINED)
+	*_*_*_CC_FLAGS = $(UBSAN_UEFI_GCC_FLAG_ALIGNMENT)
 
 [Sources]
 	ShutdownServices.c
@@ -156,7 +151,6 @@
 	gEfiNandPartiGuidProtocolGuid
 	gEfiDDRGetInfoProtocolGuid
 	gEfiKernelProtocolGuid
-	gEfiSoftSkuProtocolGuid
 
 [FixedPcd]
 	gArmTokenSpaceGuid.PcdSystemMemoryBase

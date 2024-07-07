@@ -1,4 +1,4 @@
-/* Copyright (c) 2015, 2017-2021, The Linux Foundation. All rights reserved.
+/* Copyright (c) 2015, 2017-2020, The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -24,12 +24,7 @@
  * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
  * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
  * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- *
- * Changes from Qualcomm Innovation Center are provided under the following
- * license:
- * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
 */
-// SPDX-License-Identifier: BSD-3-Clause-Clear
 
 #ifndef __LOCATEDEVICETREE_H__
 #define __LOCATEDEVICETREE_H__
@@ -37,6 +32,7 @@
 #include "Board.h"
 #include "libfdt.h"
 #include "list.h"
+#include <Library/fdtcompat.h>
 #include <Library/BootLinux.h>
 #include <Library/DebugLib.h>
 #include <Library/MemoryAllocationLib.h>
@@ -104,31 +100,6 @@ typedef enum {
   PMIC_MATCH_EXACT_MODEL_IDX2,
   PMIC_MATCH_DEFAULT_MODEL_IDX3,
   PMIC_MATCH_EXACT_MODEL_IDX3,
-  PMIC_MATCH_DEFAULT_MODEL_IDX4,
-  PMIC_MATCH_EXACT_MODEL_IDX4,
-  PMIC_MATCH_DEFAULT_MODEL_IDX5,
-  PMIC_MATCH_EXACT_MODEL_IDX5,
-  PMIC_MATCH_DEFAULT_MODEL_IDX6,
-  PMIC_MATCH_EXACT_MODEL_IDX6,
-  PMIC_MATCH_DEFAULT_MODEL_IDX7,
-  PMIC_MATCH_EXACT_MODEL_IDX7,
-  PMIC_MATCH_DEFAULT_MODEL_IDX8,
-  PMIC_MATCH_EXACT_MODEL_IDX8,
-  PMIC_MATCH_DEFAULT_MODEL_IDX9,
-  PMIC_MATCH_EXACT_MODEL_IDX9,
-  PMIC_MATCH_DEFAULT_MODEL_IDXA,
-  PMIC_MATCH_EXACT_MODEL_IDXA,
-  PMIC_MATCH_DEFAULT_MODEL_IDXB,
-  PMIC_MATCH_EXACT_MODEL_IDXB,
-  PMIC_MATCH_DEFAULT_MODEL_IDXC,
-  PMIC_MATCH_EXACT_MODEL_IDXC,
-  PMIC_MATCH_DEFAULT_MODEL_IDXD,
-  PMIC_MATCH_EXACT_MODEL_IDXD,
-  PMIC_MATCH_DEFAULT_MODEL_IDXE,
-  PMIC_MATCH_EXACT_MODEL_IDXE,
-  PMIC_MATCH_DEFAULT_MODEL_IDXF,
-  PMIC_MATCH_EXACT_MODEL_IDXF,
-  SOFTSKU_EXACT_MATCH,
   SUBTYPE_DEFAULT_MATCH,
   SUBTYPE_EXACT_MATCH,
   DDR_MATCH,
@@ -138,31 +109,23 @@ typedef enum {
 } DTMATCH_PARAMS;
 
 #define TOTAL_MATCH_BITS 6
-#define ALL_BITS_SET                                                       \
-  (BIT (SOC_MATCH) | BIT (VARIANT_MATCH) | BIT (SUBTYPE_EXACT_MATCH) |     \
-   BIT (FOUNDRYID_EXACT_MATCH) | BIT (PMIC_MATCH_EXACT_MODEL_IDX0) |       \
-   BIT (PMIC_MATCH_EXACT_MODEL_IDX1) | BIT (PMIC_MATCH_EXACT_MODEL_IDX2) | \
-   BIT (PMIC_MATCH_EXACT_MODEL_IDX3) | BIT (PMIC_MATCH_EXACT_MODEL_IDX4) | \
-   BIT (PMIC_MATCH_EXACT_MODEL_IDX5) | BIT (PMIC_MATCH_EXACT_MODEL_IDX6) | \
-   BIT (PMIC_MATCH_EXACT_MODEL_IDX7) | BIT (PMIC_MATCH_EXACT_MODEL_IDX8) | \
-   BIT (PMIC_MATCH_EXACT_MODEL_IDX9) | BIT (PMIC_MATCH_EXACT_MODEL_IDXA) | \
-   BIT (PMIC_MATCH_EXACT_MODEL_IDXB) | BIT (PMIC_MATCH_EXACT_MODEL_IDXC) | \
-   BIT (PMIC_MATCH_EXACT_MODEL_IDXD) | BIT (PMIC_MATCH_EXACT_MODEL_IDXE) | \
-   BIT (PMIC_MATCH_EXACT_MODEL_IDXF) | BIT (SOFTSKU_EXACT_MATCH))
+#define ALL_BITS_SET                                                           \
+  (BIT (SOC_MATCH) | BIT (VARIANT_MATCH) | BIT (SUBTYPE_EXACT_MATCH) |         \
+   BIT (FOUNDRYID_EXACT_MATCH) | BIT (PMIC_MATCH_EXACT_MODEL_IDX0) |           \
+   BIT (PMIC_MATCH_EXACT_MODEL_IDX1))
 
 typedef enum {
   PMIC_IDX0,
   PMIC_IDX1,
   PMIC_IDX2,
   PMIC_IDX3,
-  PMIC_IDX4,
-  MAX_PMIC_IDX = 0xF,
+  MAX_PMIC_IDX,
 } PMIC_INDEXES;
 
 typedef struct PmicIdInfo {
   UINT32 DtPmicModel[MAX_PMIC_IDX];
   UINT32 DtPmicRev[MAX_PMIC_IDX];
-  UINT64 DtMatchVal;
+  UINT32 DtMatchVal;
 } PmicIdInfo;
 
 typedef struct DtInfo {
@@ -173,10 +136,9 @@ typedef struct DtInfo {
   UINT32 DtVariantMajor;
   UINT32 DtVariantMinor;
   UINT32 DtPlatformSubtype;
-  UINT32 DtSoftSkuId;
   UINT32 DtPmicModel[MAX_PMIC_IDX];
   UINT32 DtPmicRev[MAX_PMIC_IDX];
-  UINT64 DtMatchVal;
+  UINT32 DtMatchVal;
   VOID *Dtb;
 } DtInfo;
 
@@ -200,7 +162,6 @@ struct dt_entry {
   UINT64 offset;
   UINT32 size;
   UINT32 Idx;
-  UINT32 SkuId;
 };
 
 /*Struct def for device tree entry*/
@@ -242,10 +203,6 @@ struct board_id {
 struct pmic_id {
   UINT32 pmic_version[4];
 };
-
-typedef struct softsku_id {
-  UINT32 SkuId;
-} softsku_id;
 
 #define PLAT_ID_SIZE    sizeof (struct plat_id)
 #define BOARD_ID_SIZE   sizeof (struct board_id)

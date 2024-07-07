@@ -486,7 +486,7 @@ DrawMenu (MENU_MSG_INFO *TargetMenu, UINT32 *pHeight)
   SetDisplayInfo (TargetMenu, FontDisplayInfo);
 
   ManipulateMenuMsg (TargetMenu);
-  AsciiStrToUnicodeStr (TargetMenu->Msg, FontMessage);
+  AsciiStrToUnicodeStrS (TargetMenu->Msg, FontMessage, MAX_MSG_SIZE);
 
   Status = gBS->LocateProtocol (&gEfiHiiFontProtocolGuid, NULL,
                                (VOID **) &gHiiFont);
