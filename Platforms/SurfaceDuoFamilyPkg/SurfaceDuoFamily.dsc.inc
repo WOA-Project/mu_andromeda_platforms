@@ -453,10 +453,10 @@
   ArmPkg/Drivers/ArmGic/ArmGicDxe.inf
 
   # Processor Core Services
-  ArmPkg/Drivers/CpuDxe/CpuDxe.inf # {
-  #   <LibraryClasses>
-  #   NULL|MsCorePkg/Library/MemoryProtectionExceptionHandlerLib/MemoryProtectionExceptionHandlerLib.inf
-  # }
+  ArmPkg/Drivers/CpuDxe/CpuDxe.inf {
+    <LibraryClasses>
+    NULL|MsCorePkg/Library/MemoryProtectionExceptionHandlerLib/MemoryProtectionExceptionHandlerLib.inf
+  }
 
   ArmPkg/Drivers/TimerDxe/TimerDxe.inf
 
@@ -562,7 +562,7 @@
       BaseCryptLib|OpensslPkg/Library/BaseCryptLib/RuntimeCryptLib.inf
       TlsLib|OpensslPkg/Library/TlsLib/TlsLib.inf
       IntrinsicLib|OpensslPkg/Library/IntrinsicLib/IntrinsicLib.inf
-      OpensslLib|OpensslPkg/Library/OpensslLib/OpensslLibFull.inf # Contains openSSL library used by BaseCryptoLib
+      OpensslLib|OpensslPkg/Library/OpensslLib/OpensslLib.inf # Contains openSSL library used by BaseCryptoLib
   }
 
   MdeModulePkg/Universal/WatchdogTimerDxe/WatchdogTimer.inf
