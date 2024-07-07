@@ -98,6 +98,8 @@ typedef enum
    EFI_PMIC_IS_PM8953    = 0x16, /**<PM8953  */
    EFI_PMIC_IS_PM8005    = 0x18, /**<PM8005  */
    EFI_PMIC_IS_PM8937    = 0x19, /**<PM8937  */ 
+   EFI_PMIC_IS_PM660L    = 0x1A, /**<PM660L  */
+   EFI_PMIC_IS_PM660     = 0x1B, /**<PM660  */
    EFI_PMIC_IS_PM855     = 0x1E, /**<PM855  */
    EFI_PMIC_IS_PM8150    = EFI_PMIC_IS_PM855,
    EFI_PMIC_IS_PM855L    = 0x1F, /**<PM855L  */

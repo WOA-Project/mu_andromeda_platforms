@@ -25,7 +25,7 @@
  * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
  * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
-
+#include <Library/ArmSmcLib.h>
 #include "BootLinux.h"
 
 #define HYP_BOOTINFO_MAGIC   0xC06B0071
@@ -61,3 +61,4 @@ typedef struct hyp_boot_info {
 HypBootInfo *GetVmData (VOID);
 BOOLEAN IsVmEnabled (VOID);
 EFI_STATUS CheckAndSetVmData (BootParamlist *BootParamlistPtr);
+VOID DisableHypUartUsageForLogging (VOID);

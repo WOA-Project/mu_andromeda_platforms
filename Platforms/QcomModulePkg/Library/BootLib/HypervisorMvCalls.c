@@ -26,10 +26,11 @@
  * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#include <Library/DebugLib.h>
 #include <Protocol/EFIScm.h>
 #include <Protocol/scm_sip_interface.h>
 #include <Library/HypervisorMvCalls.h>
+
+#define HYP_DISABLE_UART_LOGGING    0x86000000
 
 STATIC BOOLEAN VmEnabled = FALSE;
 STATIC HypBootInfo *HypInfo = NULL;
@@ -121,6 +122,16 @@ SetHypInfo (BootParamlist *BootParamlistPtr,
   BootParamlistPtr->HypDtboBaseAddr = DtboBaseAddr;
 
   return EFI_SUCCESS;
+}
+
+VOID DisableHypUartUsageForLogging (VOID)
+{
+  ARM_SMC_ARGS ArmSmcArgs;
+
+  ArmSmcArgs.Arg0 = HYP_DISABLE_UART_LOGGING;
+  ArmCallSmc (&ArmSmcArgs);
+  DEBUG ((EFI_D_VERBOSE, "returned Smc call to disable Uart logging from Hyp:"
+                         " 0x%x\n", ArmSmcArgs.Arg0));
 }
 
 EFI_STATUS

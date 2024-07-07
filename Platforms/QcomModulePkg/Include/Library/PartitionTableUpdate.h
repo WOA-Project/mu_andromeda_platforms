@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015-2019, The Linux Foundation. All rights reserved.
+ * Copyright (c) 2015-2020, The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
@@ -49,6 +49,13 @@ typedef enum {
   PARTITION_ALL,
 } UPDATE_TYPE;
 
+typedef enum {
+  PTN_ENTRIES_TO_MISC = 1,
+  PTN_ENTRIES_FROM_MISC,
+} NANDAB_UPDATE_TYPE;
+
+#define NANDAB_MAX_SLOTNAME_LEN 7
+
 #define PARTITION_ATTRIBUTES_MASK 0x1
 #define PARTITION_GUID_MASK 0x2
 
@@ -72,7 +79,7 @@ typedef enum {
 #define GPT_HEADER_SIZE 92
 #define GPT_LBA 1
 #define GPT_PART_ENTRY_SIZE 128
-#define MAX_GPT_NAME_SIZE 36
+#define MAX_GPT_NAME_SIZE 72
 
 /* GPT Offsets */
 #define HEADER_SIZE_OFFSET 12
@@ -196,6 +203,22 @@ struct BootPartsLinkedList {
   struct BootPartsLinkedList *Next;
 };
 
+
+/*
+  CHAR8 priority     : 2;
+  CHAR8 active       : 1;
+  CHAR8 try_count    : 3;
+  CHAR8 boot_success : 1;
+  CHAR8 unbootable   : 1;
+*/
+typedef struct NandABPtnHeader {
+  CHAR8 Attributes;
+  CHAR16 SlotName[NANDAB_MAX_SLOTNAME_LEN];
+} NandABPtnHeader;
+typedef struct NandABAttr {
+  NandABPtnHeader Slots[MAX_SLOTS];
+} NandABAttr;
+
 EFI_STATUS
 UpdatePartitionTable (UINT8 *GptImage,
                       UINT32 Sz,
@@ -210,6 +233,7 @@ BOOLEAN
 PartitionHasMultiSlot (CONST CHAR16 *Pname);
 EFI_STATUS EnumeratePartitions (VOID);
 VOID UpdatePartitionEntries (VOID);
+EFI_STATUS NandABUpdatePartition (UINT32 UpdateType);
 VOID UpdatePartitionAttributes (UINT32 UpdateType);
 VOID FindPtnActiveSlot (VOID);
 EFI_STATUS
@@ -223,4 +247,5 @@ EFI_STATUS HandleActiveSlotUnbootable (VOID);
 EFI_STATUS ClearUnbootable (VOID);
 BOOLEAN IsABRetryCountUpdateRequired (VOID);
 UINT32 PartitionVerifyMibibImage (UINT8 *Image);
+UINT64 GetPartitionSize (EFI_BLOCK_IO_PROTOCOL *BlockIo);
 #endif

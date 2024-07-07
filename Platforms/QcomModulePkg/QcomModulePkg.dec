@@ -1,5 +1,5 @@
 #/*
-# * Copyright (c) 2015-2020, The Linux Foundation. All rights reserved.
+# * Copyright (c) 2015-2021, The Linux Foundation. All rights reserved.
 # *
 # * Redistribution and use in source and binary forms, with or without
 # * modification, are permitted provided that the following conditions are
@@ -25,6 +25,11 @@
 # * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
 # * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 # * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+# *
+# * Changes from Qualcomm Innovation Center are provided under the following
+# * license:
+# * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
+# * SPDX-License-Identifier: BSD-3-Clause-Clear
 #*/
 
 
@@ -147,6 +152,8 @@
   gQcomDisplayUtilsProtocolGuid =      { 0xc0dd69ac, 0x76ba, 0x11e6, { 0xab, 0x24, 0x1f, 0xc7, 0xf5, 0x57, 0x5f, 0x19 } }
   # Multithreading Kernel protocol for UEFI
   gEfiKernelProtocolGuid =             { 0xB5062BE7, 0x170B, 0x4A32, { 0xBE, 0x21, 0x68, 0x92, 0x62, 0xFF, 0x43, 0x99 } }
+  # SoftSkuId protocol
+  gEfiSoftSkuProtocolGuid =            { 0xf917a796, 0x871b, 0x4595, { 0x85, 0x5c, 0x95, 0x38, 0x87, 0x75, 0x2e, 0xa3 } }
 
 [PcdsFixedAtBuild.common]
   # LinuxLoaderCommon

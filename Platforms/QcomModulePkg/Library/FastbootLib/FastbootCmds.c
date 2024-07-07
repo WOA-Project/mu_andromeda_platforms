@@ -18,7 +18,7 @@ found at
  * Copyright (c) 2009, Google Inc.
  * All rights reserved.
  *
- * Copyright (c) 2015 - 2020, The Linux Foundation. All rights reserved.
+ * Copyright (c) 2015 - 2021, The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -44,6 +44,38 @@ found at
  * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
  * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
  * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
+ * Changes from Qualcomm Innovation Center are provided under the following
+ * license:
+ * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted (subject to the limitations in the
+ * disclaimer below) provided that the following conditions are met:
+ * * Redistributions of source code must retain the above copyright
+ *   notice, this list of conditions and the following disclaimer.
+ * * Redistributions in binary form must reproduce the above
+ * copyright notice, this list of conditions and the following
+ * disclaimer in the documentation and/or other materials provided
+ * with the distribution.
+ * * Neither the name of Qualcomm Innovation Center, Inc. nor the names of its
+ * contributors may be used to endorse or promote products derived
+ * from this software without specific prior written permission.
+ *
+ * NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE
+ * GRANTED BY THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT
+ * HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
+ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+ * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+ * IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
+ * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+ * GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
+ * IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+ * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
+ * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
 */
 #include <Library/BaseLib.h>
 #include <Library/BaseMemoryLib.h>
@@ -88,8 +120,9 @@ found at
 
 STATIC struct GetVarPartitionInfo part_info[] = {
     {"system", "partition-size:", "partition-type:", "", "ext4"},
-    {"userdata", "partition-size:", "partition-type:", "", "ext4"},
+    {"userdata", "partition-size:", "partition-type:", "", USERDATA_FS_TYPE},
     {"cache", "partition-size:", "partition-type:", "", "ext4"},
+    {"metadata", "partition-size:", "partition-type:", "", "ext4"},
 };
 
 STATIC struct GetVarPartitionInfo PublishedPartInfo[MAX_NUM_PARTITIONS];
@@ -866,9 +899,10 @@ HandleSparseImgFlash (IN CHAR16 *PartitionName,
     return EFI_VOLUME_CORRUPTED;
   }
   // Check image will fit on device
-  SparseImgData.PartitionSize =
-                              (SparseImgData.BlockIo->Media->LastBlock + 1)
-                               * SparseImgData.BlockIo->Media->BlockSize;
+  SparseImgData.PartitionSize = GetPartitionSize (SparseImgData.BlockIo);
+  if (!SparseImgData.PartitionSize) {
+    return EFI_BAD_BUFFER_SIZE;
+  }
 
   if (sz < sizeof (sparse_header_t)) {
     DEBUG ((EFI_D_ERROR, "Input image is invalid\n"));
@@ -1063,21 +1097,10 @@ HandleRawImgFlash (IN CHAR16 *PartitionName,
     return EFI_VOLUME_CORRUPTED;
   }
 
-  if (CHECK_ADD64 (BlockIo->Media->LastBlock, 1)) {
-    DEBUG ((EFI_D_ERROR, "Integer overflow while adding LastBlock and 1\n"));
-    return EFI_INVALID_PARAMETER;
-  }
-
-  if ((MAX_UINT64 / (BlockIo->Media->LastBlock + 1)) <
-      (UINT64)BlockIo->Media->BlockSize) {
-    DEBUG ((EFI_D_ERROR,
-            "Integer overflow while multiplying LastBlock and BlockSize\n"));
-    return EFI_BAD_BUFFER_SIZE;
-  }
-
   /* Check image will fit on device */
-  PartitionSize = (BlockIo->Media->LastBlock + 1) * BlockIo->Media->BlockSize;
-  if (PartitionSize < Size) {
+  PartitionSize = GetPartitionSize (BlockIo);
+  if (PartitionSize < Size ||
+      !PartitionSize) {
     DEBUG ((EFI_D_ERROR, "Partition not big enough.\n"));
     DEBUG ((EFI_D_ERROR, "Partition Size:\t%d\nImage Size:\t%d\n",
             PartitionSize, Size));
@@ -1137,10 +1160,9 @@ HandleUbiImgFlash (
   }
 
   /* Check if Image fits into partition */
-  PartitionSize =
-        ((BlockIo->Media->LastBlock + 1) * (UINT64)BlockIo->Media->BlockSize);
-
-  if (Size > PartitionSize) {
+  PartitionSize = GetPartitionSize (BlockIo);
+  if (Size > PartitionSize ||
+    !PartitionSize) {
     DEBUG ((EFI_D_ERROR, "Input Size is invalid\n"));
     return EFI_INVALID_PARAMETER;
   }
@@ -1851,8 +1873,11 @@ CmdFlash (IN CONST CHAR8 *arg, IN VOID *data, IN UINT32 sz)
       goto out;
     }
 
-    PartitionSize = (BlockIo->Media->LastBlock + 1)
-                        * (BlockIo->Media->BlockSize);
+    PartitionSize = GetPartitionSize (BlockIo);
+    if (!PartitionSize) {
+      FastbootFail ("Partition error size");
+      goto out;
+    }
 
     if ((PartitionSize > MaxDownLoadSize) &&
          !IsDisableParallelDownloadFlash ()) {
@@ -2829,6 +2854,7 @@ CmdBoot (CONST CHAR8 *Arg, VOID *Data, UINT32 Size)
   Info.Images[0].Name = "boot";
   Info.NumLoadedImages = 1;
   Info.MultiSlotBoot = PartitionHasMultiSlot (L"boot");
+  Info.HeaderVersion = hdr->header_version;
 
   if (Info.MultiSlotBoot) {
     Status = ClearUnbootable ();
@@ -3147,6 +3173,19 @@ DisplayGetVariable (CHAR16 *VariableName, VOID *VariableValue, UINTN *DataSize)
   }
 
   return Status;
+}
+
+STATIC VOID
+CmdOemDisplayCommandLine (CONST CHAR8 *Arg, VOID *Data, UINT32 Size)
+{
+  EFI_STATUS Status;
+
+  Status = StoreDisplayCmdLine (Arg, AsciiStrLen (Arg));
+  if (Status != EFI_SUCCESS) {
+    FastbootFail ("Failed to store display command line");
+  } else {
+    FastbootOkay ("");
+  }
 }
 
 STATIC VOID
@@ -3482,11 +3521,12 @@ GetPartitionType (IN CHAR16 *PartName, OUT CHAR8 * PartType)
 }
 
 STATIC EFI_STATUS
-GetPartitionSize (IN CHAR16 *PartName, OUT CHAR8 * PartSize)
+GetPartitionSizeViaName (IN CHAR16 *PartName, OUT CHAR8 * PartSize)
 {
   EFI_BLOCK_IO_PROTOCOL *BlockIo = NULL;
   EFI_HANDLE *Handle = NULL;
   EFI_STATUS Status = EFI_INVALID_PARAMETER;
+  UINT64 PartitionSize;
 
   Status = PartitionGetInfo (PartName, &BlockIo, &Handle);
   if (Status != EFI_SUCCESS) {
@@ -3498,9 +3538,12 @@ GetPartitionSize (IN CHAR16 *PartName, OUT CHAR8 * PartSize)
     return EFI_VOLUME_CORRUPTED;
   }
 
-  AsciiSPrint (PartSize, MAX_RSP_SIZE, " 0x%llx",
-               (UINT64) (BlockIo->Media->LastBlock + 1) *
-                   BlockIo->Media->BlockSize);
+  PartitionSize = GetPartitionSize (BlockIo);
+  if (!PartitionSize) {
+    return EFI_BAD_BUFFER_SIZE;
+  }
+
+  AsciiSPrint (PartSize, MAX_RSP_SIZE, " 0x%llx", PartitionSize);
   return EFI_SUCCESS;
 
 }
@@ -3544,7 +3587,7 @@ PublishGetVarPartitionInfo (
                             AsciiStrLen (
                               PublishedPartInfo[PtnLoopCount].part_name));
     if (!EFI_ERROR (Status)) {
-      Status = GetPartitionSize (
+      Status = GetPartitionSizeViaName (
                             PartitionNameUniCode,
                             PublishedPartInfo[PtnLoopCount].size_response);
       if (Status == EFI_SUCCESS) {
@@ -3701,6 +3744,7 @@ FastbootCommandSetup (IN VOID *Base, IN UINT64 Size)
       {"reboot-bootloader", CmdRebootBootloader},
       {"getvar:", CmdGetVar},
       {"download:", CmdDownload},
+      {"oem display-cmdline", CmdOemDisplayCommandLine},
   };
 
   /* Register the commands only for non-user builds */

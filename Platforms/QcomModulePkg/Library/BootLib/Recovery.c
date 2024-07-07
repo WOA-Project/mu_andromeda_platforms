@@ -159,8 +159,9 @@ ReadFromPartitionOffset (EFI_GUID *Ptype, VOID **Msg,
 
   BlkIo = HandleInfoList[0].BlkIo;
   MsgSize = ROUND_TO_PAGE (Size, BlkIo->Media->BlockSize - 1);
-  PartitionSize = (BlkIo->Media->LastBlock + 1) * BlkIo->Media->BlockSize;
-  if (MsgSize > PartitionSize) {
+  PartitionSize = GetPartitionSize (BlkIo);
+  if (MsgSize > PartitionSize ||
+    !PartitionSize) {
     return EFI_OUT_OF_RESOURCES;
   }
 
@@ -235,7 +236,7 @@ GetSnapshotMergeStatus (VOID)
   return MergeStatus;
 }
 
-STATIC EFI_STATUS
+EFI_STATUS
 ReadFromPartition (EFI_GUID *Ptype, VOID **Msg, UINT32 Size)
 {
   return (ReadFromPartitionOffset (Ptype, Msg, Size, 0));
@@ -363,6 +364,7 @@ GetFfbmCommand (CHAR8 *FfbmString, UINT32 Sz)
 {
   CONST CHAR8 *FfbmCmd = "ffbm-";
   CONST CHAR8 *QmmiCmd = "qmmi";
+  CONST CHAR8 *Ffbm02Cmd = "ffbm-02";
   CHAR8 *FfbmData = NULL;
   EFI_STATUS Status;
   EFI_GUID Ptype = gEfiMiscPartitionGuid;
@@ -383,10 +385,13 @@ GetFfbmCommand (CHAR8 *FfbmString, UINT32 Sz)
   }
 
   FfbmData[Sz - 1] = '\0';
-  if (!AsciiStrnCmp (FfbmData, FfbmCmd, AsciiStrLen (FfbmCmd))) {
+  if (!AsciiStrnCmp (FfbmData, QmmiCmd, AsciiStrLen (QmmiCmd))||
+    !AsciiStrnCmp (FfbmData, Ffbm02Cmd, AsciiStrLen (Ffbm02Cmd))) {
+    /* if ffbm-02 or qmmi string is in misc partition,
+       then write qmmi to kernel cmd line*/
+    AsciiStrnCpyS (FfbmString, Sz, QmmiCmd, AsciiStrLen (QmmiCmd));
+  } else if (!AsciiStrnCmp (FfbmData, FfbmCmd, AsciiStrLen (FfbmCmd))) {
     AsciiStrnCpyS (FfbmString, Sz, FfbmData, Sz);
-  } else if (!AsciiStrnCmp (FfbmData, QmmiCmd, AsciiStrLen (QmmiCmd))) {
-    AsciiStrnCpyS (FfbmString, Sz, FfbmData, AsciiStrLen (QmmiCmd));
   } else {
     Status = EFI_NOT_FOUND;
   }

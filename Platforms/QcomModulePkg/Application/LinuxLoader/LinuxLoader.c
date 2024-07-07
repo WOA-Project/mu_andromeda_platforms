@@ -2,7 +2,7 @@
  * Copyright (c) 2009, Google Inc.
  * All rights reserved.
  *
- * Copyright (c) 2009-2020, The Linux Foundation. All rights reserved.
+ * Copyright (c) 2009-2021, The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
@@ -35,6 +35,8 @@
 #include "BootStats.h"
 #include "KeyPad.h"
 #include "LinuxLoaderLib.h"
+#include <Protocol/DiskIo.h>
+#include <Protocol/EFIDisplayUtils.h>
 #include <FastbootLib/FastbootMain.h>
 #include <Library/DeviceInfo.h>
 #include <Library/DrawUI.h>
@@ -121,6 +123,38 @@ BOOLEAN IsABRetryCountUpdateRequired (VOID)
   return TRUE;
 }
 
+#if TARGET_BOARD_TYPE_AUTO
+STATIC UINT8
+WaitForDisplayCompletion (VOID)
+{
+  EFI_STATUS Status;
+  EfiQcomDisplayUtilsProtocol *pDisplayUtilsProtocol = NULL;
+  CHAR8 *sLockName = "DispInit";
+
+  Status = gBS->LocateProtocol (&gQcomDisplayUtilsProtocolGuid,
+                                NULL,
+                                (VOID **)&pDisplayUtilsProtocol);
+  if ((EFI_ERROR (Status)) ||
+      (pDisplayUtilsProtocol == NULL)) {
+    DEBUG ((EFI_D_ERROR, "Failed to locate DisplayUtils protocol, Status=%r\n",
+                Status));
+    return Status;
+  } else {
+    Status = pDisplayUtilsProtocol->DisplayUtilsSetProperty (
+                                     EFI_DISPLAY_UTILS_WAIT_FOR_EVENT,
+                                     sLockName, strlen (sLockName));
+  }
+
+  return Status;
+}
+#else
+STATIC UINT8
+WaitForDisplayCompletion (VOID)
+{
+  return EFI_SUCCESS;
+}
+#endif
+
 /**
   Linux Loader Application EntryPoint
 
@@ -156,15 +190,9 @@ LinuxLoaderEntry (IN EFI_HANDLE ImageHandle, IN EFI_SYSTEM_TABLE *SystemTable)
     goto stack_guard_update_default;
   }
 
-  DEBUG ((EFI_D_VERBOSE, "StackGuardChkSetup\n"));
-
   StackGuardChkSetup ();
 
-  DEBUG ((EFI_D_VERBOSE, "BootStatsSetTimeStamp\n"));
-
   BootStatsSetTimeStamp (BS_BL_START);
-
-  DEBUG ((EFI_D_VERBOSE, "DeviceInfoInit\n"));
 
   // Initialize verified boot & Read Device Info
   Status = DeviceInfoInit ();
@@ -173,8 +201,6 @@ LinuxLoaderEntry (IN EFI_HANDLE ImageHandle, IN EFI_SYSTEM_TABLE *SystemTable)
     goto stack_guard_update_default;
   }
 
-  DEBUG ((EFI_D_VERBOSE, "EnumeratePartitions\n"));
-
   Status = EnumeratePartitions ();
 
   if (EFI_ERROR (Status)) {
@@ -182,8 +208,6 @@ LinuxLoaderEntry (IN EFI_HANDLE ImageHandle, IN EFI_SYSTEM_TABLE *SystemTable)
             Status));
     goto stack_guard_update_default;
   }
-
-  DEBUG ((EFI_D_VERBOSE, "UpdatePartitionEntries\n"));
 
   UpdatePartitionEntries ();
   /*Check for multislot boot support*/
@@ -205,8 +229,6 @@ LinuxLoaderEntry (IN EFI_HANDLE ImageHandle, IN EFI_SYSTEM_TABLE *SystemTable)
   //  DEBUG ((EFI_D_ERROR, "Error reading key status: %r\n", Status));
   //  goto stack_guard_update_default;
   //}
-
-  DEBUG ((EFI_D_VERBOSE, "GetRebootReason\n"));
 
   // check for reboot mode
   Status = GetRebootReason (&BootReason);
@@ -260,13 +282,9 @@ LinuxLoaderEntry (IN EFI_HANDLE ImageHandle, IN EFI_SYSTEM_TABLE *SystemTable)
     break;
   }
 
-  DEBUG ((EFI_D_VERBOSE, "RecoveryInit\n"));
-
   Status = RecoveryInit (&BootIntoRecovery);
   if (Status != EFI_SUCCESS)
     DEBUG ((EFI_D_VERBOSE, "RecoveryInit failed ignore: %r\n", Status));
-
-  DEBUG ((EFI_D_VERBOSE, "BoardInit\n"));
 
   /* Populate board data required for fastboot, dtb selection and cmd line */
   Status = BoardInit ();
@@ -293,10 +311,21 @@ LinuxLoaderEntry (IN EFI_HANDLE ImageHandle, IN EFI_SYSTEM_TABLE *SystemTable)
       goto fastboot;
     }
 
+    Status = WaitForDisplayCompletion ();
+    if (Status != EFI_SUCCESS) {
+      DEBUG ((EFI_D_ERROR, "Failed to wait for display completion: %r\n",
+                  Status));
+    }
     BootLinux (&Info);
   }
 
 fastboot:
+  Status = WaitForDisplayCompletion ();
+  if (Status != EFI_SUCCESS) {
+    DEBUG ((EFI_D_ERROR, "Failed to wait for display completion: %r\n",
+                Status));
+  }
+
   DEBUG ((EFI_D_INFO, "Launching fastboot\n"));
   Status = FastbootInitialize ();
   if (EFI_ERROR (Status)) {

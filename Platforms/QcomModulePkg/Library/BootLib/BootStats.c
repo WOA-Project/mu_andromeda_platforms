@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016-2017, The Linux Foundation. All rights reserved.
+ * Copyright (c) 2016-2017, 2021 The Linux Foundation. All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are
@@ -38,6 +38,14 @@ STATIC UINT32 KernelLoadStart;
 STATIC UINT64 SharedImemAddress;
 STATIC UINT64 MpmTimerBase;
 STATIC UINT64 BsImemAddress;
+
+/*
+ * With GKI support, the kernel load time will be sum of
+ * GKI kernel load time + Vendor kernel load time.
+ * To account for this, capture the total number of partition
+ * loading that has to be accounted.
+ */
+STATIC UINT32 KernelLoadTime;
 
 void
 BootStatsSetTimeStamp (BS_ENTRY BootStatId)
@@ -83,18 +91,23 @@ BootStatsSetTimeStamp (BS_ENTRY BootStatId)
       KernelLoadStart = READL (MpmTimerBase);
       DEBUG ((EFI_D_VERBOSE, "BootStats: ID-%d: Kernel Load Start:%u\n",
               BootStatId, KernelLoadStart));
-      return;
     }
 
     if (BootStatId == BS_KERNEL_LOAD_DONE) {
-      BootStatImemAddress =
-          BsImemAddress + (sizeof (UINT32) * BS_KERNEL_LOAD_TIME);
       BootStatClockCount = READL (MpmTimerBase);
       if (BootStatClockCount) {
-        WRITEL (BootStatImemAddress, (BootStatClockCount - KernelLoadStart));
+        KernelLoadTime += BootStatClockCount - KernelLoadStart;
+      }
+      BootStatImemAddress =
+          BsImemAddress + (sizeof (UINT32) * BS_KERNEL_LOAD_TIME);
+      if (BootStatClockCount) {
+        WRITEL (BootStatImemAddress, KernelLoadTime);
+        BootStatImemAddress = BsImemAddress +
+                              (sizeof (UINT32) * BS_KERNEL_LOAD_DONE);
+        WRITEL (BootStatImemAddress, BootStatClockCount);
       }
       DEBUG ((EFI_D_VERBOSE, "BootStats: ID-%d: Kernel Load Done:%u\n",
-              BootStatId, BootStatClockCount));
+            BootStatId, BootStatClockCount));
     } else {
       BootStatImemAddress = BsImemAddress + (sizeof (UINT32) * BootStatId);
       BootStatClockCount = READL (MpmTimerBase);

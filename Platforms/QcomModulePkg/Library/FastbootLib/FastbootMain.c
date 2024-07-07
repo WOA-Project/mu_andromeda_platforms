@@ -60,7 +60,7 @@ found at
 #include "FastbootMain.h"
 #include "UsbDescriptors.h"
 
-#define USB_BUFF_SIZE 1024 * 1024 * 1
+#define USB_BUFF_SIZE USB_BUFFER_SIZE
 
 /* Global fastboot data */
 static FastbootDeviceData Fbd;

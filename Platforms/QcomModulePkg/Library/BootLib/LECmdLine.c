@@ -26,17 +26,50 @@
  * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
  * ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *
+ * Changes from Qualcomm Innovation Center are provided under the following license:
+ * Copyright (c) 2022 Qualcomm Innovation Center, Inc. All rights reserved.
+ *
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted (subject to the limitations in the
+ * disclaimer below) provided that the following conditions are met:
+ *     * Redistributions of source code must retain the above copyright
+ *       notice, this list of conditions and the following disclaimer.
+ *     * Redistributions in binary form must reproduce the above
+ *       copyright notice, this list of conditions and the following
+ *       disclaimer in the documentation and/or other materials provided
+ *       with the distribution.
+ *     * Neither the name of Qualcomm Innovation Center, Inc. nor the names of its
+ *       contributors may be used to endorse or promote products derived
+ *       from this software without specific prior written permission.
+ *
+ * NO EXPRESS OR IMPLIED LICENSES TO ANY PARTY'S PATENT RIGHTS ARE
+ * GRANTED BY THIS LICENSE. THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT
+ * HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED
+ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+ * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+ * IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
+ * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+ * GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER
+ * IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+ * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
+ * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ *
  **/
 
 #include <Library/PartitionTableUpdate.h>
 #include "LECmdLine.h"
+#include "Board.h"
 #include <Library/MemoryAllocationLib.h>
 
 /* verity command line related structures */
 #define MAX_VERITY_CMD_LINE 512
 #define MAX_VERITY_SECTOR_LEN 12
 #define MAX_VERITY_HASH_LEN 65
-STATIC CONST CHAR8 *VeritySystemPartitionStr = "/dev/mmcblk0p";
+#define MAX_VERITY_SYS_STR_LEN 20
+
+STATIC CHAR8 *VeritySystemPartitionStr = NULL;
 STATIC CONST CHAR8 *VerityName = "verity";
 STATIC CONST CHAR8 *VerityAppliedOn = "system";
 STATIC CONST CHAR8 *VerityEncriptionName = "sha256";
@@ -121,6 +154,75 @@ ErrWordnCpyOut:
 }
 
 /**
+   This function gets system path for EMMC and UFS.
+   Memory is allocated for system path string by AllocateZeroPool().
+   On EFI_SUCCESS, User has to free the Memory, using FreePool().
+   @param[out]  CHAR8 **  system path is copied including NULL terminator.
+   @retval  EFI_SUCCESS  The system path is constructed successfully.
+   @retval  other        Failed to construct the system path.
+ **/
+STATIC EFI_STATUS
+LEVerityGetSystemPath (CHAR8 **SysPath)
+{
+  EFI_STATUS Status = EFI_SUCCESS;
+  INT32 Index = 0;
+  UINT32 Lun = 0;
+  CHAR16 PartitionName[MAX_GPT_NAME_SIZE];
+  CHAR8 LunCharMapping[] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'};
+  CHAR8 RootDevStr[BOOT_DEV_NAME_SIZE_MAX];
+  BOOLEAN MultiSlotBoot = FALSE;
+
+  *SysPath = AllocateZeroPool (sizeof (CHAR8) * MAX_VERITY_SYS_STR_LEN);
+  if (!*SysPath) {
+    DEBUG ((EFI_D_ERROR, "LEVerity: Allocation failed for SysPath \n"));
+    Status = EFI_OUT_OF_RESOURCES;
+    goto ErrLeVerityGetSystemPathout;
+  }
+
+  /* Get system partition index */
+  MultiSlotBoot = PartitionHasMultiSlot ((CONST CHAR16 *)L"boot");
+
+  StrnCpyS (PartitionName, MAX_GPT_NAME_SIZE, (CONST CHAR16 *)L"system",
+        StrLen ((CONST CHAR16 *)L"system"));
+  if (MultiSlotBoot) {
+    StrnCatS (PartitionName, MAX_GPT_NAME_SIZE,
+          GetCurrentSlotSuffix ().Suffix,
+          StrLen (GetCurrentSlotSuffix ().Suffix));
+    DEBUG ((EFI_D_VERBOSE, "LEVerity: Sys Partition:%s\n", PartitionName));
+  }
+  Index = GetPartitionIndex (PartitionName);
+
+  if (Index == INVALID_PTN) {
+    DEBUG ((EFI_D_ERROR,
+            "LEVerity: System partition does not exist \n"));
+    FreePool (*SysPath);
+    *SysPath = NULL;
+    Status = EFI_DEVICE_ERROR;
+    goto ErrLeVerityGetSystemPathout;
+  }
+  Lun = GetPartitionLunFromIndex (Index);
+  GetRootDeviceType (RootDevStr, BOOT_DEV_NAME_SIZE_MAX);
+  if (!AsciiStrCmp ("EMMC", RootDevStr)) {
+    AsciiSPrint (*SysPath, MAX_VERITY_SYS_STR_LEN,
+      " /dev/mmcblk0p%d", Index);
+  } else if (!AsciiStrCmp ("UFS", RootDevStr)) {
+    AsciiSPrint (*SysPath, MAX_VERITY_SYS_STR_LEN, " /dev/sd%c%d",
+                 LunCharMapping[Lun],
+                 GetPartitionIdxInLun (PartitionName, Lun));
+  } else {
+    DEBUG ((EFI_D_ERROR, "LEVerity: Unknown Device type\n"));
+    FreePool (*SysPath);
+    *SysPath = NULL;
+    Status = EFI_DEVICE_ERROR;
+    goto ErrLeVerityGetSystemPathout;
+  }
+  DEBUG ((EFI_D_VERBOSE, "LEVerity: System Path - %a \n", *SysPath));
+
+ErrLeVerityGetSystemPathout:
+  return Status;
+}
+
+/**
    This function gets verity build time parameters passed in SourceCmdLine, and
    constructs complete verity command line into LEVerityCmdLine.
    @param[in]   String   Pointer to a Null-terminated ASCII string.
@@ -144,9 +246,6 @@ GetLEVerityCmdLine (CONST CHAR8 *SourceCmdLine,
   CHAR8 *Hash = NULL;
   CHAR8 *FecOff = NULL;
   CHAR8 *DMDataStr = NULL;
-  BOOLEAN MultiSlotBoot = FALSE;
-  CHAR16 PartitionName[MAX_GPT_NAME_SIZE];
-  INT32 Index = 0;
 
   /* Get verity command line from SourceCmdLine */
   DMDataStr = AsciiStrStr (SourceCmdLine, "verity=");
@@ -217,23 +316,9 @@ GetLEVerityCmdLine (CONST CHAR8 *SourceCmdLine,
     /* Get HashSize which is always greater by 8 bytes to DataSize */
     HashSize = AsciiStrDecimalToUintn ((CHAR8 *) &DataSize[0]) + 8;
 
-    /* Get system partition index */
-    MultiSlotBoot = PartitionHasMultiSlot ((CONST CHAR16 *)L"boot");
-
-    StrnCpyS (PartitionName, MAX_GPT_NAME_SIZE, (CONST CHAR16 *)L"system",
-          StrLen ((CONST CHAR16 *)L"system"));
-    if (MultiSlotBoot) {
-      StrnCatS (PartitionName, MAX_GPT_NAME_SIZE,
-            GetCurrentSlotSuffix ().Suffix,
-            StrLen (GetCurrentSlotSuffix ().Suffix));
-      DEBUG ((EFI_D_VERBOSE, "Partition name:%s\n", PartitionName));
-    }
-    Index = GetPartitionIndex (PartitionName);
-
-    if (Index == INVALID_PTN) {
-      DEBUG ((EFI_D_ERROR,
-              "GetLEVerityCmdLine: System partition does not exist \n"));
-      Status = EFI_DEVICE_ERROR;
+    Status = LEVerityGetSystemPath (&VeritySystemPartitionStr);
+    if (Status != EFI_SUCCESS) {
+      DEBUG ((EFI_D_ERROR, "LEVerityGetSystemPath: system path error \n"));
       goto ErrLEVerityout;
     }
 
@@ -251,7 +336,7 @@ GetLEVerityCmdLine (CONST CHAR8 *SourceCmdLine,
         MAX_VERITY_CMD_LINE,
         " %a dm=\"%a none ro,0 %a %a 1 %a%d %a%d %a %a %a %d %a %a %a\"",
         VerityRoot, VerityAppliedOn, SectorSize, VerityName,
-        VeritySystemPartitionStr, Index, VeritySystemPartitionStr, Index,
+        VeritySystemPartitionStr, VeritySystemPartitionStr,
         VerityBlockSize, VerityBlockSize, DataSize, HashSize, VerityEncriptionName,
         Hash, VeritySalt
         );
@@ -260,12 +345,12 @@ GetLEVerityCmdLine (CONST CHAR8 *SourceCmdLine,
         AsciiSPrint (
         DMTemp,
         MAX_VERITY_CMD_LINE,
-        " %a dm=\"%a none ro,0 %a %a 1 %a%d %a%d %a %a %a %d %a %a %a %d %a %a %a %a%d %a 2 %a %a %a %a\"",
+        " %a dm=\"%a none ro,0 %a %a 1 %a %a %a %a %a %d %a %a %a %d %a %a %a %a %a 2 %a %a %a %a\"",
         VerityRoot, VerityAppliedOn, SectorSize, VerityName,
-        VeritySystemPartitionStr, Index, VeritySystemPartitionStr, Index,
+        VeritySystemPartitionStr, VeritySystemPartitionStr,
         VerityBlockSize, VerityBlockSize, DataSize, HashSize, VerityEncriptionName,
         Hash, VeritySalt, FEATUREARGS, OptionalParam0, OptionalParam1, UseFec,
-        VeritySystemPartitionStr, Index, FecRoot, FecBlock, FecOff, FecStart, FecOff
+        VeritySystemPartitionStr, FecRoot, FecBlock, FecOff, FecStart, FecOff
         );
     }
 
@@ -309,6 +394,10 @@ ErrLEVerityout:
   if (DMTemp != NULL) {
     FreePool (DMTemp);
     DMTemp = NULL;
+  }
+  if (VeritySystemPartitionStr != NULL) {
+    FreePool (VeritySystemPartitionStr);
+    VeritySystemPartitionStr = NULL;
   }
   return Status;
 }

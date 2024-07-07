@@ -131,6 +131,9 @@ VOID UpdatePartitionEntries (VOID)
       PtnEntries[Index].lun = i;
     }
   }
+  if (NAND == CheckRootDeviceType ()) {
+    NandABUpdatePartition (PTN_ENTRIES_FROM_MISC);
+  }
   /* Back up the ptn entries */
   gBS->CopyMem (PtnEntriesBak, PtnEntries, sizeof (PtnEntries));
 }
@@ -195,6 +198,31 @@ STATIC BOOLEAN IsUpdatePartitionAttributes ()
   return FALSE;
 }
 
+UINT64 GetPartitionSize (EFI_BLOCK_IO_PROTOCOL *BlockIo)
+{
+  UINT64 PartitionSize;
+
+  if (!BlockIo) {
+    DEBUG ((EFI_D_ERROR, "Invalid parameter, pleae check BlockIo info!!!\n"));
+    return 0;
+  }
+
+  if (CHECK_ADD64 (BlockIo->Media->LastBlock, 1)) {
+    DEBUG ((EFI_D_ERROR, "Integer overflow while adding LastBlock and 1\n"));
+    return 0;
+  }
+
+  if ((MAX_UINT64 / (BlockIo->Media->LastBlock + 1)) <
+    (UINT64)BlockIo->Media->BlockSize) {
+    DEBUG ((EFI_D_ERROR,
+     "Integer overflow while multiplying LastBlock and BlockSize\n"));
+    return 0;
+  }
+
+  PartitionSize = (BlockIo->Media->LastBlock + 1) * BlockIo->Media->BlockSize;
+  return  PartitionSize;
+}
+
 VOID UpdatePartitionAttributes (UINT32 UpdateType)
 {
   UINT32 BlkSz;
@@ -237,6 +265,12 @@ VOID UpdatePartitionAttributes (UINT32 UpdateType)
       Status = GetStorageHandle (NO_LUN, BlockIoHandle, &MaxHandles);
     } else if (!AsciiStrnCmp (BootDeviceType, "UFS", AsciiStrLen ("UFS"))) {
       Status = GetStorageHandle (Lun, BlockIoHandle, &MaxHandles);
+    } else if (!AsciiStrnCmp (BootDeviceType, "NAND", AsciiStrLen ("NAND"))) {
+      if (UpdateType & PARTITION_ATTRIBUTES_MASK) {
+         NandABUpdatePartition (PTN_ENTRIES_TO_MISC);
+         gBS->CopyMem (PtnEntriesBak, PtnEntries, sizeof (PtnEntries));
+      }
+      return;
     } else {
       DEBUG ((EFI_D_ERROR, "Unsupported  boot device type\n"));
       return;
@@ -256,7 +290,10 @@ VOID UpdatePartitionAttributes (UINT32 UpdateType)
     }
 
     BlockIo = BlockIoHandle[0].BlkIo;
-    DeviceDensity = (BlockIo->Media->LastBlock + 1) * BlockIo->Media->BlockSize;
+    DeviceDensity = GetPartitionSize (BlockIo);
+    if (!DeviceDensity) {
+      return;
+    }
     BlkSz = BlockIo->Media->BlockSize;
     PartEntriesblocks = MAX_PARTITION_ENTRIES_SZ / BlkSz;
     MaxGptPartEntrySzBytes = (GPT_HDR_BLOCKS + PartEntriesblocks) * BlkSz;
@@ -988,10 +1025,21 @@ WriteGpt (INT32 Lun, UINT32 Sz, UINT8 *Gpt)
   }
 
   BlockIo = BlockIoHandle[0].BlkIo;
-  DeviceDensity = (BlockIo->Media->LastBlock + 1) * BlockIo->Media->BlockSize;
+  DeviceDensity = GetPartitionSize (BlockIo);
+  if (!DeviceDensity) {
+    return FAILURE;
+  }
   BlkSz = BlockIo->Media->BlockSize;
 
-  /* Verity that passed block has valid GPT primary header */
+  /* Verity that passed block has valid GPT primary header
+     * Sz is from mNumDataBytes and it will check at CmdDownload
+     * if it is mNumDataBytes > MaxDownLoadSize it will fail early and
+     * will not cause any oob
+     */
+  if (Sz <= BlkSz * 2) {
+    DEBUG ((EFI_D_ERROR, "Gpt Image size is invalid!\n"));
+    return FAILURE;
+  }
   PrimaryGptHdr = (Gpt + BlkSz);
   Ret = ParseGptHeader (&GptHeader, PrimaryGptHdr, DeviceDensity, BlkSz);
   if (Ret) {
@@ -1007,6 +1055,10 @@ WriteGpt (INT32 Lun, UINT32 Sz, UINT8 *Gpt)
   /* Back up partition is stored in the reverse order with back GPT, followed by
    * part entries, find the offset to back up GPT */
   Offset = (2 * PartEntryArrSz);
+  if (Sz < (Offset + (BlkSz * 3))) {
+    DEBUG ((EFI_D_ERROR, "Gpt Image size is invalid!!\n"));
+    return FAILURE;
+  }
   SecondaryGptHdr = Offset + BlkSz + PrimaryGptHdr;
   ParseSecondaryGpt = TRUE;
 
@@ -1081,7 +1133,7 @@ WriteGpt (INT32 Lun, UINT32 Sz, UINT8 *Gpt)
     return FAILURE;
   }
   FlashingGpt = 0;
-  gBS->SetMem ((VOID *)PrimaryGptHdr, Sz, 0x0);
+  gBS->SetMem ((VOID *)Gpt, Sz, 0x0);
 
   DEBUG ((EFI_D_ERROR, "Updated Partition Table Successfully\n"));
   return SUCCESS;
@@ -1604,7 +1656,8 @@ FindBootableSlot (Slot *BootableSlot)
   }
 
   /* Validate slot suffix and partition guids */
-  if (Status == EFI_SUCCESS) {
+  if (Status == EFI_SUCCESS &&
+      NAND != CheckRootDeviceType ()) {
     GUARD_OUT (ValidateSlotGuids (BootableSlot));
   }
   MarkPtnActive (BootableSlot->Suffix);
@@ -1779,4 +1832,68 @@ LoadAndValidateDtboImg (BootInfo *Info,
   }
 
   return TRUE;
+}
+
+EFI_STATUS NandABUpdatePartition (UINT32 UpdateType)
+{
+  Slot Slots[] = {{L"_a"}, {L"_b"}};
+  NandABAttr *NandAttr = NULL;
+  EFI_GUID Ptype = gEfiMiscPartitionGuid;
+  EFI_STATUS Status;
+  UINT32 PageSize;
+  size_t Size1 = sizeof (PtnEntries[0].PartEntry.PartitionName);
+  size_t Size2 = sizeof (NandAttr->Slots[0].SlotName);
+
+  GetPageSize (&PageSize);
+  Status = GetNandMiscPartiGuid (&Ptype);
+  if (Status != EFI_SUCCESS) {
+    return Status;
+  }
+
+  Status = ReadFromPartition (&Ptype, (VOID **)&NandAttr, PageSize);
+  if (Status != EFI_SUCCESS) {
+    DEBUG ((EFI_D_ERROR, "Error Reading from misc partition: %r\n", Status));
+    return Status;
+  }
+
+  if (!NandAttr) {
+    DEBUG ((EFI_D_ERROR, "Error in loading Data from misc partition\n"));
+    return EFI_INVALID_PARAMETER;
+  }
+
+  for (UINTN SlotIndex = 0; SlotIndex < ARRAY_SIZE (Slots); SlotIndex++) {
+    struct PartitionEntry *BootPartition =
+                      GetBootPartitionEntry (&Slots[SlotIndex]);
+    if (BootPartition == NULL) {
+      DEBUG ((EFI_D_ERROR, "GetActiveSlot: No boot partition "
+                    "entry for slot %s\n", Slots[SlotIndex].Suffix));
+      Status = EFI_NOT_FOUND;
+      goto Exit;
+    }
+
+    if (UpdateType == PTN_ENTRIES_TO_MISC) {
+      NandAttr->Slots[SlotIndex].Attributes =
+         (CHAR8)((BootPartition->PartEntry.Attributes >>
+                                 PART_ATT_PRIORITY_BIT)&0xff);
+      StrnCpyS (NandAttr->Slots[SlotIndex].SlotName, Size2 ,
+                    (BootPartition->PartEntry.PartitionName), Size1);
+    } else if (!StrnCmp (BootPartition->PartEntry.PartitionName,
+                       NandAttr->Slots[SlotIndex].SlotName, Size2)) {
+        BootPartition->PartEntry.Attributes =
+               (((UINT64)((NandAttr->Slots[SlotIndex].Attributes)&0xff)) <<
+                                                       PART_ATT_PRIORITY_BIT);
+    }
+  }
+
+  if (UpdateType == PTN_ENTRIES_TO_MISC) {
+    WriteToPartition (&Ptype, NandAttr, sizeof (struct NandABAttr));
+  }
+
+Exit:
+  if (NandAttr) {
+    FreePool (NandAttr);
+    NandAttr = NULL;
+  }
+
+  return Status;
 }

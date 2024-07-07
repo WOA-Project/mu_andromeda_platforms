@@ -942,9 +942,11 @@ DeviceBootManagerPriorityBoot (
     }
   } else if (FrontPageBoot) {
     // Front Page Boot Option
-    DEBUG ((DEBUG_INFO, "[Bds] enter Front Page\n"));
-    Status = MsBootOptionsLibGetBootManagerMenu (BootOption, "VOL+");
-    SetRebootReason (OEM_REBOOT_TO_SETUP_KEY);
+    //DEBUG ((DEBUG_INFO, "[Bds] enter Front Page\n"));
+    //Status = MsBootOptionsLibGetBootManagerMenu (BootOption, "VOL+");
+    //SetRebootReason (OEM_REBOOT_TO_SETUP_KEY);
+    DEBUG ((DEBUG_INFO, "[Bds] enter Bootloader Menu\n"));
+    Status = SdBootOptionsLibGetBootloaderMenu (BootOption, "VOL+");
   } else {
     Status = EFI_NOT_FOUND;
   }

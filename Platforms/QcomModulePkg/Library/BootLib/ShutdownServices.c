@@ -88,9 +88,8 @@ EFI_STATUS PreparePlatformHardware (VOID)
   ArmDisableAsynchronousAbort ();
 
   // Clean, invalidate, disable data cache
-  ArmCleanInvalidateDataCache ();
-  ArmCleanDataCache ();
-  ArmInvalidateInstructionCache ();
+  WriteBackInvalidateDataCache ();
+  InvalidateInstructionCache ();
 
   ArmDisableDataCache ();
   ArmDisableInstructionCache ();

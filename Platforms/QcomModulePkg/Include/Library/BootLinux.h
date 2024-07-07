@@ -202,8 +202,8 @@ LoadImageHeader (CHAR16 *Pname, VOID **ImageHdrBuffer, UINT32 *ImageHdrSize);
 EFI_STATUS
 LoadImage (CHAR16 *Pname, VOID **ImageBuffer,
            UINT32 ImageSizeActual, UINT32 PageSize);
-EFI_STATUS
-LaunchApp (IN UINT32 Argc, IN CHAR8 **Argv);
+//EFI_STATUS
+//LaunchApp (IN UINT32 Argc, IN CHAR8 **Argv);
 BOOLEAN TargetBuildVariantUser (VOID);
 BOOLEAN IsLEVariant (VOID);
 BOOLEAN IsBuildAsSystemRootImage (VOID);
@@ -225,4 +225,5 @@ BOOLEAN IsVirtualAbOtaSupported (VOID);
 UINT64 SetandGetLoadAddr (BootParamlist *BootParamlistPtr, AddrType Type);
 BOOLEAN IsNANDSquashFsSupport (VOID);
 BOOLEAN IsEnableDisplayMenuFlagSupported (VOID);
+BOOLEAN IsSystemdBootslotEnabled (VOID);
 #endif

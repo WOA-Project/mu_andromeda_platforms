@@ -149,7 +149,11 @@ AvbIOResult AvbReadFromPartition(AvbOps *Ops, const char *Partition, int64_t Rea
         }
 
 	BlockIo = InfoList[0].BlkIo;
-	PartitionSize = (BlockIo->Media->LastBlock + 1) * BlockIo->Media->BlockSize;
+    PartitionSize = GetPartitionSize (BlockIo);
+    if (!PartitionSize) {
+      Result = AVB_IO_RESULT_ERROR_RANGE_OUTSIDE_PARTITION;
+      goto out;
+    }
 
 	if (ReadOffset < 0) {
 		if ((-ReadOffset) > PartitionSize) {
@@ -589,7 +593,10 @@ AvbIOResult AvbGetSizeOfPartition(AvbOps *Ops, const char *Partition, uint64_t *
 	}
 
 	BlockIo = HandleInfoList[0].BlkIo;
-	*OutSizeNumBytes = (BlockIo->Media->LastBlock + 1) * BlockIo->Media->BlockSize;
+    *OutSizeNumBytes = GetPartitionSize (BlockIo);
+    if (*OutSizeNumBytes == 0) {
+      return AVB_IO_RESULT_ERROR_RANGE_OUTSIDE_PARTITION;
+    }
 
 	return AVB_IO_RESULT_OK;
 }

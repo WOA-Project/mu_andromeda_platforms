@@ -30,8 +30,8 @@
 #include "FastbootCmds.h"
 #include <Library/Board.h>
 
-#define FAST_BOOT_VENDOR 0x18d1
-#define FAST_BOOT_IDPRODUCT 0xD00D
+#define FAST_BOOT_VENDOR 0x045E
+#define FAST_BOOT_IDPRODUCT 0x0C2F
 #define MAX_DESC_LEN 62
 #define UUID_STR_LEN 36
 
