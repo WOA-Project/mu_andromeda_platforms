@@ -28,7 +28,6 @@
   USE_PHYSICAL_TIMER             = 1
   USE_SCREEN_FOR_SERIAL_OUTPUT   = 0
   USE_MEMORY_FOR_SERIAL_OUTPUT   = 0
-  SEND_HEARTBEAT_TO_SERIAL       = 0
 
   DEFAULT_KEYS                   = FALSE
   PK_DEFAULT_FILE                = SurfaceDuoFamilyPkg/Include/Resources/SecureBoot/keystore/OEMA0-PK.der

@@ -51,6 +51,7 @@
     INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/Sm8150FamilyPkg/Drivers/VarLockNullDxe/VarLockNullDxe.inf
     INF Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/Sm8150FamilyPkg/Override/MdeModulePkg/Universal/Variable/UefiVariablePolicy/Dxe/VariablePolicyNullDxe.inf
     INF QcomPkg/PatchedBinaries/05472C14-ACB9-4458-A354-A68357AC3BF0.inf
+    INF QcomPkg/PatchedBinaries/ColorbarsDxe.inf
     INF QcomPkg/PatchedBinaries/DisplayDxe.inf
     INF QcomPkg/PatchedBinaries/HALIOMMUDxe.inf
     INF QcomPkg/PatchedBinaries/UFSDxe.inf
