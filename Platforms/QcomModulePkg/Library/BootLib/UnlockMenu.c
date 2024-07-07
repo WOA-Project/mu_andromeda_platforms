@@ -211,11 +211,46 @@ ResetDeviceUnlockStatus (INTN Type)
     goto Exit;
   }
 
-  Result = ReadWriteDeviceInfo (READ_CONFIG, DevInfo, sizeof (DeviceInfo));
+  /*Result = ReadWriteDeviceInfo (READ_CONFIG, DevInfo, sizeof (DeviceInfo));
   if (Result != EFI_SUCCESS) {
     DEBUG ((EFI_D_ERROR, "Unable to Read Device Info: %r\n", Result));
     goto Exit;
-  }
+  }*/
+
+  DevInfo->magic[0] = 'A';
+  DevInfo->magic[1] = 'N';
+  DevInfo->magic[2] = 'D';
+  DevInfo->magic[3] = 'R';
+  DevInfo->magic[4] = 'O';
+  DevInfo->magic[5] = 'I';
+  DevInfo->magic[6] = 'D';
+  DevInfo->magic[7] = '-';
+  DevInfo->magic[8] = 'B';
+  DevInfo->magic[9] = 'O';
+  DevInfo->magic[10] = 'O';
+  DevInfo->magic[11] = 'T';
+  DevInfo->magic[12] = '!';
+  DevInfo->is_unlocked = TRUE;
+  DevInfo->is_unlock_critical = TRUE;
+  DevInfo->is_charger_screen_enabled = FALSE;
+  DevInfo->bootloader_version[0] = '1';
+  DevInfo->bootloader_version[1] = '.';
+  DevInfo->bootloader_version[2] = '0';
+  DevInfo->bootloader_version[3] = '.';
+  DevInfo->bootloader_version[4] = '0';
+  DevInfo->bootloader_version[5] = '.';
+  DevInfo->bootloader_version[6] = '0';
+  DevInfo->radio_version[0] = '1';
+  DevInfo->radio_version[1] = '.';
+  DevInfo->radio_version[2] = '0';
+  DevInfo->radio_version[3] = '.';
+  DevInfo->radio_version[4] = '0';
+  DevInfo->radio_version[5] = '.';
+  DevInfo->radio_version[6] = '0';
+  DevInfo->verity_mode = FALSE;
+  DevInfo->user_public_key_length = 0;
+  //DevInfo->user_public_key[MAX_USER_KEY_SIZE];
+  //DevInfo->rollback_index[MAX_VB_PARTITIONS];
 
   Result = SetDeviceUnlockValue (mUnlockInfo[Type].UnlockType,
                                  mUnlockInfo[Type].UnlockValue);

@@ -189,9 +189,9 @@ GetStorageHandle (INT32 Lun, HandleInfo *BlockIoHandle, UINT32 *MaxHandles)
 
 STATIC BOOLEAN IsUpdatePartitionAttributes ()
 {
-  if (CompareMem (PtnEntries, PtnEntriesBak, sizeof (PtnEntries))) {
-    return TRUE;
-  }
+  //if (CompareMem (PtnEntries, PtnEntriesBak, sizeof (PtnEntries))) {
+  //  return TRUE;
+  //}
   return FALSE;
 }
 

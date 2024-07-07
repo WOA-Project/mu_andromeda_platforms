@@ -81,12 +81,12 @@ EnableChargingScreen (BOOLEAN IsEnabled)
 
   if (IsChargingScreenEnable () != IsEnabled) {
     DevInfo.is_charger_screen_enabled = IsEnabled;
-    Status = ReadWriteDeviceInfo (WRITE_CONFIG, &DevInfo, sizeof (DevInfo));
+    /*Status = ReadWriteDeviceInfo (WRITE_CONFIG, &DevInfo, sizeof (DevInfo));
     if (Status != EFI_SUCCESS) {
       DEBUG ((EFI_D_ERROR, "Error %a charger screen: %r\n",
               (IsEnabled ? "Enabling" : "Disabling"), Status));
       return Status;
-    }
+    }*/
   }
 
   return Status;
@@ -99,11 +99,11 @@ EnableEnforcingMode (BOOLEAN IsEnabled)
 
   if (IsEnforcing () != IsEnabled) {
     DevInfo.verity_mode = IsEnabled;
-    Status = ReadWriteDeviceInfo (WRITE_CONFIG, &DevInfo, sizeof (DevInfo));
+    /*Status = ReadWriteDeviceInfo (WRITE_CONFIG, &DevInfo, sizeof (DevInfo));
     if (Status != EFI_SUCCESS) {
       DEBUG ((EFI_D_ERROR, "VBRwDeviceState Returned error: %r\n", Status));
       return Status;
-    }
+    }*/
   }
 
   return Status;
@@ -116,11 +116,11 @@ SetUnlockValue (BOOLEAN State)
 
   if (IsUnlocked () != State) {
     DevInfo.is_unlocked = State;
-    Status = ReadWriteDeviceInfo (WRITE_CONFIG, &DevInfo, sizeof (DevInfo));
+    /*Status = ReadWriteDeviceInfo (WRITE_CONFIG, &DevInfo, sizeof (DevInfo));
     if (Status != EFI_SUCCESS) {
       DEBUG ((EFI_D_ERROR, "Unable set the unlock value: %r\n", Status));
       return Status;
-    }
+    }*/
   }
 
   return Status;
@@ -133,12 +133,12 @@ SetUnlockCriticalValue (BOOLEAN State)
 
   if (IsUnlockCritical () != State) {
     DevInfo.is_unlock_critical = State;
-    Status = ReadWriteDeviceInfo (WRITE_CONFIG, &DevInfo, sizeof (DevInfo));
+    /*Status = ReadWriteDeviceInfo (WRITE_CONFIG, &DevInfo, sizeof (DevInfo));
     if (Status != EFI_SUCCESS) {
       DEBUG (
           (EFI_D_ERROR, "Unable set the unlock critical value: %r\n", Status));
       return Status;
-    }
+    }*/
   }
   return Status;
 }
@@ -215,11 +215,11 @@ UpdateDevInfo (CHAR16 *Pname, CHAR8 *ImgVersion)
                    AsciiStrLen (ImgVersion));
   }
 
-  Status =
+  /*Status =
       ReadWriteDeviceInfo (WRITE_CONFIG, (VOID *)&DevInfo, sizeof (DevInfo));
   if (Status != EFI_SUCCESS) {
     DEBUG ((EFI_D_ERROR, "Unable to Write Device Info: %r\n", Status));
-  }
+  }*/
   return Status;
 }
 
@@ -228,12 +228,47 @@ EFI_STATUS DeviceInfoInit (VOID)
   EFI_STATUS Status = EFI_SUCCESS;
 
   if (FirstReadDevInfo) {
-    Status =
+    /*Status =
         ReadWriteDeviceInfo (READ_CONFIG, (VOID *)&DevInfo, sizeof (DevInfo));
     if (Status != EFI_SUCCESS) {
       DEBUG ((EFI_D_ERROR, "Unable to Read Device Info: %r\n", Status));
       return Status;
-    }
+    }*/
+
+    DevInfo.magic[0] = 'A';
+    DevInfo.magic[1] = 'N';
+    DevInfo.magic[2] = 'D';
+    DevInfo.magic[3] = 'R';
+    DevInfo.magic[4] = 'O';
+    DevInfo.magic[5] = 'I';
+    DevInfo.magic[6] = 'D';
+    DevInfo.magic[7] = '-';
+    DevInfo.magic[8] = 'B';
+    DevInfo.magic[9] = 'O';
+    DevInfo.magic[10] = 'O';
+    DevInfo.magic[11] = 'T';
+    DevInfo.magic[12] = '!';
+    DevInfo.is_unlocked = TRUE;
+    DevInfo.is_unlock_critical = TRUE;
+    DevInfo.is_charger_screen_enabled = FALSE;
+    DevInfo.bootloader_version[0] = '1';
+    DevInfo.bootloader_version[1] = '.';
+    DevInfo.bootloader_version[2] = '0';
+    DevInfo.bootloader_version[3] = '.';
+    DevInfo.bootloader_version[4] = '0';
+    DevInfo.bootloader_version[5] = '.';
+    DevInfo.bootloader_version[6] = '0';
+    DevInfo.radio_version[0] = '1';
+    DevInfo.radio_version[1] = '.';
+    DevInfo.radio_version[2] = '0';
+    DevInfo.radio_version[3] = '.';
+    DevInfo.radio_version[4] = '0';
+    DevInfo.radio_version[5] = '.';
+    DevInfo.radio_version[6] = '0';
+    DevInfo.verity_mode = FALSE;
+    DevInfo.user_public_key_length = 0;
+    //DevInfo.user_public_key[MAX_USER_KEY_SIZE];
+    //DevInfo.rollback_index[MAX_VB_PARTITIONS];
 
     FirstReadDevInfo = FALSE;
   }
@@ -254,12 +289,12 @@ EFI_STATUS DeviceInfoInit (VOID)
     }
     DevInfo.is_charger_screen_enabled = FALSE;
     DevInfo.verity_mode = TRUE;
-    Status =
+    /*Status =
         ReadWriteDeviceInfo (WRITE_CONFIG, (VOID *)&DevInfo, sizeof (DevInfo));
     if (Status != EFI_SUCCESS) {
       DEBUG ((EFI_D_ERROR, "Unable to Write Device Info: %r\n", Status));
       return Status;
-    }
+    }*/
   }
 
   return Status;
@@ -308,12 +343,12 @@ WriteRollbackIndex (UINT32 Loc, UINT64 RollbackIndex)
   }
 
   DevInfo.rollback_index[Loc] = RollbackIndex;
-  Status =
+  /*Status =
       ReadWriteDeviceInfo (WRITE_CONFIG, (VOID *)&DevInfo, sizeof (DevInfo));
   if (Status != EFI_SUCCESS) {
     DEBUG ((EFI_D_ERROR, "Unable to Write Device Info: %r\n", Status));
     return Status;
-  }
+  }*/
   return Status;
 }
 
@@ -335,12 +370,12 @@ StoreUserKey (CHAR8 *UserKey, UINT32 UserKeySize)
 
   gBS->CopyMem (DevInfo.user_public_key, UserKey, UserKeySize);
   DevInfo.user_public_key_length = UserKeySize;
-  Status =
+  /*Status =
       ReadWriteDeviceInfo (WRITE_CONFIG, (VOID *)&DevInfo, sizeof (DevInfo));
   if (Status != EFI_SUCCESS) {
     DEBUG ((EFI_D_ERROR, "Unable to Write Device Info: %r\n", Status));
     return Status;
-  }
+  }*/
   return Status;
 }
 
@@ -356,12 +391,12 @@ EFI_STATUS EraseUserKey (VOID)
 
   gBS->SetMem (DevInfo.user_public_key, sizeof (DevInfo.user_public_key), 0);
   DevInfo.user_public_key_length = 0;
-  Status =
+  /*Status =
       ReadWriteDeviceInfo (WRITE_CONFIG, (VOID *)&DevInfo, sizeof (DevInfo));
   if (Status != EFI_SUCCESS) {
     DEBUG ((EFI_D_ERROR, "Unable to Write Device Info: %r\n", Status));
     return Status;
-  }
+  }*/
   return Status;
 }
 

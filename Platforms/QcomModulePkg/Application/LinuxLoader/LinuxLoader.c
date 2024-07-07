@@ -156,9 +156,15 @@ LinuxLoaderEntry (IN EFI_HANDLE ImageHandle, IN EFI_SYSTEM_TABLE *SystemTable)
     goto stack_guard_update_default;
   }
 
+  DEBUG ((EFI_D_VERBOSE, "StackGuardChkSetup\n"));
+
   StackGuardChkSetup ();
 
+  DEBUG ((EFI_D_VERBOSE, "BootStatsSetTimeStamp\n"));
+
   BootStatsSetTimeStamp (BS_BL_START);
+
+  DEBUG ((EFI_D_VERBOSE, "DeviceInfoInit\n"));
 
   // Initialize verified boot & Read Device Info
   Status = DeviceInfoInit ();
@@ -166,6 +172,8 @@ LinuxLoaderEntry (IN EFI_HANDLE ImageHandle, IN EFI_SYSTEM_TABLE *SystemTable)
     DEBUG ((EFI_D_ERROR, "Initialize the device info failed: %r\n", Status));
     goto stack_guard_update_default;
   }
+
+  DEBUG ((EFI_D_VERBOSE, "EnumeratePartitions\n"));
 
   Status = EnumeratePartitions ();
 
@@ -175,6 +183,8 @@ LinuxLoaderEntry (IN EFI_HANDLE ImageHandle, IN EFI_SYSTEM_TABLE *SystemTable)
     goto stack_guard_update_default;
   }
 
+  DEBUG ((EFI_D_VERBOSE, "UpdatePartitionEntries\n"));
+
   UpdatePartitionEntries ();
   /*Check for multislot boot support*/
   MultiSlotBoot = PartitionHasMultiSlot ((CONST CHAR16 *)L"boot");
@@ -183,18 +193,20 @@ LinuxLoaderEntry (IN EFI_HANDLE ImageHandle, IN EFI_SYSTEM_TABLE *SystemTable)
     FindPtnActiveSlot ();
   }
 
-  Status = GetKeyPress (&KeyPressed);
-  if (Status == EFI_SUCCESS) {
-    if (KeyPressed == SCAN_DOWN)
+  //Status = GetKeyPress (&KeyPressed);
+  //if (Status == EFI_SUCCESS) {
+  //  if (KeyPressed == SCAN_DOWN)
       BootIntoFastboot = TRUE;
-    if (KeyPressed == SCAN_UP)
-      BootIntoRecovery = TRUE;
-    if (KeyPressed == SCAN_ESC)
-      RebootDevice (EMERGENCY_DLOAD);
-  } else if (Status == EFI_DEVICE_ERROR) {
-    DEBUG ((EFI_D_ERROR, "Error reading key status: %r\n", Status));
-    goto stack_guard_update_default;
-  }
+  //  if (KeyPressed == SCAN_UP)
+  //    BootIntoRecovery = TRUE;
+  //  if (KeyPressed == SCAN_ESC)
+  //    RebootDevice (EMERGENCY_DLOAD);
+  //} else if (Status == EFI_DEVICE_ERROR) {
+  //  DEBUG ((EFI_D_ERROR, "Error reading key status: %r\n", Status));
+  //  goto stack_guard_update_default;
+  //}
+
+  DEBUG ((EFI_D_VERBOSE, "GetRebootReason\n"));
 
   // check for reboot mode
   Status = GetRebootReason (&BootReason);
@@ -248,9 +260,13 @@ LinuxLoaderEntry (IN EFI_HANDLE ImageHandle, IN EFI_SYSTEM_TABLE *SystemTable)
     break;
   }
 
+  DEBUG ((EFI_D_VERBOSE, "RecoveryInit\n"));
+
   Status = RecoveryInit (&BootIntoRecovery);
   if (Status != EFI_SUCCESS)
     DEBUG ((EFI_D_VERBOSE, "RecoveryInit failed ignore: %r\n", Status));
+
+  DEBUG ((EFI_D_VERBOSE, "BoardInit\n"));
 
   /* Populate board data required for fastboot, dtb selection and cmd line */
   Status = BoardInit ();
