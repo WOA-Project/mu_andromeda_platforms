@@ -27,6 +27,7 @@ APRIORI DXE {
     INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/VcsDxe/VcsDxe.inf
     INF QcomPkg/PatchedBinaries/ClockDxe.inf
     INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/ICBDxe/ICBDxe.inf
+    INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/VerifiedBootDxe/VerifiedBootDxe.inf
     INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/ShmBridgeDxe/ShmBridgeDxeLA.inf
 
     FILE DRIVER = 4b4973ee-401b-4f36-a6a9-533dfccdfc33 {

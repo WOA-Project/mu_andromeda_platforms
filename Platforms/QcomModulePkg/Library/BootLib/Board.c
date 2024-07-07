@@ -98,7 +98,15 @@ ReadRamPartitions (RamPartitionEntry **RamPartitions, UINT32 *NumPartitions)
     if (EFI_ERROR (Status)) {
       DEBUG ((EFI_D_ERROR, "Error returned from GetRamPartitions %r\n",
               Status));
-      return Status;
+      //return Status;
+
+      NumPartitionEntries = 1;
+      RamPartitionEntries = AllocateZeroPool (NumPartitionEntries * sizeof (RamPartitionEntry));
+
+      RamPartitionEntries->Base = FixedPcdGet64(PcdSystemMemoryBase);
+      RamPartitionEntries->AvailableLength = FixedPcdGet64(PcdSystemMemorySize);
+      
+      Status = EFI_SUCCESS;
     }
     if (!RamPartitionEntries) {
       DEBUG ((EFI_D_ERROR, "RamPartitions is NULL\n"));
