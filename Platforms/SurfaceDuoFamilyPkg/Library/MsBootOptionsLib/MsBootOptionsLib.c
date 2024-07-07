@@ -548,7 +548,7 @@ MsBootOptionsLibGetDefaultOptions (
   EFI_BOOT_MANAGER_LOAD_OPTION  *Option;
   EFI_STATUS                    Status;
   EFI_STATUS                    Status2;
-  UINTN                         AdditionalOptionCount = 2;
+  UINTN                         AdditionalOptionCount = 3;
 
   Option = (EFI_BOOT_MANAGER_LOAD_OPTION *)AllocateZeroPool (sizeof (EFI_BOOT_MANAGER_LOAD_OPTION) * (LocalOptionCount + AdditionalOptionCount));
   ASSERT (Option != NULL);
