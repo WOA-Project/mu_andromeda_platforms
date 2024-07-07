@@ -71,6 +71,8 @@
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferHeight|1800
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferPixelBpp|32
 
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdABLProduct|"surfaceduo"
+
 [PcdsDynamicDefault.common]
   gEfiMdeModulePkgTokenSpaceGuid.PcdVideoHorizontalResolution|1350
   gEfiMdeModulePkgTokenSpaceGuid.PcdVideoVerticalResolution|1800

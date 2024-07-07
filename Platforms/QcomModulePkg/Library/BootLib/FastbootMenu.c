@@ -246,8 +246,8 @@ FastbootMenuShowScreen (OPTION_MENU_INFO *OptionMenuInfo)
     case 2:
       /* Get product name */
       AsciiStrnCatS (mFastbootCommonMsgInfo[i].Msg,
-        sizeof (mFastbootCommonMsgInfo[i].Msg), "Andromeda",
-        AsciiStrLen ("Andromeda"));
+        sizeof (mFastbootCommonMsgInfo[i].Msg), FixedPcdGetPtr(PcdABLProduct),
+        AsciiStrLen (FixedPcdGetPtr(PcdABLProduct)));
       break;
     case 3:
       /* Get variant value */

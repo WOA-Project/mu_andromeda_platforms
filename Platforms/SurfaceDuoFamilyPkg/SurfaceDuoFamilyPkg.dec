@@ -110,3 +110,5 @@
   ## FFS filename to find the SiPolicy p7b file.
   # {daf98d6a-6be4-4b60-97b8-4f16e4586258}
   gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSystemIntegrityPolicyFile |{ 0x6a, 0x8d, 0xf9, 0xda, 0xe4, 0x6b, 0x60, 0x4b, 0xb8, 0x97, 0x4f, 0x16, 0xe4, 0x58, 0x62, 0x58 }|VOID*|0x00000a604
+
+  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdABLProduct|"surfaceduo"|VOID*|0x00000a605

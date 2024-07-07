@@ -768,7 +768,7 @@ WriteToPartition (EFI_GUID *Ptype, VOID *Msg, UINT32 MsgSize)
 
 BOOLEAN IsSecureBootEnabled (VOID)
 {
-  EFI_STATUS Status = EFI_INVALID_PARAMETER;
+  /*EFI_STATUS Status = EFI_INVALID_PARAMETER;
   QCOM_VERIFIEDBOOT_PROTOCOL *VbIntf;
   BOOLEAN IsSecure = FALSE;
 
@@ -786,7 +786,8 @@ BOOLEAN IsSecureBootEnabled (VOID)
     return FALSE;
   }
 
-  return IsSecure;
+  return IsSecure;*/
+  return FALSE;
 }
 
 EFI_STATUS

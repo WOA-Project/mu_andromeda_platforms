@@ -173,6 +173,7 @@
 	gQcomTokenSpaceGuid.KernelLoadAddress32
 	gQcomTokenSpaceGuid.EnableMdtpSupport
 	gQcomTokenSpaceGuid.EnableNewNodeSearchFuc
+  	gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdABLProduct
 
 [Depex]
 	TRUE

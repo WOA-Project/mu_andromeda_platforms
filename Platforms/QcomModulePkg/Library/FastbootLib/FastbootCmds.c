@@ -3784,7 +3784,7 @@ FastbootCommandSetup (IN VOID *Base, IN UINT64 Size)
     FastbootPublishVar ("snapshot-update-status", SnapshotMergeState);
   }
 
-  AsciiSPrint (FullProduct, sizeof (FullProduct), "%a", PRODUCT_NAME);
+  AsciiSPrint (FullProduct, sizeof (FullProduct), "%a", FixedPcdGetPtr(PcdABLProduct));
   FastbootPublishVar ("product", FullProduct);
   FastbootPublishVar ("serialno", StrSerialNum);
   FastbootPublishVar ("secure", IsSecureBootEnabled () ? "yes" : "no");
