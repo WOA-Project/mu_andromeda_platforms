@@ -43,7 +43,7 @@
   gEfiMdePkgTokenSpaceGuid.PcdMaximumLinkedListLength|1000000
   gEfiMdePkgTokenSpaceGuid.PcdSpinLockTimeout|10000000
   gEfiMdePkgTokenSpaceGuid.PcdUefiLibMaxPrintBufferSize|320
-  gAdvLoggerPkgTokenSpaceGuid.PcdAdvancedLoggerPreMemPages|3
+  #gAdvLoggerPkgTokenSpaceGuid.PcdAdvancedLoggerPreMemPages|3
   gEfiNetworkPkgTokenSpaceGuid.PcdEnforceSecureRngAlgorithms|FALSE
 
 !if $(TARGET) == DEBUG
