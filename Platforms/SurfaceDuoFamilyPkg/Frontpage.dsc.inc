@@ -241,7 +241,7 @@
   #
   # Produces EfiGraphicsOutputProtocol to draw graphics to the screen.
   #
-  MsGraphicsPkg/RenderingEngineDxe/RenderingEngineDxe.inf
+  #MsGraphicsPkg/RenderingEngineDxe/RenderingEngineDxe.inf
   #
   # Finds and takes ownership of gEfiGraphicsOutputProtocolGuid so RenderingEngine can use it.
   #
@@ -249,7 +249,7 @@
   #
   # Driver for On Screen Keyboard.
   #
-  MsGraphicsPkg/OnScreenKeyboardDxe/OnScreenKeyboardDxe.inf
+  #MsGraphicsPkg/OnScreenKeyboardDxe/OnScreenKeyboardDxe.inf
   #
   # Installs protocol to share the UI theme. If PcdUiThemeInDxe, this will involve calling the PlatformThemeLib directly.
   # Otherwise, the theme will have been generated in PEI and it will be located on a HOB.

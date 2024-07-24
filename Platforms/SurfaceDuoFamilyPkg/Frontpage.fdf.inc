@@ -13,8 +13,8 @@
   INF MsGraphicsPkg/GopOverrideDxe/GopOverrideDxe.inf
   INF MsGraphicsPkg/MsEarlyGraphics/Dxe/MsEarlyGraphics.inf
   INF MsGraphicsPkg/MsUiTheme/Dxe/MsUiThemeProtocol.inf
-  INF MsGraphicsPkg/OnScreenKeyboardDxe/OnScreenKeyboardDxe.inf
-  INF MsGraphicsPkg/RenderingEngineDxe/RenderingEngineDxe.inf
+  #INF MsGraphicsPkg/OnScreenKeyboardDxe/OnScreenKeyboardDxe.inf
+  #INF MsGraphicsPkg/RenderingEngineDxe/RenderingEngineDxe.inf
   INF MsGraphicsPkg/SimpleWindowManagerDxe/SimpleWindowManagerDxe.inf
   INF MsWheaPkg/HwErrBert/HwErrBert.inf
 

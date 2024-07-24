@@ -445,7 +445,7 @@
   VariablePolicyLib|MdeModulePkg/Library/VariablePolicyLib/VariablePolicyLibRuntimeDxe.inf
 
 [Components.common]
-  AdvLoggerPkg/AdvancedFileLogger/AdvancedFileLogger.inf
+  #AdvLoggerPkg/AdvancedFileLogger/AdvancedFileLogger.inf
 
   ArmPkg/Drivers/ArmGic/ArmGicDxe.inf
 
