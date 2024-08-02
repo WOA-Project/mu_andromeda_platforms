@@ -49,6 +49,8 @@
 [Protocols]
   gEfiChipInfoProtocolGuid
   gEfiHash2ProtocolGuid
+  gEfiPlatformInfoProtocolGuid
+  gEfiRamPartitionProtocolGuid
   gEfiSmbiosProtocolGuid
   gSfpdProtocolGuid
   
