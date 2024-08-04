@@ -24,7 +24,7 @@
 [Binaries.AARCH64]
    ASL|SurfaceDuoACPI/8350/builtin/APIC.aml
    ASL|SurfaceDuoACPI/8350/builtin/CSRT.aml
-   ASL|SurfaceDuoACPI/8350/builtin/DBG2.aml
+   ASL|SurfaceDuoACPI/8350/builtin/DBG2.OEMZE.aml
    ASL|SurfaceDuoACPI/8350/builtin/DSDT.aml
    ASL|SurfaceDuoACPI/8350/builtin/GTDT.aml
    ASL|SurfaceDuoACPI/8350/builtin/IORT.aml
