@@ -22,18 +22,18 @@
   #SelfSignedDriverEnabler.asl
 
 [Binaries.AARCH64]
-   ASL|SurfaceDuoACPI/8350/builtin/APIC.aml
-   ASL|SurfaceDuoACPI/8350/builtin/CSRT.aml
+   ASL|SurfaceDuoACPI/QcomACPI/8350/builtin/APIC.aml
+   ASL|SurfaceDuoACPI/QcomACPI/8350/builtin/CSRT.aml
    ASL|SurfaceDuoACPI/8350/builtin/DBG2.OEMZE.aml
    ASL|SurfaceDuoACPI/8350/builtin/DSDT.aml
-   ASL|SurfaceDuoACPI/8350/builtin/GTDT.aml
-   ASL|SurfaceDuoACPI/8350/builtin/IORT.aml
-   ASL|SurfaceDuoACPI/8350/builtin/MCFG.aml
-   ASL|SurfaceDuoACPI/8350/builtin/PPTT.aml
-   ASL|SurfaceDuoACPI/8350/builtin/SPCR.aml
-   ASL|SurfaceDuoACPI/common/builtin/SSDT.aml
-   ASL|SurfaceDuoACPI/common/builtin/TPMDev.dat
-   ASL|SurfaceDuoACPI/common/builtin/SoftwareTpm2Table.aml
+   ASL|SurfaceDuoACPI/QcomACPI/8350/builtin/GTDT.aml
+   ASL|SurfaceDuoACPI/QcomACPI/8350/builtin/IORT.aml
+   ASL|SurfaceDuoACPI/QcomACPI/8350/builtin/MCFG.aml
+   ASL|SurfaceDuoACPI/QcomACPI/8350/builtin/PPTT.aml
+   ASL|SurfaceDuoACPI/QcomACPI/8350/builtin/SPCR.aml
+   ASL|SurfaceDuoACPI/QcomACPI/common/builtin/SSDT.aml
+   ASL|SurfaceDuoACPI/QcomACPI/common/builtin/TPMDev.dat
+   ASL|SurfaceDuoACPI/QcomACPI/common/builtin/SoftwareTpm2Table.aml
 
 [Packages]
   ArmPkg/ArmPkg.dec
