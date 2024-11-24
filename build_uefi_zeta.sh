@@ -24,4 +24,4 @@ python3 ./ImageResources/mkbootimg.py \
   --cmdline "" \
   --base 0x0 \
   --os_version 11.0.0 \
-  --os_patch_level 2024-04-01
+  --os_patch_level 2024-10-01
