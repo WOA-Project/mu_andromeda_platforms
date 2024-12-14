@@ -379,6 +379,8 @@
 
   PolicyLib|PolicyServicePkg/Library/DxePolicyLib/DxePolicyLib.inf
 
+  PanicLib|MdePkg/Library/BasePanicLibNull/BasePanicLibNull.inf  # MU_CHANGE
+
 [LibraryClasses.common.PEIM, LibraryClasses.common.PEI_CORE, LibraryClasses.common.SEC]
   ArmMmuLib|ArmPkg/Library/ArmMmuLib/ArmMmuPeiLib.inf
 
