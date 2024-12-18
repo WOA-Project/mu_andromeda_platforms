@@ -1,3 +1,10 @@
+/** @file
+
+  Copyright (c) 2022-2024 DuoWoA authors
+
+  SPDX-License-Identifier: MIT
+
+**/
 #ifndef _PLATFORM_HOB_INTERNAL_H_
 #define _PLATFORM_HOB_INTERNAL_H_
 

@@ -1,3 +1,10 @@
+/** @file
+
+  Copyright (c) 2022-2024 DuoWoA authors
+
+  SPDX-License-Identifier: MIT
+
+**/
 #include <Library/BaseLib.h>
 #include <Library/ConfigurationMapHelperLib.h>
 #include <Library/PlatformConfigurationMapLib.h>

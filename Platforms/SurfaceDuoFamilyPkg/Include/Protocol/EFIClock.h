@@ -1,3 +1,10 @@
+/** @file
+
+  Copyright (c) 2022-2024 DuoWoA authors
+
+  SPDX-License-Identifier: MIT
+
+**/
 #ifndef __EFICLOCK_H__
 #define __EFICLOCK_H__
 

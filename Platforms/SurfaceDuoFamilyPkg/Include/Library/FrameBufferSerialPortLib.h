@@ -1,3 +1,10 @@
+/** @file
+
+  Copyright (c) 2022-2024 DuoWoA authors
+
+  SPDX-License-Identifier: MIT
+
+**/
 #ifndef _FRAMEBUFFER_SERIALPORT_LIB_H_
 #define _FRAMEBUFFER_SERIALPORT_LIB_H_
 
