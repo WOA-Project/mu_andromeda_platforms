@@ -30,16 +30,16 @@
   USE_MEMORY_FOR_SERIAL_OUTPUT   = 0
 
   DEFAULT_KEYS                   = FALSE
-  PK_DEFAULT_FILE                = SurfaceDuoFamilyPkg/Include/Resources/SecureBoot/keystore/OEMA0-PK.der
-  KEK_DEFAULT_FILE1              = SurfaceDuoFamilyPkg/Include/Resources/SecureBoot/keystore/KEK/Certificates/MicCorKEKCA2011_2011-06-24.der
-  KEK_DEFAULT_FILE2              = SurfaceDuoFamilyPkg/Include/Resources/SecureBoot/keystore/KEK/Certificates/microsoft_corporation_kek_2k_ca_2023.der
-  KEK_DEFAULT_FILE3              = SurfaceDuoFamilyPkg/Include/Resources/SecureBoot/keystore/OEMA0-KEK.der
-  DB_DEFAULT_FILE1               = SurfaceDuoFamilyPkg/Include/Resources/SecureBoot/keystore/DB/Certificates/MicWinProPCA2011_2011-10-19.der
-  DB_DEFAULT_FILE2               = SurfaceDuoFamilyPkg/Include/Resources/SecureBoot/keystore/DB/Certificates/windows_uefi_ca_2023.der
-  DB_DEFAULT_FILE3               = SurfaceDuoFamilyPkg/Include/Resources/SecureBoot/keystore/DB/Certificates/MicCorUEFCA2011_2011-06-27.der
-  DB_DEFAULT_FILE4               = SurfaceDuoFamilyPkg/Include/Resources/SecureBoot/keystore/DB/Certificates/microsoft_uefi_ca_2023.der
-  DB_DEFAULT_FILE5               = SurfaceDuoFamilyPkg/Include/Resources/SecureBoot/keystore/DB/Certificates/microsoft_option_rom_uefi_ca_2023.der
-  DBX_DEFAULT_FILE1              = SurfaceDuoFamilyPkg/Include/Resources/SecureBoot/Artifacts/Aarch64/DefaultDbx.bin
+  PK_DEFAULT_FILE                = AndromedaPkg/Include/Resources/SecureBoot/keystore/OEMA0-PK.der
+  KEK_DEFAULT_FILE1              = AndromedaPkg/Include/Resources/SecureBoot/keystore/KEK/Certificates/MicCorKEKCA2011_2011-06-24.der
+  KEK_DEFAULT_FILE2              = AndromedaPkg/Include/Resources/SecureBoot/keystore/KEK/Certificates/microsoft_corporation_kek_2k_ca_2023.der
+  KEK_DEFAULT_FILE3              = AndromedaPkg/Include/Resources/SecureBoot/keystore/OEMA0-KEK.der
+  DB_DEFAULT_FILE1               = AndromedaPkg/Include/Resources/SecureBoot/keystore/DB/Certificates/MicWinProPCA2011_2011-10-19.der
+  DB_DEFAULT_FILE2               = AndromedaPkg/Include/Resources/SecureBoot/keystore/DB/Certificates/windows_uefi_ca_2023.der
+  DB_DEFAULT_FILE3               = AndromedaPkg/Include/Resources/SecureBoot/keystore/DB/Certificates/MicCorUEFCA2011_2011-06-27.der
+  DB_DEFAULT_FILE4               = AndromedaPkg/Include/Resources/SecureBoot/keystore/DB/Certificates/microsoft_uefi_ca_2023.der
+  DB_DEFAULT_FILE5               = AndromedaPkg/Include/Resources/SecureBoot/keystore/DB/Certificates/microsoft_option_rom_uefi_ca_2023.der
+  DBX_DEFAULT_FILE1              = AndromedaPkg/Include/Resources/SecureBoot/Artifacts/Aarch64/DefaultDbx.bin
 
   PEI_CRYPTO_SERVICES            = NONE
   DXE_CRYPTO_SERVICES            = STANDARD
@@ -62,17 +62,17 @@
   gArmTokenSpaceGuid.PcdSystemMemorySize|0x200000000        # 8GB Size
 
   # SMBIOS
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemModel|"Surface Duo 2"
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailModel|"1995"
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosSystemRetailSku|"Surface_Duo_2_1995"
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosBoardModel|"Surface Duo 2"
+  gAndromedaPkgTokenSpaceGuid.PcdSmbiosSystemModel|"Surface Duo 2"
+  gAndromedaPkgTokenSpaceGuid.PcdSmbiosSystemRetailModel|"1995"
+  gAndromedaPkgTokenSpaceGuid.PcdSmbiosSystemRetailSku|"Surface_Duo_2_1995"
+  gAndromedaPkgTokenSpaceGuid.PcdSmbiosBoardModel|"Surface Duo 2"
 
   # Simple FrameBuffer
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1344
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferHeight|1892
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdMipiFrameBufferPixelBpp|32
+  gAndromedaPkgTokenSpaceGuid.PcdMipiFrameBufferWidth|1344
+  gAndromedaPkgTokenSpaceGuid.PcdMipiFrameBufferHeight|1892
+  gAndromedaPkgTokenSpaceGuid.PcdMipiFrameBufferPixelBpp|32
 
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdABLProduct|"surfaceduo2"
+  gAndromedaPkgTokenSpaceGuid.PcdABLProduct|"surfaceduo2"
 
 [PcdsDynamicDefault.common]
   gEfiMdeModulePkgTokenSpaceGuid.PcdVideoHorizontalResolution|1344
@@ -85,8 +85,8 @@
   gEfiMdeModulePkgTokenSpaceGuid.PcdConOutRow|99 # 99.57 = 1892 / EFI_GLYPH_HEIGHT(19)
 
 !include QcomPkg/QcomPkg.dsc.inc
-!include SurfaceDuoFamilyPkg/SurfaceDuoFamily.dsc.inc
-!include SurfaceDuoFamilyPkg/Frontpage.dsc.inc
+!include AndromedaPkg/Andromeda.dsc.inc
+!include AndromedaPkg/Frontpage.dsc.inc
 
 [Components.common]
   SurfaceDuo2Pkg/AcpiTables/AcpiTables.inf

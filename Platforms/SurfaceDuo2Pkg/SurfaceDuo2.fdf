@@ -82,7 +82,7 @@ READ_LOCK_STATUS   = TRUE
   !include QcomPkg/Include/DXE.inc
 
   # Secure Boot Key Enroll
-  INF SurfaceDuoFamilyPkg/Driver/SecureBootProvisioningDxe/SecureBootProvisioningDxe.inf
+  INF AndromedaPkg/Driver/SecureBootProvisioningDxe/SecureBootProvisioningDxe.inf
 
   INF EmbeddedPkg/Drivers/VirtualKeyboardDxe/VirtualKeyboardDxe.inf
 
@@ -102,17 +102,17 @@ READ_LOCK_STATUS   = TRUE
   # ACPI and SMBIOS
   INF MdeModulePkg/Universal/Acpi/AcpiTableDxe/AcpiTableDxe.inf
   INF MdeModulePkg/Universal/Acpi/AcpiPlatformDxe/AcpiPlatformDxe.inf
-  INF SurfaceDuoFamilyPkg/Driver/SmBiosTableDxe/SmBiosTableDxe.inf
+  INF AndromedaPkg/Driver/SmBiosTableDxe/SmBiosTableDxe.inf
 
   # ACPI Tables
   INF RuleOverride=ACPITABLE SurfaceDuo2Pkg/AcpiTables/AcpiTables.inf
 
   INF MdeModulePkg/Universal/EsrtFmpDxe/EsrtFmpDxe.inf
 
-  !include SurfaceDuoFamilyPkg/Frontpage.fdf.inc
+  !include AndromedaPkg/Frontpage.fdf.inc
 
   FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdLogoFile) {
-    SECTION RAW = SurfaceDuoFamilyPkg/Include/Resources/BootLogo.bmp
+    SECTION RAW = AndromedaPkg/Include/Resources/BootLogo.bmp
     SECTION UI = "BootLogo.bmp"
   }
 
@@ -176,8 +176,8 @@ READ_LOCK_STATUS   = TRUE
   # INF NetworkPkg/UefiPxeBcDxe/UefiPxeBcDxe.inf
   # INF NetworkPkg/VlanConfigDxe/VlanConfigDxe.inf
 
-  INF SurfaceDuoFamilyPkg/Driver/SurfaceFirmwareProvisioningDataDxe/SurfaceFirmwareProvisioningDataDxe.inf
-  INF SurfaceDuoFamilyPkg/UFP/ufpdevicefw.inf
+  INF AndromedaPkg/Driver/SurfaceFirmwareProvisioningDataDxe/SurfaceFirmwareProvisioningDataDxe.inf
+  INF AndromedaPkg/UFP/ufpdevicefw.inf
 
   INF QcomModulePkg/Application/LinuxLoader/LinuxLoader.inf
 
@@ -199,7 +199,7 @@ READ_STATUS        = TRUE
 READ_LOCK_CAP      = TRUE
 READ_LOCK_STATUS   = TRUE
 
-  INF SurfaceDuoFamilyPkg/PrePi/PeiUniCore.inf
+  INF AndromedaPkg/PrePi/PeiUniCore.inf
 
   FILE FREEFORM = dde58710-41cd-4306-dbfb-3fa90bb1d2dd {
     SECTION UI = "uefiplat.cfg"
@@ -212,4 +212,4 @@ READ_LOCK_STATUS   = TRUE
     }
   }
 
-  !include SurfaceDuoFamilyPkg/SurfaceDuoFamily.fdf.inc
+  !include AndromedaPkg/Andromeda.fdf.inc

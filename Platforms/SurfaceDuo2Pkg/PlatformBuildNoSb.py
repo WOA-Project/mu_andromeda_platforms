@@ -222,9 +222,9 @@ class PlatformBuilder(UefiBuilder, BuildSettingsManager):
         self.env.SetValue("BLD_*_MEMORY_PROTECTION", "TRUE", "Default")
         # Include the MFCI test cert by default, override on the commandline with "BLD_*_SHIP_MODE=TRUE" if you want the retail MFCI cert
         self.env.SetValue("BLD_*_SHIP_MODE", "FALSE", "Default")
-        self.env.SetValue("CONF_AUTOGEN_INCLUDE_PATH", self.edk2path.GetAbsolutePathOnThisSystemFromEdk2RelativePath("Platforms", "SurfaceDuoFamilyPkg", "Include"), "Platform Defined")
-        self.env.SetValue("MU_SCHEMA_DIR", self.edk2path.GetAbsolutePathOnThisSystemFromEdk2RelativePath("Platforms", "SurfaceDuoFamilyPkg", "CfgData"), "Platform Defined")
-        self.env.SetValue("MU_SCHEMA_FILE_NAME", "SurfaceDuoFamilyPkgCfgData.xml", "Platform Hardcoded")
+        self.env.SetValue("CONF_AUTOGEN_INCLUDE_PATH", self.edk2path.GetAbsolutePathOnThisSystemFromEdk2RelativePath("Platforms", "AndromedaPkg", "Include"), "Platform Defined")
+        self.env.SetValue("MU_SCHEMA_DIR", self.edk2path.GetAbsolutePathOnThisSystemFromEdk2RelativePath("Platforms", "AndromedaPkg", "CfgData"), "Platform Defined")
+        self.env.SetValue("MU_SCHEMA_FILE_NAME", "AndromedaPkgCfgData.xml", "Platform Hardcoded")
 
         return 0
 

@@ -24,22 +24,22 @@
   gEmbeddedTokenSpaceGuid.PcdInterruptBaseAddress|0x09BC0000
   gEmbeddedTokenSpaceGuid.PcdPrePiCpuIoSize|44
 
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosProcessorModel|"Snapdragon (TM) 888 @ 2.84 GHz"
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdSmbiosProcessorRetailModel|"SM8350"
+  gAndromedaPkgTokenSpaceGuid.PcdSmbiosProcessorModel|"Snapdragon (TM) 888 @ 2.84 GHz"
+  gAndromedaPkgTokenSpaceGuid.PcdSmbiosProcessorRetailModel|"SM8350"
 
   gArmTokenSpaceGuid.PcdSystemMemoryBase|0x80000000         # 2GB Base
   gArmPlatformTokenSpaceGuid.PcdCoreCount|8
   gArmPlatformTokenSpaceGuid.PcdClusterCount|3
 
   # UART
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdUartSerialBase|0x0098C000
+  gAndromedaPkgTokenSpaceGuid.PcdUartSerialBase|0x0098C000
 
 [LibraryClasses.common]
   PlatformMemoryMapLib|QcomPkg/Library/PlatformMemoryMapLib/PlatformMemoryMapLib.inf
   PlatformConfigurationMapLib|QcomPkg/Library/PlatformConfigurationMapLib/PlatformConfigurationMapLib.inf
   PlatformPeiLib|QcomPkg/PlatformPei/PlatformPeiLib.inf
   PlatformPrePiLib|QcomPkg/Library/PlatformPrePiLib/PlatformPrePiLib.inf
-  AslUpdateLib|SurfaceDuoFamilyPkg/Library/DxeAslUpdateLib/DxeAslUpdateLib.inf
+  AslUpdateLib|AndromedaPkg/Library/DxeAslUpdateLib/DxeAslUpdateLib.inf
   RFSProtectionLib|QcomPkg/Library/RFSProtectionLib/RFSProtectionLib.inf
 
   AcpiPlatformUpdateLib|QcomPkg/Library/AcpiPlatformUpdateLib/AcpiPlatformUpdateLib.inf
@@ -59,8 +59,8 @@
   QcomPkg/PatchedBinaries/SurfaceTouchHidDxeV2.inf
   QcomPkg/PatchedBinaries/UFSDxe.inf
   QcomPkg/PatchedBinaries/UsbConfigDxe.inf
-  SurfaceDuoFamilyPkg/Driver/GpioButtons/GpioButtons.inf
-  SurfaceDuoFamilyPkg/Driver/SimpleFbDxe/SimpleFbDxe.inf
+  AndromedaPkg/Driver/GpioButtons/GpioButtons.inf
+  AndromedaPkg/Driver/SimpleFbDxe/SimpleFbDxe.inf
   Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/MsCommonPkg/Drivers/MsEnvDxe/MsEnvDxe.inf
   Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/MsCommonPkg/Drivers/MsTouchPointDxe/MsTouchPoint.inf
   Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/MsCommonPkg/Drivers/TouchControllerInitDxe/TouchControllerInitDxe.inf

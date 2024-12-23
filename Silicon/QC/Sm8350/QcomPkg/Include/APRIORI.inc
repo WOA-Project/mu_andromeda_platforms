@@ -75,7 +75,7 @@ APRIORI DXE {
             SECTION UI = "FeatureEnablerDxe"
     }
 
-    INF SurfaceDuoFamilyPkg/Driver/SimpleFbDxe/SimpleFbDxe.inf
+    INF AndromedaPkg/Driver/SimpleFbDxe/SimpleFbDxe.inf
     INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/FvUtilsDxe/FvUtilsDxe.inf
     INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/PILProxyDxe/PILProxyDxe.inf
     INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/PILDxe/PILDxe.inf

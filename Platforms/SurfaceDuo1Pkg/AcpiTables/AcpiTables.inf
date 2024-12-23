@@ -41,7 +41,7 @@
   MdeModulePkg/MdeModulePkg.dec
   MdePkg/MdePkg.dec
   SurfaceDuo1Pkg/SurfaceDuo1Pkg.dec
-  SurfaceDuoFamilyPkg/SurfaceDuoFamilyPkg.dec
+  AndromedaPkg/AndromedaPkg.dec
 
 [FixedPcd]
   gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultCreatorId

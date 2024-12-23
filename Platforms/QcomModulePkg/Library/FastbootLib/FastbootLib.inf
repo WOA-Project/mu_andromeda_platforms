@@ -59,7 +59,7 @@
   MdePkg/MdePkg.dec
   MdeModulePkg/MdeModulePkg.dec
   QcomModulePkg/QcomModulePkg.dec
-  SurfaceDuoFamilyPkg/SurfaceDuoFamilyPkg.dec
+  AndromedaPkg/AndromedaPkg.dec
 
 [LibraryClasses]
   UefiApplicationEntryPoint
@@ -102,4 +102,4 @@
   gQcomTokenSpaceGuid.EnableBatteryVoltageCheck
   gQcomTokenSpaceGuid.EnableMultiThreadFlash
   gQcomTokenSpaceGuid.EnableDisplayMenu
-  gSurfaceDuoFamilyPkgTokenSpaceGuid.PcdABLProduct
+  gAndromedaPkgTokenSpaceGuid.PcdABLProduct

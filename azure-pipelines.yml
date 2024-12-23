@@ -1,4 +1,4 @@
-# SurfaceDuoPkg CI build on VSTS
+# AndromedaPkg CI build on VSTS
 
 trigger:
   branches:

@@ -14,7 +14,7 @@
   MdePkg/MdePkg.dec
   MdeModulePkg/MdeModulePkg.dec
   EmbeddedPkg/EmbeddedPkg.dec
-  SurfaceDuoFamilyPkg/SurfaceDuoFamilyPkg.dec
+  AndromedaPkg/AndromedaPkg.dec
 
 [LibraryClasses]
   BaseLib
