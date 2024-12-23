@@ -10,7 +10,7 @@
   INF_VERSION                    = 0x00010005
   BASE_NAME                      = BaseIntrinsicLib
   MODULE_UNI_FILE                = BaseIntrinsicLib.uni
-  FILE_GUID                      = 63850097-3E97-4c4f-A52D-C811A0106105
+  FILE_GUID                      = 7A37A3E4-360F-40D3-A7DF-937D5447577B
   MODULE_TYPE                    = BASE
   VERSION_STRING                 = 1.0
   LIBRARY_CLASS                  = IntrinsicLib
