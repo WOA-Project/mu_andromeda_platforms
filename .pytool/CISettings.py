@@ -146,7 +146,7 @@ class Settings(CiSetupSettingsManager, CiBuildSettingsManager, UpdateSettingsMan
         return rs
 
     def GetName(self):
-        return "SurfaceDuoPkg"
+        return "AndromedaPkg"
 
     def GetDependencies(self):
         ''' Return Git Repository Dependencies

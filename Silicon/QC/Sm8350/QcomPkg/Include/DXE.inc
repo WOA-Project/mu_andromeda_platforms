@@ -7,8 +7,8 @@
     INF QcomPkg/PatchedBinaries/SurfaceTouchHidDxeV2.inf
     INF QcomPkg/PatchedBinaries/UFSDxe.inf
     INF QcomPkg/PatchedBinaries/UsbConfigDxe.inf
-    INF SurfaceDuoFamilyPkg/Driver/GpioButtons/GpioButtons.inf
-    INF SurfaceDuoFamilyPkg/Driver/SimpleFbDxe/SimpleFbDxe.inf
+    INF AndromedaPkg/Driver/GpioButtons/GpioButtons.inf
+    INF AndromedaPkg/Driver/SimpleFbDxe/SimpleFbDxe.inf
     INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/MdeModulePkg/Universal/Disk/PartitionDxe/PartitionDxe.inf
     INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/MsCommonPkg/Drivers/MsEnvDxe/MsEnvDxe.inf
     INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/MsCommonPkg/Drivers/MsTouchPointDxe/MsTouchPoint.inf

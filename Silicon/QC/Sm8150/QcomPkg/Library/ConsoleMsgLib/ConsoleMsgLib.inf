@@ -29,7 +29,7 @@
   OemPkg/OemPkg.dec
   PcBdsPkg/PcBdsPkg.dec
   QcomPkg/QcomPkg.dec
-  SurfaceDuoFamilyPkg/SurfaceDuoFamilyPkg.dec
+  AndromedaPkg/AndromedaPkg.dec
   QcomModulePkg/QcomModulePkg.dec
 
 [LibraryClasses]

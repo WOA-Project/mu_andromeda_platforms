@@ -14,9 +14,9 @@ BuildConfig.conf
 
 /Conf/
 /SurfaceDuo/
-Platforms/SurfaceDuoFamilyPkg/Include/Generated/ConfigServiceGenerated.h
-Platforms/SurfaceDuoFamilyPkg/Include/Generated/ConfigDataGenerated.h
-Platforms/SurfaceDuoFamilyPkg/Include/Generated/ConfigClientGenerated.h
+Platforms/AndromedaPkg/Include/Generated/ConfigServiceGenerated.h
+Platforms/AndromedaPkg/Include/Generated/ConfigDataGenerated.h
+Platforms/AndromedaPkg/Include/Generated/ConfigClientGenerated.h
 
 ImageResources/Epsilon/bootpayload.bin
 ImageResources/Epsilon/dualbootbootpayload.bin
