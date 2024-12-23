@@ -212,8 +212,8 @@ AuthVariableLibInitialize (
   if (!EFI_ERROR (Status)) {
     if (mPlatformMode == USER_MODE) {
       SecureBootEnable = *(UINT8 *)Data;
-      // MS_CHANGE_173316
-      // MSChange [BEGIN] - In our implementation, we do not allow SecureBootEnable to override mPlatformMode.
+      // MU_CHANGE_173316
+      // MU_CHANGE [BEGIN] - In our implementation, we do not allow SecureBootEnable to override mPlatformMode.
       // If SecureBootEnable is FOUND and mPlatformMode is USER_MODE, ensure that
       //  SecureBootEnable == SECURE_BOOT_ENABLE.
       if (SecureBootEnable == SECURE_BOOT_DISABLE) {
@@ -230,7 +230,7 @@ AuthVariableLibInitialize (
         }
       }
 
-      // MSChange [END]
+      // MU_CHANGE [END]
     }
   } else if (mPlatformMode == USER_MODE) {
     //

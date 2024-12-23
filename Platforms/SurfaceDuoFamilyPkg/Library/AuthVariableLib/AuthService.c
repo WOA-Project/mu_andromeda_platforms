@@ -552,9 +552,9 @@ CheckSignatureListFormat (
   // Walk through the input signature list and check the data format.
   // If any signature is incorrectly formed, the whole check will fail.
   //
-  // MU_CHANGE [START] - CodeQL change
+  // MU_CHANGE Start - CodeQL change - comparison-with-wider-type
   while ((SigDataSize > 0) && (SigDataSize >= (UINTN)SigList->SignatureListSize)) {
-    // MU_CHANGE [END] - CodeQL change
+    // MU_CHANGE End - CodeQL change - comparison-with-wider-type
     for (Index = 0; Index < (sizeof (mSupportSigItem) / sizeof (EFI_SIGNATURE_ITEM)); Index++ ) {
       if (CompareGuid (&SigList->SignatureType, &mSupportSigItem[Index].SigType)) {
         //
@@ -767,12 +767,13 @@ ProcessVarWithPk (
                &Del
                );
   }
-  // MU_CHANGE TCBZ2506 START enable Pk to be overridden without a self-signed cert
-  //  we should only take this path if gEfiMdeModulePkgTokenSpaceGuid.PcdEnforceSelfsignedPk is not enabled
+  // MU_CHANGE [BEGIN] - TCBZ2506: Enable Pk to be overridden without a self-signed cert.
+  // We should only take this path if gEfiMdeModulePkgTokenSpaceGuid.PcdEnforceSelfsignedPk is not enabled
   else if ( !FeaturePcdGet (PcdEnforceSelfsignedPk) && (mPlatformMode == SETUP_MODE) && IsPk ) {
     // If we are in Setup mode and we are trying to set the PK we should allow an unsigned packet
     // First we need to see if it is in fact signed, and if so, strip it.
-    // TODO figure out if it has auth data or not
+    // This code assumes that the incoming payload has authenticated signature data.
+    // The caller is responsible for providing some minimal form of auth data.
     Payload     = (UINT8 *)Data + AUTHINFO2_SIZE (Data);
     PayloadSize = DataSize - AUTHINFO2_SIZE (Data);
 
@@ -787,8 +788,9 @@ ProcessVarWithPk (
     if ( EFI_ERROR (Status)) {
       return Status;
     }
-  } // MU_CHANGE END
-  else {
+
+    // MU_CHANGE [END] - TCBZ2506
+  } else {
     //
     // Verify against the certificate in data payload.
     //
@@ -1119,9 +1121,9 @@ FilterSignatureList (
   Tail = TempData;
 
   NewCertList = (EFI_SIGNATURE_LIST *)NewData;
-  // MU_CHANGE [START] - CodeQL change
+  // MU_CHANGE Start - CodeQL change - comparison-with-wider-type
   while ((*NewDataSize > 0) && (*NewDataSize >= (UINTN)NewCertList->SignatureListSize)) {
-    // MU_CHANGE [END] - CodeQL change
+    // MU_CHANGE End - CodeQL change - comparison-with-wider-type
     NewCert      = (EFI_SIGNATURE_DATA *)((UINT8 *)NewCertList + sizeof (EFI_SIGNATURE_LIST) + NewCertList->SignatureHeaderSize);
     NewCertCount = (NewCertList->SignatureListSize - sizeof (EFI_SIGNATURE_LIST) - NewCertList->SignatureHeaderSize) / NewCertList->SignatureSize;
 
@@ -1131,9 +1133,9 @@ FilterSignatureList (
 
       Size     = DataSize;
       CertList = (EFI_SIGNATURE_LIST *)Data;
-      // MU_CHANGE [START] - CodeQL change
+      // MU_CHANGE Start - CodeQL change - comparison-with-wider-type
       while ((Size > 0) && (Size >= (UINTN)CertList->SignatureListSize)) {
-        // MU_CHANGE [END] - CodeQL change
+        // MU_CHANGE End - CodeQL change - comparison-with-wider-type
         if (CompareGuid (&CertList->SignatureType, &NewCertList->SignatureType) &&
             (CertList->SignatureSize == NewCertList->SignatureSize))
         {

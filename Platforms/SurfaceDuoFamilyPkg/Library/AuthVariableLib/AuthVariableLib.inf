@@ -45,10 +45,10 @@
   VariablePolicyLib
   UefiRuntimeLib
 
-#MU_CHANGE START TCBZ2506
+# MU_CHANGE [BEGIN] - TCBZ2506
 [FeaturePcd]
   gEfiMdeModulePkgTokenSpaceGuid.PcdEnforceSelfsignedPk
-# MU_CHANGE END
+# MU_CHANGE [END]
 
 [Guids]
   ## CONSUMES            ## Variable:L"SetupMode"
