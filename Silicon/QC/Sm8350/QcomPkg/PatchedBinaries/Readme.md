@@ -40,7 +40,7 @@ DCD Dependency enablement path was patched to not cause MDSS to reinitialize and
 
 ## GpioButtons
 
-DXE Taken from Surface Duo 1, patched to sort of run on Surface Duo 2, vol up is broken. DXE is still unused currently
+DXE Taken from Surface Duo (1st Gen), patched to sort of run on Surface Duo 2, vol up is broken. DXE is still unused currently
 
 ## FeatureEnablerDxe & MinidumpTADxe
 

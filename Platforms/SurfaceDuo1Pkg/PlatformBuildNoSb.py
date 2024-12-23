@@ -1,5 +1,5 @@
 # @file
-# Script to Build Surface Duo 1 UEFI firmware
+# Script to Build Surface Duo (1st Gen) UEFI firmware
 #
 # Copyright (c) Microsoft Corporation.
 # SPDX-License-Identifier: BSD-2-Clause-Patent

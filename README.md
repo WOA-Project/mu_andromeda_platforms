@@ -10,7 +10,7 @@ You can download the latest UEFI build by clicking [here](https://github.com/WOA
 
 ## What's this?
 
-This package demonstrates an AArch64 UEFI implementation for hacked Surface Duo 1 and Surface Duo 2 devices. Currently it is able to boot Windows 10 ARM64 as well as Windows 11 ARM64. Please be aware that SM8350 devices have limited support.
+This package demonstrates an AArch64 UEFI implementation for hacked Surface Duo (1st Gen) and Surface Duo 2 devices. Currently it is able to boot Windows 10 ARM64 as well as Windows 11 ARM64. Please be aware that SM8350 devices have limited support.
 
 ## Support Status
 
