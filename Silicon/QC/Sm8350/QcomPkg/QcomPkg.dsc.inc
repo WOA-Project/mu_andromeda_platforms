@@ -10,7 +10,7 @@
 ##
 
 [PcdsFixedAtBuild.common]
-  gArmTokenSpaceGuid.PcdSystemMemoryBase|0x80000000         # Starting address
+  gArmTokenSpaceGuid.PcdSystemMemoryBase|0x80000000         # Starting address, 2GB Base
   gArmTokenSpaceGuid.PcdCpuVectorBaseAddress|0x9FF8C000
   gArmTokenSpaceGuid.PcdArmArchTimerFreqInHz|19200000
   gArmTokenSpaceGuid.PcdArmArchTimerSecIntrNum|29
@@ -27,7 +27,6 @@
   gAndromedaPkgTokenSpaceGuid.PcdSmbiosProcessorModel|"Snapdragon (TM) 888 @ 2.84 GHz"
   gAndromedaPkgTokenSpaceGuid.PcdSmbiosProcessorRetailModel|"SM8350"
 
-  gArmTokenSpaceGuid.PcdSystemMemoryBase|0x80000000         # 2GB Base
   gArmPlatformTokenSpaceGuid.PcdCoreCount|8
   gArmPlatformTokenSpaceGuid.PcdClusterCount|3
 
