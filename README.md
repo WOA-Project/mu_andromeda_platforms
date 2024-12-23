@@ -6,7 +6,7 @@
 
 You can download the latest UEFI build by clicking [here](https://github.com/WOA-Project/mu_andromeda_platforms/releases).
 
-[![Build Status (Visual Studio Team Services)](https://gus33000.visualstudio.com/SurfaceDuoPkg/_apis/build/status/SurfaceDuoPkg%20CI?branchName=main)](https://gus33000.visualstudio.com/SurfaceDuoPkg/_build/latest?definitionId=1&branchName=main)
+[![Build Status (Visual Studio Team Services)](https://gus33000.visualstudio.com/mu_andromeda_platforms/_apis/build/status/mu_andromeda_platforms%20CI?branchName=main)](https://gus33000.visualstudio.com/mu_andromeda_platforms/_build/latest?definitionId=1&branchName=main)
 
 ## What's this?
 
