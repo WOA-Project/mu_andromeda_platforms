@@ -115,7 +115,7 @@ READ_LOCK_STATUS   = TRUE
   !include AndromedaPkg/Frontpage.fdf.inc
 
   FILE FREEFORM = PCD(gOemPkgTokenSpaceGuid.PcdLogoFile) {
-    SECTION RAW = AndromedaPkg/Include/Resources/BootLogo.2412.bmp
+    SECTION RAW = AndromedaPkg/Include/Resources/BootLogo.bmp
     SECTION UI = "BootLogo.bmp"
   }
 
