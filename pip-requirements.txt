@@ -14,6 +14,6 @@
 
 edk2-pytool-library==0.22.5
 edk2-pytool-extensions==0.28.0
-xmlschema==3.4.3
+xmlschema==3.4.5
 regex==2024.11.6
 pygount==1.8.0
