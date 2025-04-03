@@ -20,6 +20,7 @@
 #include <Library/UefiDriverEntryPoint.h>
 #include <Library/UefiLib.h>
 #include <Library/UefiRuntimeServicesTableLib.h>
+#include <Library/MemoryAllocationLib.h>
 #include <Library/MuSecureBootKeySelectorLib.h>
 
 #include <Guid/GlobalVariable.h>
