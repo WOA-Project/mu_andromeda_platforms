@@ -4,27 +4,23 @@
 # Copyright (c) Microsoft Corporation.
 # SPDX-License-Identifier: BSD-2-Clause-Patent
 ##
-import datetime
 import logging
 import os
-import uuid
-from io import StringIO
-from pathlib import Path
 
 from edk2toolext.environment import shell_environment
 from edk2toolext.environment.uefi_build import UefiBuilder
+from edk2toolext.invocables.edk2_parse import ParseSettingsManager
 from edk2toolext.invocables.edk2_platform_build import BuildSettingsManager
 from edk2toolext.invocables.edk2_pr_eval import PrEvalSettingsManager
 from edk2toolext.invocables.edk2_setup import (RequiredSubmodule,
                                                SetupSettingsManager)
 from edk2toolext.invocables.edk2_update import UpdateSettingsManager
-from edk2toolext.invocables.edk2_parse import ParseSettingsManager
-from edk2toollib.utility_functions import RunCmd
 
-    # ####################################################################################### #
+
+# ####################################################################################### #
     #                                Common Configuration                                     #
     # ####################################################################################### #
-class CommonPlatform():
+class CommonPlatform:
     ''' Common settings for this platform.  Define static data here and use
         for the different parts of stuart
     '''
@@ -92,7 +88,7 @@ class SettingsManager(UpdateSettingsManager, SetupSettingsManager, PrEvalSetting
         '''
         unsupported = set(list_of_requested_architectures) - \
             set(self.GetArchitecturesSupported())
-        if(len(unsupported) > 0):
+        if len(unsupported) > 0:
             errorString = (
                 "Unsupported Architecture Requested: " + " ".join(unsupported))
             logging.critical( errorString )
@@ -133,7 +129,7 @@ class SettingsManager(UpdateSettingsManager, SetupSettingsManager, PrEvalSetting
 
         The tuple should be (<workspace relative path to dsc file>, <input dictionary of dsc key value pairs>)
         '''
-        return ("SurfaceDuo2Pkg/SurfaceDuo2NoSb.dsc", {})
+        return "SurfaceDuo2Pkg/SurfaceDuo2NoSb.dsc", {}
 
     def GetName(self):
         return "SurfaceDuo2"
@@ -247,8 +243,8 @@ if __name__ == "__main__":
     print("Invoking Stuart")
     print("     ) _     _")
     print("    ( (^)-~-(^)")
-    print("__,-.\_( 0 0 )__,-.___")
-    print("  'W'   \   /   'W'")
+    print(r"__,-.\_( 0 0 )__,-.___")
+    print(r"  'W'   \   /   'W'")
     print("         >o<")
     SCRIPT_PATH = os.path.relpath(__file__)
     parser = argparse.ArgumentParser(add_help=False)
