@@ -4,30 +4,26 @@
 # Copyright (c) Microsoft Corporation.
 # SPDX-License-Identifier: BSD-2-Clause-Patent
 ##
-import datetime
 import logging
 import os
-import uuid
-from io import StringIO
-from pathlib import Path
 
 from edk2toolext.environment import shell_environment
 from edk2toolext.environment.uefi_build import UefiBuilder
+from edk2toolext.invocables.edk2_parse import ParseSettingsManager
 from edk2toolext.invocables.edk2_platform_build import BuildSettingsManager
 from edk2toolext.invocables.edk2_pr_eval import PrEvalSettingsManager
 from edk2toolext.invocables.edk2_setup import (RequiredSubmodule,
                                                SetupSettingsManager)
 from edk2toolext.invocables.edk2_update import UpdateSettingsManager
-from edk2toolext.invocables.edk2_parse import ParseSettingsManager
-from edk2toollib.utility_functions import RunCmd
 
-    # ####################################################################################### #
-    #                                Common Configuration                                     #
-    # ####################################################################################### #
-class CommonPlatform():
-    ''' Common settings for this platform.  Define static data here and use
+
+# ####################################################################################### #
+#                                Common Configuration                                     #
+# ####################################################################################### #
+class CommonPlatform:
+    """ Common settings for this platform.  Define static data here and use
         for the different parts of stuart
-    '''
+    """
     PackagesSupported = ("SurfaceDuo1Pkg",)
     ArchSupported = ("AARCH64",)
     TargetsSupported = ("DEBUG", "RELEASE", "NOOPT")
@@ -46,23 +42,24 @@ class CommonPlatform():
         "Silicon/QC/Sm8150"
     )
 
-
     # ####################################################################################### #
     #                         Configuration for Update & Setup                                #
     # ####################################################################################### #
+
+
 class SettingsManager(UpdateSettingsManager, SetupSettingsManager, PrEvalSettingsManager, ParseSettingsManager):
 
     def GetPackagesSupported(self):
-        ''' return iterable of edk2 packages supported by this build.
-        These should be edk2 workspace relative paths '''
+        """ return iterable of edk2 packages supported by this build.
+        These should be edk2 workspace relative paths """
         return CommonPlatform.PackagesSupported
 
     def GetArchitecturesSupported(self):
-        ''' return iterable of edk2 architectures supported by this build '''
+        """ return iterable of edk2 architectures supported by this build """
         return CommonPlatform.ArchSupported
 
     def GetTargetsSupported(self):
-        ''' return iterable of edk2 target tags supported by this build '''
+        """ return iterable of edk2 target tags supported by this build """
         return CommonPlatform.TargetsSupported
 
     def GetRequiredSubmodules(self):
@@ -85,32 +82,32 @@ class SettingsManager(UpdateSettingsManager, SetupSettingsManager, PrEvalSetting
         ]
 
     def SetArchitectures(self, list_of_requested_architectures):
-        ''' Confirm the requests architecture list is valid and configure SettingsManager
+        """ Confirm the requests architecture list is valid and configure SettingsManager
         to run only the requested architectures.
 
         Raise Exception if a list_of_requested_architectures is not supported
-        '''
+        """
         unsupported = set(list_of_requested_architectures) - \
-            set(self.GetArchitecturesSupported())
-        if(len(unsupported) > 0):
+                      set(self.GetArchitecturesSupported())
+        if len(unsupported) > 0:
             errorString = (
-                "Unsupported Architecture Requested: " + " ".join(unsupported))
-            logging.critical( errorString )
-            raise Exception( errorString )
+                    "Unsupported Architecture Requested: " + " ".join(unsupported))
+            logging.critical(errorString)
+            raise Exception(errorString)
         self.ActualArchitectures = list_of_requested_architectures
 
     def GetWorkspaceRoot(self):
-        ''' get WorkspacePath '''
+        """ get WorkspacePath """
         return CommonPlatform.WorkspaceRoot
 
     def GetActiveScopes(self):
-        ''' return tuple containing scopes that should be active for this process '''
+        """ return tuple containing scopes that should be active for this process """
         return CommonPlatform.Scopes
 
     def FilterPackagesToTest(self, changedFilesList: list, potentialPackagesList: list) -> list:
-        ''' Filter other cases that this package should be built
+        """ Filter other cases that this package should be built
         based on changed files. This should cover things that can't
-        be detected as dependencies. '''
+        be detected as dependencies. """
         build_these_packages = []
         possible_packages = potentialPackagesList.copy()
         for f in changedFilesList:
@@ -128,48 +125,51 @@ class SettingsManager(UpdateSettingsManager, SetupSettingsManager, PrEvalSetting
         return build_these_packages
 
     def GetPlatformDscAndConfig(self) -> tuple:
-        ''' If a platform desires to provide its DSC then Policy 4 will evaluate if
+        """ If a platform desires to provide its DSC then Policy 4 will evaluate if
         any of the changes will be built in the dsc.
 
         The tuple should be (<workspace relative path to dsc file>, <input dictionary of dsc key value pairs>)
-        '''
-        return ("SurfaceDuo1Pkg/SurfaceDuo1.dsc", {})
+        """
+        return "SurfaceDuo1Pkg/SurfaceDuo1.dsc", {}
 
     def GetName(self):
         return "SurfaceDuo1"
 
     def GetPackagesPath(self):
-        ''' Return a list of paths that should be mapped as edk2 PackagesPath '''
+        """ Return a list of paths that should be mapped as edk2 PackagesPath """
         return CommonPlatform.PackagesPath
 
     # ####################################################################################### #
     #                         Actual Configuration for Platform Build                         #
     # ####################################################################################### #
+
+
 class PlatformBuilder(UefiBuilder, BuildSettingsManager):
     def __init__(self):
         UefiBuilder.__init__(self)
 
     def AddCommandLineOptions(self, parserObj):
-        ''' Add command line options to the argparser '''
+        """ Add command line options to the argparser """
 
         # In an effort to support common server based builds this parameter is added.  It is
         # checked for correctness but is never uses as this platform only supports a single set of
         # architectures.
         parserObj.add_argument('-a', "--arch", dest="build_arch", type=str, default="AARCH64",
-            help="Optional - CSV of architecture to build.  AARCH64 is used for PEI and "
-            "DXE and is the only valid option for this platform.")
+                               help="Optional - CSV of architecture to build.  AARCH64 is used for PEI and "
+                                    "DXE and is the only valid option for this platform.")
 
     def RetrieveCommandLineOptions(self, args):
-        '''  Retrieve command line options from the argparser '''
+        """  Retrieve command line options from the argparser """
         if args.build_arch.upper() != "AARCH64":
-            raise Exception("Invalid Arch Specified.  Please see comments in PlatformBuild.py::PlatformBuilder::AddCommandLineOptions")
+            raise Exception(
+                "Invalid Arch Specified.  Please see comments in PlatformBuild.py::PlatformBuilder::AddCommandLineOptions")
 
     def GetWorkspaceRoot(self):
-        ''' get WorkspacePath '''
+        """ get WorkspacePath """
         return CommonPlatform.WorkspaceRoot
 
     def GetPackagesPath(self):
-        ''' Return a list of paths that should be mapped as edk2 PackagesPath '''
+        """ Return a list of paths that should be mapped as edk2 PackagesPath """
         result = [
             shell_environment.GetBuildVars().GetValue("FEATURE_CONFIG_PATH", "")
         ]
@@ -178,11 +178,11 @@ class PlatformBuilder(UefiBuilder, BuildSettingsManager):
         return result
 
     def GetActiveScopes(self):
-        ''' return tuple containing scopes that should be active for this process '''
+        """ return tuple containing scopes that should be active for this process """
         return CommonPlatform.Scopes
 
     def GetName(self):
-        ''' Get the name of the repo, platform, or product being build '''
+        """ Get the name of the repo, platform, or product being build """
         ''' Used for naming the log file, among others '''
         return "SurfaceDuo1Pkg"
 
@@ -218,12 +218,17 @@ class PlatformBuilder(UefiBuilder, BuildSettingsManager):
         self.env.SetValue("BLD_*_BUILDID_STRING", "Unknown", "Default")
         # Default turn on build reporting.
         self.env.SetValue("BUILDREPORTING", "TRUE", "Enabling build report")
-        self.env.SetValue("BUILDREPORT_TYPES", "PCD DEPEX FLASH BUILD_FLAGS LIBRARY FIXED_ADDRESS HASH", "Setting build report types")
+        self.env.SetValue("BUILDREPORT_TYPES", "PCD DEPEX FLASH BUILD_FLAGS LIBRARY FIXED_ADDRESS HASH",
+                          "Setting build report types")
         self.env.SetValue("BLD_*_MEMORY_PROTECTION", "TRUE", "Default")
         # Include the MFCI test cert by default, override on the commandline with "BLD_*_SHIP_MODE=TRUE" if you want the retail MFCI cert
         self.env.SetValue("BLD_*_SHIP_MODE", "FALSE", "Default")
-        self.env.SetValue("CONF_AUTOGEN_INCLUDE_PATH", self.edk2path.GetAbsolutePathOnThisSystemFromEdk2RelativePath("Platforms", "AndromedaPkg", "Include"), "Platform Defined")
-        self.env.SetValue("MU_SCHEMA_DIR", self.edk2path.GetAbsolutePathOnThisSystemFromEdk2RelativePath("Platforms", "AndromedaPkg", "CfgData"), "Platform Defined")
+        self.env.SetValue("CONF_AUTOGEN_INCLUDE_PATH",
+                          self.edk2path.GetAbsolutePathOnThisSystemFromEdk2RelativePath("Platforms", "AndromedaPkg",
+                                                                                        "Include"), "Platform Defined")
+        self.env.SetValue("MU_SCHEMA_DIR",
+                          self.edk2path.GetAbsolutePathOnThisSystemFromEdk2RelativePath("Platforms", "AndromedaPkg",
+                                                                                        "CfgData"), "Platform Defined")
         self.env.SetValue("MU_SCHEMA_FILE_NAME", "AndromedaPkgCfgData.xml", "Platform Hardcoded")
 
         return 0
@@ -237,6 +242,7 @@ class PlatformBuilder(UefiBuilder, BuildSettingsManager):
     def FlashRomImage(self):
         return 0
 
+
 if __name__ == "__main__":
     import argparse
     import sys
@@ -244,11 +250,12 @@ if __name__ == "__main__":
     from edk2toolext.invocables.edk2_platform_build import Edk2PlatformBuild
     from edk2toolext.invocables.edk2_setup import Edk2PlatformSetup
     from edk2toolext.invocables.edk2_update import Edk2Update
+
     print("Invoking Stuart")
     print("     ) _     _")
     print("    ( (^)-~-(^)")
-    print("__,-.\_( 0 0 )__,-.___")
-    print("  'W'   \   /   'W'")
+    print(r"__,-.\_( 0 0 )__,-.___")
+    print(r"  'W'   \   /   'W'")
     print("         >o<")
     SCRIPT_PATH = os.path.relpath(__file__)
     parser = argparse.ArgumentParser(add_help=False)
@@ -262,11 +269,11 @@ if __name__ == "__main__":
     new_args = new_args + remaining
     sys.argv = new_args
     if args.setup:
-        print("Running stuart_setup -c " + SCRIPT_PATH)
+        print(f"Running stuart_setup -c {SCRIPT_PATH}")
         Edk2PlatformSetup().Invoke()
     elif args.update:
-        print("Running stuart_update -c " + SCRIPT_PATH)
+        print(f"Running stuart_update -c {SCRIPT_PATH}")
         Edk2Update().Invoke()
     else:
-        print("Running stuart_build -c " + SCRIPT_PATH)
+        print(f"Running stuart_build -c {SCRIPT_PATH}")
         Edk2PlatformBuild().Invoke()

@@ -4,30 +4,26 @@
 # Copyright (c) Microsoft Corporation.
 # SPDX-License-Identifier: BSD-2-Clause-Patent
 ##
-import datetime
 import logging
 import os
-import uuid
-from io import StringIO
-from pathlib import Path
 
 from edk2toolext.environment import shell_environment
 from edk2toolext.environment.uefi_build import UefiBuilder
+from edk2toolext.invocables.edk2_parse import ParseSettingsManager
 from edk2toolext.invocables.edk2_platform_build import BuildSettingsManager
 from edk2toolext.invocables.edk2_pr_eval import PrEvalSettingsManager
 from edk2toolext.invocables.edk2_setup import (RequiredSubmodule,
                                                SetupSettingsManager)
 from edk2toolext.invocables.edk2_update import UpdateSettingsManager
-from edk2toolext.invocables.edk2_parse import ParseSettingsManager
-from edk2toollib.utility_functions import RunCmd
 
-    # ####################################################################################### #
+
+# ####################################################################################### #
     #                                Common Configuration                                     #
     # ####################################################################################### #
-class CommonPlatform():
-    ''' Common settings for this platform.  Define static data here and use
+class CommonPlatform:
+    """ Common settings for this platform.  Define static data here and use
         for the different parts of stuart
-    '''
+    """
     PackagesSupported = ("SurfaceDuo1Pkg",)
     ArchSupported = ("AARCH64",)
     TargetsSupported = ("DEBUG", "RELEASE", "NOOPT")
@@ -53,16 +49,16 @@ class CommonPlatform():
 class SettingsManager(UpdateSettingsManager, SetupSettingsManager, PrEvalSettingsManager, ParseSettingsManager):
 
     def GetPackagesSupported(self):
-        ''' return iterable of edk2 packages supported by this build.
-        These should be edk2 workspace relative paths '''
+        """ return iterable of edk2 packages supported by this build.
+        These should be edk2 workspace relative paths """
         return CommonPlatform.PackagesSupported
 
     def GetArchitecturesSupported(self):
-        ''' return iterable of edk2 architectures supported by this build '''
+        """ return iterable of edk2 architectures supported by this build """
         return CommonPlatform.ArchSupported
 
     def GetTargetsSupported(self):
-        ''' return iterable of edk2 target tags supported by this build '''
+        """ return iterable of edk2 target tags supported by this build """
         return CommonPlatform.TargetsSupported
 
     def GetRequiredSubmodules(self):
@@ -85,14 +81,14 @@ class SettingsManager(UpdateSettingsManager, SetupSettingsManager, PrEvalSetting
         ]
 
     def SetArchitectures(self, list_of_requested_architectures):
-        ''' Confirm the requests architecture list is valid and configure SettingsManager
+        """ Confirm the requests architecture list is valid and configure SettingsManager
         to run only the requested architectures.
 
         Raise Exception if a list_of_requested_architectures is not supported
-        '''
+        """
         unsupported = set(list_of_requested_architectures) - \
             set(self.GetArchitecturesSupported())
-        if(len(unsupported) > 0):
+        if len(unsupported) > 0:
             errorString = (
                 "Unsupported Architecture Requested: " + " ".join(unsupported))
             logging.critical( errorString )
@@ -100,17 +96,17 @@ class SettingsManager(UpdateSettingsManager, SetupSettingsManager, PrEvalSetting
         self.ActualArchitectures = list_of_requested_architectures
 
     def GetWorkspaceRoot(self):
-        ''' get WorkspacePath '''
+        """ get WorkspacePath """
         return CommonPlatform.WorkspaceRoot
 
     def GetActiveScopes(self):
-        ''' return tuple containing scopes that should be active for this process '''
+        """ return tuple containing scopes that should be active for this process """
         return CommonPlatform.Scopes
 
     def FilterPackagesToTest(self, changedFilesList: list, potentialPackagesList: list) -> list:
-        ''' Filter other cases that this package should be built
+        """ Filter other cases that this package should be built
         based on changed files. This should cover things that can't
-        be detected as dependencies. '''
+        be detected as dependencies. """
         build_these_packages = []
         possible_packages = potentialPackagesList.copy()
         for f in changedFilesList:
@@ -128,18 +124,18 @@ class SettingsManager(UpdateSettingsManager, SetupSettingsManager, PrEvalSetting
         return build_these_packages
 
     def GetPlatformDscAndConfig(self) -> tuple:
-        ''' If a platform desires to provide its DSC then Policy 4 will evaluate if
+        """ If a platform desires to provide its DSC then Policy 4 will evaluate if
         any of the changes will be built in the dsc.
 
         The tuple should be (<workspace relative path to dsc file>, <input dictionary of dsc key value pairs>)
-        '''
-        return ("SurfaceDuo1Pkg/SurfaceDuo1NoSb.dsc", {})
+        """
+        return "SurfaceDuo1Pkg/SurfaceDuo1NoSb.dsc", {}
 
     def GetName(self):
         return "SurfaceDuo1"
 
     def GetPackagesPath(self):
-        ''' Return a list of paths that should be mapped as edk2 PackagesPath '''
+        """ Return a list of paths that should be mapped as edk2 PackagesPath """
         return CommonPlatform.PackagesPath
 
     # ####################################################################################### #
@@ -150,7 +146,7 @@ class PlatformBuilder(UefiBuilder, BuildSettingsManager):
         UefiBuilder.__init__(self)
 
     def AddCommandLineOptions(self, parserObj):
-        ''' Add command line options to the argparser '''
+        """ Add command line options to the argparser """
 
         # In an effort to support common server based builds this parameter is added.  It is
         # checked for correctness but is never uses as this platform only supports a single set of
@@ -160,16 +156,16 @@ class PlatformBuilder(UefiBuilder, BuildSettingsManager):
             "DXE and is the only valid option for this platform.")
 
     def RetrieveCommandLineOptions(self, args):
-        '''  Retrieve command line options from the argparser '''
+        """  Retrieve command line options from the argparser """
         if args.build_arch.upper() != "AARCH64":
             raise Exception("Invalid Arch Specified.  Please see comments in PlatformBuild.py::PlatformBuilder::AddCommandLineOptions")
 
     def GetWorkspaceRoot(self):
-        ''' get WorkspacePath '''
+        """ get WorkspacePath """
         return CommonPlatform.WorkspaceRoot
 
     def GetPackagesPath(self):
-        ''' Return a list of paths that should be mapped as edk2 PackagesPath '''
+        """ Return a list of paths that should be mapped as edk2 PackagesPath """
         result = [
             shell_environment.GetBuildVars().GetValue("FEATURE_CONFIG_PATH", "")
         ]
@@ -178,11 +174,11 @@ class PlatformBuilder(UefiBuilder, BuildSettingsManager):
         return result
 
     def GetActiveScopes(self):
-        ''' return tuple containing scopes that should be active for this process '''
+        """ return tuple containing scopes that should be active for this process """
         return CommonPlatform.Scopes
 
     def GetName(self):
-        ''' Get the name of the repo, platform, or product being build '''
+        """ Get the name of the repo, platform, or product being build """
         ''' Used for naming the log file, among others '''
         return "SurfaceDuo1Pkg"
 
@@ -247,8 +243,8 @@ if __name__ == "__main__":
     print("Invoking Stuart")
     print("     ) _     _")
     print("    ( (^)-~-(^)")
-    print("__,-.\_( 0 0 )__,-.___")
-    print("  'W'   \   /   'W'")
+    print(r"__,-.\_( 0 0 )__,-.___")
+    print(r"  'W'   \   /   'W'")
     print("         >o<")
     SCRIPT_PATH = os.path.relpath(__file__)
     parser = argparse.ArgumentParser(add_help=False)
