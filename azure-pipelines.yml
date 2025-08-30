@@ -33,6 +33,11 @@ steps:
 
 ###################################################################################################################
 
+- script: sudo apt-get install mono-complete, nuget, make
+  displayName: 'Setup Additional Packages'
+
+###################################################################################################################
+
 - script: chmod +x ./build_setup.sh && ./build_setup.sh
   displayName: 'Setup UEFI build environment'
 
