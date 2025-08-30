@@ -122,7 +122,7 @@ READ_LOCK_STATUS   = TRUE
 
   INF AdvLoggerPkg/AdvancedFileLogger/AdvancedFileLogger.inf
 
-  INF ArmPkg/Drivers/ArmGic/ArmGicDxe.inf
+  INF ArmPkg/Drivers/ArmGicDxe/ArmGicDxe.inf
   INF ArmPkg/Drivers/CpuDxe/CpuDxe.inf
   INF ArmPkg/Drivers/TimerDxe/TimerDxe.inf
 
@@ -179,7 +179,7 @@ READ_LOCK_STATUS   = TRUE
   INF AndromedaPkg/Driver/SurfaceFirmwareProvisioningDataDxe/SurfaceFirmwareProvisioningDataDxe.inf
   INF AndromedaPkg/UFP/ufpdevicefw.inf
 
-  INF QcomModulePkg/Application/LinuxLoader/LinuxLoader.inf
+  # INF QcomModulePkg/Application/LinuxLoader/LinuxLoader.inf
 
 [FV.FVMAIN_COMPACT]
 FvAlignment        = 8
