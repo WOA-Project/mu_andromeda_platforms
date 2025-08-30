@@ -33,7 +33,7 @@ steps:
 
 ###################################################################################################################
 
-- script: sudo apt-get install mono-complete, nuget, make
+- script: sudo apt-get install -y mono-complete nuget make
   displayName: 'Setup Additional Packages'
 
 ###################################################################################################################
