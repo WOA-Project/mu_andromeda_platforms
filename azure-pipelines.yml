@@ -23,28 +23,8 @@ steps:
 
 ###################################################################################################################
 
-- script: pip install -r pip-requirements.txt --upgrade
-  displayName: Install and Upgrade pip Modules
-
-###################################################################################################################
-
 - script: export CLANGPDB_BIN=/usr/lib/llvm-38/bin/ && export CLANGPDB_AARCH64_PREFIX=aarch64-linux-gnu-
   displayName: 'Setup CLANG environment'
-
-###################################################################################################################
-
-- script: sudo sh -c 'echo "deb http://archive.ubuntu.com/ubuntu jammy main universe" > /etc/apt/sources.list.d/jammy.list'
-  displayName: 'Pre-Setup Additional Packages (1)'
-
-###################################################################################################################
-
-- script: sudo apt-get update
-  displayName: 'Pre-Setup Additional Packages (2)'
-
-###################################################################################################################
-
-- script: sudo apt-get install -y mono-complete nuget make
-  displayName: 'Setup Additional Packages'
 
 ###################################################################################################################
 
