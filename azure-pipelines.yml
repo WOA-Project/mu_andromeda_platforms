@@ -28,6 +28,11 @@ steps:
 
 ###################################################################################################################
 
+- script: chmod +x ./timebuild.sh && ./timebuild.sh
+  displayName: 'Time build'
+
+###################################################################################################################
+
 - script: chmod +x ./build_setup.sh && ./build_setup.sh
   displayName: 'Setup UEFI build environment'
 
