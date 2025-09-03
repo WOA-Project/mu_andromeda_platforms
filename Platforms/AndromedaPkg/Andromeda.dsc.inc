@@ -599,30 +599,30 @@
 
   AndromedaPkg/UFP/ufpdevicefw.inf
 
-	#QcomModulePkg/Application/LinuxLoader/LinuxLoader.inf {
-	#	<LibraryClasses>
-	#		DxeServicesTableLib|MdePkg/Library/DxeServicesTableLib/DxeServicesTableLib.inf
-	#		UefiLib|MdePkg/Library/UefiLib/UefiLib.inf
-	#		UefiApplicationEntryPoint|MdePkg/Library/UefiApplicationEntryPoint/UefiApplicationEntryPoint.inf
-	#		CacheMaintenanceLib|ArmPkg/Library/ArmCacheMaintenanceLib/ArmCacheMaintenanceLib.inf
-	#		Zlib|QcomModulePkg/Library/zlib/zlib.inf
-	#		ArmLib|ArmPkg/Library/ArmLib/ArmBaseLib.inf
-	#		BaseLib|MdePkg/Library/BaseLib/BaseLib.inf
-	#		DebugLib|MdePkg/Library/UefiDebugLibConOut/UefiDebugLibConOut.inf
-	#		DevicePathLib|MdePkg/Library/UefiDevicePathLib/UefiDevicePathLib.inf
-	#		HobLib|MdePkg/Library/DxeHobLib/DxeHobLib.inf
-	#		PerformanceLib|MdeModulePkg/Library/DxePerformanceLib/DxePerformanceLib.inf
-	#		DebugPrintErrorLevelLib|MdePkg/Library/BaseDebugPrintErrorLevelLib/BaseDebugPrintErrorLevelLib.inf
-  #
-	#		FdtLib|EmbeddedPkg/Library/FdtLib/FdtLib.inf
-	#		LibUfdt|QcomModulePkg/Library/LibUfdt/LibUfdt.inf
-	#		ArmSmcLib|MdePkg/Library/ArmSmcLib/ArmSmcLib.inf
-	#		BootLib|QcomModulePkg/Library/BootLib/BootLib.inf
-	#		StackCanary|QcomModulePkg/Library/StackCanary/StackCanary.inf
-	#		FastbootLib|QcomModulePkg/Library/FastbootLib/FastbootLib.inf
-	#		AvbLib|QcomModulePkg/Library/avb/AvbLib.inf
-	#		UbsanLib|QcomModulePkg/Library/UbsanLib/UbsanLib.inf
-	#}
+	QcomModulePkg/Application/LinuxLoader/LinuxLoader.inf {
+		<LibraryClasses>
+			DxeServicesTableLib|MdePkg/Library/DxeServicesTableLib/DxeServicesTableLib.inf
+			UefiLib|MdePkg/Library/UefiLib/UefiLib.inf
+			UefiApplicationEntryPoint|MdePkg/Library/UefiApplicationEntryPoint/UefiApplicationEntryPoint.inf
+			CacheMaintenanceLib|ArmPkg/Library/ArmCacheMaintenanceLib/ArmCacheMaintenanceLib.inf
+			Zlib|QcomModulePkg/Library/zlib/zlib.inf
+			ArmLib|ArmPkg/Library/ArmLib/ArmBaseLib.inf
+			BaseLib|MdePkg/Library/BaseLib/BaseLib.inf
+			DebugLib|MdePkg/Library/UefiDebugLibConOut/UefiDebugLibConOut.inf
+			DevicePathLib|MdePkg/Library/UefiDevicePathLib/UefiDevicePathLib.inf
+			HobLib|MdePkg/Library/DxeHobLib/DxeHobLib.inf
+			PerformanceLib|MdeModulePkg/Library/DxePerformanceLib/DxePerformanceLib.inf
+			DebugPrintErrorLevelLib|MdePkg/Library/BaseDebugPrintErrorLevelLib/BaseDebugPrintErrorLevelLib.inf
+
+			FdtLib|EmbeddedPkg/Library/FdtLib/FdtLib.inf
+			LibUfdt|QcomModulePkg/Library/LibUfdt/LibUfdt.inf
+			ArmSmcLib|MdePkg/Library/ArmSmcLib/ArmSmcLib.inf
+			BootLib|QcomModulePkg/Library/BootLib/BootLib.inf
+			StackCanary|QcomModulePkg/Library/StackCanary/StackCanary.inf
+			FastbootLib|QcomModulePkg/Library/FastbootLib/FastbootLib.inf
+			AvbLib|QcomModulePkg/Library/avb/AvbLib.inf
+			UbsanLib|QcomModulePkg/Library/UbsanLib/UbsanLib.inf
+	}
 
 ###################################################################################################
 #

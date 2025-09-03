@@ -179,7 +179,7 @@ READ_LOCK_STATUS   = TRUE
   INF AndromedaPkg/Driver/SurfaceFirmwareProvisioningDataDxe/SurfaceFirmwareProvisioningDataDxe.inf
   INF AndromedaPkg/UFP/ufpdevicefw.inf
 
-  # INF QcomModulePkg/Application/LinuxLoader/LinuxLoader.inf
+  INF QcomModulePkg/Application/LinuxLoader/LinuxLoader.inf
 
 [FV.FVMAIN_COMPACT]
 FvAlignment        = 8
