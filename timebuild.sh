@@ -1,7 +1,7 @@
 #!/bin/bash
 
 maxmonthday=$(date -d "$(date --utc +%m)/1 + 1 month - 1 day" +%d) # 30 (for september)
-currentmonthday=$(date --utc +%m)
+currentmonthday=$(date --utc +%d)
 perc=$((10#$currentmonthday * 100 / $maxmonthday))
 
 vervalue1=0x$(date --utc +%Y%m%d)                                  # 0x20250903
