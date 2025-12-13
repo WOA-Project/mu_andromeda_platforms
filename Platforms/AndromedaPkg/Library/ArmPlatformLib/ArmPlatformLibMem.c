@@ -11,6 +11,10 @@
 
 #include <Library/PlatformMemoryMapLib.h>
 
+ARM_MEMORY_REGION_DESCRIPTOR
+      MemoryTable[MAX_ARM_MEMORY_REGION_DESCRIPTOR_COUNT] = { 0 };
+UINTN Index = 0;
+
 /**
   Return the Virtual Memory Map of your platform
 
@@ -28,9 +32,12 @@ ArmPlatformGetVirtualMemoryMap (
 {
   PARM_MEMORY_REGION_DESCRIPTOR_EX MemoryDescriptorEx =
       GetPlatformMemoryMap();
-  ARM_MEMORY_REGION_DESCRIPTOR
-        MemoryTable[MAX_ARM_MEMORY_REGION_DESCRIPTOR_COUNT];
-  UINTN Index = 0;
+
+  if (Index != 0) {
+    // Already populated
+    *VirtualMemoryMap = MemoryTable;
+    return;
+  }
 
   // Run through each memory descriptor
   while (MemoryDescriptorEx->Length != 0) {
