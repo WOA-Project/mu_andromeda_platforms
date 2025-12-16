@@ -219,7 +219,7 @@ KernelErrataPatcherExitBootServices(
 
   EFI_PHYSICAL_ADDRESS OslArm64TransferToKernelAddr =
       winloadBase + 0xC00 +
-      NT_OS_LOADER_ARM64_TRANSFER_TO_KERNEL_FUNCTION_OFFSET_GERMANIUM;
+      NT_OS_LOADER_ARM64_TRANSFER_TO_KERNEL_FUNCTION_OFFSET_BROMINE;
   EFI_PHYSICAL_ADDRESS NewOslArm64TransferToKernelAddr =
       OslArm64TransferToKernelAddr - sizeof(OslArm64TransferToKernelShellCode);
 
@@ -250,6 +250,45 @@ KernelErrataPatcherExitBootServices(
       InjectedShellCode = TRUE;
 
       break;
+    }
+  }
+
+  if (!InjectedShellCode) {
+    OslArm64TransferToKernelAddr =
+        winloadBase + 0xC00 +
+        NT_OS_LOADER_ARM64_TRANSFER_TO_KERNEL_FUNCTION_OFFSET_GERMANIUM;
+    NewOslArm64TransferToKernelAddr = OslArm64TransferToKernelAddr -
+                                      sizeof(OslArm64TransferToKernelShellCode);
+
+    for (EFI_PHYSICAL_ADDRESS current = OslArm64TransferToKernelAddr;
+        current < OslArm64TransferToKernelAddr + SCAN_MAX;
+        current += sizeof(UINT32)) {
+
+      if (ARM64_BRANCH_LOCATION_INSTRUCTION(
+              current, OslArm64TransferToKernelAddr) == *(UINT32 *)current &&
+          *(UINT32 *)(current + sizeof(UINT32)) == 0xD2800002) {
+        FirmwarePrint(
+            "Patching bl OsLoaderArm64TransferToKernel -> (phys) 0x%p\n",
+            current);
+
+        *(UINT32 *)current = ARM64_BRANCH_LOCATION_INSTRUCTION(
+            current, NewOslArm64TransferToKernelAddr);
+
+        FirmwarePrint(
+            "Patching OsLoaderArm64TransferToKernel -> (phys) 0x%p\n",
+            OslArm64TransferToKernelAddr);
+
+        // Copy shell code right before the
+        // OsLoaderArm64TransferToKernelFunction
+        CopyMemory(
+            NewOslArm64TransferToKernelAddr,
+            (EFI_PHYSICAL_ADDRESS)OslArm64TransferToKernelShellCode,
+            sizeof(OslArm64TransferToKernelShellCode));
+
+        InjectedShellCode = TRUE;
+
+        break;
+      }
     }
   }
 
