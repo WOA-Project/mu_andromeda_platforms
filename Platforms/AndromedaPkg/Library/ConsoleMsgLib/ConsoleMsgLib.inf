@@ -21,6 +21,7 @@
 #
 
 [Sources]
+  ConsoleUtils.c
   ConsoleMsgLib.c
 
 [Packages]
