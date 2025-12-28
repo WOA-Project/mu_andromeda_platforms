@@ -4,11 +4,9 @@ This file aims to provide further information about the different patches applie
 
 ## Reasoning behind each patch
 
-- UFSDxe: An MMU Domain is already setup by the previous firmware and gets re-set again, causing a crash.
-
 - UsbConfigDxe: Important to get USB to work after exit boot services for KdNet or DeveloperMenu or FFULoader.
 
-## UFSDxe & DisplayDxe
+## DisplayDxe
 
 MMU related setup routine was patched to not recreate already existing MMU domains.
 

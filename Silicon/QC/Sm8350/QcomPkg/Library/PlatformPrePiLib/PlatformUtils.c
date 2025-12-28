@@ -9,8 +9,10 @@
 
 #include <Library/ConfigurationMapHelperLib.h>
 #include <Library/IoLib.h>
+#include <Library/MemoryMapHelperLib.h>
 #include <Library/PlatformPrePiLib.h>
 
+#include "MmuDetach.h"
 #include "PlatformUtils.h"
 
 VOID PlatformInitialize(VOID)
@@ -36,4 +38,6 @@ VOID PlatformInitialize(VOID)
         GICR_WAKER_CPU(i),
         (MmioRead32(GICR_WAKER_CPU(i)) & ~GIC_WAKER_PROCESSORSLEEP));
   }
+
+  MmuDetach();
 }
