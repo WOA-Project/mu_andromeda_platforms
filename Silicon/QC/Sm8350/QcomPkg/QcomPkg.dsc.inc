@@ -62,7 +62,6 @@
   QcomPkg/PatchedBinaries/PmicDxeLa.inf
   QcomPkg/PatchedBinaries/QcomWDogDxe.inf
   QcomPkg/PatchedBinaries/SurfaceTouchHidDxeV2.inf
-  QcomPkg/PatchedBinaries/UFSDxe.inf
   QcomPkg/PatchedBinaries/UsbConfigDxe.inf
   AndromedaPkg/Driver/GpioButtons/GpioButtons.inf
   AndromedaPkg/Driver/SimpleFbDxe/SimpleFbDxe.inf
@@ -106,6 +105,7 @@
   Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/SPSSDxe/SPSSDxe.inf
   Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/TLMMDxe/TLMMDxe.inf
   Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/TsensDxe/TsensDxe.inf
+  Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/UFSDxe/UFSDxe.inf
   Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/ULogDxe/ULogDxe.inf
   Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/UsbDeviceDxe/UsbDeviceDxe.inf
   Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/UsbfnDwc3Dxe/UsbfnDwc3Dxe.inf
