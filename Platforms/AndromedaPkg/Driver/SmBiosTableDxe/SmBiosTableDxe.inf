@@ -7,6 +7,9 @@
   ENTRY_POINT                    = SmBiosTableDxeInitialize
 
 [Sources.common]
+  MemoryUtils.c
+  PlatformUtils.c
+  SurfaceUtils.c
   SmBiosTableDxe.c
 
 [FixedPcd]
