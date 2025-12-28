@@ -177,7 +177,6 @@
   ArmMonitorLib|ArmPkg/Library/ArmMonitorLib/ArmMonitorLib.inf
   
   IoMmuLib|MdeModulePkg/Library/IoMmuLib/IoMmuLib.inf
-  Tpm2DebugLib|SecurityPkg/Library/Tpm2DebugLib/Tpm2DebugLibNull.inf
   Tpm2HelpLib|SecurityPkg/Library/Tpm2HelpLib/Tpm2HelpLib.inf
 
 !if $(USE_PHYSICAL_TIMER) == 1
