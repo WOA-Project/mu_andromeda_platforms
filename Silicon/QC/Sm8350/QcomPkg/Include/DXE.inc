@@ -63,6 +63,7 @@
     INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/Sm8350FamilyPkg/Drivers/MsDebugDxe/MsDebugDxe.inf
     INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/Sm8350FamilyPkg/Drivers/MsDfciDxe/MsDfciDxe.inf
     INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/Sm8350FamilyPkg/Drivers/MsFRUDxe/MsFRUDxe.inf
+    INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/Sm8350FamilyPkg/Drivers/MsPmicPonInfoDxe/MsPmicPonInfoDxe.inf
     INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/Sm8350FamilyPkg/Drivers/MsXblHlosHobDxe/MsXblHlosHobDxe.inf
     INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/Sm8350FamilyPkg/Drivers/SfpdUtils/SfpdUtils.inf
     INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/Sm8350FamilyPkg/Drivers/TimestampDxe/TimestampDxe.inf
