@@ -32,6 +32,13 @@
   # UART
   gAndromedaPkgTokenSpaceGuid.PcdUartSerialBase|0x0098C000
 
+[PcdsDynamicDefault.common.DEFAULT]
+  # Zeta Product ID: 68
+  # gMsSurfaceCorePkgTokenSpaceGuid.PcdMfgModeRequiredEKU|"1.3.6.1.4.1.311.76.9.14.68"
+  # gMsSurfaceCorePkgTokenSpaceGuid.PcdPkRequiredEKU|"1.3.6.1.4.1.311.76.9.14.68"
+  gQcomPkgTokenSpaceGuid.PcdTestMfgModeRequiredEKU|"1.3.6.1.4.1.311.76.9.17"
+  gQcomPkgTokenSpaceGuid.PcdTkRequiredEKU|"1.3.6.1.4.1.311.76.9.17"
+
 [LibraryClasses.common]
   PlatformMemoryMapLib|QcomPkg/Library/PlatformMemoryMapLib/PlatformMemoryMapLib.inf
   PlatformConfigurationMapLib|QcomPkg/Library/PlatformConfigurationMapLib/PlatformConfigurationMapLib.inf

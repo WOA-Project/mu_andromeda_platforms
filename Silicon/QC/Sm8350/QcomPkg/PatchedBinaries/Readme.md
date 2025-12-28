@@ -63,8 +63,8 @@ PcdTokenNumber:
 ('PcdTestKeyUsed', 'gEfiMdeModulePkgTokenSpaceGuid') : 6
 ('PcdVideoHorizontalResolution', 'gEfiMdeModulePkgTokenSpaceGuid') : 7
 ('PcdVideoVerticalResolution', 'gEfiMdeModulePkgTokenSpaceGuid') : 8
-('PcdStr3', 'gQcomPkgTokenSpaceGuid') : 9
-('PcdStr4', 'gQcomPkgTokenSpaceGuid') : 10
+('PcdTestMfgModeRequiredEKU', 'gQcomPkgTokenSpaceGuid') : 9
+('PcdTkRequiredEKU', 'gQcomPkgTokenSpaceGuid') : 10
 ('PcdNvStoreDefaultValueBuffer', 'gEfiMdeModulePkgTokenSpaceGuid') : 11
 ('PcdSetNvStoreDefaultId', 'gEfiMdeModulePkgTokenSpaceGuid') : 12
 ('PcdVpdBaseAddress64', 'gEfiMdeModulePkgTokenSpaceGuid') : 13
@@ -74,14 +74,14 @@ PcdTokenNumber:
 
 MsAbstractLayerDxe depends on the following Dynamic Pcds:
 ```
-('PcdStr3', 'gQcomPkgTokenSpaceGuid') : 3
-('PcdStr4', 'gQcomPkgTokenSpaceGuid') : 4
+('PcdTestMfgModeRequiredEKU', 'gQcomPkgTokenSpaceGuid') : 3
+('PcdTkRequiredEKU', 'gQcomPkgTokenSpaceGuid') : 4
 ```
 
 ManufacturingModeDxe depends on the following Dynamic Pcds:
 ```
-('PcdStr3', 'gQcomPkgTokenSpaceGuid') : 3
-('PcdStr4', 'gQcomPkgTokenSpaceGuid') : 4
+('PcdTestMfgModeRequiredEKU', 'gQcomPkgTokenSpaceGuid') : 3
+('PcdTkRequiredEKU', 'gQcomPkgTokenSpaceGuid') : 4
 ```
 
 The DXEs were patched to check for 9 and 10 instead of 3 and 4 respectively.
