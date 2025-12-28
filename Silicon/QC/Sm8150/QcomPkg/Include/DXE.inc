@@ -119,7 +119,7 @@
 
     FILE FREEFORM = A91D838E-A5FA-4138-825D-455E23030794 {
         SECTION UI = "logo1.bmp"
-        SECTION RAW = Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/RawFiles/logo1.bmp
+        SECTION RAW = QcomPkg/PatchedBinaries/logo1.bmp
     }
 
     FILE FREEFORM = 8CAE2C55-FC5A-410B-812B-8CA22F572F36 {
@@ -214,32 +214,32 @@
 
     FILE FREEFORM = 3E5584ED-05D4-4267-9048-0D47F76F4248 {
         SECTION UI = "battery_plugged_in_low.bmp"
-        SECTION RAW = Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/RawFiles/battery_plugged_in_low.bmp
+        SECTION RAW = QcomPkg/PatchedBinaries/battery_plugged_in_low.bmp
     }
 
     FILE FREEFORM = 4753E815-DDD8-402D-BF69-9B8C4EB7573E {
         SECTION UI = "battery_error.bmp"
-        SECTION RAW = Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/RawFiles/battery_error.bmp
+        SECTION RAW = QcomPkg/PatchedBinaries/battery_error.bmp
     }
 
     FILE FREEFORM = 03DED53E-BECD-428F-9F79-5ABA64C58445 {
         SECTION UI = "battery_symbol_Nocharger.bmp"
-        SECTION RAW = Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/RawFiles/battery_symbol_Nocharger.bmp
+        SECTION RAW = QcomPkg/PatchedBinaries/battery_symbol_Nocharger.bmp
     }
 
     FILE FREEFORM = 8B86CD38-C772-4FCF-85AA-345B2B3C1AB4 {
         SECTION UI = "battery_plugged_in.bmp"
-        SECTION RAW = Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/RawFiles/battery_plugged_in.bmp
+        SECTION RAW = QcomPkg/PatchedBinaries/battery_plugged_in.bmp
     }
 
     FILE FREEFORM = 3FD97907-93F1-4349-AF3C-3B68B0A5E626 {
         SECTION UI = "low_battery.bmp"
-        SECTION RAW = Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/RawFiles/low_battery.bmp
+        SECTION RAW = QcomPkg/PatchedBinaries/low_battery.bmp
     }
 
     FILE FREEFORM = C72FB1A9-5527-4E13-BAC4-F671D0330145 {
         SECTION UI = "temperature_warning.bmp"
-        SECTION RAW = Epsilon/BOOT.XF.3.0-00527-SM8150LZB-1/RawFiles/temperature_warning.bmp
+        SECTION RAW = QcomPkg/PatchedBinaries/temperature_warning.bmp
     }
 
     FILE FREEFORM = B0F8D1BE-5353-4812-B1F6-07E7768204CC {
