@@ -64,7 +64,7 @@
   # SMBIOS
   gAndromedaPkgTokenSpaceGuid.PcdSmbiosSystemModel|"Surface Duo 2"
   gAndromedaPkgTokenSpaceGuid.PcdSmbiosSystemRetailModel|"1995"
-  gAndromedaPkgTokenSpaceGuid.PcdSmbiosSystemRetailSku|"Surface_Duo_2_1995"
+  gAndromedaPkgTokenSpaceGuid.PcdSmbiosSystemRetailSku|"Surface_Duo_2_"
   gAndromedaPkgTokenSpaceGuid.PcdSmbiosBoardModel|"Surface Duo 2"
 
   # Simple FrameBuffer
