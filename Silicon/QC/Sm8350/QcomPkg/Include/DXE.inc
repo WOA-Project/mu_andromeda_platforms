@@ -124,7 +124,7 @@
 
     FILE FREEFORM = A91D838E-A5FA-4138-825D-455E23030794 {
         SECTION UI = "logo1.bmp"
-        SECTION RAW = Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/RawFiles/logo1.bmp
+        SECTION RAW = QcomPkg/PatchedBinaries/logo1.bmp
     }
 
     FILE FREEFORM = 5D3485F0-3C38-4B8B-B1EF-D5D7057708D2 {
