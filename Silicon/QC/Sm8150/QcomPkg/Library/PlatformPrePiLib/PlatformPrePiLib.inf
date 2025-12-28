@@ -16,3 +16,4 @@
 [LibraryClasses]
   BaseLib
   IoLib
+  MemoryMapHelperLib
