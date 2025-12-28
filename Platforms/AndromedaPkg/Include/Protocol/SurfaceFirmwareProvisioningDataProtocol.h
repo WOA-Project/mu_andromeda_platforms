@@ -23,8 +23,12 @@ typedef struct _SFPD_PROTOCOL SFPD_PROTOCOL;
 typedef EFI_STATUS(EFIAPI *GET_SURFACE_SERIAL_NUMBER)(
     IN OUT UINTN *BufferSize, OUT VOID *Buffer);
 
+typedef EFI_STATUS(EFIAPI *GET_SURFACE_FCC_MODEL_ID)(
+    IN OUT UINTN *BufferSize, OUT VOID *Buffer);
+
 struct _SFPD_PROTOCOL {
   GET_SURFACE_SERIAL_NUMBER GetSurfaceSerialNumber;
+  GET_SURFACE_FCC_MODEL_ID GetSurfaceFccModelId;
 };
 
 extern EFI_GUID gSfpdProtocolGuid;

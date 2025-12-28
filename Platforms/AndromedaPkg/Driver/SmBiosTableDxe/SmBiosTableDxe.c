@@ -782,12 +782,12 @@ VOID BIOSInfoUpdateSmbiosType0(VOID)
 
 VOID SysInfoUpdateSmbiosType1(
     CHAR8 *ProductNameString, CHAR8 *VersionString, CHAR8 *SerialNumberString,
-    EFIChipInfoSerialNumType serial)
+    EFIChipInfoSerialNumType serial, CHAR8 *RetailSkuString)
 {
   // Update string table before proceeds
   mSysInfoType1Strings[1] = ProductNameString;
   mSysInfoType1Strings[2] = VersionString;
-  mSysInfoType1Strings[4] = (CHAR8 *)FixedPcdGetPtr(PcdSmbiosSystemRetailSku);
+  mSysInfoType1Strings[4] = RetailSkuString;
 
   // Update serial number from Board DXE
   mSysInfoType1Strings[3] = SerialNumberString;
@@ -1106,17 +1106,27 @@ SmBiosTableDxeInitialize(
   UINT64                   SystemMemorySize              = 0;
   CHAR8 ProductNameString[PLATFORM_TYPE_STRING_MAX_SIZE] = {0};
   CHAR8 VersionString[PLATFORM_TYPE_STRING_MAX_SIZE]     = {0};
+  CHAR8 RetailSkuString[PLATFORM_TYPE_STRING_MAX_SIZE]   = {0};
 
-  EFI_CHIPINFO_PROTOCOL *mBoardProtocol  = NULL;
-  SFPD_PROTOCOL         *mDeviceProtocol = NULL;
+  // Surface Specific Changes START
+  CHAR8 FccModelId[PLATFORM_TYPE_STRING_MAX_SIZE]   = {0};
+  CHAR8 SerialNumber[PLATFORM_TYPE_STRING_MAX_SIZE] = {0};
+  // Surface Specific Changes END
+
+  EFI_CHIPINFO_PROTOCOL *mBoardProtocol = NULL;
+  // Surface Specific Changes START
+  SFPD_PROTOCOL *mDeviceProtocol = NULL;
+  // Surface Specific Changes END
 
   // Locate Qualcomm Board Protocol
   Status = gBS->LocateProtocol(
       &gEfiChipInfoProtocolGuid, NULL, (VOID *)&mBoardProtocol);
 
+  // Surface Specific Changes START
   // Locate Sfpd Protocol
   Status =
       gBS->LocateProtocol(&gSfpdProtocolGuid, NULL, (VOID *)&mDeviceProtocol);
+  // Surface Specific Changes END
 
   // Get Serial Number, Chip Version, Chip Family
   if (mBoardProtocol != NULL) {
@@ -1154,19 +1164,44 @@ SmBiosTableDxeInitialize(
         AsciiStrLen(UNKNOWN_STRING_NAME));
   }
 
+  CHAR8 *SmbiosSystemRetailSku =
+      (CHAR8 *)FixedPcdGetPtr(PcdSmbiosSystemRetailSku);
+  AsciiStrnCpyS(
+      RetailSkuString, PLATFORM_TYPE_STRING_MAX_SIZE, SmbiosSystemRetailSku,
+      AsciiStrLen(SmbiosSystemRetailSku));
+
   // Get SystemMemorySize
   GetSystemMemorySize(&SystemMemorySize);
 
+  // Surface Specific Changes START
   if (mDeviceProtocol != NULL) {
-    ZeroMem(SerialNumberString, sizeof(SerialNumberString));
     UINTN serialNoLength = EFICHIPINFO_MAX_ID_LENGTH;
-    mDeviceProtocol->GetSurfaceSerialNumber(
-        &serialNoLength, SerialNumberString);
+    Status =
+        mDeviceProtocol->GetSurfaceSerialNumber(&serialNoLength, SerialNumber);
+    if (!EFI_ERROR(Status)) {
+      ZeroMem(SerialNumberString, sizeof(SerialNumberString));
+      AsciiStrnCpyS(
+          SerialNumberString, PLATFORM_TYPE_STRING_MAX_SIZE, SerialNumber,
+          AsciiStrLen(SerialNumber));
+    }
+
+    UINTN versionLength = PLATFORM_TYPE_STRING_MAX_SIZE;
+    Status = mDeviceProtocol->GetSurfaceFccModelId(&versionLength, FccModelId);
+    if (!EFI_ERROR(Status)) {
+      ZeroMem(VersionString, sizeof(VersionString));
+      AsciiStrnCpyS(
+          VersionString, PLATFORM_TYPE_STRING_MAX_SIZE, FccModelId,
+          AsciiStrLen(FccModelId));
+    }
+
+    AsciiStrCatS(RetailSkuString, PLATFORM_TYPE_STRING_MAX_SIZE, VersionString);
   }
+  // Surface Specific Changes END
 
   BIOSInfoUpdateSmbiosType0();
   SysInfoUpdateSmbiosType1(
-      ProductNameString, VersionString, SerialNumberString, serial);
+      ProductNameString, VersionString, SerialNumberString, serial,
+      RetailSkuString);
   BoardInfoUpdateSmbiosType2(SerialNumberString);
   EnclosureInfoUpdateSmbiosType3(SerialNumberString);
   ProcessorInfoUpdateSmbiosType4(PcdGet32(PcdCoreCount));
