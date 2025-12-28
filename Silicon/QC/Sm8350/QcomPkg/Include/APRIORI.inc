@@ -50,7 +50,7 @@ APRIORI DXE {
     INF MdeModulePkg/Universal/Disk/UnicodeCollation/EnglishDxe/EnglishDxe.inf
     INF MdeModulePkg/Universal/FvSimpleFileSystemDxe/FvSimpleFileSystemDxe.inf
     INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/SdccDxe/SdccDxe.inf
-    INF QcomPkg/PatchedBinaries/UFSDxe.inf
+    INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/UFSDxe/UFSDxe.inf
     INF FatPkg/EnhancedFatDxe/Fat.inf
 
     FILE DRIVER = cf6dfc66-14ab-4e13-84db-9c02912d1404 {

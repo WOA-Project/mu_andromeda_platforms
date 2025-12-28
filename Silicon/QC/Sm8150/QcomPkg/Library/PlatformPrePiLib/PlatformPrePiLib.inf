@@ -7,6 +7,7 @@
   LIBRARY_CLASS                  = PlatformPrePiLib
 
 [Sources]
+  MmuDetach.c
   PlatformUtils.c
 
 [Packages]
@@ -16,3 +17,5 @@
 [LibraryClasses]
   BaseLib
   IoLib
+  TimerLib
+  MemoryMapHelperLib

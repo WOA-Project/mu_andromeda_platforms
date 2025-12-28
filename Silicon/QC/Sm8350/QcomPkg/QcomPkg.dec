@@ -11,5 +11,30 @@
   gQcomPkgTokenSpaceGuid = { 0x59f58449, 0x99e1, 0x4a19, { 0x86, 0x65, 0x12, 0xd6, 0x37, 0xed, 0xbe, 0x5e } }
 
 [PcdsDynamic, PcdsDynamicEx]
-  gQcomPkgTokenSpaceGuid.PcdStr3|{ 0x31, 0x2E, 0x33, 0x2E, 0x36, 0x2E, 0x31, 0x2E, 0x34, 0x2E, 0x31, 0x2E, 0x33, 0x31, 0x31, 0x2E, 0x37, 0x36, 0x2E, 0x39, 0x2E, 0x31, 0x37, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 }|VOID*|0x40000147
-  gQcomPkgTokenSpaceGuid.PcdStr4|{ 0x31, 0x2E, 0x33, 0x2E, 0x36, 0x2E, 0x31, 0x2E, 0x34, 0x2E, 0x31, 0x2E, 0x33, 0x31, 0x31, 0x2E, 0x37, 0x36, 0x2E, 0x39, 0x2E, 0x31, 0x37, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 }|VOID*|0x40000148
+
+  ##
+  ## This PCD controls the Enhanced Key Usage (EKU) that must be present in the leaf
+  ## signer certificate in order to unlock a device.  The default value is 0, which
+  ## means "do not require an EKU" in the signature to unlock the device for backwards
+  ## compatibility.  Then if the product-specific DSC file over-rides this value,
+  ## then the verification code will require that the specified EKU is present in the
+  ## leaf signer.  This allows us to cut down on the number of Certificate Authorities
+  ## (CA's) required and prevents one product from unlocking another one.  The EKU
+  ## for manufacturing mode unlock is 1.3.6.1.4.1.311.76.9.14. or 1.3.6.1.4.1.311.76.9.17.
+  ## Assuming the Product ID for a given product is 32, then that product would override
+  ## these values with
+  ## 1.3.6.1.4.1.311.76.9.14.32
+  ## 1.3.6.1.4.1.311.76.9.17.32
+  ## 1.3.6.1.4.1.311.76.9.1.32
+  ##
+  # 3. Microsoft Mfg Mode Required EKU for Production Key
+  # gMsSurfaceCorePkgTokenSpaceGuid.PcdMfgModeRequiredEKU|"0"|VOID*|0x40000145
+
+  # 4. Microsoft Pk Required EKU for Production Key
+  # gMsSurfaceCorePkgTokenSpaceGuid.PcdPkRequiredEKU|"0"|VOID*|0x40000146
+
+  # 5. Microsoft Mfg Mode Required EKU for Test Key
+  gQcomPkgTokenSpaceGuid.PcdTestMfgModeRequiredEKU|"0"|VOID*|0x40000147
+
+  # 6. Microsoft Pk Required EKU for Test Key
+  gQcomPkgTokenSpaceGuid.PcdTkRequiredEKU|"0"|VOID*|0x40000148

@@ -23,6 +23,8 @@
 #include <Protocol/PartitionInfo.h>
 #include <Protocol/SurfaceFirmwareProvisioningDataProtocol.h>
 
+#include "sfpd.h"
+
 STATIC EFI_SIMPLE_FILE_SYSTEM_PROTOCOL *sfpdSfsProtocol = NULL;
 
 EFI_STATUS
@@ -42,14 +44,13 @@ GetSurfaceSerialNumber(IN OUT UINTN *BufferSize, OUT VOID *Buffer)
   }
 
   sfpdFileProtocol->Open(
-      sfpdFileProtocol, &payloadFileProtocol, L"\\device\\SerialNumber.txt",
+      sfpdFileProtocol, &payloadFileProtocol, SERIAL_NUMBER_FILE_PATH,
       EFI_FILE_MODE_READ, 0);
   if (EFI_ERROR(Status)) {
     return Status;
   }
 
-  Status =
-      payloadFileProtocol->Read(payloadFileProtocol, BufferSize, Buffer);
+  Status = payloadFileProtocol->Read(payloadFileProtocol, BufferSize, Buffer);
   if (EFI_ERROR(Status) && Status != EFI_BUFFER_TOO_SMALL) {
     payloadFileProtocol->Close(payloadFileProtocol);
     sfpdFileProtocol->Close(sfpdFileProtocol);
@@ -62,7 +63,56 @@ GetSurfaceSerialNumber(IN OUT UINTN *BufferSize, OUT VOID *Buffer)
   return Status;
 }
 
-STATIC SFPD_PROTOCOL gSfpd = {GetSurfaceSerialNumber};
+EFI_STATUS
+GetSurfaceFccModelId(IN OUT UINTN *BufferSize, OUT VOID *Buffer)
+{
+  EFI_STATUS         Status              = EFI_SUCCESS;
+  EFI_FILE_PROTOCOL *sfpdFileProtocol    = NULL;
+  EFI_FILE_PROTOCOL *payloadFileProtocol = NULL;
+
+  if (sfpdSfsProtocol == NULL) {
+    return EFI_NOT_FOUND;
+  }
+
+  Status = sfpdSfsProtocol->OpenVolume(sfpdSfsProtocol, &sfpdFileProtocol);
+  if (EFI_ERROR(Status)) {
+    return Status;
+  }
+
+  sfpdFileProtocol->Open(
+      sfpdFileProtocol, &payloadFileProtocol, FCC_MODEL_ID_FILE_PATH,
+      EFI_FILE_MODE_READ, 0);
+  if (EFI_ERROR(Status)) {
+    return Status;
+  }
+
+  Status = payloadFileProtocol->Read(payloadFileProtocol, BufferSize, Buffer);
+  if (EFI_ERROR(Status) && Status != EFI_BUFFER_TOO_SMALL) {
+    payloadFileProtocol->Close(payloadFileProtocol);
+    sfpdFileProtocol->Close(sfpdFileProtocol);
+    return Status;
+  }
+
+  payloadFileProtocol->Close(payloadFileProtocol);
+  sfpdFileProtocol->Close(sfpdFileProtocol);
+
+  // Fix up
+  char* c = (char*)Buffer;
+  while (*c != '\0') {
+    c++;
+  }
+
+  if (((UINTN)c - (UINTN)Buffer) > 2) {
+    if (*(c - 1) == '\n' && *(c - 2) == '\r') {
+      *(c - 1) = '\0';
+      *(c - 2) = '\0';
+    }
+  }
+
+  return Status;
+}
+
+STATIC SFPD_PROTOCOL gSfpd = {GetSurfaceSerialNumber, GetSurfaceFccModelId};
 
 EFI_STATUS
 OnSfpdPartitionFound()
@@ -111,7 +161,9 @@ TryLocateSfpdOnAllHandles()
     }
 
     if (PartitionInfo->Type == PARTITION_TYPE_GPT) {
-      if (StrCmp(PartitionInfo->Info.Gpt.PartitionName, L"sfpd") == 0) {
+      if (StrCmp(
+              PartitionInfo->Info.Gpt.PartitionName,
+              SURFACE_FIRMWARE_PROVISIONING_DATA) == 0) {
         Status = gBS->HandleProtocol(
             HandleBuffer[Index], &gEfiSimpleFileSystemProtocolGuid,
             (VOID **)&EfiSfsProtocol);
@@ -150,7 +202,9 @@ TryOpenSfpd(EFI_HANDLE SfsHandle)
       SfsHandle, &gEfiPartitionInfoProtocolGuid, (VOID **)&PartitionInfo);
   if (!EFI_ERROR(Status)) {
     if (PartitionInfo->Type == PARTITION_TYPE_GPT) {
-      if (StrCmp(PartitionInfo->Info.Gpt.PartitionName, L"sfpd") == 0) {
+      if (StrCmp(
+              PartitionInfo->Info.Gpt.PartitionName,
+              SURFACE_FIRMWARE_PROVISIONING_DATA) == 0) {
         Status = gBS->HandleProtocol(
             SfsHandle, &gEfiSimpleFileSystemProtocolGuid,
             (VOID **)&EfiSfsProtocol);

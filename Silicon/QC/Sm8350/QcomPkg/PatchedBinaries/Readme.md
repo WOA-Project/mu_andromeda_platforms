@@ -4,13 +4,9 @@ This file aims to provide further information about the different patches applie
 
 ## Reasoning behind each patch
 
-- UFSDxe: An MMU Domain is already setup by the previous firmware and gets re-set again, causing a crash.
-
 - UsbConfigDxe: Important to get USB to work after exit boot services for KdNet or DeveloperMenu or FFULoader.
 
-- ButtonsDxe: to help navigating menus more easily.
-
-## UFSDxe & DisplayDxe
+## DisplayDxe
 
 MMU related setup routine was patched to not recreate already existing MMU domains.
 
@@ -25,10 +21,6 @@ Patch is still Work in Progress, and isn't needed currently.
 ## UsbConfigDxe
 
 Exit BootServices routine was patched to not deinit USB after exit boot services. Another patch disables recreating IOMMU domains for USB given detaching devices seems broken under Haven.
-
-## ButtonsDxe
-
-Key code was patched for the power button to be mapped as ENTER instead of SUSPEND.
 
 ## PmicDxe
 
@@ -51,6 +43,7 @@ Both DXEs were patched to not start again the TZ applet given it was already bro
 Dependency check routine was patched to not fail due to ReturnStatusCodeHandler implementation being different.
 
 ## ManufacturingModeDxe & MsAbstractLayerDxe
+
 The current PCD Token Store in our UEFI is as follows:
 
 ```
@@ -63,8 +56,8 @@ PcdTokenNumber:
 ('PcdTestKeyUsed', 'gEfiMdeModulePkgTokenSpaceGuid') : 6
 ('PcdVideoHorizontalResolution', 'gEfiMdeModulePkgTokenSpaceGuid') : 7
 ('PcdVideoVerticalResolution', 'gEfiMdeModulePkgTokenSpaceGuid') : 8
-('PcdStr3', 'gQcomPkgTokenSpaceGuid') : 9
-('PcdStr4', 'gQcomPkgTokenSpaceGuid') : 10
+('PcdTestMfgModeRequiredEKU', 'gQcomPkgTokenSpaceGuid') : 9
+('PcdTkRequiredEKU', 'gQcomPkgTokenSpaceGuid') : 10
 ('PcdNvStoreDefaultValueBuffer', 'gEfiMdeModulePkgTokenSpaceGuid') : 11
 ('PcdSetNvStoreDefaultId', 'gEfiMdeModulePkgTokenSpaceGuid') : 12
 ('PcdVpdBaseAddress64', 'gEfiMdeModulePkgTokenSpaceGuid') : 13
@@ -74,14 +67,14 @@ PcdTokenNumber:
 
 MsAbstractLayerDxe depends on the following Dynamic Pcds:
 ```
-('PcdStr3', 'gQcomPkgTokenSpaceGuid') : 3
-('PcdStr4', 'gQcomPkgTokenSpaceGuid') : 4
+('PcdTestMfgModeRequiredEKU', 'gQcomPkgTokenSpaceGuid') : 3
+('PcdTkRequiredEKU', 'gQcomPkgTokenSpaceGuid') : 4
 ```
 
 ManufacturingModeDxe depends on the following Dynamic Pcds:
 ```
-('PcdStr3', 'gQcomPkgTokenSpaceGuid') : 3
-('PcdStr4', 'gQcomPkgTokenSpaceGuid') : 4
+('PcdTestMfgModeRequiredEKU', 'gQcomPkgTokenSpaceGuid') : 3
+('PcdTkRequiredEKU', 'gQcomPkgTokenSpaceGuid') : 4
 ```
 
 The DXEs were patched to check for 9 and 10 instead of 3 and 4 respectively.

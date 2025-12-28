@@ -7,6 +7,7 @@
   LIBRARY_CLASS                  = PlatformPrePiLib
 
 [Sources]
+  MmuDetach.c
   PlatformUtils.c
 
 [Packages]
@@ -19,10 +20,12 @@
   BaseLib
   ConfigurationMapHelperLib
   IoLib
+  TimerLib
+  MemoryMapHelperLib
 
 [FixedPcd]
   gArmTokenSpaceGuid.PcdGicRedistributorsBase
 
 [Pcd]
-  gQcomPkgTokenSpaceGuid.PcdStr3
-  gQcomPkgTokenSpaceGuid.PcdStr4
+  gQcomPkgTokenSpaceGuid.PcdTestMfgModeRequiredEKU
+  gQcomPkgTokenSpaceGuid.PcdTkRequiredEKU

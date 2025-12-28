@@ -32,6 +32,13 @@
   # UART
   gAndromedaPkgTokenSpaceGuid.PcdUartSerialBase|0x0098C000
 
+[PcdsDynamicDefault.common.DEFAULT]
+  # Zeta Product ID: 68
+  # gMsSurfaceCorePkgTokenSpaceGuid.PcdMfgModeRequiredEKU|"1.3.6.1.4.1.311.76.9.14.68"
+  # gMsSurfaceCorePkgTokenSpaceGuid.PcdPkRequiredEKU|"1.3.6.1.4.1.311.76.9.14.68"
+  gQcomPkgTokenSpaceGuid.PcdTestMfgModeRequiredEKU|"1.3.6.1.4.1.311.76.9.17"
+  gQcomPkgTokenSpaceGuid.PcdTkRequiredEKU|"1.3.6.1.4.1.311.76.9.17"
+
 [LibraryClasses.common]
   PlatformMemoryMapLib|QcomPkg/Library/PlatformMemoryMapLib/PlatformMemoryMapLib.inf
   PlatformConfigurationMapLib|QcomPkg/Library/PlatformConfigurationMapLib/PlatformConfigurationMapLib.inf
@@ -44,7 +51,6 @@
   PlatformThemeLib|QcomPkg/Library/PlatformThemeLib/PlatformThemeLib.inf
 
   PlatformHobLib|QcomPkg/Library/PlatformHobLib/PlatformHobLib.inf
-  ConsoleMsgLib|QcomPkg/Library/ConsoleMsgLib/ConsoleMsgLib.inf
 
 [Components.common]
   Arcata/BOOT.MXF.1.1.c1-00127-MAKENA-2/ArcataPkg/GpioButtonsDxe/GpioButtons.inf
@@ -55,7 +61,6 @@
   QcomPkg/PatchedBinaries/PmicDxeLa.inf
   QcomPkg/PatchedBinaries/QcomWDogDxe.inf
   QcomPkg/PatchedBinaries/SurfaceTouchHidDxeV2.inf
-  QcomPkg/PatchedBinaries/UFSDxe.inf
   QcomPkg/PatchedBinaries/UsbConfigDxe.inf
   AndromedaPkg/Driver/GpioButtons/GpioButtons.inf
   AndromedaPkg/Driver/SimpleFbDxe/SimpleFbDxe.inf
@@ -99,6 +104,7 @@
   Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/SPSSDxe/SPSSDxe.inf
   Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/TLMMDxe/TLMMDxe.inf
   Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/TsensDxe/TsensDxe.inf
+  Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/UFSDxe/UFSDxe.inf
   Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/ULogDxe/ULogDxe.inf
   Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/UsbDeviceDxe/UsbDeviceDxe.inf
   Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/UsbfnDwc3Dxe/UsbfnDwc3Dxe.inf
@@ -112,6 +118,7 @@
   Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/Sm8350FamilyPkg/Drivers/MsDebugDxe/MsDebugDxe.inf
   Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/Sm8350FamilyPkg/Drivers/MsDfciDxe/MsDfciDxe.inf
   Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/Sm8350FamilyPkg/Drivers/MsFRUDxe/MsFRUDxe.inf
+  Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/Sm8350FamilyPkg/Drivers/MsPmicPonInfoDxe/MsPmicPonInfoDxe.inf
   Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/Sm8350FamilyPkg/Drivers/MsXblHlosHobDxe/MsXblHlosHobDxe.inf
   Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/Sm8350FamilyPkg/Drivers/SfpdUtils/SfpdUtils.inf
   Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/Sm8350FamilyPkg/Drivers/TimestampDxe/TimestampDxe.inf

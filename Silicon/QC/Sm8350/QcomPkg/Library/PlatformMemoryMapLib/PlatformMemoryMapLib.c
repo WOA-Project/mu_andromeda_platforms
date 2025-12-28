@@ -221,7 +221,7 @@ ARM_MEMORY_REGION_DESCRIPTOR_EX *GetPlatformMemoryMap()
 {
   PXBL_HLOS_HOB XblHlosHob = (PXBL_HLOS_HOB)0xE3400000;
 
-  if (XblHlosHob->BoardID < PLATFORM_SUBTYPE_DV_Retail) {
+  if (XblHlosHob->BoardID < 0xA) { // PLATFORM_SUBTYPE_DV_Retail
     return gDeviceMemoryDescriptorEVEx;
   } else {
     return gDeviceMemoryDescriptorDVEx;

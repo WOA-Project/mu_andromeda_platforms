@@ -7,10 +7,11 @@
 **/
 #include <PiPei.h>
 
+#include <Library/ConfigurationMapHelperLib.h>
 #include <Library/IoLib.h>
 #include <Library/PlatformPrePiLib.h>
-#include <Library/ConfigurationMapHelperLib.h>
 
+#include "MmuDetach.h"
 #include "PlatformUtils.h"
 
 VOID PlatformInitialize(VOID)
@@ -30,11 +31,12 @@ VOID PlatformInitialize(VOID)
   UINT32 EarlyInitCoreCnt = 2;
   LocateConfigurationMapUINT32ByName("EarlyInitCoreCnt", &EarlyInitCoreCnt);
 
-  for (int i = 0; i < EarlyInitCoreCnt; i++)
-  {
+  for (int i = 0; i < EarlyInitCoreCnt; i++) {
     // Wake up redistributor for CPU i
     MmioWrite32(
         GICR_WAKER_CPU(i),
         (MmioRead32(GICR_WAKER_CPU(i)) & ~GIC_WAKER_PROCESSORSLEEP));
   }
+
+  MmuDetach();
 }
