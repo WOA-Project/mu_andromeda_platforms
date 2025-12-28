@@ -44,7 +44,6 @@
   PlatformThemeLib|QcomPkg/Library/PlatformThemeLib/PlatformThemeLib.inf
 
   PlatformHobLib|QcomPkg/Library/PlatformHobLib/PlatformHobLib.inf
-  ConsoleMsgLib|QcomPkg/Library/ConsoleMsgLib/ConsoleMsgLib.inf
 
 [Components.common]
   Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/CPRDxe/CPRDxe.inf

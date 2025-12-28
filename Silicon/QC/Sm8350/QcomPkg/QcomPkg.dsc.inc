@@ -51,7 +51,6 @@
   PlatformThemeLib|QcomPkg/Library/PlatformThemeLib/PlatformThemeLib.inf
 
   PlatformHobLib|QcomPkg/Library/PlatformHobLib/PlatformHobLib.inf
-  ConsoleMsgLib|QcomPkg/Library/ConsoleMsgLib/ConsoleMsgLib.inf
 
 [Components.common]
   Arcata/BOOT.MXF.1.1.c1-00127-MAKENA-2/ArcataPkg/GpioButtonsDxe/GpioButtons.inf

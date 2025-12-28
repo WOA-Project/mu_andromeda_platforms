@@ -9,7 +9,6 @@
 
 #include <Library/ConfigurationMapHelperLib.h>
 #include <Library/IoLib.h>
-#include <Library/MemoryMapHelperLib.h>
 #include <Library/PlatformPrePiLib.h>
 
 #include "MmuDetach.h"

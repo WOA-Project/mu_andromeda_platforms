@@ -8,23 +8,6 @@
 #ifndef _XBL_HLOS_HOB_H_
 #define _XBL_HLOS_HOB_H_
 
-typedef enum {
-  PLATFORM_SUBTYPE_UNKNOWN                = 0x0,
-  PLATFORM_SUBTYPE_EV1                    = 0x1,
-  PLATFORM_SUBTYPE_EV1_1                  = 0x2,
-  PLATFORM_SUBTYPE_EV2                    = 0x3,
-  PLATFORM_SUBTYPE_EV2_1                  = 0x4,
-  PLATFORM_SUBTYPE_EV2_2                  = 0x5,
-  PLATFORM_SUBTYPE_EV2_wifi               = 0x6,
-  PLATFORM_SUBTYPE_SKIP                   = 0x7,
-  PLATFORM_SUBTYPE_EV3_Retail             = 0x8,
-  PLATFORM_SUBTYPE_EV3_Debug              = 0x9,
-  PLATFORM_SUBTYPE_DV_Retail              = 0xA,
-  PLATFORM_SUBTYPE_DV_Debug               = 0xB,
-  PLATFORM_SUBTYPE_MP_Retail              = 0xC,
-  PLATFORM_SUBTYPE_INVALID,
-}sboard_id_t;
-
 #pragma pack(1)
 #define MCFG_MODE                   0
 #define CUST_MODE                   1
@@ -35,13 +18,6 @@ typedef enum {
 #define MAX_PMIC_SIZE               6
 #define MAX_PMIC_SDAM_BLOCK_LEN     128
 
-/* DO NOT CHANGE ORDER, any additions to this structure in include/linux/soc/surface/surface_utils.h should also be updated exactly the same way in boot_images/boot/Sm8350FamilyPkg/Include/XblHlosHob.h*/
-typedef enum {
-   OEM_UNITIALISED = 0,
-   SURFACE_DUO     = 1,
-   SURFACE_DUO2    = 2,
-}sproduct_id_t;
-
 typedef enum
 {
   PM_SDAM_1,
@@ -50,7 +26,8 @@ typedef enum
   PM_SDAM_7 = 6,
   PM_SDAM_8 = 7,
   PM_SDAM_48 = 47,
-}pm_sdam_type;
+} pm_sdam_type;
+
 // Note: Need to take care alignment of struct member
 typedef struct XBL_HLOS_HOB
 {
