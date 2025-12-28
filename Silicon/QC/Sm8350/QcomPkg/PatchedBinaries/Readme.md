@@ -8,8 +8,6 @@ This file aims to provide further information about the different patches applie
 
 - UsbConfigDxe: Important to get USB to work after exit boot services for KdNet or DeveloperMenu or FFULoader.
 
-- ButtonsDxe: to help navigating menus more easily.
-
 ## UFSDxe & DisplayDxe
 
 MMU related setup routine was patched to not recreate already existing MMU domains.
@@ -25,10 +23,6 @@ Patch is still Work in Progress, and isn't needed currently.
 ## UsbConfigDxe
 
 Exit BootServices routine was patched to not deinit USB after exit boot services. Another patch disables recreating IOMMU domains for USB given detaching devices seems broken under Haven.
-
-## ButtonsDxe
-
-Key code was patched for the power button to be mapped as ENTER instead of SUSPEND.
 
 ## PmicDxe
 
@@ -51,6 +45,7 @@ Both DXEs were patched to not start again the TZ applet given it was already bro
 Dependency check routine was patched to not fail due to ReturnStatusCodeHandler implementation being different.
 
 ## ManufacturingModeDxe & MsAbstractLayerDxe
+
 The current PCD Token Store in our UEFI is as follows:
 
 ```

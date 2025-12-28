@@ -10,8 +10,6 @@ This file aims to provide further information about the different patches applie
 
 - UsbConfigDxe: Important to get USB to work after exit boot services for KdNet or DeveloperMenu or FFULoader.
 
-- ButtonsDxe: to help navigating menus more easily.
-
 - ColorbarsDxe: so the driver loads and provides accurate device state.
 
 - FmpDxe: so the driver loads and provides firmware management interfaces to FrontPage.
@@ -30,11 +28,8 @@ Exit BootServices routine was patched to not deinitialize the panels.
 
 Exit BootServices routine was patched to not deinit USB after exit boot services.
 
-## ButtonsDxe
-
-Key code was patched for the power button to be mapped as ENTER instead of SUSPEND.
-
 ## ColorbarsDxe & FmpDxe
+
 The current PCD Token Store in our UEFI is as follows:
 
 ```
