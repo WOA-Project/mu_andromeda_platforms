@@ -21,11 +21,13 @@
 
 [Sources]
   KernelErrataPatcherLib.c
-  Mmu.c
+  BootServicesIntercepter.c
+  OsLoaderIntercepter.c
+  MmuProtectionHelper.c
   Utilities.c
 
 [Sources.AARCH64]
-  OsLoaderHelper.S | GCC
+  BootServicesIntercepterHelper.S | GCC
 
 [Packages]
   EmbeddedPkg/EmbeddedPkg.dec
