@@ -9,8 +9,8 @@
 
 #include <Uefi.h>
 
-#include "MmuDetach.h"
-#include "MmuDetachInternal.h"
+#include <Library/QcomMmuDetachHelperLib.h>
+#include "QcomMmuDetachHelperLibInternal.h"
 
 #include <Library/BaseLib.h>
 #include <Library/IoLib.h>
@@ -181,11 +181,14 @@ static VOID smmu_v2_detach_all(ARM_SMMU_V2_DEVICE *smmuDevice)
   UINT32 cbndx;
   UINT32 s2cr_type;
 
-  /*UINT32 smr_id;
+  UINT32 smr_id;
   UINT32 smr_mask;
   UINT32 masked_smr_id;
   UINT32 ContextBanks[16]; // Track context banks used
-  UINT32 NumContextBanks = 0;*/
+  UINT32 NumContextBanks = 0;
+
+  UINT16 *SMMUSIDsToKeep     = (UINT16 *)FixedPcdGetPtr(PcdSMMUSIDsToKeep);
+  UINT32  SMMUSIDsToKeepSize = (UINT32)FixedPcdGetSize(PcdSMMUSIDsToKeep);
 
   UINT32 id0     = arm_smmu_gr0_read(smmuDevice, ARM_SMMU_GR0_ID0);
   UINT32 numsmrg = (id0 >> 0) & 0xFF;
@@ -201,7 +204,7 @@ static VOID smmu_v2_detach_all(ARM_SMMU_V2_DEVICE *smmuDevice)
       cbndx     = (s2cr >> S2CR_CBNDX_SHIFT) & S2CR_CBNDX_MASK;
       s2cr_type = (s2cr >> S2CR_TYPE_SHIFT) & S2CR_TYPE_MASK;
 
-      /*// Extract StreamID and mask (16-bit fields)
+      // Extract StreamID and mask (16-bit fields)
       smr_id   = (smr >> SMR_ID_SHIFT) & SMR_ID_MASK;
       smr_mask = (smr >> SMR_MASK_SHIFT) & SMR_ID_MASK;
 
@@ -209,19 +212,22 @@ static VOID smmu_v2_detach_all(ARM_SMMU_V2_DEVICE *smmuDevice)
 
       // Skip MDP related StreamIDs
       // Check if StreamID matches (compare low 16 bits masked)
-      if ((0x0800 & ~smr_mask) == masked_smr_id ||
-          (0x0820 & ~smr_mask) == masked_smr_id ||
-          (0x0801 & ~smr_mask) == masked_smr_id ||
-          (0x0821 & ~smr_mask) == masked_smr_id ||
-          (0x0C00 & ~smr_mask) == masked_smr_id ||
-          (0x0C20 & ~smr_mask) == masked_smr_id ||
-          (0x0C01 & ~smr_mask) == masked_smr_id ||
-          (0x0C21 & ~smr_mask) == masked_smr_id) {
+      BOOLEAN ShouldSkipSID = FALSE;
+      if ((SMMUSIDsToKeepSize % sizeof(UINT16)) == 0) {
+        for (UINT32 j = 0; j < SMMUSIDsToKeepSize / sizeof(UINT16); j++) {
+          UINT16 SIDToKeep = SMMUSIDsToKeep[j];
+          if ((SIDToKeep & ~smr_mask) == masked_smr_id) {
+            ShouldSkipSID = TRUE;
+            break;
+          }
+        }
+      }
 
+      if (ShouldSkipSID) {
         BOOLEAN AlreadyTracked = FALSE;
 
-        for (UINT32 i = 0; i < NumContextBanks; i++) {
-          if (ContextBanks[i] == cbndx) {
+        for (UINT32 j = 0; j < NumContextBanks; j++) {
+          if (ContextBanks[j] == cbndx) {
             AlreadyTracked = TRUE;
             break;
           }
@@ -233,7 +239,7 @@ static VOID smmu_v2_detach_all(ARM_SMMU_V2_DEVICE *smmuDevice)
 
         // Skip removing the SMR entry
         continue;
-      }*/
+      }
 
       // Set S2CR to FAULT mode to block all accesses
       s2cr = ((S2CR_TYPE_FAULT & S2CR_TYPE_MASK) << S2CR_TYPE_SHIFT) |
@@ -250,7 +256,7 @@ static VOID smmu_v2_detach_all(ARM_SMMU_V2_DEVICE *smmuDevice)
   smmu_tlb_invalidate_all(smmuDevice);
 
   for (cbndx = 0; cbndx < smmuDevice->num_context_banks; cbndx++) {
-    /*BOOLEAN AlreadyTracked = FALSE;
+    BOOLEAN AlreadyTracked = FALSE;
 
     for (UINT32 i = 0; i < NumContextBanks; i++) {
       if (ContextBanks[i] == cbndx) {
@@ -262,7 +268,7 @@ static VOID smmu_v2_detach_all(ARM_SMMU_V2_DEVICE *smmuDevice)
     // Check if the context bank is reserved by streams we deliberately keep
     if (AlreadyTracked) {
       continue;
-    }*/
+    }
 
     free_context_bank(smmuDevice, cbndx);
   }

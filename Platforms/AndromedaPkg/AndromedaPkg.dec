@@ -115,3 +115,5 @@
   gAndromedaPkgTokenSpaceGuid.PcdABLProduct|"surfaceduo"|VOID*|0x00000a605
 
   gAndromedaPkgTokenSpaceGuid.PcdCpuVectorBaseAddress|0xffff0000|UINT64|0x00000004
+
+  gAndromedaPkgTokenSpaceGuid.PcdSMMUSIDsToKeep|{ 0x0 }|VOID*|0x00000a606

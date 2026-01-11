@@ -32,6 +32,9 @@
   # UART
   gAndromedaPkgTokenSpaceGuid.PcdUartSerialBase|0x00A90000
 
+  # Keep no Stream IDs attached by default
+  gAndromedaPkgTokenSpaceGuid.PcdSMMUSIDsToKeep|{0x0}
+
 [LibraryClasses.common]
   PlatformMemoryMapLib|QcomPkg/Library/PlatformMemoryMapLib/PlatformMemoryMapLib.inf
   PlatformConfigurationMapLib|QcomPkg/Library/PlatformConfigurationMapLib/PlatformConfigurationMapLib.inf
@@ -44,6 +47,8 @@
   PlatformThemeLib|QcomPkg/Library/PlatformThemeLib/PlatformThemeLib.inf
 
   PlatformHobLib|QcomPkg/Library/PlatformHobLib/PlatformHobLib.inf
+
+  QcomMmuDetachHelperLib|AndromedaPkg/Library/QcomMmuDetachHelperLib/QcomMmuDetachHelperLib.inf
 
 [Components.common]
   Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/CPRDxe/CPRDxe.inf

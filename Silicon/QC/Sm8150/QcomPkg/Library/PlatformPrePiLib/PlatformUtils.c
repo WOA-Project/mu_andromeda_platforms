@@ -10,8 +10,8 @@
 #include <Library/IoLib.h>
 #include <Library/MemoryMapHelperLib.h>
 #include <Library/PlatformPrePiLib.h>
+#include <Library/QcomMmuDetachHelperLib.h>
 
-#include "MmuDetach.h"
 #include "PlatformUtils.h"
 
 VOID DisableMDSSDSIController(UINT32 MdssDsiBase)
