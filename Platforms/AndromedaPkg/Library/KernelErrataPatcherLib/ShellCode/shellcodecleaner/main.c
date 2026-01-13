@@ -58,7 +58,7 @@ int cleanup_assembly(char* inputFilePath, char* outputFilePath) {
     rewind(inputFile);
 
     // Print header into new file
-    char* header = "/** @file\n\n  Patches NTOSKRNL to not cause a SError when reading/writing ACTLR_EL1\n  Patches NTOSKRNL to not cause a SError when reading/writing AMCNTENSET0_EL0\n  Patches NTOSKRNL to not cause a bugcheck when attempting to use\n  PSCI_MEMPROTECT Due to an issue in QHEE\n\n  Shell Code to patch kernel mode components before NTOSKRNL\n\n  Copyright (c) 2022-2023 DuoWoA authors\n\n  SPDX-License-Identifier: MIT\n\n**/\n\n//VOID\n//ExitPoint (\n//  INT VOID *OsLoaderBlock, INT *KernelAddress\n//  );\n_Start:\n";
+    char* header = "_Start:\n";
     fprintf(outputFile, "%s", header);
 
     lineIndex = 0;
@@ -89,7 +89,7 @@ int cleanup_assembly(char* inputFilePath, char* outputFilePath) {
         lineIndex++;
     }
 
-    char* footer = "\n_Dead:\n	/* We should never get here */\n	b		_Dead\n\n.text\n.align 4\n\n_Payload:\n	/* Your code will get ran right after this binary */\n";
+    char* footer = "\n_Dead:\n	b		_Dead\n.text\n.align 4\n_Payload:";
     fprintf(outputFile, "%s", footer);
 
     fclose(inputFile);
