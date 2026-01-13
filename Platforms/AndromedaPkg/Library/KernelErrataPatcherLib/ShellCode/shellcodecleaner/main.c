@@ -4,6 +4,8 @@
 #include <string.h>
 
 #define CROSS_COMPILER "aarch64-linux-gnu"
+#define ENTRY_POINT "DoSomething"
+#define EXIT_POINT "OslArm64TransferToKernel"
 
 int cleanup_assembly(char* inputFilePath, char* outputFilePath) {
     FILE *inputFile;
@@ -23,8 +25,8 @@ int cleanup_assembly(char* inputFilePath, char* outputFilePath) {
 
     char buffer[256];
 
-    int obtainedOslArm64TransferToKernel = 0;
-    int obtainedMovX29SPAfterOslArm64TransferToKernel = 0;
+    int obtainedExitPoint = 0;
+    int obtainedMovX29SPAfterExitPoint = 0;
 
     int trueBeginning = 0;
     int trueEnd = 0;
@@ -33,19 +35,19 @@ int cleanup_assembly(char* inputFilePath, char* outputFilePath) {
     while (fgets(buffer, sizeof(buffer), inputFile) != NULL) {
         //printf("%s", buffer); // Print each line
 
-        if (strcmp(buffer, "OslArm64TransferToKernel:\n") == 0) {
-            obtainedOslArm64TransferToKernel = 1;
+        if (strcmp(buffer, EXIT_POINT ":\n") == 0) {
+            obtainedExitPoint = 1;
         }
 
-        if (obtainedOslArm64TransferToKernel) {
+        if (obtainedExitPoint) {
             if (strcmp(buffer, "	mov	x29, sp\n") == 0) {
-                obtainedMovX29SPAfterOslArm64TransferToKernel = 1;
-                obtainedOslArm64TransferToKernel = 0; // Reset
+                obtainedMovX29SPAfterExitPoint = 1;
+                obtainedExitPoint = 0; // Reset
                 trueBeginning = lineIndex + 1;
             }
         }
 
-        if (strcmp(buffer, "	bl	DoSomething\n") == 0) {
+        if (strcmp(buffer, "	bl	" ENTRY_POINT "\n") == 0) {
             trueEnd = lineIndex - 2;
         }
 
@@ -56,7 +58,7 @@ int cleanup_assembly(char* inputFilePath, char* outputFilePath) {
     rewind(inputFile);
 
     // Print header into new file
-    char* header = "/** @file\n\n  Patches NTOSKRNL to not cause a SError when reading/writing ACTLR_EL1\n  Patches NTOSKRNL to not cause a SError when reading/writing AMCNTENSET0_EL0\n  Patches NTOSKRNL to not cause a bugcheck when attempting to use\n  PSCI_MEMPROTECT Due to an issue in QHEE\n\n  Shell Code to patch kernel mode components before NTOSKRNL\n\n  Copyright (c) 2022-2023 DuoWoA authors\n\n  SPDX-License-Identifier: MIT\n\n**/\n\n//VOID\n//OslArm64TransferToKernel (\n//  INT VOID *OsLoaderBlock, INT *KernelAddress\n//  );\n_Start:\n";
+    char* header = "/** @file\n\n  Patches NTOSKRNL to not cause a SError when reading/writing ACTLR_EL1\n  Patches NTOSKRNL to not cause a SError when reading/writing AMCNTENSET0_EL0\n  Patches NTOSKRNL to not cause a bugcheck when attempting to use\n  PSCI_MEMPROTECT Due to an issue in QHEE\n\n  Shell Code to patch kernel mode components before NTOSKRNL\n\n  Copyright (c) 2022-2023 DuoWoA authors\n\n  SPDX-License-Identifier: MIT\n\n**/\n\n//VOID\n//ExitPoint (\n//  INT VOID *OsLoaderBlock, INT *KernelAddress\n//  );\n_Start:\n";
     fprintf(outputFile, "%s", header);
 
     lineIndex = 0;
