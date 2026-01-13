@@ -3,18 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-int main(int argc, char** argv) {
-    if (argc != 3) {
-        printf("Usage: %s <input> <output>\n", argv[0]);
-        return EXIT_FAILURE;
-    }
-
-    char* inputFilePath = argv[1];
-    char* outputFilePath = argv[2];
-
-    printf("Input: %s\n", inputFilePath);
-    printf("Output: %s\n", outputFilePath);
-
+int cleanupAssembly(char* inputFilePath, char* outputFilePath) {
     FILE *inputFile;
     FILE *outputFile;
 
@@ -70,6 +59,7 @@ int main(int argc, char** argv) {
 
     lineIndex = 0;
     int isWriting = 0;
+    int occurence = 0;
     while (fgets(buffer, sizeof(buffer), inputFile) != NULL) {
         if (lineIndex == trueBeginning) {
             isWriting = 1;
@@ -77,7 +67,12 @@ int main(int argc, char** argv) {
 
         if (isWriting) {
             if (strcmp(buffer, "	beq	.L4\n") == 0) {
-                fprintf(outputFile, "	beq	_Payload\n");
+                occurence++;
+                if (occurence == 1) {
+                    fprintf(outputFile, "	beq	_Payload\n");
+                } else {
+                    fprintf(outputFile, "	b	_Payload\n");
+                }
             } else {
                 fprintf(outputFile, "%s", buffer);
             }
@@ -95,6 +90,96 @@ int main(int argc, char** argv) {
 
     fclose(inputFile);
     fclose(outputFile);
+
+    return EXIT_SUCCESS;
+}
+
+void compileCToAssemblyRaw(char* inputFile, char* outputFile) {
+    char compileCommand1[256] = {0};
+
+    sprintf(compileCommand1, "aarch64-linux-gnu-gcc -S -o %s -O1 -fno-stack-protector %s", outputFile, inputFile);
+
+    system(compileCommand1);
+}
+
+void compileAssemblyToOpcode(char* inputFile, char* outputFile) {
+    char compileCommand1[256] = {0};
+    char compileCommand2[256] = {0};
+
+    sprintf(compileCommand1, "aarch64-linux-gnu-gcc -c %s -o ShellCode.elf", inputFile);
+    sprintf(compileCommand2, "aarch64-linux-gnu-objcopy -O binary ShellCode.elf %s", outputFile);
+
+    system(compileCommand1);
+    system(compileCommand2);
+
+    remove("ShellCode.elf");
+}
+
+int printBinaryAsHexDefine(char* inputFilePath) {
+  FILE *inputFile;
+
+  inputFile = fopen(inputFilePath, "rb");
+  if (inputFile == NULL) {
+    perror("Error opening file for reading");
+    return EXIT_FAILURE;
+  }
+
+  unsigned char buffer[12];
+  size_t        bytesRead = 0;
+  int           ranOnce   = 0;
+
+  do {
+    bytesRead = fread(buffer, sizeof(unsigned char), sizeof(buffer), inputFile);
+
+    if (bytesRead != 0) {
+      if (ranOnce) {
+        printf(", \\\\\\\n");
+      }
+      ranOnce = 1;
+    }
+
+    printf("    ");
+
+    for (size_t i = 0; i < bytesRead; i++) {
+      if (i == bytesRead - 1) {
+        printf("0x%02X", buffer[i]);
+      }
+      else {
+        printf("0x%02X, ", buffer[i]);
+      }
+    }
+  } while (bytesRead != 0);
+
+  printf("\n");
+  fclose(inputFile);
+
+  return EXIT_SUCCESS;
+}
+
+int main(int argc, char** argv) {
+    if (argc != 2) {
+        printf("Usage: %s <input>\n", argv[0]);
+        return EXIT_FAILURE;
+    }
+
+    char* inputFilePath = argv[1];
+
+    compileCToAssemblyRaw(inputFilePath, "test.S");
+
+    cleanupAssembly("test.S", "test.cleaned.S");
+
+    // Cleanup old temporary work file
+    remove("test.S");
+
+    compileAssemblyToOpcode("test.cleaned.S", "test.bin");
+
+    // Cleanup old temporary work file
+    remove("test.cleaned.S");
+
+    printBinaryAsHexDefine("test.bin");
+
+    // Cleanup old temporary work file
+    remove("test.bin");
 
     return EXIT_SUCCESS;
 }
