@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-int cleanupAssembly(char* inputFilePath, char* outputFilePath) {
+int cleanup_assembly(char* inputFilePath, char* outputFilePath) {
     FILE *inputFile;
     FILE *outputFile;
 
@@ -94,7 +94,7 @@ int cleanupAssembly(char* inputFilePath, char* outputFilePath) {
     return EXIT_SUCCESS;
 }
 
-void compileCToAssemblyRaw(char* inputFile, char* outputFile) {
+void compile_c_to_assembly_raw(char* inputFile, char* outputFile) {
     char compileCommand1[256] = {0};
 
     sprintf(compileCommand1, "aarch64-linux-gnu-gcc -S -o %s -O1 -fno-stack-protector %s", outputFile, inputFile);
@@ -102,7 +102,7 @@ void compileCToAssemblyRaw(char* inputFile, char* outputFile) {
     system(compileCommand1);
 }
 
-void compileAssemblyToOpcode(char* inputFile, char* outputFile) {
+void compile_assembly_to_opcode(char* inputFile, char* outputFile) {
     char compileCommand1[256] = {0};
     char compileCommand2[256] = {0};
 
@@ -115,7 +115,7 @@ void compileAssemblyToOpcode(char* inputFile, char* outputFile) {
     remove("ShellCode.elf");
 }
 
-int printBinaryAsHexDefine(char* inputFilePath) {
+int print_binary_as_hex_define(char* inputFilePath) {
   FILE *inputFile;
 
   inputFile = fopen(inputFilePath, "rb");
@@ -164,19 +164,19 @@ int main(int argc, char** argv) {
 
     char* inputFilePath = argv[1];
 
-    compileCToAssemblyRaw(inputFilePath, "test.S");
+    compile_c_to_assembly_raw(inputFilePath, "test.S");
 
-    cleanupAssembly("test.S", "test.cleaned.S");
+    cleanup_assembly("test.S", "test.cleaned.S");
 
     // Cleanup old temporary work file
     remove("test.S");
 
-    compileAssemblyToOpcode("test.cleaned.S", "test.bin");
+    compile_assembly_to_opcode("test.cleaned.S", "test.bin");
 
     // Cleanup old temporary work file
     remove("test.cleaned.S");
 
-    printBinaryAsHexDefine("test.bin");
+    print_binary_as_hex_define("test.bin");
 
     // Cleanup old temporary work file
     remove("test.bin");
