@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define CROSS_COMPILER "aarch64-linux-gnu"
+
 int cleanup_assembly(char* inputFilePath, char* outputFilePath) {
     FILE *inputFile;
     FILE *outputFile;
@@ -97,7 +99,7 @@ int cleanup_assembly(char* inputFilePath, char* outputFilePath) {
 void compile_c_to_assembly_raw(char* inputFile, char* outputFile) {
     char compileCommand1[256] = {0};
 
-    sprintf(compileCommand1, "aarch64-linux-gnu-gcc -S -o %s -O1 -fno-stack-protector %s", outputFile, inputFile);
+    sprintf(compileCommand1, CROSS_COMPILER "-gcc -S -o %s -O1 -fno-stack-protector %s", outputFile, inputFile);
 
     system(compileCommand1);
 }
@@ -106,8 +108,8 @@ void compile_assembly_to_opcode(char* inputFile, char* outputFile) {
     char compileCommand1[256] = {0};
     char compileCommand2[256] = {0};
 
-    sprintf(compileCommand1, "aarch64-linux-gnu-gcc -c %s -o ShellCode.elf", inputFile);
-    sprintf(compileCommand2, "aarch64-linux-gnu-objcopy -O binary ShellCode.elf %s", outputFile);
+    sprintf(compileCommand1, CROSS_COMPILER "-gcc -c %s -o ShellCode.elf", inputFile);
+    sprintf(compileCommand2, CROSS_COMPILER "-objcopy -O binary ShellCode.elf %s", outputFile);
 
     system(compileCommand1);
     system(compileCommand2);
