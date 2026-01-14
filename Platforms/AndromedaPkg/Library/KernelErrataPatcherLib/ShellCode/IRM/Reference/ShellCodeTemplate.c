@@ -203,18 +203,20 @@ VOID OslArm64TransferToKernel(VOID *OsLoaderBlock, VOID *KernelAddress)
         UINT64 CodeLocation = REALESTATEFUNC - ARM64_TOTAL_INSTRUCTION_LENGTH(42); // Arbitrary, function is huge
         *(UINT32 *)GICINSTR = ARM64_BRANCH_LOCATION_INSTRUCTION(GICINSTR, CodeLocation);
 
-        *(UINT64 *)(CodeLocation)                                      = /*@@@@@@ARMTOLLE{stp x29, x30, [sp, #-0x10]!; mov x29, sp}@@@@@@*/0;
-        *(UINT64 *)(CodeLocation + ARM64_TOTAL_INSTRUCTION_LENGTH(2))  = /*@@@@@@ARMTOLLE{tbz x10, #0x28, #0x48      ; and x10, x10, #0xfffffeffffffffff}@@@@@@*/0;
-        *(UINT64 *)(CodeLocation + ARM64_TOTAL_INSTRUCTION_LENGTH(4))  = /*@@@@@@ARMTOLLE{orr x10, x10, #1           ; mov x22, x10}@@@@@@*/0;
-        *(UINT64 *)(CodeLocation + ARM64_TOTAL_INSTRUCTION_LENGTH(6))  = /*@@@@@@ARMTOLLE{mrs x9, mpidr_el1          ; and x9, x9, #0xf00}@@@@@@*/0;
-        *(UINT64 *)(CodeLocation + ARM64_TOTAL_INSTRUCTION_LENGTH(8))  = /*@@@@@@ARMTOLLE{movz x20, #0               ; movz w21, #0x8}@@@@@@*/0;
-        *(UINT64 *)(CodeLocation + ARM64_TOTAL_INSTRUCTION_LENGTH(10)) = /*@@@@@@ARMTOLLE{cmp x20, x9, lsr #8        ; b.eq #0x14}@@@@@@*/0;
-        *(UINT64 *)(CodeLocation + ARM64_TOTAL_INSTRUCTION_LENGTH(12)) = /*@@@@@@ARMTOLLE{lsl x8, x20, #0x10         ; orr x10, x22, x8}@@@@@@*/0;
-        *(UINT64 *)(CodeLocation + ARM64_TOTAL_INSTRUCTION_LENGTH(14)) = /*@@@@@@ARMTOLLE{msr icc_sgi1r_el1, x10     ; dsb sy}@@@@@@*/0;
-        *(UINT64 *)(CodeLocation + ARM64_TOTAL_INSTRUCTION_LENGTH(16)) = /*@@@@@@ARMTOLLE{add x20, x20, #1           ; sub w21, w21, #1}@@@@@@*/0;
-        *(UINT64 *)(CodeLocation + ARM64_TOTAL_INSTRUCTION_LENGTH(18)) = /*@@@@@@ARMTOLLE{cbnz w21, #0xffffffffffffffe0; b #0x8}@@@@@@*/0;
-        *(UINT64 *)(CodeLocation + ARM64_TOTAL_INSTRUCTION_LENGTH(20)) = /*@@@@@@ARMTOLLE{msr icc_sgi1r_el1, x10     ; ldp x29, x30, [sp], #0x10}@@@@@@*/0;
-        *(UINT32 *)(CodeLocation + ARM64_TOTAL_INSTRUCTION_LENGTH(22)) = /*@@@@@@ARMTOLE{ret}@@@@@@*/0;
+        *(UINT64 *)(CodeLocation)                                      = 0xA9015BF5A9BD53F3; // stp x19, x20, [sp, #-0x30]! - stp x21, x22, [sp, #0x10]
+        *(UINT64 *)(CodeLocation + ARM64_TOTAL_INSTRUCTION_LENGTH(2))  = 0xB640024AF90013FE; // str x30, [sp, #0x20] - tbz x10, #0x28, #0x54
+        *(UINT64 *)(CodeLocation + ARM64_TOTAL_INSTRUCTION_LENGTH(4))  = 0x528000139257F956; // and x22, x10, #0xfffffeffffffffff - movz w19, #0
+        *(UINT64 *)(CodeLocation + ARM64_TOTAL_INSTRUCTION_LENGTH(6))  = 0xD3482C35D53800A1; // mrs x1, mpidr_el1 - ubfx x21, x1, #8, #4
+        *(UINT64 *)(CodeLocation + ARM64_TOTAL_INSTRUCTION_LENGTH(8))  = 0xEB15029FD2800014; // movz x20, #0 - cmp x20, x21
+        *(UINT64 *)(CodeLocation + ARM64_TOTAL_INSTRUCTION_LENGTH(10)) = 0xD3785E68540000C0; // b.eq #0x40 - ubfiz x8, x19, #8, #0x18
+        *(UINT64 *)(CodeLocation + ARM64_TOTAL_INSTRUCTION_LENGTH(12)) = 0xB240010AAA160108; // orr x8, x8, x22 - orr x10, x8, #1
+        *(UINT64 *)(CodeLocation + ARM64_TOTAL_INSTRUCTION_LENGTH(14)) = 0xD5033F9FD518CBAA; // msr icc_sgi1r_el1, x10 - dsb sy
+        *(UINT64 *)(CodeLocation + ARM64_TOTAL_INSTRUCTION_LENGTH(16)) = 0x7100227F11000673; // add w19, w19, #1 - cmp w19, #8
+        *(UINT64 *)(CodeLocation + ARM64_TOTAL_INSTRUCTION_LENGTH(18)) = 0x54FFFEC391000694; // add x20, x20, #1 - b.lo #0x24
+        *(UINT64 *)(CodeLocation + ARM64_TOTAL_INSTRUCTION_LENGTH(20)) = 0xD518CBAA14000003; // b #0x5c - msr icc_sgi1r_el1, x10
+        *(UINT64 *)(CodeLocation + ARM64_TOTAL_INSTRUCTION_LENGTH(22)) = 0xF94013FED5033F9F; // dsb sy - ldr x30, [sp, #0x20]
+        *(UINT64 *)(CodeLocation + ARM64_TOTAL_INSTRUCTION_LENGTH(24)) = 0xA8C353F3A9415BF5; // ldp x21, x22, [sp, #0x10] - ldp x19, x20, [sp], #0x30
+        *(UINT32 *)(CodeLocation + ARM64_TOTAL_INSTRUCTION_LENGTH(26)) = 0xD65F03C0;         // ret
   }
 
   DoSomething(OsLoaderBlock, KernelAddress);
