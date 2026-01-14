@@ -1,6 +1,6 @@
 CC                = gcc
 
-all: main armtohex armtole armtolle
+all: main armtohex armtole armtolle preproc
 
 main: main.c
 	$(CC) $< -o $@
@@ -14,8 +14,12 @@ armtole: armtole.c
 armtolle: armtolle.c
 	$(CC) $< -o $@
 
+preproc: preproc.c
+	$(CC) $< -o $@
+
 clean:
 	rm ./main
 	rm ./armtohex
 	rm ./armtole
 	rm ./armtolle
+	rm ./preproc
