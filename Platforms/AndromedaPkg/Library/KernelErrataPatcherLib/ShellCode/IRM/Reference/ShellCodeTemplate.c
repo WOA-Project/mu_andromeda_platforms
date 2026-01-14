@@ -204,15 +204,15 @@ VOID OslArm64TransferToKernel(VOID *OsLoaderBlock, VOID *KernelAddress)
         *(UINT32 *)GICINSTR = ARM64_BRANCH_LOCATION_INSTRUCTION(GICINSTR, CodeLocation);
 
         *(UINT64 *)(CodeLocation)                                      = /*@@@@@@ARMTOLLE{stp x29, x30, [sp, #-0x10]!; mov x29, sp}@@@@@@*/0;
-        *(UINT64 *)(CodeLocation + ARM64_TOTAL_INSTRUCTION_LENGTH(2))  = /*@@@@@@ARMTOLLE{tbz x10, #0x28, #0x50      ; and x10, x10, #0xfffffeffffffffff}@@@@@@*/0;
+        *(UINT64 *)(CodeLocation + ARM64_TOTAL_INSTRUCTION_LENGTH(2))  = /*@@@@@@ARMTOLLE{tbz x10, #0x28, #0x48      ; and x10, x10, #0xfffffeffffffffff}@@@@@@*/0;
         *(UINT64 *)(CodeLocation + ARM64_TOTAL_INSTRUCTION_LENGTH(4))  = /*@@@@@@ARMTOLLE{orr x10, x10, #1           ; mov x22, x10}@@@@@@*/0;
         *(UINT64 *)(CodeLocation + ARM64_TOTAL_INSTRUCTION_LENGTH(6))  = /*@@@@@@ARMTOLLE{mrs x9, mpidr_el1          ; and x9, x9, #0xf00}@@@@@@*/0;
         *(UINT64 *)(CodeLocation + ARM64_TOTAL_INSTRUCTION_LENGTH(8))  = /*@@@@@@ARMTOLLE{movz x20, #0               ; movz w21, #0x8}@@@@@@*/0;
-        *(UINT64 *)(CodeLocation + ARM64_TOTAL_INSTRUCTION_LENGTH(10)) = /*@@@@@@ARMTOLLE{cmp x20, x9, lsr #8        ; b.eq #0x40}@@@@@@*/0;
+        *(UINT64 *)(CodeLocation + ARM64_TOTAL_INSTRUCTION_LENGTH(10)) = /*@@@@@@ARMTOLLE{cmp x20, x9, lsr #8        ; b.eq #0x14}@@@@@@*/0;
         *(UINT64 *)(CodeLocation + ARM64_TOTAL_INSTRUCTION_LENGTH(12)) = /*@@@@@@ARMTOLLE{lsl x8, x20, #0x10         ; orr x10, x22, x8}@@@@@@*/0;
         *(UINT64 *)(CodeLocation + ARM64_TOTAL_INSTRUCTION_LENGTH(14)) = /*@@@@@@ARMTOLLE{msr icc_sgi1r_el1, x10     ; dsb sy}@@@@@@*/0;
         *(UINT64 *)(CodeLocation + ARM64_TOTAL_INSTRUCTION_LENGTH(16)) = /*@@@@@@ARMTOLLE{add x20, x20, #1           ; sub w21, w21, #1}@@@@@@*/0;
-        *(UINT64 *)(CodeLocation + ARM64_TOTAL_INSTRUCTION_LENGTH(18)) = /*@@@@@@ARMTOLLE{cbnz w21, #0x28            ; b #0x54}@@@@@@*/0;
+        *(UINT64 *)(CodeLocation + ARM64_TOTAL_INSTRUCTION_LENGTH(18)) = /*@@@@@@ARMTOLLE{cbnz w21, #0xffffffffffffffe0; b #0x8}@@@@@@*/0;
         *(UINT64 *)(CodeLocation + ARM64_TOTAL_INSTRUCTION_LENGTH(20)) = /*@@@@@@ARMTOLLE{msr icc_sgi1r_el1, x10     ; ldp x29, x30, [sp], #0x10}@@@@@@*/0;
         *(UINT32 *)(CodeLocation + ARM64_TOTAL_INSTRUCTION_LENGTH(22)) = /*@@@@@@ARMTOLE{ret}@@@@@@*/0;
   }

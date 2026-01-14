@@ -4,11 +4,19 @@ cd shellcodecleaner
 make
 cd ..
 
+cd shellcodecleaner
+./preproc ../IRM/Reference/ShellCodeTemplate.c ../IRM/Reference/ShellCodeTemplate2.c
+./preproc2 ../IRM/Reference/ShellCodeTemplate2.c ../IRM/Reference/ShellCode.c
+rm ../IRM/Reference/ShellCodeTemplate2.c
+cd ..
+
 ACTLR_EL1=$(./shellcodecleaner/main ./ACTLR_EL1/Reference/ShellCode.c)
 AMCNTENSET0_EL0=$(./shellcodecleaner/main ./AMCNTENSET0_EL0/Reference/ShellCode.c)
 IRM=$(./shellcodecleaner/main ./IRM/Reference/ShellCode.c)
 IRM_X8=$(./shellcodecleaner/main ./IRM_X8/Reference/ShellCode.c)
 PSCI_MEMPROTECT=$(./shellcodecleaner/main ./PSCI_MEMPROTECT/Reference/ShellCode.c)
+
+rm ./IRM/Reference/ShellCode.c
 
 cp ./ShellCodeTemplate.h ../ShellCode.h
 
