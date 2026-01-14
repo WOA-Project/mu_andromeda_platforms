@@ -32,8 +32,8 @@
   # UART
   gAndromedaPkgTokenSpaceGuid.PcdUartSerialBase|0x0098C000
 
-  # Keep no Stream IDs attached by default
-  gAndromedaPkgTokenSpaceGuid.PcdSMMUSIDsToKeep|{0x0}
+  # Keep MDP Stream IDs attached by default
+  gAndromedaPkgTokenSpaceGuid.PcdSMMUSIDsToKeep|{0x20, 0x08,    0x21, 0x08,    0x21, 0x0C}
 
 [PcdsDynamicDefault.common.DEFAULT]
   # Zeta Product ID: 68
