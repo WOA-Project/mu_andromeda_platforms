@@ -2,6 +2,7 @@
     INF QcomPkg/PatchedBinaries/MinidumpTADxe.inf
     INF QcomPkg/PatchedBinaries/MsAbstractLayer.inf
     INF QcomPkg/PatchedBinaries/MsManufacturingMode.inf
+    INF QcomPkg/PatchedBinaries/PciHostBridgeDxe.inf
     INF QcomPkg/PatchedBinaries/PmicDxeLa.inf
     INF QcomPkg/PatchedBinaries/QcomWDogDxe.inf
     INF QcomPkg/PatchedBinaries/SurfaceTouchHidDxeV2.inf

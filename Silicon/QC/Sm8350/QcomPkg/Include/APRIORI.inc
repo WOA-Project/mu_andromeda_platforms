@@ -40,6 +40,7 @@ APRIORI DXE {
     INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/QcomPkg/Drivers/SPMIDxe/SPMIDxe.inf
     INF QcomPkg/PatchedBinaries/PmicDxeLa.inf
     INF Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/Sm8350FamilyPkg/Drivers/ExtFgDxe/ExtFgDxe.inf
+    INF QcomPkg/PatchedBinaries/PciHostBridgeDxe.inf
 
     FILE DRIVER = 6b38f7b4-ad98-40e9-9093-aca2b5a253c4 {
             SECTION PE32 = Zeta/BOOT.MXF.1.0-00893-LAHAINA-1.7786.2/MdeModulePkg/Universal/Disk/DiskIoDxe/DiskIoDxe.efi
