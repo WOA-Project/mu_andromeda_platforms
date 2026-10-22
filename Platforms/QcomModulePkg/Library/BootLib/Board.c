@@ -189,7 +189,7 @@ GetChipInfo (struct BoardInfo *platform_board_info,
   if (EFI_ERROR (Status))
     return Status;
   Status = pChipInfoProtocol->GetChipId (pChipInfoProtocol,
-                                         &platform_board_info->RawChipId);
+                                         (EFIChipInfoIdType *)&platform_board_info->RawChipId);
   if (EFI_ERROR (Status))
     return Status;
   Status = pChipInfoProtocol->GetChipVersion (
