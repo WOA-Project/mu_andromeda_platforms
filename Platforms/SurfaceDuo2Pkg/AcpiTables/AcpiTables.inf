@@ -26,6 +26,7 @@
    ASL|SurfaceDuoACPI/QcomACPI/8350/builtin/CSRT.aml
    ASL|SurfaceDuoACPI/8350/builtin/DBG2.OEMZE.aml
    ASL|SurfaceDuoACPI/8350/builtin/DSDT.aml
+   ASL|SurfaceDuoACPI/QcomACPI/8350/builtin/FACS.aml
    ASL|SurfaceDuoACPI/QcomACPI/8350/builtin/GTDT.aml
    ASL|SurfaceDuoACPI/QcomACPI/8350/builtin/IORT.aml
    ASL|SurfaceDuoACPI/QcomACPI/8350/builtin/MCFG.aml
