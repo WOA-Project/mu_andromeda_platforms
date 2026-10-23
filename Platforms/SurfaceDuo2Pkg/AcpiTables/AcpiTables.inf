@@ -32,9 +32,9 @@
    ASL|SurfaceDuoACPI/QcomACPI/8350/builtin/MCFG.aml
    ASL|SurfaceDuoACPI/QcomACPI/8350/builtin/PPTT.aml
    ASL|SurfaceDuoACPI/QcomACPI/8350/builtin/SPCR.aml
-   ASL|SurfaceDuoACPI/QcomACPI/common/builtin/SSDT.aml
-   ASL|SurfaceDuoACPI/QcomACPI/common/builtin/TPMDev.dat
-   ASL|SurfaceDuoACPI/QcomACPI/common/builtin/SoftwareTpm2Table.aml
+   #ASL|SurfaceDuoACPI/QcomACPI/common/builtin/SSDT.aml
+   #ASL|SurfaceDuoACPI/QcomACPI/common/builtin/TPMDev.dat
+   #ASL|SurfaceDuoACPI/QcomACPI/common/builtin/SoftwareTpm2Table.aml
 
 [Packages]
   ArmPkg/ArmPkg.dec
