@@ -9,9 +9,6 @@
 #
 ##
 
-[Components]
-  !include $(SHARED_CRYPTO_PATH)/Driver/Bin/CryptoDriver.inc.dsc
-
 [PcdsFeatureFlag.common]
   gArmTokenSpaceGuid.PcdCpuDxeProduceDebugSupport|FALSE
 
@@ -170,8 +167,6 @@
 
   # ARM Architectural Libraries
   CacheMaintenanceLib|ArmPkg/Library/ArmCacheMaintenanceLib/ArmCacheMaintenanceLib.inf
-  DefaultExceptionHandlerLib|ArmPkg/Library/DefaultExceptionHandlerLib/DefaultExceptionHandlerLib.inf
-  CpuExceptionHandlerLib|ArmPkg/Library/ArmExceptionLib/ArmExceptionLib.inf
   MuArmGicExLib|MsCorePkg/Library/MuArmGicExLib/MuArmGicExLib.inf
   ArmSmcLib|MdePkg/Library/ArmSmcLib/ArmSmcLib.inf
   ArmHvcLib|ArmPkg/Library/ArmHvcLib/ArmHvcLib.inf
@@ -261,8 +256,9 @@
   ReportStatusCodeLib|MdeModulePkg/Library/DxeReportStatusCodeLib/DxeReportStatusCodeLib.inf
 
   # Base ARM libraries
-  ArmLib|ArmPkg/Library/ArmLib/ArmBaseLib.inf
+  ArmLib|MdePkg/Library/ArmLib/ArmBaseLib.inf
   ArmMmuLib|UefiCpuPkg/Library/ArmMmuLib/ArmMmuBaseLib.inf
+  StandaloneMmMmuLib|ArmPkg/Library/StandaloneMmMmuLib/ArmMmuStandaloneMmLib.inf
 
   ArmPlatformLib|AndromedaPkg/Library/ArmPlatformLib/ArmPlatformLib.inf
 
@@ -387,6 +383,9 @@
   MemoryMapHelperLib|AndromedaPkg/Library/MemoryMapHelperSecLib/MemoryMapHelperSecLib.inf
   ConfigurationMapHelperLib|AndromedaPkg/Library/ConfigurationMapHelperSecLib/ConfigurationMapHelperSecLib.inf
 
+[LibraryClasses.common.DXE_CORE, LibraryClasses.common.DXE_DRIVER]
+  CpuExceptionHandlerLib|UefiCpuPkg/Library/CpuExceptionHandlerLib/DxeCpuExceptionHandlerLib.inf
+
 [LibraryClasses.common.DXE_CORE]
   DxeCoreEntryPoint|MdePkg/Library/DxeCoreEntryPoint/DxeCoreEntryPoint.inf
   ExtractGuidedSectionLib|MdePkg/Library/DxeExtractGuidedSectionLib/DxeExtractGuidedSectionLib.inf
@@ -441,8 +440,8 @@
 
   # Processor Core Services
   ArmPkg/Drivers/CpuDxe/CpuDxe.inf {
-    <LibraryClasses>
-    NULL|MsCorePkg/Library/MemoryProtectionExceptionHandlerLib/MemoryProtectionExceptionHandlerLib.inf
+    #<LibraryClasses>
+    #NULL|MsCorePkg/Library/MemoryProtectionExceptionHandlerLib/MemoryProtectionExceptionHandlerLib.inf
   }
 
   ArmPkg/Drivers/TimerDxe/TimerDxe.inf
@@ -535,6 +534,12 @@
   MdeModulePkg/Universal/SecurityStubDxe/SecurityStubDxe.inf {
     <LibraryClasses>
       NULL|SecurityPkg/Library/DxeImageVerificationLib/DxeImageVerificationLib.inf
+      RealTimeClockLib|AndromedaPkg/Library/VirtualRealTimeClockLib/VirtualRealTimeClockLib.inf
+      BaseCryptLib|MbedTlsPkg/Library/BaseCryptLib/BaseCryptLib.inf
+      TlsLib|OpensslPkg/Library/TlsLib/TlsLib.inf
+      IntrinsicLib|CryptoPkg/Library/IntrinsicLib/IntrinsicLib.inf
+      OpensslLib|OpensslPkg/Library/OpensslLib/OpensslLib.inf # Contains openSSL library used by MbedTlsLib
+      MbedTlsLib|MbedTlsPkg/Library/MbedTlsLib/MbedTlsLib.inf
   }
 
   MdeModulePkg/Universal/SerialDxe/SerialDxe.inf
@@ -572,7 +577,15 @@
   NetworkPkg/Mtftp6Dxe/Mtftp6Dxe.inf
   NetworkPkg/SnpDxe/SnpDxe.inf
   NetworkPkg/TcpDxe/TcpDxe.inf
-  NetworkPkg/TlsDxe/TlsDxe.inf
+  NetworkPkg/TlsDxe/TlsDxe.inf {
+    <LibraryClasses>
+      RealTimeClockLib|AndromedaPkg/Library/VirtualRealTimeClockLib/VirtualRealTimeClockLib.inf
+      BaseCryptLib|MbedTlsPkg/Library/BaseCryptLib/BaseCryptLib.inf
+      TlsLib|OpensslPkg/Library/TlsLib/TlsLib.inf
+      IntrinsicLib|CryptoPkg/Library/IntrinsicLib/IntrinsicLib.inf
+      OpensslLib|OpensslPkg/Library/OpensslLib/OpensslLib.inf # Contains openSSL library used by MbedTlsLib
+      MbedTlsLib|MbedTlsPkg/Library/MbedTlsLib/MbedTlsLib.inf
+  }
   NetworkPkg/Udp4Dxe/Udp4Dxe.inf
   NetworkPkg/Udp6Dxe/Udp6Dxe.inf
   NetworkPkg/UefiPxeBcDxe/UefiPxeBcDxe.inf
@@ -589,10 +602,33 @@
       NULL|SecurityPkg/Library/HashInstanceLibSm3/HashInstanceLibSm3.inf
       OemTpm2InitLib|SecurityPkg/Library/OemTpm2InitLibNull/OemTpm2InitLib.inf
       NULL|SecurityPkg/Library/OemTpm2InitLibNull/OemTpm2InitLibVendorNull.inf
+      RealTimeClockLib|AndromedaPkg/Library/VirtualRealTimeClockLib/VirtualRealTimeClockLib.inf
+      BaseCryptLib|MbedTlsPkg/Library/BaseCryptLib/BaseCryptLib.inf
+      TlsLib|OpensslPkg/Library/TlsLib/TlsLib.inf
+      IntrinsicLib|CryptoPkg/Library/IntrinsicLib/IntrinsicLib.inf
+      OpensslLib|OpensslPkg/Library/OpensslLib/OpensslLib.inf # Contains openSSL library used by MbedTlsLib
+      MbedTlsLib|MbedTlsPkg/Library/MbedTlsLib/MbedTlsLib.inf
   }
 
-  SecurityPkg/VariableAuthenticated/SecureBootConfigDxe/SecureBootConfigDxe.inf
-  AndromedaPkg/Driver/SecureBootProvisioningDxe/SecureBootProvisioningDxe.inf
+  SecurityPkg/VariableAuthenticated/SecureBootConfigDxe/SecureBootConfigDxe.inf {
+    <LibraryClasses>
+      RealTimeClockLib|AndromedaPkg/Library/VirtualRealTimeClockLib/VirtualRealTimeClockLib.inf
+      BaseCryptLib|MbedTlsPkg/Library/BaseCryptLib/BaseCryptLib.inf
+      TlsLib|OpensslPkg/Library/TlsLib/TlsLib.inf
+      IntrinsicLib|CryptoPkg/Library/IntrinsicLib/IntrinsicLib.inf
+      OpensslLib|OpensslPkg/Library/OpensslLib/OpensslLib.inf # Contains openSSL library used by MbedTlsLib
+      MbedTlsLib|MbedTlsPkg/Library/MbedTlsLib/MbedTlsLib.inf
+  }
+
+  AndromedaPkg/Driver/SecureBootProvisioningDxe/SecureBootProvisioningDxe.inf {
+    <LibraryClasses>
+      RealTimeClockLib|AndromedaPkg/Library/VirtualRealTimeClockLib/VirtualRealTimeClockLib.inf
+      BaseCryptLib|MbedTlsPkg/Library/BaseCryptLib/BaseCryptLib.inf
+      TlsLib|OpensslPkg/Library/TlsLib/TlsLib.inf
+      IntrinsicLib|CryptoPkg/Library/IntrinsicLib/IntrinsicLib.inf
+      OpensslLib|OpensslPkg/Library/OpensslLib/OpensslLib.inf # Contains openSSL library used by MbedTlsLib
+      MbedTlsLib|MbedTlsPkg/Library/MbedTlsLib/MbedTlsLib.inf
+  }
 
   # ACPI and SMBIOS
   # We use pre-built ACPI tables, so only core components are loaded
@@ -611,7 +647,7 @@
 			UefiApplicationEntryPoint|MdePkg/Library/UefiApplicationEntryPoint/UefiApplicationEntryPoint.inf
 			CacheMaintenanceLib|ArmPkg/Library/ArmCacheMaintenanceLib/ArmCacheMaintenanceLib.inf
 			Zlib|QcomModulePkg/Library/zlib/zlib.inf
-			ArmLib|ArmPkg/Library/ArmLib/ArmBaseLib.inf
+			ArmLib|MdePkg/Library/ArmLib/ArmBaseLib.inf
 			BaseLib|MdePkg/Library/BaseLib/BaseLib.inf
 			DebugLib|MdePkg/Library/UefiDebugLibConOut/UefiDebugLibConOut.inf
 			DevicePathLib|MdePkg/Library/UefiDevicePathLib/UefiDevicePathLib.inf

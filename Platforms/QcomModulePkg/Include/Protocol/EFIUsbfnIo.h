@@ -247,7 +247,7 @@ typedef struct
   /**< SuperSpeed Device descriptor. */
   EFI_USB_SUPERSPEED_CONFIG_INFO  **ConfigInfoTable;
   /**< SuperSpeed Configuration information. */
-  EFI_USB_BOS_DESCRIPTOR          *BosDescriptor;
+  QC_EFI_USB_BOS_DESCRIPTOR          *BosDescriptor;
   /**< SuperSpeed Binary Object Store. */
 } EFI_USB_SUPERSPEED_DEVICE_INFO;
 

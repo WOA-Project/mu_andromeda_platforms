@@ -41,17 +41,6 @@
   DB_DEFAULT_FILE5               = AndromedaPkg/Include/Resources/SecureBoot/keystore/DB/Certificates/microsoft_option_rom_uefi_ca_2023.der
   DBX_DEFAULT_FILE1              = AndromedaPkg/Include/Resources/SecureBoot/Artifacts/Aarch64/DefaultDbx.bin
 
-  PEI_CRYPTO_SERVICES            = NONE
-  DXE_CRYPTO_SERVICES            = STANDARD
-  RUNTIMEDXE_CRYPTO_SERVICES     = STANDARD
-  SMM_CRYPTO_SERVICES            = NONE
-  STANDALONEMM_CRYPTO_SERVICES   = NONE
-  PEI_CRYPTO_ARCH                = NONE
-  DXE_CRYPTO_ARCH                = AARCH64
-  RUNTIMEDXE_CRYPTO_ARCH         = AARCH64
-  SMM_CRYPTO_ARCH                = NONE
-  STANDALONEMM_CRYPTO_ARCH       = NONE
-
   PLATFORM_HAS_ACTLR_EL1_UNIMPLEMENTED_ERRATA         = 1
   PLATFORM_HAS_AMCNTENSET0_EL0_UNIMPLEMENTED_ERRATA   = 0
   PLATFORM_HAS_GIC_V3_WITHOUT_IRM_FLAG_SUPPORT_ERRATA = 1

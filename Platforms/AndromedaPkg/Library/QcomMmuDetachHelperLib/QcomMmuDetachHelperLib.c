@@ -179,7 +179,7 @@ static VOID smmu_v2_detach_all(ARM_SMMU_V2_DEVICE *smmuDevice)
   UINT32 smr;
   UINT32 s2cr;
   UINT32 cbndx;
-  UINT32 s2cr_type;
+  //UINT32 s2cr_type;
 
   UINT32 smr_id;
   UINT32 smr_mask;
@@ -202,7 +202,7 @@ static VOID smmu_v2_detach_all(ARM_SMMU_V2_DEVICE *smmuDevice)
 
       // Extract Context Bank index and type
       cbndx     = (s2cr >> S2CR_CBNDX_SHIFT) & S2CR_CBNDX_MASK;
-      s2cr_type = (s2cr >> S2CR_TYPE_SHIFT) & S2CR_TYPE_MASK;
+      //s2cr_type = (s2cr >> S2CR_TYPE_SHIFT) & S2CR_TYPE_MASK;
 
       // Extract StreamID and mask (16-bit fields)
       smr_id   = (smr >> SMR_ID_SHIFT) & SMR_ID_MASK;

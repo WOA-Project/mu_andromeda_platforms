@@ -190,7 +190,15 @@
   #
   # Application that presents and manages FrontPage.
   #
-  AndromedaPkg/FrontPage/FrontPage.inf
+  AndromedaPkg/FrontPage/FrontPage.inf {
+    <LibraryClasses>
+      RealTimeClockLib|AndromedaPkg/Library/VirtualRealTimeClockLib/VirtualRealTimeClockLib.inf
+      BaseCryptLib|MbedTlsPkg/Library/BaseCryptLib/BaseCryptLib.inf
+      TlsLib|OpensslPkg/Library/TlsLib/TlsLib.inf
+      IntrinsicLib|CryptoPkg/Library/IntrinsicLib/IntrinsicLib.inf
+      OpensslLib|OpensslPkg/Library/OpensslLib/OpensslLib.inf # Contains openSSL library used by MbedTlsLib
+      MbedTlsLib|MbedTlsPkg/Library/MbedTlsLib/MbedTlsLib.inf
+  }
   # Surface Boot Manager (Menu) application
   #
   # Application that presents & manages the Boot Menu Setup on Front Page.
@@ -222,14 +230,36 @@
       DfciSettingPermissionLib|DfciPkg/Library/DfciSettingPermissionLib/DfciSettingPermissionLib.inf
       NULL|OemPkg/Library/MsBootManagerSettingsDxeLib/MsBootManagerSettingsDxeLib.inf
       NULL|OemPkg/Library/MsSecureBootModeSettingLib/MsSecureBootModeSettingLib.inf
+      RealTimeClockLib|AndromedaPkg/Library/VirtualRealTimeClockLib/VirtualRealTimeClockLib.inf
+      BaseCryptLib|MbedTlsPkg/Library/BaseCryptLib/BaseCryptLib.inf
+      TlsLib|OpensslPkg/Library/TlsLib/TlsLib.inf
+      IntrinsicLib|CryptoPkg/Library/IntrinsicLib/IntrinsicLib.inf
+      OpensslLib|OpensslPkg/Library/OpensslLib/OpensslLib.inf # Contains openSSL library used by MbedTlsLib
+      MbedTlsLib|MbedTlsPkg/Library/MbedTlsLib/MbedTlsLib.inf
     <PcdsFeatureFlag>
       gDfciPkgTokenSpaceGuid.PcdSettingsManagerInstallProvider|TRUE
   }
-  MsCorePkg/MuCryptoDxe/MuCryptoDxe.inf
+  MsCorePkg/MuCryptoDxe/MuCryptoDxe.inf {
+    <LibraryClasses>
+      RealTimeClockLib|AndromedaPkg/Library/VirtualRealTimeClockLib/VirtualRealTimeClockLib.inf
+      BaseCryptLib|MbedTlsPkg/Library/BaseCryptLib/BaseCryptLib.inf
+      TlsLib|OpensslPkg/Library/TlsLib/TlsLib.inf
+      IntrinsicLib|CryptoPkg/Library/IntrinsicLib/IntrinsicLib.inf
+      OpensslLib|OpensslPkg/Library/OpensslLib/OpensslLib.inf # Contains openSSL library used by MbedTlsLib
+      MbedTlsLib|MbedTlsPkg/Library/MbedTlsLib/MbedTlsLib.inf
+  }
   #
   # AuthManager provides authentication for DFCI.
   #
-  DfciPkg/IdentityAndAuthManager/IdentityAndAuthManagerDxe.inf
+  DfciPkg/IdentityAndAuthManager/IdentityAndAuthManagerDxe.inf {
+    <LibraryClasses>
+      RealTimeClockLib|AndromedaPkg/Library/VirtualRealTimeClockLib/VirtualRealTimeClockLib.inf
+      BaseCryptLib|MbedTlsPkg/Library/BaseCryptLib/BaseCryptLib.inf
+      TlsLib|OpensslPkg/Library/TlsLib/TlsLib.inf
+      IntrinsicLib|CryptoPkg/Library/IntrinsicLib/IntrinsicLib.inf
+      OpensslLib|OpensslPkg/Library/OpensslLib/OpensslLib.inf # Contains openSSL library used by MbedTlsLib
+      MbedTlsLib|MbedTlsPkg/Library/MbedTlsLib/MbedTlsLib.inf
+  }
   #
   # Processes ingoing and outgoing DFCI settings requests.
   #
