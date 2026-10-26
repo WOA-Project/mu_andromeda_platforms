@@ -33,7 +33,6 @@ class CommonPlatform:
         "Platforms",
         "MU_BASECORE",
         "Common/MU",
-        "Common/MU_TIANO",
         "Common/MU_OEM_SAMPLE",
         "Features/DFCI",
         "Features/CONFIG",
