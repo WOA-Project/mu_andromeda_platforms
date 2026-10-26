@@ -29,4 +29,4 @@
 [submodule "Platforms/OpensslPkg/Library/OpensslLib/openssl"]
 	path = Platforms/OpensslPkg/Library/OpensslLib/openssl
 	url = https://github.com/openssl/openssl.git
-	branch = 830bf8e1e4749ad65c51b6a1d0d769ae689404ba
+	branch = aea7aaf2abb04789f5868cbabec406ea43aa84bf
