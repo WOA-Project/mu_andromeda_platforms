@@ -102,7 +102,6 @@ X509ConstructCertificateStackV (
 
   STACK_OF (X509)  *CertStack;
   BOOLEAN  Status;
-  UINTN    Index;
 
   //
   // Check input parameters.
@@ -124,7 +123,7 @@ X509ConstructCertificateStackV (
     }
   }
 
-  for (Index = 0; ; Index++) {
+  while (TRUE) {
     //
     // If Cert is NULL, then it is the end of the list.
     //
@@ -448,7 +447,6 @@ InternalX509GetNIDName (
   }
 
   EntryData = X509_NAME_ENTRY_get_data (Entry);
-  // MU_CHANGE [BEGIN] - CodeQL change
   if (EntryData == NULL) {
     //
     // Fail to retrieve name entry data
@@ -457,8 +455,6 @@ InternalX509GetNIDName (
     ReturnStatus    = RETURN_NOT_FOUND;
     goto _Exit;
   }
-
-  // MU_CHANGE [END] - CodeQL change
 
   Length = ASN1_STRING_to_UTF8 (&UTF8Name, EntryData);
   if (Length < 0) {
@@ -818,10 +814,9 @@ X509GetTBSCert (
   UINT32       Asn1Tag;
   UINT32       ObjClass;
   UINTN        Length;
+  UINTN        Inf;
 
-  // MU_CHANGE [BEGIN] - CodeQL change
   Asn1Tag = (UINT32)V_ASN1_UNDEF;
-  // MU_CHANGE [END] - CodeQL change
 
   //
   // Check input parameters.
@@ -851,19 +846,19 @@ X509GetTBSCert (
   //
   Temp   = Cert;
   Length = 0;
-  ASN1_get_object (&Temp, (long *)&Length, (int *)&Asn1Tag, (int *)&ObjClass, (long)CertSize);
+  Inf    = ASN1_get_object (&Temp, (long *)&Length, (int *)&Asn1Tag, (int *)&ObjClass, (long)CertSize);
 
-  if (Asn1Tag != V_ASN1_SEQUENCE) {
+  if (((Inf & 0x80) == 0x80) || (Asn1Tag != V_ASN1_SEQUENCE)) {
     return FALSE;
   }
 
   *TBSCert = (UINT8 *)Temp;
 
-  ASN1_get_object (&Temp, (long *)&Length, (int *)&Asn1Tag, (int *)&ObjClass, (long)Length);
+  Inf = ASN1_get_object (&Temp, (long *)&Length, (int *)&Asn1Tag, (int *)&ObjClass, (long)Length);
   //
   // Verify the parsed TBSCertificate is one correct SEQUENCE data.
   //
-  if (Asn1Tag != V_ASN1_SEQUENCE) {
+  if (((Inf & 0x80) == 0x80) || (Asn1Tag != V_ASN1_SEQUENCE)) {
     return FALSE;
   }
 
@@ -1071,7 +1066,7 @@ X509GetSerialNumber (
   }
 
   if (SerialNumber != NULL) {
-    CopyMem (SerialNumber, Asn1Integer->data, (UINTN)Asn1Integer->length);  // MU_CHANGE
+    CopyMem (SerialNumber, Asn1Integer->data, (UINTN)Asn1Integer->length);
     Status = TRUE;
   }
 
@@ -1275,11 +1270,11 @@ _Exit:
   @param[in, out] ExtensionDataSize Extension bytes size.
 
   @retval TRUE                     The certificate Extension data retrieved successfully.
+  @retval TRUE                     The Certificate Extension is found, but the oid extension is not found.
   @retval FALSE                    If Cert is NULL.
                                    If ExtensionDataSize is NULL.
                                    If ExtensionData is not NULL and *ExtensionDataSize is 0.
                                    If Certificate is invalid.
-  @retval FALSE                    If no Extension entry match Oid.
   @retval FALSE                    If the ExtensionData is NULL. The required buffer size
                                    is returned in the ExtensionDataSize parameter.
   @retval FALSE                    The operation is not supported.
@@ -1385,6 +1380,8 @@ X509GetExtensionData (
 
     *ExtensionDataSize = OctLength;
   } else {
+    /* the cert extension is found, but the oid extension is not found; */
+    Status             = TRUE;
     *ExtensionDataSize = 0;
   }
 
@@ -1405,7 +1402,7 @@ Cleanup:
   @param[in]      Cert             Pointer to the DER-encoded X509 certificate.
   @param[in]      CertSize         Size of the X509 certificate in bytes.
   @param[out]     Usage            Key Usage bytes.
-  @param[in, out] UsageSize        Key Usage buffer sizs in bytes.
+  @param[in, out] UsageSize        Key Usage buffer size in bytes.
 
   @retval TRUE                     The Usage bytes retrieve successfully.
   @retval FALSE                    If Cert is NULL.
@@ -1706,12 +1703,12 @@ _Exit:
   @param[in]      RootCertLength    Trusted Root Certificate buffer length
   @param[in]      CertChain         One or more ASN.1 DER-encoded X.509 certificates
                                     where the first certificate is signed by the Root
-                                    Certificate or is the Root Cerificate itself. and
-                                    subsequent cerificate is signed by the preceding
-                                    cerificate.
+                                    Certificate or is the Root Certificate itself. and
+                                    subsequent certificate is signed by the preceding
+                                    certificate.
   @param[in]      CertChainLength   Total length of the certificate chain, in bytes.
 
-  @retval  TRUE   All cerificates was issued by the first certificate in X509Certchain.
+  @retval  TRUE   All certificates was issued by the first certificate in X509Certchain.
   @retval  FALSE  Invalid certificate or the certificate was not issued by the given
                   trusted CA.
 **/
@@ -1789,9 +1786,9 @@ X509VerifyCertChain (
 
   @param[in]      CertChain         One or more ASN.1 DER-encoded X.509 certificates
                                     where the first certificate is signed by the Root
-                                    Certificate or is the Root Cerificate itself. and
-                                    subsequent cerificate is signed by the preceding
-                                    cerificate.
+                                    Certificate or is the Root Certificate itself. and
+                                    subsequent certificate is signed by the preceding
+                                    certificate.
   @param[in]      CertChainLength   Total length of the certificate chain, in bytes.
 
   @param[in]      CertIndex         Index of certificate.
@@ -1903,31 +1900,20 @@ Asn1GetTag (
   IN     UINT32   Tag
   )
 {
-  UINT8  *PtrOld;
-  INT32  ObjTag;
-  INT32  ObjCls;
-  long   ObjLength;
-
-  // MU_CHANGE [BEGIN] - CodeQL change
-  INT32  Ret;
-
-  // MU_CHANGE [END] - CodeQL change
+  UINT8   *PtrOld;
+  INT32   ObjTag;
+  INT32   ObjCls;
+  long    ObjLength;
+  UINT32  Inf;
 
   //
   // Save Ptr position
   //
   PtrOld = *Ptr;
 
-  // MU_CHANGE [BEGIN] - CodeQL change
-  // ASN1_get_object ((CONST UINT8 **)Ptr, &ObjLength, &ObjTag, &ObjCls, (INT32)(End - (*Ptr)));
-  Ret = ASN1_get_object ((CONST UINT8 **)Ptr, &ObjLength, &ObjTag, &ObjCls, (INT32)(End - (*Ptr)));
-  if (Ret & 0x80) {
-    return FALSE;
-  }
-
-  // MU_CHANGE [END] - CodeQL change
-
-  if ((ObjTag == (INT32)(Tag & CRYPTO_ASN1_TAG_VALUE_MASK)) &&
+  Inf = ASN1_get_object ((CONST UINT8 **)Ptr, &ObjLength, &ObjTag, &ObjCls, (INT32)(End - (*Ptr)));
+  if (((Inf & 0x80) == 0x00) &&
+      (ObjTag == (INT32)(Tag & CRYPTO_ASN1_TAG_VALUE_MASK)) &&
       (ObjCls == (INT32)(Tag & CRYPTO_ASN1_TAG_CLASS_MASK)))
   {
     *Length = (UINTN)ObjLength;
@@ -1947,7 +1933,7 @@ Asn1GetTag (
   @param[in]      Cert                     Pointer to the DER-encoded X509 certificate.
   @param[in]      CertSize                 size of the X509 certificate in bytes.
   @param[out]     BasicConstraints         basic constraints bytes.
-  @param[in, out] BasicConstraintsSize     basic constraints buffer sizs in bytes.
+  @param[in, out] BasicConstraintsSize     basic constraints buffer size in bytes.
 
   @retval TRUE                     The basic constraints retrieve successfully.
   @retval FALSE                    If cert is NULL.

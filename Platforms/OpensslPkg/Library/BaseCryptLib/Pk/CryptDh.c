@@ -163,7 +163,6 @@ DhSetParameter (
   return TRUE;
 
 Error:
-  // MU_CHANGE [BEGIN] - CodeQL change
   if (BnP != NULL) {
     BN_free (BnP);
   }
@@ -171,8 +170,6 @@ Error:
   if (BnG != NULL) {
     BN_free (BnG);
   }
-
-  // MU_CHANGE [END] - CodeQL change
 
   return FALSE;
 }
