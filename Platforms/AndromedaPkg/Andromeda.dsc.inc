@@ -375,7 +375,7 @@
   
   ConsoleMsgLib|AndromedaPkg/Library/ConsoleMsgLib/ConsoleMsgLib.inf
 
-[LibraryClasses.common.PEIM, LibraryClasses.common.PEI_CORE, LibraryClasses.common.SEC]
+[LibraryClasses.common.PEIM, LibraryClasses.common.PEI_CORE]
   ArmMmuLib|UefiCpuPkg/Library/ArmMmuLib/ArmMmuPeiLib.inf
 
 [LibraryClasses.common.SEC]
@@ -384,7 +384,6 @@
   PcdLib|MdePkg/Library/BasePcdLibNull/BasePcdLibNull.inf
   PrePiHobListPointerLib|ArmPlatformPkg/Library/PrePiHobListPointerLib/PrePiHobListPointerLib.inf
   PrePiMemoryAllocationLib|EmbeddedPkg/Library/PrePiMemoryAllocationLib/PrePiMemoryAllocationLib.inf
-  ArmMmuLib|UefiCpuPkg/Library/ArmMmuLib/ArmMmuPeiLib.inf
   MemoryMapHelperLib|AndromedaPkg/Library/MemoryMapHelperSecLib/MemoryMapHelperSecLib.inf
   ConfigurationMapHelperLib|AndromedaPkg/Library/ConfigurationMapHelperSecLib/ConfigurationMapHelperSecLib.inf
 
