@@ -25,7 +25,7 @@
 [submodule "Platforms/OpensslPkg/Library/OpensslLib/openssl"]
 	path = Platforms/OpensslPkg/Library/OpensslLib/openssl
 	url = https://github.com/openssl/openssl.git
-	branch = aea7aaf2abb04789f5868cbabec406ea43aa84bf
+	branch = f4dc4d58b48d346a8270183f89acf826d459b0ca
 [submodule "Platforms/MbedTlsPkg/Library/MbedTlsLib/mbedtls"]
 	path = Platforms/MbedTlsPkg/Library/MbedTlsLib/mbedtls
 	url = https://github.com/ARMmbed/mbedtls

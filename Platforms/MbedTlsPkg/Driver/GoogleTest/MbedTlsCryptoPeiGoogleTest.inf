@@ -1,0 +1,33 @@
+## @file
+# GoogleTest for the Mbed TLS Crypto PPI.
+#
+# Copyright (c) Microsoft Corporation.
+# SPDX-License-Identifier: BSD-2-Clause-Patent
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = MbedTlsCryptoPeiGoogleTest
+  FILE_GUID                      = 48BABC60-A45D-45A8-BFB1-A8D34F449629
+  MODULE_TYPE                    = HOST_APPLICATION
+  VERSION_STRING                 = 1.0
+
+[Sources]
+  MbedTlsCryptoPeiGoogleTest.cpp
+
+[Packages]
+  MdePkg/MdePkg.dec
+  CryptoPkg/CryptoPkg.dec
+  UnitTestFrameworkPkg/UnitTestFrameworkPkg.dec
+
+[LibraryClasses]
+  BaseMemoryLib
+  DebugLib
+  GoogleTestLib
+
+[Ppis]
+  gEfiPeiMemoryDiscoveredPpiGuid
+  gEdkiiCryptoPpiGuid
+
+[BuildOptions]
+  MSFT:*_*_*_CC_FLAGS = /EHsc /wd4244 /wd4132

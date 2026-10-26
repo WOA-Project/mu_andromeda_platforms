@@ -33,7 +33,11 @@
   #
   # Build HOST_APPLICATION that tests BaseCryptLib (MbedTLS implementation)
   #
-  CryptoPkg/Test/UnitTest/Library/BaseCryptLib/TestBaseCryptLibHost.inf
+  MbedTlsPkg/Driver/GoogleTest/MbedTlsCryptoPeiGoogleTest.inf {
+    <LibraryClasses>
+      PeiServicesLib|MdePkg/Test/Mock/Library/GoogleTest/MockPeiServicesLib/MockPeiServicesLib.inf
+      NULL|MbedTlsPkg/Driver/GoogleTest/MbedTlsCryptoPeiGoogleTestLib.inf
+  }
 
 [BuildOptions]
   *_*_*_CC_FLAGS = -D DISABLE_NEW_DEPRECATED_INTERFACES

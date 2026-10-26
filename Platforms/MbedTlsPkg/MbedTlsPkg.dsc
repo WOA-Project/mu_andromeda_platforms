@@ -55,8 +55,8 @@
   UefiBootServicesTableLib|MdePkg/Library/UefiBootServicesTableLib/UefiBootServicesTableLib.inf
   UefiDriverEntryPoint|MdePkg/Library/UefiDriverEntryPoint/UefiDriverEntryPoint.inf
   UefiRuntimeServicesTableLib|MdePkg/Library/UefiRuntimeServicesTableLib/UefiRuntimeServicesTableLib.inf
-  RealTimeClockLib|MdeModulePkg/Library/RealTimeClockLibNull/RealTimeClockLibNull.inf # MU_CHANGE
-
+  CompilerIntrinsicsLib|MdePkg/Library/CompilerIntrinsicsLib/CompilerIntrinsicsLib.inf
+  
 [LibraryClasses.common.SEC]
   BaseCryptLib|MbedTlsPkg/Library/BaseCryptLib/SecCryptLib.inf
   TlsLib|CryptoPkg/Library/TlsLibNull/TlsLibNull.inf
@@ -107,6 +107,8 @@
 #
 ###################################################################################################
 [Components]
+  MbedTlsPkg/Driver/MbedTlsCryptoPei.inf
+  
   MbedTlsPkg/Library/BaseCryptLib/BaseCryptLib.inf
   MbedTlsPkg/Library/BaseCryptLib/PeiCryptLib.inf
   MbedTlsPkg/Library/BaseCryptLib/RuntimeCryptLib.inf

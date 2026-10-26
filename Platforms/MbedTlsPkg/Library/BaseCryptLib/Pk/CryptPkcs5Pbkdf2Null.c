@@ -23,7 +23,8 @@ SPDX-License-Identifier: BSD-2-Clause-Patent
                               greater than or equal to 1.
   @param[in]  DigestSize      Size of the message digest to be used (eg. SHA256_DIGEST_SIZE).
                               NOTE: DigestSize will be used to determine the hash algorithm.
-                                    Only SHA1_DIGEST_SIZE or SHA256_DIGEST_SIZE is supported.
+                                    Only SHA1_DIGEST_SIZE, SHA256_DIGEST_SIZE,
+                                    SHA384_DIGEST_SIZE or SHA512_DIGEST_SIZE is supported.
   @param[in]  KeyLength       Size of the derived key buffer in bytes.
   @param[out] OutKey          Pointer to the output derived key buffer.
 

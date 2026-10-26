@@ -16,7 +16,6 @@
 
 [Sources]
   Include/mbedtls/mbedtls_config.h
-  mbedtls/library/aesce.c
   mbedtls/library/aes.c
   mbedtls/library/asn1parse.c
   mbedtls/library/asn1write.c

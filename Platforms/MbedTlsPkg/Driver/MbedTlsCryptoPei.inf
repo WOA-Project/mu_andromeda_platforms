@@ -1,0 +1,45 @@
+## @file
+#  Produces the EDK II Crypto PPI using Mbed TLS directly.
+#
+#  Copyright (c) Microsoft Corporation.
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
+##
+
+[Defines]
+  INF_VERSION                    = 0x0001001B
+  BASE_NAME                      = MbedTlsCryptoPei
+  FILE_GUID                      = 04E0269F-F2E2-4A9E-9F8C-80D83B6F549B
+  MODULE_TYPE                    = PEIM
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = MbedTlsCryptoPeiEntry
+
+[Sources]
+  MbedTlsCryptoPei.c
+  MbedTlsHash.c
+  MbedTlsHash.h
+  ../Library/MbedTlsLib/mbedtls/library/sha1.c
+  ../Library/MbedTlsLib/mbedtls/library/sha256.c
+  ../Library/MbedTlsLib/mbedtls/library/sha512.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  CryptoPkg/CryptoPkg.dec
+  MbedTlsPkg/MbedTlsPkg.dec
+
+[LibraryClasses]
+  BaseMemoryLib
+  DebugLib
+  PeimEntryPoint
+  CompilerIntrinsicsLib
+
+[Ppis]
+  gEfiPeiMemoryDiscoveredPpiGuid  ## CONSUMES
+  gEdkiiCryptoPpiGuid             ## PRODUCES
+
+[Depex]
+  TRUE
+
+[BuildOptions]
+  MSFT:*_*_AARCH64_CC_FLAGS = /U_WIN32 /wd4083
+  GCC:*_*_AARCH64_CC_XIPFLAGS ==
+  
