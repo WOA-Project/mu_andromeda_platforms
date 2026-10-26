@@ -400,7 +400,7 @@ MsBootPolicyLibIsDevicePathBootable (
     PrintDevicePath (SdCardDevicePath);
     SdSize =  GetDevicePathSize (SdCardDevicePath);
     if (Size > SdSize) {
-      // Compare the first part of the device path to the known path of the SDCARD.
+      // Compare the first part of the device path to the known path of the SdCard.
       if (0 == CompareMem (DevicePath, SdCardDevicePath, SdSize - END_DEVICE_PATH_LENGTH)) {
         DEBUG ((DEBUG_ERROR, "Boot from SD Card is not allowed.\n"));
         rc = FALSE;
