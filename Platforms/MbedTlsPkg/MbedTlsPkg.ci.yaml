@@ -1,0 +1,100 @@
+## @file
+# CI configuration for MbedTlsPkg
+#
+# Copyright (c) Microsoft Corporation
+# Copyright (c) 2023, Intel Corporation. All rights reserved.<BR>
+# SPDX-License-Identifier: BSD-2-Clause-Patent
+##
+{
+    "PrEval": {
+        "DscPath": "MbedTlsPkg.dsc",
+    },
+    "LicenseCheck": {
+        "IgnoreFiles": [
+            # mbedtls submodule has its own license
+            "Library/MbedTlsLib/mbedtls"
+        ]
+    },
+    "EccCheck": {
+        ## Exception sample looks like below:
+        ## "ExceptionList": [
+        ##     "<ErrorID>", "<KeyWord>"
+        ## ]
+        "ExceptionList": [
+        ],
+        ## Both file path and directory path are accepted.
+        "IgnoreFiles": [
+            "Library/MbedTlsLib/mbedtls",
+            # This has MbedTLS interfaces that aren't UEFI spec compliant
+            "Library/BaseCryptLib/SysCall"
+        ]
+    },
+    "CompilerPlugin": {
+        "DscPath": "MbedTlsPkg.dsc"
+    },
+    ## options defined .pytool/Plugin/HostUnitTestCompilerPlugin
+    "HostUnitTestCompilerPlugin": {
+        "DscPath": "Test/MbedTlsPkgHostUnitTest.dsc"
+    },
+    "CharEncodingCheck": {
+        "IgnoreFiles": []
+    },
+    "DependencyCheck": {
+        "AcceptableDependencies": [
+            "MdePkg/MdePkg.dec",
+            "MdeModulePkg/MdeModulePkg.dec",
+            "CryptoPkg/CryptoPkg.dec",
+            "MbedTlsPkg/MbedTlsPkg.dec",
+        ],
+        # For host based unit tests
+        "AcceptableDependencies-HOST_APPLICATION":[ # for host based unit tests
+            "UnitTestFrameworkPkg/UnitTestFrameworkPkg.dec"
+        ],
+        # For UEFI shell based apps
+        "AcceptableDependencies-UEFI_APPLICATION": [],
+        "IgnoreInf": []
+    },
+    "DscCompleteCheck": {
+        "DscPath": "MbedTlsPkg.dsc",
+        "IgnoreInf": [
+            "MbedTlsPkg/Library/MbedTlsLib/MbedTlsLibFull.inf",
+            "MbedTlsPkg/Library/BaseCryptLib/TestBaseCryptLib.inf",
+            "MbedTlsPkg/Library/BaseCryptLib/UnitTestHostBaseCryptLib.inf",
+            "**/Integration/**"  # Contains the binary DSC INFs only used for post-build binary integration
+        ]
+    },
+    "GuidCheck": {
+        "IgnoreGuidName": [
+            "MbedTlsLib", # SeaPkg from mu_feature_mm_supv copied an MbedTlsLib implementation.
+            "MbedTlsLibFull", # SeaPkg from mu_feature_mm_supv copied an MbedTlsLibFull implementation.
+            "BaseCryptLib", # SeaPkg from mu_feature_mm_supv copied a BaseCryptLib implementation.
+        ],
+        "IgnoreGuidValue": [],
+        "IgnoreFoldersAndFiles": [
+            "**/Integration/**",  # Contains the binary DSC INFs only used for post-build binary integration
+        ]
+    },
+    "LibraryClassCheck": {
+        "IgnoreHeaderFile": []
+    },
+    "MarkdownLintCheck": {
+        "AuditOnly": False,          # If True, log all errors and then mark as skipped
+        "IgnoreFiles": [
+            "Library/MbedTlsLib/mbedtls"
+        ]            # package root relative file, folder, or glob pattern to ignore
+    },
+
+    ## options defined ci/Plugin/SpellCheck
+    "SpellCheck": {
+        "skip": True,
+        "IgnoreFiles": [],           # use gitignore syntax to ignore errors in matching files
+        "ExtendWords": [],           # words to extend to the dictionary for this package
+        "IgnoreStandardPaths": [],   # Standard Plugin defined paths that should be ignore
+        "AdditionalIncludePaths": [] # Additional paths to spell check (wildcards supported)
+    },
+
+    # options defined in .pytool/Plugin/UncrustifyCheck
+    "UncrustifyCheck": {
+        "IgnoreFiles": []
+    }
+}

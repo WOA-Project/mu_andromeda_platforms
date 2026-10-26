@@ -1,0 +1,26 @@
+## @file
+#  Binary integration descriptor for the Mbed TLS-backed EDK II Crypto PPI.
+#
+#  Copyright (c) Microsoft Corporation.
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
+##
+
+[Defines]
+  INF_VERSION                    = 0x0001001B
+  BASE_NAME                      = MbedTlsCryptoPei
+  FILE_GUID                      = 04E0269F-F2E2-4A9E-9F8C-80D83B6F549B
+  MODULE_TYPE                    = PEIM
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = MbedTlsCryptoPeiEntry
+
+[Packages]
+  MdePkg/MdePkg.dec
+  CryptoPkg/CryptoPkg.dec
+
+[Binaries]
+  PE32|MbedTlsCryptoPei.efi
+  PEI_DEPEX|MbedTlsCryptoPei.depex
+
+[Ppis]
+  gEfiPeiMemoryDiscoveredPpiGuid  ## CONSUMES
+  gEdkiiCryptoPpiGuid             ## PRODUCES

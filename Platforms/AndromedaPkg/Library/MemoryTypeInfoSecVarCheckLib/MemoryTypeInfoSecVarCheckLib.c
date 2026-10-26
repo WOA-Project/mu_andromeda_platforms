@@ -2,7 +2,7 @@
   Implementation functions and structures for MemoryTypeInformation VarCheck library.
 
 Copyright (c) 2018, Intel Corporation. All rights reserved.<BR>
-Copyright (C) Microsoft Corporation
+Copyright (C) Microsoft Corporation.
 SPDX-License-Identifier: BSD-2-Clause-Patent
 
 **/
@@ -96,7 +96,7 @@ MemoryTypeInfoVarCheckHandler (
     DEBUG ((
       DEBUG_ERROR,
       "ERROR: %a() - DataSize = 0x%x Expected = 0x%x. Check actual memory types against expected memory types.\n",
-      __FUNCTION__,
+      __func__,
       DataSize,
       EFI_MEMORY_TYPE_INFORMATION_VARIABLE_SIZE
       ));
@@ -116,7 +116,7 @@ MemoryTypeInfoVarCheckHandler (
     DEBUG ((
       DEBUG_ERROR,
       "ERROR: %a() - Last(0x%x) entry's Type(0x%x) != EfiMaxMemoryType\n",
-      __FUNCTION__,
+      __func__,
       Count - 1,
       MemoryTypeInfo[Count - 1].Type
       ));
@@ -135,7 +135,7 @@ MemoryTypeInfoVarCheckHandler (
         DEBUG ((
           DEBUG_ERROR,
           "ERROR: %a() - 0x%x entry's Type(0x%x) is invalid\n",
-          __FUNCTION__,
+          __func__,
           Index,
           MemoryTypeInfo[Index].Type
           ));
@@ -150,7 +150,7 @@ MemoryTypeInfoVarCheckHandler (
           DEBUG ((
             DEBUG_ERROR,
             "ERROR: %a() - 0x%x entry and 0x%x entry have same Type(0x%x)\n",
-            __FUNCTION__,
+            __func__,
             Index,
             Index2,
             MemoryTypeInfo[Index].Type
@@ -163,7 +163,7 @@ MemoryTypeInfoVarCheckHandler (
         DEBUG ((
           DEBUG_ERROR,
           "ERROR: %a() - Math error at entry 0x%x\n",
-          __FUNCTION__,
+          __func__,
           Index
           ));
         return EFI_SECURITY_VIOLATION;
@@ -177,7 +177,7 @@ MemoryTypeInfoVarCheckHandler (
     DEBUG ((
       DEBUG_ERROR,
       "ERROR: %a() - Total pages requested 0x%x exceeds max allowed(0x%x)\n",
-      __FUNCTION__,
+      __func__,
       TotalPages,
       PcdGet32 (PcdMaxMemoryTypeInfoPages)
       ));
@@ -200,7 +200,7 @@ MemoryTypeInfoSecVarCheckLibConstructor (
   VOID
   )
 {
-  DEBUG ((DEBUG_INFO, "%a()\n", __FUNCTION__));
+  DEBUG ((DEBUG_INFO, "%a()\n", __func__));
   EFI_STATUS  Status;
 
   Status = VarCheckLibVariablePropertySet (

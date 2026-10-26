@@ -2,7 +2,7 @@
 #  NULL class library to register var check handler and variable property set for MemoryTypeInformation variable.
 #
 #  Copyright (c) 2018, Intel Corporation. All rights reserved.<BR>
-#  Copyright (C) Microsoft Corporation
+#  Copyright (C) Microsoft Corporation.
 #  SPDX-License-Identifier: BSD-2-Clause-Patent
 #
 ##

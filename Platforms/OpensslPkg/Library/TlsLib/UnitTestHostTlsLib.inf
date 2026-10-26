@@ -1,0 +1,41 @@
+## @file
+#  SSL/TLS Wrapper Library Instance for host-based unit tests.
+#
+#  This is a thin wrapper around the production TlsLib sources with
+#  MODULE_TYPE set to HOST_APPLICATION so TlsLib can be linked into
+#  host-based unit test executables.
+#
+#  Copyright (c) 2016 - 2018, Intel Corporation. All rights reserved.<BR>
+#  (C) Copyright 2016-2020 Hewlett Packard Enterprise Development LP<BR>
+#  Copyright (c) Microsoft Corporation.
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = UnitTestHostTlsLib
+  FILE_GUID                      = 1A2B3C4D-5E6F-7A8B-9C0D-E1F2A3B4C5D6
+  MODULE_TYPE                    = HOST_APPLICATION
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = TlsLib
+
+[Sources]
+  InternalTlsLib.h
+  TlsInit.c
+  TlsConfig.c
+  TlsProcess.c
+  SysCall/inet_pton.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  CryptoPkg/CryptoPkg.dec
+  OpensslPkg/OpensslPkg.dec
+
+[LibraryClasses]
+  BaseCryptLib
+  BaseMemoryLib
+  DebugLib
+  MemoryAllocationLib
+  OpensslLib
+  SafeIntLib

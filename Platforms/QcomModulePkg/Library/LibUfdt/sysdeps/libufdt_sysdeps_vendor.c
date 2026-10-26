@@ -22,6 +22,16 @@ int dto_print(const char *fmt, ...) {
 }
 #endif
 
+#define strncmp(string1, string2, count)  (int)(AsciiStrnCmp(string1,string2,(UINTN)(count)))
+int
+strcmp (
+  const char  *s1,
+  const char  *s2
+  )
+{
+  return (int)AsciiStrCmp (s1, s2);
+}
+
 int dto_print(const char *fmt, ...) {
   return EFI_DTBO_ERROR;
 }
@@ -234,6 +244,10 @@ char *dto_strdup(const char *s) {
 }
 
 char *dto_strchr(const char *s, int c) { return strchr(s, c); }
+
+#ifdef strtoul
+#undef strtoul
+#endif
 
 unsigned long
 strtoul (
