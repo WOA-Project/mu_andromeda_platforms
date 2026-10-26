@@ -18,6 +18,6 @@ xmlschema==4.3.2
 regex==2026.9.29
 pygount==3.2.0
 pywin32==312; sys_platform == 'win32'
-setuptools==84.2.0
+setuptools==84.2.1
 poetry==2.5.1
 fdt==0.3.3
