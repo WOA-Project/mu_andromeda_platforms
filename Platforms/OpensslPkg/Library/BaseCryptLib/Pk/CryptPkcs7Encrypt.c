@@ -61,7 +61,7 @@ Pkcs7Encrypt (
   UINTN             ReturnSize  = 0;
   BIO               *pBio       = NULL;
   PKCS7             *pPkcs7     = NULL;
-  int               I2dResult;
+  INT32             I2dResult;
 
   if ((X509Stack == NULL) ||
       (InData == NULL) ||

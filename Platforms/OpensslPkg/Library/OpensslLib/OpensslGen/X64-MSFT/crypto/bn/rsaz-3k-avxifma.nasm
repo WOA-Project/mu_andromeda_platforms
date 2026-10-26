@@ -1318,7 +1318,7 @@ $L$loop30:
         vmovdqu YMMWORD[192+rdi],ymm9
         vmovdqu YMMWORD[224+rdi],ymm10
 
-        xor     r15d,r15d
+        xor     r9d,r9d
 
         lea     r11,[16+r11]
         mov     rax,0xfffffffffffff
@@ -1692,6 +1692,19 @@ global  ossl_extract_multiplier_2x30_win5_avx
 ossl_extract_multiplier_2x30_win5_avx:
 
 DB      243,15,30,250
+        push    rsi
+        push    rdi
+        lea     rsp,[((-168))+rsp]
+        vmovapd XMMWORD[rsp],xmm6
+        vmovapd XMMWORD[16+rsp],xmm7
+        vmovapd XMMWORD[32+rsp],xmm8
+        vmovapd XMMWORD[48+rsp],xmm9
+        vmovapd XMMWORD[64+rsp],xmm10
+        vmovapd XMMWORD[80+rsp],xmm11
+        vmovapd XMMWORD[96+rsp],xmm12
+        vmovapd XMMWORD[112+rsp],xmm13
+        vmovapd XMMWORD[128+rsp],xmm14
+        vmovapd XMMWORD[144+rsp],xmm15
         vmovapd ymm12,YMMWORD[$L$ones]
         vmovq   xmm8,r8
         vpbroadcastq    ymm10,xmm8
@@ -1802,6 +1815,20 @@ $L$loop_8_15:
         vmovdqu YMMWORD[416+rcx],ymm5
         vmovdqu YMMWORD[448+rcx],ymm6
         vmovdqu YMMWORD[480+rcx],ymm7
+        vzeroupper
+        vmovapd xmm6,XMMWORD[rsp]
+        vmovapd xmm7,XMMWORD[16+rsp]
+        vmovapd xmm8,XMMWORD[32+rsp]
+        vmovapd xmm9,XMMWORD[48+rsp]
+        vmovapd xmm10,XMMWORD[64+rsp]
+        vmovapd xmm11,XMMWORD[80+rsp]
+        vmovapd xmm12,XMMWORD[96+rsp]
+        vmovapd xmm13,XMMWORD[112+rsp]
+        vmovapd xmm14,XMMWORD[128+rsp]
+        vmovapd xmm15,XMMWORD[144+rsp]
+        lea     rsp,[168+rsp]
+        pop     rdi
+        pop     rsi
 
         DB      0F3h,0C3h               ;repret
 

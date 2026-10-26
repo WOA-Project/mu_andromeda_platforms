@@ -48,6 +48,19 @@ DB      243,15,30,250
 
         push    r15
 
+        push    rsi
+        push    rdi
+        lea     rsp,[((-168))+rsp]
+        vmovapd XMMWORD[rsp],xmm6
+        vmovapd XMMWORD[16+rsp],xmm7
+        vmovapd XMMWORD[32+rsp],xmm8
+        vmovapd XMMWORD[48+rsp],xmm9
+        vmovapd XMMWORD[64+rsp],xmm10
+        vmovapd XMMWORD[80+rsp],xmm11
+        vmovapd XMMWORD[96+rsp],xmm12
+        vmovapd XMMWORD[112+rsp],xmm13
+        vmovapd XMMWORD[128+rsp],xmm14
+        vmovapd XMMWORD[144+rsp],xmm15
 $L$ossl_rsaz_amm52x20_x1_avxifma256_body:
 
 
@@ -477,6 +490,19 @@ $L$loop5:
         vmovdqu YMMWORD[128+rdi],ymm8
 
         vzeroupper
+        vmovapd xmm6,XMMWORD[rsp]
+        vmovapd xmm7,XMMWORD[16+rsp]
+        vmovapd xmm8,XMMWORD[32+rsp]
+        vmovapd xmm9,XMMWORD[48+rsp]
+        vmovapd xmm10,XMMWORD[64+rsp]
+        vmovapd xmm11,XMMWORD[80+rsp]
+        vmovapd xmm12,XMMWORD[96+rsp]
+        vmovapd xmm13,XMMWORD[112+rsp]
+        vmovapd xmm14,XMMWORD[128+rsp]
+        vmovapd xmm15,XMMWORD[144+rsp]
+        lea     rsp,[168+rsp]
+        pop     rdi
+        pop     rsi
         mov     r15,QWORD[rsp]
 
         mov     r14,QWORD[8+rsp]
@@ -622,6 +648,19 @@ DB      243,15,30,250
 
         push    r15
 
+        push    rsi
+        push    rdi
+        lea     rsp,[((-168))+rsp]
+        vmovapd XMMWORD[rsp],xmm6
+        vmovapd XMMWORD[16+rsp],xmm7
+        vmovapd XMMWORD[32+rsp],xmm8
+        vmovapd XMMWORD[48+rsp],xmm9
+        vmovapd XMMWORD[64+rsp],xmm10
+        vmovapd XMMWORD[80+rsp],xmm11
+        vmovapd XMMWORD[96+rsp],xmm12
+        vmovapd XMMWORD[112+rsp],xmm13
+        vmovapd XMMWORD[128+rsp],xmm14
+        vmovapd XMMWORD[144+rsp],xmm15
 $L$ossl_rsaz_amm52x20_x2_avxifma256_body:
 
 
@@ -1070,6 +1109,19 @@ $L$loop20:
         vmovdqu YMMWORD[288+rdi],ymm12
 
         vzeroupper
+        vmovapd xmm6,XMMWORD[rsp]
+        vmovapd xmm7,XMMWORD[16+rsp]
+        vmovapd xmm8,XMMWORD[32+rsp]
+        vmovapd xmm9,XMMWORD[48+rsp]
+        vmovapd xmm10,XMMWORD[64+rsp]
+        vmovapd xmm11,XMMWORD[80+rsp]
+        vmovapd xmm12,XMMWORD[96+rsp]
+        vmovapd xmm13,XMMWORD[112+rsp]
+        vmovapd xmm14,XMMWORD[128+rsp]
+        vmovapd xmm15,XMMWORD[144+rsp]
+        lea     rsp,[168+rsp]
+        pop     rdi
+        pop     rsi
         mov     r15,QWORD[rsp]
 
         mov     r14,QWORD[8+rsp]
@@ -1099,6 +1151,19 @@ global  ossl_extract_multiplier_2x20_win5_avx
 ossl_extract_multiplier_2x20_win5_avx:
 
 DB      243,15,30,250
+        push    rsi
+        push    rdi
+        lea     rsp,[((-168))+rsp]
+        vmovapd XMMWORD[rsp],xmm6
+        vmovapd XMMWORD[16+rsp],xmm7
+        vmovapd XMMWORD[32+rsp],xmm8
+        vmovapd XMMWORD[48+rsp],xmm9
+        vmovapd XMMWORD[64+rsp],xmm10
+        vmovapd XMMWORD[80+rsp],xmm11
+        vmovapd XMMWORD[96+rsp],xmm12
+        vmovapd XMMWORD[112+rsp],xmm13
+        vmovapd XMMWORD[128+rsp],xmm14
+        vmovapd XMMWORD[144+rsp],xmm15
         vmovapd ymm14,YMMWORD[$L$ones]
         vmovq   xmm10,r8
         vpbroadcastq    ymm12,xmm10
@@ -1157,6 +1222,20 @@ $L$loop:
         vmovdqu YMMWORD[224+rcx],ymm7
         vmovdqu YMMWORD[256+rcx],ymm8
         vmovdqu YMMWORD[288+rcx],ymm9
+        vzeroupper
+        vmovapd xmm6,XMMWORD[rsp]
+        vmovapd xmm7,XMMWORD[16+rsp]
+        vmovapd xmm8,XMMWORD[32+rsp]
+        vmovapd xmm9,XMMWORD[48+rsp]
+        vmovapd xmm10,XMMWORD[64+rsp]
+        vmovapd xmm11,XMMWORD[80+rsp]
+        vmovapd xmm12,XMMWORD[96+rsp]
+        vmovapd xmm13,XMMWORD[112+rsp]
+        vmovapd xmm14,XMMWORD[128+rsp]
+        vmovapd xmm15,XMMWORD[144+rsp]
+        lea     rsp,[168+rsp]
+        pop     rdi
+        pop     rsi
         DB      0F3h,0C3h               ;repret
 
 

@@ -185,10 +185,15 @@ TlsNew (
     return NULL;
   }
 
+  // MU_CHANGE [BEGIN]
   //
-  // This retains compatibility with previous version of OpenSSL.
+  // Require at least 112 bits of security. This allows, for example, RSA/DH/DSA
+  // keys of 2048 bits or greater and ECC keys of 224 bits or greater. Weaker
+  // keys and algorithms, including RC4 and MD5-based cipher suites, are rejected;
+  // SSLv3 and compression are also disabled.
   //
-  SSL_set_security_level (TlsConn->Ssl, 3);
+  SSL_set_security_level (TlsConn->Ssl, 2);
+  // MU_CHANGE [END]
 
   //
   // Initialize the created SSL Object
@@ -257,7 +262,7 @@ TlsNew (
   //
   X509_STORE_set_flags (
     X509Store,
-    X509_V_FLAG_PARTIAL_CHAIN
+    X509_V_FLAG_PARTIAL_CHAIN | X509_V_FLAG_NO_CHECK_TIME // MU_CHANGE - ALLOW X509_V_FLAG_NO_CHECK_TIME
     );
   return (VOID *)TlsConn;
 }

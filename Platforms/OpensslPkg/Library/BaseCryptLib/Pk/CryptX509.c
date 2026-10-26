@@ -12,6 +12,12 @@ SPDX-License-Identifier: BSD-2-Clause-Patent
 #include <crypto/asn1.h>
 #include <openssl/asn1.h>
 #include <openssl/rsa.h>
+// MU_CHANGE [BEGIN]
+#include "Pk/CryptRsaPkeyCtx.h"
+#include "Pk/CryptEcPkeyCtx.h"
+#include <openssl/core_names.h>
+#include <openssl/objects.h>
+// MU_CHANGE [END]
 
 /* OID*/
 #define OID_EXT_KEY_USAGE      { 0x55, 0x1D, 0x25 }
@@ -99,18 +105,25 @@ X509ConstructCertificateStackV (
   UINT8  *Cert;
   UINTN  CertSize;
   X509   *X509Cert;
+  UINTN  CertIndex; // MU_CHANGE
 
   STACK_OF (X509)  *CertStack;
   BOOLEAN  Status;
+  BOOLEAN  NewlyAllocated; // MU_CHANGE
 
   //
   // Check input parameters.
   //
   if (X509Stack == NULL) {
+    DEBUG ((DEBUG_ERROR, "[%a] X509ConstructCertificateStackV X509Stack is NULL\n", gEfiCallerBaseName)); // MU_CHANGE
     return FALSE;
   }
 
   Status = FALSE;
+  // MU_CHANGE [BEGIN]
+  CertIndex      = 0;
+  NewlyAllocated = FALSE;
+  // MU_CHANGE [END]
 
   //
   // Initialize X509 stack object.
@@ -119,9 +132,18 @@ X509ConstructCertificateStackV (
   if (CertStack == NULL) {
     CertStack = sk_X509_new_null ();
     if (CertStack == NULL) {
+      DEBUG ((DEBUG_ERROR, "[%a] X509ConstructCertificateStackV failed to allocate X509 stack\n", gEfiCallerBaseName)); // MU_CHANGE
       return Status;
     }
+
+    NewlyAllocated = TRUE; // MU_CHANGE
   }
+
+  // MU_CHANGE [BEGIN] - An empty certificate list (only the NULL terminator) is
+  // a valid request that yields an empty stack; default to success now that the
+  // stack is allocated. Per-certificate failures below set Status = FALSE.
+  Status = TRUE;
+  // MU_CHANGE [END]
 
   while (TRUE) {
     //
@@ -129,11 +151,13 @@ X509ConstructCertificateStackV (
     //
     Cert = VA_ARG (Args, UINT8 *);
     if (Cert == NULL) {
+      DEBUG ((DEBUG_ERROR, "[%a] X509ConstructCertificateStackV reached end of list after %Lu certs\n", gEfiCallerBaseName, (UINT64)CertIndex)); // MU_CHANGE
       break;
     }
 
     CertSize = VA_ARG (Args, UINTN);
     if (CertSize == 0) {
+      Status = FALSE; // MU_CHANGE - a supplied certificate with size 0 is a failure
       break;
     }
 
@@ -158,10 +182,19 @@ X509ConstructCertificateStackV (
     // Insert the new X509 object into X509 stack object.
     //
     sk_X509_push (CertStack, X509Cert);
+    CertIndex++; // MU_CHANGE
   }
 
   if (!Status) {
-    sk_X509_pop_free (CertStack, X509_free);
+    // MU_CHANGE [BEGIN]
+    if (NewlyAllocated) {
+      DEBUG ((DEBUG_ERROR, "[%a] X509ConstructCertificateStackV failed, freeing newly allocated stack\n", gEfiCallerBaseName));
+      sk_X509_pop_free (CertStack, X509_free);
+    } else {
+      DEBUG ((DEBUG_ERROR, "[%a] X509ConstructCertificateStackV failed, preserving pre-existing stack\n", gEfiCallerBaseName));
+    }
+
+    // MU_CHANGE [END]
   } else {
     *X509Stack = (UINT8 *)CertStack;
   }
@@ -591,14 +624,26 @@ RsaGetPublicKeyFromX509 (
   OUT  VOID         **RsaContext
   )
 {
-  BOOLEAN   Status;
-  EVP_PKEY  *Pkey;
-  X509      *X509Cert;
+  // MU_CHANGE [BEGIN]
+  BOOLEAN       Status;
+  EVP_PKEY      *Pkey;
+  X509          *X509Cert;
+  RSA_PKEY_CTX  *RsaPkeyCtx;
+
+  // MU_CHANGE [END]
 
   //
   // Check input parameters.
   //
   if ((Cert == NULL) || (RsaContext == NULL)) {
+    return FALSE;
+  }
+
+  //
+  // If CertSize is 0, return FALSE to be safe.
+  //
+  if (CertSize == 0) {
+    *RsaContext = NULL;
     return FALSE;
   }
 
@@ -627,8 +672,22 @@ RsaGetPublicKeyFromX509 (
   //
   // Duplicate RSA Context from the retrieved EVP_PKEY.
   //
-  if ((*RsaContext = RSAPublicKey_dup (EVP_PKEY_get0_RSA (Pkey))) != NULL) {
-    Status = TRUE;
+  // MU_CHANGE [BEGIN]
+  RsaPkeyCtx = AllocateZeroPool (sizeof (RSA_PKEY_CTX));
+  if (RsaPkeyCtx != NULL) {
+    RsaPkeyCtx->Pkey = EVP_PKEY_dup (Pkey);
+    if ((RsaPkeyCtx->Pkey != NULL) && RsaExtractBigNums (RsaPkeyCtx, RsaPkeyCtx->Pkey)) {
+      *RsaContext = (VOID *)RsaPkeyCtx;
+      Status      = TRUE;
+    } else {
+      if (RsaPkeyCtx->Pkey != NULL) {
+        EVP_PKEY_free (RsaPkeyCtx->Pkey);
+      }
+
+      FreePool (RsaPkeyCtx);
+    }
+
+    // MU_CHANGE [END]
   }
 
 _Exit:
@@ -891,14 +950,29 @@ EcGetPublicKeyFromX509 (
   OUT  VOID         **EcContext
   )
 {
-  BOOLEAN   Status;
-  EVP_PKEY  *Pkey;
-  X509      *X509Cert;
+  // MU_CHANGE [BEGIN]
+  BOOLEAN      Status;
+  EVP_PKEY     *Pkey;
+  X509         *X509Cert;
+  EC_PKEY_CTX  *EcPkeyCtx;
+  CHAR8        CurveNameBuf[64];
+  UINTN        CurveNameLen;
+  INT32        OpenSslNid;
+
+  // MU_CHANGE [END]
 
   //
   // Check input parameters.
   //
   if ((Cert == NULL) || (EcContext == NULL)) {
+    return FALSE;
+  }
+
+  //
+  // If CertSize is 0, return FALSE to be safe.
+  //
+  if (CertSize == 0) {
+    *EcContext = NULL;
     return FALSE;
   }
 
@@ -927,8 +1001,42 @@ EcGetPublicKeyFromX509 (
   //
   // Duplicate EC Context from the retrieved EVP_PKEY.
   //
-  if ((*EcContext = EC_KEY_dup (EVP_PKEY_get0_EC_KEY (Pkey))) != NULL) {
-    Status = TRUE;
+  // MU_CHANGE [BEGIN]
+  EcPkeyCtx    = AllocateZeroPool (sizeof (EC_PKEY_CTX));
+  CurveNameLen = sizeof (CurveNameBuf);
+  if ((EcPkeyCtx != NULL) &&
+      (EVP_PKEY_get_utf8_string_param (
+         Pkey,
+         OSSL_PKEY_PARAM_GROUP_NAME,
+         CurveNameBuf,
+         CurveNameLen,
+         &CurveNameLen
+         ) == 1))
+  {
+    OpenSslNid = OBJ_sn2nid (CurveNameBuf);
+    if (OpenSslNid == NID_undef) {
+      OpenSslNid = OBJ_ln2nid (CurveNameBuf);
+    }
+
+    if (OpenSslNid == NID_undef) {
+      //
+      // Unknown/unsupported curve name: treat as error.
+      //
+      FreePool (EcPkeyCtx);
+      EcPkeyCtx = NULL;
+    } else {
+      EcPkeyCtx->Nid  = OpenSslNid;
+      EcPkeyCtx->Pkey = EVP_PKEY_dup (Pkey);
+      if (EcPkeyCtx->Pkey != NULL) {
+        *EcContext = (VOID *)EcPkeyCtx;
+        Status     = TRUE;
+      } else {
+        FreePool (EcPkeyCtx);
+      }
+    }
+  } else if (EcPkeyCtx != NULL) {
+    FreePool (EcPkeyCtx);
+    // MU_CHANGE [END]
   }
 
 _Exit:
@@ -1196,7 +1304,7 @@ X509GetSignatureAlgorithm (
 {
   BOOLEAN      Status;
   X509         *X509Cert;
-  int          Nid;
+  INT32        Nid;
   ASN1_OBJECT  *Asn1Obj;
 
   //
