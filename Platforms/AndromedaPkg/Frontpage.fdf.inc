@@ -62,3 +62,9 @@
   }
 
   !include ArmPlatformPkg/SecureBootDefaultKeys.fdf.inc
+
+  #
+  # OneCrypto DXE Driver
+  #
+  INF $(ONE_CRYPTO_PATH)/$(TARGET)/AARCH64/OneCryptoLoaders/OneCryptoLoaderDxe.inf
+  INF $(ONE_CRYPTO_PATH)/$(TARGET)/AARCH64/OneCryptoBin/OneCryptoBinDxe.inf
