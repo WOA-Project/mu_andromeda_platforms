@@ -184,7 +184,7 @@
   MemoryInitPeiLib|AndromedaPkg/MemoryInitPei/MemoryInitPeiLib.inf
 
   # ARM PL031 RTC Driver
-  RealTimeClockLib|EmbeddedPkg/Library/VirtualRealTimeClockLib/VirtualRealTimeClockLib.inf
+  RealTimeClockLib|AndromedaPkg/Library/VirtualRealTimeClockLib/VirtualRealTimeClockLib.inf
   TimeBaseLib|EmbeddedPkg/Library/TimeBaseLib/TimeBaseLib.inf
 
 !if $(USE_SCREEN_FOR_SERIAL_OUTPUT) == 1
@@ -371,6 +371,12 @@
   
   ConsoleMsgLib|AndromedaPkg/Library/ConsoleMsgLib/ConsoleMsgLib.inf
 
+  BaseCryptLib|MbedTlsPkg/Library/BaseCryptLib/BaseCryptLib.inf
+  TlsLib|OpensslPkg/Library/TlsLib/TlsLib.inf
+  IntrinsicLib|CryptoPkg/Library/IntrinsicLib/IntrinsicLib.inf
+  OpensslLib|OpensslPkg/Library/OpensslLib/OpensslLib.inf # Contains openSSL library used by MbedTlsLib
+  MbedTlsLib|MbedTlsPkg/Library/MbedTlsLib/MbedTlsLib.inf
+
 [LibraryClasses.common.PEIM, LibraryClasses.common.PEI_CORE]
   ArmMmuLib|UefiCpuPkg/Library/ArmMmuLib/ArmMmuPeiLib.inf
 
@@ -450,10 +456,7 @@
 
   EmbeddedPkg/EmbeddedMonotonicCounter/EmbeddedMonotonicCounter.inf
   EmbeddedPkg/MetronomeDxe/MetronomeDxe.inf
-  EmbeddedPkg/RealTimeClockRuntimeDxe/RealTimeClockRuntimeDxe.inf {
-    <LibraryClasses>
-	  RealTimeClockLib|AndromedaPkg/Library/VirtualRealTimeClockLib/VirtualRealTimeClockLib.inf
-  }
+  EmbeddedPkg/RealTimeClockRuntimeDxe/RealTimeClockRuntimeDxe.inf
 
   EmbeddedPkg/SimpleTextInOutSerial/SimpleTextInOutSerial.inf
 
@@ -534,12 +537,6 @@
   MdeModulePkg/Universal/SecurityStubDxe/SecurityStubDxe.inf {
     <LibraryClasses>
       NULL|SecurityPkg/Library/DxeImageVerificationLib/DxeImageVerificationLib.inf
-      RealTimeClockLib|AndromedaPkg/Library/VirtualRealTimeClockLib/VirtualRealTimeClockLib.inf
-      BaseCryptLib|MbedTlsPkg/Library/BaseCryptLib/BaseCryptLib.inf
-      TlsLib|OpensslPkg/Library/TlsLib/TlsLib.inf
-      IntrinsicLib|CryptoPkg/Library/IntrinsicLib/IntrinsicLib.inf
-      OpensslLib|OpensslPkg/Library/OpensslLib/OpensslLib.inf # Contains openSSL library used by MbedTlsLib
-      MbedTlsLib|MbedTlsPkg/Library/MbedTlsLib/MbedTlsLib.inf
   }
 
   MdeModulePkg/Universal/SerialDxe/SerialDxe.inf
@@ -577,15 +574,7 @@
   NetworkPkg/Mtftp6Dxe/Mtftp6Dxe.inf
   NetworkPkg/SnpDxe/SnpDxe.inf
   NetworkPkg/TcpDxe/TcpDxe.inf
-  NetworkPkg/TlsDxe/TlsDxe.inf {
-    <LibraryClasses>
-      RealTimeClockLib|AndromedaPkg/Library/VirtualRealTimeClockLib/VirtualRealTimeClockLib.inf
-      BaseCryptLib|MbedTlsPkg/Library/BaseCryptLib/BaseCryptLib.inf
-      TlsLib|OpensslPkg/Library/TlsLib/TlsLib.inf
-      IntrinsicLib|CryptoPkg/Library/IntrinsicLib/IntrinsicLib.inf
-      OpensslLib|OpensslPkg/Library/OpensslLib/OpensslLib.inf # Contains openSSL library used by MbedTlsLib
-      MbedTlsLib|MbedTlsPkg/Library/MbedTlsLib/MbedTlsLib.inf
-  }
+  NetworkPkg/TlsDxe/TlsDxe.inf
   NetworkPkg/Udp4Dxe/Udp4Dxe.inf
   NetworkPkg/Udp6Dxe/Udp6Dxe.inf
   NetworkPkg/UefiPxeBcDxe/UefiPxeBcDxe.inf
@@ -602,33 +591,10 @@
       NULL|SecurityPkg/Library/HashInstanceLibSm3/HashInstanceLibSm3.inf
       OemTpm2InitLib|SecurityPkg/Library/OemTpm2InitLibNull/OemTpm2InitLib.inf
       NULL|SecurityPkg/Library/OemTpm2InitLibNull/OemTpm2InitLibVendorNull.inf
-      RealTimeClockLib|AndromedaPkg/Library/VirtualRealTimeClockLib/VirtualRealTimeClockLib.inf
-      BaseCryptLib|MbedTlsPkg/Library/BaseCryptLib/BaseCryptLib.inf
-      TlsLib|OpensslPkg/Library/TlsLib/TlsLib.inf
-      IntrinsicLib|CryptoPkg/Library/IntrinsicLib/IntrinsicLib.inf
-      OpensslLib|OpensslPkg/Library/OpensslLib/OpensslLib.inf # Contains openSSL library used by MbedTlsLib
-      MbedTlsLib|MbedTlsPkg/Library/MbedTlsLib/MbedTlsLib.inf
   }
 
-  SecurityPkg/VariableAuthenticated/SecureBootConfigDxe/SecureBootConfigDxe.inf {
-    <LibraryClasses>
-      RealTimeClockLib|AndromedaPkg/Library/VirtualRealTimeClockLib/VirtualRealTimeClockLib.inf
-      BaseCryptLib|MbedTlsPkg/Library/BaseCryptLib/BaseCryptLib.inf
-      TlsLib|OpensslPkg/Library/TlsLib/TlsLib.inf
-      IntrinsicLib|CryptoPkg/Library/IntrinsicLib/IntrinsicLib.inf
-      OpensslLib|OpensslPkg/Library/OpensslLib/OpensslLib.inf # Contains openSSL library used by MbedTlsLib
-      MbedTlsLib|MbedTlsPkg/Library/MbedTlsLib/MbedTlsLib.inf
-  }
-
-  AndromedaPkg/Driver/SecureBootProvisioningDxe/SecureBootProvisioningDxe.inf {
-    <LibraryClasses>
-      RealTimeClockLib|AndromedaPkg/Library/VirtualRealTimeClockLib/VirtualRealTimeClockLib.inf
-      BaseCryptLib|MbedTlsPkg/Library/BaseCryptLib/BaseCryptLib.inf
-      TlsLib|OpensslPkg/Library/TlsLib/TlsLib.inf
-      IntrinsicLib|CryptoPkg/Library/IntrinsicLib/IntrinsicLib.inf
-      OpensslLib|OpensslPkg/Library/OpensslLib/OpensslLib.inf # Contains openSSL library used by MbedTlsLib
-      MbedTlsLib|MbedTlsPkg/Library/MbedTlsLib/MbedTlsLib.inf
-  }
+  SecurityPkg/VariableAuthenticated/SecureBootConfigDxe/SecureBootConfigDxe.inf
+  AndromedaPkg/Driver/SecureBootProvisioningDxe/SecureBootProvisioningDxe.inf
 
   # ACPI and SMBIOS
   # We use pre-built ACPI tables, so only core components are loaded
