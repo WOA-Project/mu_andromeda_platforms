@@ -81,7 +81,7 @@ EFI_STATUS ShutdownUefiBootServices (VOID)
 
 EFI_STATUS PreparePlatformHardware (VOID)
 {
-  ArmDisableBranchPrediction ();
+  // ArmDisableBranchPrediction ();
 
   /* ArmDisableAllExceptions */
   ArmDisableInterrupts ();

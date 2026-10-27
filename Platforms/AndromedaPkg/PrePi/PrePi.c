@@ -76,7 +76,7 @@ PrePiMain (
   MM_MEMORY_PROTECTION_SETTINGS  MmSettings;
 
   UINTN MemoryBase     = 0;
-  UINTN MemorySize     = 0;
+  //UINTN MemorySize     = 0;
   UINTN UefiMemoryBase = 0;
   UINTN UefiMemorySize = 0;
   UINTN StacksBase     = 0;
@@ -96,7 +96,7 @@ PrePiMain (
 
   // Declare UEFI region
   MemoryBase     = FixedPcdGet32(PcdSystemMemoryBase);
-  MemorySize     = FixedPcdGet32(PcdSystemMemorySize);
+  //MemorySize     = FixedPcdGet32(PcdSystemMemorySize);
   UefiMemoryBase = DxeHeap.Address;
   UefiMemorySize = DxeHeap.Length;
   StacksBase     = UefiStack.Address;

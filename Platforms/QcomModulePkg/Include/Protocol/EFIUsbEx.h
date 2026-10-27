@@ -54,7 +54,7 @@ typedef struct {
   UINT8 DescriptorType;
   UINT16 TotalLength;
   UINT8 NumDeviceCaps;
-} USB_BOS_DESCRIPTOR;
+} QC_USB_BOS_DESCRIPTOR;
 
 ///
 /// Standard Device Capability Descriptor
@@ -165,7 +165,7 @@ typedef enum {
   USB_DESC_TYPE_OTG = 0x09,
   USB_DESC_TYPE_DEBUG = 0x0A,
   USB_DESC_TYPE_INTERFACE_ASSOCIATION_QC = 0x0B,
-  USB_DESC_TYPE_BOS = 0x0F,
+  QC_USB_DESC_TYPE_BOS = 0x0F,
   USB_DESC_TYPE_DEVICE_CAPABILITY = 0x10,
   USB_DESC_TYPE_SS_ENDPOINT_COMPANION = 0x30,
 
@@ -190,7 +190,7 @@ typedef enum {
 } USB_TYPES_DEFINITION_EXT;
 
 /** USB Binary Object Store descriptor. **/
-typedef USB_BOS_DESCRIPTOR EFI_USB_BOS_DESCRIPTOR;
+typedef QC_USB_BOS_DESCRIPTOR QC_EFI_USB_BOS_DESCRIPTOR;
 /** USB Generic Device Capability descriptor. **/
 typedef USB_DEVICE_CAPABILITY_DESCRIPTOR EFI_USB_DEVICE_CAPABILITY_DESCRIPTOR;
 /** USB 2.0 Extension Device Capability descriptor. **/

@@ -69,15 +69,15 @@ static USB_DEVICE_DESCRIPTOR_SET DescSet;
 STATIC
 CONST
 struct {
-  EFI_USB_BOS_DESCRIPTOR BosDescriptor;
+  QC_EFI_USB_BOS_DESCRIPTOR BosDescriptor;
   EFI_USB_USB_20_EXTENSION_DESCRIPTOR Usb2ExtDescriptor;
   EFI_USB_SUPERSPEED_USB_DESCRIPTOR SsUsbDescriptor;
   EFI_USB_SUPERSPEEDPLUS_USB_DESCRIPTOR SspUsbDescriptor;
 } BinaryObjectStore = {
     // BOS Descriptor
     {
-        sizeof (EFI_USB_BOS_DESCRIPTOR), // Descriptor Size
-        USB_DESC_TYPE_BOS,               // Descriptor Type
+        sizeof (QC_EFI_USB_BOS_DESCRIPTOR), // Descriptor Size
+        QC_USB_DESC_TYPE_BOS,               // Descriptor Type
         sizeof (BinaryObjectStore),      // Total Length
         3                                // Number of device capabilities
     },
