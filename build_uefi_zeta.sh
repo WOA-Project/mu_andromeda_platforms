@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Andromeda888 UEFI as Boot
-cat ./BootShim/BootShim.Zeta.bin ./ImageResources/Zeta/SM8350_EFI.fd > ./ImageResources/Zeta/uefi.payload.bin
+cat ./Loaders/Direct/BootShim.Zeta.bin ./ImageResources/Zeta/UEFIAppendPayloads/UefiPlatZeta.bin > ./ImageResources/Zeta/uefi.payload.bin
 python3 ./ImageResources/mkbootimg.py \
   --kernel ./ImageResources/Zeta/uefi.payload.bin \
   --ramdisk ./ImageResources/Zeta/ramdisk \
@@ -14,7 +14,7 @@ python3 ./ImageResources/mkbootimg.py \
   --os_patch_level 2023-04-01
 
 # Andromeda888 UEFI as Boot (SecureBoot Disabled)
-cat ./BootShim/BootShim.Zeta.bin ./ImageResources/Zeta/SM8350_EFI_NOSB.fd > ./ImageResources/Zeta/uefi_nosb.payload.bin
+cat ./Loaders/Direct/BootShim.Zeta.bin ./ImageResources/Zeta/UEFIAppendPayloads/UefiPlatZetaNoSb.bin > ./ImageResources/Zeta/uefi_nosb.payload.bin
 python3 ./ImageResources/mkbootimg.py \
   --kernel ./ImageResources/Zeta/uefi_nosb.payload.bin \
   --ramdisk ./ImageResources/Zeta/ramdisk \

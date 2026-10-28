@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Andromeda888 UEFI as Boot (Dual Boot)
-cat ./ImageResources/Zeta/patchedkernel ./ImageResources/Zeta/SM8350_EFI.fd > ./ImageResources/Zeta/boot.payload.bin
+cat ./Loaders/DualBoot/SurfaceDuo2/patchedkernel ./ImageResources/Zeta/UEFIAppendPayloads/UefiPlatZeta.bin > ./ImageResources/Zeta/boot.payload.bin
 python3 ./ImageResources/mkbootimg.py \
   --kernel ./ImageResources/Zeta/boot.payload.bin \
   --ramdisk ./ImageResources/Zeta/ramdisk \
@@ -14,7 +14,7 @@ python3 ./ImageResources/mkbootimg.py \
   --os_patch_level 2024-10-01
 
 # Andromeda888 UEFI as Boot (Dual Boot) (SecureBoot Disabled)
-cat ./ImageResources/Zeta/patchedkernel ./ImageResources/Zeta/SM8350_EFI_NOSB.fd > ./ImageResources/Zeta/boot_nosb.payload.bin
+cat ./Loaders/DualBoot/SurfaceDuo2/patchedkernel ./ImageResources/Zeta/UEFIAppendPayloads/UefiPlatZetaNoSb.bin > ./ImageResources/Zeta/boot_nosb.payload.bin
 python3 ./ImageResources/mkbootimg.py \
   --kernel ./ImageResources/Zeta/boot_nosb.payload.bin \
   --ramdisk ./ImageResources/Zeta/ramdisk \

@@ -24,18 +24,19 @@
   MdeModulePkg/MdeModulePkg.dec
   EmbeddedPkg/EmbeddedPkg.dec
   AndromedaPkg/AndromedaPkg.dec
+  QcomCommonPkg/QcomCommonPkg.dec
   QcomPkg/QcomPkg.dec
 
 [LibraryClasses]
   ArmLib
   ArmMmuLib
   BaseLib
-  ConfigurationMapHelperLib
+  QcomUefiCfgConfigParametersHelperLib
   DebugLib
   HobLib
   IoLib
   MemoryAllocationLib
-  MemoryMapHelperLib
+  QcomUefiCfgMemoryMapHelperLib
   SerialPortLib
 
 [FixedPcd]

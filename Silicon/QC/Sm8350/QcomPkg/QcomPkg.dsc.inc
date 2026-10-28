@@ -30,10 +30,10 @@
   gArmPlatformTokenSpaceGuid.PcdClusterCount|3
 
   # UART
-  gAndromedaPkgTokenSpaceGuid.PcdUartSerialBase|0x0098C000
+  gQcomCommonPkgTokenSpaceGuid.PcdUartSerialBase|0x0098C000
 
   # Keep MDP Stream IDs attached by default
-  gAndromedaPkgTokenSpaceGuid.PcdSMMUSIDsToKeep|{0x20, 0x08,    0x21, 0x08,    0x21, 0x0C}
+  gQcomCommonPkgTokenSpaceGuid.PcdSMMUSIDsToKeep|{0x20, 0x08,    0x21, 0x08,    0x21, 0x0C}
 
 [PcdsDynamicDefault.common.DEFAULT]
   # Zeta Product ID: 68
@@ -43,8 +43,7 @@
   gQcomPkgTokenSpaceGuid.PcdTkRequiredEKU|"1.3.6.1.4.1.311.76.9.17"
 
 [LibraryClasses.common]
-  PlatformMemoryMapLib|QcomPkg/Library/PlatformMemoryMapLib/PlatformMemoryMapLib.inf
-  PlatformConfigurationMapLib|QcomPkg/Library/PlatformConfigurationMapLib/PlatformConfigurationMapLib.inf
+  PlatformDdrBankMapLib|QcomPkg/Library/PlatformDdrBankMapLib/PlatformDdrBankMapLib.inf
   PlatformPeiLib|QcomPkg/PlatformPei/PlatformPeiLib.inf
   PlatformPrePiLib|QcomPkg/Library/PlatformPrePiLib/PlatformPrePiLib.inf
   AslUpdateLib|AndromedaPkg/Library/DxeAslUpdateLib/DxeAslUpdateLib.inf
@@ -55,7 +54,7 @@
 
   PlatformHobLib|QcomPkg/Library/PlatformHobLib/PlatformHobLib.inf
 
-  QcomMmuDetachHelperLib|AndromedaPkg/Library/QcomMmuDetachHelperLib/QcomMmuDetachHelperLib.inf
+  QcomMmuDetachHelperLib|QcomCommonPkg/Library/QcomMmuDetachHelperLib/QcomMmuDetachHelperLib.inf
 
 [Components.common]
   Arcata/BOOT.MXF.1.1.c1-00127-MAKENA-2/ArcataPkg/GpioButtonsDxe/GpioButtons.inf

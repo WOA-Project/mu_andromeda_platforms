@@ -1,0 +1,21 @@
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AndromedaBootConfigLib
+  FILE_GUID                      = 9D997AB1-1D07-4964-99F4-4056DB271442
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = AndromedaBootConfigLib
+
+[Sources]
+  AndromedaBootConfigLib.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AndromedaPkg/AndromedaPkg.dec
+
+[LibraryClasses]
+  BaseMemoryLib
+  HobLib
+
+[Guids]
+  gAndromedaBootConfigHobGuid

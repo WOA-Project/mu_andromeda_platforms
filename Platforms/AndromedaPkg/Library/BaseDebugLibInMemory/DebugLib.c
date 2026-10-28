@@ -20,7 +20,7 @@
 #include <Library/BaseMemoryLib.h>
 #include <Library/CacheMaintenanceLib.h>
 #include <Library/DebugPrintErrorLevelLib.h>
-#include <Library/MemoryMapHelperLib.h>
+#include <Library/PlatformHwioLib.h>
 
 ARM_MEMORY_REGION_DESCRIPTOR_EX PStore;
 
@@ -47,7 +47,7 @@ BaseDebugLibInMemoryConstructor (
   VOID
   )
 {
-  return LocateMemoryMapAreaByName("PStore", &PStore);
+  return GetPlatformPStore(&PStore);
 }
 
 static void mem_putchar(UINT8 c)

@@ -16,7 +16,7 @@
 #include <Library/UefiBootServicesTableLib.h>
 #include <Library/UefiLib.h>
 #include <Library/UefiRuntimeServicesTableLib.h>
-#include <Library/MemoryMapHelperLib.h>
+#include <Library/QcomUefiCfgMemoryMapHelperLib.h>
 
 #include <Library/BaseMemoryLib.h>
 #include <Protocol/EFIScm.h>
@@ -139,7 +139,7 @@ RFSLocateAndProtectSharedArea()
 {
   ARM_MEMORY_REGION_DESCRIPTOR_EX MpssEfs;
 
-  if (!EFI_ERROR(LocateMemoryMapAreaByName("MPSS_EFS", &MpssEfs))) {
+  if (!EFI_ERROR(QcomLocateMemoryMapAreaByName("MPSS_EFS", &MpssEfs))) {
       return RFSProtectSharedArea(MpssEfs.Address, MpssEfs.Length);
   }
 

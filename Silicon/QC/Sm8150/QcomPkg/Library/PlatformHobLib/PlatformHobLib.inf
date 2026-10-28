@@ -14,6 +14,7 @@
   EmbeddedPkg/EmbeddedPkg.dec
   MdeModulePkg/MdeModulePkg.dec
   MdePkg/MdePkg.dec
+  QcomCommonPkg/QcomCommonPkg.dec
   QcomPkg/QcomPkg.dec
   AndromedaPkg/AndromedaPkg.dec
 

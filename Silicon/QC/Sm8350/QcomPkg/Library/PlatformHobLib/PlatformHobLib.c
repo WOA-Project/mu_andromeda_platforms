@@ -10,7 +10,7 @@
 
 #include <Configuration/XblHlosHob.h>
 #include <Library/BaseLib.h>
-#include <Library/MemoryMapHelperLib.h>
+#include <Library/QcomUefiCfgMemoryMapHelperLib.h>
 #include <Library/PlatformHobLib.h>
 
 CHAR8 *PlatformSubTypeSkuString[] = {
@@ -46,7 +46,7 @@ CHAR8 *PlatformSubTypeBuildString[] = {
 PXBL_HLOS_HOB GetPlatformHob()
 {
   ARM_MEMORY_REGION_DESCRIPTOR_EX AppsHobMemoryRegion;
-  LocateMemoryMapAreaByName("Apps Hob", &AppsHobMemoryRegion);
+  QcomLocateMemoryMapAreaByName("Apps Hob", &AppsHobMemoryRegion);
   return (PXBL_HLOS_HOB)AppsHobMemoryRegion.Address;
 }
 

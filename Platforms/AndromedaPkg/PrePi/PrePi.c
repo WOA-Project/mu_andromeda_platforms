@@ -22,10 +22,13 @@
 
 #include "PrePi.h"
 
-#include <Library/MemoryMapHelperLib.h>
+#include <Library/PlatformHwioLib.h>
 
 #include <Guid/DxeMemoryProtectionSettings.h>
 #include <Guid/MmMemoryProtectionSettings.h>
+#include <Guid/AndromedaBootConfig.h>
+#include <Library/AndromedaArmPlatformLib.h>
+#include <Library/AndromedaBootConfigLib.h>
 
 #define IS_XIP()  (((UINT64)FixedPcdGet64 (PcdFdBaseAddress) > mSystemMemoryEnd) ||\
                   ((FixedPcdGet64 (PcdFdBaseAddress) + FixedPcdGet32 (PcdFdSize)) <= FixedPcdGet64 (PcdSystemMemoryBase)))
@@ -85,13 +88,34 @@ PrePiMain (
   ARM_MEMORY_REGION_DESCRIPTOR_EX UefiStack;
   ARM_MEMORY_REGION_DESCRIPTOR_EX UefiFd;
 
-  Status = LocateMemoryMapAreaByName("DXE Heap", &DxeHeap);
+  CONST CHAR8  *BootConfig     = NULL;
+  UINTN         BootConfigSize = 0;
+  UINT64        BootConfigAddress;
+
+  Status = ArmPlatformGetBootConfig (&BootConfig, &BootConfigSize);
+  ASSERT_EFI_ERROR (Status);
+  if (EFI_ERROR (Status)) {
+    DEBUG ((DEBUG_ERROR, "Unable to retrieve boot configuration: %r\n", Status));
+  }
+
+  BootConfigAddress = (UINT64)(UINTN)BootConfig;
+
+  Status = SetAndromedaBootConfigBuffer (
+             BootConfig,
+             BootConfigSize
+             );
+  ASSERT_EFI_ERROR (Status);
+  if (EFI_ERROR (Status)) {
+    DEBUG ((DEBUG_ERROR, "Unable to initialize boot configuration buffer: %r\n", Status));
+  }
+
+  Status = GetPlatformDXEHeap(&DxeHeap);
   ASSERT_EFI_ERROR (Status);
 
-  Status = LocateMemoryMapAreaByName("UEFI Stack", &UefiStack);
+  Status = GetPlatformUEFIStack(&UefiStack);
   ASSERT_EFI_ERROR (Status);
 
-  Status = LocateMemoryMapAreaByName("UEFI FD", &UefiFd);
+  Status = GetPlatformUEFIFD(&UefiFd);
   ASSERT_EFI_ERROR (Status);
 
   // Declare UEFI region
@@ -137,6 +161,21 @@ PrePiMain (
               (VOID *)StacksBase // The top of the UEFI Memory is reserved for the stacks
               );
   PrePeiSetHobList (HobList);
+
+  if ((BootConfigAddress != 0) &&
+      (BootConfigSize > 0) &&
+      (BootConfigSize <= ANDROMEDA_BOOT_CONFIG_MAX_SIZE)) {
+    BuildGuidDataHob (
+      &gAndromedaBootConfigHobGuid,
+      (VOID *)(UINTN)BootConfigAddress,
+      (UINTN)BootConfigSize
+      );
+  } else {
+    DEBUG ((
+      DEBUG_WARN,
+      "Boot configuration missing or invalid; using default platform policy\n"
+      ));
+  }
 
   // Initialize MMU and Memory HOBs (Resource Descriptor HOBs)
   Status = MemoryPeim (UefiMemoryBase, UefiMemorySize);
@@ -236,7 +275,7 @@ CEntryPoint ()
     }
   }
 
-  Status = LocateMemoryMapAreaByName("UEFI FD", &UefiFd);
+  Status = GetPlatformUEFIFD(&UefiFd);
   ASSERT_EFI_ERROR (Status);
 
   InvalidateDataCacheRange (

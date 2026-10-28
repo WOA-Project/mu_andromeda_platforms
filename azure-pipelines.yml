@@ -41,18 +41,22 @@ steps:
 - script: chmod +x ./build_fd_epsilon.sh && ./build_fd_epsilon.sh
   displayName: 'Build Surface Duo (1st Gen) FD'
 
+# Build appendable UEFI images for custom dual-boot loaders.
+- script: chmod +x ./build_appendable_payload_epsilon.sh && ./build_appendable_payload_epsilon.sh
+  displayName: 'Build Surface Duo (1st Gen) appendable UEFI images'
+
 # Publish FD
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Surface Duo (1st Gen) UEFI (FD for making your own Dual Boot Image)'
   inputs:
-    pathtoPublish: ./ImageResources/Epsilon/SM8150_EFI.fd
+    pathtoPublish: ./ImageResources/Epsilon/UEFIAppendPayloads/UefiPlatEpsilon.bin
     artifactName: Surface Duo (1st Gen) UEFI (FD for making your own Dual Boot Image)
 
 # Publish FD (Secure Boot Disabled)
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Surface Duo (1st Gen) UEFI (Secure Boot Disabled) (FD for making your own Dual Boot Image)'
   inputs:
-    pathtoPublish: ./ImageResources/Epsilon/SM8150_EFI_NOSB.fd
+    pathtoPublish: ./ImageResources/Epsilon/UEFIAppendPayloads/UefiPlatEpsilonNoSb.bin
     artifactName: Surface Duo (1st Gen) UEFI (Secure Boot Disabled) (FD for making your own Dual Boot Image)
 
 ###################################################################################################################
@@ -103,18 +107,21 @@ steps:
 - script: chmod +x ./build_fd_zeta.sh && ./build_fd_zeta.sh
   displayName: 'Build Surface Duo 2 FD'
 
+- script: chmod +x ./build_appendable_payload_zeta.sh && ./build_appendable_payload_zeta.sh
+  displayName: 'Build Surface Duo 2 appendable UEFI images'
+
 # Publish FD
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Surface Duo 2 UEFI (FD for making your own Dual Boot Image)'
   inputs:
-    pathtoPublish: ./ImageResources/Zeta/SM8350_EFI.fd
+    pathtoPublish: ./ImageResources/Zeta/UEFIAppendPayloads/UefiPlatZeta.bin
     artifactName: Surface Duo 2 UEFI (FD for making your own Dual Boot Image)
 
 # Publish FD (Secure Boot Disabled)
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Surface Duo 2 UEFI (Secure Boot Disabled) (FD for making your own Dual Boot Image)'
   inputs:
-    pathtoPublish: ./ImageResources/Zeta/SM8350_EFI_NOSB.fd
+    pathtoPublish: ./ImageResources/Zeta/UEFIAppendPayloads/UefiPlatZetaNoSb.bin
     artifactName: Surface Duo 2 UEFI (Secure Boot Disabled) (FD for making your own Dual Boot Image)
 
 ###################################################################################################################

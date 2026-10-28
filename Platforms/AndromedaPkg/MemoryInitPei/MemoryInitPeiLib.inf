@@ -30,7 +30,7 @@
   DebugLib
   HobLib
   ArmMmuLib
-  PlatformMemoryMapLib
+  AndromedaMemoryMapLib
 
 [Guids]
   gEfiMemoryTypeInformationGuid

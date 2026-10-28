@@ -13,6 +13,7 @@
 #include <Library/HobLib.h>
 #include <Library/MemoryAllocationLib.h>
 #include <Library/PcdLib.h>
+#include <Library/QcomUefiCfgConfigParametersHelperLib.h>
 #include "PlatformPeiLibInternal.h"
 
 STATIC
@@ -20,7 +21,7 @@ EFI_STATUS
 CfgGetMemInfoByName(
     CHAR8 *RegionName, ARM_MEMORY_REGION_DESCRIPTOR_EX *MemRegions)
 {
-  return LocateMemoryMapAreaByName(RegionName, MemRegions);
+  return QcomLocateMemoryMapAreaByName(RegionName, MemRegions);
 }
 
 STATIC
@@ -28,33 +29,28 @@ EFI_STATUS
 CfgGetMemInfoByAddress(
     UINT64 RegionBaseAddress, ARM_MEMORY_REGION_DESCRIPTOR_EX *MemRegions)
 {
-  return LocateMemoryMapAreaByAddress(RegionBaseAddress, MemRegions);
+  return QcomLocateMemoryMapAreaByAddress(RegionBaseAddress, MemRegions);
 }
 
 STATIC
 EFI_STATUS
 CfgGetCfgInfoString(CHAR8 *Key, CHAR8 *Value, UINTN *ValBuffSize)
 {
-  if (AsciiStriCmp(Key, "OsTypeString") == 0) {
-    AsciiStrCpyS(Value, *ValBuffSize, "LA");
-    return EFI_SUCCESS;
-  }
-
-  return EFI_NOT_FOUND;
+  return QcomLocateConfigurationMapStringByName (Key, Value, ValBuffSize);
 }
 
 STATIC
 EFI_STATUS
 CfgGetCfgInfoVal(CHAR8 *Key, UINT32 *Value)
 {
-  return LocateConfigurationMapUINT32ByName(Key, Value);
+  return QcomLocateConfigurationMapUINT32ByName (Key, Value);
 }
 
 STATIC
 EFI_STATUS
 CfgGetCfgInfoVal64(CHAR8 *Key, UINT64 *Value)
 {
-  return LocateConfigurationMapUINT64ByName(Key, Value);
+  return QcomLocateConfigurationMapUINT64ByName (Key, Value);
 }
 
 STATIC
@@ -139,7 +135,7 @@ VOID InstallPlatformHob()
 
   if (!initialized) {
     ARM_MEMORY_REGION_DESCRIPTOR_EX InfoBlk;
-    LocateMemoryMapAreaByName("Info Blk", &InfoBlk);
+    QcomLocateMemoryMapAreaByName("Info Blk", &InfoBlk);
 
     UINTN InfoBlkAddress = InfoBlk.Address;
     UINTN ShLibAddress   = (UINTN)&ShLib;

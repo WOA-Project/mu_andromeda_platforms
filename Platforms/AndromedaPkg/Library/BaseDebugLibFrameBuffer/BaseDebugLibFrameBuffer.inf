@@ -38,7 +38,7 @@
   PrintLib
   BaseLib
   DebugPrintErrorLevelLib
-  MemoryMapHelperLib
+  PlatformHwioLib
 
 [Pcd]
   gEfiMdePkgTokenSpaceGuid.PcdDebugClearMemoryValue  ## SOMETIMES_CONSUMES

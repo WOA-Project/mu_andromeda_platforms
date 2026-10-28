@@ -195,6 +195,9 @@
 !endif
 
   MemoryInitPeiLib|AndromedaPkg/MemoryInitPei/MemoryInitPeiLib.inf
+  AndromedaBootConfigLib|AndromedaPkg/Library/AndromedaBootConfigLib/AndromedaBootConfigLib.inf
+  AndromedaUefiConfigHelperLib|AndromedaPkg/Library/AndromedaUefiConfigHelperLib/AndromedaUefiConfigHelperLib.inf
+  AndromedaMemoryMapLib|AndromedaPkg/Library/AndromedaMemoryMapLib/AndromedaMemoryMapLib.inf
 
   # ARM PL031 RTC Driver
   RealTimeClockLib|AndromedaPkg/Library/VirtualRealTimeClockLib/VirtualRealTimeClockLib.inf
@@ -345,12 +348,6 @@
 
   FmpAuthenticationLib|SecurityPkg/Library/FmpAuthenticationLibPkcs7/FmpAuthenticationLibPkcs7.inf
 
-  MemoryMapHelperLib|AndromedaPkg/Library/MemoryMapHelperSecLib/MemoryMapHelperSecLib.inf
-  ConfigurationMapHelperLib|AndromedaPkg/Library/ConfigurationMapHelperSecLib/ConfigurationMapHelperSecLib.inf
-
-  ShLib|AndromedaPkg/Library/ShLib/ShLib.inf
-  UefiCfgLib|AndromedaPkg/Library/UefiCfgLib/UefiCfgLib.inf
-
   MsSecureBootModeSettingLib|OemPkg/Library/MsSecureBootModeSettingLib/MsSecureBootModeSettingLib.inf
   UpdateFacsHardwareSignatureLib|OemPkg/Library/UpdateFacsHardwareSignatureLib/UpdateFacsHardwareSignatureLib.inf
 
@@ -375,13 +372,9 @@
   UnitTestPersistenceLib|UnitTestFrameworkPkg/Library/UnitTestPersistenceLibNull/UnitTestPersistenceLibNull.inf
   UnitTestResultReportLib|UnitTestFrameworkPkg/Library/UnitTestResultReportLib/UnitTestResultReportLibDebugLib.inf
 
-  UfsInfoLib|AndromedaPkg/Library/UfsInfoLib/UfsInfoLib.inf
-
   PolicyLib|PolicyServicePkg/Library/DxePolicyLib/DxePolicyLib.inf
 
   PanicLib|MdePkg/Library/BasePanicLibNull/BasePanicLibNull.inf  # MU_CHANGE
-  
-  ConsoleMsgLib|AndromedaPkg/Library/ConsoleMsgLib/ConsoleMsgLib.inf
 
 [LibraryClasses.common.UEFI_DRIVER, LibraryClasses.common.DXE_DRIVER, LibraryClasses.common.UEFI_APPLICATION]
   # OneCrypto library for DXE drivers and UEFI applications
@@ -397,8 +390,6 @@
   PcdLib|MdePkg/Library/BasePcdLibNull/BasePcdLibNull.inf
   PrePiHobListPointerLib|ArmPlatformPkg/Library/PrePiHobListPointerLib/PrePiHobListPointerLib.inf
   PrePiMemoryAllocationLib|EmbeddedPkg/Library/PrePiMemoryAllocationLib/PrePiMemoryAllocationLib.inf
-  MemoryMapHelperLib|AndromedaPkg/Library/MemoryMapHelperSecLib/MemoryMapHelperSecLib.inf
-  ConfigurationMapHelperLib|AndromedaPkg/Library/ConfigurationMapHelperSecLib/ConfigurationMapHelperSecLib.inf
 
 [LibraryClasses.common.DXE_CORE, LibraryClasses.common.DXE_DRIVER]
   CpuExceptionHandlerLib|UefiCpuPkg/Library/CpuExceptionHandlerLib/DxeCpuExceptionHandlerLib.inf
@@ -607,40 +598,12 @@
   SecurityPkg/VariableAuthenticated/SecureBootConfigDxe/SecureBootConfigDxe.inf
   AndromedaPkg/Driver/SecureBootProvisioningDxe/SecureBootProvisioningDxe.inf
 
-  # ACPI and SMBIOS
-  # We use pre-built ACPI tables, so only core components are loaded
-  AndromedaPkg/Driver/SmBiosTableDxe/SmBiosTableDxe.inf
   AndromedaPkg/Driver/SurfaceFirmwareProvisioningDataDxe/SurfaceFirmwareProvisioningDataDxe.inf
 
   # PrePI
   AndromedaPkg/PrePi/PeiUniCore.inf
 
   AndromedaPkg/UFP/ufpdevicefw.inf
-
-	QcomModulePkg/Application/LinuxLoader/LinuxLoader.inf {
-		<LibraryClasses>
-			DxeServicesTableLib|MdePkg/Library/DxeServicesTableLib/DxeServicesTableLib.inf
-			UefiLib|MdePkg/Library/UefiLib/UefiLib.inf
-			UefiApplicationEntryPoint|MdePkg/Library/UefiApplicationEntryPoint/UefiApplicationEntryPoint.inf
-			CacheMaintenanceLib|ArmPkg/Library/ArmCacheMaintenanceLib/ArmCacheMaintenanceLib.inf
-			Zlib|QcomModulePkg/Library/zlib/zlib.inf
-			ArmLib|MdePkg/Library/ArmLib/ArmBaseLib.inf
-			BaseLib|MdePkg/Library/BaseLib/BaseLib.inf
-			DebugLib|MdePkg/Library/UefiDebugLibConOut/UefiDebugLibConOut.inf
-			DevicePathLib|MdePkg/Library/UefiDevicePathLib/UefiDevicePathLib.inf
-			HobLib|MdePkg/Library/DxeHobLib/DxeHobLib.inf
-			PerformanceLib|MdeModulePkg/Library/DxePerformanceLib/DxePerformanceLib.inf
-			DebugPrintErrorLevelLib|MdePkg/Library/BaseDebugPrintErrorLevelLib/BaseDebugPrintErrorLevelLib.inf
-
-			FdtLib|MdePkg/Library/BaseFdtLib/BaseFdtLib.inf
-			LibUfdt|QcomModulePkg/Library/LibUfdt/LibUfdt.inf
-			ArmSmcLib|MdePkg/Library/ArmSmcLib/ArmSmcLib.inf
-			BootLib|QcomModulePkg/Library/BootLib/BootLib.inf
-			StackCanary|QcomModulePkg/Library/StackCanary/StackCanary.inf
-			FastbootLib|QcomModulePkg/Library/FastbootLib/FastbootLib.inf
-			AvbLib|QcomModulePkg/Library/avb/AvbLib.inf
-			UbsanLib|QcomModulePkg/Library/UbsanLib/UbsanLib.inf
-	}
 
 ###################################################################################################
 #
@@ -653,7 +616,7 @@
 ###################################################################################################
 [BuildOptions]
   *_CLANGPDB_AARCH64_CC_FLAGS = -Wno-unused-const-variable -Wno-sometimes-uninitialized -Wno-unaligned-access -D CLANG
-  *_*_*_CC_FLAGS = -march=armv8.2-a+crypto+rcpc -DSECURE_BOOT=$(SECURE_BOOT) -DUSE_MEMORY_FOR_SERIAL_OUTPUT=$(USE_MEMORY_FOR_SERIAL_OUTPUT) -DUSE_SCREEN_FOR_SERIAL_OUTPUT=$(USE_SCREEN_FOR_SERIAL_OUTPUT) -DPLATFORM_HAS_ACTLR_EL1_UNIMPLEMENTED_ERRATA=$(PLATFORM_HAS_ACTLR_EL1_UNIMPLEMENTED_ERRATA) -DPLATFORM_HAS_AMCNTENSET0_EL0_UNIMPLEMENTED_ERRATA=$(PLATFORM_HAS_AMCNTENSET0_EL0_UNIMPLEMENTED_ERRATA) -DPLATFORM_HAS_GIC_V3_WITHOUT_IRM_FLAG_SUPPORT_ERRATA=$(PLATFORM_HAS_GIC_V3_WITHOUT_IRM_FLAG_SUPPORT_ERRATA) -DPLATFORM_HAS_PSCI_MEMPROTECT_FAILING_ERRATA=$(PLATFORM_HAS_PSCI_MEMPROTECT_FAILING_ERRATA) -D __DEPRECATED_AARCH64_4K_RUNTIME_GRANULARITY
+  *_*_*_CC_FLAGS = -march=armv8.2-a+crypto+rcpc -DUSE_MEMORY_FOR_SERIAL_OUTPUT=$(USE_MEMORY_FOR_SERIAL_OUTPUT) -DUSE_SCREEN_FOR_SERIAL_OUTPUT=$(USE_SCREEN_FOR_SERIAL_OUTPUT) -DPLATFORM_HAS_ACTLR_EL1_UNIMPLEMENTED_ERRATA=$(PLATFORM_HAS_ACTLR_EL1_UNIMPLEMENTED_ERRATA) -DPLATFORM_HAS_AMCNTENSET0_EL0_UNIMPLEMENTED_ERRATA=$(PLATFORM_HAS_AMCNTENSET0_EL0_UNIMPLEMENTED_ERRATA) -DPLATFORM_HAS_GIC_V3_WITHOUT_IRM_FLAG_SUPPORT_ERRATA=$(PLATFORM_HAS_GIC_V3_WITHOUT_IRM_FLAG_SUPPORT_ERRATA) -DPLATFORM_HAS_PSCI_MEMPROTECT_FAILING_ERRATA=$(PLATFORM_HAS_PSCI_MEMPROTECT_FAILING_ERRATA) -D __DEPRECATED_AARCH64_4K_RUNTIME_GRANULARITY
   *_*_*_CC_FLAGS = -DZ_SOLO -DPRODUCT_NAME=\"Andromeda\" -DINIT_BIN=\"/init\" -DENABLE_UPDATE_PARTITIONS_CMDS -DENABLE_BOOT_CMD -DENABLE_DEVICE_CRITICAL_LOCK_UNLOCK_CMDS -DUSERDATA_FS_TYPE=\"ext4\"
 
 [BuildOptions.common.EDKII.SEC,BuildOptions.common.EDKII.MM_CORE_STANDALONE]

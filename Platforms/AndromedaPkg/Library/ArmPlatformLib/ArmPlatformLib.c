@@ -8,10 +8,28 @@
 
 #include <Library/ArmLib.h>
 #include <Library/ArmPlatformLib.h>
+#include <Library/AndromedaArmPlatformLib.h>
+#include <Library/AndromedaBootConfigLib.h>
 
 #include <Ppi/ArmMpCoreInfo.h>
 
 #include "InitializationUtils.h"
+
+EFI_STATUS
+EFIAPI
+ArmPlatformGetBootConfig (
+  OUT CONST CHAR8  **Config,
+  OUT UINTN        *ConfigSize
+  )
+{
+  if ((Config == NULL) || (ConfigSize == NULL)) {
+    return EFI_INVALID_PARAMETER;
+  }
+
+  *Config     = gAndromedaBootConfigBuffer;
+  *ConfigSize = gAndromedaBootConfigBufferSize;
+  return EFI_SUCCESS;
+}
 
 ARM_CORE_INFO  mArmPlatformMpCoreInfoTable[] = {
   {

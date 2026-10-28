@@ -1,0 +1,45 @@
+/** @file
+
+  Copyright (c) 2022-2024 DuoWoA authors
+
+  SPDX-License-Identifier: MIT
+
+**/
+#include <Library/BaseLib.h>
+#include <Library/QcomUefiCfgMemoryMapHelperLib.h>
+#include <Library/AndromedaMemoryMapLib.h>
+
+EFI_STATUS EFIAPI QcomLocateMemoryMapAreaByName(
+    CHAR8 *MemoryMapAreaName, ARM_MEMORY_REGION_DESCRIPTOR_EX *MemoryDescriptor)
+{
+  PARM_MEMORY_REGION_DESCRIPTOR_EX MemoryDescriptorEx = GetPlatformMemoryMap();
+
+  // Run through each memory descriptor
+  while (MemoryDescriptorEx->Length != 0) {
+    if (AsciiStriCmp(MemoryMapAreaName, MemoryDescriptorEx->Name) == 0) {
+      *MemoryDescriptor = *MemoryDescriptorEx;
+      return EFI_SUCCESS;
+    }
+    MemoryDescriptorEx++;
+  }
+
+  return EFI_NOT_FOUND;
+}
+
+EFI_STATUS EFIAPI QcomLocateMemoryMapAreaByAddress(
+    EFI_PHYSICAL_ADDRESS             MemoryMapAreaAddress,
+    ARM_MEMORY_REGION_DESCRIPTOR_EX *MemoryDescriptor)
+{
+  PARM_MEMORY_REGION_DESCRIPTOR_EX MemoryDescriptorEx = GetPlatformMemoryMap();
+
+  // Run through each memory descriptor
+  while (MemoryDescriptorEx->Length != 0) {
+    if (MemoryDescriptorEx->Address == MemoryMapAreaAddress) {
+      *MemoryDescriptor = *MemoryDescriptorEx;
+      return EFI_SUCCESS;
+    }
+    MemoryDescriptorEx++;
+  }
+
+  return EFI_NOT_FOUND;
+}

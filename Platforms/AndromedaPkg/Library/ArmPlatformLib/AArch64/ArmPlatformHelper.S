@@ -9,6 +9,13 @@
 #include <Library/ArmLib.h>
 
 ASM_FUNC(ArmPlatformPeiBootAction)
+  // Publish the boot configuration before early platform initialization.
+  adrp  x2, gAndromedaBootConfigBuffer
+  add   x2, x2, :lo12:gAndromedaBootConfigBuffer
+  str   x0, [x2]
+  adrp  x2, gAndromedaBootConfigBufferSize
+  add   x2, x2, :lo12:gAndromedaBootConfigBufferSize
+  str   x1, [x2]
   ret
 
 //UINTN

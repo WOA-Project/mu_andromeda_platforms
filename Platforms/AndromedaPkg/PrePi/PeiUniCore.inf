@@ -50,13 +50,15 @@
   PrePiHobListPointerLib
   PlatformPeiLib
   MemoryInitPeiLib
+  AndromedaBootConfigLib
   PlatformPrePiLib
-  MemoryMapHelperLib
+  PlatformHwioLib
 
 [Ppis]
   gArmMpCoreInfoPpiGuid
 
 [Guids]
+  gAndromedaBootConfigHobGuid
   gArmMpCoreInfoGuid
   gEfiFirmwarePerformanceGuid
   gMmMemoryProtectionSettingsGuid

@@ -20,7 +20,6 @@ Platforms/AndromedaPkg/Include/Generated/ConfigClientGenerated.h
 
 ImageResources/Epsilon/bootpayload.bin
 ImageResources/Epsilon/dualbootbootpayload.bin
-ImageResources/Epsilon/SM8150_EFI_NOSB.fd
 ImageResources/Epsilon/SM8150_EFI.fd
 ImageResources/Epsilon/uefi_dualboot.img
 ImageResources/Epsilon/uefi_nosb.img
@@ -30,7 +29,6 @@ ImageResources/Epsilon/uefi.payload.bin
 
 ImageResources/Zeta/bootpayload.bin
 ImageResources/Zeta/dualbootbootpayload.bin
-ImageResources/Zeta/SM8350_EFI_NOSB.fd
 ImageResources/Zeta/SM8350_EFI.fd
 ImageResources/Zeta/uefi_dualboot.img
 ImageResources/Zeta/uefi_nosb.img

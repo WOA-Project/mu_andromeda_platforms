@@ -13,17 +13,17 @@
 
 #include <Pi/PiFirmwareFile.h>
 
+#include <Guid/AndromedaBootConfig.h>
+
 #include <Library/BaseLib.h>
 #include <Library/DebugLib.h>
 #include <Library/DxeServicesLib.h>
 #include <Library/UefiBootServicesTableLib.h>
 #include <Library/UefiDriverEntryPoint.h>
 #include <Library/UefiLib.h>
-#include <Library/UefiRuntimeServicesTableLib.h>
 #include <Library/MemoryAllocationLib.h>
 #include <Library/MuSecureBootKeySelectorLib.h>
-
-#include <Guid/GlobalVariable.h>
+#include <Library/AndromedaUefiConfigHelperLib.h>
 
 //
 // Global variables.
@@ -31,34 +31,45 @@
 VOID *mFileSystemRegistration = NULL;
 
 /**
-  Helper function to query whether the secure boot variable is in place.
-  For Project Mu Code if the PK is set then Secure Boot is enforced (there is no
-  SetupMode)
+  Read the SecureBootEnabled setting from the boot configuration.
 
   @retval     TRUE if secure boot is enabled, FALSE otherwise.
 **/
 BOOLEAN
 IsSecureBootOn()
 {
-#if SECURE_BOOT == 1
-  return TRUE;
-#else
-  EFI_STATUS Status;
-  UINTN      PkSize = 0;
+  EFI_STATUS  Status;
+  UINT32      Value;
 
-  Status = gRT->GetVariable(
-      EFI_PLATFORM_KEY_NAME, &gEfiGlobalVariableGuid, NULL, &PkSize, NULL);
-  if ((Status == EFI_BUFFER_TOO_SMALL) && (PkSize > 0)) {
-    DEBUG(
-        (DEBUG_INFO, "%a - PK exists.  Secure boot on.  Pk Size is 0x%X\n",
-         __FUNCTION__, PkSize));
+  Status = GetAndromedaUefiConfigUint32ByName (
+             ANDROMEDA_BOOT_CONFIG_SECURE_BOOT_ENABLED_KEY,
+             &Value
+             );
+  if (EFI_ERROR (Status)) {
+    DEBUG ((
+      DEBUG_WARN,
+      "%a - Unable to read boot config SecureBootEnabled: %r\n",
+      __FUNCTION__,
+      Status
+      ));
     return TRUE;
   }
 
-  DEBUG(
-      (DEBUG_INFO, "%a - PK doesn't exist.  Secure boot off\n", __FUNCTION__));
-  return FALSE;
-#endif
+  if (Value == 0) {
+    return FALSE;
+  }
+
+  if (Value == 1) {
+    return TRUE;
+  }
+
+  DEBUG ((
+    DEBUG_WARN,
+    "%a - Invalid boot config SecureBootEnabled value %u; enabling Secure Boot\n",
+    __FUNCTION__,
+    Value
+    ));
+  return TRUE;
 }
 
 EFI_STATUS

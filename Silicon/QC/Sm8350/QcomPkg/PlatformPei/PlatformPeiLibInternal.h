@@ -16,8 +16,8 @@
 #include <Library/MemoryAllocationLib.h>
 #include <Library/PcdLib.h>
 #include <Library/SerialPortLib.h>
-#include <Library/MemoryMapHelperLib.h>
-#include <Library/ConfigurationMapHelperLib.h>
+#include <Library/QcomUefiCfgMemoryMapHelperLib.h>
+#include <Library/AndromedaBootConfigLib.h>
 #include <Library/PlatformHobs.h>
 
 #endif // _PLATFORM_HOB_INTERNAL_H_

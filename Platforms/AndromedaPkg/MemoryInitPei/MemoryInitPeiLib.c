@@ -14,7 +14,7 @@
 #include <Library/HobLib.h>
 #include <Library/MemoryAllocationLib.h>
 #include <Library/PcdLib.h>
-#include <Library/PlatformMemoryMapLib.h>
+#include <Library/AndromedaMemoryMapLib.h>
 
 VOID
 BuildMemoryTypeInformationHob (

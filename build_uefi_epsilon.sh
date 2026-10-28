@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Andromeda855 UEFI as Boot
-cat ./BootShim/BootShim.Epsilon.bin ./ImageResources/Epsilon/SM8150_EFI.fd > ./ImageResources/Epsilon/uefi.payload.bin
+cat ./Loaders/Direct/BootShim.Epsilon.bin ./ImageResources/Epsilon/UEFIAppendPayloads/UefiPlatEpsilon.bin > ./ImageResources/Epsilon/uefi.payload.bin
 python3 ./ImageResources/mkbootimg.py \
   --kernel ./ImageResources/Epsilon/uefi.payload.bin \
   --ramdisk ./ImageResources/Epsilon/ramdisk \
@@ -16,7 +16,7 @@ python3 ./ImageResources/mkbootimg.py \
   --second_offset 0xf00000
 
 # Andromeda855 UEFI as Boot (SecureBoot Disabled)
-cat ./BootShim/BootShim.Epsilon.bin ./ImageResources/Epsilon/SM8150_EFI_NOSB.fd > ./ImageResources/Epsilon/uefi_nosb.payload.bin
+cat ./Loaders/Direct/BootShim.Epsilon.bin ./ImageResources/Epsilon/UEFIAppendPayloads/UefiPlatEpsilonNoSb.bin > ./ImageResources/Epsilon/uefi_nosb.payload.bin
 python3 ./ImageResources/mkbootimg.py \
   --kernel ./ImageResources/Epsilon/uefi_nosb.payload.bin \
   --ramdisk ./ImageResources/Epsilon/ramdisk \

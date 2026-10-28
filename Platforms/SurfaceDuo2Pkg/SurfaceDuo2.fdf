@@ -21,11 +21,11 @@
 ################################################################################
 
 [FD.SM8350_EFI]
-BaseAddress   = 0x9FC41000|gArmTokenSpaceGuid.PcdFdBaseAddress #The base address of the FLASH Device.
-Size          = 0x002BF000|gArmTokenSpaceGuid.PcdFdSize        #The size in bytes of the FLASH Device
+BaseAddress   = 0x9FC42000|gArmTokenSpaceGuid.PcdFdBaseAddress #The base address of the FLASH Device.
+Size          = 0x002AE000|gArmTokenSpaceGuid.PcdFdSize        #The size in bytes of the FLASH Device
 ErasePolarity = 1
 BlockSize     = 0x1000
-NumBlocks     = 0x2BF
+NumBlocks     = 0x2AE
 
 ################################################################################
 #
@@ -42,7 +42,7 @@ NumBlocks     = 0x2BF
 # RegionType <FV, DATA, or FILE>
 #
 ################################################################################
-0x00000000|0x002BF000
+0x00000000|0x002AE000
 gArmTokenSpaceGuid.PcdFvBaseAddress|gArmTokenSpaceGuid.PcdFvSize
 FV = FVMAIN_COMPACT
 
@@ -102,7 +102,7 @@ READ_LOCK_STATUS   = TRUE
   # ACPI and SMBIOS
   INF MdeModulePkg/Universal/Acpi/AcpiTableDxe/AcpiTableDxe.inf
   INF MdeModulePkg/Universal/Acpi/AcpiPlatformDxe/AcpiPlatformDxe.inf
-  INF AndromedaPkg/Driver/SmBiosTableDxe/SmBiosTableDxe.inf
+  INF QcomCommonPkg/Driver/SmBiosTableDxe/SmBiosTableDxe.inf
 
   # ACPI Tables
   INF RuleOverride=ACPITABLE SurfaceDuo2Pkg/AcpiTables/AcpiTables.inf

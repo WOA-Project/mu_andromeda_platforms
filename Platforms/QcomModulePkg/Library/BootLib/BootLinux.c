@@ -85,7 +85,7 @@
 #include "libfdt.h"
 #include <ufdt_overlay.h>
 
-#include <Library/MemoryMapHelperLib.h>
+#include <Library/QcomUefiCfgMemoryMapHelperLib.h>
 
 STATIC QCOM_SCM_MODE_SWITCH_PROTOCOL *pQcomScmModeSwitchProtocol = NULL;
 STATIC BOOLEAN BootDevImage;
@@ -137,7 +137,7 @@ QueryBootParams (UINT64 *KernelLoadAddr, UINT64 *KernelSizeReserved)
           SizeStatus == EFI_SUCCESS);*/
 
   ARM_MEMORY_REGION_DESCRIPTOR_EX KernelMemoryRegion;
-  Status = LocateMemoryMapAreaByName("Kernel", &KernelMemoryRegion);
+  Status = QcomLocateMemoryMapAreaByName("Kernel", &KernelMemoryRegion);
   if (EFI_ERROR(Status)) {
     return FALSE;
   }

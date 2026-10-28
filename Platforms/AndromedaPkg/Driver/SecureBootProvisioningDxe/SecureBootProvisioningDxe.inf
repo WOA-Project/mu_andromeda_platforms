@@ -22,13 +22,13 @@
   BaseLib
   DebugLib
   DxeServicesLib
+  AndromedaUefiConfigHelperLib
   MuSecureBootKeySelectorLib
   PcdLib
   PrintLib
   UefiBootServicesTableLib
   UefiDriverEntryPoint
   UefiLib
-  UefiRuntimeServicesTableLib
 
 [Protocols]
   gEfiSimpleFileSystemProtocolGuid ## CONSUMES

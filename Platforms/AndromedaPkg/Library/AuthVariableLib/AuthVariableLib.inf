@@ -34,6 +34,7 @@
   MdeModulePkg/MdeModulePkg.dec
   SecurityPkg/SecurityPkg.dec
   CryptoPkg/CryptoPkg.dec
+  AndromedaPkg/AndromedaPkg.dec
 
 [LibraryClasses]
   BaseLib
@@ -43,6 +44,7 @@
   BaseCryptLib
   PlatformSecureLib
   VariablePolicyLib
+  AndromedaUefiConfigHelperLib
   UefiRuntimeLib
 
 # MU_CHANGE [BEGIN] - TCBZ2506

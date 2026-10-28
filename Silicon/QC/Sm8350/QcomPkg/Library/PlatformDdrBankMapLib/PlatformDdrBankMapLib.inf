@@ -1,0 +1,19 @@
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = PlatformDdrBankMapLib
+  FILE_GUID                      = A63AF73A-2636-48A6-B1C9-FE04B4854A6A
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = PlatformDdrBankMapLib
+
+[Sources]
+  PlatformDdrBankMapLib.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AndromedaPkg/AndromedaPkg.dec
+  QcomCommonPkg/QcomCommonPkg.dec
+  QcomPkg/QcomPkg.dec
+
+[LibraryClasses]
+  BaseLib

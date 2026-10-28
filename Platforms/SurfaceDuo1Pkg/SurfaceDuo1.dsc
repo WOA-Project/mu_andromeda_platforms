@@ -24,7 +24,6 @@
   BUILD_TARGETS                  = DEBUG|RELEASE
   SKUID_IDENTIFIER               = DEFAULT
   FLASH_DEFINITION               = SurfaceDuo1Pkg/SurfaceDuo1.fdf
-  SECURE_BOOT                    = 1
   USE_PHYSICAL_TIMER             = 1
   USE_SCREEN_FOR_SERIAL_OUTPUT   = 0
   USE_MEMORY_FOR_SERIAL_OUTPUT   = 0
@@ -73,7 +72,9 @@
   gEfiMdeModulePkgTokenSpaceGuid.PcdConOutColumn|168 # 168.75 = 1350 / EFI_GLYPH_WIDTH(8)
   gEfiMdeModulePkgTokenSpaceGuid.PcdConOutRow|94 # 94.73 = 1800 / EFI_GLYPH_HEIGHT(19)
 
+!include QcomCommonPkg/QcomCommonPkg.dsc.inc
 !include QcomPkg/QcomPkg.dsc.inc
+!include QcomPlatformPkg/QcomPlatformPkg.dsc.inc
 !include AndromedaPkg/Andromeda.dsc.inc
 !include AndromedaPkg/Frontpage.dsc.inc
 

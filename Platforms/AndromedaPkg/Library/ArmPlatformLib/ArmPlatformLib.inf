@@ -24,9 +24,10 @@
   ArmLib
   DebugLib
   IoLib
-  MemoryMapHelperLib
-  PlatformMemoryMapLib
+  PlatformHwioLib
+  AndromedaMemoryMapLib
   PlatformPrePiLib
+  AndromedaBootConfigLib
 
 [Sources.common]
   ArmPlatformLib.c

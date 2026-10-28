@@ -18,6 +18,9 @@ SPDX-License-Identifier: BSD-2-Clause-Patent
 
 #include "AuthServiceInternal.h"
 
+#include <Guid/AndromedaBootConfig.h>
+#include <Library/AndromedaUefiConfigHelperLib.h>
+
 ///
 /// Global database array for scratch
 ///
@@ -96,6 +99,43 @@ VARIABLE_ENTRY_PROPERTY  mAuthVarEntry[] = {
 VOID  **mAuthVarAddressPointer[11];
 
 AUTH_VAR_LIB_CONTEXT_IN  *mAuthVarLibContextIn = NULL;
+
+STATIC
+UINT8
+GetBootConfigSecureBootPolicy (
+  VOID
+  )
+{
+  EFI_STATUS  Status;
+  UINT32      Value;
+
+  Status = GetAndromedaUefiConfigUint32ByName (
+             ANDROMEDA_BOOT_CONFIG_SECURE_BOOT_ENABLED_KEY,
+             &Value
+             );
+  if (EFI_ERROR (Status)) {
+    if (Status != EFI_NOT_FOUND) {
+      DEBUG ((DEBUG_WARN, "Unable to read boot config Secure Boot setting: %r\n", Status));
+    }
+
+    return SECURE_BOOT_ENABLE;
+  }
+
+  if (Value == 1) {
+    return SECURE_BOOT_ENABLE;
+  }
+
+  if (Value == 0) {
+    return SECURE_BOOT_DISABLE;
+  }
+
+  DEBUG ((
+    DEBUG_WARN,
+    "Invalid boot config SecureBootEnabled '%u'; enabling Secure Boot\n",
+    Value
+    ));
+  return SECURE_BOOT_ENABLE;
+}
 
 /**
   Initialization for authenticated variable services.
@@ -209,43 +249,20 @@ AuthVariableLibInitialize (
   //
   SecureBootEnable = SECURE_BOOT_DISABLE;
   Status           = AuthServiceInternalFindVariable (EFI_SECURE_BOOT_ENABLE_NAME, &gEfiSecureBootEnableDisableGuid, (VOID **)&Data, &DataSize);
-  if (!EFI_ERROR (Status)) {
-    if (mPlatformMode == USER_MODE) {
-      SecureBootEnable = *(UINT8 *)Data;
-      // MU_CHANGE_173316
-      // MU_CHANGE [BEGIN] - In our implementation, we do not allow SecureBootEnable to override mPlatformMode.
-      // If SecureBootEnable is FOUND and mPlatformMode is USER_MODE, ensure that
-      //  SecureBootEnable == SECURE_BOOT_ENABLE.
-      if (SecureBootEnable == SECURE_BOOT_DISABLE) {
-        SecureBootEnable = SECURE_BOOT_ENABLE;
-        Status           = AuthServiceInternalUpdateVariable (
-                             EFI_SECURE_BOOT_ENABLE_NAME,
-                             &gEfiSecureBootEnableDisableGuid,
-                             &SecureBootEnable,
-                             sizeof (UINT8),
-                             EFI_VARIABLE_NON_VOLATILE | EFI_VARIABLE_BOOTSERVICE_ACCESS
-                             );
-        if (EFI_ERROR (Status)) {
-          return Status;
-        }
+  if (mPlatformMode == USER_MODE) {
+    SecureBootEnable = GetBootConfigSecureBootPolicy ();
+    if (EFI_ERROR (Status) || (DataSize != sizeof (UINT8)) ||
+        (*(UINT8 *)Data != SecureBootEnable)) {
+      Status = AuthServiceInternalUpdateVariable (
+                 EFI_SECURE_BOOT_ENABLE_NAME,
+                 &gEfiSecureBootEnableDisableGuid,
+                 &SecureBootEnable,
+                 sizeof (UINT8),
+                 EFI_VARIABLE_NON_VOLATILE | EFI_VARIABLE_BOOTSERVICE_ACCESS
+                 );
+      if (EFI_ERROR (Status)) {
+        return Status;
       }
-
-      // MU_CHANGE [END]
-    }
-  } else if (mPlatformMode == USER_MODE) {
-    //
-    // "SecureBootEnable" not exist, initialize it in USER_MODE.
-    //
-    SecureBootEnable = SECURE_BOOT_ENABLE;
-    Status           = AuthServiceInternalUpdateVariable (
-                         EFI_SECURE_BOOT_ENABLE_NAME,
-                         &gEfiSecureBootEnableDisableGuid,
-                         &SecureBootEnable,
-                         sizeof (UINT8),
-                         EFI_VARIABLE_NON_VOLATILE | EFI_VARIABLE_BOOTSERVICE_ACCESS
-                         );
-    if (EFI_ERROR (Status)) {
-      return Status;
     }
   }
 

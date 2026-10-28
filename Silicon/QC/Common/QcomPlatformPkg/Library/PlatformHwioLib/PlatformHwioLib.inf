@@ -1,0 +1,23 @@
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = PlatformHwioLib
+  FILE_GUID                      = 436581EC-3D82-4AAD-B94F-656184C773B8
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = PlatformHwioLib
+
+[Sources]
+  PlatformHwioLib.c
+
+[Packages]
+  ArmPkg/ArmPkg.dec
+  MdePkg/MdePkg.dec
+  QcomPkg/QcomPkg.dec
+  AndromedaPkg/AndromedaPkg.dec
+  QcomCommonPkg/QcomCommonPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  HobLib
+  QcomUefiCfgMemoryMapHelperLib
+  

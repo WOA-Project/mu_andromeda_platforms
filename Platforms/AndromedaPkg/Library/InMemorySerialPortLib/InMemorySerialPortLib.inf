@@ -40,4 +40,4 @@
   ArmLib
   BaseLib
   CacheMaintenanceLib
-  MemoryMapHelperLib
+  PlatformHwioLib

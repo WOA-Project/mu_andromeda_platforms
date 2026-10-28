@@ -8,7 +8,7 @@
 #include <PiPei.h>
 
 #include <Library/IoLib.h>
-#include <Library/MemoryMapHelperLib.h>
+#include <Library/QcomUefiCfgMemoryMapHelperLib.h>
 #include <Library/PlatformPrePiLib.h>
 #include <Library/QcomMmuDetachHelperLib.h>
 
@@ -27,7 +27,7 @@ VOID DisableMDSSDSIController(UINT32 MdssDsiBase)
 VOID SetWatchdogState(BOOLEAN Enable)
 {
   ARM_MEMORY_REGION_DESCRIPTOR_EX WDTMemoryRegion;
-  LocateMemoryMapAreaByName("APSS_WDT_TMR1", &WDTMemoryRegion);
+  QcomLocateMemoryMapAreaByName("APSS_WDT_TMR1", &WDTMemoryRegion);
 
   MmioWrite32(WDTMemoryRegion.Address + APSS_WDT_ENABLE_OFFSET, Enable);
 }
@@ -35,7 +35,7 @@ VOID SetWatchdogState(BOOLEAN Enable)
 VOID PlatformInitialize(VOID)
 {
   ARM_MEMORY_REGION_DESCRIPTOR_EX MDSSMemoryRegion;
-  LocateMemoryMapAreaByName("MDSS", &MDSSMemoryRegion);
+  QcomLocateMemoryMapAreaByName("MDSS", &MDSSMemoryRegion);
 
   // Disable MDSS DSI0 Controller
   DisableMDSSDSIController(MDSSMemoryRegion.Address + MDSS_DSI0);

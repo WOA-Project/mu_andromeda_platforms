@@ -13,7 +13,7 @@
 #include <Library/DebugLib.h>
 #include <Library/DevicePathLib.h>
 #include <Library/IoLib.h>
-#include <Library/MemoryMapHelperLib.h>
+#include <Library/QcomUefiCfgMemoryMapHelperLib.h>
 #include <Library/PcdLib.h>
 #include <Library/UefiBootServicesTableLib.h>
 #include <Library/UefiLib.h>
@@ -115,7 +115,7 @@ PlatformUpdateAcpiTables(VOID)
   UINT64 SOSN = ((UINT64)SOSN2 << 32) | SOSN1;
   UINT32 PLST = PlatformInfo.subtype;
 
-  if (!EFI_ERROR(LocateMemoryMapAreaByName("MPSS_EFS", &MPSSEFSRegion))) {
+  if (!EFI_ERROR(QcomLocateMemoryMapAreaByName("MPSS_EFS", &MPSSEFSRegion))) {
     RMTB = MPSSEFSRegion.Address;
     RMTX = MPSSEFSRegion.Length;
 
@@ -127,14 +127,14 @@ PlatformUpdateAcpiTables(VOID)
     RFSLocateAndProtectSharedArea();
   }
 
-  if (!EFI_ERROR(LocateMemoryMapAreaByName("ADSP_EFS", &ADSPEFSRegion))) {
+  if (!EFI_ERROR(QcomLocateMemoryMapAreaByName("ADSP_EFS", &ADSPEFSRegion))) {
     RFMB = (UINT32)ADSPEFSRegion.Address + (UINT32)ADSPEFSRegion.Length / 2;
     RFMS = (UINT32)ADSPEFSRegion.Length / 2;
     RFAB = (UINT32)ADSPEFSRegion.Address;
     RFAS = (UINT32)ADSPEFSRegion.Length / 2;
   }
 
-  if (!EFI_ERROR(LocateMemoryMapAreaByName("TGCM", &TGCMRegion))) {
+  if (!EFI_ERROR(QcomLocateMemoryMapAreaByName("TGCM", &TGCMRegion))) {
     TCMA = (UINT32)TGCMRegion.Address;
     TCML = (UINT32)TGCMRegion.Length;
   } else {
