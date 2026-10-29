@@ -10,7 +10,7 @@
 #define QCOM_MEMORY_MAP_CONFIG_LIB_H_
 
 #include <Library/PlatformDdrBankMapLib.h>
-#include <Library/PlatformMemoryMapLib.h>
+#include <Library/AndromedaMemoryMapLib.h>
 
 #define MEMORY_MAP_CONFIG_ENTRY_SIZE 512
 

@@ -8,7 +8,7 @@
 #ifndef _QCOM_MEMORY_MAP_HELPER_LIB_H_
 #define _QCOM_MEMORY_MAP_HELPER_LIB_H_
 
-#include <Library/PlatformMemoryMapLib.h>
+#include <Library/AndromedaMemoryMapLib.h>
 
 EFI_STATUS EFIAPI QcomLocateMemoryMapAreaByName(
     CHAR8                           *MemoryMapAreaName,

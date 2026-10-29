@@ -5,8 +5,8 @@
   SPDX-License-Identifier: MIT
 
 **/
-#ifndef _PLATFORM_MEMORY_MAP_LIB_H_
-#define _PLATFORM_MEMORY_MAP_LIB_H_
+#ifndef _ANDROMEDA_MEMORY_MAP_LIB_H_
+#define _ANDROMEDA_MEMORY_MAP_LIB_H_
 
 #include <PiPei.h>
 #include <Library/ArmLib.h>
@@ -89,4 +89,4 @@ typedef struct {
 
 ARM_MEMORY_REGION_DESCRIPTOR_EX* GetPlatformMemoryMap();
 
-#endif /* _PLATFORM_MEMORY_MAP_LIB_H_ */
+#endif /* _ANDROMEDA_MEMORY_MAP_LIB_H_ */

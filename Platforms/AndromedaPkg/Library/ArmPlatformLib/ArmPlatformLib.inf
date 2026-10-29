@@ -25,7 +25,7 @@
   DebugLib
   IoLib
   PlatformHwioLib
-  PlatformMemoryMapLib
+  AndromedaMemoryMapLib
   PlatformPrePiLib
   AndromedaBootConfigLib
 

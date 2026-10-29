@@ -10,7 +10,7 @@
 
 #include <PiPei.h>
 #include <Library/ArmLib.h>
-#include <Library/PlatformMemoryMapLib.h>
+#include <Library/AndromedaMemoryMapLib.h>
 
 EFI_STATUS EFIAPI GetPlatformDisplayFrameBuffer(ARM_MEMORY_REGION_DESCRIPTOR_EX *MemoryDescriptor);
 EFI_STATUS EFIAPI GetPlatformLogBuffer(ARM_MEMORY_REGION_DESCRIPTOR_EX *MemoryDescriptor);

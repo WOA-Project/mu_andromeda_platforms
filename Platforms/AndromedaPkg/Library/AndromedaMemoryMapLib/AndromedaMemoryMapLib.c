@@ -8,7 +8,7 @@
 
 #include <Library/BaseLib.h>
 #include <Library/DebugLib.h>
-#include <Library/PlatformMemoryMapLib.h>
+#include <Library/AndromedaMemoryMapLib.h>
 #include <Library/QcomUefiPlatMemoryMapLib.h>
 
 STATIC ARM_MEMORY_REGION_DESCRIPTOR_EX

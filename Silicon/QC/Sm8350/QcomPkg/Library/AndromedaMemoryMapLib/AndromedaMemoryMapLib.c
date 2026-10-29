@@ -6,7 +6,7 @@
 
 **/
 #include <Library/BaseLib.h>
-#include <Library/PlatformMemoryMapLib.h>
+#include <Library/AndromedaMemoryMapLib.h>
 #include <Configuration/XblHlosHob.h>
 
 // Platform Memory Map for Engineering Validation devices
