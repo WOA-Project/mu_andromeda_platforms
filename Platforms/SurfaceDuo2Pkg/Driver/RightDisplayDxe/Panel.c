@@ -1,0 +1,143 @@
+/** @file
+  Elgin right panel power-up and DCS initialization sequence.
+
+  SPDX-License-Identifier: MIT
+**/
+#include "RightDisplayDxe.h"
+
+typedef struct {
+  UINT8        Type;
+  UINT8        WaitMs;
+  UINT16       Length;
+  CONST UINT8  *Payload;
+} PANEL_CMD;
+
+#define C(t, w, ...)                                          \
+  { t, w, sizeof ((UINT8[]){__VA_ARGS__}),                    \
+    (CONST UINT8[]){__VA_ARGS__} }
+
+CONST UINT8 gPanelPps[128] = {
+  0x11, 0x00, 0x00, 0x89, 0x30, 0x80, 0x07, 0x64, 0x05, 0x40, 0x03, 0xB2, 0x02, 0xA0, 0x02, 0xA0,
+  0x02, 0x00, 0x02, 0x50, 0x00, 0x20, 0x65, 0x21, 0x00, 0x09, 0x00, 0x0C, 0x00, 0x1A, 0x00, 0x17,
+  0x18, 0x00, 0x10, 0xF0, 0x03, 0x0C, 0x20, 0x00, 0x06, 0x0B, 0x0B, 0x33, 0x0E, 0x1C, 0x2A, 0x38,
+  0x46, 0x54, 0x62, 0x69, 0x70, 0x77, 0x79, 0x7B, 0x7D, 0x7E, 0x01, 0x02, 0x01, 0x00, 0x09, 0x40,
+  0x09, 0xBE, 0x19, 0xFC, 0x19, 0xFA, 0x19, 0xF8, 0x1A, 0x38, 0x1A, 0x78, 0x1A, 0xB6, 0x2A, 0xF6,
+  0x2B, 0x34, 0x2B, 0x74, 0x3B, 0x74, 0x6B, 0xF4
+};
+
+STATIC CONST PANEL_CMD mPreCommands[] = {
+  // Sequence taken from the XBL Surface_Elgin_Panel_cmd_dsc_dsi1_mp.xml
+  // (FF 82 entries there are 130 ms delays)
+  C (0x39, 0, 0x7F, 0x5A, 0x5A),
+  C (0x39, 0, 0xF0, 0x5A, 0x5A),
+  C (0x39, 0, 0xF1, 0x5A, 0x5A),
+  C (0x39, 0, 0xF2, 0x5A, 0x5A),
+  C (0x39, 0, 0xE7, 0x00),
+  C (0x15, 0, 0x02, 0x01),
+  C (0x15, 0, 0x59, 0x00),
+  C (0x39, 0, 0x2A, 0x00, 0x00, 0x05, 0x3F),
+  C (0x39, 0, 0x2B, 0x00, 0x00, 0x07, 0x63),
+  C (0x39, 0, 0x51, 0x02, 0x4D),
+  C (0x15, 0, 0x53, 0x28),
+  C (0x15, 0, 0x55, 0x04),
+  C (0x39, 0, 0x57, 0x20, 0x01, 0x00, 0xF8, 0xFF, 0xF0, 0x00),
+  C (0x39, 0, 0x58, 0x00, 0x00, 0x00, 0xF8, 0xFF, 0xFC),
+  C (0x15, 0, 0x76, 0x00),
+  {0x0A, 0, sizeof (gPanelPps), gPanelPps},
+  C (0x39, 0, 0x74, 0x05, 0x00, 0x34),
+  C (0x15, 0, 0x35, 0x00),
+  C (0x39, 0, 0x44, 0x00, 0x00),
+  C (0x05, 130, 0x11),
+  C (0x39, 0, 0xE5, 0x00, 0x20),
+  C (0x15, 0, 0xB0, 0x08),
+  C (0x39, 0, 0xE1, 0x00, 0x04, 0x50),
+  C (0x15, 0, 0xB0, 0x10),
+  C (0x39, 0, 0xE1, 0x00, 0x00, 0x60),
+  C (0x39, 0, 0xB0, 0x09),
+  C (0x39, 130, 0xE6, 0xF0, 0x01, 0x59, 0x92, 0x76, 0x01, 0x68),
+};
+
+EFI_STATUS
+PanelPowerOnAndInit (VOID)
+{
+  EFI_STATUS Status;
+  UINTN      i;
+
+  // XBL DisplayResetInfo "0 10 1000 10000 0" (hex, us), state 0 = level low:
+  // high for 0x1000, low (reset asserted) for 0x10, then high and wait 0x10000
+  // before the first command
+  TlmmConfigGpioOutput (PANEL_RESET_GPIO, TRUE);
+  gBS->Stall (0x1000);
+  TlmmSetGpio (PANEL_RESET_GPIO, FALSE);
+  gBS->Stall (0x10);
+  TlmmSetGpio (PANEL_RESET_GPIO, TRUE);
+  gBS->Stall (0x10000);
+
+  for (i = 0; i < ARRAY_SIZE (mPreCommands); i++) {
+    Status = DsiCtrlSendPacket (
+               mPreCommands[i].Type, mPreCommands[i].Payload,
+               mPreCommands[i].Length, !PANEL_INIT_HS);
+    if (EFI_ERROR (Status)) {
+      DEBUG ((DEBUG_ERROR, "RightDisplay: panel command %u failed: %r\n", (UINT32)i, Status));
+      return Status;
+    }
+    if (mPreCommands[i].WaitMs) {
+      gBS->Stall (MS (mPreCommands[i].WaitMs));
+    }
+  }
+
+  return EFI_SUCCESS;
+}
+
+//
+// Reads back power mode (0x0A), pixel format (0x0C) and the ID bytes (0xDA) so
+// the log shows whether the panel is alive and answering over BTA.
+//
+EFI_STATUS
+PanelProbe (VOID)
+{
+  // power mode, pixel format, signal mode, self diagnostic, DSI error count,
+  // brightness, ID
+  STATIC CONST UINT8 Cmds[] = {0x0A, 0x0C, 0x0E, 0x0F, 0x05, 0x52, 0xDA};
+  UINTN      i;
+  UINT32     Data;
+  UINT32     Type;
+  UINT32     Ack;
+  EFI_STATUS Status;
+
+  for (i = 0; i < ARRAY_SIZE (Cmds); i++) {
+    Data = Type = Ack = 0;
+    Status = DsiCtrlReadDcs (Cmds[i], &Data, &Type, &Ack);
+    DEBUG ((
+      DEBUG_ERROR, "RD: read %02x: %r data=%08x type=%08x ack=%08x\n",
+      Cmds[i], Status, Data, Type, Ack));
+  }
+
+  return EFI_SUCCESS;
+}
+
+//
+// The vendor driver sends Display On (qcom,mdss-dsi-post-panel-on-command, HS
+// mode) only after the first frame has been kicked off, so the panel never
+// shows stale GRAM content.
+//
+EFI_STATUS
+PanelDisplayOn (VOID)
+{
+  EFI_STATUS Status;
+
+  Status = DsiCtrlSendPacket (0x05, (CONST UINT8[]){0x29}, 1, FALSE);
+#if RIGHT_DISPLAY_MAX_BRIGHTNESS
+  // Bisection: a dim or off backlight/OLED level looks like a black panel
+  if (!EFI_ERROR (Status)) {
+    Status = DsiCtrlSendPacket (0x39, (CONST UINT8[]){0x51, 0x0F, 0xFF}, 3, FALSE);
+  }
+#endif
+#if RIGHT_DISPLAY_ALL_PIXELS_ON
+  // Bisection: DCS enter-all-pixels-on; white means the panel can emit light
+  if (!EFI_ERROR (Status)) {
+    Status = DsiCtrlSendPacket (0x05, (CONST UINT8[]){0x23}, 1, FALSE);
+  }
+#endif
+  return Status;
+}

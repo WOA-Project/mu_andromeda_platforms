@@ -81,6 +81,9 @@ READ_LOCK_STATUS   = TRUE
   !include QcomPkg/Include/APRIORI.inc
   !include QcomPkg/Include/DXE.inc
 
+  # Right display (DSI1)
+  INF SurfaceDuo2Pkg/Driver/RightDisplayDxe/RightDisplayDxe.inf
+
   # Secure Boot Key Enroll
   INF AndromedaPkg/Driver/SecureBootProvisioningDxe/SecureBootProvisioningDxe.inf
 

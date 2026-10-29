@@ -1,0 +1,58 @@
+# RightDisplayDxe.inf: Surface Duo 2 right display (DSI1) bring-up and GOP.
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = RightDisplayDxe
+  FILE_GUID                      = 8f2c6d3a-4b71-4e0a-9d85-6a1c3e7b52f4
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = RightDisplayDxeInitialize
+
+[Sources.common]
+  RightDisplayDxe.c
+  RightDisplayDxe.h
+  Tlmm.c
+  Power.c
+  DispCc.c
+  DsiPhy.c
+  DsiCtrl.c
+  Dpu.c
+  Panel.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  EmbeddedPkg/EmbeddedPkg.dec
+  ArmPkg/ArmPkg.dec
+  AndromedaPkg/AndromedaPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  BaseMemoryLib
+  DebugLib
+  IoLib
+  UefiLib
+  UefiBootServicesTableLib
+  UefiDriverEntryPoint
+  MemoryAllocationLib
+  FrameBufferBltLib
+  PcdLib
+  CacheMaintenanceLib
+  PlatformHwioLib
+
+[Protocols]
+  gEfiGraphicsOutputProtocolGuid ## PRODUCES
+  gEfiDevicePathProtocolGuid     ## PRODUCES
+  gEfiCpuArchProtocolGuid
+  gQcomPmicVregProtocolGuid
+  gQcomPmicClkBuffProtocolGuid
+
+[FixedPcd]
+  gAndromedaPkgTokenSpaceGuid.PcdMipiFrameBufferWidth
+  gAndromedaPkgTokenSpaceGuid.PcdMipiFrameBufferHeight
+  gAndromedaPkgTokenSpaceGuid.PcdMipiFrameBufferPixelBpp
+
+[Depex]
+  gEfiCpuArchProtocolGuid AND
+  gQcomPmicVregProtocolGuid AND
+  gQcomPmicClkBuffProtocolGuid
