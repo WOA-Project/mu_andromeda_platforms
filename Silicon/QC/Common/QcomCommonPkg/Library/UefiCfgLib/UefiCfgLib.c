@@ -13,14 +13,31 @@
 #include <Library/ShLib.h>
 #include <Library/UefiCfgLib.h>
 
+ShLibLoaderType *ShLib = NULL;
+UefiCfgLibType *gUefiCfgLib = NULL;
+
 EFI_STATUS EFIAPI GetUefiCfgLib(UefiCfgLibType** UefiCfgLib)
 {
-  ShLibLoaderType *ShLib;
+  EFI_STATUS Status = EFI_SUCCESS;
 
-  ShLib = GetEfiShLibHob();
-  if (ShLib == NULL) {
-    return EFI_NOT_READY;
+  if (UefiCfgLib == NULL) {
+    return EFI_COMPROMISED_DATA;
   }
 
-  return ShLib->LoadLib("UEFI Config Lib", 0, (VOID *)UefiCfgLib);
+  if (ShLib == NULL) {
+    ShLib = GetEfiShLibHob();
+    
+    if (ShLib == NULL) {
+      return EFI_NOT_READY;
+    }
+  }
+
+  if (gUefiCfgLib == NULL) {
+    Status = ShLib->LoadLib("UEFI Config Lib", 0, (VOID **)&gUefiCfgLib);
+    if (EFI_SUCCESS(Status)) {
+      *UefiCfgLib = gUefiCfgLib;
+    }
+  }
+
+  return Status;
 }

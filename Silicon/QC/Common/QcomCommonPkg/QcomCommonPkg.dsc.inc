@@ -10,8 +10,11 @@
 ##
 
 [LibraryClasses.common]
-  QcomUefiCfgConfigParametersHelperLib|QcomCommonPkg/Library/QcomUefiCfgConfigParametersHelperLib/QcomUefiCfgConfigParametersHelperLib.inf
-  QcomUefiCfgMemoryMapHelperLib|QcomCommonPkg/Library/QcomUefiCfgMemoryMapHelperLib/QcomUefiCfgMemoryMapHelperLib.inf
+  #QcomUefiCfgConfigParametersHelperLib|QcomCommonPkg/Library/QcomUefiCfgConfigParametersHelperLib/QcomUefiCfgConfigParametersHelperLib.inf
+  #QcomUefiCfgMemoryMapHelperLib|QcomCommonPkg/Library/QcomUefiCfgMemoryMapHelperLib/QcomUefiCfgMemoryMapHelperLib.inf
+  QcomUefiCfgConfigParametersHelperLib|QcomCommonPkg/Library/QcomUefiPlatConfigParametersHelperLib/QcomUefiPlatConfigParametersHelperLib.inf
+  QcomUefiCfgMemoryMapHelperLib|QcomCommonPkg/Library/QcomUefiPlatMemoryMapHelperLib/QcomUefiPlatMemoryMapHelperLib.inf
+
   QcomUefiPlatMemoryMapLib|QcomCommonPkg/Library/QcomUefiPlatMemoryMapLib/QcomUefiPlatMemoryMapLib.inf
   ShLib|QcomCommonPkg/Library/ShLib/ShLib.inf
   UefiCfgLib|QcomCommonPkg/Library/UefiCfgLib/UefiCfgLib.inf
