@@ -25,7 +25,7 @@
   SKUID_IDENTIFIER               = DEFAULT
   FLASH_DEFINITION               = SurfaceDuo2Pkg/SurfaceDuo2.fdf
   USE_PHYSICAL_TIMER             = 0
-  USE_SCREEN_FOR_SERIAL_OUTPUT   = 1
+  USE_SCREEN_FOR_SERIAL_OUTPUT   = 0
   USE_MEMORY_FOR_SERIAL_OUTPUT   = 0
 
   DEFAULT_KEYS                   = TRUE
