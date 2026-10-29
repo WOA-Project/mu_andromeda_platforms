@@ -37,7 +37,8 @@ class CommonPlatform:
         "Features/DFCI",
         "Features/CONFIG",
         "Binaries",
-        "Silicon/QC/Sm8150"
+        "Silicon/QC/Sm8150",
+        "Silicon/QC/Common"
     )
 
     # ####################################################################################### #

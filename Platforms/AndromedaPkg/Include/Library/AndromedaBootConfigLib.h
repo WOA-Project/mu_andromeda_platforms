@@ -84,6 +84,26 @@ GetAndromedaBootConfigUint64 (
   );
 
 /**
+  Get an unsigned decimal or hexadecimal integer that fits in UINT32.
+
+  @param[in]  Section  Section name, without brackets.
+  @param[in]  Key      Key name.
+  @param[out] Value    Parsed integer.
+
+  @retval EFI_SUCCESS           Value was found and parsed.
+  @retval EFI_INVALID_PARAMETER A required parameter is NULL.
+  @retval EFI_NOT_FOUND         No config HOB or matching key was found.
+  @retval EFI_COMPROMISED_DATA  Value is invalid or exceeds UINT32 range.
+**/
+EFI_STATUS
+EFIAPI
+GetAndromedaBootConfigUint32 (
+  IN  CONST CHAR8  *Section,
+  IN  CONST CHAR8  *Key,
+  OUT UINT32       *Value
+  );
+
+/**
   Get a non-comment data entry from a section by its zero-based index.
 
   This supports both key/value entries and record-oriented sections such as

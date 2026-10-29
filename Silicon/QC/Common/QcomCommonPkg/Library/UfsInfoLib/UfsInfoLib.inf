@@ -16,6 +16,7 @@
 [Packages]
   MdePkg/MdePkg.dec
   AndromedaPkg/AndromedaPkg.dec
+  QcomCommonPkg/QcomCommonPkg.dec
 
 [LibraryClasses]
   IoLib

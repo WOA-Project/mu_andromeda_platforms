@@ -44,7 +44,7 @@
   BaseCryptLib
   PlatformSecureLib
   VariablePolicyLib
-  AndromedaBootConfigLib
+  AndromedaUefiConfigHelperLib
   UefiRuntimeLib
 
 # MU_CHANGE [BEGIN] - TCBZ2506

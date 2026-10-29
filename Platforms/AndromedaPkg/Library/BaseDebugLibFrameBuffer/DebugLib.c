@@ -20,7 +20,7 @@
 #include <Library/BaseMemoryLib.h>
 #include <Library/CacheMaintenanceLib.h>
 #include <Library/DebugPrintErrorLevelLib.h>
-#include <Library/QcomMemoryMapHelperLib.h>
+#include <Library/PlatformHwioLib.h>
 
 #include <Library/BaseDebugLibFrameBuffer.h>
 
@@ -77,7 +77,7 @@ BaseDebugLibFrameBufferConstructor (
   if (m_Initialized)
     return RETURN_SUCCESS;
 
-  QcomLocateMemoryMapAreaByName("Display Reserved", &DisplayMemoryRegion);
+  GetPlatformDisplayFrameBuffer(&DisplayMemoryRegion);
   p_Position = (FBCON_POSITION*)(DisplayMemoryRegion.Address + (FixedPcdGet32(PcdMipiFrameBufferWidth) * FixedPcdGet32(PcdMipiFrameBufferHeight) * FixedPcdGet32(PcdMipiFrameBufferPixelBpp) / 8));
 
   // Reset console

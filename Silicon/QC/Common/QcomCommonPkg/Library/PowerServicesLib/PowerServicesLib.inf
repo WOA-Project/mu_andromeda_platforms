@@ -27,6 +27,7 @@
   PcBdsPkg/PcBdsPkg.dec
   AndromedaPkg/AndromedaPkg.dec
   QcomModulePkg/QcomModulePkg.dec
+  QcomCommonPkg/QcomCommonPkg.dec
 
 [LibraryClasses]
   DebugLib

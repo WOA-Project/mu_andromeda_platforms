@@ -72,6 +72,7 @@
   gEfiMdeModulePkgTokenSpaceGuid.PcdConOutColumn|168 # 168 = 1344 / EFI_GLYPH_WIDTH(8)
   gEfiMdeModulePkgTokenSpaceGuid.PcdConOutRow|99 # 99.57 = 1892 / EFI_GLYPH_HEIGHT(19)
 
+!include QcomCommonPkg/QcomCommonPkg.dsc.inc
 !include QcomPkg/QcomPkg.dsc.inc
 !include AndromedaPkg/Andromeda.dsc.inc
 !include AndromedaPkg/Frontpage.dsc.inc

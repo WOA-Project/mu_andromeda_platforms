@@ -420,6 +420,34 @@ GetAndromedaBootConfigUint64 (
 
 EFI_STATUS
 EFIAPI
+GetAndromedaBootConfigUint32 (
+  IN  CONST CHAR8  *Section,
+  IN  CONST CHAR8  *Key,
+  OUT UINT32       *Value
+  )
+{
+  EFI_STATUS  Status;
+  UINT64      ParsedValue;
+
+  if (Value == NULL) {
+    return EFI_INVALID_PARAMETER;
+  }
+
+  Status = GetAndromedaBootConfigUint64 (Section, Key, &ParsedValue);
+  if (EFI_ERROR (Status)) {
+    return Status;
+  }
+
+  if (ParsedValue > MAX_UINT32) {
+    return EFI_COMPROMISED_DATA;
+  }
+
+  *Value = (UINT32)ParsedValue;
+  return EFI_SUCCESS;
+}
+
+EFI_STATUS
+EFIAPI
 GetAndromedaBootConfigSectionEntry (
   IN      CONST CHAR8  *Section,
   IN      UINTN         EntryIndex,

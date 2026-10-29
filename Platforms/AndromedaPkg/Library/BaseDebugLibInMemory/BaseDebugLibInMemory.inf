@@ -38,7 +38,7 @@
   PrintLib
   BaseLib
   DebugPrintErrorLevelLib
-  QcomMemoryMapHelperLib
+  PlatformHwioLib
 
 [Pcd]
   gEfiMdePkgTokenSpaceGuid.PcdDebugClearMemoryValue  ## SOMETIMES_CONSUMES

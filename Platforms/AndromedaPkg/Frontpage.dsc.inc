@@ -78,10 +78,6 @@
   #
   ThermalServicesLib|PcBdsPkg/Library/ThermalServicesLibNull/ThermalServicesLibNull.inf
   #
-  # Null Power Services Library class to support Platforms that dont have battery
-  #
-  PowerServicesLib|AndromedaPkg/Library/PowerServicesLib/PowerServicesLib.inf
-  #
   # Empty Platform Library of power check.
   #
   MsPlatformPowerCheckLib|PcBdsPkg/Library/MsPlatformPowerCheckLibNull/MsPlatformPowerCheckLibNull.inf

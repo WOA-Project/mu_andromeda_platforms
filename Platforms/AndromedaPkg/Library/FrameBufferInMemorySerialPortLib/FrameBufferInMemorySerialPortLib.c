@@ -11,7 +11,7 @@
 #include <Library/BaseLib.h>
 #include <Library/CacheMaintenanceLib.h>
 #include <Library/HobLib.h>
-#include <Library/QcomMemoryMapHelperLib.h>
+#include <Library/PlatformHwioLib.h>
 #include <Library/SerialPortLib.h>
 
 #include <Resources/FbColor.h>
@@ -51,7 +51,7 @@ SerialPortInitialize(VOID)
   if (m_Initialized)
     return RETURN_SUCCESS;
 
-  QcomLocateMemoryMapAreaByName("Display Reserved", &DisplayMemoryRegion);
+  GetPlatformDisplayFrameBuffer(&DisplayMemoryRegion);
   p_Position = (FBCON_POSITION*)(DisplayMemoryRegion.Address + (FixedPcdGet32(PcdMipiFrameBufferWidth) * FixedPcdGet32(PcdMipiFrameBufferHeight) * FixedPcdGet32(PcdMipiFrameBufferPixelBpp) / 8));
 
   // Reset console
@@ -60,7 +60,7 @@ SerialPortInitialize(VOID)
   // Set flag
   m_Initialized = TRUE;
 
-  return QcomLocateMemoryMapAreaByName("PStore", &PStore);
+  return GetPlatformPStore(&PStore);
 }
 
 void ResetFb(void)

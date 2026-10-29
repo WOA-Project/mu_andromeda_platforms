@@ -24,13 +24,14 @@
   MdeModulePkg/MdeModulePkg.dec
   EmbeddedPkg/EmbeddedPkg.dec
   AndromedaPkg/AndromedaPkg.dec
+  QcomCommonPkg/QcomCommonPkg.dec
   QcomPkg/QcomPkg.dec
 
 [LibraryClasses]
   ArmLib
   ArmMmuLib
   BaseLib
-  AndromedaBootConfigLib
+  QcomConfigParametersHelperLib
   DebugLib
   HobLib
   IoLib

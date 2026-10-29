@@ -10,7 +10,7 @@
 #include <Library/ArmLib.h>
 #include <Library/CacheMaintenanceLib.h>
 #include <Library/HobLib.h>
-#include <Library/QcomMemoryMapHelperLib.h>
+#include <Library/PlatformHwioLib.h>
 #include <Library/SerialPortLib.h>
 
 #include <Resources/FbColor.h>
@@ -49,7 +49,7 @@ SerialPortInitialize(VOID)
   if (m_Initialized)
     return RETURN_SUCCESS;
 
-  EFI_STATUS Status = QcomLocateMemoryMapAreaByName("Display Reserved", &DisplayMemoryRegion);
+  EFI_STATUS Status = GetPlatformDisplayFrameBuffer(&DisplayMemoryRegion);
   if (EFI_ERROR(Status)) {
     return Status;
   }

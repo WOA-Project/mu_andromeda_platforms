@@ -22,7 +22,7 @@
 
 #include "PrePi.h"
 
-#include <Library/QcomMemoryMapHelperLib.h>
+#include <Library/PlatformHwioLib.h>
 
 #include <Guid/DxeMemoryProtectionSettings.h>
 #include <Guid/MmMemoryProtectionSettings.h>
@@ -109,13 +109,13 @@ PrePiMain (
     DEBUG ((DEBUG_ERROR, "Unable to initialize boot configuration buffer: %r\n", Status));
   }
 
-  Status = QcomLocateMemoryMapAreaByName("DXE Heap", &DxeHeap);
+  Status = GetPlatformDXEHeap(&DxeHeap);
   ASSERT_EFI_ERROR (Status);
 
-  Status = QcomLocateMemoryMapAreaByName("UEFI Stack", &UefiStack);
+  Status = GetPlatformUEFIStack(&UefiStack);
   ASSERT_EFI_ERROR (Status);
 
-  Status = QcomLocateMemoryMapAreaByName("UEFI FD", &UefiFd);
+  Status = GetPlatformUEFIFD(&UefiFd);
   ASSERT_EFI_ERROR (Status);
 
   // Declare UEFI region
@@ -275,7 +275,7 @@ CEntryPoint ()
     }
   }
 
-  Status = QcomLocateMemoryMapAreaByName("UEFI FD", &UefiFd);
+  Status = GetPlatformUEFIFD(&UefiFd);
   ASSERT_EFI_ERROR (Status);
 
   InvalidateDataCacheRange (

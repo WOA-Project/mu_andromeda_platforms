@@ -10,7 +10,10 @@
   PlatformUtils.c
 
 [Packages]
+  ArmPkg/ArmPkg.dec
   MdePkg/MdePkg.dec
+  QcomCommonPkg/QcomCommonPkg.dec
+  QcomPkg/QcomPkg.dec
   AndromedaPkg/AndromedaPkg.dec
 
 [LibraryClasses]

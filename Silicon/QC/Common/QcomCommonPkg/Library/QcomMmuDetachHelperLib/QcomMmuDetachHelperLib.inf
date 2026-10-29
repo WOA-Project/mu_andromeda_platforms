@@ -12,6 +12,7 @@
 [Packages]
   MdePkg/MdePkg.dec
   AndromedaPkg/AndromedaPkg.dec
+  QcomCommonPkg/QcomCommonPkg.dec
 
 [LibraryClasses]
   BaseLib
@@ -20,4 +21,4 @@
   QcomMemoryMapHelperLib
 
 [FixedPcd]
-  gAndromedaPkgTokenSpaceGuid.PcdSMMUSIDsToKeep  # CONSUMES
+  gQcomCommonPkgTokenSpaceGuid.PcdSMMUSIDsToKeep  # CONSUMES

@@ -11,7 +11,7 @@
 #include <Library/PcdLib.h>
 #include <Library/SerialPortLib.h>
 
-#include <Library/QcomMemoryMapHelperLib.h>
+#include <Library/PlatformHwioLib.h>
 #include <Library/PlatformPrePiLib.h>
 
 #include "InitializationUtils.h"
@@ -20,7 +20,7 @@ VOID InitializeSharedUartBuffers(VOID)
 {
 #if USE_SCREEN_FOR_SERIAL_OUTPUT == 1
   ARM_MEMORY_REGION_DESCRIPTOR_EX DisplayMemoryRegion;
-  QcomLocateMemoryMapAreaByName("Display Reserved", &DisplayMemoryRegion);
+  GetPlatformDisplayFrameBuffer(&DisplayMemoryRegion);
 
   // Setup Position counter
   INTN *pFbConPosition =
@@ -33,7 +33,7 @@ VOID InitializeSharedUartBuffers(VOID)
 
 #if USE_MEMORY_FOR_SERIAL_OUTPUT == 1
   ARM_MEMORY_REGION_DESCRIPTOR_EX PStoreMemoryRegion;
-  QcomLocateMemoryMapAreaByName("PStore", &PStoreMemoryRegion);
+  GetPlatformPStore(&PStoreMemoryRegion);
 
   // Clear PStore area
   UINT8 *base = (UINT8 *)PStoreMemoryRegion.Address;

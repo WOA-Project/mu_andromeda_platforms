@@ -16,7 +16,7 @@ SPDX-License-Identifier: BSD-2-Clause-Patent
 #include <Library/BaseLib.h>
 #include <Library/BaseMemoryLib.h>
 #include <Library/MsWheaEarlyStorageLib.h>
-#include <Library/QcomMemoryMapHelperLib.h>
+#include <Library/PlatformHwioLib.h>
 
 ARM_MEMORY_REGION_DESCRIPTOR_EX LogBuffer;
 
@@ -60,7 +60,7 @@ __MsWheaCMOSRawRead (
   }
 
   if (LogBuffer.Address == 0) {
-    QcomLocateMemoryMapAreaByName("Log Buffer", &LogBuffer);
+    GetPlatformLogBuffer(&LogBuffer);
   }
 
   if (LogBuffer.Address == 0) {

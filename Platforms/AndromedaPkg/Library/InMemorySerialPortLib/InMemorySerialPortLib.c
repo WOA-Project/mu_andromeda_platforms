@@ -17,7 +17,7 @@ be found at http://opensource.org/licenses/bsd-license.php.
 #include <Library/BaseLib.h>
 #include <Library/CacheMaintenanceLib.h>
 #include <Library/SerialPortLib.h>
-#include <Library/QcomMemoryMapHelperLib.h>
+#include <Library/PlatformHwioLib.h>
 
 ARM_MEMORY_REGION_DESCRIPTOR_EX PStore;
 
@@ -37,7 +37,7 @@ RETURN_STATUS
 EFIAPI
 SerialPortInitialize(VOID)
 {
-  return QcomLocateMemoryMapAreaByName("PStore", &PStore);
+  return GetPlatformPStore(&PStore);
 }
 
 static void mem_putchar(UINT8 c)

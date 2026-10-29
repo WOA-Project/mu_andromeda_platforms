@@ -30,6 +30,7 @@
   MdePkg/MdePkg.dec
   MdeModulePkg/MdeModulePkg.dec
   AndromedaPkg/AndromedaPkg.dec
+  QcomCommonPkg/QcomCommonPkg.dec
 
 [LibraryClasses]
   ArmLib
@@ -40,5 +41,5 @@
   CacheMaintenanceLib
 
 [FixedPcd]
-  gAndromedaPkgTokenSpaceGuid.PcdUartSerialBase
+  gQcomCommonPkgTokenSpaceGuid.PcdUartSerialBase
   gEfiMdePkgTokenSpaceGuid.PcdUartDefaultBaudRate

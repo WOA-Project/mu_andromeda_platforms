@@ -102,7 +102,7 @@ READ_LOCK_STATUS   = TRUE
   # ACPI and SMBIOS
   INF MdeModulePkg/Universal/Acpi/AcpiTableDxe/AcpiTableDxe.inf
   INF MdeModulePkg/Universal/Acpi/AcpiPlatformDxe/AcpiPlatformDxe.inf
-  INF AndromedaPkg/Driver/SmBiosTableDxe/SmBiosTableDxe.inf
+  INF QcomCommonPkg/Driver/SmBiosTableDxe/SmBiosTableDxe.inf
 
   # ACPI Tables
   INF RuleOverride=ACPITABLE SurfaceDuo2Pkg/AcpiTables/AcpiTables.inf
