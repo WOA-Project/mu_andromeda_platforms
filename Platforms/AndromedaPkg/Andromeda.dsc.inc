@@ -197,7 +197,7 @@
   MemoryInitPeiLib|AndromedaPkg/MemoryInitPei/MemoryInitPeiLib.inf
   AndromedaBootConfigLib|AndromedaPkg/Library/AndromedaBootConfigLib/AndromedaBootConfigLib.inf
   AndromedaUefiConfigHelperLib|AndromedaPkg/Library/AndromedaUefiConfigHelperLib/AndromedaUefiConfigHelperLib.inf
-  PlatformMemoryMapConfigLib|AndromedaPkg/Library/PlatformMemoryMapConfigLib/PlatformMemoryMapConfigLib.inf
+  QcomUefiPlatMemoryMapLib|QcomCommonPkg/Library/QcomUefiPlatMemoryMapLib/QcomUefiPlatMemoryMapLib.inf
 
   # ARM PL031 RTC Driver
   RealTimeClockLib|AndromedaPkg/Library/VirtualRealTimeClockLib/VirtualRealTimeClockLib.inf

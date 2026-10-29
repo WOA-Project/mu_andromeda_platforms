@@ -9,7 +9,7 @@
 #include <Library/BaseLib.h>
 #include <Library/DebugLib.h>
 #include <Library/PlatformMemoryMapLib.h>
-#include <Library/PlatformMemoryMapConfigLib.h>
+#include <Library/QcomUefiPlatMemoryMapLib.h>
 
 STATIC ARM_MEMORY_REGION_DESCRIPTOR_EX
     gDeviceMemoryDescriptorEx[MAX_ARM_MEMORY_REGION_DESCRIPTOR_COUNT];

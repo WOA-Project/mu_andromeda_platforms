@@ -6,8 +6,8 @@
   SPDX-License-Identifier: MIT
 **/
 
-#ifndef PLATFORM_MEMORY_MAP_CONFIG_LIB_H_
-#define PLATFORM_MEMORY_MAP_CONFIG_LIB_H_
+#ifndef QCOM_MEMORY_MAP_CONFIG_LIB_H_
+#define QCOM_MEMORY_MAP_CONFIG_LIB_H_
 
 #include <Library/PlatformDdrBankMapLib.h>
 #include <Library/PlatformMemoryMapLib.h>

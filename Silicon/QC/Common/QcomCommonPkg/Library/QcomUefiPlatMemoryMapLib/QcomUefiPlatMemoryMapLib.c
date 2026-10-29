@@ -10,7 +10,7 @@
 #include <Library/BaseLib.h>
 #include <Library/BaseMemoryLib.h>
 #include <Library/DebugLib.h>
-#include <Library/PlatformMemoryMapConfigLib.h>
+#include <Library/QcomUefiPlatMemoryMapLib.h>
 
 STATIC
 CHAR8 *

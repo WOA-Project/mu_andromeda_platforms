@@ -15,10 +15,11 @@
   MdeModulePkg/MdeModulePkg.dec
   EmbeddedPkg/EmbeddedPkg.dec
   AndromedaPkg/AndromedaPkg.dec
+  QcomCommonPkg/QcomCommonPkg.dec
 
 [LibraryClasses]
   BaseLib
   BaseMemoryLib
   DebugLib
-  PlatformMemoryMapConfigLib
+  QcomUefiPlatMemoryMapLib
   PlatformDdrBankMapLib
