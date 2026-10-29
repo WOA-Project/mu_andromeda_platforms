@@ -10,13 +10,6 @@
 ##
 
 [LibraryClasses.common]
-  #
-  # Null Power Services Library class to support Platforms that dont have battery
-  #
-  PowerServicesLib|QcomCommonPkg/Library/PowerServicesLib/PowerServicesLib.inf
-
-  ConsoleMsgLib|QcomCommonPkg/Library/ConsoleMsgLib/ConsoleMsgLib.inf
-  PlatformHwioLib|QcomCommonPkg/Library/PlatformHwioLib/PlatformHwioLib.inf
   QcomUefiCfgConfigParametersHelperLib|QcomCommonPkg/Library/QcomUefiPlatConfigParametersHelperLib/QcomUefiPlatConfigParametersHelperLib.inf
   QcomUefiCfgMemoryMapHelperLib|QcomCommonPkg/Library/QcomUefiPlatMemoryMapHelperLib/QcomUefiPlatMemoryMapHelperLib.inf
   ShLib|QcomCommonPkg/Library/ShLib/ShLib.inf
