@@ -34,7 +34,7 @@
   UefiLib
   AslUpdateLib
   RFSProtectionLib
-  QcomMemoryMapHelperLib
+  QcomUefiCfgMemoryMapHelperLib
   UfsInfoLib
 
 [Protocols]

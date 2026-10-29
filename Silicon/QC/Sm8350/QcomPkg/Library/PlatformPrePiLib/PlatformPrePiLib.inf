@@ -18,9 +18,9 @@
 
 [LibraryClasses]
   BaseLib
-  QcomConfigParametersHelperLib
+  QcomUefiCfgConfigParametersHelperLib
   IoLib
-  QcomMemoryMapHelperLib
+  QcomUefiCfgMemoryMapHelperLib
   QcomMmuDetachHelperLib
 
 [FixedPcd]

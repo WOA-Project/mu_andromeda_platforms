@@ -19,5 +19,5 @@
 [LibraryClasses]
   BaseLib
   IoLib
-  QcomMemoryMapHelperLib
+  QcomUefiCfgMemoryMapHelperLib
   QcomMmuDetachHelperLib

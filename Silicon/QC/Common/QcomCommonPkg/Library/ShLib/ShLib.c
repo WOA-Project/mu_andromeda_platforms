@@ -12,10 +12,16 @@
 #include <Library/PlatformHobs.h>
 #include <Library/ShLib.h>
 
+ShLibLoaderType *ShLib = NULL;
+
 ShLibLoaderType EFIAPI *GetEfiShLibHob()
 {
+  if (ShLib != NULL) {
+    return ShLib;
+  }
+
   EFI_HOB_GUID_TYPE *GuidHob;
-  UINT32           **ShLib;
+  UINT32            *ShLib;
 
   GUID gEfiShLibHobGuid = EFI_SHIM_LIBRARY_GUID;
   GuidHob               = GetFirstGuidHob(&gEfiShLibHobGuid);
@@ -24,7 +30,7 @@ ShLibLoaderType EFIAPI *GetEfiShLibHob()
     return NULL;
   }
 
-  ShLib = GET_GUID_HOB_DATA(GuidHob);
+  ShLib = (ShLibLoaderType *)GET_GUID_HOB_DATA(GuidHob);
 
-  return (ShLibLoaderType *)*ShLib;
+  return ShLib;
 }

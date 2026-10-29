@@ -10,7 +10,7 @@
 
 #include <Configuration/XblHlosHob.h>
 #include <Library/BaseLib.h>
-#include <Library/QcomMemoryMapHelperLib.h>
+#include <Library/QcomUefiCfgMemoryMapHelperLib.h>
 #include <Library/PlatformHobLib.h>
 
 CHAR8 *PlatformSubTypeSkuString[] = {

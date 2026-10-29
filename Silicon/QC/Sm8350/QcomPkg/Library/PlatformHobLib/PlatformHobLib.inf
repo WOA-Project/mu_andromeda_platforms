@@ -20,4 +20,4 @@
 
 [LibraryClasses]
   BaseLib
-  QcomMemoryMapHelperLib
+  QcomUefiCfgMemoryMapHelperLib
