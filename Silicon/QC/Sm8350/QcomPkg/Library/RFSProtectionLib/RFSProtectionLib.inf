@@ -30,7 +30,7 @@
   MemoryAllocationLib
   DevicePathLib
   UefiBootServicesTableLib
-  QcomUefiCfgMemoryMapHelperLib
+  QcomMemoryMapHelperLib
 
 [Protocols]
   gEfiGraphicsOutputProtocolGuid

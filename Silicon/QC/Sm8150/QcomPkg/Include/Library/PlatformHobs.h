@@ -8,7 +8,7 @@
 #ifndef _PLATFORM_HOBS_H_
 #define _PLATFORM_HOBS_H_
 
-#include <Library/AndromedaMemoryMapLib.h>
+#include <Library/PlatformMemoryMapLib.h>
 #include <Protocol/SerialIo.h>
 
 typedef EFI_STATUS (*GET_CONFIG_STRING)(

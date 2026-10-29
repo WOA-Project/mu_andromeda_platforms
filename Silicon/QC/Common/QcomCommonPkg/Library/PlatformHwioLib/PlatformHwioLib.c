@@ -10,7 +10,7 @@
 #include <Library/BaseLib.h>
 #include <Library/HobLib.h>
 #include <Library/PlatformHobs.h>
-#include <Library/QcomUefiCfgMemoryMapHelperLib.h>
+#include <Library/QcomMemoryMapHelperLib.h>
 
 EFI_STATUS EFIAPI GetPlatformDisplayFrameBuffer(ARM_MEMORY_REGION_DESCRIPTOR_EX *MemoryDescriptor)
 {

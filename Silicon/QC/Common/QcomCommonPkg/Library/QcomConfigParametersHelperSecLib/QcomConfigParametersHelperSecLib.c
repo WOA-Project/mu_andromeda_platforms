@@ -4,7 +4,7 @@
 
 #include <Guid/AndromedaBootConfig.h>
 #include <Library/AndromedaBootConfigLib.h>
-#include <Library/QcomUefiCfgConfigParametersHelperLib.h>
+#include <Library/QcomConfigParametersHelperLib.h>
 
 EFI_STATUS EFIAPI QcomLocateConfigurationMapStringByName(CHAR8 *Key, CHAR8 *Value, UINTN *ValBuffSize)
 {

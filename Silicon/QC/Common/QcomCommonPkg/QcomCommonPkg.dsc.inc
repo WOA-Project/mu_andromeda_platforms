@@ -10,19 +10,22 @@
 ##
 
 [LibraryClasses.common]
-  #QcomUefiCfgConfigParametersHelperLib|QcomCommonPkg/Library/QcomUefiCfgConfigParametersHelperLib/QcomUefiCfgConfigParametersHelperLib.inf
-  #QcomUefiCfgMemoryMapHelperLib|QcomCommonPkg/Library/QcomUefiCfgMemoryMapHelperLib/QcomUefiCfgMemoryMapHelperLib.inf
-  QcomUefiCfgConfigParametersHelperLib|QcomCommonPkg/Library/QcomUefiPlatConfigParametersHelperLib/QcomUefiPlatConfigParametersHelperLib.inf
-  QcomUefiCfgMemoryMapHelperLib|QcomCommonPkg/Library/QcomUefiPlatMemoryMapHelperLib/QcomUefiPlatMemoryMapHelperLib.inf
+  #
+  # Null Power Services Library class to support Platforms that dont have battery
+  #
+  PowerServicesLib|QcomCommonPkg/Library/PowerServicesLib/PowerServicesLib.inf
 
-  QcomUefiPlatMemoryMapLib|QcomCommonPkg/Library/QcomUefiPlatMemoryMapLib/QcomUefiPlatMemoryMapLib.inf
+  ConsoleMsgLib|QcomCommonPkg/Library/ConsoleMsgLib/ConsoleMsgLib.inf
+  PlatformHwioLib|QcomCommonPkg/Library/PlatformHwioLib/PlatformHwioLib.inf
+  QcomConfigParametersHelperLib|QcomCommonPkg/Library/QcomConfigParametersHelperLib/QcomConfigParametersHelperLib.inf
+  QcomMemoryMapHelperLib|QcomCommonPkg/Library/QcomMemoryMapHelperSecLib/QcomMemoryMapHelperSecLib.inf
   ShLib|QcomCommonPkg/Library/ShLib/ShLib.inf
   UefiCfgLib|QcomCommonPkg/Library/UefiCfgLib/UefiCfgLib.inf
   UfsInfoLib|QcomCommonPkg/Library/UfsInfoLib/UfsInfoLib.inf
 
 [LibraryClasses.common.SEC]
-  QcomUefiCfgConfigParametersHelperLib|QcomCommonPkg/Library/QcomUefiPlatConfigParametersHelperLib/QcomUefiPlatConfigParametersHelperLib.inf
-  QcomUefiCfgMemoryMapHelperLib|QcomCommonPkg/Library/QcomUefiPlatMemoryMapHelperLib/QcomUefiPlatMemoryMapHelperLib.inf
+  QcomConfigParametersHelperLib|QcomCommonPkg/Library/QcomConfigParametersHelperSecLib/QcomConfigParametersHelperSecLib.inf
+  QcomMemoryMapHelperLib|QcomCommonPkg/Library/QcomMemoryMapHelperSecLib/QcomMemoryMapHelperSecLib.inf
 
 [Components.common]
   # ACPI and SMBIOS

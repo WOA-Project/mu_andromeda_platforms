@@ -13,7 +13,7 @@
 #include <Library/HobLib.h>
 #include <Library/MemoryAllocationLib.h>
 #include <Library/PcdLib.h>
-#include <Library/QcomUefiCfgConfigParametersHelperLib.h>
+#include <Library/QcomConfigParametersHelperLib.h>
 #include "PlatformPeiLibInternal.h"
 
 STATIC

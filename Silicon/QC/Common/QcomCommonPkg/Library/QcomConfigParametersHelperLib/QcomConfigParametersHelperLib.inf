@@ -1,13 +1,13 @@
 [Defines]
   INF_VERSION                    = 0x00010005
-  BASE_NAME                      = QcomUefiCfgConfigParametersHelperLib
+  BASE_NAME                      = QcomConfigParametersHelperLib
   FILE_GUID                      = 436581EC-3D82-4AAD-B93C-656184C773B8
   MODULE_TYPE                    = BASE
   VERSION_STRING                 = 1.0
-  LIBRARY_CLASS                  = QcomUefiCfgConfigParametersHelperLib
+  LIBRARY_CLASS                  = QcomConfigParametersHelperLib
 
 [Sources]
-  QcomUefiCfgConfigParametersHelperLib.c
+  QcomConfigParametersHelperLib.c
 
 [Packages]
   ArmPkg/ArmPkg.dec

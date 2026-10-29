@@ -85,7 +85,7 @@
 #include "libfdt.h"
 #include <ufdt_overlay.h>
 
-#include <Library/QcomUefiCfgMemoryMapHelperLib.h>
+#include <Library/QcomMemoryMapHelperLib.h>
 
 STATIC QCOM_SCM_MODE_SWITCH_PROTOCOL *pQcomScmModeSwitchProtocol = NULL;
 STATIC BOOLEAN BootDevImage;

@@ -14,7 +14,7 @@
 
 #include <Library/BaseLib.h>
 #include <Library/IoLib.h>
-#include <Library/QcomUefiCfgMemoryMapHelperLib.h>
+#include <Library/QcomMemoryMapHelperLib.h>
 #include <Library/TimerLib.h>
 
 // ============================================================================

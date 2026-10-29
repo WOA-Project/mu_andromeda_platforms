@@ -24,6 +24,6 @@
   UefiLib
   DebugLib
   BaseMemoryLib
-  QcomUefiCfgMemoryMapHelperLib
+  QcomMemoryMapHelperLib
   CacheMaintenanceLib
   UefiBootServicesTableLib

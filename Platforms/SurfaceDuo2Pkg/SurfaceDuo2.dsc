@@ -74,7 +74,6 @@
 
 !include QcomCommonPkg/QcomCommonPkg.dsc.inc
 !include QcomPkg/QcomPkg.dsc.inc
-!include QcomPlatformPkg/QcomPlatformPkg.dsc.inc
 !include AndromedaPkg/Andromeda.dsc.inc
 !include AndromedaPkg/Frontpage.dsc.inc
 

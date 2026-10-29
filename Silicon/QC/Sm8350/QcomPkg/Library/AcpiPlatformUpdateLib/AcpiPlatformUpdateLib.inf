@@ -34,7 +34,7 @@
   UefiLib
   AslUpdateLib
   RFSProtectionLib
-  QcomUefiCfgMemoryMapHelperLib
+  QcomMemoryMapHelperLib
 
 [Protocols]
   gEfiChipInfoProtocolGuid                      ## CONSUMES

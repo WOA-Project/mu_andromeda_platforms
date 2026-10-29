@@ -6,8 +6,8 @@
 
 **/
 #include <Library/BaseLib.h>
-#include <Library/QcomUefiCfgMemoryMapHelperLib.h>
-#include <Library/AndromedaMemoryMapLib.h>
+#include <Library/QcomMemoryMapHelperLib.h>
+#include <Library/PlatformMemoryMapLib.h>
 
 EFI_STATUS EFIAPI QcomLocateMemoryMapAreaByName(
     CHAR8 *MemoryMapAreaName, ARM_MEMORY_REGION_DESCRIPTOR_EX *MemoryDescriptor)

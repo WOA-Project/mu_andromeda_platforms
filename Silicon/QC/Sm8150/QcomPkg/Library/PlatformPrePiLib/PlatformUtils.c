@@ -8,7 +8,7 @@
 #include <PiPei.h>
 
 #include <Library/IoLib.h>
-#include <Library/QcomUefiCfgMemoryMapHelperLib.h>
+#include <Library/QcomMemoryMapHelperLib.h>
 #include <Library/PlatformPrePiLib.h>
 #include <Library/QcomMmuDetachHelperLib.h>
 

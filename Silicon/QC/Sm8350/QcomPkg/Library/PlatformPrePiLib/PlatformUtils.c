@@ -7,7 +7,7 @@
 **/
 #include <PiPei.h>
 
-#include <Library/QcomUefiCfgConfigParametersHelperLib.h>
+#include <Library/QcomConfigParametersHelperLib.h>
 #include <Library/IoLib.h>
 #include <Library/PlatformPrePiLib.h>
 #include <Library/QcomMmuDetachHelperLib.h>

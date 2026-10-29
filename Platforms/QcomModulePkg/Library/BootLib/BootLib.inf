@@ -103,7 +103,7 @@
 	StackCanary
 	AvbLib
 	UbsanLib
-  	QcomUefiCfgMemoryMapHelperLib
+	QcomMemoryMapHelperLib
 
 [Guids]
 	gEfiFileInfoGuid
