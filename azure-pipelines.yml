@@ -15,6 +15,11 @@ pool:
 steps:
 ###################################################################################################################
 
+- script: git submodule update --init --depth 1 --recursive --progress
+  displayName: Git Submodule Init and Update
+
+###################################################################################################################
+
 - task: UsePythonVersion@0
   inputs:
     versionSpec: '3.13'
@@ -33,8 +38,28 @@ steps:
 
 ###################################################################################################################
 
-- script: chmod +x ./build_setup.sh && ./build_setup.sh
-  displayName: 'Setup UEFI build environment'
+- script: chmod +x ./build_setup_0.sh && ./build_setup_0.sh
+  displayName: 'Setup UEFI build environment (APT Build Tools Packages)'
+
+###################################################################################################################
+
+- script: chmod +x ./build_setup_1.sh && ./build_setup_1.sh
+  displayName: 'Setup UEFI build environment (APT Mono Nuget Packages)'
+
+###################################################################################################################
+
+- script: chmod +x ./build_setup_2.sh && ./build_setup_2.sh
+  displayName: 'Setup UEFI build environment (PIP Packages)'
+
+###################################################################################################################
+
+- script: chmod +x ./build_setup_3.sh && ./build_setup_3.sh
+  displayName: 'Setup UEFI build environment (MU Setup)'
+
+###################################################################################################################
+
+- script: chmod +x ./build_setup_4.sh && ./build_setup_4.sh
+  displayName: 'Setup UEFI build environment (MU Update)'
 
 ###################################################################################################################
 
