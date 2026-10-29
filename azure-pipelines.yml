@@ -15,8 +15,9 @@ pool:
 steps:
 ###################################################################################################################
 
-- script: git submodule update --init --depth 1 --recursive --progress
-  displayName: Git Submodule Init and Update
+- checkout: self
+  fetchDepth: 1           # shallow clone of main repo
+  submodules: recursive   # recurse into all nested submodules
 
 ###################################################################################################################
 
