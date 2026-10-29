@@ -1,5 +1,5 @@
 # @file
-# Script to Build Surface Duo (1st Gen) UEFI firmware
+# Script to Build Surface Duo (1st Gen) and Surface Duo 2 UEFI firmware
 #
 # Copyright (c) Microsoft Corporation.
 # SPDX-License-Identifier: BSD-2-Clause-Patent
@@ -16,6 +16,49 @@ from edk2toolext.invocables.edk2_setup import (RequiredSubmodule,
                                                SetupSettingsManager)
 from edk2toolext.invocables.edk2_update import UpdateSettingsManager
 
+BOARD_CONFIGS = {
+    "SurfaceDuo1": {
+        "package": "SurfaceDuo1Pkg",
+        "scope": "SurfaceDuo1",
+        "silicon": "Silicon/QC/Sm8150",
+        "product_name": "SurfaceDuo1",
+        "dsc": "SurfaceDuo1Pkg/SurfaceDuo1.dsc"
+    },
+    "SurfaceDuo2": {
+        "package": "SurfaceDuo2Pkg",
+        "scope": "SurfaceDuo2",
+        "silicon": "Silicon/QC/Sm8350",
+        "product_name": "SurfaceDuo2",
+        "dsc": "SurfaceDuo2Pkg/SurfaceDuo2.dsc"
+    }
+}
+
+def GetBoard():
+    board = os.environ.get(
+        "BOARD",
+        "SurfaceDuo1"
+    )
+
+    if board not in BOARD_CONFIGS:
+        raise Exception(
+            f"Unsupported BOARD={board}"
+        )
+
+    return board
+
+def GetPlatformPackagesPath():
+    board = GetBoard()
+    return (
+        "Platforms",
+        "MU_BASECORE",
+        "Common/MU",
+        "Common/MU_OEM_SAMPLE",
+        "Features/DFCI",
+        "Features/CONFIG",
+        "Binaries",
+        BOARD_CONFIGS[board]["silicon"],
+        "Silicon/QC/Common"
+    )
 
 # ####################################################################################### #
 #                                Common Configuration                                     #
@@ -24,22 +67,9 @@ class CommonPlatform:
     """ Common settings for this platform.  Define static data here and use
         for the different parts of stuart
     """
-    PackagesSupported = ("SurfaceDuo1Pkg",)
     ArchSupported = ("AARCH64",)
     TargetsSupported = ("DEBUG", "RELEASE", "NOOPT")
-    Scopes = ('SurfaceDuo1', 'gcc_aarch64_linux', 'edk2-build', 'cibuild', 'configdata')
     WorkspaceRoot = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-    PackagesPath = (
-        "Platforms",
-        "MU_BASECORE",
-        "Common/MU",
-        "Common/MU_OEM_SAMPLE",
-        "Features/DFCI",
-        "Features/CONFIG",
-        "Binaries",
-        "Silicon/QC/Sm8150",
-        "Silicon/QC/Common"
-    )
 
     # ####################################################################################### #
     #                         Configuration for Update & Setup                                #
@@ -51,7 +81,8 @@ class SettingsManager(UpdateSettingsManager, SetupSettingsManager, PrEvalSetting
     def GetPackagesSupported(self):
         """ return iterable of edk2 packages supported by this build.
         These should be edk2 workspace relative paths """
-        return CommonPlatform.PackagesSupported
+        board = GetBoard()
+        return (BOARD_CONFIGS[board]["package"],)
 
     def GetArchitecturesSupported(self):
         """ return iterable of edk2 architectures supported by this build """
@@ -100,7 +131,14 @@ class SettingsManager(UpdateSettingsManager, SetupSettingsManager, PrEvalSetting
 
     def GetActiveScopes(self):
         """ return tuple containing scopes that should be active for this process """
-        return CommonPlatform.Scopes
+        board = GetBoard()
+        return (
+            BOARD_CONFIGS[board]["scope"],
+            "gcc_aarch64_linux",
+            "edk2-build",
+            "cibuild",
+            "configdata"
+        )
 
     def FilterPackagesToTest(self, changedFilesList: list, potentialPackagesList: list) -> list:
         """ Filter other cases that this package should be built
@@ -128,14 +166,15 @@ class SettingsManager(UpdateSettingsManager, SetupSettingsManager, PrEvalSetting
 
         The tuple should be (<workspace relative path to dsc file>, <input dictionary of dsc key value pairs>)
         """
-        return "SurfaceDuo1Pkg/SurfaceDuo1.dsc", {}
+        board = GetBoard()
+        return (BOARD_CONFIGS[board]["dsc"], {})
 
     def GetName(self):
-        return "SurfaceDuo1"
+        return GetBoard()
 
     def GetPackagesPath(self):
         """ Return a list of paths that should be mapped as edk2 PackagesPath """
-        return CommonPlatform.PackagesPath
+        return GetPlatformPackagesPath()
 
     # ####################################################################################### #
     #                         Actual Configuration for Platform Build                         #
@@ -171,18 +210,25 @@ class PlatformBuilder(UefiBuilder, BuildSettingsManager):
         result = [
             shell_environment.GetBuildVars().GetValue("FEATURE_CONFIG_PATH", "")
         ]
-        for a in CommonPlatform.PackagesPath:
+        for a in GetPlatformPackagesPath():
             result.append(a)
         return result
 
     def GetActiveScopes(self):
         """ return tuple containing scopes that should be active for this process """
-        return CommonPlatform.Scopes
+        board = GetBoard()
+        return (
+            BOARD_CONFIGS[board]["scope"],
+            "gcc_aarch64_linux",
+            "edk2-build",
+            "cibuild",
+            "configdata"
+        )
 
     def GetName(self):
         """ Get the name of the repo, platform, or product being build """
         ''' Used for naming the log file, among others '''
-        return "SurfaceDuo1Pkg"
+        return BOARD_CONFIGS[GetBoard()]["package"]
 
     def GetLoggingLevel(self, loggerType):
         """Get the logging level depending on logger type.
@@ -205,8 +251,9 @@ class PlatformBuilder(UefiBuilder, BuildSettingsManager):
 
     def SetPlatformEnv(self):
         logging.debug("PlatformBuilder SetPlatformEnv")
-        self.env.SetValue("PRODUCT_NAME", "SurfaceDuo1", "Platform Hardcoded")
-        self.env.SetValue("ACTIVE_PLATFORM", "SurfaceDuo1Pkg/SurfaceDuo1.dsc", "Platform Hardcoded")
+        board = GetBoard()
+        self.env.SetValue("PRODUCT_NAME", BOARD_CONFIGS[board]["product_name"], "Platform Hardcoded")
+        self.env.SetValue("ACTIVE_PLATFORM", BOARD_CONFIGS[board]["dsc"], "Platform Hardcoded")
         self.env.SetValue("TARGET_ARCH", "AARCH64", "Platform Hardcoded")
         self.env.SetValue("TOOL_CHAIN_TAG", "CLANGPDB", "set default to clangpdb")
         self.env.SetValue("EMPTY_DRIVE", "FALSE", "Default to false")
