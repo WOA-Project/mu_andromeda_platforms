@@ -10,7 +10,7 @@
 #include <Library/DebugLib.h>
 #include <Library/IoLib.h>
 #include <Library/MemoryAllocationLib.h>
-#include <Library/QcomMemoryMapHelperLib.h>
+#include <Library/QcomUefiCfgMemoryMapHelperLib.h>
 #include <Library/UefiBootServicesTableLib.h>
 
 #include <IndustryStandard/Ufs.h>

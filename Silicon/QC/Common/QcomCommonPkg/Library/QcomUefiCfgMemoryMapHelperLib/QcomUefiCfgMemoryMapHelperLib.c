@@ -9,7 +9,7 @@
 #include <Library/ArmLib.h>
 #include <Library/BaseLib.h>
 #include <Library/HobLib.h>
-#include <Library/QcomMemoryMapHelperLib.h>
+#include <Library/QcomUefiCfgMemoryMapHelperLib.h>
 #include <Library/PlatformHobs.h>
 #include <Library/ShLib.h>
 #include <Library/UefiCfgLib.h>

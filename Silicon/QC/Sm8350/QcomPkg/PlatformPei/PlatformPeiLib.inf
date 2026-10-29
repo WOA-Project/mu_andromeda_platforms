@@ -31,12 +31,12 @@
   ArmLib
   ArmMmuLib
   BaseLib
-  QcomConfigParametersHelperLib
+  QcomUefiCfgConfigParametersHelperLib
   DebugLib
   HobLib
   IoLib
   MemoryAllocationLib
-  QcomMemoryMapHelperLib
+  QcomUefiCfgMemoryMapHelperLib
   SerialPortLib
 
 [FixedPcd]

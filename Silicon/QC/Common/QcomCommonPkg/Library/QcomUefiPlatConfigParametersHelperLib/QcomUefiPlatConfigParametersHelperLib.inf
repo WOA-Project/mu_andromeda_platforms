@@ -1,13 +1,13 @@
 [Defines]
   INF_VERSION                    = 0x00010005
-  BASE_NAME                      = QcomConfigParametersHelperSecLib
+  BASE_NAME                      = QcomUefiPlatConfigParametersHelperLib
   FILE_GUID                      = 4FFC379D-8994-4706-8972-9FBCFE4F85BF
   MODULE_TYPE                    = BASE
   VERSION_STRING                 = 1.0
-  LIBRARY_CLASS                  = QcomConfigParametersHelperLib
+  LIBRARY_CLASS                  = QcomUefiCfgConfigParametersHelperLib
 
 [Sources]
-  QcomConfigParametersHelperSecLib.c
+  QcomUefiPlatConfigParametersHelperLib.c
 
 [Packages]
   MdePkg/MdePkg.dec

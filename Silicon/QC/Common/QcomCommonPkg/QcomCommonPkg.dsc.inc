@@ -17,15 +17,15 @@
 
   ConsoleMsgLib|QcomCommonPkg/Library/ConsoleMsgLib/ConsoleMsgLib.inf
   PlatformHwioLib|QcomCommonPkg/Library/PlatformHwioLib/PlatformHwioLib.inf
-  QcomConfigParametersHelperLib|QcomCommonPkg/Library/QcomConfigParametersHelperLib/QcomConfigParametersHelperLib.inf
-  QcomMemoryMapHelperLib|QcomCommonPkg/Library/QcomMemoryMapHelperSecLib/QcomMemoryMapHelperSecLib.inf
+  QcomUefiCfgConfigParametersHelperLib|QcomCommonPkg/Library/QcomUefiPlatConfigParametersHelperLib/QcomUefiPlatConfigParametersHelperLib.inf
+  QcomUefiCfgMemoryMapHelperLib|QcomCommonPkg/Library/QcomUefiPlatMemoryMapHelperLib/QcomUefiPlatMemoryMapHelperLib.inf
   ShLib|QcomCommonPkg/Library/ShLib/ShLib.inf
   UefiCfgLib|QcomCommonPkg/Library/UefiCfgLib/UefiCfgLib.inf
   UfsInfoLib|QcomCommonPkg/Library/UfsInfoLib/UfsInfoLib.inf
 
 [LibraryClasses.common.SEC]
-  QcomConfigParametersHelperLib|QcomCommonPkg/Library/QcomConfigParametersHelperSecLib/QcomConfigParametersHelperSecLib.inf
-  QcomMemoryMapHelperLib|QcomCommonPkg/Library/QcomMemoryMapHelperSecLib/QcomMemoryMapHelperSecLib.inf
+  QcomUefiCfgConfigParametersHelperLib|QcomCommonPkg/Library/QcomUefiPlatConfigParametersHelperLib/QcomUefiPlatConfigParametersHelperLib.inf
+  QcomUefiCfgMemoryMapHelperLib|QcomCommonPkg/Library/QcomUefiPlatMemoryMapHelperLib/QcomUefiPlatMemoryMapHelperLib.inf
 
 [Components.common]
   # ACPI and SMBIOS

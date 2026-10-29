@@ -6,7 +6,7 @@
 
 **/
 #include <Library/BaseLib.h>
-#include <Library/QcomMemoryMapHelperLib.h>
+#include <Library/QcomUefiCfgMemoryMapHelperLib.h>
 #include <Library/PlatformMemoryMapLib.h>
 
 EFI_STATUS EFIAPI QcomLocateMemoryMapAreaByName(

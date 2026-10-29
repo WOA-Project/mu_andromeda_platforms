@@ -16,7 +16,7 @@
 #include <Library/UefiBootServicesTableLib.h>
 #include <Library/UefiLib.h>
 #include <Library/UefiRuntimeServicesTableLib.h>
-#include <Library/QcomMemoryMapHelperLib.h>
+#include <Library/QcomUefiCfgMemoryMapHelperLib.h>
 
 #include <Library/BaseMemoryLib.h>
 #include <Protocol/EFIScm.h>

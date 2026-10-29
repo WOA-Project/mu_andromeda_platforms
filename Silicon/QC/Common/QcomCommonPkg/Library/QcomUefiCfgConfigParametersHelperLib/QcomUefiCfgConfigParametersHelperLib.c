@@ -8,7 +8,7 @@
 #include <PiPei.h>
 #include <Library/ArmLib.h>
 #include <Library/BaseLib.h>
-#include <Library/QcomConfigParametersHelperLib.h>
+#include <Library/QcomUefiCfgConfigParametersHelperLib.h>
 #include <Library/HobLib.h>
 #include <Library/PlatformHobs.h>
 #include <Library/ShLib.h>
