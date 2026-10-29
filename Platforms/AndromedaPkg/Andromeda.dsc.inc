@@ -525,6 +525,13 @@
   MdeModulePkg/Universal/PCD/Dxe/Pcd.inf {
     <LibraryClasses>
     PcdLib|MdePkg/Library/BasePcdLibNull/BasePcdLibNull.inf
+    <PcdsFixedAtBuild>
+    gEfiMdePkgTokenSpaceGuid.PcdDebugClearMemoryValue|0x00
+    gEfiMdePkgTokenSpaceGuid.PcdDebugPropertyMask|0x00
+    gEfiMdePkgTokenSpaceGuid.PcdDebugPrintErrorLevel|0x00000000
+    gEfiMdePkgTokenSpaceGuid.PcdPerformanceLibraryPropertyMask|0
+    gEfiMdePkgTokenSpaceGuid.PcdPostCodePropertyMask|0
+    gEfiMdePkgTokenSpaceGuid.PcdReportStatusCodePropertyMask|0x00
   }
 
   # BDS
@@ -554,12 +561,27 @@
       IntrinsicLib|CryptoPkg/Library/IntrinsicLib/IntrinsicLib.inf
       OpensslLib|OpensslPkg/Library/OpensslLib/OpensslLib.inf # Contains openSSL library used by MbedTlsLib
       MbedTlsLib|MbedTlsPkg/Library/MbedTlsLib/MbedTlsLib.inf
+    <PcdsFixedAtBuild>
+    gEfiMdePkgTokenSpaceGuid.PcdDebugClearMemoryValue|0x00
+    gEfiMdePkgTokenSpaceGuid.PcdDebugPropertyMask|0x00
+    gEfiMdePkgTokenSpaceGuid.PcdDebugPrintErrorLevel|0x00000000
+    gEfiMdePkgTokenSpaceGuid.PcdPerformanceLibraryPropertyMask|0
+    gEfiMdePkgTokenSpaceGuid.PcdPostCodePropertyMask|0
+    gEfiMdePkgTokenSpaceGuid.PcdReportStatusCodePropertyMask|0x00
   }
 
   MdeModulePkg/Universal/WatchdogTimerDxe/WatchdogTimer.inf
 
   MsCorePkg/CheckHardwareConnected/CheckHardwareConnected.inf
-  MsCorePkg/MuVarPolicyFoundationDxe/MuVarPolicyFoundationDxe.inf
+  MsCorePkg/MuVarPolicyFoundationDxe/MuVarPolicyFoundationDxe.inf {
+    <PcdsFixedAtBuild>
+    gEfiMdePkgTokenSpaceGuid.PcdDebugClearMemoryValue|0x00
+    gEfiMdePkgTokenSpaceGuid.PcdDebugPropertyMask|0x00
+    gEfiMdePkgTokenSpaceGuid.PcdDebugPrintErrorLevel|0x00000000
+    gEfiMdePkgTokenSpaceGuid.PcdPerformanceLibraryPropertyMask|0
+    gEfiMdePkgTokenSpaceGuid.PcdPostCodePropertyMask|0
+    gEfiMdePkgTokenSpaceGuid.PcdReportStatusCodePropertyMask|0x00
+  }
 
   NetworkPkg/ArpDxe/ArpDxe.inf
   NetworkPkg/Dhcp4Dxe/Dhcp4Dxe.inf

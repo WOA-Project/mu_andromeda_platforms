@@ -80,3 +80,4 @@
 
 [Components.common]
   SurfaceDuo2Pkg/AcpiTables/AcpiTables.inf
+  SurfaceDuo2Pkg/Driver/RightDisplayDxe/RightDisplayDxe.inf
