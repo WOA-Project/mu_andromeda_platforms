@@ -37,8 +37,7 @@ class CommonPlatform:
         "Features/DFCI",
         "Features/CONFIG",
         "Binaries",
-        "Silicon/QC/Sm8350",
-        "Silicon/QC/Common"
+        "Silicon/QC/Sm8350"
     )
 
 

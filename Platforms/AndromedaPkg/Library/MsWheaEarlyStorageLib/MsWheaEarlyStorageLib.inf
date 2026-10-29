@@ -38,7 +38,7 @@
   PcdLib
   BaseLib
   BaseMemoryLib
-  PlatformHwioLib
+  QcomMemoryMapHelperLib
 
 [Protocols]
 

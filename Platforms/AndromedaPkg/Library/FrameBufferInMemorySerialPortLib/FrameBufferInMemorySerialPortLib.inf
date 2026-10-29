@@ -22,7 +22,7 @@
   HobLib
   CompilerIntrinsicsLib
   CacheMaintenanceLib
-  PlatformHwioLib
+  QcomMemoryMapHelperLib
 
 [Pcd]
   gAndromedaPkgTokenSpaceGuid.PcdMipiFrameBufferWidth

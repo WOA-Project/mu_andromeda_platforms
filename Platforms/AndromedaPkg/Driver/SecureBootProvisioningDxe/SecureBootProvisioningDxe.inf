@@ -22,7 +22,7 @@
   BaseLib
   DebugLib
   DxeServicesLib
-  AndromedaUefiConfigHelperLib
+  AndromedaBootConfigLib
   MuSecureBootKeySelectorLib
   PcdLib
   PrintLib

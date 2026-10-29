@@ -16,7 +16,7 @@
 #include <Library/MemoryAllocationLib.h>
 #include <Library/PcdLib.h>
 #include <Library/SerialPortLib.h>
-#include <Library/QcomUefiCfgMemoryMapHelperLib.h>
+#include <Library/QcomMemoryMapHelperLib.h>
 #include <Library/AndromedaBootConfigLib.h>
 #include <Library/PlatformHobs.h>
 

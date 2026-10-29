@@ -22,7 +22,6 @@
   MdeModulePkg/MdeModulePkg.dec
   AndromedaPkg/AndromedaPkg.dec
   QcomPkg/QcomPkg.dec
-  QcomCommonPkg/QcomCommonPkg.dec
   QcomModulePkg/QcomModulePkg.dec
 
 [LibraryClasses]
@@ -34,7 +33,7 @@
   UefiLib
   AslUpdateLib
   RFSProtectionLib
-  QcomUefiCfgMemoryMapHelperLib
+  QcomMemoryMapHelperLib
   UfsInfoLib
 
 [Protocols]

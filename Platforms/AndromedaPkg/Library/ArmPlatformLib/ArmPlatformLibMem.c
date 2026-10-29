@@ -9,7 +9,7 @@
 #include <Library/ArmPlatformLib.h>
 #include <Library/DebugLib.h>
 
-#include <Library/AndromedaMemoryMapLib.h>
+#include <Library/PlatformMemoryMapLib.h>
 
 ARM_MEMORY_REGION_DESCRIPTOR
       MemoryTable[MAX_ARM_MEMORY_REGION_DESCRIPTOR_COUNT] = { 0 };

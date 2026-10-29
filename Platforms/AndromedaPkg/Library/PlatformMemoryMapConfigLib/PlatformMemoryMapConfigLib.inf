@@ -1,0 +1,21 @@
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = PlatformMemoryMapConfigLib
+  FILE_GUID                      = 5D9FA1A6-B4EC-4A37-A8C3-2EABDC5A3041
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = PlatformMemoryMapConfigLib
+
+[Sources]
+  PlatformMemoryMapConfigLib.c
+
+[Packages]
+  ArmPkg/ArmPkg.dec
+  MdePkg/MdePkg.dec
+  AndromedaPkg/AndromedaPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  BaseMemoryLib
+  DebugLib
+  AndromedaBootConfigLib

@@ -29,7 +29,7 @@
   CacheMaintenanceLib
   FrameBufferBltLib
   PcdLib
-  PlatformHwioLib
+  QcomMemoryMapHelperLib
 
 [Protocols]
   gEfiGraphicsOutputProtocolGuid ## PRODUCES

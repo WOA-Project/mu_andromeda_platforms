@@ -13,8 +13,6 @@
 
 #include <Pi/PiFirmwareFile.h>
 
-#include <Guid/AndromedaBootConfig.h>
-
 #include <Library/BaseLib.h>
 #include <Library/DebugLib.h>
 #include <Library/DxeServicesLib.h>
@@ -23,7 +21,9 @@
 #include <Library/UefiLib.h>
 #include <Library/MemoryAllocationLib.h>
 #include <Library/MuSecureBootKeySelectorLib.h>
-#include <Library/AndromedaUefiConfigHelperLib.h>
+#include <Library/AndromedaBootConfigLib.h>
+
+#include <Guid/AndromedaBootConfig.h>
 
 //
 // Global variables.
@@ -38,12 +38,16 @@ VOID *mFileSystemRegistration = NULL;
 BOOLEAN
 IsSecureBootOn()
 {
-  EFI_STATUS  Status;
-  UINT32      Value;
+  EFI_STATUS Status;
+  UINTN      ValueSize;
+  CHAR8      Value[2];
 
-  Status = GetAndromedaUefiConfigUint32ByName (
+  ValueSize = sizeof (Value);
+  Status = GetAndromedaBootConfigValue (
+             ANDROMEDA_BOOT_CONFIG_UEFI_SECTION,
              ANDROMEDA_BOOT_CONFIG_SECURE_BOOT_ENABLED_KEY,
-             &Value
+             Value,
+             &ValueSize
              );
   if (EFI_ERROR (Status)) {
     DEBUG ((
@@ -55,19 +59,22 @@ IsSecureBootOn()
     return TRUE;
   }
 
-  if (Value == 0) {
+  if ((ValueSize == sizeof (Value)) &&
+      (Value[0] == '0') &&
+      (Value[1] == '\0')) {
     return FALSE;
   }
 
-  if (Value == 1) {
+  if ((ValueSize == sizeof (Value)) &&
+      (Value[0] == '1') &&
+      (Value[1] == '\0')) {
     return TRUE;
   }
 
   DEBUG ((
     DEBUG_WARN,
-    "%a - Invalid boot config SecureBootEnabled value %u; enabling Secure Boot\n",
-    __FUNCTION__,
-    Value
+    "%a - Invalid boot config SecureBootEnabled value; enabling Secure Boot\n",
+    __FUNCTION__
     ));
   return TRUE;
 }

@@ -13,7 +13,7 @@
 #include <Library/DebugLib.h>
 #include <Library/DevicePathLib.h>
 #include <Library/IoLib.h>
-#include <Library/QcomUefiCfgMemoryMapHelperLib.h>
+#include <Library/QcomMemoryMapHelperLib.h>
 #include <Library/PcdLib.h>
 #include <Library/UefiBootServicesTableLib.h>
 #include <Library/UefiLib.h>

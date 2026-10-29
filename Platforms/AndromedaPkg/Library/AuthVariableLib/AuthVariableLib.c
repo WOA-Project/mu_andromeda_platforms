@@ -19,7 +19,7 @@ SPDX-License-Identifier: BSD-2-Clause-Patent
 #include "AuthServiceInternal.h"
 
 #include <Guid/AndromedaBootConfig.h>
-#include <Library/AndromedaUefiConfigHelperLib.h>
+#include <Library/AndromedaBootConfigLib.h>
 
 ///
 /// Global database array for scratch
@@ -107,11 +107,15 @@ GetBootConfigSecureBootPolicy (
   )
 {
   EFI_STATUS  Status;
-  UINT32      Value;
+  UINTN       ValueSize;
+  CHAR8       Value[16];
 
-  Status = GetAndromedaUefiConfigUint32ByName (
+  ValueSize = sizeof (Value);
+  Status = GetAndromedaBootConfigValue (
+             ANDROMEDA_BOOT_CONFIG_UEFI_SECTION,
              ANDROMEDA_BOOT_CONFIG_SECURE_BOOT_ENABLED_KEY,
-             &Value
+             Value,
+             &ValueSize
              );
   if (EFI_ERROR (Status)) {
     if (Status != EFI_NOT_FOUND) {
@@ -121,17 +125,17 @@ GetBootConfigSecureBootPolicy (
     return SECURE_BOOT_ENABLE;
   }
 
-  if (Value == 1) {
+  if ((Value[0] == '1') && (Value[1] == '\0')) {
     return SECURE_BOOT_ENABLE;
   }
 
-  if (Value == 0) {
+  if ((Value[0] == '0') && (Value[1] == '\0')) {
     return SECURE_BOOT_DISABLE;
   }
 
   DEBUG ((
     DEBUG_WARN,
-    "Invalid boot config SecureBootEnabled '%u'; enabling Secure Boot\n",
+    "Invalid boot config SecureBootEnabled '%a'; enabling Secure Boot\n",
     Value
     ));
   return SECURE_BOOT_ENABLE;

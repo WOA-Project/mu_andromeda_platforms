@@ -21,7 +21,6 @@
   MsCorePkg/MsCorePkg.dec
   MdeModulePkg/MdeModulePkg.dec
   AndromedaPkg/AndromedaPkg.dec
-  QcomCommonPkg/QcomCommonPkg.dec
   QcomPkg/QcomPkg.dec
   QcomModulePkg/QcomModulePkg.dec
 
@@ -34,7 +33,7 @@
   UefiLib
   AslUpdateLib
   RFSProtectionLib
-  QcomUefiCfgMemoryMapHelperLib
+  QcomMemoryMapHelperLib
 
 [Protocols]
   gEfiChipInfoProtocolGuid                      ## CONSUMES

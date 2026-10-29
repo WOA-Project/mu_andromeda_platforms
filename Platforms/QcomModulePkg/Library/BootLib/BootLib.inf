@@ -82,7 +82,6 @@
 	ArmPlatformPkg/ArmPlatformPkg.dec
 	MdeModulePkg/MdeModulePkg.dec
 	QcomModulePkg/QcomModulePkg.dec
-  	QcomCommonPkg/QcomCommonPkg.dec
   	AndromedaPkg/AndromedaPkg.dec
 
 [LibraryClasses]
@@ -103,7 +102,7 @@
 	StackCanary
 	AvbLib
 	UbsanLib
-  	QcomUefiCfgMemoryMapHelperLib
+  	QcomMemoryMapHelperLib
 
 [Guids]
 	gEfiFileInfoGuid

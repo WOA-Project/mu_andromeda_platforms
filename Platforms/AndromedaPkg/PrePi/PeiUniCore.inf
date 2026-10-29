@@ -52,7 +52,7 @@
   MemoryInitPeiLib
   AndromedaBootConfigLib
   PlatformPrePiLib
-  PlatformHwioLib
+  QcomMemoryMapHelperLib
 
 [Ppis]
   gArmMpCoreInfoPpiGuid

@@ -20,7 +20,6 @@
   MdeModulePkg/MdeModulePkg.dec
   ArmPkg/ArmPkg.dec
   AndromedaPkg/AndromedaPkg.dec
-  QcomCommonPkg/QcomCommonPkg.dec
   QcomPkg/QcomPkg.dec
   QcomModulePkg/QcomModulePkg.dec
 
@@ -30,7 +29,7 @@
   MemoryAllocationLib
   DevicePathLib
   UefiBootServicesTableLib
-  QcomUefiCfgMemoryMapHelperLib
+  QcomMemoryMapHelperLib
 
 [Protocols]
   gEfiGraphicsOutputProtocolGuid

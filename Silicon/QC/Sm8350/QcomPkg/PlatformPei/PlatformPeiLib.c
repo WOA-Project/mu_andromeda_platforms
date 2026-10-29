@@ -13,7 +13,6 @@
 #include <Library/HobLib.h>
 #include <Library/MemoryAllocationLib.h>
 #include <Library/PcdLib.h>
-#include <Library/QcomUefiCfgConfigParametersHelperLib.h>
 #include "PlatformPeiLibInternal.h"
 
 STATIC
@@ -36,21 +35,43 @@ STATIC
 EFI_STATUS
 CfgGetCfgInfoString(CHAR8 *Key, CHAR8 *Value, UINTN *ValBuffSize)
 {
-  return QcomLocateConfigurationMapStringByName (Key, Value, ValBuffSize);
+  if (AsciiStriCmp(Key, "OsTypeString") == 0) {
+    AsciiStrCpyS(Value, *ValBuffSize, "LA");
+    return EFI_SUCCESS;
+  }
+
+  return EFI_NOT_FOUND;
 }
 
 STATIC
 EFI_STATUS
 CfgGetCfgInfoVal(CHAR8 *Key, UINT32 *Value)
 {
-  return QcomLocateConfigurationMapUINT32ByName (Key, Value);
+  EFI_STATUS  Status;
+  UINT64      Value64;
+
+  if ((Key == NULL) || (Value == NULL)) {
+    return EFI_INVALID_PARAMETER;
+  }
+
+  Status = GetAndromedaBootConfigUint64 ("ConfigParameters", Key, &Value64);
+  if (EFI_ERROR (Status)) {
+    return Status;
+  }
+
+  if (Value64 > MAX_UINT32) {
+    return EFI_COMPROMISED_DATA;
+  }
+
+  *Value = (UINT32)Value64;
+  return EFI_SUCCESS;
 }
 
 STATIC
 EFI_STATUS
 CfgGetCfgInfoVal64(CHAR8 *Key, UINT64 *Value)
 {
-  return QcomLocateConfigurationMapUINT64ByName (Key, Value);
+  return GetAndromedaBootConfigUint64 ("ConfigParameters", Key, Value);
 }
 
 STATIC

@@ -9,7 +9,7 @@
 #include <Library/DxeServicesTableLib.h>
 #include <Library/FrameBufferBltLib.h>
 #include <Library/MemoryAllocationLib.h>
-#include <Library/PlatformHwioLib.h>
+#include <Library/QcomMemoryMapHelperLib.h>
 #include <Library/PcdLib.h>
 #include <Library/UefiBootServicesTableLib.h>
 #include <Library/UefiLib.h>
@@ -171,7 +171,7 @@ SimpleFbDxeInitialize(
       (EFI_D_INFO,
        "SimpleFbDxe: Retrieve MIPI FrameBuffer parameters from PCD\n"));
   ARM_MEMORY_REGION_DESCRIPTOR_EX DisplayMemoryRegion;
-  GetPlatformDisplayFrameBuffer(&DisplayMemoryRegion);
+  QcomLocateMemoryMapAreaByName("Display Reserved", &DisplayMemoryRegion);
   UINT32 MipiFrameBufferAddr   = DisplayMemoryRegion.Address;
   UINT32 MipiFrameBufferWidth  = FixedPcdGet32(PcdMipiFrameBufferWidth);
   UINT32 MipiFrameBufferHeight = FixedPcdGet32(PcdMipiFrameBufferHeight);

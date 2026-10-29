@@ -7,7 +7,7 @@
 **/
 #include <PiPei.h>
 
-#include <Library/QcomUefiCfgConfigParametersHelperLib.h>
+#include <Library/AndromedaBootConfigLib.h>
 #include <Library/IoLib.h>
 #include <Library/PlatformPrePiLib.h>
 #include <Library/QcomMmuDetachHelperLib.h>
@@ -29,7 +29,18 @@ VOID PlatformInitialize(VOID)
   //
 
   UINT32 EarlyInitCoreCnt = 2;
-  QcomLocateConfigurationMapUINT32ByName ("EarlyInitCoreCnt", &EarlyInitCoreCnt);
+  UINT64 EarlyInitCoreCnt64;
+
+  if (!EFI_ERROR (
+        GetAndromedaBootConfigUint64 (
+          "ConfigParameters",
+          "EarlyInitCoreCnt",
+          &EarlyInitCoreCnt64
+          )
+        ) &&
+      (EarlyInitCoreCnt64 <= MAX_UINT32)) {
+    EarlyInitCoreCnt = (UINT32)EarlyInitCoreCnt64;
+  }
 
   for (int i = 0; i < EarlyInitCoreCnt; i++) {
     // Wake up redistributor for CPU i

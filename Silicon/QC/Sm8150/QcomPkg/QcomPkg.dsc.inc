@@ -30,10 +30,10 @@
   gArmPlatformTokenSpaceGuid.PcdClusterCount|3
 
   # UART
-  gQcomCommonPkgTokenSpaceGuid.PcdUartSerialBase|0x00A90000
+  gAndromedaPkgTokenSpaceGuid.PcdUartSerialBase|0x00A90000
 
   # Keep no Stream IDs attached by default
-  gQcomCommonPkgTokenSpaceGuid.PcdSMMUSIDsToKeep|{0x0}
+  gAndromedaPkgTokenSpaceGuid.PcdSMMUSIDsToKeep|{0x0}
 
 [LibraryClasses.common]
   PlatformDdrBankMapLib|QcomPkg/Library/PlatformDdrBankMapLib/PlatformDdrBankMapLib.inf
@@ -47,7 +47,7 @@
 
   PlatformHobLib|QcomPkg/Library/PlatformHobLib/PlatformHobLib.inf
 
-  QcomMmuDetachHelperLib|QcomCommonPkg/Library/QcomMmuDetachHelperLib/QcomMmuDetachHelperLib.inf
+  QcomMmuDetachHelperLib|AndromedaPkg/Library/QcomMmuDetachHelperLib/QcomMmuDetachHelperLib.inf
 
 [Components.common]
   Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/CPRDxe/CPRDxe.inf

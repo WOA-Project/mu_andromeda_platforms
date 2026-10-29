@@ -30,10 +30,10 @@
   gArmPlatformTokenSpaceGuid.PcdClusterCount|3
 
   # UART
-  gQcomCommonPkgTokenSpaceGuid.PcdUartSerialBase|0x0098C000
+  gAndromedaPkgTokenSpaceGuid.PcdUartSerialBase|0x0098C000
 
   # Keep MDP Stream IDs attached by default
-  gQcomCommonPkgTokenSpaceGuid.PcdSMMUSIDsToKeep|{0x20, 0x08,    0x21, 0x08,    0x21, 0x0C}
+  gAndromedaPkgTokenSpaceGuid.PcdSMMUSIDsToKeep|{0x20, 0x08,    0x21, 0x08,    0x21, 0x0C}
 
 [PcdsDynamicDefault.common.DEFAULT]
   # Zeta Product ID: 68
@@ -54,7 +54,7 @@
 
   PlatformHobLib|QcomPkg/Library/PlatformHobLib/PlatformHobLib.inf
 
-  QcomMmuDetachHelperLib|QcomCommonPkg/Library/QcomMmuDetachHelperLib/QcomMmuDetachHelperLib.inf
+  QcomMmuDetachHelperLib|AndromedaPkg/Library/QcomMmuDetachHelperLib/QcomMmuDetachHelperLib.inf
 
 [Components.common]
   Arcata/BOOT.MXF.1.1.c1-00127-MAKENA-2/ArcataPkg/GpioButtonsDxe/GpioButtons.inf
