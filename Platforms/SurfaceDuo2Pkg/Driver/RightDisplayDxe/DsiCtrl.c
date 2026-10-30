@@ -118,6 +118,8 @@ DsiCtrlSetupStream (VOID)
   // Stream 1 stays cleared, as on the live left controller (0x60/0x64 read 0)
   MmioWrite32 (DSI (DSI_CMD_COMPRESSION_CTRL), BIT0 | ((Bytes % 3) << 4) | (0x39 << 8));
   MmioWrite32 (DSI (DSI_CMD_COMPRESSION_CTRL2), Chunk);
+  // Undocumented register at 0x1F8: the live left controller reads 1, ours 0
+  MmioWrite32 (DSI (0x1F8), MmioRead32 (DSI0_CTRL_BASE + 0x1F8));
 }
 
 EFI_STATUS

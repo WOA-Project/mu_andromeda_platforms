@@ -12,21 +12,21 @@
 
 #define MDP(off) ((UINTN)(MDP_BASE + (off)))
 
-#define CTL_BASE  0x17000 // CTL_2, XBL's unused external-2 path
-#define LM_BASE   0x46000 // LM_2
+#define CTL_BASE  RD_CTL_OFF
+#define LM_BASE   RD_LM_OFF
 #define LM_LEFT_BASE 0x44000 // LM_0, programmed by XBL for the left display
-#define SSPP_BASE 0x8000  // VIG2, like the left display uses a VIG pipe
-#define PP_BASE   0x6B000
+#define SSPP_BASE RD_SSPP_OFF
+#define PP_BASE   RD_PP_OFF
 #define INTF_BASE 0x36000
 #define INTF_LEFT_BASE 0x35000
-#define DSC_BASE  0x81000
-#define DSC_ENC   (DSC_BASE + 0x100)
-#define DSC_CTL   (DSC_BASE + 0xF00)
+#define DSC_BASE  RD_DSC_CORE_OFF
+#define DSC_ENC   RD_DSC_ENC_OFF
+#define DSC_CTL   RD_DSC_CTL_OFF
 
-#define CTL_INDEX 2
-#define LM_INDEX  2
-#define PP_INDEX  2
-#define DSC_INDEX 2 // encoder DSC_2 = enc 0 of DSC core 1 (DSC_BASE), as XBL's secondary display
+#define CTL_INDEX RD_CTL_INDEX
+#define LM_INDEX  RD_CTL_INDEX
+#define PP_INDEX  RD_CTL_INDEX
+#define DSC_INDEX RD_CTL_INDEX
 #define INTF_INDEX 2
 
 // CTL
@@ -50,8 +50,8 @@
 #define CTL_INTF_MASTER      (CTL_BASE + 0x134)
 #define CTL_FLUSH_PERIPH     BIT30
 
-#define CTL_FLUSH_DMA2  BIT2 // VIG2
-#define CTL_FLUSH_LM2   BIT8
+#define CTL_FLUSH_DMA2  RD_FLUSH_SSPP
+#define CTL_FLUSH_LM2   RD_FLUSH_LM
 #define CTL_FLUSH_CTL   BIT17
 #define CTL_FLUSH_DSC   BIT22
 #define CTL_FLUSH_INTF  BIT31
@@ -77,7 +77,8 @@
 #define SSPP_PE_C3_REQ        0x128
 
 // XRGB8888: B,G,R,X in memory order, 8 bits each, tightly packed, 4 bpp
-#define SSPP_FORMAT_XRGB8888   (0xFF | (3 << 12) | (3 << 9) | BIT17)
+// BIT8 (alpha enable) is set on the left pipe as programmed by XBL
+#define SSPP_FORMAT_XRGB8888   (0xFF | BIT8 | (3 << 12) | (3 << 9) | BIT17)
 #define SSPP_UNPACK_XRGB8888   ((3U << 24) | (2 << 16) | (0 << 8) | 1)
 #define SSPP_OP_PE_OVERRIDE    BIT31
 
@@ -228,7 +229,10 @@ DscSetup (
   }
 
   // Same output buffer depth as the live left DSC (0x12BC0003 -> 2400/slices-1)
+  // The DSC core common register is shared with the live left DSC_0 in chain 1
+#if !RIGHT_DISPLAY_CHAIN1
   MmioWrite32 (MDP (DSC_CMN_MAIN_CNF), (SliceCount & 3) << 7);
+#endif
   MmioWrite32 (
     MDP (DSC_ENC + ENC_DF_CTRL),
     (InitialLines & 0xFF) | (((2400 / SliceCount) - 1) << 18));
@@ -345,7 +349,7 @@ PipelineSetup (VOID)
 #if RIGHT_DISPLAY_BORDER_TEST
   W (CTL_LAYER (LM_INDEX), BIT24);
 #else
-  W (CTL_LAYER (LM_INDEX), BIT24 | (5U << 6));
+  W (CTL_LAYER (LM_INDEX), BIT24 | (5U << RD_STAGE_SHIFT));
 #endif
   W (CTL_LAYER_EXT (LM_INDEX), 0);
   W (CTL_LAYER_EXT2 (LM_INDEX), 0);
@@ -371,7 +375,8 @@ PipelineSetup (VOID)
   W (INTF_BASE + INTF_CONFIG2, R (INTF_BASE + INTF_CONFIG2) | BIT0 | BIT12);
   // SPLIT_SEL (bits 19:16) = 0xF means no split mux, as XBL programs it
   W (INTF_BASE + INTF_MUX, PP_INDEX | (0xFU << 16));
-  W (INTF_BASE + INTF_TEAR_MDP_VSYNC_SEL, R (INTF_LEFT_BASE + INTF_TEAR_MDP_VSYNC_SEL));
+  // The secondary panel XML sets DSITEvSyncSelect=1 (TE on gpio83, mdp_vsync_s)
+  W (INTF_BASE + INTF_TEAR_MDP_VSYNC_SEL, 1);
 
   // As in the vendor driver: external TE (BIT20) is connected only after the
   // first kickoff, and the HW-generated TE is effectively disabled by a
@@ -397,7 +402,7 @@ PipelineSetup (VOID)
   W (CTL_MERGE_3D_ACTIVE, 0);
   W (CTL_WB_ACTIVE, 0);
   W (CTL_CDM_ACTIVE, 0);
-  W (CTL_FETCH_PIPE_ACTIVE, BIT18); // VIG2
+  W (CTL_FETCH_PIPE_ACTIVE, RD_FETCH_BIT);
   W (CTL_INTF_ACTIVE, 1U << INTF_INDEX);
   W (CTL_DSC_ACTIVE, 1U << DSC_INDEX);
 

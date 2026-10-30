@@ -58,11 +58,8 @@ STATIC CONST PANEL_CMD mPreCommands[] = {
 };
 
 EFI_STATUS
-PanelPowerOnAndInit (VOID)
+PanelReset (VOID)
 {
-  EFI_STATUS Status;
-  UINTN      i;
-
   // XBL DisplayResetInfo "0 10 1000 10000 0" (hex, us), state 0 = level low:
   // high for 0x1000, low (reset asserted) for 0x10, then high and wait 0x10000
   // before the first command
@@ -72,6 +69,15 @@ PanelPowerOnAndInit (VOID)
   gBS->Stall (0x10);
   TlmmSetGpio (PANEL_RESET_GPIO, TRUE);
   gBS->Stall (0x10000);
+
+  return EFI_SUCCESS;
+}
+
+EFI_STATUS
+PanelSendInit (VOID)
+{
+  EFI_STATUS Status;
+  UINTN      i;
 
   for (i = 0; i < ARRAY_SIZE (mPreCommands); i++) {
     Status = DsiCtrlSendPacket (
@@ -87,6 +93,18 @@ PanelPowerOnAndInit (VOID)
   }
 
   return EFI_SUCCESS;
+}
+
+EFI_STATUS
+PanelPowerOnAndInit (VOID)
+{
+  EFI_STATUS Status;
+
+  Status = PanelReset ();
+  if (!EFI_ERROR (Status)) {
+    Status = PanelSendInit ();
+  }
+  return Status;
 }
 
 //

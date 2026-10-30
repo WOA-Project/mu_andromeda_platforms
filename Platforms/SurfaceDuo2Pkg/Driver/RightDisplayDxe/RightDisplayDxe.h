@@ -28,7 +28,7 @@
 
 // DSIPacketTransferHS=True in the vendor panel XML: init commands go out in HS
 // with the clock lane forced to HS beforehand. Set to 0 to fall back to LP.
-#define PANEL_INIT_HS    1
+#define PANEL_INIT_HS    0
 #define PANEL_RESET_GPIO 51
 #define PANEL_TE_GPIO         83
 #define PANEL_TE_GPIO_FUNC    1 // mdp_vsync (SM8350 TLMM: gpio83 f1)
@@ -99,6 +99,47 @@
 // Bisection: after display-on, set the maximum brightness (0x51 = 0x0FFF)
 #ifndef RIGHT_DISPLAY_MAX_BRIGHTNESS
 #define RIGHT_DISPLAY_MAX_BRIGHTNESS 1
+#endif
+
+// Which block chain the right display uses:
+//  1: CTL_1 -> VIG1 -> LM_1 -> PP_1 -> DSC_1 -> INTF_2
+//  0: CTL_2 -> VIG2 -> LM_2 -> PP_2 -> DSC_2 -> INTF_2 (the previous working-but-black chain)
+#ifndef RIGHT_DISPLAY_CHAIN1
+#define RIGHT_DISPLAY_CHAIN1 1
+#endif
+
+#if RIGHT_DISPLAY_CHAIN1
+#define RD_CTL_INDEX      1
+#define RD_CTL_OFF        0x16000
+#define RD_LM_OFF         0x45000
+#define RD_SSPP_OFF       0x6000
+#define RD_PP_OFF         0x6A000
+#define RD_DSC_CORE_OFF   0x80000
+#define RD_DSC_ENC_OFF    0x80200
+#define RD_DSC_CTL_OFF    0x80F80
+#define RD_STAGE_SHIFT    3
+#define RD_FETCH_BIT      BIT17
+#define RD_FLUSH_SSPP     BIT1
+#define RD_FLUSH_LM       BIT7
+#else
+#define RD_CTL_INDEX      2
+#define RD_CTL_OFF        0x17000
+#define RD_LM_OFF         0x46000
+#define RD_SSPP_OFF       0x8000
+#define RD_PP_OFF         0x6B000
+#define RD_DSC_CORE_OFF   0x81000
+#define RD_DSC_ENC_OFF    0x81100
+#define RD_DSC_CTL_OFF    0x81F00
+#define RD_STAGE_SHIFT    6
+#define RD_FETCH_BIT      BIT18
+#define RD_FLUSH_SSPP     BIT2
+#define RD_FLUSH_LM       BIT8
+#endif
+
+// As XBL does with DSIForceCmdInVideoHS: reset the panel, start the DPU pipe
+// and autorefresh, and only then send the INIT sequence and PPS.
+#ifndef RIGHT_DISPLAY_INIT_AFTER_PIPE
+#define RIGHT_DISPLAY_INIT_AFTER_PIPE 0
 #endif
 
 // Dump hardware state to the debug console at the end of bring-up and hold it
@@ -194,6 +235,12 @@ PanelProbe (VOID);
 
 EFI_STATUS
 PanelPowerOnAndInit (VOID);
+
+EFI_STATUS
+PanelReset (VOID);
+
+EFI_STATUS
+PanelSendInit (VOID);
 
 EFI_STATUS
 PanelDisplayOn (VOID);

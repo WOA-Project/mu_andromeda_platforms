@@ -213,8 +213,8 @@ DiffBlock (
   UINT32 A, B;
 
   for (Off = 0; Off < End; Off += 4) {
-    A = MmioRead32 ((UINTN)(MDP_BASE + LeftBase + Off));
-    B = MmioRead32 ((UINTN)(MDP_BASE + RightBase + Off));
+    A = MmioRead32 (LeftBase + Off);
+    B = MmioRead32 (RightBase + Off);
     if (A == B) {
       continue;
     }
@@ -294,9 +294,42 @@ CompareWithLeft (VOID)
     }
   }
 
-  DiffBlock ("CTL", 0x15000, 0x17000, 0x140, 9);
-  DiffBlock ("LM", 0x44000, 0x46000, 0x80, 6);
-  DiffBlock ("SSPP", 0x4000, 0x8000, 0x180, 9);
+  DiffBlock ("CTL", (UINTN)MDP_BASE + 0x15000, (UINTN)MDP_BASE + RD_CTL_OFF, 0x140, 9);
+  DiffBlock ("LM", (UINTN)MDP_BASE + 0x44000, (UINTN)MDP_BASE + RD_LM_OFF, 0x80, 6);
+  DiffBlock ("SSPP", (UINTN)MDP_BASE + 0x4000, (UINTN)MDP_BASE + RD_SSPP_OFF, 0x180, 9);
+  DiffBlock ("DSI", (UINTN)DSI0_CTRL_BASE, (UINTN)DSI1_CTRL_BASE, 0x400, 12);
+  DiffBlock ("ITOP", (UINTN)MDP_BASE + 0x35000, (UINTN)MDP_BASE + 0x36000, 0x10, 3);
+  // INTF status/counters (frame, line, underrun...) and the PHY PLL block
+  DiffBlock ("IST", (UINTN)MDP_BASE + 0x35080, (UINTN)MDP_BASE + 0x36080, 0x80, 6);
+  DiffBlock ("PLL", (UINTN)DSI0_PHY_BASE + 0x500, (UINTN)DSI1_PHY_BASE + 0x500, 0x200, 12);
+  DEBUG ((
+    DEBUG_ERROR, "RD: dsi intr L=%08x R=%08x (b8=mdp done, b24=err)\n",
+    MmioRead32 ((UINTN)(DSI0_CTRL_BASE + 0x110)),
+    MmioRead32 ((UINTN)(DSI1_CTRL_BASE + 0x110))));
+
+  // DISP_CC: CBCs (bit31 = branch off) and every non-zero RCG word
+  {
+    UINTN  Off, N = 0, Lines = 0;
+    UINT32 V, Q[4][2];
+
+    for (Off = 0x2000; Off < 0x2180 && Lines < 12; Off += 4) {
+      V = MmioRead32 ((UINTN)(DISP_CC_BASE + Off));
+      if (V == 0) {
+        continue;
+      }
+      Q[N][0] = (UINT32)Off;
+      Q[N][1] = V;
+      if (++N == 4) {
+        Lines++;
+        DEBUG ((DEBUG_ERROR, "RD: CC %04x=%08x %04x=%08x %04x=%08x %04x=%08x\n",
+          Q[0][0], Q[0][1], Q[1][0], Q[1][1], Q[2][0], Q[2][1], Q[3][0], Q[3][1]));
+        N = 0;
+      }
+    }
+    for (Off = 0; Off < N; Off++) {
+      DEBUG ((DEBUG_ERROR, "RD: CC %04x=%08x\n", Q[Off][0], Q[Off][1]));
+    }
+  }
 
   // DSC core 0 (left, XBL) against our core, compact: three diffs per line,
   // at most 12 diffs, wrapper (0xF00) first because it is the most telling.
@@ -306,17 +339,17 @@ CompareWithLeft (VOID)
     UINTN  NPend = 0, k;
 
     for (Pass = 0; Pass < 2; Pass++) {
-      UINTN Start = (Pass == 0) ? 0xF00 : 0x000;
-      UINTN End   = (Pass == 0) ? 0x1000 : 0x200;
+      UINTN Start = (Pass == 0) ? 0xF00 : 0x100;
+      UINTN End   = (Pass == 0) ? 0xF80 : 0x200;
 
       for (Off = Start; Off < End; Off += 4) {
         A = MmioRead32 ((UINTN)(MDP_BASE + 0x80000 + Off));
-        B = MmioRead32 ((UINTN)(MDP_BASE + 0x81000 + Off));
+        B = MmioRead32 ((UINTN)(MDP_BASE + ((Pass == 0) ? RD_DSC_CTL_OFF - 0xF00 : RD_DSC_ENC_OFF - 0x100) + Off));
         if (A == B) {
           continue;
         }
         Total++;
-        if (Shown >= 12) {
+        if (Shown >= 6) {
           continue;
         }
         Shown++;
@@ -407,16 +440,16 @@ DiagDump (
     MmioRead32 ((UINTN)(DSI1_CTRL_BASE + 0xC0))));
   DEBUG ((
     DEBUG_ERROR, "RD: ctl top=%08x flush=%08x intf_act=%08x\n",
-    MmioRead32 ((UINTN)(MDP_BASE + 0x17000 + 0x14)),
-    MmioRead32 ((UINTN)(MDP_BASE + 0x17000 + 0x18)),
-    MmioRead32 ((UINTN)(MDP_BASE + 0x17000 + 0xF4))));
+    MmioRead32 ((UINTN)(MDP_BASE + RD_CTL_OFF + 0x14)),
+    MmioRead32 ((UINTN)(MDP_BASE + RD_CTL_OFF + 0x18)),
+    MmioRead32 ((UINTN)(MDP_BASE + RD_CTL_OFF + 0xF4))));
   DEBUG ((
     DEBUG_ERROR, "RD: ctl dsc=%08x/%08x(L) fetch=%08x/%08x(L) lay=%08x/%08x(L)\n",
-    MmioRead32 ((UINTN)(MDP_BASE + 0x17000 + 0xE8)),
+    MmioRead32 ((UINTN)(MDP_BASE + RD_CTL_OFF + 0xE8)),
     MmioRead32 ((UINTN)(MDP_BASE + 0x15000 + 0xE8)),
-    MmioRead32 ((UINTN)(MDP_BASE + 0x17000 + 0xFC)),
+    MmioRead32 ((UINTN)(MDP_BASE + RD_CTL_OFF + 0xFC)),
     MmioRead32 ((UINTN)(MDP_BASE + 0x15000 + 0xFC)),
-    MmioRead32 ((UINTN)(MDP_BASE + 0x17000 + 0x08)),
+    MmioRead32 ((UINTN)(MDP_BASE + RD_CTL_OFF + RD_CTL_INDEX * 4)),
     MmioRead32 ((UINTN)(MDP_BASE + 0x15000 + 0x00))));
   DEBUG ((
     DEBUG_ERROR, "RD: intf en=%08x cfg2=%08x tear=%08x\n",
@@ -478,7 +511,12 @@ RightDisplayDxeInitialize (
     Status = DsiCtrlInit ();
     if (!EFI_ERROR (Status)) {
       DsiCtrlSetupStream ();
-      Status = PanelPowerOnAndInit ();
+      Status = PanelReset ();
+#if !RIGHT_DISPLAY_INIT_AFTER_PIPE
+      if (!EFI_ERROR (Status)) {
+        Status = PanelSendInit ();
+      }
+#endif
     }
   }
   if (EFI_ERROR (Status) && RIGHT_DISPLAY_STAGE >= 3) {
@@ -553,6 +591,19 @@ RightDisplayDxeInitialize (
     } else {
       // Let the first frame (and the first TE) go through before lighting the panel
       gBS->Stall (MS (40));
+#if RIGHT_DISPLAY_INIT_AFTER_PIPE
+      // Pipe and autorefresh running first, then INIT + PPS (probe reads are
+      // unreliable under continuous autorefresh, so none are done here)
+      DpuEnableAutoRefresh ();
+      Status = PanelSendInit ();
+      if (EFI_ERROR (Status)) {
+        DEBUG ((DEBUG_ERROR, "RightDisplay: panel init failed: %r\n", Status));
+      }
+      Status = PanelDisplayOn ();
+      if (EFI_ERROR (Status)) {
+        DEBUG ((DEBUG_ERROR, "RightDisplay: display on failed: %r\n", Status));
+      }
+#else
       Status = PanelDisplayOn ();
       if (EFI_ERROR (Status)) {
         DEBUG ((DEBUG_ERROR, "RightDisplay: display on failed: %r\n", Status));
@@ -571,6 +622,19 @@ RightDisplayDxeInitialize (
       MmioWrite32 ((UINTN)(DSI1_CTRL_BASE + 0x184), BIT0);
 #else
       DpuEnableAutoRefresh ();
+      // Experiment: let several frames through, send HS all-pixels-on while the
+      // stream runs, then read error count (05) and self diagnostic (0F) again
+      gBS->Stall (MS (200));
+      Status = DsiCtrlSendPacket (0x05, (CONST UINT8[]){0x23}, 1, FALSE);
+      DEBUG ((DEBUG_ERROR, "RD: 0x23 under autorefresh: %r\n", Status));
+      gBS->Stall (MS (200));
+      PanelProbe ();
+      // Hold the white briefly, then back to normal mode (DCS 0x22) so the
+      // panel shows whatever the stream has put in its frame memory
+      gBS->Stall (MS (2000));
+      Status = DsiCtrlSendPacket (0x05, (CONST UINT8[]){0x22}, 1, FALSE);
+      DEBUG ((DEBUG_ERROR, "RD: 0x22 normal mode: %r\n", Status));
+#endif
 #endif
     }
   }
