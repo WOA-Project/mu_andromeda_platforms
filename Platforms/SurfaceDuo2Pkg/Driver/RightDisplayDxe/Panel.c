@@ -55,12 +55,6 @@ STATIC CONST PANEL_CMD mPreCommands[] = {
   C (0x39, 0, 0xE1, 0x00, 0x00, 0x60),
   C (0x39, 0, 0xB0, 0x09),
   C (0x39, 130, 0xE6, 0xF0, 0x01, 0x59, 0x92, 0x76, 0x01, 0x68),
-#if PANEL_VENDOR_TAIL_CMDS
-  // Present in the vendor kernel on-command list (surface_elgin_dsi_sync_cmd_mp.dtsi,
-  // as used by EXP0) but not in the XBL XML
-  C (0x39, 0, 0xB0, 0x70),
-  C (0x39, 0, 0xEC, 0x01),
-#endif
 };
 
 EFI_STATUS
@@ -69,31 +63,12 @@ PanelReset (VOID)
   // XBL DisplayResetInfo "0 10 1000 10000 0" (hex, us), state 0 = level low:
   // high for 0x1000, low (reset asserted) for 0x10, then high and wait 0x10000
   // before the first command
-#if RIGHT_DISPLAY_EXP0_RESET
-  // EXP0: drive low before enabling the output, cfg 0x2C3, 10 ms low,
-  // 10 ms high and straight on to the commands
-  TlmmSetGpio (PANEL_RESET_GPIO, FALSE);
-  MmioWrite32 ((UINTN)(TLMM_BASE + 0x1000ULL * PANEL_RESET_GPIO), 0x2C3);
-  gBS->Stall (MS (10));
-  TlmmSetGpio (PANEL_RESET_GPIO, TRUE);
-  gBS->Stall (MS (10));
-  return EFI_SUCCESS;
-#endif
   TlmmConfigGpioOutput (PANEL_RESET_GPIO, TRUE);
-#if PANEL_LONG_RESET
-  // Vendor dtsi reset sequence <0 10> <1 10> (ms), as used by EXP0
-  TlmmSetGpio (PANEL_RESET_GPIO, FALSE);
-  gBS->Stall (MS (10));
-  TlmmSetGpio (PANEL_RESET_GPIO, TRUE);
-  gBS->Stall (MS (10));
-  gBS->Stall (0x10000);
-#else
   gBS->Stall (0x1000);
   TlmmSetGpio (PANEL_RESET_GPIO, FALSE);
   gBS->Stall (0x10);
   TlmmSetGpio (PANEL_RESET_GPIO, TRUE);
   gBS->Stall (0x10000);
-#endif
 
   return EFI_SUCCESS;
 }
@@ -107,16 +82,11 @@ PanelSendInit (VOID)
   for (i = 0; i < ARRAY_SIZE (mPreCommands); i++) {
     Status = DsiCtrlSendPacket (
                mPreCommands[i].Type, mPreCommands[i].Payload,
-               mPreCommands[i].Length, !PANEL_INIT_HS);
+               mPreCommands[i].Length);
     if (EFI_ERROR (Status)) {
       DEBUG ((DEBUG_ERROR, "RightDisplay: panel command %u failed: %r\n", (UINT32)i, Status));
       return Status;
     }
-#if RIGHT_DISPLAY_EXP0_E6_NOWAIT
-    if (mPreCommands[i].Payload[0] == 0xE6) {
-      continue;
-    }
-#endif
     if (mPreCommands[i].WaitMs) {
       gBS->Stall (MS (mPreCommands[i].WaitMs));
     }
@@ -174,18 +144,7 @@ PanelDisplayOn (VOID)
 {
   EFI_STATUS Status;
 
-  Status = DsiCtrlSendPacket (0x05, (CONST UINT8[]){0x29}, 1, FALSE);
-#if RIGHT_DISPLAY_MAX_BRIGHTNESS
-  // Bisection: a dim or off backlight/OLED level looks like a black panel
-  if (!EFI_ERROR (Status)) {
-    Status = DsiCtrlSendPacket (0x39, (CONST UINT8[]){0x51, 0x0F, 0xFF}, 3, FALSE);
-  }
-#endif
-#if RIGHT_DISPLAY_ALL_PIXELS_ON
-  // Bisection: DCS enter-all-pixels-on; white means the panel can emit light
-  if (!EFI_ERROR (Status)) {
-    Status = DsiCtrlSendPacket (0x05, (CONST UINT8[]){0x23}, 1, FALSE);
-  }
-#endif
+  Status = DsiCtrlSendPacket (0x05, (CONST UINT8[]){0x29}, 1);
+
   return Status;
 }

@@ -487,34 +487,20 @@ RightDisplayDxeInitialize (
 
   Status = EFI_ABORTED;
 
-  if (RIGHT_DISPLAY_STAGE >= 1) {
-    PowerEnablePanelSupplies ();
-  }
+  PowerEnablePanelSupplies ();
+  PowerEnableExtTrigClock ();
 
-  if (RIGHT_DISPLAY_STAGE >= 2) {
-    PowerEnableExtTrigClock ();
-  }
+  TlmmConfigGpioOutput (PANEL_RESET_GPIO, FALSE);
 
-  if (RIGHT_DISPLAY_STAGE >= 3) {
-    TlmmConfigGpioOutput (PANEL_RESET_GPIO, FALSE);
-
-    // TE input from the panel, pull-down, 2 mA drive as in the downstream sde_te_active state
-    TlmmConfigFunction (PANEL_TE_GPIO, PANEL_TE_GPIO_FUNC, RIGHT_DISPLAY_EXP0_TE_NOPULL ? 0 : 1, 0);
-    DispCcEnableMdssClocks ();
-#if RIGHT_DISPLAY_SHARED_PLL
-    Status = DsiPhyEnableShared ();
-    if (!EFI_ERROR (Status)) {
-      Status = DispCcEnableDsi1ClocksShared ();
-    }
-#else
-    DsiPhyEnable ();
-    Status = DsiPllEnable ();
-    if (!EFI_ERROR (Status)) {
-      Status = DispCcEnableDsi1Clocks ();
-    }
-#endif
+  // TE input from the panel, pull-down, 2 mA drive as in the downstream sde_te_active state
+  TlmmConfigFunction (PANEL_TE_GPIO, PANEL_TE_GPIO_FUNC, 1, 0);
+  DispCcEnableMdssClocks ();
+  DsiPhyEnable ();
+  Status = DsiPllEnable ();
+  if (!EFI_ERROR (Status)) {
+    Status = DispCcEnableDsi1Clocks ();
   }
-  if (RIGHT_DISPLAY_STAGE >= 4 && !EFI_ERROR (Status)) {
+  if (!EFI_ERROR (Status)) {
     Status = DsiCtrlInit ();
     if (!EFI_ERROR (Status)) {
       DsiCtrlSetupStream ();
@@ -526,10 +512,10 @@ RightDisplayDxeInitialize (
 #endif
     }
   }
-  if (EFI_ERROR (Status) && RIGHT_DISPLAY_STAGE >= 3) {
+  if (EFI_ERROR (Status)) {
     DEBUG ((DEBUG_ERROR, "RightDisplay: panel bring-up failed: %r\n", Status));
   }
-  PanelUp = !EFI_ERROR (Status) && RIGHT_DISPLAY_STAGE >= 5;
+  PanelUp = !EFI_ERROR (Status);
 
   Status = AllocateRightFrameBuffer (FbSize, &FbBase);
   if (EFI_ERROR (Status)) {
@@ -601,9 +587,7 @@ RightDisplayDxeInitialize (
 #if RIGHT_DISPLAY_INIT_AFTER_PIPE
       // Pipe and autorefresh running first, then INIT + PPS (probe reads are
       // unreliable under continuous autorefresh, so none are done here)
-#if !RIGHT_DISPLAY_EXP0_NO_AUTOREFRESH
       DpuEnableAutoRefresh ();
-#endif
       Status = PanelSendInit ();
       if (EFI_ERROR (Status)) {
         DEBUG ((DEBUG_ERROR, "RightDisplay: panel init failed: %r\n", Status));
@@ -620,35 +604,7 @@ RightDisplayDxeInitialize (
       // Panel state after display-on and a few frames
       gBS->Stall (MS (100));
       PanelProbe ();
-#if RIGHT_DISPLAY_DSI_TPG
-      // DSI controller test pattern on MDP command stream 0, replacing what
-      // the DPU delivers: polynomial/init, EN | STREAM0_PATTERN_SEL = 1, then
-      // a software trigger sends one frame; no autorefresh so nothing else
-      // competes for the stream.
-      MmioWrite32 ((UINTN)(DSI1_CTRL_BASE + 0x168), 0x0000A001);
-      MmioWrite32 ((UINTN)(DSI1_CTRL_BASE + 0x16C), 0x00123456);
-      MmioWrite32 ((UINTN)(DSI1_CTRL_BASE + 0x15C), BIT0 | (1 << 8));
-      MmioWrite32 ((UINTN)(DSI1_CTRL_BASE + 0x184), BIT0);
-#elif RIGHT_DISPLAY_EXP0_NO_AUTOREFRESH
-      // EXP0: the single CTL_START from DpuStart is all there is; display
-      // on has already been sent above
-      gBS->Stall (MS (20));
-      PanelProbe ();
-#else
       DpuEnableAutoRefresh ();
-      // Experiment: let several frames through, send HS all-pixels-on while the
-      // stream runs, then read error count (05) and self diagnostic (0F) again
-      gBS->Stall (MS (200));
-      Status = DsiCtrlSendPacket (0x05, (CONST UINT8[]){0x23}, 1, FALSE);
-      DEBUG ((DEBUG_ERROR, "RD: 0x23 under autorefresh: %r\n", Status));
-      gBS->Stall (MS (200));
-      PanelProbe ();
-      // Hold the white briefly, then back to normal mode (DCS 0x22) so the
-      // panel shows whatever the stream has put in its frame memory
-      gBS->Stall (MS (2000));
-      Status = DsiCtrlSendPacket (0x05, (CONST UINT8[]){0x22}, 1, FALSE);
-      DEBUG ((DEBUG_ERROR, "RD: 0x22 normal mode: %r\n", Status));
-#endif
 #endif
     }
   }

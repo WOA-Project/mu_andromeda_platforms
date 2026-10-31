@@ -126,7 +126,7 @@ PowerEnablePanelSupplies (VOID)
     if (!EFI_ERROR (Status) && (St.SwEnable == PM_ON || St.VregOk)) {
       continue;
     }
-    if (!RIGHT_DISPLAY_FORCE_PMIC && !S->EnableIfOff) {
+    if (!S->EnableIfOff) {
       continue;
     }
     DEBUG ((DEBUG_ERROR, "RD: enabling %a\n", S->Name));
@@ -163,9 +163,9 @@ PowerEnableExtTrigClock (VOID)
   Status = Clk->GetStatus (EXT_TRIG_CLK_PMIC, PM_CLK_BB_3_RAW, &St);
   DEBUG ((DEBUG_ERROR, "RD: ext_trig_clk status %r sw_en %u\n", Status, St.SwEnable));
 
-  if (!RIGHT_DISPLAY_FORCE_PMIC || (!EFI_ERROR (Status) && St.SwEnable)) {
+  /*if (!EFI_ERROR (Status) && St.SwEnable) {
     return;
   }
   Status = Clk->ClkBuffEnable (EXT_TRIG_CLK_PMIC, PM_CLK_BB_3_RAW, TRUE);
-  DEBUG ((DEBUG_INFO, "RightDisplay: ext_trig_clk enable: %r\n", Status));
+  DEBUG ((DEBUG_INFO, "RightDisplay: ext_trig_clk enable: %r\n", Status));*/
 }

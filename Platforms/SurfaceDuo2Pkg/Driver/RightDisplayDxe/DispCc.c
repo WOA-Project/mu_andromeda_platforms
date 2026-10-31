@@ -138,9 +138,9 @@ DispCcEnableMdssClocks (VOID)
     { DISP_CC_BASE, DISPCC_MDSS_VSYNC_CBC, "mdss_vsync"       },
     { DISP_CC_BASE, DISPCC_ESC0_CBC,       "mdss_esc0 (m_esc)" },
     { DISP_CC_BASE, DISPCC_MDSS_ROT_CBC,   "mdss_rot"        },
-         { DISP_CC_BASE, DISPCC_RSCC_AHB_CBC,   "mdss_rscc_ahb"   },
-         { DISP_CC_BASE, DISPCC_RSCC_VSYNC_CBC, "mdss_rscc_vsync" },
-       };
+    { DISP_CC_BASE, DISPCC_RSCC_AHB_CBC,   "mdss_rscc_ahb"   },
+    { DISP_CC_BASE, DISPCC_RSCC_VSYNC_CBC, "mdss_rscc_vsync" },
+  };
   EFI_STATUS Status;
   UINTN      i;
 
@@ -154,68 +154,6 @@ DispCcEnableMdssClocks (VOID)
   }
 
   return EFI_SUCCESS;
-}
-
-STATIC
-EFI_STATUS
-RcgCopy (
-  IN UINT32  To,
-  IN UINT32  From,
-  IN BOOLEAN Mnd
-  )
-{
-  UINTN  B = (UINTN)DISP_CC_BASE;
-  UINT32 r;
-
-  MmioWrite32 (B + To + 4, MmioRead32 (B + From + 4));
-  if (Mnd) {
-    for (r = 8; r <= 0x10; r += 4) {
-      MmioWrite32 (B + To + r, MmioRead32 (B + From + r));
-    }
-  }
-  MmioWrite32 (B + To, MmioRead32 (B + To) | RCG_UPDATE);
-  for (r = 0; r < 2000; r++) {
-    if ((MmioRead32 (B + To) & RCG_UPDATE) == 0) {
-      return EFI_SUCCESS;
-    }
-    gBS->Stall (1);
-  }
-  return EFI_TIMEOUT;
-}
-
-//
-// Experiment: byte1/pclk1/esc1 configured like byte0/pclk0/esc0, so their
-// source is the DSI0 PLL (pairs with DsiPhyEnableShared).
-//
-EFI_STATUS
-DispCcEnableDsi1ClocksShared (VOID)
-{
-  EFI_STATUS Status;
-
-  Status = RcgCopy (DISPCC_BYTE1_CMD, 0x210C, FALSE);
-  MmioWrite32 ((UINTN)(DISP_CC_BASE + DISPCC_BYTE1_DIV), MmioRead32 ((UINTN)(DISP_CC_BASE + 0x2124)));
-  if (!EFI_ERROR (Status)) {
-    Status = RcgCopy (DISPCC_PCLK1_CMD, 0x2094, TRUE);
-  }
-  if (!EFI_ERROR (Status)) {
-    Status = RcgCopy (DISPCC_ESC1_CMD, 0x2144, FALSE);
-  }
-  if (!EFI_ERROR (Status)) {
-    Status = BranchEnable (DISPCC_BYTE1_CBC);
-  }
-  if (!EFI_ERROR (Status)) {
-    Status = BranchEnable (DISPCC_BYTE1_INTF_CBC);
-  }
-  if (!EFI_ERROR (Status)) {
-    Status = BranchEnable (DISPCC_ESC1_CBC);
-  }
-  if (!EFI_ERROR (Status)) {
-    Status = BranchEnable (DISPCC_PCLK1_CBC);
-  }
-  // Resync FIFOs once the link clocks run
-  MmioWrite32 ((UINTN)(DSI1_PHY_BASE + 0x1C), 0);
-  MmioWrite32 ((UINTN)(DSI1_PHY_BASE + 0x1C), 1);
-  return Status;
 }
 
 EFI_STATUS
