@@ -22,12 +22,46 @@
 #include <Protocol/DevicePath.h>
 #include <Protocol/GraphicsOutput.h>
 
+/// Defines
+/*
+ * Convert enum video_log2_bpp to bytes and bits. Note we omit the outer
+ * brackets to allow multiplication by fractional pixels.
+ */
+#define VNBYTES(bpix) (1 << (bpix)) / 8
+#define VNBITS(bpix) (1 << (bpix))
+
+#define POS_TO_FB(posX, posY)                                                  \
+  ((UINT8                                                                      \
+        *)((UINTN)This->Mode->FrameBufferBase + (posY)*This->Mode->Info->PixelsPerScanLine * FB_BYTES_PER_PIXEL + (posX)*FB_BYTES_PER_PIXEL))
+
+#define FB_BITS_PER_PIXEL (32)
+#define FB_BYTES_PER_PIXEL (FB_BITS_PER_PIXEL / 8)
+#define DISPLAYDXE_PHYSICALADDRESS32(_x_) (UINTN)((_x_)&0xFFFFFFFF)
+
+#define DISPLAYDXE_RED_MASK 0xFF0000
+#define DISPLAYDXE_GREEN_MASK 0x00FF00
+#define DISPLAYDXE_BLUE_MASK 0x0000FF
+#define DISPLAYDXE_ALPHA_MASK 0x000000
+
+/*
+ * Bits per pixel selector. Each value n is such that the bits-per-pixel is
+ * 2 ^ n
+ */
+enum video_log2_bpp {
+  VIDEO_BPP1 = 0,
+  VIDEO_BPP2,
+  VIDEO_BPP4,
+  VIDEO_BPP8,
+  VIDEO_BPP16,
+  VIDEO_BPP32,
+};
+
 typedef struct {
   VENDOR_DEVICE_PATH DisplayDevicePath;
   EFI_DEVICE_PATH    EndDevicePath;
 } DISPLAY_DEVICE_PATH;
 
-STATIC DISPLAY_DEVICE_PATH mDevicePath =
+DISPLAY_DEVICE_PATH mDisplayDevicePath =
 {
   {
     {
@@ -50,85 +84,72 @@ STATIC DISPLAY_DEVICE_PATH mDevicePath =
   }
 };
 
-STATIC FRAME_BUFFER_CONFIGURE *mBltConfigure;
-STATIC UINTN                   mBltConfigureSize;
+/// Declares
+
+STATIC FRAME_BUFFER_CONFIGURE *mFrameBufferBltLibConfigure;
+STATIC UINTN mFrameBufferBltLibConfigureSize;
+
+STATIC EFI_GRAPHICS_OUTPUT_PROTOCOL mDisplay = {
+  RightQueryMode, RightSetMode, RightBlt, NULL};
 
 STATIC
 EFI_STATUS
 EFIAPI
-RightQueryMode (
-  IN  EFI_GRAPHICS_OUTPUT_PROTOCOL          *This,
-  IN  UINT32                                ModeNumber,
-  OUT UINTN                                 *SizeOfInfo,
-  OUT EFI_GRAPHICS_OUTPUT_MODE_INFORMATION  **Info
-  )
+RightQueryMode(
+    IN EFI_GRAPHICS_OUTPUT_PROTOCOL *This, IN UINT32 ModeNumber,
+    OUT UINTN *SizeOfInfo, OUT EFI_GRAPHICS_OUTPUT_MODE_INFORMATION **Info)
 {
-  if (ModeNumber != 0) {
-    return EFI_INVALID_PARAMETER;
-  }
+  EFI_STATUS Status;
+  Status = gBS->AllocatePool(
+      EfiBootServicesData, sizeof(EFI_GRAPHICS_OUTPUT_MODE_INFORMATION),
+      (VOID **)Info);
 
-  *Info = AllocateCopyPool (sizeof (*This->Mode->Info), This->Mode->Info);
-  if (*Info == NULL) {
-    return EFI_OUT_OF_RESOURCES;
-  }
+  ASSERT_EFI_ERROR(Status);
 
-  *SizeOfInfo = sizeof (EFI_GRAPHICS_OUTPUT_MODE_INFORMATION);
+  *SizeOfInfo                   = sizeof(EFI_GRAPHICS_OUTPUT_MODE_INFORMATION);
+  (*Info)->Version              = This->Mode->Info->Version;
+  (*Info)->HorizontalResolution = This->Mode->Info->HorizontalResolution;
+  (*Info)->VerticalResolution   = This->Mode->Info->VerticalResolution;
+  (*Info)->PixelFormat          = This->Mode->Info->PixelFormat;
+  (*Info)->PixelsPerScanLine    = This->Mode->Info->PixelsPerScanLine;
+
   return EFI_SUCCESS;
 }
 
 STATIC
 EFI_STATUS
 EFIAPI
-RightSetMode (
-  IN EFI_GRAPHICS_OUTPUT_PROTOCOL  *This,
-  IN UINT32                        ModeNumber
-  )
+RightSetMode(IN EFI_GRAPHICS_OUTPUT_PROTOCOL *This, IN UINT32 ModeNumber)
 {
-  return (ModeNumber == 0) ? EFI_SUCCESS : EFI_UNSUPPORTED;
+  return EFI_SUCCESS;
 }
 
 STATIC
 EFI_STATUS
 EFIAPI
-RightBlt (
-  IN EFI_GRAPHICS_OUTPUT_PROTOCOL       *This,
-  IN EFI_GRAPHICS_OUTPUT_BLT_PIXEL      *BltBuffer OPTIONAL,
-  IN EFI_GRAPHICS_OUTPUT_BLT_OPERATION  BltOperation,
-  IN UINTN                              SourceX,
-  IN UINTN                              SourceY,
-  IN UINTN                              DestinationX,
-  IN UINTN                              DestinationY,
-  IN UINTN                              Width,
-  IN UINTN                              Height,
-  IN UINTN                              Delta OPTIONAL
-  )
+RightBlt(
+    IN EFI_GRAPHICS_OUTPUT_PROTOCOL *This,
+    IN EFI_GRAPHICS_OUTPUT_BLT_PIXEL *BltBuffer,
+    OPTIONAL IN EFI_GRAPHICS_OUTPUT_BLT_OPERATION BltOperation,
+    IN UINTN SourceX, IN UINTN SourceY, IN UINTN DestinationX,
+    IN UINTN DestinationY, IN UINTN Width, IN UINTN Height,
+    IN UINTN Delta OPTIONAL)
 {
   RETURN_STATUS Status;
   EFI_TPL       Tpl;
-  UINT8         *Row;
+  //
+  // We have to raise to TPL_NOTIFY, so we make an atomic write to the frame
+  // buffer. We would not want a timer based event (Cursor, ...) to come in
+  // while we are doing this operation.
+  //
+  Tpl    = gBS->RaiseTPL(TPL_NOTIFY);
+  Status = FrameBufferBlt(
+      mFrameBufferBltLibConfigure, BltBuffer, BltOperation, SourceX, SourceY,
+      DestinationX, DestinationY, Width, Height, Delta);
+  gBS->RestoreTPL(Tpl);
 
-  Tpl    = gBS->RaiseTPL (TPL_NOTIFY);
-  Status = FrameBufferBlt (
-             mBltConfigure, BltBuffer, BltOperation, SourceX, SourceY,
-             DestinationX, DestinationY, Width, Height, Delta);
-  gBS->RestoreTPL (Tpl);
-
-  // The DPU fetches straight from DDR, so push the touched rows out of the CPU caches
-  if (!RETURN_ERROR (Status) && (BltOperation != EfiBltVideoToBltBuffer) &&
-      (DestinationY < PANEL_HEIGHT)) {
-    if (DestinationY + Height > PANEL_HEIGHT) {
-      Height = PANEL_HEIGHT - DestinationY;
-    }
-    Row = (UINT8 *)(UINTN)This->Mode->FrameBufferBase +
-          DestinationY * PANEL_WIDTH * RIGHT_FB_BYTES_PER_PIXEL;
-    WriteBackDataCacheRange (Row, Height * PANEL_WIDTH * RIGHT_FB_BYTES_PER_PIXEL);
-  }
-
-  return RETURN_ERROR (Status) ? EFI_INVALID_PARAMETER : EFI_SUCCESS;
+  return RETURN_ERROR(Status) ? EFI_INVALID_PARAMETER : EFI_SUCCESS;
 }
-
-STATIC EFI_GRAPHICS_OUTPUT_PROTOCOL mDisplay = {
-  RightQueryMode, RightSetMode, RightBlt, NULL};
 
 //
 // Place the right framebuffer right after the left (XBL) one inside the
@@ -170,9 +191,11 @@ RightDisplayDxeInitialize (
   IN EFI_SYSTEM_TABLE  *SystemTable
   )
 {
-  EFI_STATUS            Status;
-  EFI_HANDLE            Handle = NULL;
-  EFI_PHYSICAL_ADDRESS  FbBase;
+
+  EFI_STATUS Status             = EFI_SUCCESS;
+  EFI_HANDLE hUEFIDisplayHandle = NULL;
+
+  EFI_PHYSICAL_ADDRESS  MipiFrameBufferAddr;
   BOOLEAN               PanelUp;
   UINTN                 FbSize = (UINTN)PANEL_WIDTH * PANEL_HEIGHT * RIGHT_FB_BYTES_PER_PIXEL;
 
@@ -214,53 +237,75 @@ RightDisplayDxeInitialize (
   }
   PanelUp = !EFI_ERROR (Status);
 
-  Status = AllocateRightFrameBuffer (FbSize, &FbBase);
+  Status = AllocateRightFrameBuffer (FbSize, &MipiFrameBufferAddr);
   if (EFI_ERROR (Status)) {
     return Status;
   }
 
-  mDisplay.Mode = AllocateZeroPool (sizeof (EFI_GRAPHICS_OUTPUT_PROTOCOL_MODE));
+  /* Prepare struct */
   if (mDisplay.Mode == NULL) {
-    return EFI_OUT_OF_RESOURCES;
-  }
-  mDisplay.Mode->Info = AllocateZeroPool (sizeof (EFI_GRAPHICS_OUTPUT_MODE_INFORMATION));
-  if (mDisplay.Mode->Info == NULL) {
-    return EFI_OUT_OF_RESOURCES;
+    Status = gBS->AllocatePool(
+        EfiBootServicesData, sizeof(EFI_GRAPHICS_OUTPUT_PROTOCOL_MODE),
+        (VOID **)&mDisplay.Mode);
+
+    ASSERT_EFI_ERROR(Status);
+    if (EFI_ERROR(Status))
+      return Status;
+
+    ZeroMem(mDisplay.Mode, sizeof(EFI_GRAPHICS_OUTPUT_PROTOCOL_MODE));
   }
 
-  mDisplay.Mode->MaxMode                    = 1;
-  mDisplay.Mode->Mode                       = 0;
-  mDisplay.Mode->SizeOfInfo                 = sizeof (EFI_GRAPHICS_OUTPUT_MODE_INFORMATION);
-  mDisplay.Mode->FrameBufferBase            = FbBase;
-  mDisplay.Mode->FrameBufferSize            = FbSize;
+  if (mDisplay.Mode->Info == NULL) {
+    Status = gBS->AllocatePool(
+        EfiBootServicesData, sizeof(EFI_GRAPHICS_OUTPUT_MODE_INFORMATION),
+        (VOID **)&mDisplay.Mode->Info);
+
+    ASSERT_EFI_ERROR(Status);
+    if (EFI_ERROR(Status))
+      return Status;
+
+    ZeroMem(mDisplay.Mode->Info, sizeof(EFI_GRAPHICS_OUTPUT_MODE_INFORMATION));
+  }
+
+  /* Set information */
+  mDisplay.Mode->MaxMode       = 1;
+  mDisplay.Mode->Mode          = 0;
+  mDisplay.Mode->Info->Version = 0;
+
   mDisplay.Mode->Info->HorizontalResolution = PANEL_WIDTH;
   mDisplay.Mode->Info->VerticalResolution   = PANEL_HEIGHT;
-  mDisplay.Mode->Info->PixelsPerScanLine    = PANEL_WIDTH;
-  mDisplay.Mode->Info->PixelFormat          = PixelBlueGreenRedReserved8BitPerColor;
 
-  Status = FrameBufferBltConfigure (
-             (VOID *)(UINTN)FbBase, mDisplay.Mode->Info, mBltConfigure,
-             &mBltConfigureSize);
+  /* RightDisplayDxe runs on a8r8g8b8 (VIDEO_BPP32) for WoA devices */
+  UINT32               LineLength = PANEL_WIDTH * VNBYTES(VIDEO_BPP32);
+  UINT32               FrameBufferSize    = LineLength * PANEL_HEIGHT;
+  EFI_PHYSICAL_ADDRESS FrameBufferAddress = MipiFrameBufferAddr;
+
+  mDisplay.Mode->Info->PixelsPerScanLine = PANEL_WIDTH;
+  mDisplay.Mode->Info->PixelFormat = PixelBlueGreenRedReserved8BitPerColor;
+  mDisplay.Mode->SizeOfInfo      = sizeof(EFI_GRAPHICS_OUTPUT_MODE_INFORMATION);
+  mDisplay.Mode->FrameBufferBase = FrameBufferAddress;
+  mDisplay.Mode->FrameBufferSize = FrameBufferSize;
+
+  /* Create the FrameBufferBltLib configuration. */
+  Status = FrameBufferBltConfigure(
+      (VOID *)(UINTN)mDisplay.Mode->FrameBufferBase, mDisplay.Mode->Info,
+      mFrameBufferBltLibConfigure, &mFrameBufferBltLibConfigureSize);
+
   if (Status == RETURN_BUFFER_TOO_SMALL) {
-    mBltConfigure = AllocatePool (mBltConfigureSize);
-    if (mBltConfigure == NULL) {
-      return EFI_OUT_OF_RESOURCES;
+    mFrameBufferBltLibConfigure = AllocatePool(mFrameBufferBltLibConfigureSize);
+    if (mFrameBufferBltLibConfigure != NULL) {
+      Status = FrameBufferBltConfigure(
+          (VOID *)(UINTN)mDisplay.Mode->FrameBufferBase, mDisplay.Mode->Info,
+          mFrameBufferBltLibConfigure, &mFrameBufferBltLibConfigureSize);
     }
-    Status = FrameBufferBltConfigure (
-               (VOID *)(UINTN)FbBase, mDisplay.Mode->Info, mBltConfigure,
-               &mBltConfigureSize);
-  }
-  if (EFI_ERROR (Status)) {
-    return Status;
   }
 
-  ZeroMem ((VOID *)(UINTN)FbBase, FbSize);
+  ASSERT_EFI_ERROR(Status);
+  ZeroMem((VOID *)FrameBufferAddress, FrameBufferSize);
 
 #if RIGHT_DISPLAY_DIAG
-  DrawTestPattern ((UINT32 *)(UINTN)FbBase);
+  DrawTestPattern ((UINT32 *)(UINTN)FrameBufferAddress);
 #endif
-
-  WriteBackDataCacheRange ((VOID *)(UINTN)FbBase, FbSize);
 
   // Supplies and clocks were brought up (or confirmed on) at the start
   if (PanelUp) {
@@ -274,12 +319,12 @@ RightDisplayDxeInitialize (
         DEBUG ((DEBUG_ERROR, "RD: mirroring left fb at %lx\n", (UINT64)LeftFb.Address));
         Status = DpuStart (LeftFb.Address);
       } else {
-        Status = DpuStart (FbBase);
+        Status = DpuStart (FrameBufferAddress);
       }
     }
 #else
-    DEBUG ((DEBUG_ERROR, "RD: starting right fb at %lx\n", (UINT64)FbBase));
-    Status = DpuStart (FbBase);
+    DEBUG ((DEBUG_ERROR, "RD: starting right fb at %lx\n", (UINT64)FrameBufferAddress));
+    Status = DpuStart (FrameBufferAddress);
 #endif
     if (EFI_ERROR (Status)) {
       DEBUG ((DEBUG_ERROR, "RightDisplay: DPU start failed: %r\n", Status));
@@ -317,9 +362,12 @@ RightDisplayDxeInitialize (
     DiagDump (PanelUp, Status);
   #endif
 
-  return gBS->InstallMultipleProtocolInterfaces (
-           &Handle,
-           &gEfiDevicePathProtocolGuid, &mDevicePath,
-           &gEfiGraphicsOutputProtocolGuid, &mDisplay,
-           NULL);
+  /* Register handle */
+  Status = gBS->InstallMultipleProtocolInterfaces(
+      &hUEFIDisplayHandle, &gEfiDevicePathProtocolGuid, &mDisplayDevicePath,
+      &gEfiGraphicsOutputProtocolGuid, &mDisplay, NULL);
+
+  ASSERT_EFI_ERROR(Status);
+
+  return Status;
 }
