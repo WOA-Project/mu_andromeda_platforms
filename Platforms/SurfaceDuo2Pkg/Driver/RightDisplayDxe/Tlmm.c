@@ -5,12 +5,6 @@
 **/
 #include "RightDisplayDxe.h"
 
-#define TLMM_GPIO_CFG(n)    (TLMM_BASE + 0x1000ULL * (n))
-#define TLMM_GPIO_IN_OUT(n) (TLMM_BASE + 0x1000ULL * (n) + 0x4)
-
-#define TLMM_CFG_GPIO_OE BIT9
-#define TLMM_IN_OUT_OUT  BIT1
-
 VOID
 TlmmSetGpio (
   IN UINT32  Gpio,

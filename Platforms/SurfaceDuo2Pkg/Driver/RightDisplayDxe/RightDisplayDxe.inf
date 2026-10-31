@@ -18,6 +18,7 @@
   DsiCtrl.c
   Dpu.c
   Panel.c
+  Diag.c
 
 [Packages]
   MdePkg/MdePkg.dec

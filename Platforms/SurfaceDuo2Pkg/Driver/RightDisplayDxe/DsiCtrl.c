@@ -8,41 +8,6 @@
 #include <Library/CacheMaintenanceLib.h>
 #include <Library/PlatformHwioLib.h>
 
-#define DSI(off) ((UINTN)(DSI1_CTRL_BASE + (off)))
-
-#define DSI_CTRL                0x04
-#define DSI_DMA_CTRL            0x3C
-#define DSI_MDP_CTRL            0x40
-#define DSI_MDP_DCS_CMD_CTRL    0x44
-#define DSI_DMA_CMD_LENGTH      0x4C
-#define DSI_TRIG_CTRL           0x84
-#define DSI_DMA_SW_TRIGGER      0x90
-#define DSI_LANE_SWAP_CTRL      0xB0
-#define DSI_HS_TIMER_CTRL       0xBC
-#define DSI_CLKOUT_TIMING_CTRL  0xC4
-#define DSI_LANE_CTRL           0xAC
-#define DSI_NULL_INSERTION      0x2B4
-#define DSI_EOT_PACKET_CTRL     0xCC
-#define DSI_INT_CTRL            0x110
-#define DSI_SOFT_RESET          0x118
-#define DSI_LANE_STATUS         0xA8
-#define DSI_CLK_CTRL            0x11C
-#define DSI_PHY_SW_RESET        0x12C
-#define DSI_TPG_CTRL            0x15C
-#define DSI_TPG_DMA_INIT_VAL    0x17C
-#define DSI_TPG_DMA_FIFO_RESET  0x1EC
-#define DSI_MDP_CTRL2           0x1B8
-#define DSI_MDP_STREAM0_CTRL    0x58
-#define DSI_MDP_STREAM0_TOTAL   0x5C
-#define DSI_MDP_STREAM1_CTRL    0x60
-#define DSI_MDP_STREAM1_TOTAL   0x64
-#define DSI_CMD_COMPRESSION_CTRL  0x2A8
-#define DSI_CMD_COMPRESSION_CTRL2 0x2AC
-
-#define Be16Pps(p) (((UINT32)(p)[0] << 8) | (p)[1])
-
-#define DSI_DMA_DONE BIT0
-
 EFI_STATUS
 DsiCtrlInit (VOID)
 {
@@ -201,7 +166,6 @@ DsiCtrlSendPacket (
     MmioWrite32 (DSI (DSI_INT_CTRL), (MmioRead32 (DSI (DSI_INT_CTRL)) & 0x55555555) | DSI_DMA_DONE);
   }
 #else
-  (VOID)Bytes;
   MmioWrite32 (DSI (DSI_TPG_CTRL), BIT1 | BIT2 | (3 << 16));
   for (i = 0; i < Count; i++) {
     MmioWrite32 (DSI (DSI_TPG_DMA_INIT_VAL), Words[i]);
@@ -209,6 +173,7 @@ DsiCtrlSendPacket (
 
   Val = BIT28;
   MmioWrite32 (DSI (DSI_DMA_CTRL), Val);
+  MmioWrite32 (DSI (DSI_DMA_CMD_LENGTH), Bytes);
 #endif
   MemoryFence ();
   MmioWrite32 (DSI (DSI_DMA_SW_TRIGGER), 1);
@@ -232,52 +197,6 @@ DsiCtrlSendPacket (
   }
 
   MmioWrite32 (DSI (DSI_INT_CTRL), DSI_DMA_DONE);
-  MmioWrite32 (DSI (DSI_TPG_CTRL), 0);
-  MmioWrite32 (DSI (DSI_TPG_DMA_FIFO_RESET), 1);
-  MmioWrite32 (DSI (DSI_TPG_DMA_FIFO_RESET), 0);
-
-  return (i == 10000) ? EFI_TIMEOUT : EFI_SUCCESS;
-}
-
-//
-// Diagnostic DCS read: short read packet with the BTA flag set, sent in LP.
-// Header flags: last (BIT31), BTA (BIT29). Returns the first readback word and
-// the response data type, plus the controller error/ack status.
-//
-EFI_STATUS
-DsiCtrlReadDcs (
-  IN  UINT8   Command,
-  OUT UINT32  *Data,
-  OUT UINT32  *RdbkType,
-  OUT UINT32  *AckErr
-  )
-{
-  UINT32 i;
-  UINT32 Done;
-
-  MmioWrite32 (DSI (DSI_INT_CTRL), DSI_DMA_DONE | BIT20);
-  MmioWrite32 (DSI (DSI_TPG_CTRL), BIT1 | BIT2 | (3 << 16));
-  MmioWrite32 (DSI (DSI_TPG_DMA_INIT_VAL), BIT31 | BIT29 | (0x06 << 16) | Command);
-  MmioWrite32 (DSI (DSI_TPG_DMA_INIT_VAL), 0);
-  MmioWrite32 (DSI (DSI_DMA_CTRL), BIT28 | BIT26);
-  MmioWrite32 (DSI (DSI_DMA_CMD_LENGTH), 4);
-  MemoryFence ();
-  MmioWrite32 (DSI (DSI_DMA_SW_TRIGGER), 1);
-
-  // DMA done (BIT0) and BTA done (BIT20) in INT_CTRL
-  Done = BIT0 | BIT20;
-  for (i = 0; i < 10000; i++) {
-    if ((MmioRead32 (DSI (DSI_INT_CTRL)) & Done) == Done) {
-      break;
-    }
-    gBS->Stall (10);
-  }
-
-  *Data     = MmioRead32 (DSI (0x6C));
-  *RdbkType = MmioRead32 (DSI (0x7C));
-  *AckErr   = MmioRead32 (DSI (0x68));
-
-  MmioWrite32 (DSI (DSI_INT_CTRL), DSI_DMA_DONE | BIT20);
   MmioWrite32 (DSI (DSI_TPG_CTRL), 0);
   MmioWrite32 (DSI (DSI_TPG_DMA_FIFO_RESET), 1);
   MmioWrite32 (DSI (DSI_TPG_DMA_FIFO_RESET), 0);

@@ -11,55 +11,7 @@
 #include "RightDisplayDxe.h"
 
 #include <Library/UefiBootServicesTableLib.h>
-
-extern EFI_GUID gQcomPmicVregProtocolGuid;
-extern EFI_GUID gQcomPmicClkBuffProtocolGuid;
-
-typedef struct {
-  UINT32  PullDown;
-  UINT32  SwMode;
-  UINT32  PinCtrled;
-  UINT32  SwEnable;
-  BOOLEAN VregOk;
-} PM_VREG_STATUS;
-
-typedef struct {
-  UINT64 Revision;
-  EFI_STATUS (EFIAPI *VregControl)(UINT32 Pmic, UINT32 VregId, BOOLEAN Enable);
-  EFI_STATUS (EFIAPI *VregSetLevel)(UINT32 Pmic, UINT32 VregId, UINT32 Mv);
-  EFI_STATUS (EFIAPI *VregGetLevel)(UINT32 Pmic, UINT32 VregId, UINT32 *Mv);
-  EFI_STATUS (EFIAPI *VregSetPwrMode)(UINT32 Pmic, UINT32 VregId, UINT32 Mode);
-  EFI_STATUS (EFIAPI *VregMultiphaseCtrl)(UINT32 Pmic, UINT32 VregId, UINT32 Phases);
-  EFI_STATUS (EFIAPI *VregGetStatus)(UINT32 Pmic, UINT32 VregId, PM_VREG_STATUS *Status);
-  EFI_STATUS (EFIAPI *VregSetLevelUv)(UINT32 Pmic, UINT32 VregId, UINT32 Uv);
-} PM_VREG_PROTOCOL;
-
-typedef struct {
-  UINT32  DrvStrength;
-  BOOLEAN SwEnable;
-  BOOLEAN PinCtrled;
-  BOOLEAN PullDown;
-  UINT32  OutDiv;
-} PM_CLK_STATUS;
-
-typedef struct {
-  UINT64 Revision;
-  EFI_STATUS (EFIAPI *ClkBuffEnable)(UINT32 Pmic, UINT32 ClkType, BOOLEAN Enable);
-  EFI_STATUS (EFIAPI *SetOutDrvStrength)(UINT32 Pmic, UINT32 ClkType, UINT32 Strength);
-  EFI_STATUS (EFIAPI *SetOutClkDiv)(UINT32 Pmic, UINT32 ClkType, UINT32 Div);
-  EFI_STATUS (EFIAPI *GetStatus)(UINT32 Pmic, UINT32 ClkType, PM_CLK_STATUS *Status);
-} PM_CLKBUFF_PROTOCOL;
-
-// PMIC device indices (XBL MDPPlatformLib): A = PMK8350, B = PM8350, C = PM8350C, D = PM8350B
-#define PMIC_A  0
-#define PMIC_B  1
-#define PMIC_C  2
-#define PMIC_D  3
-
-// EFI_PM_LDO_n enumerators start at LDO_1 = 0
-#define PM_LDO(n)  ((n) - 1)
-
-#define PM_ON  1
+#include "Protocols.h"
 
 typedef struct {
   UINT32      Pmic;
@@ -85,16 +37,6 @@ STATIC CONST SUPPLY mSupplies[] = {
 
 // display_panel_avdd pinctrl is disabled on Duo 2 (surface-duo2-common.dtsi:
 // "only needed for certain sharp panels"), so that GPIO must not be touched.
-
-//
-// LN_BB_CLK3 (RPMH_LN_BB_CLK3, "ext_trig_clk") is enabled by the vendor driver
-// right before the panel is enabled. PmicDxe casts the protocol clock type
-// straight to its internal pm_clk_type, whose BB_3 (== LN_BB_CLK3) value is 9
-// (SLEEP 0, XO 1, RF_1..5 2..6, LN_BB/BB_1 7, BB_2 8, BB_3 9), which does not
-// match the EFI_PM_CLK_BUFF_TYPE enumerator names, so the number is used here.
-//
-#define PM_CLK_BB_3_RAW   9
-#define EXT_TRIG_CLK_PMIC PMIC_A
 
 VOID
 PowerEnablePanelSupplies (VOID)

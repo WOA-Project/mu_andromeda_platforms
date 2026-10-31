@@ -108,33 +108,6 @@ PanelPowerOnAndInit (VOID)
 }
 
 //
-// Reads back power mode (0x0A), pixel format (0x0C) and the ID bytes (0xDA) so
-// the log shows whether the panel is alive and answering over BTA.
-//
-EFI_STATUS
-PanelProbe (VOID)
-{
-  // power mode, pixel format, signal mode, self diagnostic, DSI error count,
-  // brightness, ID
-  STATIC CONST UINT8 Cmds[] = {0x0A, 0x0C, 0x0E, 0x0F, 0x05, 0x52, 0xDA};
-  UINTN      i;
-  UINT32     Data;
-  UINT32     Type;
-  UINT32     Ack;
-  EFI_STATUS Status;
-
-  for (i = 0; i < ARRAY_SIZE (Cmds); i++) {
-    Data = Type = Ack = 0;
-    Status = DsiCtrlReadDcs (Cmds[i], &Data, &Type, &Ack);
-    DEBUG ((
-      DEBUG_ERROR, "RD: read %02x: %r data=%08x type=%08x ack=%08x\n",
-      Cmds[i], Status, Data, Type, Ack));
-  }
-
-  return EFI_SUCCESS;
-}
-
-//
 // The vendor driver sends Display On (qcom,mdss-dsi-post-panel-on-command, HS
 // mode) only after the first frame has been kicked off, so the panel never
 // shows stale GRAM content.

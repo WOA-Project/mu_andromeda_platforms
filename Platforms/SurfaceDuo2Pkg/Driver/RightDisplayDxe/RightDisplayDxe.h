@@ -19,76 +19,7 @@
 #include <Library/IoLib.h>
 #include <Library/UefiBootServicesTableLib.h>
 
-//
-// Panel (Elgin right panel, surface_elgin_dsi1_r2_cmd_mp.dtsi, 60Hz timing)
-//
-#define PANEL_WIDTH      1344
-#define PANEL_HEIGHT     1892
-#define PANEL_BITCLK_HZ  760000000ULL
-
-// Command packets sent by memory DMA (buffer in the last 1 KiB of the display
-// reservation, DMA_CMD_OFFSET / DMA_FIFO_CTRL) instead of the embedded FIFO
-#ifndef RIGHT_DISPLAY_EXP0_MEM_DMA
-#define RIGHT_DISPLAY_EXP0_MEM_DMA 1
-#endif
-
-#define PANEL_RESET_GPIO      51
-#define PANEL_TE_GPIO         83
-#define PANEL_TE_GPIO_FUNC    1 // mdp_vsync (SM8350 TLMM: gpio83 f1)
-#define PANEL_TE_VSYNC_SOURCE 1 // qcom,panel-te-source = <1> for the DSI1 display (lahaina-sde-display.dtsi)
-#define PANEL_T_CLK_POST      0x0B
-#define PANEL_T_CLK_PRE       0x17
-
-//
-// SoC register blocks (SM8350)
-//
-#define DSI0_CTRL_BASE 0x0AE94000ULL
-#define DSI0_PHY_BASE  0x0AE94400ULL
-#define DSI1_CTRL_BASE 0x0AE96000ULL
-#define DSI1_PHY_BASE  0x0AE96400ULL
-#define DISP_CC_BASE   0x0AF00000ULL
-#define TLMM_BASE      0x0F100000ULL
-
-#define MDP_BASE       0x0AE01000ULL
-
-#define MS(x) ((x)*1000)
-
-// Bisection: the DPU fetches the left display's framebuffer instead of ours.
-// The right panel then mirrors the left one. If it does, our own framebuffer
-// memory (allocation, cache or SMMU mapping) is the fault; if it stays black,
-// the fault is downstream of the framebuffer fetch.
-#ifndef RIGHT_DISPLAY_MIRROR_LEFT
-#define RIGHT_DISPLAY_MIRROR_LEFT 1
-#endif
-
-#define RD_CTL_INDEX      1
-#define RD_CTL_OFF        0x16000
-#define RD_LM_OFF         0x45000
-#define RD_SSPP_OFF       0x6000
-#define RD_PP_OFF         0x6A000
-#define RD_DSC_CORE_OFF   0x80000
-#define RD_DSC_ENC_OFF    0x80200
-#define RD_DSC_CTL_OFF    0x80F80
-#define RD_STAGE_SHIFT    3
-#define RD_FETCH_BIT      BIT17
-#define RD_FLUSH_SSPP     BIT1
-#define RD_FLUSH_LM       BIT7
-
-// As XBL does with DSIForceCmdInVideoHS: reset the panel, start the DPU pipe
-// and autorefresh, and only then send the INIT sequence and PPS.
-#ifndef RIGHT_DISPLAY_INIT_AFTER_PIPE
-#define RIGHT_DISPLAY_INIT_AFTER_PIPE 0
-#endif
-
-// Dump hardware state to the debug console at the end of bring-up and hold it
-// on screen for RIGHT_DISPLAY_DIAG_HOLD_MS.
-#ifndef RIGHT_DISPLAY_DIAG
-#define RIGHT_DISPLAY_DIAG 1
-#endif
-
-#ifndef RIGHT_DISPLAY_DIAG_HOLD_MS
-#define RIGHT_DISPLAY_DIAG_HOLD_MS 20000
-#endif
+#include "HwCatalog.h"
 
 //
 // Tlmm.c
@@ -165,6 +96,19 @@ DsiCtrlReadDcs (
   OUT UINT32  *Data,
   OUT UINT32  *RdbkType,
   OUT UINT32  *AckErr
+  );
+
+VOID DrawTestPattern (
+  IN UINT32  *Fb
+  );
+
+VOID
+ResetLeftConsole (VOID);
+
+VOID
+DiagDump (
+  IN BOOLEAN     PanelUp,
+  IN EFI_STATUS  LastStatus
   );
 
 EFI_STATUS
