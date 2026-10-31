@@ -30,6 +30,10 @@ BDS_CONSOLE_CONNECT_ENTRY gPlatformConsoles[] =
     CONSOLE_IN
   },
   {
+    (EFI_DEVICE_PATH_PROTOCOL *)&DisplayDevicePath,
+    CONSOLE_OUT | STD_ERROR
+  },
+  {
     (EFI_DEVICE_PATH_PROTOCOL *)&RightDisplayDevicePath,
     CONSOLE_OUT | STD_ERROR
   },
@@ -141,7 +145,7 @@ GetPlatformPreferredConsole(OUT EFI_DEVICE_PATH_PROTOCOL **DevicePath)
   EFI_HANDLE                Handle = NULL;
   EFI_DEVICE_PATH_PROTOCOL *TempDevicePath;
 
-  TempDevicePath = (EFI_DEVICE_PATH_PROTOCOL *)&RightDisplayDevicePath;
+  TempDevicePath = (EFI_DEVICE_PATH_PROTOCOL *)&DisplayDevicePath;
 
   Status = gBS->LocateDevicePath(
       &gEfiGraphicsOutputProtocolGuid, &TempDevicePath, &Handle);
