@@ -27,14 +27,28 @@ typedef struct {
   EFI_DEVICE_PATH    EndDevicePath;
 } DISPLAY_DEVICE_PATH;
 
-STATIC DISPLAY_DEVICE_PATH mDevicePath = {
-  {{HARDWARE_DEVICE_PATH,
-    HW_VENDOR_DP,
-    {(UINT8)sizeof (VENDOR_DEVICE_PATH), (UINT8)(sizeof (VENDOR_DEVICE_PATH) >> 8)}},
-   RIGHT_DISPLAY_VENDOR_GUID},
-  {END_DEVICE_PATH_TYPE,
-   END_ENTIRE_DEVICE_PATH_SUBTYPE,
-   {sizeof (EFI_DEVICE_PATH_PROTOCOL), 0}}};
+STATIC DISPLAY_DEVICE_PATH mDevicePath =
+{
+  {
+    {
+      HARDWARE_DEVICE_PATH,
+      HW_VENDOR_DP,
+      {
+        (UINT8)sizeof (VENDOR_DEVICE_PATH),
+        (UINT8)(sizeof (VENDOR_DEVICE_PATH) >> 8)
+      }
+    },
+    RIGHT_DISPLAY_VENDOR_GUID
+  },
+  {
+    END_DEVICE_PATH_TYPE,
+    END_ENTIRE_DEVICE_PATH_SUBTYPE,
+    {
+      sizeof (EFI_DEVICE_PATH_PROTOCOL),
+      0
+    }
+  }
+};
 
 STATIC FRAME_BUFFER_CONFIGURE *mBltConfigure;
 STATIC UINTN                   mBltConfigureSize;

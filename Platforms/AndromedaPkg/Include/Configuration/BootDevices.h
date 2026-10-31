@@ -18,17 +18,7 @@
 typedef struct {
   VENDOR_DEVICE_PATH       VendorDevicePath;
   EFI_DEVICE_PATH_PROTOCOL EndDevicePath;
-} EFI_KEYPAD_DEVICE_PATH;
-
-typedef struct {
-  VENDOR_DEVICE_PATH       DisplayDevicePath;
-  EFI_DEVICE_PATH_PROTOCOL EndDevicePath;
-} EFI_DISPLAY_DEVICE_PATH;
-
-typedef struct {
-   VENDOR_DEVICE_PATH SdCardDevicePath;
-   EFI_DEVICE_PATH    EndDevicePath;
-} EFI_SDCARD_DEVICE_PATH;
+} EFI_SPECIFIC_DEVICE_PATH;
 
 #define EFI_KEYPAD_DEVICE_GUID                                                 \
   {                                                                            \
@@ -46,7 +36,15 @@ typedef struct {
     }                                                                          \
   }
 
-EFI_KEYPAD_DEVICE_PATH KeypadDevicePath =
+#define RIGHT_DISPLAY_VENDOR_GUID                                              \
+  {                                                                            \
+    0x5E3B7A14, 0x9C2D, 0x4F6E,                                                \
+    {                                                                          \
+      0xA1, 0x58, 0x0D, 0x73, 0xB4, 0x2C, 0x96, 0xE8                           \
+    }                                                                          \
+  }
+
+EFI_SPECIFIC_DEVICE_PATH KeypadDevicePath =
 {
   {
     {
@@ -69,7 +67,7 @@ EFI_KEYPAD_DEVICE_PATH KeypadDevicePath =
   }
 };
 
-EFI_DISPLAY_DEVICE_PATH DisplayDevicePath =
+EFI_SPECIFIC_DEVICE_PATH DisplayDevicePath =
 {
   {
     {
@@ -92,7 +90,30 @@ EFI_DISPLAY_DEVICE_PATH DisplayDevicePath =
   }
 };
 
-EFI_SDCARD_DEVICE_PATH SdcardDevicePath =
+EFI_SPECIFIC_DEVICE_PATH RightDisplayDevicePath =
+{
+  {
+    {
+      HARDWARE_DEVICE_PATH,
+      HW_VENDOR_DP,
+      {
+        (UINT8)sizeof (VENDOR_DEVICE_PATH),
+        (UINT8)(sizeof (VENDOR_DEVICE_PATH) >> 8)
+      }
+    },
+    RIGHT_DISPLAY_VENDOR_GUID
+  },
+  {
+    END_DEVICE_PATH_TYPE,
+    END_ENTIRE_DEVICE_PATH_SUBTYPE,
+    {
+      (UINT8)(END_DEVICE_PATH_LENGTH),
+      (UINT8)((END_DEVICE_PATH_LENGTH) >> 8)
+    }
+  }
+};
+
+EFI_SPECIFIC_DEVICE_PATH SdcardDevicePath =
 {
   {
     {
