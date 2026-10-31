@@ -293,6 +293,22 @@ DscSetup (
   MmioWrite32 (MDP (DSC_CTL + DSC_CTL_PP_MUX), PP_INDEX);
   // DATA_IN_SWAP: take what XBL programmed on the live left DSC
   MmioWrite32 (MDP (DSC_CTL + 0x08), R (0x80000 + 0xF08));
+
+#if RIGHT_DISPLAY_EXP0_DSC_COPY && RIGHT_DISPLAY_CHAIN1
+  {
+    UINT32 Off;
+
+    for (Off = 0; Off < 0x100; Off += 4) {
+      if (Off >= 0x04 && Off < 0x18) {
+        continue;
+      }
+      MmioWrite32 (MDP (DSC_ENC + Off), R (0x80100 + Off));
+    }
+    MmioWrite32 (MDP (DSC_CTL + 0x04), R (0x80F04));
+    MmioWrite32 (MDP (DSC_CTL + 0x08), R (0x80F08));
+    MmioWrite32 (MDP (DSC_CTL + DSC_CTL_PP_MUX), PP_INDEX);
+  }
+#endif
 }
 
 STATIC
@@ -304,10 +320,14 @@ PipelineSetup (VOID)
   UINT32 Retry;
 
   // Reset this CTL path
+#if !RIGHT_DISPLAY_EXP0_NO_CTL_RESET
   W (CTL_SW_RESET, 1);
   for (Retry = 0; Retry < 2000 && (R (CTL_SW_RESET) & BIT0); Retry++) {
     gBS->Stall (1);
   }
+#else
+  (VOID)Retry;
+#endif
 
   // SSPP: DMA2 fetches the framebuffer
   W (SSPP_BASE + SSPP_MULTIRECT_OPMODE, 0);
@@ -329,11 +349,22 @@ PipelineSetup (VOID)
   W (SSPP_BASE + SSPP_CREQ_LUT_0, 0x67777777);
   W (SSPP_BASE + SSPP_CREQ_LUT_1, 0x00112236);
 
+#if RIGHT_DISPLAY_EXP0_SSPP_COPY && RIGHT_DISPLAY_CHAIN1
+  // EXP0 copies the whole live VIG0 block; keep our own geometry/address/format
+  {
+    UINT32 Off;
+    for (Off = 0x40; Off < 0x1F8; Off += 4) {
+      W (SSPP_BASE + Off, R (0x4000 + Off));
+    }
+  }
+#endif
+
   // Layer mixer: mirror the left mixer (stage registers have a 0x18 stride,
   // the left values are the ones known to show a framebuffer)
   {
     UINT32 Off;
-    for (Off = 0; Off < 0x80; Off += 4) {
+    UINT32 LmLen = RIGHT_DISPLAY_EXP0_LM_FULL_COPY ? 0x320 : 0x80;
+    for (Off = 0; Off < LmLen; Off += 4) {
       W (LM_BASE + Off, R (LM_LEFT_BASE + Off));
     }
     W (LM_BASE + LM_OUT_SIZE, Size);
@@ -378,6 +409,20 @@ PipelineSetup (VOID)
   // The secondary panel XML sets DSITEvSyncSelect=1 (TE on gpio83, mdp_vsync_s)
   W (INTF_BASE + INTF_TEAR_MDP_VSYNC_SEL, 1);
 
+#if RIGHT_DISPLAY_EXP0_INTF_TEAR_COPY
+  // EXP0: tearcheck block taken from the live left INTF, TE select included,
+  // autorefresh off
+  {
+    UINT32 Off;
+    W (INTF_BASE + 0x25C, (R (INTF_LEFT_BASE + 0x25C) & ~0xFU) | 1);
+    W (INTF_BASE + INTF_TEAR_MDP_VSYNC_SEL, 1);
+    for (Off = 0x288; Off <= 0x2A8; Off += 4) {
+      W (INTF_BASE + Off, R (INTF_LEFT_BASE + Off));
+    }
+    W (INTF_BASE + INTF_AUTOREFRESH, 0);
+    W (INTF_BASE + INTF_TEAR_CHECK_EN, R (INTF_LEFT_BASE + INTF_TEAR_CHECK_EN));
+  }
+#else
   // As in the vendor driver: external TE (BIT20) is connected only after the
   // first kickoff, and the HW-generated TE is effectively disabled by a
   // near-maximum sync height.
@@ -395,6 +440,7 @@ PipelineSetup (VOID)
   W (INTF_BASE + 0x2B8, R (INTF_LEFT_BASE + 0x2B8));
   W (INTF_BASE + 0x2BC, R (INTF_LEFT_BASE + 0x2BC));
   W (INTF_BASE + INTF_TEAR_CHECK_EN, 1);
+#endif
 
   // CTL: command mode, which blocks are active
   W (CTL_TOP, BIT17 | (0xFU << 28));
@@ -409,8 +455,12 @@ PipelineSetup (VOID)
   // Flush: sub-block registers first, then the main flush
   W (CTL_INTF_FLUSH, 1U << INTF_INDEX);
   W (CTL_DSC_FLUSH, 1U << DSC_INDEX);
+#if RIGHT_DISPLAY_EXP0_NO_PERIPH_FLUSH
+  W (CTL_FLUSH, CTL_FLUSH_DMA2 | CTL_FLUSH_LM2 | CTL_FLUSH_CTL | CTL_FLUSH_DSC | CTL_FLUSH_INTF);
+#else
   W (CTL_PERIPH_FLUSH, 1U << INTF_INDEX);
   W (CTL_FLUSH, CTL_FLUSH_DMA2 | CTL_FLUSH_LM2 | CTL_FLUSH_CTL | CTL_FLUSH_DSC | CTL_FLUSH_INTF | CTL_FLUSH_PERIPH);
+#endif
 }
 
 STATIC
@@ -438,7 +488,9 @@ DpuStart (
 
   // One kickoff only; hardware autorefresh is enabled by DpuEnableAutoRefresh
   // once the panel has been lit and probed on a quiet link.
+#if !RIGHT_DISPLAY_EXP0_INTF_TEAR_COPY
   W (INTF_BASE + INTF_SYNC_CONFIG_VSYNC, R (INTF_BASE + INTF_SYNC_CONFIG_VSYNC) | BIT20);
+#endif
   W (CTL_START, 1);
 
   return gBS->CreateEvent (

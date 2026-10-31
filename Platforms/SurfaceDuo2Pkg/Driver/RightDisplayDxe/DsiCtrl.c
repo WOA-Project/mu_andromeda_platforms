@@ -5,6 +5,9 @@
 **/
 #include "RightDisplayDxe.h"
 
+#include <Library/CacheMaintenanceLib.h>
+#include <Library/PlatformHwioLib.h>
+
 #define DSI(off) ((UINTN)(DSI1_CTRL_BASE + (off)))
 
 #define DSI_CTRL                0x04
@@ -90,6 +93,25 @@ DsiCtrlInit (VOID)
   MmioWrite32 (DSI (DSI_MDP_CTRL2), 0x8 | (1 << 20) | BIT16);
   MmioWrite32 (DSI (DSI_MDP_DCS_CMD_CTRL), 0x2C | (0x3C << 8) | BIT16);
 
+#if RIGHT_DISPLAY_EXP0_DSI_COPY
+  // EXP0: take the live DSI0 command-engine configuration wholesale
+  {
+    STATIC CONST UINT32  CopyRegs[] = {
+      DSI_MDP_CTRL, DSI_MDP_DCS_CMD_CTRL, DSI_MDP_STREAM0_CTRL, DSI_MDP_STREAM0_TOTAL,
+      DSI_MDP_STREAM1_CTRL, DSI_MDP_STREAM1_TOTAL, DSI_TRIG_CTRL, DSI_LANE_CTRL,
+      DSI_LANE_SWAP_CTRL, 0xB8, DSI_HS_TIMER_CTRL, DSI_CLKOUT_TIMING_CTRL,
+      DSI_EOT_PACKET_CTRL, 0x10C, DSI_MDP_CTRL2, DSI_CMD_COMPRESSION_CTRL,
+      DSI_CMD_COMPRESSION_CTRL2, DSI_NULL_INSERTION
+    };
+    UINTN  n;
+
+    for (n = 0; n < ARRAY_SIZE (CopyRegs); n++) {
+      MmioWrite32 (DSI (CopyRegs[n]), MmioRead32 (DSI0_CTRL_BASE + CopyRegs[n]));
+    }
+    Val = MmioRead32 (DSI0_CTRL_BASE + DSI_CTRL) & ~(UINT32)7;
+  }
+#endif
+
   MmioWrite32 (DSI (DSI_CLK_CTRL), 0x23F | BIT8 | BIT9 | BIT11 | BIT21);
   MmioWrite32 (DSI (DSI_CTRL), Val | BIT0);
   MmioWrite32 (DSI (DSI_CTRL), Val | BIT0 | BIT2);
@@ -113,11 +135,17 @@ DsiCtrlSetupStream (VOID)
   UINT32 Bytes   = Chunk * Slices;
   UINT32 Word    = (Bytes + 1);
 
+#if !RIGHT_DISPLAY_EXP0_DSI_COPY
   MmioWrite32 (DSI (DSI_MDP_STREAM0_CTRL), 0x39 | (Word << 16));
   MmioWrite32 (DSI (DSI_MDP_STREAM0_TOTAL), ((Bytes + 5) / 6) | (PANEL_HEIGHT << 16));
   // Stream 1 stays cleared, as on the live left controller (0x60/0x64 read 0)
   MmioWrite32 (DSI (DSI_CMD_COMPRESSION_CTRL), BIT0 | ((Bytes % 3) << 4) | (0x39 << 8));
   MmioWrite32 (DSI (DSI_CMD_COMPRESSION_CTRL2), Chunk);
+#else
+  (VOID)Word;
+  (VOID)Bytes;
+  (VOID)Chunk;
+#endif
   // Undocumented register at 0x1F8: the live left controller reads 1, ours 0
   MmioWrite32 (DSI (0x1F8), MmioRead32 (DSI0_CTRL_BASE + 0x1F8));
 }
@@ -161,6 +189,9 @@ DsiCtrlSendPacket (
   }
 
   ZeroMem (Words, sizeof (Words));
+#if RIGHT_DISPLAY_EXP0_PAD_FF
+  SetMem (Words, sizeof (Words), 0xFF);
+#endif
   Words[0] = Header;
   Count = 1;
   if (Long) {
@@ -172,6 +203,38 @@ DsiCtrlSendPacket (
     Count++; // FIFO is written in pairs
   }
 
+#if RIGHT_DISPLAY_EXP0_MEM_DMA
+  {
+    ARM_MEMORY_REGION_DESCRIPTOR_EX  Fb;
+    UINT64                           Buf;
+
+    if (EFI_ERROR (GetPlatformDisplayFrameBuffer (&Fb))) {
+      return EFI_NOT_FOUND;
+    }
+    // Last 1 KiB of the display reservation: below 4 GiB, past the scanout
+    Buf = Fb.Address + Fb.Length - 0x400;
+    if (Buf > 0xFFFFFFFFULL) {
+      return EFI_UNSUPPORTED;
+    }
+    for (i = 0; i < Bytes / 4; i++) {
+      MmioWrite32 ((UINTN)(Buf + i * 4), Words[i]);
+    }
+    WriteBackDataCacheRange ((VOID *)(UINTN)Buf, Bytes);
+    MemoryFence ();
+
+    Val  = MmioRead32 (DSI (DSI_DMA_CTRL));
+    Val |= BIT28;
+    Val &= ~(BIT31 | BIT30 | BIT29 | BIT24 | BIT26);
+    if (LowPower) {
+      Val |= BIT26;
+    }
+    MmioWrite32 (DSI (DSI_DMA_CTRL), Val);
+    MmioWrite32 (DSI (0x50), MmioRead32 (DSI (0x50)) | BIT20 | BIT16);
+    MmioWrite32 (DSI (0x48), (UINT32)Buf);
+    MmioWrite32 (DSI (DSI_DMA_CMD_LENGTH), Bytes);
+    MmioWrite32 (DSI (DSI_INT_CTRL), (MmioRead32 (DSI (DSI_INT_CTRL)) & 0x55555555) | DSI_DMA_DONE);
+  }
+#else
   MmioWrite32 (DSI (DSI_TPG_CTRL), BIT1 | BIT2 | (3 << 16));
   for (i = 0; i < Count; i++) {
     MmioWrite32 (DSI (DSI_TPG_DMA_INIT_VAL), Words[i]);
@@ -182,7 +245,7 @@ DsiCtrlSendPacket (
     Val |= BIT26;
   }
   MmioWrite32 (DSI (DSI_DMA_CTRL), Val);
-  MmioWrite32 (DSI (DSI_DMA_CMD_LENGTH), Bytes);
+#endif
   MemoryFence ();
   MmioWrite32 (DSI (DSI_DMA_SW_TRIGGER), 1);
 
@@ -206,8 +269,10 @@ DsiCtrlSendPacket (
 
   MmioWrite32 (DSI (DSI_INT_CTRL), DSI_DMA_DONE);
   MmioWrite32 (DSI (DSI_TPG_CTRL), 0);
+#if !RIGHT_DISPLAY_EXP0_NO_FIFO_RESET
   MmioWrite32 (DSI (DSI_TPG_DMA_FIFO_RESET), 1);
   MmioWrite32 (DSI (DSI_TPG_DMA_FIFO_RESET), 0);
+#endif
 
   return (i == 10000) ? EFI_TIMEOUT : EFI_SUCCESS;
 }

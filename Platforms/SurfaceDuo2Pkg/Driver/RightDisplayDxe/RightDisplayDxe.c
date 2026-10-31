@@ -499,13 +499,20 @@ RightDisplayDxeInitialize (
     TlmmConfigGpioOutput (PANEL_RESET_GPIO, FALSE);
 
     // TE input from the panel, pull-down, 2 mA drive as in the downstream sde_te_active state
-    TlmmConfigFunction (PANEL_TE_GPIO, PANEL_TE_GPIO_FUNC, 1, 0);
+    TlmmConfigFunction (PANEL_TE_GPIO, PANEL_TE_GPIO_FUNC, RIGHT_DISPLAY_EXP0_TE_NOPULL ? 0 : 1, 0);
     DispCcEnableMdssClocks ();
+#if RIGHT_DISPLAY_SHARED_PLL
+    Status = DsiPhyEnableShared ();
+    if (!EFI_ERROR (Status)) {
+      Status = DispCcEnableDsi1ClocksShared ();
+    }
+#else
     DsiPhyEnable ();
     Status = DsiPllEnable ();
     if (!EFI_ERROR (Status)) {
       Status = DispCcEnableDsi1Clocks ();
     }
+#endif
   }
   if (RIGHT_DISPLAY_STAGE >= 4 && !EFI_ERROR (Status)) {
     Status = DsiCtrlInit ();
@@ -594,7 +601,9 @@ RightDisplayDxeInitialize (
 #if RIGHT_DISPLAY_INIT_AFTER_PIPE
       // Pipe and autorefresh running first, then INIT + PPS (probe reads are
       // unreliable under continuous autorefresh, so none are done here)
+#if !RIGHT_DISPLAY_EXP0_NO_AUTOREFRESH
       DpuEnableAutoRefresh ();
+#endif
       Status = PanelSendInit ();
       if (EFI_ERROR (Status)) {
         DEBUG ((DEBUG_ERROR, "RightDisplay: panel init failed: %r\n", Status));
@@ -620,6 +629,11 @@ RightDisplayDxeInitialize (
       MmioWrite32 ((UINTN)(DSI1_CTRL_BASE + 0x16C), 0x00123456);
       MmioWrite32 ((UINTN)(DSI1_CTRL_BASE + 0x15C), BIT0 | (1 << 8));
       MmioWrite32 ((UINTN)(DSI1_CTRL_BASE + 0x184), BIT0);
+#elif RIGHT_DISPLAY_EXP0_NO_AUTOREFRESH
+      // EXP0: the single CTL_START from DpuStart is all there is; display
+      // on has already been sent above
+      gBS->Stall (MS (20));
+      PanelProbe ();
 #else
       DpuEnableAutoRefresh ();
       // Experiment: let several frames through, send HS all-pixels-on while the

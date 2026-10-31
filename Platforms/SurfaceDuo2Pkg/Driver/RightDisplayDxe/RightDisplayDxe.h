@@ -26,9 +26,92 @@
 #define PANEL_HEIGHT     1892
 #define PANEL_BITCLK_HZ  760000000ULL
 
+// It defaults every RIGHT_DISPLAY_EXP0_* flag below to 1, sends INIT in LP before
+// the pipe starts, no autorefresh, and no forced max brightness. Each flag can
+// still be set on its own with 0 or 1.
+#ifndef RIGHT_DISPLAY_EXP0
+#define RIGHT_DISPLAY_EXP0 0
+#endif
+
 // DSIPacketTransferHS=True in the vendor panel XML: init commands go out in HS
 // with the clock lane forced to HS beforehand. Set to 0 to fall back to LP.
+#if RIGHT_DISPLAY_EXP0
 #define PANEL_INIT_HS    0
+#else
+#define PANEL_INIT_HS    1
+#endif
+// 1: PHY1 slaves to the PLL running on DSI0 (vendor kernel / EXP0), 0: own PLL
+#define RIGHT_DISPLAY_SHARED_PLL 1
+// Vendor-kernel differences from the XBL XML: two trailing init commands
+// (B0 70, EC 01) and a 10 ms reset-low pulse instead of 16 us
+#define PANEL_VENDOR_TAIL_CMDS 1
+#define PANEL_LONG_RESET       1
+
+// Individual EXP0 differences (each one is also covered by the master switch)
+// Reset: GPIO 51 driven low first and configured as cfg 0x2C3 (pull-up, 8 mA),
+// 10 ms low, 10 ms high, commands right away (no 65 ms settle)
+#ifndef RIGHT_DISPLAY_EXP0_RESET
+#define RIGHT_DISPLAY_EXP0_RESET RIGHT_DISPLAY_EXP0
+#endif
+// TE GPIO 83: function 1 with no pull (default is pull-down)
+#ifndef RIGHT_DISPLAY_EXP0_TE_NOPULL
+#define RIGHT_DISPLAY_EXP0_TE_NOPULL RIGHT_DISPLAY_EXP0
+#endif
+// DSI1 controller: copy the command-engine, stream, trigger, lane, timer, EOT,
+// error-mask and compression registers from the live DSI0 controller
+#ifndef RIGHT_DISPLAY_EXP0_DSI_COPY
+#define RIGHT_DISPLAY_EXP0_DSI_COPY RIGHT_DISPLAY_EXP0
+#endif
+// Command packets padded to 32 bits with 0xFF instead of 0x00
+#ifndef RIGHT_DISPLAY_EXP0_PAD_FF
+#define RIGHT_DISPLAY_EXP0_PAD_FF RIGHT_DISPLAY_EXP0
+#endif
+// INTF_2 tearcheck registers (0x284, 0x288..0x2A8) copied from INTF_1, no autorefresh bits
+#ifndef RIGHT_DISPLAY_EXP0_INTF_TEAR_COPY
+#define RIGHT_DISPLAY_EXP0_INTF_TEAR_COPY RIGHT_DISPLAY_EXP0
+#endif
+// No hardware autorefresh: a single CTL_START kick instead
+#ifndef RIGHT_DISPLAY_EXP0_NO_AUTOREFRESH
+#define RIGHT_DISPLAY_EXP0_NO_AUTOREFRESH RIGHT_DISPLAY_EXP0
+#endif
+// Layer mixer: the whole 0x320 block copied from LM_0 instead of the first 0x80 bytes
+#ifndef RIGHT_DISPLAY_EXP0_LM_FULL_COPY
+#define RIGHT_DISPLAY_EXP0_LM_FULL_COPY RIGHT_DISPLAY_EXP0
+#endif
+// SSPP: the whole VIG block copied from VIG0 (except the source addresses)
+#ifndef RIGHT_DISPLAY_EXP0_SSPP_COPY
+#define RIGHT_DISPLAY_EXP0_SSPP_COPY RIGHT_DISPLAY_EXP0
+#endif
+// No 130 ms delay after the last init command (E6)
+#ifndef RIGHT_DISPLAY_EXP0_E6_NOWAIT
+#define RIGHT_DISPLAY_EXP0_E6_NOWAIT RIGHT_DISPLAY_EXP0
+#endif
+// No peripheral flush (CTL_1 flush is BIT1|BIT7|BIT17|BIT22|BIT31 only)
+#ifndef RIGHT_DISPLAY_EXP0_NO_PERIPH_FLUSH
+#define RIGHT_DISPLAY_EXP0_NO_PERIPH_FLUSH RIGHT_DISPLAY_EXP0
+#endif
+#ifndef RIGHT_DISPLAY_EXP0_NO_FIFO_RESET
+#define RIGHT_DISPLAY_EXP0_NO_FIFO_RESET RIGHT_DISPLAY_EXP0
+#endif
+// Command packets sent by memory DMA (buffer in the last 1 KiB of the display
+// reservation, DMA_CMD_OFFSET / DMA_FIFO_CTRL) instead of the embedded FIFO
+#ifndef RIGHT_DISPLAY_EXP0_MEM_DMA
+#define RIGHT_DISPLAY_EXP0_MEM_DMA RIGHT_DISPLAY_EXP0
+#endif
+// DSC_1 encoder (except the status words) and the wrapper cfg/swap copied
+// from the live DSC_0 instead of being derived from the PPS (CHAIN1 only)
+#ifndef RIGHT_DISPLAY_EXP0_DSC_COPY
+#define RIGHT_DISPLAY_EXP0_DSC_COPY RIGHT_DISPLAY_EXP0
+#endif
+// No CTL software reset before programming the path
+#ifndef RIGHT_DISPLAY_EXP0_NO_CTL_RESET
+#define RIGHT_DISPLAY_EXP0_NO_CTL_RESET RIGHT_DISPLAY_EXP0
+#endif
+// No DCS 0x51 brightness write after display-on
+#ifndef RIGHT_DISPLAY_EXP0_NO_BRIGHTNESS
+#define RIGHT_DISPLAY_EXP0_NO_BRIGHTNESS RIGHT_DISPLAY_EXP0
+#endif
+
 #define PANEL_RESET_GPIO 51
 #define PANEL_TE_GPIO         83
 #define PANEL_TE_GPIO_FUNC    1 // mdp_vsync (SM8350 TLMM: gpio83 f1)
@@ -98,7 +181,7 @@
 
 // Bisection: after display-on, set the maximum brightness (0x51 = 0x0FFF)
 #ifndef RIGHT_DISPLAY_MAX_BRIGHTNESS
-#define RIGHT_DISPLAY_MAX_BRIGHTNESS 1
+#define RIGHT_DISPLAY_MAX_BRIGHTNESS (!RIGHT_DISPLAY_EXP0_NO_BRIGHTNESS)
 #endif
 
 // Which block chain the right display uses:
@@ -139,7 +222,7 @@
 // As XBL does with DSIForceCmdInVideoHS: reset the panel, start the DPU pipe
 // and autorefresh, and only then send the INIT sequence and PPS.
 #ifndef RIGHT_DISPLAY_INIT_AFTER_PIPE
-#define RIGHT_DISPLAY_INIT_AFTER_PIPE 0
+#define RIGHT_DISPLAY_INIT_AFTER_PIPE (!RIGHT_DISPLAY_EXP0)
 #endif
 
 // Dump hardware state to the debug console at the end of bring-up and hold it
@@ -184,6 +267,9 @@ DsiPhyEnable (VOID);
 EFI_STATUS
 DsiPllEnable (VOID);
 
+EFI_STATUS
+DsiPhyEnableShared (VOID);
+
 //
 // Power.c
 VOID
@@ -199,6 +285,9 @@ DispCcEnableMdssClocks (VOID);
 
 EFI_STATUS
 DispCcEnableDsi1Clocks (VOID);
+
+EFI_STATUS
+DispCcEnableDsi1ClocksShared (VOID);
 
 //
 // DsiCtrl.c

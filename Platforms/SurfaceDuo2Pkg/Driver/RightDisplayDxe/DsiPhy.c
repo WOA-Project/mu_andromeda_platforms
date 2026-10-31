@@ -161,6 +161,98 @@ DsiPhyEnable (VOID)
   return EFI_SUCCESS;
 }
 
+//
+// Experiment: PHY1 as a slave of the PLL running on DSI0, as the vendor kernel
+// does for this panel pair ("qcom,dsi-select-sec-clocks") and EXP0 copies.
+// PHY1 takes its configuration from the live PHY0 and the DSI0 PLL stays
+// untouched; DISP_CC byte1/pclk1 must then use the DSI0 PLL outputs.
+//
+#define PHY0(off) ((UINTN)(DSI0_PHY_BASE + (off)))
+
+STATIC
+VOID
+CopyFromPhy0 (
+  IN UINT32 Off
+  )
+{
+  MmioWrite32 (PHY (Off), MmioRead32 (PHY0 (Off)));
+}
+
+EFI_STATUS
+DsiPhyEnableShared (VOID)
+{
+  UINTN  i, Lane, n;
+  STATIC CONST UINT8 LaneRegs[] = {0x00, 0x04, 0x08, 0x14, 0x18};
+  STATIC CONST UINT16 Strength[] = {
+    CMN_STR_SWI_CAL, CMN_HSTX_STR, CMN_PEMPH_0, CMN_RESCODE_TOP, CMN_RESCODE_BOT, CMN_LPTX_STR
+  };
+
+  MmioWrite32 ((UINTN)(DSI1_CTRL_BASE + 0x12C), BIT24 | 0x1);
+  gBS->Stall (1000);
+  MmioWrite32 ((UINTN)(DSI1_CTRL_BASE + 0x12C), 0x0);
+  gBS->Stall (100);
+
+  for (i = 0; i < 1000; i++) {
+    if (MmioRead32 (PHY (CMN_PHY_STATUS)) & BIT0) {
+      break;
+    }
+    gBS->Stall (10);
+  }
+  if (i == 1000) {
+    DEBUG ((DEBUG_ERROR, "RightDisplay: PHY1 refgen not ready\n"));
+    return EFI_TIMEOUT;
+  }
+
+  W (PHY (CMN_CTRL_0), BIT6 | BIT5);
+  W (PHY (CMN_PLL_CNTRL), 0);
+  W (PHY (CMN_RBUF_CTRL), 0);
+  if ((MmioRead32 (PHY (CMN_REVISION_ID0)) & 0xF0) == 0x20) {
+    CopyFromPhy0 (CMN_CTRL_4);
+  }
+  CopyFromPhy0 (CMN_LANE_CFG0);
+  CopyFromPhy0 (CMN_LANE_CFG1);
+  CopyFromPhy0 (CMN_VREG_CTRL_0);
+  CopyFromPhy0 (CMN_VREG_CTRL_1);
+  W (PHY (CMN_CTRL_3), 0);
+  for (i = 0; i < ARRAY_SIZE (Strength); i++) {
+    CopyFromPhy0 (Strength[i]);
+  }
+  W (PHY (CMN_CTRL_0), 0x7F);
+  W (PHY (CMN_LANE_CTRL0), 0x1F);
+  W (PHY (CMN_CTRL_2), 0x40);
+  W (PHY (CMN_CLK_CFG1), BIT2);
+  for (i = 0; i < 14; i++) {
+    CopyFromPhy0 (CMN_TIMING_CTRL (i));
+  }
+  for (Lane = 0; Lane < 5; Lane++) {
+    W (PHY (LANE (Lane, 0x14)), 0);
+    W (PHY (LANE (Lane, 0x10)), 0);
+  }
+  for (Lane = 0; Lane < 5; Lane++) {
+    for (n = 0; n < ARRAY_SIZE (LaneRegs); n++) {
+      CopyFromPhy0 (LANE (Lane, LaneRegs[n]));
+    }
+  }
+
+  // Slave PLL programming
+  W (PLL (0x260), 0x22);
+  CopyFromPhy0 (CMN_CLK_CFG0);
+  W (PHY (CMN_CTRL_0), MmioRead32 (PHY (CMN_CTRL_0)) | BIT5);
+  W (PLL (0x28), 0xC0);
+  gBS->Stall (1);
+  W (PHY (CMN_CLK_CFG1), (MmioRead32 (PHY (CMN_CLK_CFG1)) & ~3U) | (MmioRead32 (PHY0 (CMN_CLK_CFG1)) & 3U));
+  W (PHY (CMN_DIGTOP_SPARE4), 1);
+  W (PHY (CMN_DIGTOP_SPARE4), 0);
+  W (PHY (CMN_CTRL_3), 0x04);
+  W (PHY (CMN_CLK_CFG1), MmioRead32 (PHY (CMN_CLK_CFG1)) | BIT5 | BIT4);
+
+  DEBUG ((
+    DEBUG_ERROR, "RD: shared pll: phy1 ctrl0 %08x cfg0 %08x cfg1 %08x status %08x\n",
+    MmioRead32 (PHY (CMN_CTRL_0)), MmioRead32 (PHY (CMN_CLK_CFG0)),
+    MmioRead32 (PHY (CMN_CLK_CFG1)), MmioRead32 (PHY (CMN_PHY_STATUS))));
+  return EFI_SUCCESS;
+}
+
 EFI_STATUS
 DsiPllEnable (VOID)
 {
