@@ -7,14 +7,10 @@
 **/
 
 #include <Uefi.h>
-#include <PolicyDataStructGFX.h>
 
 #include <Ppi/Policy.h>
 #include <Library/DebugLib.h>
-#include <Library/BaseMemoryLib.h>
 #include <Library/PeiServicesLib.h>
-#include <Library/MemoryAllocationLib.h>
-#include <Library/PcdLib.h>
 #include <ConfigStdStructDefs.h>
 
 // XML autogen definitions

@@ -24,11 +24,9 @@
 
 [Packages]
   MdePkg/MdePkg.dec
-  MdeModulePkg/MdeModulePkg.dec
   MsGraphicsPkg/MsGraphicsPkg.dec
 
 [LibraryClasses]
-  DebugLib
 
 [Protocols]
 

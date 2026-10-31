@@ -28,7 +28,6 @@ Abstract:
 #include <Library/IoLib.h>
 #include <Library/PcdLib.h>
 #include <Library/BaseLib.h>
-#include <Library/BaseMemoryLib.h>
 #include "sdm845.h"
 
 //

@@ -31,7 +31,6 @@
   BaseMemoryLib
   DebugLib
   DevicePathLib
-  IoLib
   UefiBootServicesTableLib
   UefiLib
   AcpiPlatformUpdateLib

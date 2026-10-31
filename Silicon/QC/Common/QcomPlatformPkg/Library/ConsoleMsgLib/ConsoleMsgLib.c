@@ -9,7 +9,6 @@ SPDX-License-Identifier: BSD-2-Clause-Patent
 
 #include "ConsoleUtils.h"
 
-#include <Library/BaseMemoryLib.h>
 #include <Library/MemoryAllocationLib.h>
 #include <Library/MuUefiVersionLib.h>
 #include <Library/PlatformHobLib.h>

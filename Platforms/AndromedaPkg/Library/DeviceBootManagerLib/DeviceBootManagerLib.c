@@ -13,7 +13,6 @@ SPDX-License-Identifier: BSD-2-Clause-Patent
 #include <Guid/EventGroup.h>
 #include <Guid/GlobalVariable.h>
 #include <Guid/MsBootMenuGuid.h>
-#include <Guid/DfciPacketHeader.h>
 
 #include <Protocol/OnScreenKeyboard.h>
 #include <Protocol/TpmPpProtocol.h>
@@ -49,7 +48,6 @@ SPDX-License-Identifier: BSD-2-Clause-Patent
 #include <Library/UpdateFacsHardwareSignatureLib.h>
 
 #include <Settings/BootMenuSettings.h>
-#include <Settings/DfciSettings.h>
 
 static EFI_EVENT  mPreReadyToBootEvent;
 static EFI_EVENT  mPostReadyToBootEvent;

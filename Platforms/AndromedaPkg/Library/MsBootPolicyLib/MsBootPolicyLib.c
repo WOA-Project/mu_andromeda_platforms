@@ -15,19 +15,16 @@
 #include <Protocol/SimpleFileSystem.h>
 #include <Protocol/DfciAuthentication.h>
 #include <Library/UefiBootServicesTableLib.h>         // gBS
-#include <Library/UefiRuntimeServicesTableLib.h>      // gRT
 #include <Library/DebugLib.h>                         // DEBUG tracing
 #include <Library/BaseMemoryLib.h>
 #include <Library/DevicePathLib.h>
 #include <Library/MemoryAllocationLib.h>
 #include <Library/MsBootPolicyLib.h>                  // Current runtime mode.
-#include <Library/DevicePathLib.h>
 #include <Protocol/DfciSettingAccess.h>
 #include <Library/DeviceBootManagerLib.h>
 #include <Library/MsPlatformDevicesLib.h>
 
 #include <Settings/BootMenuSettings.h>
-#include <Settings/DfciSettings.h>
 
 static BOOT_SEQUENCE  BootSequenceUPH[] = {
   MsBootUSB,

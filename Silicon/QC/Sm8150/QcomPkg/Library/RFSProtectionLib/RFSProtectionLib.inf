@@ -15,20 +15,16 @@
 
 [Packages]
   MdePkg/MdePkg.dec
-  PcBdsPkg/PcBdsPkg.dec
   MsCorePkg/MsCorePkg.dec
   MdeModulePkg/MdeModulePkg.dec
-  ArmPkg/ArmPkg.dec
   AndromedaPkg/AndromedaPkg.dec
   QcomCommonPkg/QcomCommonPkg.dec
   QcomPkg/QcomPkg.dec
   QcomModulePkg/QcomModulePkg.dec
 
 [LibraryClasses]
-  ArmLib
   DebugLib
   MemoryAllocationLib
-  DevicePathLib
   UefiBootServicesTableLib
   QcomUefiCfgMemoryMapHelperLib
 

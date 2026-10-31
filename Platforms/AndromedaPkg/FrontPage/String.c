@@ -10,7 +10,6 @@
 
 #include "FrontPage.h"
 
-#include <Library/DebugLib.h>
 #include <Library/UefiBootServicesTableLib.h>
 #include <Library/HiiLib.h>
 

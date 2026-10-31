@@ -29,10 +29,8 @@
 [LibraryClasses]
   BaseLib
   DebugLib
-  MemoryAllocationLib
   PeimEntryPoint
   PeiServicesLib
-  PrintLib
   PcdLib
 
 [Guids]

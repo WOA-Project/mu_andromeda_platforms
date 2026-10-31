@@ -10,7 +10,6 @@
   FrameBufferInMemorySerialPortLib.c
 
 [Packages]
-  ArmPkg/ArmPkg.dec
   MdePkg/MdePkg.dec
   AndromedaPkg/AndromedaPkg.dec
 
@@ -18,8 +17,6 @@
   ArmLib
   BaseLib
   PcdLib
-  IoLib
-  HobLib
   CompilerIntrinsicsLib
   CacheMaintenanceLib
   PlatformHwioLib

@@ -15,12 +15,7 @@
 #include <Library/DebugLib.h>
 #include <Library/PcdLib.h>
 #include <Library/BaseMemoryLib.h>
-#include <Library/PeiServicesLib.h>
 #include <Library/UefiLib.h>
-#include <Library/DebugLib.h>
-#include <Library/PcdLib.h>
-#include <Library/PrintLib.h>
-#include <Library/MemoryAllocationLib.h>
 
 // XML autogen definitions
 #include <Generated/ConfigClientGenerated.h>

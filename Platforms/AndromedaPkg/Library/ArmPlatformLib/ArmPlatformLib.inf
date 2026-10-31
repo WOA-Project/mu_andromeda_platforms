@@ -23,7 +23,6 @@
 [LibraryClasses]
   ArmLib
   DebugLib
-  IoLib
   PlatformHwioLib
   AndromedaMemoryMapLib
   PlatformPrePiLib

@@ -14,36 +14,27 @@
 
 #include <Guid/GlobalVariable.h>
 #include <Guid/ImageAuthentication.h>
-#include <Guid/SmmVariableCommon.h>
 #include <Guid/MdeModuleHii.h>
 
 #include <Protocol/OnScreenKeyboard.h>
 #include <Protocol/SimpleWindowManager.h>
 #include <Protocol/FirmwareVolume2.h>
-#include <Protocol/SmmCommunication.h>
-#include <Protocol/SmmVariable.h>
 #include <Protocol/VariablePolicy.h>
 
 #include <Library/BaseMemoryLib.h>
 #include <Library/SafeIntLib.h>
 #include <Library/BaseLib.h>
 #include <Library/DebugLib.h>
-#include <Library/BaseLib.h>
 #include <Library/HiiLib.h>
 #include <Library/PrintLib.h>
 #include <Library/MemoryAllocationLib.h>
-#include <Library/UefiBootManagerLib.h>
 #include <Library/UefiLib.h>
-#include <Library/UefiBootServicesTableLib.h>
 #include <Library/UefiRuntimeServicesTableLib.h>
-#include <Library/MsColorTableLib.h>
 #include <Library/SwmDialogsLib.h>
 #include <Library/SecureBootVariableLib.h>
 #include <Library/MuSecureBootKeySelectorLib.h>
-#include <Library/SecureBootKeyStoreLib.h>
 #include <Library/PasswordPolicyLib.h>
 
-#include <Settings/DfciSettings.h>
 #include <Settings/FrontPageSettings.h>
 
 extern EFI_HII_HANDLE                  gStringPackHandle;

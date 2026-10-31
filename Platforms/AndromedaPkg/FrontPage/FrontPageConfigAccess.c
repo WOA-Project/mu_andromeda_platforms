@@ -10,7 +10,6 @@
 #include "FrontPage.h"
 #include <Library/DebugLib.h>
 #include <Library/BaseLib.h>
-#include <Library/BaseMemoryLib.h>
 #include <Library/UefiRuntimeServicesTableLib.h>
 
 // For the post-security locks UI controls.

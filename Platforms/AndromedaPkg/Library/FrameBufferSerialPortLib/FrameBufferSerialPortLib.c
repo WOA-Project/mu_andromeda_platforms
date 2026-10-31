@@ -9,7 +9,6 @@
 
 #include <Library/ArmLib.h>
 #include <Library/CacheMaintenanceLib.h>
-#include <Library/HobLib.h>
 #include <Library/PlatformHwioLib.h>
 #include <Library/SerialPortLib.h>
 

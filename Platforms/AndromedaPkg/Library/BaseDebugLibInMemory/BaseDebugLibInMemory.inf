@@ -27,7 +27,6 @@
   DebugLib.c
 
 [Packages]
-  ArmPkg/ArmPkg.dec
   MdePkg/MdePkg.dec
   AndromedaPkg/AndromedaPkg.dec
 

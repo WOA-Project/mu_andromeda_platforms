@@ -37,7 +37,6 @@
   DebugLib
   DebugAgentLib
   ArmLib
-  IoLib
   TimerLib
   SerialPortLib
   ExtractGuidedSectionLib
@@ -45,7 +44,6 @@
   DebugAgentLib
   PrePiLib
   ArmPlatformLib
-  MemoryAllocationLib
   HobLib
   PrePiHobListPointerLib
   PlatformPeiLib

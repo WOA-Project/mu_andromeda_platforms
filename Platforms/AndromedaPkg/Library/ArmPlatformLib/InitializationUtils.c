@@ -7,7 +7,6 @@
 **/
 #include <Library/BaseLib.h>
 #include <Library/DebugLib.h>
-#include <Library/IoLib.h>
 #include <Library/PcdLib.h>
 #include <Library/SerialPortLib.h>
 

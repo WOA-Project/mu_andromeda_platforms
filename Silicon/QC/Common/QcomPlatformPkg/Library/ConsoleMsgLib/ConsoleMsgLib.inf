@@ -27,10 +27,7 @@
 [Packages]
   MdePkg/MdePkg.dec
   MsGraphicsPkg/MsGraphicsPkg.dec
-  OemPkg/OemPkg.dec
   PcBdsPkg/PcBdsPkg.dec
-  QcomPkg/QcomPkg.dec
-  QcomCommonPkg/QcomCommonPkg.dec
   AndromedaPkg/AndromedaPkg.dec
   QcomModulePkg/QcomModulePkg.dec
 
