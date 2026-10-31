@@ -8,19 +8,13 @@
 
 #include <Uefi.h>
 #include <PolicyDataStructGFX.h>
-#include <Protocol/Policy.h>
 
 #include <Ppi/ReadOnlyVariable2.h>
 #include <Ppi/Policy.h>
 #include <Library/DebugLib.h>
 #include <Library/PcdLib.h>
-#include <Library/BaseMemoryLib.h>
 #include <Library/PeiServicesLib.h>
 #include <Library/UefiLib.h>
-#include <Library/DebugLib.h>
-#include <Library/PcdLib.h>
-#include <Library/PrintLib.h>
-#include <Library/MemoryAllocationLib.h>
 
 // Statically define policy initialization for 2 GFX ports
 GFX_POLICY_DATA  DefaultQemuGfxPolicy[GFX_PORT_MAX_CNT] = {

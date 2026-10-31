@@ -37,7 +37,6 @@
   DevicePathLib
   MemoryAllocationLib
   UefiBootServicesTableLib
-  UefiRuntimeServicesTableLib
   MsPlatformDevicesLib
 
 [Protocols]

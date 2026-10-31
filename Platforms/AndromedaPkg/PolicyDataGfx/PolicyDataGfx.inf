@@ -25,10 +25,8 @@
 [LibraryClasses]
   BaseLib
   DebugLib
-  MemoryAllocationLib
   PeimEntryPoint
   PeiServicesLib
-  PrintLib
 
 [Guids]
   gSbsaPolicyDataGFXGuid    ## PRODUCES
