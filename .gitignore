@@ -35,3 +35,9 @@ ImageResources/Zeta/uefi_nosb.img
 ImageResources/Zeta/uefi_nosb.payload.bin
 ImageResources/Zeta/uefi.img
 ImageResources/Zeta/uefi.payload.bin
+ImageResources/Zeta/boot.img
+ImageResources/Zeta/boot.payload.bin
+ImageResources/Zeta/boot_nosb.img
+ImageResources/Zeta/boot_nosb.payload.bin
+ImageResources/Zeta/UEFIAppendPayloads/UefiPlatZeta.bin
+ImageResources/Zeta/UEFIAppendPayloads/UefiPlatZetaNoSb.bin
