@@ -211,11 +211,11 @@ AuthVariableLibInitialize (
   //
   // Create "SetupMode" variable with BS+RT attribute set.
   //
-  if (EFI_ERROR (Status)) {
+  //if (EFI_ERROR (Status)) {
     mPlatformMode = SETUP_MODE;
-  } else {
-    mPlatformMode = USER_MODE;
-  }
+  //} else {
+  //  mPlatformMode = USER_MODE;
+  //}
 
   Status = AuthServiceInternalUpdateVariable (
              EFI_SETUP_MODE_NAME,
