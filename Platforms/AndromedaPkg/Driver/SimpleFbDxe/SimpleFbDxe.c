@@ -2,11 +2,8 @@
 #include <PiDxe.h>
 #include <Uefi.h>
 
-#include <Library/BaseLib.h>
 #include <Library/BaseMemoryLib.h>
-#include <Library/CacheMaintenanceLib.h>
 #include <Library/DebugLib.h>
-#include <Library/DxeServicesTableLib.h>
 #include <Library/FrameBufferBltLib.h>
 #include <Library/MemoryAllocationLib.h>
 #include <Library/PlatformHwioLib.h>

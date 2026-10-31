@@ -19,11 +19,7 @@
 #include <PiDxe.h>
 
 #include <Library/ArmGenericTimerCounterLib.h>
-#include <Library/BaseLib.h>
 #include <Library/DebugLib.h>
-#include <Library/HobLib.h>
-#include <Library/IoLib.h>
-#include <Library/PcdLib.h>
 #include <Library/RealTimeClockLib.h>
 #include <Library/TimerLib.h>
 

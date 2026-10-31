@@ -10,7 +10,6 @@
   ShLib.c
 
 [Packages]
-  ArmPkg/ArmPkg.dec
   MdePkg/MdePkg.dec
   QcomPkg/QcomPkg.dec
   AndromedaPkg/AndromedaPkg.dec

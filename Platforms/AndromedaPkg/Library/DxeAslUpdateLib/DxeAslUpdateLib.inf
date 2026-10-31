@@ -21,7 +21,6 @@ LIBRARY_CLASS = AslUpdateLib
 
 [LibraryClasses]
 BaseLib
-IoLib
 DebugLib
 PcdLib
 BaseMemoryLib

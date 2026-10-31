@@ -9,12 +9,8 @@
 
 #include <Library/AcpiPlatformUpdateLib.h>
 #include <Library/AslUpdateLib.h>
-#include <Library/BaseMemoryLib.h>
 #include <Library/DebugLib.h>
-#include <Library/DevicePathLib.h>
-#include <Library/IoLib.h>
 #include <Library/QcomUefiCfgMemoryMapHelperLib.h>
-#include <Library/PcdLib.h>
 #include <Library/UefiBootServicesTableLib.h>
 #include <Library/UefiLib.h>
 

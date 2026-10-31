@@ -11,7 +11,6 @@ SPDX-License-Identifier: BSD-2-Clause-Patent
 #include <Protocol/DevicePath.h>
 
 #include <Library/DebugLib.h>
-#include <Library/DevicePathLib.h>
 #include <Library/UefiBootServicesTableLib.h>
 
 #include <Configuration/BootDevices.h>

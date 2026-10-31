@@ -30,12 +30,9 @@
   ArmPkg/ArmPkg.dec
   MdePkg/MdePkg.dec
   MdeModulePkg/MdeModulePkg.dec
-  EmbeddedPkg/EmbeddedPkg.dec
   AndromedaPkg/AndromedaPkg.dec
 
 [LibraryClasses]
-  IoLib
   DebugLib
   TimerLib
-  HobLib
   PcdLib

@@ -6,12 +6,8 @@
 
 **/
 #include <PiPei.h>
-#include <Library/ArmLib.h>
-#include <Library/BaseLib.h>
 #include <Library/QcomUefiCfgConfigParametersHelperLib.h>
-#include <Library/HobLib.h>
 #include <Library/PlatformHobs.h>
-#include <Library/ShLib.h>
 #include <Library/UefiCfgLib.h>
 
 EFI_STATUS EFIAPI QcomLocateConfigurationMapStringByName(CHAR8 *Key, CHAR8 *Value, UINTN *ValBuffSize)

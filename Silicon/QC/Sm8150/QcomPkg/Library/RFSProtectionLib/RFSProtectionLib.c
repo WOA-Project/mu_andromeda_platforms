@@ -9,13 +9,9 @@
 
 #include <Library/DebugLib.h>
 #include <Library/DeviceBootManagerLib.h>
-#include <Library/DevicePathLib.h>
 #include <Library/MemoryAllocationLib.h>
-#include <Library/MsPlatformDevicesLib.h>
-#include <Library/PrintLib.h>
 #include <Library/UefiBootServicesTableLib.h>
 #include <Library/UefiLib.h>
-#include <Library/UefiRuntimeServicesTableLib.h>
 #include <Library/QcomUefiCfgMemoryMapHelperLib.h>
 
 #include <Library/BaseMemoryLib.h>

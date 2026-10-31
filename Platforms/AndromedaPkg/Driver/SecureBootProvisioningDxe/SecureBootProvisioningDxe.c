@@ -19,7 +19,6 @@
 #include <Library/DebugLib.h>
 #include <Library/DxeServicesLib.h>
 #include <Library/UefiBootServicesTableLib.h>
-#include <Library/UefiDriverEntryPoint.h>
 #include <Library/UefiLib.h>
 #include <Library/MemoryAllocationLib.h>
 #include <Library/MuSecureBootKeySelectorLib.h>

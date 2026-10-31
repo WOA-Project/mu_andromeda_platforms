@@ -24,14 +24,12 @@
 
 [Packages]
   MdePkg/MdePkg.dec
-  MdeModulePkg/MdeModulePkg.dec
   MsGraphicsPkg/MsGraphicsPkg.dec
 
 [LibraryClasses]
   BaseMemoryLib
   DebugLib
   MemoryAllocationLib
-  PrintLib
   UefiBootServicesTableLib
 
 [Guids]

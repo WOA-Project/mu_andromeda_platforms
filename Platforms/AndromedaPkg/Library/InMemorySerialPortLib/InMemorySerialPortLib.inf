@@ -33,7 +33,6 @@
 
 [Packages]
   MdePkg/MdePkg.dec
-  ArmPkg/ArmPkg.dec
   AndromedaPkg/AndromedaPkg.dec
 
 [LibraryClasses]

@@ -14,12 +14,8 @@
  AcpiPlatformUpdateLib.c
 
 [Packages]
-  ArmPkg/ArmPkg.dec
   ArmPlatformPkg/ArmPlatformPkg.dec
   MdePkg/MdePkg.dec
-  PcBdsPkg/PcBdsPkg.dec
-  MsCorePkg/MsCorePkg.dec
-  MdeModulePkg/MdeModulePkg.dec
   AndromedaPkg/AndromedaPkg.dec
   QcomPkg/QcomPkg.dec
   QcomCommonPkg/QcomCommonPkg.dec
@@ -28,8 +24,6 @@
 [LibraryClasses]
   BaseMemoryLib
   DebugLib
-  DevicePathLib
-  IoLib
   UefiBootServicesTableLib
   UefiLib
   AslUpdateLib

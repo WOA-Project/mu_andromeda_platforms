@@ -12,7 +12,6 @@
 [Packages]
   MdePkg/MdePkg.dec
   AndromedaPkg/AndromedaPkg.dec
-  QcomCommonPkg/QcomCommonPkg.dec
   QcomPkg/QcomPkg.dec
 
 [LibraryClasses]

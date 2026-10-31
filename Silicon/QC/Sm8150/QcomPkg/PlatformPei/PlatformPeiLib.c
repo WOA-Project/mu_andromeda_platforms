@@ -11,7 +11,6 @@
 
 #include <Library/DebugLib.h>
 #include <Library/HobLib.h>
-#include <Library/MemoryAllocationLib.h>
 #include <Library/PcdLib.h>
 #include <Library/QcomUefiCfgConfigParametersHelperLib.h>
 #include "PlatformPeiLibInternal.h"

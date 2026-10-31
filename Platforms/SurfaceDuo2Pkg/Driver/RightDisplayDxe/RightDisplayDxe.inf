@@ -23,8 +23,6 @@
 [Packages]
   MdePkg/MdePkg.dec
   MdeModulePkg/MdeModulePkg.dec
-  EmbeddedPkg/EmbeddedPkg.dec
-  ArmPkg/ArmPkg.dec
   AndromedaPkg/AndromedaPkg.dec
 
 [LibraryClasses]

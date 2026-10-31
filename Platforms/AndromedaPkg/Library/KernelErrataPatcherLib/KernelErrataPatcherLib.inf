@@ -30,15 +30,11 @@
   BootServicesIntercepterHelper.S | GCC
 
 [Packages]
-  EmbeddedPkg/EmbeddedPkg.dec
   MdePkg/MdePkg.dec
-  MdeModulePkg/MdeModulePkg.dec
 
 [LibraryClasses]
   BaseMemoryLib
   DebugLib
-  DxeServicesTableLib
-  MemoryAllocationLib
   PerformanceLib
   UefiBootServicesTableLib
   UefiLib

@@ -10,7 +10,6 @@
   QcomUefiPlatMemoryMapLib.c
 
 [Packages]
-  ArmPkg/ArmPkg.dec
   MdePkg/MdePkg.dec
   QcomCommonPkg/QcomCommonPkg.dec
   AndromedaPkg/AndromedaPkg.dec

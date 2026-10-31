@@ -43,7 +43,6 @@ be found at http://opensource.org/licenses/bsd-license.php
 
 #include <Uefi.h>
 
-#include <Guid/SmBios.h>
 #include <IndustryStandard/SmBios.h>
 #include <Protocol/Smbios.h>
 
@@ -51,9 +50,7 @@ be found at http://opensource.org/licenses/bsd-license.php
 #include <Library/BaseMemoryLib.h>
 #include <Library/DebugLib.h>
 #include <Library/MemoryAllocationLib.h>
-#include <Library/PrintLib.h>
 #include <Library/UefiBootServicesTableLib.h>
-#include <Library/UefiDriverEntryPoint.h>
 #include <Library/UefiLib.h>
 
 /* Used to read UEFI release information */

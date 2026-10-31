@@ -25,16 +25,11 @@
 [Packages]
   MdePkg/MdePkg.dec
   PcBdsPkg/PcBdsPkg.dec
-  AndromedaPkg/AndromedaPkg.dec
   QcomModulePkg/QcomModulePkg.dec
-  QcomCommonPkg/QcomCommonPkg.dec
 
 [LibraryClasses]
   DebugLib
-  DevicePathLib
-  MemoryAllocationLib
   UefiBootServicesTableLib
-  UefiRuntimeServicesTableLib
 
 [Protocols]
   gChargerExProtocolGuid

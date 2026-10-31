@@ -16,7 +16,6 @@
 #include <Library/MemoryAllocationLib.h>
 #include <Library/UefiBootManagerLib.h>
 #include <Library/UefiBootServicesTableLib.h>
-#include <Library/UefiDriverEntryPoint.h>
 #include <Library/UefiLib.h>
 
 #include <Protocol/BlockIo.h>

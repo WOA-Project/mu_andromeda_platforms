@@ -9,7 +9,6 @@
 #include <Uefi.h>
 
 #include <Configuration/XblHlosHob.h>
-#include <Library/BaseLib.h>
 #include <Library/QcomUefiCfgMemoryMapHelperLib.h>
 #include <Library/PlatformHobLib.h>
 

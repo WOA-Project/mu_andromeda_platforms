@@ -26,19 +26,13 @@
   UartSerialPortLib.c
 
 [Packages]
-  ArmPkg/ArmPkg.dec
   MdePkg/MdePkg.dec
-  MdeModulePkg/MdeModulePkg.dec
-  AndromedaPkg/AndromedaPkg.dec
   QcomCommonPkg/QcomCommonPkg.dec
 
 [LibraryClasses]
-  ArmLib
   PcdLib
   IoLib
-  HobLib
   CompilerIntrinsicsLib
-  CacheMaintenanceLib
 
 [FixedPcd]
   gQcomCommonPkgTokenSpaceGuid.PcdUartSerialBase
