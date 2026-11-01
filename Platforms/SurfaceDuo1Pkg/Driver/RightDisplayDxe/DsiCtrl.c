@@ -1,0 +1,222 @@
+/** @file
+  DSI1 host controller setup and FIFO-mode command transmission.
+
+  SPDX-License-Identifier: MIT
+**/
+#include "RightDisplayDxe.h"
+
+#include <Library/CacheMaintenanceLib.h>
+#include <Library/PlatformHwioLib.h>
+
+EFI_STATUS
+DsiCtrlInit (VOID)
+{
+  // The PHY reset is done in DsiPhyEnable, before the PLL is programmed:
+  // resetting here would wipe the locked PLL and the lane setup.
+  // Controller disable + soft reset, then clear interrupts
+  MmioWrite32 (DSI (DSI_CTRL), 0);
+  MmioWrite32 (DSI (DSI_CLK_CTRL), 0x23F);
+  MmioWrite32 (DSI (DSI_SOFT_RESET), BIT0);
+  gBS->Stall (10);
+  MmioWrite32 (DSI (DSI_SOFT_RESET), 0);
+  MmioWrite32 (DSI (DSI_TPG_DMA_FIFO_RESET), 1);
+  MmioWrite32 (DSI (DSI_TPG_DMA_FIFO_RESET), 0);
+  // HS TX timeout: 50 ms of 19.2 MHz escape clock = 960000 ticks, reduced to
+  // a 16-bit count (60000) with a 2^4 timer resolution step
+  MmioWrite32 (DSI (DSI_HS_TIMER_CTRL), (4 << 16) | 60000);
+
+  // LP11: controller, clock lane and four data lanes enabled
+  MmioWrite32 (DSI (DSI_CTRL), BIT8 | BIT7 | BIT6 | BIT5 | BIT4 | BIT0);
+
+  // DMA trigger: software (4); MDP trigger (bits 6:4): none. BIT31 (DSI-level
+  // TE gating) is left clear; the MDP tearcheck handles TE. BIT12 blocks DMA
+  // commands while a frame is being transferred; it is paired with the idle
+  // control below. Not hardware-verified.
+  MmioWrite32 (DSI (DSI_TRIG_CTRL), 0x4 | BIT12);
+  // TX_EOT_APPEND
+  MmioWrite32 (DSI (DSI_EOT_PACKET_CTRL), MmioRead32 (DSI (DSI_EOT_PACKET_CTRL)) | BIT0);
+
+  // The panel XML sets no null packet insertion: XBL leaves it disabled
+  MmioWrite32 (DSI (DSI_NULL_INSERTION), 0);
+
+  // Command engine: RGB888, DCS write_memory_start / continue
+  // DST_FORMAT = RGB888, INTERLEAVE_MAX = 1
+  MmioWrite32 (DSI (DSI_MDP_CTRL), 0x8 | (1 << 20));
+  // MDP_CTRL2 takes the MDP_CTRL value. BURST_MODE (BIT16) is left clear:
+  // the panels do not work correctly with HS burst mode (the vendor OS
+  // disables it for them, as it enables the idle time below instead).
+  // Not hardware-verified on this driver.
+  MmioWrite32 (DSI (DSI_MDP_CTRL2), 0x8 | (1 << 20));
+  MmioWrite32 (DSI (DSI_MDP_DCS_CMD_CTRL), 0x2C | (0x3C << 8) | BIT16);
+  // One pclk of idle time between MDP packets, enabled for stream 0
+  // (length 1 in bits 9:0, enable in bits 14:12)
+  MmioWrite32 (DSI (DSI_MDP_IDLE_CTRL), 1 | BIT12);
+
+  // Device config: controller, command engine, clock lane and four data lanes
+  MmioWrite32 (DSI (DSI_CTRL), BIT8 | BIT7 | BIT6 | BIT5 | BIT4 | BIT2 | BIT0);
+
+  // DSIClockHSForceRequest: clock lane in HS before the init sequence
+  MmioWrite32 (DSI (DSI_LANE_CTRL), (MmioRead32 (DSI (DSI_LANE_CTRL)) & ~BIT24) | BIT28);
+
+    // Hold LP11 for at least 2 ms before the first packet
+    gBS->Stall (2000);
+
+    return EFI_SUCCESS;
+}
+
+//
+// MDP stream: DSC-compressed data as DCS long writes, one packet per line
+// carrying both slices (slice-per-pkt = 2, so PKT_PER_LINE stays 0). The word
+// count scales with the slices per packet. The stream H_TOTAL counts three
+// bytes per pclk (no DATABUS_WIDEN on this SoC).
+//
+VOID
+DsiCtrlSetupStream (VOID)
+{
+  UINT32 Chunk   = Be16Pps (&gPanelPps[14]);
+  UINT32 Slices  = Be16Pps (&gPanelPps[8]) / Be16Pps (&gPanelPps[12]);
+  UINT32 Bytes   = Chunk * Slices;
+  UINT32 Word    = (Bytes + 1);
+
+  MmioWrite32 (DSI (DSI_MDP_STREAM0_CTRL), 0x39 | (Word << 16));
+  MmioWrite32 (DSI (DSI_MDP_STREAM0_TOTAL), ((Bytes + 2) / 3) | (PANEL_HEIGHT << 16));
+  // Stream 1 stays cleared
+  MmioWrite32 (DSI (DSI_CMD_COMPRESSION_CTRL), BIT0 | ((Bytes % 3) << 4) | (0x39 << 8));
+  MmioWrite32 (DSI (DSI_CMD_COMPRESSION_CTRL2), Chunk);
+  MmioWrite32 (DSI (DSI_CMD_COMPRESSION_CTRL3), 0);
+  // DSI scratch register 1: set to 1 by XBL to flag a seamless splash
+  MmioWrite32 (DSI (0x1F8), 1);
+}
+
+// Packs one packet in the embedded layout at Words (zeroed by the caller) and
+// returns the number of 32-bit words used.
+STATIC
+UINT32
+PackPacket (
+  OUT UINT32      *Words,
+  IN UINT8        DataType,
+  IN CONST UINT8  *Payload,
+  IN UINT32       PayloadLength
+  )
+{
+  UINT32  Header;
+  UINT32  Count;
+  BOOLEAN Long = (DataType == 0x39 || DataType == 0x29 || DataType == 0x0A);
+
+  // Embedded header: bytes 0-1 = word count (long) or the two data bytes
+  // (short), byte 2 = VC[7:6] | DT[5:0], byte 3 = last | long | BTA
+  if (Long) {
+    Header = (DataType << 16) | (PayloadLength & 0xFFFF);
+  } else {
+    Header = (DataType << 16);
+    if (PayloadLength > 0) {
+      Header |= (UINT32)Payload[0];
+    }
+    if (PayloadLength > 1) {
+      Header |= (UINT32)Payload[1] << 8;
+    }
+  }
+  // Every packet is sent on its own, so it always carries the "last" flag
+  Header |= BIT31;
+  if (Long) {
+    Header |= BIT30;
+  }
+
+  Words[0] = Header;
+  Count = 1;
+  if (Long) {
+    CopyMem (&Words[1], Payload, PayloadLength);
+    Count += (PayloadLength + 3) / 4;
+  }
+
+  return Count;
+}
+
+STATIC BOOLEAN  mLowPower;
+
+VOID
+DsiCtrlSetLowPower (
+  IN BOOLEAN  LowPower
+  )
+{
+  mLowPower = LowPower;
+}
+
+STATIC
+EFI_STATUS
+SendWords (
+  IN UINT32  *Words,
+  IN UINT32  Bytes
+  )
+{
+  UINT32 i;
+  ARM_MEMORY_REGION_DESCRIPTOR_EX  Fb;
+  UINT64                           Buf;
+
+  if (EFI_ERROR (GetPlatformDisplayFrameBuffer (&Fb))) {
+    return EFI_NOT_FOUND;
+  }
+  // Last 1 KiB of the display reservation: below 4 GiB, past the scanout
+  Buf = Fb.Address + Fb.Length - 0x400;
+  if (Buf > 0xFFFFFFFFULL) {
+    return EFI_UNSUPPORTED;
+  }
+  for (i = 0; i < Bytes / 4; i++) {
+    MmioWrite32 ((UINTN)(Buf + i * 4), Words[i]);
+  }
+  WriteBackDataCacheRange ((VOID *)(UINTN)Buf, Bytes);
+  MemoryFence ();
+
+  // Embedded mode: DMA control, length, offset,
+  // then command TPG fields cleared
+  MmioWrite32 (DSI (DSI_DMA_CTRL), BIT28 | (mLowPower ? BIT26 : 0));
+  MmioWrite32 (DSI (DSI_DMA_CMD_LENGTH), Bytes);
+  MmioWrite32 (DSI (0x48), (UINT32)Buf);
+  MmioWrite32 (
+    DSI (DSI_TPG_CTRL),
+    MmioRead32 (DSI (DSI_TPG_CTRL)) & ~(BIT2 | BIT1 | BIT17 | BIT16)
+    );
+  MemoryFence ();
+  MmioWrite32 (DSI (DSI_DMA_SW_TRIGGER), 1);
+
+  for (i = 0; i < 10000; i++) {
+    if (MmioRead32 (DSI (DSI_INT_CTRL)) & DSI_DMA_DONE) {
+      break;
+    }
+    gBS->Stall (10);
+  }
+
+  if (i == 10000) {
+    DEBUG ((
+      DEBUG_ERROR,
+      "RD: dma timeout lane=%08x int=%08x dmactl=%08x tpg=%08x ctrl=%08x\n",
+      MmioRead32 (DSI (DSI_LANE_STATUS)),
+      MmioRead32 (DSI (DSI_INT_CTRL)),
+      MmioRead32 (DSI (DSI_DMA_CTRL)),
+      MmioRead32 (DSI (DSI_TPG_CTRL)),
+      MmioRead32 (DSI (DSI_CTRL))));
+  }
+
+  MmioWrite32 (DSI (DSI_INT_CTRL), DSI_DMA_DONE);
+
+  return (i == 10000) ? EFI_TIMEOUT : EFI_SUCCESS;
+}
+
+EFI_STATUS
+DsiCtrlSendPacket (
+  IN UINT8        DataType,
+  IN CONST UINT8  *Payload,
+  IN UINT32       PayloadLength
+  )
+{
+  UINT32 Words[80];
+  UINT32 Count;
+
+  if (PayloadLength > 256 - 8) {
+    return EFI_BAD_BUFFER_SIZE;
+  }
+
+  ZeroMem (Words, sizeof (Words));
+  Count = PackPacket (Words, DataType, Payload, PayloadLength);
+  return SendWords (Words, Count * 4);
+}

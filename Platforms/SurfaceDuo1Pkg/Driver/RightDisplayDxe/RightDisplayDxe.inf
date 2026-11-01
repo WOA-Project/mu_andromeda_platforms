@@ -1,0 +1,53 @@
+# RightDisplayDxe.inf: Surface Duo 1 right display (DSI1) bring-up and GOP (SM8150).
+# Not hardware-verified.
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = RightDisplayDxe
+  FILE_GUID                      = 3b7d9e14-62a8-4c5f-b0d1-95e4a7c8f630
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = RightDisplayDxeInitialize
+
+[Sources.common]
+  RightDisplayDxe.c
+  RightDisplayDxe.h
+  Tlmm.c
+  DispCc.c
+  DsiPhy.c
+  DsiCtrl.c
+  Dpu.c
+  Panel.c
+  Diag.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  AndromedaPkg/AndromedaPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  BaseMemoryLib
+  DebugLib
+  IoLib
+  UefiLib
+  UefiBootServicesTableLib
+  UefiDriverEntryPoint
+  MemoryAllocationLib
+  FrameBufferBltLib
+  PcdLib
+  CacheMaintenanceLib
+  PlatformHwioLib
+
+[Protocols]
+  gEfiGraphicsOutputProtocolGuid ## PRODUCES
+  gEfiDevicePathProtocolGuid     ## PRODUCES
+  gEfiCpuArchProtocolGuid
+
+[FixedPcd]
+  gAndromedaPkgTokenSpaceGuid.PcdMipiFrameBufferWidth
+  gAndromedaPkgTokenSpaceGuid.PcdMipiFrameBufferHeight
+  gAndromedaPkgTokenSpaceGuid.PcdMipiFrameBufferPixelBpp
+
+[Depex]
+  gEfiCpuArchProtocolGuid
