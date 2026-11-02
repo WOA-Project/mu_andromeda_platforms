@@ -33,10 +33,10 @@ BDS_CONSOLE_CONNECT_ENTRY gPlatformConsoles[] =
     (EFI_DEVICE_PATH_PROTOCOL *)&DisplayDevicePath,
     CONSOLE_OUT | STD_ERROR
   },
-  {
-    (EFI_DEVICE_PATH_PROTOCOL *)&RightDisplayDevicePath,
-    CONSOLE_OUT | STD_ERROR
-  },
+  //{
+  //  (EFI_DEVICE_PATH_PROTOCOL *)&RightDisplayDevicePath,
+  //  CONSOLE_OUT | STD_ERROR
+  //},
   {
     NULL,
     0
