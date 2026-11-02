@@ -36,7 +36,7 @@
   gQcomCommonPkgTokenSpaceGuid.PcdSMMUSIDsToKeep|{0x0}
 
 [LibraryClasses.common]
-  AndromedaMemoryMapLib|AndromedaPkg/Library/AndromedaMemoryMapLib/AndromedaMemoryMapLib.inf
+  AndromedaMemoryMapLib|QcomPkg/Library/AndromedaMemoryMapLib/AndromedaMemoryMapLib.inf
   PlatformDdrBankMapLib|QcomPkg/Library/PlatformDdrBankMapLib/PlatformDdrBankMapLib.inf
   PlatformPeiLib|QcomPkg/PlatformPei/PlatformPeiLib.inf
   PlatformPrePiLib|QcomPkg/Library/PlatformPrePiLib/PlatformPrePiLib.inf
