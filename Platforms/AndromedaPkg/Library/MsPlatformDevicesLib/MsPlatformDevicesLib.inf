@@ -26,6 +26,7 @@
   MsCorePkg/MsCorePkg.dec
   MdeModulePkg/MdeModulePkg.dec
   AndromedaPkg/AndromedaPkg.dec
+  QcomModulePkg/QcomModulePkg.dec
 
 [LibraryClasses]
   BaseMemoryLib
@@ -34,3 +35,12 @@
   UefiBootServicesTableLib
   UefiLib
   AcpiPlatformUpdateLib
+
+[Guids]
+  gEfiEventExitBootServicesGuid       ## CONSUMES
+
+[Protocols]
+  gQcomScmProtocolGuid
+
+[Depex]
+	TRUE
