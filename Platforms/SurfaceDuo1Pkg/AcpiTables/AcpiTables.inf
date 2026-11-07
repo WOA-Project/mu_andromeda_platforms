@@ -17,7 +17,7 @@
 
 [Sources]
   FACP.aslc
-  #SoftwareTpm2Table.aslc
+  SoftwareTpm2Table.aslc
   #SoftwareTpm2Device.asl
   #SelfSignedDriverEnabler.asl
 
