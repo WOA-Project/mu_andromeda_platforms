@@ -1,0 +1,23 @@
+[Defines]
+  DEC_SPECIFICATION              = 0x00010005
+  PACKAGE_NAME                   = BootMenuPkg
+  PACKAGE_GUID                   = 7b3b04c4-2fd6-4095-949f-72867e491358
+  PACKAGE_VERSION                = 0.1
+
+[Includes.common]
+  Include
+
+[LibraryClasses]
+  PrePiBootMenuLib|Include/Library/PrePiBootMenuLib.h
+  PrePiMenuLib|Include/Library/PrePiMenuLib.h
+  PrePiMenuButtonsLib|Include/Library/PrePiMenuButtonsLib.h
+  PrePiMenuDisplayLib|Include/Library/PrePiMenuDisplayLib.h
+  PrePiSpmiLib|Include/Library/PrePiSpmiLib.h
+  PrePiUfsBrowserLib|Include/Library/PrePiUfsBrowserLib.h
+  PrePiUfsReadLib|Include/Library/PrePiUfsReadLib.h
+
+[Guids.common]
+  gBootMenuPkgTokenSpaceGuid = { 0x903f197c, 0xca83, 0x46c6, { 0x90, 0xc8, 0x62, 0x7b, 0xcd, 0xbf, 0x4b, 0x2a } }
+
+[PcdsFixedAtBuild.common]
+  gBootMenuPkgTokenSpaceGuid.PcdPrePiBootMenu|FALSE|BOOLEAN|0x00000002

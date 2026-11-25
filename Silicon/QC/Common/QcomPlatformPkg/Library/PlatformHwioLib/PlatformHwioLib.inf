@@ -13,9 +13,16 @@
   MdePkg/MdePkg.dec
   QcomPkg/QcomPkg.dec
   AndromedaPkg/AndromedaPkg.dec
+  PlatformReinitPkg/PlatformReinitPkg.dec
   QcomCommonPkg/QcomCommonPkg.dec
 
 [LibraryClasses]
   BaseLib
+  PcdLib
   QcomUefiCfgMemoryMapHelperLib
-  
+
+[FixedPcd]
+  gAndromedaPkgTokenSpaceGuid.PcdMipiFrameBufferWidth
+  gAndromedaPkgTokenSpaceGuid.PcdMipiFrameBufferHeight
+  gAndromedaPkgTokenSpaceGuid.PcdMipiFrameBufferPixelBpp
+  gPlatformReinitPkgTokenSpaceGuid.PcdPrePiSecondaryDisplay

@@ -50,6 +50,7 @@
   MemoryInitPeiLib
   AndromedaBootConfigLib
   PlatformPrePiLib
+  PrePiPlatformHooksLib
   PlatformHwioLib
 
 [Ppis]

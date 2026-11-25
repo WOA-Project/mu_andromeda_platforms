@@ -1,0 +1,35 @@
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = PrePiDisplayDiagnosticLib
+  FILE_GUID                      = B3876BC7-A0E4-4981-9815-A8D5739E8EBE
+  MODULE_TYPE                    = SEC
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = PrePiDisplayDiagnosticLib
+
+[Sources]
+  DisplayDiagnostic.c
+  ../../Common/PrePiDisplayDiagnosticLib/DisplayDiagnosticHob.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AndromedaPkg/AndromedaPkg.dec
+  DisplayDiagnosticPkg/DisplayDiagnosticPkg.dec
+  QcomCommonPkg/QcomCommonPkg.dec
+  QcomPkg/QcomPkg.dec
+
+[LibraryClasses]
+  BaseMemoryLib
+  CacheMaintenanceLib
+  DebugLib
+  HobLib
+  IoLib
+  PcdLib
+  QcomUefiCfgMemoryMapHelperLib
+
+[Guids]
+  gDisplayResumeDiagnosticHobGuid
+
+[FixedPcd]
+  gAndromedaPkgTokenSpaceGuid.PcdMipiFrameBufferWidth
+  gAndromedaPkgTokenSpaceGuid.PcdMipiFrameBufferHeight
+  gAndromedaPkgTokenSpaceGuid.PcdMipiFrameBufferPixelBpp

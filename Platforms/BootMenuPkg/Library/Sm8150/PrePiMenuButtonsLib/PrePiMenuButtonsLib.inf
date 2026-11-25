@@ -1,0 +1,18 @@
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = PrePiMenuButtonsLib
+  FILE_GUID                      = 21716980-61DF-4377-9B33-415C785D72B4
+  MODULE_TYPE                    = SEC
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = PrePiMenuButtonsLib
+
+[Sources]
+  PrePiMenuButtons.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  BootMenuPkg/BootMenuPkg.dec
+
+[LibraryClasses]
+  DebugLib
+  PrePiSpmiLib

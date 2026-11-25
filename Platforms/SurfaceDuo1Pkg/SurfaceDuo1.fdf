@@ -78,8 +78,11 @@ READ_STATUS        = TRUE
 READ_LOCK_CAP      = TRUE
 READ_LOCK_STATUS   = TRUE
 
+  DEFINE SURFACE_DUO1_DISPLAY_DIAGNOSTIC = FALSE
   !include QcomPkg/Include/APRIORI.inc
   !include QcomPkg/Include/DXE.inc
+
+  INF DisplayDiagnosticPkg/Driver/DisplayResumeDiagnosticDxe/DisplayResumeDiagnosticDxe.inf
 
   # Right display (DSI1)
   #INF SurfaceDuo1Pkg/Driver/RightDisplayDxe/RightDisplayDxe.inf

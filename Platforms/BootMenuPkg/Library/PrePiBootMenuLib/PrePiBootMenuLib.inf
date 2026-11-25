@@ -1,0 +1,24 @@
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = PrePiBootMenuLib
+  FILE_GUID                      = 8C1BAB23-39B2-4E0C-8E9A-DBAA6DBA0901
+  MODULE_TYPE                    = SEC
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = PrePiBootMenuLib
+
+[Sources]
+  PrePiBootMenu.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  BootMenuPkg/BootMenuPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  BaseMemoryLib
+  DebugLib
+  MemoryAllocationLib
+  PrePiMenuDisplayLib
+  PrePiMenuLib
+  PrePiUfsBrowserLib
+  PrintLib

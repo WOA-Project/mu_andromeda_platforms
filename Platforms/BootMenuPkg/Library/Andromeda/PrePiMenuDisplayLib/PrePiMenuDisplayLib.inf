@@ -1,0 +1,27 @@
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = PrePiMenuDisplayLib
+  FILE_GUID                      = B7BF192F-5BD2-45B0-A619-77117561B874
+  MODULE_TYPE                    = SEC
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = PrePiMenuDisplayLib
+
+[Sources]
+  PrePiMenuDisplay.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  BootMenuPkg/BootMenuPkg.dec
+  AndromedaPkg/AndromedaPkg.dec
+  QcomCommonPkg/QcomCommonPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  CacheMaintenanceLib
+  PcdLib
+  PlatformHwioLib
+
+[FixedPcd]
+  gAndromedaPkgTokenSpaceGuid.PcdMipiFrameBufferWidth
+  gAndromedaPkgTokenSpaceGuid.PcdMipiFrameBufferHeight
+  gAndromedaPkgTokenSpaceGuid.PcdMipiFrameBufferPixelBpp

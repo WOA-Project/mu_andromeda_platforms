@@ -13,6 +13,7 @@
 #include <Library/AndromedaMemoryMapLib.h>
 
 EFI_STATUS EFIAPI GetPlatformDisplayFrameBuffer(ARM_MEMORY_REGION_DESCRIPTOR_EX *MemoryDescriptor);
+UINTN EFIAPI GetPlatformDisplayConsoleOffset(VOID);
 EFI_STATUS EFIAPI GetPlatformLogBuffer(ARM_MEMORY_REGION_DESCRIPTOR_EX *MemoryDescriptor);
 EFI_STATUS EFIAPI GetPlatformPStore(ARM_MEMORY_REGION_DESCRIPTOR_EX *MemoryDescriptor);
 EFI_STATUS EFIAPI GetPlatformDXEHeap(ARM_MEMORY_REGION_DESCRIPTOR_EX *MemoryDescriptor);

@@ -1,0 +1,38 @@
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = PrePiPlatformHooksLib
+  FILE_GUID                      = 6A44C799-0AC7-4DB9-A447-7D43038C1A2C
+  MODULE_TYPE                    = SEC
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = PrePiPlatformHooksLib
+
+[Sources]
+  PrePiDisplayDiagnostics.c
+  PrePiMenu.c
+  PrePiUefiSetup.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  ArmPkg/ArmPkg.dec
+  ArmPlatformPkg/ArmPlatformPkg.dec
+  AndromedaPkg/AndromedaPkg.dec
+  BootMenuPkg/BootMenuPkg.dec
+  DisplayDiagnosticPkg/DisplayDiagnosticPkg.dec
+  PlatformReinitPkg/PlatformReinitPkg.dec
+
+[LibraryClasses]
+  ArmPlatformLib
+  BaseLib
+  DebugLib
+  PcdLib
+  PlatformPrePiLib
+  PrePiBootMenuLib
+  PrePiDisplayDiagnosticLib
+  PrePiDisplayLib
+  PrePiUfsLib
+  TimerLib
+
+[FixedPcd]
+  gBootMenuPkgTokenSpaceGuid.PcdPrePiBootMenu
+  gPlatformReinitPkgTokenSpaceGuid.PcdPrePiDisplayTestImage
+  gPlatformReinitPkgTokenSpaceGuid.PcdPrePiUfsReinit

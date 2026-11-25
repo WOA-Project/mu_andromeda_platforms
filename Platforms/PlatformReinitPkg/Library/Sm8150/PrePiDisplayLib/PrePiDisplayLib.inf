@@ -1,0 +1,41 @@
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = PrePiDisplayLib
+  FILE_GUID                      = 0744B7F1-7742-4E13-9A4B-B82AE9D8D9FD
+  MODULE_TYPE                    = SEC
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = PrePiDisplayLib
+
+[Sources]
+  DisplayResume.c
+  DisplayResumeConfig.h
+  DisplayResumeDpu.c
+  DisplayResumeDpu.h
+  DisplayResumePower.c
+  DisplayResumeScanout.h
+  DisplayResumeScanoutDsi.c
+  DisplayResumeScanoutRoute.h
+
+[Packages]
+  ArmPkg/ArmPkg.dec
+  MdePkg/MdePkg.dec
+  PlatformReinitPkg/PlatformReinitPkg.dec
+  QcomCommonPkg/QcomCommonPkg.dec
+  AndromedaPkg/AndromedaPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  BaseMemoryLib
+  CacheMaintenanceLib
+  DebugLib
+  IoLib
+  MemoryAllocationLib
+  PcdLib
+  QcomUefiCfgMemoryMapHelperLib
+  TimerLib
+
+[Pcd]
+  gPlatformReinitPkgTokenSpaceGuid.PcdPrePiSecondaryDisplay
+  gAndromedaPkgTokenSpaceGuid.PcdMipiFrameBufferWidth
+  gAndromedaPkgTokenSpaceGuid.PcdMipiFrameBufferHeight
+  gAndromedaPkgTokenSpaceGuid.PcdMipiFrameBufferPixelBpp

@@ -1,0 +1,24 @@
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = PrePiUfsLib
+  FILE_GUID                      = 64A306B0-3D31-4564-82F1-7BBE289696AA
+  MODULE_TYPE                    = SEC
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = PrePiUfsLib
+
+[Sources]
+  UfsInit.c
+  UfsPhy.h
+
+[Packages]
+  MdePkg/MdePkg.dec
+  PlatformReinitPkg/PlatformReinitPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  BaseMemoryLib
+  CacheMaintenanceLib
+  DebugLib
+  IoLib
+  MemoryAllocationLib
+  TimerLib

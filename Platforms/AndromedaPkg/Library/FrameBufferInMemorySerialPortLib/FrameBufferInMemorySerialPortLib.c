@@ -51,7 +51,7 @@ SerialPortInitialize(VOID)
     return RETURN_SUCCESS;
 
   GetPlatformDisplayFrameBuffer(&DisplayMemoryRegion);
-  p_Position = (FBCON_POSITION*)(DisplayMemoryRegion.Address + (FixedPcdGet32(PcdMipiFrameBufferWidth) * FixedPcdGet32(PcdMipiFrameBufferHeight) * FixedPcdGet32(PcdMipiFrameBufferPixelBpp) / 8));
+  p_Position = (FBCON_POSITION*)(DisplayMemoryRegion.Address + GetPlatformDisplayConsoleOffset());
 
   // Reset console
   FbConReset();

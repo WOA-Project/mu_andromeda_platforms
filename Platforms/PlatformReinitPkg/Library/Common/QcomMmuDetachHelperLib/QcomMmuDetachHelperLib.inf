@@ -13,6 +13,7 @@
   MdePkg/MdePkg.dec
   AndromedaPkg/AndromedaPkg.dec
   QcomCommonPkg/QcomCommonPkg.dec
+  PlatformReinitPkg/PlatformReinitPkg.dec
 
 [LibraryClasses]
   BaseLib

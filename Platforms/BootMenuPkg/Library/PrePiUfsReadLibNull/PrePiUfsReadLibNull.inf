@@ -1,0 +1,14 @@
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = PrePiUfsReadLibNull
+  FILE_GUID                      = 9E3454A7-490D-492D-8B1F-9EE8F24BCB10
+  MODULE_TYPE                    = SEC
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = PrePiUfsReadLib
+
+[Sources]
+  PrePiUfsRead.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  BootMenuPkg/BootMenuPkg.dec

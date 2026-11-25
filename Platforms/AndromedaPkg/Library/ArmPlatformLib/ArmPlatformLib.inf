@@ -19,6 +19,7 @@
   ArmPkg/ArmPkg.dec
   ArmPlatformPkg/ArmPlatformPkg.dec
   AndromedaPkg/AndromedaPkg.dec
+  PlatformReinitPkg/PlatformReinitPkg.dec
 
 [LibraryClasses]
   ArmLib

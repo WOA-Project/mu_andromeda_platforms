@@ -25,6 +25,10 @@
 
   gAndromedaPkgTokenSpaceGuid.PcdSmbiosProcessorModel|"Snapdragon (TM) 855 @ 2.84 GHz"
   gAndromedaPkgTokenSpaceGuid.PcdSmbiosProcessorRetailModel|"SM8150"
+  gPlatformReinitPkgTokenSpaceGuid.PcdPrePiSecondaryDisplay|FALSE
+  gPlatformReinitPkgTokenSpaceGuid.PcdPrePiDisplayTestImage|TRUE
+  gPlatformReinitPkgTokenSpaceGuid.PcdPrePiUfsReinit|FALSE
+  gBootMenuPkgTokenSpaceGuid.PcdPrePiBootMenu|TRUE
 
   gArmPlatformTokenSpaceGuid.PcdCoreCount|8
   gArmPlatformTokenSpaceGuid.PcdClusterCount|3
@@ -39,7 +43,17 @@
   AndromedaMemoryMapLib|QcomPkg/Library/AndromedaMemoryMapLib/AndromedaMemoryMapLib.inf
   PlatformDdrBankMapLib|QcomPkg/Library/PlatformDdrBankMapLib/PlatformDdrBankMapLib.inf
   PlatformPeiLib|QcomPkg/PlatformPei/PlatformPeiLib.inf
-  PlatformPrePiLib|QcomPkg/Library/PlatformPrePiLib/PlatformPrePiLib.inf
+  PlatformPrePiLib|PlatformReinitPkg/Library/Sm8150/PlatformPrePiLib/PlatformPrePiLib.inf
+  PrePiBootMenuLib|BootMenuPkg/Library/PrePiBootMenuLib/PrePiBootMenuLib.inf
+  PrePiDisplayDiagnosticLib|DisplayDiagnosticPkg/Library/Sm8150/PrePiDisplayDiagnosticLib/PrePiDisplayDiagnosticLib.inf
+  PrePiDisplayLib|PlatformReinitPkg/Library/Sm8150/PrePiDisplayLib/PrePiDisplayLib.inf
+  PrePiMenuLib|BootMenuPkg/Library/PrePiMenuLib/PrePiMenuLib.inf
+  PrePiMenuButtonsLib|BootMenuPkg/Library/Sm8150/PrePiMenuButtonsLib/PrePiMenuButtonsLib.inf
+  PrePiMenuDisplayLib|BootMenuPkg/Library/Andromeda/PrePiMenuDisplayLib/PrePiMenuDisplayLib.inf
+  PrePiSpmiLib|BootMenuPkg/Library/Sm8150/PrePiSpmiLib/PrePiSpmiLib.inf
+  PrePiUfsLib|PlatformReinitPkg/Library/Sm8150/PrePiUfsLib/PrePiUfsLib.inf
+  PrePiUfsBrowserLib|BootMenuPkg/Library/PrePiUfsBrowserLib/PrePiUfsBrowserLib.inf
+  PrePiUfsReadLib|BootMenuPkg/Library/PrePiUfsReadLib/PrePiUfsReadLib.inf
   AslUpdateLib|AndromedaPkg/Library/DxeAslUpdateLib/DxeAslUpdateLib.inf
   RFSProtectionLib|QcomPkg/Library/RFSProtectionLib/RFSProtectionLib.inf
 
@@ -48,7 +62,7 @@
 
   PlatformHobLib|QcomPkg/Library/PlatformHobLib/PlatformHobLib.inf
 
-  QcomMmuDetachHelperLib|QcomCommonPkg/Library/QcomMmuDetachHelperLib/QcomMmuDetachHelperLib.inf
+  QcomMmuDetachHelperLib|PlatformReinitPkg/Library/Common/QcomMmuDetachHelperLib/QcomMmuDetachHelperLib.inf
 
 [Components.common]
   Cambria/BOOT.XF.3.0.1-00243-SC8180XWZB-2/QcomPkg/Drivers/CPRDxe/CPRDxe.inf

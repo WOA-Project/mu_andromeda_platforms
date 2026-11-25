@@ -1,0 +1,14 @@
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = PrePiUfsLibNull
+  FILE_GUID                      = 984E58F7-D1DD-43AA-B8CF-CA78650BA59F
+  MODULE_TYPE                    = SEC
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = PrePiUfsLib
+
+[Sources]
+  PrePiUfsLibNull.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  PlatformReinitPkg/PlatformReinitPkg.dec

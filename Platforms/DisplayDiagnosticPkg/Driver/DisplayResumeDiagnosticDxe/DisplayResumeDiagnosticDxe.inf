@@ -1,0 +1,40 @@
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = DisplayResumeDiagnosticDxe
+  FILE_GUID                      = A9461517-5DD2-42E9-A501-739A37B180BA
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = DisplayResumeDiagnosticDxeInitialize
+
+[Sources]
+  DisplayResumeDiagnosticDxe.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AndromedaPkg/AndromedaPkg.dec
+  DisplayDiagnosticPkg/DisplayDiagnosticPkg.dec
+  QcomModulePkg/QcomModulePkg.dec
+
+[LibraryClasses]
+  BaseLib
+  BaseMemoryLib
+  DebugLib
+  HobLib
+  MemoryAllocationLib
+  PrintLib
+  UefiBootServicesTableLib
+  UefiDriverEntryPoint
+
+[Protocols]
+  gEfiSimpleFileSystemProtocolGuid
+  gEfiPartitionInfoProtocolGuid
+  gQcomPmicVersionProtocolGuid
+  gQcomPmicVregProtocolGuid
+
+[Guids]
+  gDisplayResumeDiagnosticHobGuid
+  gEfiPartTypeSystemPartGuid
+  gEfiFileInfoGuid
+
+[Depex]
+  TRUE

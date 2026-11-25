@@ -79,5 +79,6 @@
 !include AndromedaPkg/Frontpage.dsc.inc
 
 [Components.common]
+  DisplayDiagnosticPkg/Driver/DisplayResumeDiagnosticDxe/DisplayResumeDiagnosticDxe.inf
   SurfaceDuo1Pkg/AcpiTables/AcpiTables.inf
   #SurfaceDuo1Pkg/Driver/RightDisplayDxe/RightDisplayDxe.inf

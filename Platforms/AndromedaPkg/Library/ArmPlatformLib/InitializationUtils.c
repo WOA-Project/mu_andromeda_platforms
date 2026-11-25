@@ -6,12 +6,12 @@
 
 **/
 #include <Library/BaseLib.h>
+#include <Library/AndromedaArmPlatformLib.h>
 #include <Library/DebugLib.h>
 #include <Library/PcdLib.h>
 #include <Library/SerialPortLib.h>
 
 #include <Library/PlatformHwioLib.h>
-#include <Library/PlatformPrePiLib.h>
 
 #include "InitializationUtils.h"
 
@@ -23,8 +23,7 @@ VOID InitializeSharedUartBuffers(VOID)
 
   // Setup Position counter
   INTN *pFbConPosition =
-      (INTN
-           *)(DisplayMemoryRegion.Address + (FixedPcdGet32(PcdMipiFrameBufferWidth) * FixedPcdGet32(PcdMipiFrameBufferHeight) * FixedPcdGet32(PcdMipiFrameBufferPixelBpp) / 8));
+      (INTN *)(DisplayMemoryRegion.Address + GetPlatformDisplayConsoleOffset());
 
   *(pFbConPosition + 0) = 0;
   *(pFbConPosition + 1) = 0;
@@ -53,11 +52,8 @@ VOID UartInit(VOID)
        (CHAR16 *)PcdGetPtr(PcdFirmwareVersionString), __TIME__, __DATE__));
 }
 
-VOID EarlyInitialization(VOID)
+VOID EFIAPI ArmPlatformInitializeConsole(VOID)
 {
   // Initialize UART Serial
   UartInit();
-
-  // Do platform specific initialization here
-  PlatformInitialize();
 }

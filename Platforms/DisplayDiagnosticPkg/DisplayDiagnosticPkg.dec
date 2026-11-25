@@ -1,0 +1,14 @@
+[Defines]
+  DEC_SPECIFICATION              = 0x00010005
+  PACKAGE_NAME                   = DisplayDiagnosticPkg
+  PACKAGE_GUID                   = 626aa038-6695-4b13-854b-bf02f89997e9
+  PACKAGE_VERSION                = 0.1
+
+[Includes.common]
+  Include
+
+[LibraryClasses]
+  PrePiDisplayDiagnosticLib|Include/Library/PrePiDisplayDiagnosticLib.h
+
+[Guids.common]
+  gDisplayResumeDiagnosticHobGuid = { 0x45c0b327, 0x7412, 0x4851, { 0x9f, 0xf8, 0x3b, 0x3f, 0x1e, 0x19, 0xa7, 0x7e } }

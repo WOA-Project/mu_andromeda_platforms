@@ -7,9 +7,12 @@
 **/
 #include <PiPei.h>
 
+#include <Library/BaseLib.h>
+#include <Library/DebugLib.h>
 #include <Library/IoLib.h>
 #include <Library/QcomUefiCfgMemoryMapHelperLib.h>
 #include <Library/PlatformPrePiLib.h>
+#include <Library/PrePiDisplayDiagnosticLib.h>
 #include <Library/QcomMmuDetachHelperLib.h>
 
 #include "PlatformUtils.h"
@@ -18,6 +21,7 @@ VOID DisableMDSSDSIController(UINT32 MdssDsiBase)
 {
   UINT32 DsiControlAddr  = MdssDsiBase + DSI_CTRL;
   UINT32 DsiControlValue = MmioRead32(DsiControlAddr);
+  RecordDisplayDsiControl(DsiControlAddr, DsiControlValue);
   DsiControlValue &=
       ~(DSI_CTRL_ENABLE | DSI_CTRL_VIDEO_MODE_ENABLE |
         DSI_CTRL_COMMAND_MODE_ENABLE);
@@ -35,6 +39,7 @@ VOID SetWatchdogState(BOOLEAN Enable)
 VOID PlatformInitialize(VOID)
 {
   ARM_MEMORY_REGION_DESCRIPTOR_EX MDSSMemoryRegion;
+
   QcomLocateMemoryMapAreaByName("MDSS", &MDSSMemoryRegion);
 
   // Disable MDSS DSI0 Controller

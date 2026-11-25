@@ -10,13 +10,23 @@
   PlatformUtils.c
 
 [Packages]
+  ArmPkg/ArmPkg.dec
   MdePkg/MdePkg.dec
   QcomCommonPkg/QcomCommonPkg.dec
   QcomPkg/QcomPkg.dec
   AndromedaPkg/AndromedaPkg.dec
+  PlatformReinitPkg/PlatformReinitPkg.dec
 
 [LibraryClasses]
   BaseLib
+  QcomUefiCfgConfigParametersHelperLib
   IoLib
   QcomUefiCfgMemoryMapHelperLib
   QcomMmuDetachHelperLib
+
+[FixedPcd]
+  gArmTokenSpaceGuid.PcdGicRedistributorsBase
+
+[Pcd]
+  gQcomPkgTokenSpaceGuid.PcdTestMfgModeRequiredEKU
+  gQcomPkgTokenSpaceGuid.PcdTkRequiredEKU

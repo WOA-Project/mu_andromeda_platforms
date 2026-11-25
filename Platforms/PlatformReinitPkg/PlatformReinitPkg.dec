@@ -1,0 +1,22 @@
+[Defines]
+  DEC_SPECIFICATION              = 0x00010005
+  PACKAGE_NAME                   = PlatformReinitPkg
+  PACKAGE_GUID                   = f7c3f180-271b-4a3a-9ebb-db59e24b59cd
+  PACKAGE_VERSION                = 0.1
+
+[Includes.common]
+  Include
+
+[LibraryClasses]
+  PlatformPrePiLib|Include/Library/PlatformPrePiLib.h
+  PrePiDisplayLib|Include/Library/PrePiDisplayLib.h
+  PrePiUfsLib|Include/Library/PrePiUfsLib.h
+  QcomMmuDetachHelperLib|Include/Library/QcomMmuDetachHelperLib.h
+
+[Guids.common]
+  gPlatformReinitPkgTokenSpaceGuid = { 0x0321945b, 0xc95c, 0x474d, { 0xa2, 0xce, 0x69, 0x7b, 0x27, 0x82, 0x25, 0x6b } }
+
+[PcdsFixedAtBuild.common]
+  gPlatformReinitPkgTokenSpaceGuid.PcdPrePiSecondaryDisplay|FALSE|BOOLEAN|0x00000001
+  gPlatformReinitPkgTokenSpaceGuid.PcdPrePiDisplayTestImage|FALSE|BOOLEAN|0x00000002
+  gPlatformReinitPkgTokenSpaceGuid.PcdPrePiUfsReinit|FALSE|BOOLEAN|0x00000003

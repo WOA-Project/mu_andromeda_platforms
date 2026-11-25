@@ -10,6 +10,7 @@
 #include <Library/ArmPlatformLib.h>
 #include <Library/AndromedaArmPlatformLib.h>
 #include <Library/AndromedaBootConfigLib.h>
+#include <Library/PlatformPrePiLib.h>
 
 #include <Ppi/ArmMpCoreInfo.h>
 
@@ -154,7 +155,8 @@ ArmPlatformInitialize (
     return RETURN_SUCCESS;
   }
 
-  EarlyInitialization();
+  // Do platform specific initialization here
+  PlatformInitialize();
 
   return RETURN_SUCCESS;
 }

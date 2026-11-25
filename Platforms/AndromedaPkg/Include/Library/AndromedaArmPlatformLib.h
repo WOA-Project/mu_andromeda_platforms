@@ -7,6 +7,12 @@
 
 #include <Uefi.h>
 
+VOID
+EFIAPI
+ArmPlatformInitializeConsole (
+  VOID
+  );
+
 /**
   Retrieve the boot configuration published by ArmPlatformPeiBootAction.
 

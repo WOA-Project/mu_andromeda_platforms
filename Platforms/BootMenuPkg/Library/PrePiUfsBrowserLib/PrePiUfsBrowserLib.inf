@@ -1,0 +1,24 @@
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = PrePiUfsBrowserLib
+  FILE_GUID                      = 174A0EC5-BAE6-4BF0-9D25-1CD66F899D61
+  MODULE_TYPE                    = SEC
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = PrePiUfsBrowserLib
+
+[Sources]
+  BrowserDisk.c
+  BrowserDisk.h
+  PrePiUfsBrowser.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  BootMenuPkg/BootMenuPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  BaseMemoryLib
+  DebugLib
+  PrePiMenuLib
+  PrePiUfsReadLib
+  PrintLib

@@ -11,6 +11,7 @@
 #include <Library/CacheMaintenanceLib.h>
 #include <Library/DebugAgentLib.h>
 #include <Library/PrePiLib.h>
+#include <Library/PrePiPlatformHooksLib.h>
 #include <Library/PrintLib.h>
 #include <Library/PrePiHobListPointerLib.h>
 #include <Library/TimerLib.h>
@@ -183,6 +184,8 @@ PrePiMain (
 
   BuildStackHob (StacksBase, StacksSize);
 
+  PrePiExecutePriorToCpuHob ();
+
   // TODO: Call CpuPei as a library
   BuildCpuHob (ArmGetPhysicalAddressBits (), PcdGet8 (PcdPrePiCpuIoSize));
 
@@ -232,6 +235,9 @@ PrePiMain (
   // SEC phase needs to run library constructors by hand.
   ProcessLibraryConstructorList ();
 
+  PrePiShowBootMenu ();
+  PrePiExecutePriorToDxeCoreHandoff ();
+
   // Assume the FV that contains the SEC (our code) also contains a compressed FV.
   Status = DecompressFirstFv ();
   ASSERT_EFI_ERROR (Status);
@@ -248,8 +254,8 @@ CEntryPoint ()
   EFI_STATUS Status;
   ARM_MEMORY_REGION_DESCRIPTOR_EX UefiFd;
 
-  // Initialize the platform specific controllers
-  ArmPlatformInitialize (0);
+  ArmPlatformInitializeConsole ();
+  PrePiExecuteEarlyDisplayDiagnostics ();
 
   if (PerformanceMeasurementEnabled ()) {
     // Initialize the Timer Library to setup the Timer HW controller

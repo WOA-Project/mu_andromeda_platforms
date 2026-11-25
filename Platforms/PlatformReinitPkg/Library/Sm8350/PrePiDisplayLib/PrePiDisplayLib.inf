@@ -1,0 +1,27 @@
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = PrePiDisplayLib
+  FILE_GUID                      = BAA1C7F3-19F3-4DF7-80D7-17E42AB7D26D
+  MODULE_TYPE                    = SEC
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = PrePiDisplayLib
+
+[Sources]
+  PrePiDisplay.c
+
+[Packages]
+  ArmPkg/ArmPkg.dec
+  MdePkg/MdePkg.dec
+  AndromedaPkg/AndromedaPkg.dec
+  PlatformReinitPkg/PlatformReinitPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  CacheMaintenanceLib
+  PcdLib
+  PlatformHwioLib
+
+[FixedPcd]
+  gAndromedaPkgTokenSpaceGuid.PcdMipiFrameBufferWidth
+  gAndromedaPkgTokenSpaceGuid.PcdMipiFrameBufferHeight
+  gAndromedaPkgTokenSpaceGuid.PcdMipiFrameBufferPixelBpp

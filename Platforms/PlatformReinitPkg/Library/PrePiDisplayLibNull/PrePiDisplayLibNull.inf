@@ -1,0 +1,14 @@
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = PrePiDisplayLibNull
+  FILE_GUID                      = 9806DC66-99B7-4ADC-B71D-F3DEC8B262A6
+  MODULE_TYPE                    = SEC
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = PrePiDisplayLib
+
+[Sources]
+  PrePiDisplayLibNull.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  PlatformReinitPkg/PlatformReinitPkg.dec

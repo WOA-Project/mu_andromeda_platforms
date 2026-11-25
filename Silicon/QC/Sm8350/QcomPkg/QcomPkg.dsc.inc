@@ -25,6 +25,8 @@
 
   gAndromedaPkgTokenSpaceGuid.PcdSmbiosProcessorModel|"Snapdragon (TM) 888 @ 2.84 GHz"
   gAndromedaPkgTokenSpaceGuid.PcdSmbiosProcessorRetailModel|"SM8350"
+  gBootMenuPkgTokenSpaceGuid.PcdPrePiBootMenu|TRUE
+  gPlatformReinitPkgTokenSpaceGuid.PcdPrePiUfsReinit|FALSE
 
   gArmPlatformTokenSpaceGuid.PcdCoreCount|8
   gArmPlatformTokenSpaceGuid.PcdClusterCount|3
@@ -46,7 +48,17 @@
   AndromedaMemoryMapLib|QcomPkg/Library/AndromedaMemoryMapLib/AndromedaMemoryMapLib.inf
   PlatformDdrBankMapLib|QcomPkg/Library/PlatformDdrBankMapLib/PlatformDdrBankMapLib.inf
   PlatformPeiLib|QcomPkg/PlatformPei/PlatformPeiLib.inf
-  PlatformPrePiLib|QcomPkg/Library/PlatformPrePiLib/PlatformPrePiLib.inf
+  PlatformPrePiLib|PlatformReinitPkg/Library/Sm8350/PlatformPrePiLib/PlatformPrePiLib.inf
+  PrePiDisplayDiagnosticLib|DisplayDiagnosticPkg/Library/PrePiDisplayDiagnosticLibNull/PrePiDisplayDiagnosticLibNull.inf
+  PrePiDisplayLib|PlatformReinitPkg/Library/Sm8350/PrePiDisplayLib/PrePiDisplayLib.inf
+  PrePiUfsLib|PlatformReinitPkg/Library/Sm8350/PrePiUfsLib/PrePiUfsLib.inf
+  PrePiBootMenuLib|BootMenuPkg/Library/PrePiBootMenuLib/PrePiBootMenuLib.inf
+  PrePiMenuLib|BootMenuPkg/Library/PrePiMenuLib/PrePiMenuLib.inf
+  PrePiMenuButtonsLib|BootMenuPkg/Library/Sm8350/PrePiMenuButtonsLib/PrePiMenuButtonsLib.inf
+  PrePiMenuDisplayLib|BootMenuPkg/Library/Andromeda/PrePiMenuDisplayLib/PrePiMenuDisplayLib.inf
+  PrePiSpmiLib|BootMenuPkg/Library/Sm8350/PrePiSpmiLib/PrePiSpmiLib.inf
+  PrePiUfsBrowserLib|BootMenuPkg/Library/PrePiUfsBrowserLib/PrePiUfsBrowserLib.inf
+  PrePiUfsReadLib|BootMenuPkg/Library/PrePiUfsReadLib/PrePiUfsReadLib.inf
   AslUpdateLib|AndromedaPkg/Library/DxeAslUpdateLib/DxeAslUpdateLib.inf
   RFSProtectionLib|QcomPkg/Library/RFSProtectionLib/RFSProtectionLib.inf
 
@@ -55,7 +67,7 @@
 
   PlatformHobLib|QcomPkg/Library/PlatformHobLib/PlatformHobLib.inf
 
-  QcomMmuDetachHelperLib|QcomCommonPkg/Library/QcomMmuDetachHelperLib/QcomMmuDetachHelperLib.inf
+  QcomMmuDetachHelperLib|PlatformReinitPkg/Library/Common/QcomMmuDetachHelperLib/QcomMmuDetachHelperLib.inf
 
 [Components.common]
   Arcata/BOOT.MXF.1.1.c1-00127-MAKENA-2/ArcataPkg/GpioButtonsDxe/GpioButtons.inf

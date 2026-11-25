@@ -6,12 +6,22 @@
 
 **/
 #include <PiPei.h>
+#include <Library/PcdLib.h>
+#include <Library/PlatformHwioLib.h>
 #include <Library/PlatformHobs.h>
 #include <Library/QcomUefiCfgMemoryMapHelperLib.h>
 
 EFI_STATUS EFIAPI GetPlatformDisplayFrameBuffer(ARM_MEMORY_REGION_DESCRIPTOR_EX *MemoryDescriptor)
 {
   return QcomLocateMemoryMapAreaByName("Display Reserved", MemoryDescriptor);
+}
+
+UINTN EFIAPI GetPlatformDisplayConsoleOffset(VOID)
+{
+  UINTN FrameBufferSize = (UINTN)FixedPcdGet32(PcdMipiFrameBufferWidth) *
+                          FixedPcdGet32(PcdMipiFrameBufferHeight) *
+                          FixedPcdGet32(PcdMipiFrameBufferPixelBpp) / 8;
+  return FrameBufferSize * (FixedPcdGetBool(PcdPrePiSecondaryDisplay) ? 2 : 1);
 }
 
 EFI_STATUS EFIAPI GetPlatformLogBuffer(ARM_MEMORY_REGION_DESCRIPTOR_EX *MemoryDescriptor)

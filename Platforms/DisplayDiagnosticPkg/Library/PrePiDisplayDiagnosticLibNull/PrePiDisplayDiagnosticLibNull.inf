@@ -1,0 +1,23 @@
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = PrePiDisplayDiagnosticLibNull
+  FILE_GUID                      = EBA2924C-C6BA-4968-BB84-4FF2C8F6F215
+  MODULE_TYPE                    = SEC
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = PrePiDisplayDiagnosticLib
+
+[Sources]
+  PrePiDisplayDiagnosticLib.c
+  ../Common/PrePiDisplayDiagnosticLib/DisplayDiagnosticHob.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  DisplayDiagnosticPkg/DisplayDiagnosticPkg.dec
+
+[LibraryClasses]
+  BaseMemoryLib
+  DebugLib
+  HobLib
+
+[Guids]
+  gDisplayResumeDiagnosticHobGuid
