@@ -23,7 +23,7 @@ RunBootMenu (
   VOID
   )
 {
-  CONST CHAR8 *Entries[2];
+  CONST CHAR8 *Entries[3];
   CONST CHAR8 *Back[1];
   CHAR8 Title[256];
   UINTN Selection;
@@ -34,48 +34,63 @@ RunBootMenu (
   UINT32 Partition;
   EFI_STATUS Status;
 
-  Entries[0] = "Continue boot";
-  Entries[1] = "File browser";
-  for (;;) {
+  Entries[0] = "Continue to Android";
+  Entries[1] = "Continue to Windows";
+  Entries[2] = "UFS Browser";
+
+  while (TRUE) {
     Selection = 0;
     Status = PrePiMenuShow ("PrePi boot menu", Entries, 2, &Selection);
-    if (EFI_ERROR (Status) || (Selection == 0)) {
+    if (EFI_ERROR (Status)) {
       return Status;
     }
 
-    PathChars = sizeof (mPath) / sizeof (mPath[0]);
-    Status = PrePiUfsBrowse (&Lun, &Partition, &PathChars, mPath);
-    if (Status == EFI_ABORTED) {
-      continue;
-    }
-
-    if (EFI_ERROR (Status)) {
-      DEBUG ((DEBUG_ERROR, "PrePi: UFS browser failed: %r\n", Status));
-      AsciiSPrint (Title, sizeof (Title), "UFS browser failed: %r", Status);
-      Back[0] = "Back to boot menu";
-      Selection = 0;
-      Status = PrePiMenuShow (Title, Back, 1, &Selection);
-      if (EFI_ERROR (Status)) {
+    switch (Selection)
+    {
+      // Android
+      case 0:
         return Status;
-      }
 
-      continue;
-    }
+      // Windows
+      case 1:
+        return Status;
 
-    DEBUG ((DEBUG_INFO, "PrePi: selected LUN %u partition %u: %s\n", Lun, Partition, mPath));
-    AsciiSPrint (Title, sizeof (Title), "Selected (not executed): ");
-    Position = AsciiStrLen (Title);
-    for (Index = 0; (mPath[Index] != 0) && (Position + 1 < sizeof (Title)); Index++) {
-      Title[Position++] = ((mPath[Index] >= 32) && (mPath[Index] <= 126)) ?
-                          (CHAR8)mPath[Index] : '?';
-    }
+      // UFS Browser
+      case 2:
+        PathChars = sizeof (mPath) / sizeof (mPath[0]);
+        Status = PrePiUfsBrowse (&Lun, &Partition, &PathChars, mPath);
+        if (Status == EFI_ABORTED) {
+          continue;
+        }
 
-    Title[Position] = 0;
-    Back[0] = "Back to boot menu";
-    Selection = 0;
-    Status = PrePiMenuShow (Title, Back, 1, &Selection);
-    if (EFI_ERROR (Status)) {
-      return Status;
+        if (EFI_ERROR (Status)) {
+          DEBUG ((DEBUG_ERROR, "PrePi: UFS browser failed: %r\n", Status));
+          AsciiSPrint (Title, sizeof (Title), "UFS browser failed: %r", Status);
+          Back[0] = "Back to boot menu";
+          Selection = 0;
+          Status = PrePiMenuShow (Title, Back, 1, &Selection);
+          if (EFI_ERROR (Status)) {
+            return Status;
+          }
+
+          continue;
+        }
+
+        DEBUG ((DEBUG_INFO, "PrePi: selected LUN %u partition %u: %s\n", Lun, Partition, mPath));
+        AsciiSPrint (Title, sizeof (Title), "Selected (not executed): ");
+        Position = AsciiStrLen (Title);
+        for (Index = 0; (mPath[Index] != 0) && (Position + 1 < sizeof (Title)); Index++) {
+          Title[Position++] = ((mPath[Index] >= 32) && (mPath[Index] <= 126)) ? (CHAR8)mPath[Index] : '?';
+        }
+
+        Title[Position] = 0;
+        Back[0] = "Back to boot menu";
+        Selection = 0;
+        Status = PrePiMenuShow (Title, Back, 1, &Selection);
+        if (EFI_ERROR (Status)) {
+          return Status;
+        }
+        break;
     }
   }
 }
@@ -95,34 +110,44 @@ PrePiBootMenuShow (
     return Status;
   }
 
-  if ((Surface.Pixels == NULL) || (Surface.Height == 0) ||
-      (Surface.Stride < Surface.Width) ||
+  if ((Surface.Pixels == NULL) || 
+      (Surface.Height == 0) || 
+      (Surface.Stride < Surface.Width) || 
       (Surface.Stride > MAX_UINTN / Surface.Height / sizeof (UINT32))) {
     return EFI_UNSUPPORTED;
   }
 
   Size = Surface.Stride * Surface.Height * sizeof (UINT32);
-  if ((Size == 0) || (Size > MAX_UINTN - EFI_PAGE_MASK) ||
+  if ((Size == 0) || 
+      (Size > MAX_UINTN - EFI_PAGE_MASK) || 
       ((UINTN)Surface.Pixels > MAX_UINTN - Size)) {
     return EFI_UNSUPPORTED;
   }
 
-  if (mSavedFramebuffer == NULL) {
-    mSavedFramebuffer = AllocatePages (EFI_SIZE_TO_PAGES (Size));
+  // Backup framebuffer content from before our menu execution
+  {
     if (mSavedFramebuffer == NULL) {
-      DEBUG ((DEBUG_ERROR, "PrePi: cannot preserve the menu framebuffer\n"));
-      return EFI_OUT_OF_RESOURCES;
+      mSavedFramebuffer = AllocatePages (EFI_SIZE_TO_PAGES (Size));
+      if (mSavedFramebuffer == NULL) {
+        DEBUG ((DEBUG_ERROR, "PrePi: cannot preserve the menu framebuffer\n"));
+        return EFI_OUT_OF_RESOURCES;
+      }
+
+      mSavedFramebufferSize = Size;
+    } else if (Size > mSavedFramebufferSize) {
+      DEBUG ((DEBUG_ERROR, "PrePi: menu framebuffer grew beyond its saved buffer\n"));
+      return EFI_BAD_BUFFER_SIZE;
     }
 
-    mSavedFramebufferSize = Size;
-  } else if (Size > mSavedFramebufferSize) {
-    DEBUG ((DEBUG_ERROR, "PrePi: menu framebuffer grew beyond its saved buffer\n"));
-    return EFI_BAD_BUFFER_SIZE;
+    CopyMem (mSavedFramebuffer, Surface.Pixels, Size);
   }
 
-  CopyMem (mSavedFramebuffer, Surface.Pixels, Size);
+  // Run the Menu
   Status = RunBootMenu ();
+
+  // Restore framebuffer content from before our menu execution
   CopyMem (Surface.Pixels, mSavedFramebuffer, Size);
   PrePiMenuDisplayFlush (&Surface);
+
   return Status;
 }
