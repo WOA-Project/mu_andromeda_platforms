@@ -222,8 +222,6 @@ DrawMenu (
   IN UINTN Count, IN UINTN Selected
   )
 {
-  UINTN PanelWidth;
-  UINTN Inset;
   UINTN Top;
   UINTN LineHeight;
   UINTN RowHeight;
@@ -252,36 +250,29 @@ DrawMenu (
   UINTN EntryX;
   CONST CHAR8 *Heading;
 
-  PanelWidth = mSurface.Width;
-  Inset = PanelWidth / 16U;
-  if (Inset < 8U) {
-    Inset = 8U;
-  }
-
-  mScale = PanelWidth / 220U;
-  if (mScale < 1U) {
-    mScale = 1U;
-  } else if (mScale > MENU_MAX_SCALE) {
-    mScale = MENU_MAX_SCALE;
-  }
-
-  if (mScale > mSurface.Height / 240U) {
-    mScale = mSurface.Height / 240U;
-  }
+  mScale = MENU_MAX_SCALE;
 
   LineHeight = (FONT_HEIGHT + 4U) * mScale;
   RowHeight = LineHeight + (2U * mScale);
+
   FooterHeight = (2U * LineHeight) + (2U * mScale);
+
   TitleHeight = LineHeight + (2U * mScale);
+
   Top = mSurface.Height / 28U;
-  BadgeWidth = PanelWidth - (2U * Inset);
+
+  BadgeWidth = mSurface.Width - (2U * 84);
+
   Heading = PrePiMenuDisplayGetHeading ();
   HeadingBadgeWidth = ((Heading == NULL) || (Heading[0] == '\0')) ?
                       0U : GetBadgeWidth (Heading, BadgeWidth, 2U * mScale);
+
   SectionBadgeWidth = GetBadgeWidth ("Boot Select", BadgeWidth, 2U * mScale);
+
   SectionY = Top + TitleHeight + (4U * mScale);
   TitleY = SectionY + TitleHeight + (4U * mScale);
-  TitleColumns = GetTextColumns (Inset, mSurface.Width - Inset);
+
+  TitleColumns = GetTextColumns (0, mSurface.Width);
   MaxTitleLines = (mSurface.Height - TitleY - FooterHeight - RowHeight -
                    (10U * mScale)) / LineHeight;
   if (MaxTitleLines == 0U) {
@@ -293,10 +284,13 @@ DrawMenu (
     TitleLines = MaxTitleLines;
   }
 
-  EntryX = Inset + (2U * (FONT_WIDTH + 1U) * mScale);
-  EntryColumns = GetTextColumns (EntryX, mSurface.Width - Inset);
+  EntryX = (2U * (FONT_WIDTH + 1U) * mScale);
+  EntryColumns = GetTextColumns (EntryX, mSurface.Width);
+
   ListY = TitleY + (TitleLines * LineHeight) + (6U * mScale);
+
   AvailableHeight = mSurface.Height - ListY - FooterHeight - (2U * mScale);
+
   MaxEntryLines = (AvailableHeight - (2U * mScale)) / LineHeight;
   if (MaxEntryLines == 0U) {
     MaxEntryLines = 1U;
@@ -326,8 +320,7 @@ DrawMenu (
     UsedHeight += EntryHeight;
   }
 
-  while ((First + VisibleCount < Count) &&
-         (UsedHeight < AvailableHeight)) {
+  while ((First + VisibleCount < Count) && (UsedHeight < AvailableHeight)) {
     EntryLines = GetWrappedLineCount (Entries[First + VisibleCount], EntryColumns);
     if (EntryLines > MaxEntryLines) {
       EntryLines = MaxEntryLines;
@@ -342,23 +335,25 @@ DrawMenu (
     UsedHeight += EntryHeight;
   }
 
+  // Black background
   FillRect (0, 0, mSurface.Width, mSurface.Height, 0x00000000U);
 
+  // "Surface Duo" title heading badge
   if (HeadingBadgeWidth != 0U) {
-    FillRect (Inset + (4U * mScale), Top + (4U * mScale),
-              HeadingBadgeWidth, TitleHeight, 0x008B84A6U);
-    FillRect (Inset + (2U * mScale), Top + (2U * mScale),
-              HeadingBadgeWidth, TitleHeight, 0x005D5685U);
-    DrawBadge (Inset, Top, HeadingBadgeWidth, TitleHeight, 2U * mScale, Heading,
-               0x001D2347U, 0x00FFFFFFU);
-  }
-  FillRect (Inset + (2U * mScale), SectionY + (2U * mScale),
-            SectionBadgeWidth, TitleHeight, 0x000078B8U);
-  DrawBadge (Inset, SectionY, SectionBadgeWidth, TitleHeight, 2U * mScale,
-             "Boot Select", 0x0000AEEF, 0x00001830U);
-  DrawWrappedText (Inset, TitleY, mSurface.Width - Inset, Title, TitleColumns,
-                   LineHeight, TitleLines, 0x00E8E8ECU);
+    FillRect ((4U * mScale), Top + (4U * mScale), HeadingBadgeWidth, TitleHeight, 0x008B84A6U);
+    FillRect ((2U * mScale), Top + (2U * mScale), HeadingBadgeWidth, TitleHeight, 0x005D5685U);
 
+    DrawBadge (0, Top, HeadingBadgeWidth, TitleHeight, 2U * mScale, Heading, 0x001D2347U, 0x00FFFFFFU);
+  }
+
+  // "Boot Select" heading badge
+  FillRect ((2U * mScale), SectionY + (2U * mScale), SectionBadgeWidth, TitleHeight, 0x000078B8U);
+  DrawBadge (0,            SectionY,                 SectionBadgeWidth, TitleHeight, 2U * mScale, "Boot Select", 0x0000AEEF, 0x00001830U);
+
+  // Title of the current page
+  DrawWrappedText (0, TitleY, mSurface.Width, Title, TitleColumns, LineHeight, TitleLines, 0x00E8E8ECU);
+
+  // Draw each entry provided in a row
   Y = ListY;
   for (Index = First; Index < First + VisibleCount; Index++) {
     EntryLines = GetWrappedLineCount (Entries[Index], EntryColumns);
@@ -366,29 +361,21 @@ DrawMenu (
       EntryLines = MaxEntryLines;
     }
 
+    // If the entry is selected, make it a special color and wrap around it with "-" on both ends.
     if (Index == Selected) {
-      DrawText (Inset, Y, mSurface.Width - Inset, "-", 0x0000CFFFU);
+      DrawText        (84,                                                                       Y, mSurface.Width - 84, "-",  0x0000CFFFU);
+      DrawWrappedText (EntryX,                                                                   Y, mSurface.Width - (84 * 2), Entries[Index], EntryColumns, LineHeight, EntryLines, 0x0000CFFFU);
+      DrawText        (EntryX + StringLength (Entries[Index]) * (FONT_WIDTH + 1U) * mScale + 84, Y, mSurface.Width - 84, "-",  0x0000CFFFU);
+    } else {
+      DrawWrappedText (EntryX, Y, mSurface.Width - (84 * 2), Entries[Index], EntryColumns, LineHeight, EntryLines, 0x00E8E8ECU);
     }
-
-    DrawWrappedText (EntryX, Y, mSurface.Width - Inset, Entries[Index],
-                     EntryColumns, LineHeight, EntryLines,
-                     (Index == Selected) ? 0x0000CFFFU : 0x00E8E8ECU);
-    
-    if (Index == Selected) {
-      DrawText (EntryX + StringLength (Entries[Index]) * 
-                (FONT_WIDTH + 1U) * mScale, Y,
-                mSurface.Width - Inset, "-", 0x0000CFFFU);
-    }
-                    
+ 
     Y += (EntryLines * LineHeight) + (2U * mScale);
   }
 
   FooterY = ListY + UsedHeight + (2U * mScale);
-  DrawText (Inset, FooterY, mSurface.Width - Inset,
-            "Press Volume Up or Down button to change selection",
-            0x00C5C5CEU);
-  DrawText (Inset, FooterY + LineHeight, mSurface.Width - Inset,
-            "Press Power button to select", 0x00C5C5CEU);
+  DrawText (0, FooterY,              mSurface.Width, "Press Volume Up or Down button to change selection", 0x00C5C5CEU);
+  DrawText (0, FooterY + LineHeight, mSurface.Width, "Press Power button to select",                       0x00C5C5CEU);
   PrePiMenuDisplayFlush (&mSurface);
 }
 
