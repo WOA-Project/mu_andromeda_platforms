@@ -363,11 +363,13 @@ DrawMenu (
 
     // If the entry is selected, make it a special color and wrap around it with "-" on both ends.
     if (Index == Selected) {
-      DrawText        (84,                                                                       Y, mSurface.Width - 84, "-",  0x0000CFFFU);
-      DrawWrappedText (EntryX,                                                                   Y, mSurface.Width - (84 * 2), Entries[Index], EntryColumns, LineHeight, EntryLines, 0x0000CFFFU);
-      DrawText        (EntryX + StringLength (Entries[Index]) * (FONT_WIDTH + 1U) * mScale + 84, Y, mSurface.Width - 84, "-",  0x0000CFFFU);
+      UINTN RenderedTextLength = StringLength (Entries[Index]) * (FONT_WIDTH + 1U) * mScale;
+
+      DrawText        (0,                                Y, mSurface.Width - (84 * 2), "-",            0x0000CFFFU);
+      DrawWrappedText (EntryX,                           Y, mSurface.Width - (84 * 2), Entries[Index], EntryColumns, LineHeight, EntryLines, 0x0000CFFFU);
+      DrawText        (EntryX + RenderedTextLength + 84, Y, mSurface.Width - (84 * 2), "-",            0x0000CFFFU);
     } else {
-      DrawWrappedText (EntryX, Y, mSurface.Width - (84 * 2), Entries[Index], EntryColumns, LineHeight, EntryLines, 0x00E8E8ECU);
+      DrawWrappedText (EntryX,                           Y, mSurface.Width - (84 * 2), Entries[Index], EntryColumns, LineHeight, EntryLines, 0x00E8E8ECU);
     }
  
     Y += (EntryLines * LineHeight) + (2U * mScale);
