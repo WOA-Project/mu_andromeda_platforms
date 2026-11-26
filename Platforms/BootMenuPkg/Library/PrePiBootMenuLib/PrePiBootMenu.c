@@ -40,7 +40,7 @@ RunBootMenu (
 
   while (TRUE) {
     Selection = 0;
-    Status = PrePiMenuShow ("PrePi boot menu", Entries, 2, &Selection);
+    Status = PrePiMenuShow ("PrePi boot menu", Entries, 3, &Selection);
     if (EFI_ERROR (Status)) {
       return Status;
     }

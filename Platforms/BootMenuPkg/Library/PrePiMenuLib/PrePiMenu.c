@@ -365,9 +365,9 @@ DrawMenu (
     if (Index == Selected) {
       UINTN RenderedTextLength = StringLength (Entries[Index]) * (FONT_WIDTH + 1U) * mScale;
 
-      DrawText        (0,                                Y, mSurface.Width - (84 * 2), "-",            0x0000CFFFU);
-      DrawWrappedText (EntryX,                           Y, mSurface.Width - (84 * 2), Entries[Index], EntryColumns, LineHeight, EntryLines, 0x0000CFFFU);
-      DrawText        (EntryX + RenderedTextLength + 84, Y, mSurface.Width - (84 * 2), "-",            0x0000CFFFU);
+      DrawText        (0,                           Y, mSurface.Width - (84 * 2), "-",            0x0000CFFFU);
+      DrawWrappedText (EntryX,                      Y, mSurface.Width - (84 * 2), Entries[Index], EntryColumns, LineHeight, EntryLines, 0x0000CFFFU);
+      DrawText        (EntryX + RenderedTextLength, Y, mSurface.Width - (84 * 2), "-",            0x0000CFFFU);
     } else {
       DrawWrappedText (EntryX,                           Y, mSurface.Width - (84 * 2), Entries[Index], EntryColumns, LineHeight, EntryLines, 0x00E8E8ECU);
     }
