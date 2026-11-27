@@ -19,5 +19,5 @@ regex==2026.11.23
 pygount==3.2.0
 pywin32==312; sys_platform == 'win32'
 setuptools==84.2.1
-poetry==2.5.1
+poetry==2.5.2
 fdt==0.3.3
